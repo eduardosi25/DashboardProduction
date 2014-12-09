@@ -1,6 +1,0 @@
-name = "IMx Image Labels Alter"
-description = "Cambia las etiquetas Alter y Title del widget de image de Drupal 7"
-package = "InventMX"
-core = "7.x"
-version = "7.x"
-php="5.x"

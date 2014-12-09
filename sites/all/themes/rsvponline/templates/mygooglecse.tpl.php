@@ -1,1 +1,0 @@
-<?php print drupal_render($variables['mygooglecse_items']); ?>

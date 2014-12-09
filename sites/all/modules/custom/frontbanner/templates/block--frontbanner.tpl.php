@@ -1,1 +1,0 @@
-<div id="prehome"><?php print $content ?></div>

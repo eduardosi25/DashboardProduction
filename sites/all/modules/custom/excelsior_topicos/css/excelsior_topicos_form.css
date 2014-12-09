@@ -1,9 +1,0 @@
-#form-terminos-relacionados-populate{
-	display: inline-block;
-	width: 100%;
-}
-
-.form-type-checkbox[class*='form-item-field-terminos-relacionados-']{
-    float: left;
-    min-width: 20%;
-}

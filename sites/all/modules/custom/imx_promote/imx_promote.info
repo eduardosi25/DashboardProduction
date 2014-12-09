@@ -1,9 +1,0 @@
-name = "Promote Content"
-description = "Contenidos promocionados"
-package = "InventMX"
-core = "7.x"
-version = "7.x"
-php="5.x"
-files[] = imx_promote.module
-files[] = imx_promote.admin.inc
-files[] = imx_promote.install

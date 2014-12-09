@@ -15,20 +15,13 @@
  * Root directory of Drupal installation.
  */
 define('DRUPAL_ROOT', getcwd());
-
 require_once DRUPAL_ROOT . '/includes/bootstrap.inc';
+require_once DRUPAL_ROOT . '/invent.mx.config.inc';
+#Load a bootstrap
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
-
-//Admin paths
-$paths=array(
-  'admin/*',
-  'node/*/*',
-  'login',
-  '*/ajax/*',
-  '*/ahah/*',
-);
-
-if(drupal_match_path($_GET['q'],$paths)){
+#Check config
+$cms=get_cms_access();
+if($cms){
   menu_execute_active_handler();
 }else{
   require_once(DRUPAL_ROOT.'/web/index.php');
