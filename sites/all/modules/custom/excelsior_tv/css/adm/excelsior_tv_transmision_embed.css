@@ -1,0 +1,32 @@
+.transmision-textarea-embed-enabled{
+	background: #FFFCEC !important;
+	color:#10527A !important;
+	font-size: 14px !important;
+	width: 70% !important;
+}
+
+.transmision-textarea-embed-disabled{
+	background: #DCDCDC !important;
+	color:#B00101 !important ;
+	font-size: 14px !important;
+	width: 70% !important;
+}
+.grippie{
+	width: 70% !important;
+}
+
+ .btn-save-preview-generate-template{
+   font: bold 12px/15px MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', Helvetica, Arial, sans-serif !important;
+   background: #565656 !important;
+   color: #CACACA !important;   
+   width: 120px;
+   height: 25px;
+  } 
+
+ .copy-embed-portada-home{ 	
+	background: #bdd4b0 !important;
+	color: #3d3735 !important;
+	font-size: 14px !important;
+	width: 70% !important;
+	font-weight: normal;
+ } 

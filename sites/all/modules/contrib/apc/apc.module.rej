@@ -1,0 +1,22 @@
+--- apc.module
++++ apc.module
+@@ -92,11 +92,14 @@
+     '#value' => t('Clear APC user cache'),
+     '#submit' => array('apc_clear_user_cache'),
+   );
+-  $form['clear_cache']['apc_opcode'] = array(
+-    '#type' => 'submit',
+-    '#value' => t('Clear APC opcode cache'),
+-    '#submit' => array('apc_clear_opcode_cache'),
+-  );
++
++  if (!extension_loaded('apcu')) {
++    $form['clear_cache']['apc_opcode'] = array(
++      '#type' => 'submit',
++      '#value' => t('Clear APC opcode cache'),
++      '#submit' => array('apc_clear_opcode_cache'),
++    );
++  }
+ }
+ 
+ /**

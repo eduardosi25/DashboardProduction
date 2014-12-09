@@ -1,0 +1,274 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    font-size: 14px;
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a{text-decoration: none;}
+
+/*_*_*_*_*_*_*_*_*_* Helpers *_*_*_*_*_*_*_*_*_*/
+
+.clear {clear: both;}
+.left {float: left;}
+.right {float: right;}
+.dblock {display: block;}
+.inline{display: inline;}
+.dis-in-bl{display: inline-block;}
+.centertext{text-align: center;}
+.lefttext{text-align: left;}
+.righttext{text-align: right;}
+.center-elem{margin: 0 auto;}
+.btn{position: relative;display: block;cursor: pointer;}
+.hide{display: none;}
+.b{font-weight: bold;}
+.strong{font-weight: bolder;} 
+.cursor-pointer{cursor: pointer;}
+.relative{position: relative;}
+.absolute{position:absolute;}
+.sinborde{border: none;}
+.italic{font-style: italic;}
+.uppercase{text-transform: uppercase;}
+.lowercase{text-transform: lowercase;}
+.blackColor{color: #000;}
+.whiteColor{color: #fff;}
+.shadow {
+    -webkit-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 11px 2px rgba(0,0,0,0.2);
+}
+
+/*_*_*_*_*_*_*_*_*_* Sprite Styles *_*_*_*_*_*_*_*_*_*/
+.spriteIcons{
+    background: url('../images/sprite.png') no-repeat;
+}
+.facebookIcon,.twitterIcon,.googleIcon,.telegramIcon{
+    width: 34px;
+    height: 34px;
+    display: inline-block;
+}
+.facebookIcon {
+    background-position: -395px -101px;
+}
+.twitterIcon {
+    background-position: -434px -101px;
+}
+.googleIcon {
+    background-position: -473px -101px;
+}
+.telegramIcon {
+    background-position: -512px -101px;
+}
+.bgShadowBig,.bgShadowDown{
+    width: 667px;
+    height: 8px;
+}
+.bgShadowBig {
+    background-position: -348px -1976px;
+}
+.bgShadowDown {
+    background-position: -348px -2016px;
+}
+.bodaIcon {
+    background-position: -11px -1542px;
+    width: 148px;
+    height: 99px;
+}
+.blackSeparator{
+    background-position: 0 -707px;
+    width: 1026px;
+    height: 50px;
+}
+.voidSeparator{
+    background-position: 0 -785px;
+    width: 1026px;
+    height: 30px;
+}
+.loquieroHeader {
+    background-position: -204px -1540px;
+    width: 346px;
+    height: 154px;
+    margin: -5px auto !important;
+}
+.bombonHeader {
+    background-position: -570px -1539px;
+    width: 344px;
+    height: 159px;
+}
+.bgPaperLeft {
+    background-position: -2px -172px;
+    width: 644px;
+    height: 162px;
+}
+.bgPaperRight {
+    background-position: -8px -861px;
+    width: 578px;
+    height: 287px;
+}
+.openKey,.closeKey{
+    width: 82px;
+    height: 224px;
+}
+.openKey {
+    background-position: 0 -1250px;
+}
+.closeKey {
+    background-position: -942px -1250px;
+}
+.listonBg {
+    background-position: -11px -1176px;
+    width: 255px;
+    height: 55px;
+}
+.socialSpotHeader{
+    background-position: 0 -1723px;
+    width: 1024px;
+    height: 73px;
+}
+.listonVermas {
+    background-position: -17px -513px;
+    width: 664px;
+    height: 86px;
+}
+.globoSupl{
+    background-position: -5px -633px;
+    width: 219px;
+    height: 48px;
+}
+.videoIconBig{
+    background-position: -1px -365px;
+    width: 103px;
+    height: 130px;
+}
+.arrowNext, .arrowPrev{
+    width: 36px;
+    height: 64px;
+}
+.arrowPrev{
+    background-position: -11px -86px;
+}
+.arrowPrev:hover{
+    background-position: -56px -86px;
+}
+.arrowNext{
+    background-position: -181px -86px;
+}
+.arrowNext:hover{
+    background-position: -141px -86px;
+}
+.arrowPrevSmall, .arrowNextSmall{
+    width: 20px;
+    height: 35px;
+}
+.arrowPrevSmall{
+    background-position: -36px -2117px;
+}
+.arrowPrevSmall:hover{
+    background-position: -14px -2117px;
+}
+.arrowNextSmall{
+    background-position: -118px -2117px;
+}
+.arrowNextSmall:hover{
+    background-position: -141px -2117px;
+}
+.faceIconItem {
+    background-position: -21px -2074px;
+    width: 9px;
+    height: 17px;
+}
+.faceIconItem:hover {
+    background-position: -127px -2074px;
+
+}
+.twitterIconItem {
+    background-position: -47px -2075px;
+    width: 21px;
+    height: 14px;
+}
+.twitterIconItem:hover {
+    background-position: -153px -2075px;
+}
+.googleIconItem {
+    background-position: -81px -2075px;
+    width: 18px;
+    height: 15px;
+}
+.googleIconItem:hover {
+    background-position: -187px -2075px;
+}
+.bgShadowSmallBottom, .bgShadowSmallTop{
+    width: 535px;
+    height: 8px;
+}
+.bgShadowSmallBottom{
+    background-position: -341px -1886px;
+}
+.bgShadowSmallTop{
+    background-position: -341px -1834px;
+}
+.comentariosSmall {
+    background-position: -14px -1983px;
+    width: 100px;
+    height: 28px;
+}
+.comentariosBig {
+    background-position: -141px -1983px;
+    width: 190px;
+    height: 53px;
+}
+.bgSeparatorBottom, .bgSeparatorTop{
+    width: 535px;
+    height: 8px;
+}
+.bgSeparatorTop{
+    background-position: -341px -1976px;
+}
+.bgSeparatorBottom{
+    background-position: -341px -2016px;
+}
+.colorLink{
+  color: #73CAC1;
+}

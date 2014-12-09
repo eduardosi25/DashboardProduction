@@ -1,0 +1,46 @@
+<?php
+/**
+ * @file
+ * Installation file for Google Analytics module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function legales_install() {
+  variable_set('legales_privacy','');
+  variable_set('legales_terms','');
+  variable_set('legales_environmental','');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function legales_uninstall() {
+  #Delete all variables
+  variable_del('legales_privacy');
+  variable_del('legales_terms');
+  variable_del('legales_environmental');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function legales_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $privacy=variable_get('legales_privacy', '');
+    $terms=variable_get('legales_terms', '');
+    $environmental=variable_get('legales_environmental', '');
+    
+    if ((!isset($privacy) || empty($privacy)) || (!isset($terms) || empty($terms)) || (!isset($environmental) || empty($environmental))) {
+      $requirements['legales'] = array(
+        'title' => t('Configuración de legales'),
+        'description' => t('Debes agregar las URLs para la configuración de los temas legales. <a href="@url">Configurar</a>.', array('@url' => '/admin/config/system/legales')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

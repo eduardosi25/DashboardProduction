@@ -1,0 +1,15 @@
+IMCE plupload 7.x-1.2, 2013-06-30
+---------------------------------
+- Created changelog.txt retroactively
+#1940978 Hid confusing "Start Upload" button
+#1940806 Upload queue now properly reset after upload
+- Fixed some coding standards issues
+
+IMCE plupload 7.x-1.1, 2012-12-10
+---------------------------------
+#1857782 Fixed Plupload doesn't load files.
+- Made css changes to fix layout
+
+IMCE plupload 7.x-1.0, 2012-12-01
+---------------------------------
+Initial release of the IMCE plupload module.

@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function frontbanner_install() {
+  variable_set('frontbanner_status',FALSE);
+  variable_set('frontbanner_expire','1d');
+  variable_set('frontbanner_match','node/*');
+  variable_set('frontbanner_token',md5($_SERVER['HTTP_HOST']));
+  variable_set('frontbanner_skin','');
+  variable_set('frontbanner_container','');
+  variable_set('frontbanner_header','');
+  variable_set('frontbanner_close','');
+  variable_set('frontbanner_main','');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function frontbanner_uninstall() {
+  #Delete all variables
+  variable_del('frontbanner_status');
+  variable_del('frontbanner_expire');
+  variable_del('frontbanner_match');
+  variable_del('frontbanner_token');
+  variable_del('frontbanner_skin');
+  variable_del('frontbanner_container');
+  variable_del('frontbanner_header');
+  variable_del('frontbanner_close');
+  variable_del('frontbanner_main');
+}

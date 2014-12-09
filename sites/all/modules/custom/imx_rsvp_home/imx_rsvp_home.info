@@ -1,0 +1,8 @@
+name = "RSVP Home Blocks"
+description = "RSVP Bloques de Home"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = imx_rsvp_home.module
+files[] = imx_rsvp_home.pages.inc

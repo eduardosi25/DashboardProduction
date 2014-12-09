@@ -1,0 +1,114 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function taboola_permission() {
+  $permissions['administer taboola settings'] = array(
+    'title' => t('Administer Taboola settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function taboola_help($path, $arg) {
+  if ($path == 'admin/help#taboola') {
+    return t('Módulo para configuración de Taboola');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function taboola_menu() {
+  $items=array();
+  
+  $items['admin/config/system/taboola'] = array(
+    'title'            => t('Taboola settings'),
+    'description'      => t('Configure settings for Taboola'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('taboola_admin_settings_form'),
+    'access arguments' => array('administer taboola settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'taboola.admin.inc',
+  );
+  return $items;
+}
+
+function taboola_init(){
+  $statusTaboola=variable_get('taboola_status',FALSE);
+  if(arg(0)=='node' && $statusTaboola){
+    $taboola_loadername=variable_get('taboola_loadername','');
+    $headerJS='window._taboola = window._taboola || [];_taboola.push({article:"auto"});!function (e, f, u) {e.async = 1;e.src = u;f.parentNode.insertBefore(e, f);}(document.createElement("script"), document.getElementsByTagName("script")[0], "http://cdn.taboola.com/libtrc/inventmx-'.$taboola_loadername.'/loader.js");';
+    $footerJS='window._taboola = window._taboola || [];_taboola.push({flush:true});';
+    drupal_add_js($headerJS, array('type' => 'inline', 'scope' => 'header', 'weight' => 99));
+    drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer'));
+    drupal_add_css(drupal_get_path('module', 'taboola').'/taboola.css');
+  }
+}
+
+function taboola_block_info() {
+  $status=variable_get('taboola_status',0);
+  $regionname=variable_get('taboola_regionname','');
+  return array(
+    'taboola_node_block' => array(
+      'info'  => t('Taboola Node Block'),
+      'cache'  => DRUPAL_CACHE_GLOBAL,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'node/*',
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function taboola_block_view($delta = '') {
+  switch ($delta) {
+    /*Content Left*/
+    case 'taboola_node_block':
+      $block = array(
+        'content' => _taboola_node_block(),
+      );
+    break;
+  }
+  return $block;
+}
+
+
+function _taboola_node_block(){
+  $statusTaboola=variable_get('taboola_status',FALSE);
+  if(arg(0)=='node' && $statusTaboola){
+    return '<div id="taboola-belowarticlethumbnails-mix"></div>
+<script type="text/javascript">
+window._taboola = window._taboola || [];
+_taboola.push({
+  mode:"hybrid-thumbs-2r",
+  container:"taboola-belowarticlethumbnails-mix",
+  placement:"Below Article Thumbnails",
+  target_type:"mix"
+});
+</script>';
+  }
+  return null; 
+}
+
+//Load template files from this module path
+/**
+ * Implements hook_theme_registry_alter()
+**/
+function taboola_theme_registry_alter(&$theme_registry) {
+  $mod_path = drupal_get_path('module', 'taboola').'/templates';
+  $theme_registry_copy = $theme_registry;       // munge on a copy
+  _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'pow', $mod_path);
+  $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+  $hooks = array('node');
+  foreach ($hooks as $h) {
+    _taboola_insert_after_first_element($theme_registry[$h]['theme paths'], $mod_path);
+  }
+}
+/**
+ * Helper function for re-ordering arrays (needed by theme_registry_alter)
+*/
+function _taboola_insert_after_first_element(&$a, $element) {
+  if(is_array($a)) {
+    $first_element = array_shift($a);
+    array_unshift($a, $first_element, $element);
+  }
+}

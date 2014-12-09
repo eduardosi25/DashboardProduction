@@ -1,0 +1,38 @@
+<?php
+/**
+ * Implements hook_install().
+ */
+function suplementorsvp_install() {
+  variable_set('suplementorsvp_status',FALSE);
+  variable_set('suplementorsvp_apiurl','');
+  variable_set('suplementorsvp_effect','');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function suplementorsvp_uninstall() {
+  #Delete all variables
+  variable_del('suplementorsvp_status');
+  variable_del('suplementorsvp_apiurl');
+  variable_del('suplementorsvp_effect');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function suplementorsvp_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $loaderName=variable_get('suplementorsvp_apiurl', '');
+    if (!isset($loaderName) || empty($loaderName)) {
+      $requirements['suplementorsvp'] = array(
+        'title' => t('Loader name suplementorsvp'),
+        'description' => t('You need to set the minimal config for this <a href="@url">suplementorsvp Integration</a>.', array('@url' => '/admin/config/suplementorsvp')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

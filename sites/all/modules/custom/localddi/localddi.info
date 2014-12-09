@@ -1,0 +1,10 @@
+name = "Local Development Download Images"
+description = "Download Images for the Project for Development and Debug Purpose"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = localddi.module
+files[] = localddi.admin.inc
+files[] = localddi.install
+configure = admin/config/system/localddi

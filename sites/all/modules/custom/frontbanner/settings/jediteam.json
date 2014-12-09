@@ -1,0 +1,66 @@
+{
+  "title"  : "Recomendaciones RSVP OnLine ",
+  "legend" : "R.S.V.P. TE SUGIERE ATENDER LA SIGUIENTE INFORMACIÓN",
+  "poster" : "http://www.atraccion360.com/media/aa/styles/xlarge/public/images/2014/02/metrobusaccidente.jpg",
+  "movie"  : "http://www.atraccion360.com/media/aa/video/el_buen_conductor_20142802.flv",
+  "movie_title" : "Evita una catástrofe; cede el paso",
+  "size"   : {
+    "width"  : "100%",
+    "height" : "480px"
+  },
+  "shares" : {
+    "facebook" : {
+      "share" : {
+        "url"    : "https://www.facebook.com/ActitudFEM",
+        "layout" : "box_count",
+        "css"    : "fb-share-button"
+      },
+      "like"  : {
+        "url"    : "https://www.facebook.com/ActitudFEM",
+        "layout" : "box_count",
+        "css"    : "fb-like",
+        "action" : "like",
+        "faces"  : "false",
+        "shares" : "false"
+      }
+    },
+    "twitter"    : {
+      "url"    : "http://twitter.com/#!/RSVPOnline",
+      "via"    : "RSVPOnline",
+      "layout" : "vertical",
+      "css"    : "twitter-share-button"
+    },
+    "googleplus" : {
+      "url"   : "https://plus.google.com/+Actitudfemoficial",
+      "layout" : "tall"
+    },
+    "pinterest"  : {
+      "url"   : "http://pinterest.com/actitudfem/"
+    },
+    "youtube"    : {
+      "url"   : "http://www.youtube.com/subscription_center?add_user=ActitudFEM"
+    },
+    "linkedin"   : {
+      "url"   : "null"
+    },
+    "tumblr"     : {
+      "url"   : "null"
+    },
+    "rss"        : {
+      "url"   : "http://www.actitudfem.com/rss.xml"
+    }
+  },
+  "subtitle" : "SI TE GUSTÓ, COMPARTE CON TUS AMIGOS:",
+  "og"       : {
+    "image"       : "http://www.atraccion360.com/media/aa/styles/xlarge/public/images/2014/02/metrobusaccidente.jpg",
+    "title"       : "Evita una catástrofe; cede el paso",
+    "description" : "Evita una catástrofe; cede el paso",
+    "url"         : "https://www.facebook.com/ActitudFEM",
+    "site_name"   : "ActitudFEM",
+    "type"        : "video"
+  },
+  "expire"   : "1m",
+  "match"    : "<front>|perfiles|bodas-y-celebraciones|vive-la-noche|bajo-el-sol",
+  "logo"     : "http://70e512aae98b743c8b72-a3a5a60255dfcd3748559755a0b86934.r28.cf2.rackcdn.com/logo/200/rsvp.png",
+  "bgimage"  : "http://rsvp.jediteam.mx/videopo2/actitudfem.png"
+}

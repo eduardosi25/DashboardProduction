@@ -1,0 +1,69 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function pandg_permission() {
+  $permissions['administer pandg settings'] = array(
+    'title' => t('Administer P&G Integration settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function pandg_help($path, $arg) {
+  if ($path == 'admin/help#pandg') {
+    return t('Módulo para configuración de P&G Integration');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function pandg_menu() {
+  $items=array();
+  $items['admin/config/system/pandg'] = array(
+    'title'            => t('P&G Integration Settings'),
+    'description'      => t('Configure settings for P&G Integration'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('pandg_admin_settings_form'),
+    'access arguments' => array('administer pandg settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'pandg.admin.inc',
+  );
+  return $items;
+}
+/**
+ * Implements hook_init().
+ */
+function pandg_init(){
+  //Show only if there are active
+  $statuspandg=variable_get('pandg_status',FALSE);
+  if($statuspandg){
+    //Don't show on admin theme
+    $current_theme=$GLOBALS['theme'];
+    $admin_theme=variable_get('admin_theme','');
+    if($current_theme!=$admin_theme){
+      $sendCategory=variable_get('pandg_sendcategory',FALSE);
+      if($sendCategory){
+        _set_sendcategory();
+      }
+      $partnerName=variable_get('pang_partnername','inventmx');
+      $srcJS="//js.revsci.net/gateway/gw.js?csid=F09828&auto=t&bpid={$partnerName}";
+      drupal_add_js($srcJS, array('type' => 'external', 'scope' => 'footer', 'weight' => 100));
+    }
+  }
+}
+
+function _set_sendcategory(){
+  if(drupal_is_front_page()){
+    $category='Portada';
+  }elseif(arg(0)=='taxonomy'){
+    $category=transliteration_get(taxonomy_term_load(arg(2))->name);
+  }elseif(arg(0)=='node'){
+    $category=transliteration_get(taxonomy_term_load(arg(2))->name);
+  }
+
+  if(!$category)
+    return null;
+
+  $footerJS='function DM_prepClient(csid,client){client.DM_addEncToLoc("category", '.$category.');}';
+  drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 99));
+}

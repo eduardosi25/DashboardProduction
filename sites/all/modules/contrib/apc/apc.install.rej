@@ -1,0 +1,26 @@
+--- apc.install
++++ apc.install
+@@ -10,11 +10,21 @@
+ 
+   // Test APC.
+   $apc_enabled = (function_exists('apc_cache_info') && ($cache = @apc_cache_info('user', TRUE)));
+-  $meets_version = version_compare(phpversion('apc'), '3.1.1')>= 0;
++
++  if (extension_loaded('apcu')) {
++    // APCu reports cache information with different keys.
++    $cache['num_entries'] = $cache['nentries'];
++    $cache['start_time'] = $cache['stime'];
++
++    $meets_version = version_compare(phpversion('apc'), '4.0.2') >= 0;
++  }
++  else {
++    $meets_version = version_compare(phpversion('apc'), '3.1.1') >= 0;
++  }
+ 
+   $requirements['apc'] = array(
+     'title' => $t('APC'),
+-    'value' => $apc_enabled ? ($meets_version ? phpversion('apc') : $t('APC needs version >=3.1.1')) : $t('Not available'),
++    'value' => $apc_enabled ? ($meets_version ? phpversion('apc') : $t('APC needs APC version >=3.1.1 or APCu version >=4.0.2')) : $t('Not available'),
+     'severity' => $apc_enabled && $meets_version ? ($cache['num_entries'] ? REQUIREMENT_OK : REQUIREMENT_WARNING) : REQUIREMENT_ERROR,
+   );
+ 

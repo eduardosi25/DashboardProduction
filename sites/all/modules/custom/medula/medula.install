@@ -1,0 +1,60 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function medula_install() {
+  variable_set('medula_status',FALSE);
+  variable_set('medula_debug',FALSE);
+  $sitename=_medula_extract_loadername();
+  variable_set('medula_sitename',$sitename);
+  variable_set('medula_seccionname','seccion');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function medula_uninstall() {
+  #Delete all variables
+  variable_del('medula_status');
+  variable_del('medula_debug');
+  variable_del('medula_sitename');
+  variable_del('medula_seccionname');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function medula_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $sitename=variable_get('medula_sitename', '');
+    if (!isset($sitename) || empty($sitename)) {
+      $requirements['medula'] = array(
+        'title' => t('Site name medula'),
+        'description' => t('You need to set the minimal config for this <a href="@url">Medula Integration</a>.', array('@url' => '/admin/config/system/medula')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}
+
+function _medula_extract_loadername(){
+  $pattern='{^(www|local)\.[a-z0-9]+}';
+  $subject=$_SERVER['HTTP_HOST'];
+  $matches=array();
+  preg_match($pattern, $subject, $matches);
+  $subject=isset($matches[0]) && !empty($matches[0]) ? $matches[0] : null;
+  $subject=preg_replace('{^(www|local)\.}', '', $subject);
+  if($subject){
+    return $subject;
+  }
+  return null;
+}
+

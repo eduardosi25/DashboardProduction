@@ -1,0 +1,113 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function legales_permission() {
+  $permissions['administer legales settings'] = array(
+    'title' => t('Administer legales settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function legales_help($path, $arg) {
+  if ($path == 'admin/help#legales') {
+    return t('Módulo para configuración de legales');
+  }
+}
+function legales_menu() {
+  $items=array();
+  $items['admin/config/system/legales'] = array(
+    'title'            => t('Legal settings'),
+    'description'      => t('Configure settings for legal topics'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('legales_admin_settings_form'),
+    'access arguments' => array('administer legales settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'legales.admin.inc',
+  );
+  $items['aviso-de-privacidad'] = array(
+    'title'            => t('Aviso de privacidad'),
+    'description'      => t('Aviso  de privacidad'),
+    'page callback'    => 'legales',
+    'page arguments'   => array(0),
+    'type'             => MENU_NORMAL_ITEM,
+    'access callback'  => TRUE,
+  );
+  $items['politica-ambiental'] = array(
+    'title'            => t('Política Ambiental'),
+    'description'      => t('Políticas Ambiental'),
+    'page callback'    => 'legales',
+    'page arguments'   => array(0),
+    'type'             => MENU_NORMAL_ITEM,
+    'access callback'  => TRUE,
+  );
+  $items['terminos-y-condiciones-de-uso'] = array(
+    'title'            => t('Términos y Condiciones de Uso'),
+    'description'      => t('Términos y Condiciones de Uso'),
+    'page callback'    => 'legales',
+    'page arguments'   => array(0),
+    'type'             => MENU_NORMAL_ITEM,
+    'access callback'  => TRUE,
+  );
+  return $items;
+}
+
+function legales($delta){
+  drupal_add_css(drupal_get_path('module', 'legales').'/legales.css');
+  //First get contents
+  $subject=legales_get_cache($delta.'.html');
+  //If delta es terminos.y.condiciones.de.uso
+  if(preg_match("/condiciones/", $subject)){
+    $subject=preg_replace("/\|\*SITENAME\*\|/", variable_get('site_name','El Sitio'), $subject);
+  }
+  return '<div id="legales">'.$subject.'</div>';
+}
+
+function legales_get_cache($filename){
+  if(!isset($filename) || empty($filename))
+    return null;
+  
+  $data=file_get_contents(legales_get_path().$filename);
+  if(!isset($data) || empty($data)){
+    //If cannot retrieve data, try to create it an return data
+    $data=legales_create_cache($filename);
+  }
+  return $data;
+}
+/**
+ * Create cache files locally about remote HTML files for Legales
+ */
+function legales_create_cache($filenameData){
+  $path=legales_get_path();
+  //If cannot open directory, create it (recursively)
+  if(!opendir($path)){
+    $result=@mkdir($path,0765,true);
+  }
+  $files=array(
+    'legales_privacy' => 'aviso-de-privacidad.html',
+    'legales_terms' => 'terminos-y-condiciones-de-uso.html',
+    'legales_environmental' => 'politica-ambiental.html'
+  );
+  //Search file
+  $name=array_search($filenameData, $files);
+  $varLegal=variable_get($name,'');
+  if(isset($varLegal) && !empty($varLegal)){
+    //Create file locally
+    $data=file_get_contents($varLegal);
+    if($data){
+      $filename=$path.$files[$name];
+      $result=@file_put_contents($filename, $data);
+    }
+  }
+  //Set data for requested file
+  if(isset($filenameData)){
+    $data=file_get_contents(legales_get_path().$filenameData);
+    if($data){
+      return $data;
+    }
+  }
+}
+
+function legales_get_path(){
+  return DRUPAL_ROOT.'/'.variable_get('file_public_path','').'/legales/';
+}

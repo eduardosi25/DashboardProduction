@@ -1,0 +1,105 @@
+<?php
+/**
+ * @file
+ * Code for the redcat_new_migration feature.
+ */
+
+include_once 'redcat_new_migration.features.inc';
+
+/**
+ * Implements hook_migrate_api().
+ */
+function redcat_new_migration_migrate_api() {
+  return array(
+    'api' => 2,
+  );
+}
+
+abstract class RedCatNewMigrationMigrations extends Migration {
+
+  /**
+   * Retrieves a connection to the REDCAT database.
+   */
+  public function getDatabaseConnection() {
+    static $other_data;
+    if (!isset($other_data)) {
+      $other_db = array(
+        'driver' => 'mysql',
+        'database' => 'ashok_redcat_dev',
+        'username' => 'drupaluser',
+        'password' => '',
+        'host' => '127.0.0.1',
+        'port' => 33066,
+      );
+      Database::addConnectionInfo('default', 'redcat_migration', $other_db);
+    }
+    return Database::getConnection('redcat_migration', 'default');
+  }
+
+  /**
+   * Retrieves a path to the files directory.
+   */
+  public function getFilesDirectory() {
+    return '/Users/ashokmodi/Sites/redcat.org/sites/redcat.dev/files';
+  }
+  
+  /**
+   * Prepares the file mappings for Associated Images.
+   */
+  public function prepareAssociatedImagesFileMapping($row) {
+    $row->redcat_new_migration_associated_images_fid = array();
+    $row->redcat_new_migration_associated_images_filename = array();
+    $row->redcat_new_migration_associated_images_alt = array();
+    $row->redcat_new_migration_associated_images_title = array();
+    $row->redcat_new_migration_associated_images_destination_dir = 'public://redcat_sheet/imported/associated-images/' . date('Y-m', $row->created);
+
+    $connection = $this->getDatabaseConnection();
+    $query = $connection->select('file_managed', 'fm');
+    $query->innerJoin('field_data_field_content_associated_images', 'fdfcai', 'fm.fid = fdfcai.field_content_associated_images_fid');
+    $query->fields('fm', array('fid', 'uri'));
+    $query->fields('fdfcai', array('field_content_associated_images_alt', 'field_content_associated_images_title'));
+    $query->condition('fdfcai.entity_type', 'node');
+    $query->condition('fdfcai.entity_id', $row->nid);
+    $query->condition('fdfcai.revision_id', $row->vid);
+    $query->orderBy('fdfcai.delta', 'ASC');
+    $results = $query->execute();
+
+    foreach ($results as $result) {
+      $filepath = str_replace('public://', '', $result->uri);
+      $row->redcat_new_migration_associated_images_fid[] = $result->fid;
+      $row->redcat_new_migration_associated_images_filename[] = $filepath;
+      $row->redcat_new_migration_associated_images_alt[] = $result->field_content_associated_images_alt;
+      $row->redcat_new_migration_associated_images_title[] = $result->field_content_associated_images_title;
+    }
+  }
+
+  /**
+   * Prepares the file mappings for Linked Files.
+   */
+  public function prepareLinkedFilesFileMapping($row) {
+    $row->redcat_new_migration_linked_files_fid = array();
+    $row->redcat_new_migration_linked_files_filename = array();
+    $row->redcat_new_migration_linked_files_description = array();
+    $row->redcat_new_migration_linked_files_display = array();
+    $row->redcat_new_migration_linked_files_destination_dir = 'public://redcat_sheet/imported/associated-images/' . date('Y-m', $row->created);
+
+    $connection = $this->getDatabaseConnection();
+    $query = $connection->select('file_managed', 'fm');
+    $query->innerJoin('field_data_field_content_linked_files', 'fdfclf', 'fm.fid = fdfclf.field_content_linked_files_fid ');
+    $query->fields('fm', array('fid', 'uri'));
+    $query->fields('fdfclf', array('field_content_linked_files_display', 'field_content_linked_files_description'));
+    $query->condition('fdfclf.entity_type', 'node');
+    $query->condition('fdfclf.entity_id', $row->nid);
+    $query->condition('fdfclf.revision_id', $row->vid);
+    $query->orderBy('fdfclf.delta', 'ASC');
+    $results = $query->execute();
+
+    foreach ($results as $result) {
+      $filepath = str_replace('public://', '', $result->uri);
+      $row->redcat_new_migration_linked_files_fid[] = $result->fid;
+      $row->redcat_new_migration_linked_files_filename[] = $filepath;
+      $row->redcat_new_migration_linked_files_description[] = $result->field_content_linked_files_description;
+      $row->redcat_new_migration_linked_files_display[] = $result->field_content_linked_files_display;
+    }
+  }
+}

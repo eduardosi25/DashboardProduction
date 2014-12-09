@@ -1,0 +1,7 @@
+div[class*=field-name-field-gcms]{
+    display: none !important;
+}
+
+div .form-item-imx-gcms-send-to{
+    min-height: 150px !important;
+}

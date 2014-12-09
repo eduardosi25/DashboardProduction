@@ -1,0 +1,492 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+/** MObile Detect */
+if($_SERVER['HTTP_USER_AGENT'] !== 'console'){
+  require_once(drupal_get_path('module','frontbanner').'/lib/Mobile_Detect.php');
+}else{
+  set_include_path(DRUPAL_ROOT.'/'.drupal_get_path('module','frontbanner').'/lib' . PATH_SEPARATOR . get_include_path());
+}
+/**
+skin.url
+skin.repeat
+skin.position.left
+skin.position.top
+skin.color
+
+container.width
+container.height
+
+header.url
+header.repeat
+header.position.left
+header.position.top
+header.color
+header.height
+header.shadow
+
+close.width
+close.back.color
+close.text.color
+close.text.decoration
+
+main.height
+main.back.color
+ */
+
+function frontbanner_permission() {
+  $permissions['administer frontbanner settings'] = array(
+    'title' => t('Administer frontbanner settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function frontbanner_help($path, $arg) {
+  if ($path == 'admin/help#frontbanner') {
+    return t('Módulo para configuración de Front Banner');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function frontbanner_menu() {
+  $items=array();
+  $items['admin/config/system/frontbanner'] = array(
+    'title'            => t('Front Banner Settings'),
+    'description'      => t('Configure settings for Front Banner'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('frontbanner_admin_settings_form'),
+    'access arguments' => array('administer frontbanner settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'frontbanner.admin.inc',
+  );
+  return $items;
+}
+
+function frontbanner_show_it(){
+  $frontbanner=_frontbanner_get_variables();
+  $show=false;
+  //Don't show on admin theme
+  $current_theme=$GLOBALS['theme'];
+  $admin_theme=variable_get('admin_theme','');
+  if($current_theme!=$admin_theme){
+    if($frontbanner['status'] && arg(0)=='node' && !drupal_is_front_page()){
+      $node=node_load(arg(1));
+      if(in_array($node->type, array('article','story','gallerie','galery','video','videogalery','videos','galeria','debate','poll','blog','post','topico'))){
+        $show=true;
+      }
+    }
+  }
+  return $show;
+}
+
+function frontbanner_page_alter(&$page){
+  $frontbanner=_frontbanner_get_variables();
+  $mobileDetected=FALSE;
+  if(frontbanner_show_it()){
+    if(isset($frontbanner['main']['disabled_mobile']) && !empty($frontbanner['main']['disabled_mobile'])){
+      $detect = new Mobile_Detect;
+      $mobileDetected = $detect->isMobile() ? TRUE : FALSE;
+    }
+  }
+
+  if(frontbanner_show_it() && !$mobileDetected){
+    $showFrontBanner=show_frontbanner();
+    if($showFrontBanner){
+      $page['prehome']['prehome'] = array(
+        '#weight' => -99,
+        '#markup' => html_frontbanner(),
+      );
+    }
+  }
+}
+
+function frontbanner_init(){
+  $frontbanner=_frontbanner_get_variables();
+  $mobileDetected=FALSE;
+  if(frontbanner_show_it()){
+    if(isset($frontbanner['main']['disabled_mobile']) && !empty($frontbanner['main']['disabled_mobile'])){
+      $detect = new Mobile_Detect;
+      $mobileDetected = $detect->isMobile() ? TRUE : FALSE;
+    }
+  }
+  if(frontbanner_show_it() && !$mobileDetected){
+    //Add Cookie JS
+    drupal_add_js(drupal_get_path('module','frontbanner').'/lib/jquery.cookie.js', array('type' => 'file', 'scope' => 'header', 'weight' => 98));
+    //Create cookies && sessions
+    drupal_add_js(drupal_get_path('module','frontbanner').'/lib/frontbanner.js', array('type' => 'file', 'scope' => 'header', 'weight' => 99));
+  }else{
+
+  }
+}
+
+function frontbanner_block_info() {
+  return array(
+    'frontbanner_node_block' => array(
+      'info'  => t('Front Banner Node Block'),
+      'cache'  => DRUPAL_CACHE_GLOBAL,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'node/*',
+      'region' => 'frontbanner',
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function frontbanner_block_view($delta = '') {
+  switch ($delta) {
+    case 'frontbanner_block':
+      $block = array(
+        'content' => _frontbanner_node_block(),
+      );
+    break;
+    case 'frontbanner_node_block':
+      $block = array(
+        'content' => _frontbanner_node_block(),
+      );
+    break;
+  }
+  return $block;
+}
+
+/**
+ * @return null|string
+ */
+function _frontbanner_node_block(){
+  $statusfrontbanner=variable_get('frontbanner_status',FALSE);
+  if(arg(0)=='node' && $statusfrontbanner){
+    return '<hecho>';
+  }
+  return null;
+}
+
+//Load template files from this module path
+/**
+ * Implements hook_theme_registry_alter()
+ **/
+function frontbanner_theme_registry_alter(&$theme_registry) {
+  $mod_path = drupal_get_path('module', 'frontbanner').'/templates';
+  $theme_registry_copy = $theme_registry;       // munge on a copy
+  _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'pow', $mod_path);
+  $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+  $hooks = array('node');
+  foreach ($hooks as $h) {
+    _frontbanner_insert_after_first_element($theme_registry[$h]['theme paths'], $mod_path);
+  }
+}
+/**
+ * Helper function for re-ordering arrays (needed by theme_registry_alter)
+ */
+function _frontbanner_insert_after_first_element(&$a, $element) {
+  if(is_array($a)) {
+    $first_element = array_shift($a);
+    array_unshift($a, $first_element, $element);
+  }
+}
+
+function _frontbanner_get_variables(){
+  $values = &drupal_static(__FUNCTION__);
+  if (!isset($values)) {
+    if ($cache = cache_get('frontbanner_variables')) {
+      $values = $cache->data;
+    }else{
+      $values=array(
+        'status'    => variable_get('frontbanner_status',FALSE),
+        'expire'    => variable_get('frontbanner_expire','24h'),
+        'match'     => variable_get('frontbanner_match','*'),
+        'token'     => variable_get('frontbanner_token',NULL),
+        'skin'      => variable_get('frontbanner_skin',NULL),
+        'container' => variable_get('frontbanner_container',NULL),
+        'header'    => variable_get('frontbanner_header',NULL),
+        'close'     => variable_get('frontbanner_close',NULL),
+        'main'      => variable_get('frontbanner_main',NULL),
+      );
+      cache_set('frontbanner_variables', $values, 'cache');
+    }
+  }
+  return $values;
+}
+
+function html_frontbanner(){
+  $frontbanner=_frontbanner_get_variables();
+
+  if(!isset($frontbanner['skin']) || !isset($frontbanner['header']) || !isset($frontbanner['main'])){
+    return NULL;
+  }
+  //Position
+  switch($frontbanner['main']['position']){
+    case 'center':
+      $position='vertical-align:middle;';
+    break;
+    case 'top':
+      $position='vertical-align:top;padding-top:60px;';
+    break;
+    case 'bottom':
+      $position='vertical-align:bottom;padding-bottom:60px;';
+    break;
+  }
+  //Countdown
+  $countdown_message='';
+  $countdown_duration='var countDown = 10;';
+  if($frontbanner['main']['countdown']){
+    $countdown_message=isset($frontbanner['main']['countdown_message']) && !empty($frontbanner['main']['countdown_message']) ? $frontbanner['main']['countdown_message'] : 'Este anuncio se cerrará automáticamente en';
+    $countdown_message='<div id="countdown"><div id="message" style="color:#fff;font-size:20px;float:left;margin-right:10px;">'.$countdown_message.'</div><div id="seconds" style="color:#fff;font-size:20px;float:left"></div></div>';
+    $countdown_duration=isset($frontbanner['main']['countdown_duration']) && !empty($frontbanner['main']['countdown_duration']) ? $frontbanner['main']['countdown_duration'] : 20;
+    $countdown_duration='var countDown = '.$countdown_duration.';';
+    $doCountdown='UpdateTime();var counter = setInterval(UpdateTime, 500);';
+  }
+  $method=variable_get('imx_ads_smart_call_method','std');
+  $code=null;
+  if($method==='std'){
+    $query = db_select('imx_ads_blocks', 'b');
+    $query->join('imx_ads_frameworks','f','f.fid=b.fid');
+    $query->fields('b', array('bid', 'fid', 'title', 'block_info', 'status'));
+    $query->fields('f', array('site_id'));
+    $query->condition('b.region', 'prehome', '=');
+    $query->orderBy('b.bid','DESC');
+    $query->range(0, 1);
+    $result = $query->execute();
+    if(!$result){
+      return $code;
+    }
+    foreach($result as $row){
+      $data=explode('|',$row->title);
+      $code='
+<style type="text/css">
+#frontbanner-page{
+font-family: "Arial","Helvetica","Verdana","sans-serif";width:100%;height:100%;
+background-image: url("'.$frontbanner['skin']['url'].'");
+background-repeat: '.($frontbanner['skin']['repeat'] ? 'repeat' : 'no-repeat').';
+background-position: '.$frontbanner['skin']['position_left'].' '.$frontbanner['skin']['position_top'].';
+background-color: '.$frontbanner['skin']['color'].';
+display:none;position:fixed;top:0;left:0;z-index:9999999;
+}
+#frontbanner-container{
+width:'.$frontbanner['container']['width'].';
+height:'.$frontbanner['container']['height'].';
+'.$position.'
+margin:0 auto !important;border-radius: 10px;display:table-cell;}
+#frontbanner-wrapper{
+  width:'.$frontbanner['container']['width'].';
+  margin:0 auto !important;display:block;}
+#frontbanner-header{
+background-image: url("'.$frontbanner['header']['url'].'");
+background-repeat: '.($frontbanner['header']['repeat'] ? 'repeat' : 'no-repeat').';
+background-position: '.$frontbanner['header']['position_left'].' '.$frontbanner['header']['position_top'].';
+background-color: '.$frontbanner['header']['color'].';
+height: '.$frontbanner['header']['height'].';
+width:100%;border-radius: 10px;position:relative;margin-bottom:20px;}
+#frontbanner-close {
+font-size:20px;border-radius: 0 10px 10px 0;float: right;height: 51px;line-height: 45px;padding-right: 20px;position: absolute;right: 0;text-align: right;cursor:pointer;
+width: '.$frontbanner['close']['width'].';
+background-color: '.$frontbanner['close']['color'].';
+color: '.$frontbanner['close']['textcolor'].';
+text-decoration: '.$frontbanner['close']['decoration'].';}
+#frontbanner-close:hover{color: #000;text-decoration: none;}
+#frontbanner-main{
+height:'.$frontbanner['main']['height'].';
+background-color: '.$frontbanner['main']['color'].';
+width:100%;}
+#frontbanner-breakline {border-bottom: 51px solid #01669c;border-left: 21px solid transparent;border-right: 0 solid transparent;float: right;height: 0;margin: 0 10px;width: 241px;}
+#countdown{margin-top: 10px; right: 0px; float: right;}
+</style>
+<div id="frontbanner-page">
+  <div id="frontbanner-container">
+    <div id="frontbanner-wrapper">
+      <div id="frontbanner-header">
+        <span id="frontbanner-breakline"></span>
+        <span id="frontbanner-close">&raquo; Saltar publicidad</span>
+      </div>
+      <div id="frontbanner-main">
+        <script type="text/javascript">
+        sas_pageid="'.$row->site_id.'/'.$data[1].'";
+        sas_formatid='.$data[2].';
+        sas_target=sas_target_slot;
+        SmartAdServer(sas_pageid,sas_formatid,sas_target);
+        </script>
+        <noscript>
+        <a href="http://ads.inventmx.com/call/pubjumpi/'.$row->site_id.'/'.$data[1].'/'.$data[2].'/S/[timestamp]/?" target="_blank">
+        <img src="http://ads.inventmx.com/call/pubi/'.$row->site_id.'/'.$data[1].'/'.$data[2].'/S/[timestamp]/?" border="0" alt="" /></a>
+        </noscript>
+      </div>
+      <div id="frontbanner-footer">
+      </div>
+      '.$countdown_message.'
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+var sTime = new Date().getTime();
+'.$countdown_duration.'
+function UpdateTime() {
+  var cTime = new Date().getTime();
+  var diff = cTime - sTime;
+  var seconds = countDown - Math.floor(diff / 1000);
+  if (seconds >= 0) {
+    jQuery("#seconds").text(seconds);
+  } else {
+    jQuery("#frontbanner-close").click();
+    clearInterval(counter);
+  }
+}
+if(navigator.cookieEnabled){
+  jQuery("#frontbanner-page").css({"display":"table"});
+  jQuery("#frontbanner-close").bind("click",function(){
+    var expireCookie=calculate_time_expiring_cookies("'.$frontbanner['expire'].'");
+    jQuery.cookie("prehome",\'{"status":"1","expire":"\'+expireCookie+\'"}\',{"path":"/"});
+    jQuery("#frontbanner-page").hide();
+  });
+  '.$doCountdown.'
+}
+</script>';
+    }
+  }
+  return $code;
+}
+
+function is_bot(){
+  $bots = array(
+    'Googlebot',
+    'Baiduspider',
+    'ia_archiver',
+    'R6_FeedFetcher',
+    'NetcraftSurveyAgent',
+    'Sogou web spider',
+    'bingbot',
+    'Yahoo! Slurp',
+    'facebookexternalhit',
+    'PrintfulBot',
+    'msnbot',
+    'Twitterbot',
+    'UnwindFetchor',
+    'urlresolver',
+    'Butterfly',
+    'TweetmemeBot'
+  );
+  $bots_flat = implode('|', $bots);
+
+  if(preg_match("/(".$bots_flat.")/",$_SERVER['HTTP_USER_AGENT'])){
+    return true;
+  }
+  return false;
+}
+
+function getcookie($name,$onlyvalue=false){
+  $matches=array();
+  $COOKIE=$_SERVER['HTTP_COOKIE'].';';
+  $regex='{'.$name.'=[a-zA-Z0-9]+;}';
+  preg_match($regex, $COOKIE, $matches);
+  if(count($matches)>0){
+    if($onlyvalue){
+      $COOKIE=explode('=',$matches[0]);
+      return str_replace(';', '', $COOKIE[1]);
+    }
+    return $matches[0];
+  }
+  return false;
+}
+
+function show_frontbanner(){
+  #global $user;
+  #var_dump($user);
+  #$node=node_load(arg(1));
+  #$user=get_user_profile_from_entity('node',$node);
+  #var_dump($node);
+  #var_dump('<hr>');
+  #$user=user_load($node->uid);
+  #var_dump($user);
+  #$user=get_user_profile_from_entity('user',$user);
+  #var_dump($user);
+  #die(__FUNCTION__);
+  
+  $frontbanner=_frontbanner_get_variables();
+  $timeExpire=calculate_time_expiring_cookies($frontbanner['expire']);
+  $frontbannerDefault=array(
+    'status' => 0,
+    'expire' => $timeExpire,
+  );
+  $frontbannerDefault=json_encode($frontbannerDefault);
+  $frontbannerCookie=isset($_COOKIE['prehome']) && !empty($_COOKIE['prehome']) ? json_decode($_COOKIE['prehome']) : json_decode($frontbannerDefault);
+
+  //Match path
+  $path = drupal_get_path_alias($_GET['q']);
+  // Compare with the internal and path alias (if any).
+  $patterns=$frontbanner['match'];
+
+  $page_match = drupal_match_path($path, $patterns);
+  if ($path != $_GET['q']) {
+    $page_match = $page_match || drupal_match_path($_GET['q'], $patterns);
+  }
+
+  if($frontbannerCookie->status==0 && $page_match){
+    //Set cookie
+    setcookie('prehome', json_encode($frontbannerCookie), $frontbannerCookie->expire, '/');
+    return true;
+  }else if($frontbannerCookie->status==1){
+    //Evaluate expire time
+    $expiredCookie=get_expire_cookie_time($frontbannerCookie->expire);
+    if($expiredCookie){
+      //$frontbannerConfig->expire=$timeExpire;
+      $frontbannerCookie->status=0;
+    }
+    setcookie('prehome', json_encode($frontbannerCookie), $frontbannerCookie->expire, '/');
+    return false;
+  }
+}
+
+/**
+ * Calculate expire time for cookies
+ * @param null $expire String for expire time calculate
+ * @return int|null
+ */
+function calculate_time_expiring_cookies($expire=null){
+  if(!$expire)
+    return $expire;
+
+  //Valores posibles (segundos, minutos, horas, dias)
+  //usando la primer letra de cada palabra para el cálculo
+  //s = secs :: m = mins :: h = hours :: d = days
+
+  //Primero buscar las coincidencias
+
+  $matches=array();
+  if(preg_match('{[0-9]+(s|m|h|d)}', $expire, $matches)){
+    preg_match('{[0-9]+}',$expire,$matches);
+    $number=(int)$matches[0];
+    preg_match('{(s|m|h|d)}',$expire,$matches);
+    $period=(string)$matches[0];
+
+    switch($period){
+      case 's':
+        return time()+$number;
+        break;
+      case 'm':
+        return time()+60*$number;
+        break;
+      case 'h':
+        return time()+60*60*$number;
+        break;
+      case 'd':
+        return time()+60*60*24*$number;
+        break;
+    }
+  }
+  return null;
+}
+
+/**
+ * Return a time expiring comparation
+ * @param $expire Return true or false
+ * @return bool
+ */
+function get_expire_cookie_time($expire){
+  if(!$expire){
+    return $expire;
+  }
+  if($expire<time()){
+    return true;
+  }
+  return false;
+}

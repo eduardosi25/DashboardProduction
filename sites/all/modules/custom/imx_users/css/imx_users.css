@@ -1,0 +1,218 @@
+.imx-users-dinero{
+	width: 97%;
+	overflow: hidden;
+	float: left;
+	margin: 10px 10px 20px;
+	clear: both;
+}
+.imx-users-line{
+	width: 100%;
+	height:  30px;
+	float: left;
+	margin: 0.25em 0 1em;
+	border-top: solid 1px #ccc;
+	border-bottom: solid 1px #ccc;
+}
+#imx-users-traffic-table{
+	width: 100%;
+	margin: 0;
+	height: auto;
+}
+#imx-users-traffic-rows{
+	width: 100%;
+}
+#imx-users-traffic-rows td{
+	vertical-align: middle;
+	display: table-cell;
+	font:  14px 'Droid Serif',serif;
+	color:#000;
+	text-align: center;
+	padding: 7px 0;
+}
+#imx-user-title{
+	padding: 6px 0 !important;
+	width: 150px !important;
+	display: table-cell;
+	position: relative;
+	background: #005c8b;
+	font:  15px 'Droid Serif',serif;
+	color: #fff !important;
+	font-weight: bold;
+	text-align: center;
+}
+#imx-user-title:after{
+	content: "";
+	width: auto;
+	height: auto;
+	border-left: 7px solid #005c8b;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	position: absolute;
+	top: 8px;
+	right: -6px;
+}
+#imx-users-traffic-rows td span{
+	display: block;
+	padding: 0 10px;
+}
+#imx-users-item{
+	width: 80%;
+	float: right;
+	overflow: hidden;
+}
+.imx-users-dinero-content{
+	width: 100%;
+	border-bottom: #c8c8c8 1px solid;
+	overflow: hidden;
+	margin: 5px 0 15px;
+	float: left;
+}
+.imx-cuadro-users-azul{
+	width: 10px;
+	height: 12px;
+	float: left;
+	padding: 0;
+	margin: 2px 3px;
+	background-position: -19px -47px !important;
+}
+.imx-users-dinero-content-text{
+	width: 100%;
+	margin: 0 0 10px 0;
+	min-height: 100px;
+	_height:100px;
+	float: left;
+	overflow: hidden;
+}
+.imx-users-dinero-content #addthis-shares{
+	float: left;
+	width: 100%;
+	margin: 30px 0;
+	height: 23px;
+}
+.imx-users-dinero-title-nota{
+	width: 100%;
+	line-height: 35px;
+	font-size: 30px;
+	margin: 3px 0 5px;
+	float: left;
+}
+.imx-users-summary{
+	font-family: 'Source Sans Pro';
+	font-size: 16px;
+}
+.imx-date-nota-users{
+	color: #6d6e71;
+	font-size: 12px;
+	line-height: 15px;
+	padding: 5px 2px 0;
+}
+.imx-users-dinero-content-text a{
+	color: #010101;
+}
+#addthis-shares .addthis_toolbox [class^="addthis_button_"]{
+	width: 133px;
+	margin-top: 1px;
+}
+#addthis-shares .addthis_toolbox [class^="addthis_button_google_"]{
+	width: 110px;
+}
+#addthis-shares .addthis_toolbox .button-que-opinas{
+	float: left;
+	display: block;
+	width: 135px;
+	height: 20px;
+	line-height: 0;
+	overflow: hidden;
+	margin-top: 2px;
+}
+#addthis-shares .addthis_toolbox .globe-a-text-queopinas{
+	font-family: 'Helvetica Neue', Helvetica, Arial, 'lucida grande',tahoma,verdana,arial,sans-serif;
+	display: block;
+	width: 70px;
+	float: left;
+	color: #fff;
+	padding: 3px 4px 1px;
+	font-weight: normal;
+	text-align: center;
+	line-height: 14px;
+	font-size: 12px;
+	border-radius: 4px;
+	background: #305db0;
+}
+#addthis-shares .addthis_toolbox .button-que-opinas .globe-a-cont {
+	background: #fff;
+	border: 1px solid #c1c1c1;
+	border-radius: 3px;
+	height: 13px;
+	float: left;
+	font-size: 11px;
+	color: #4e5665;
+	margin-left: 6px;
+	min-width: 5px;
+	padding: 2px 3px;
+	text-align: center;
+	white-space: nowrap;
+}
+#addthis-shares .addthis_toolbox .button-que-opinas .pleca-comments {
+	height: 0;
+	left: 22px;
+	position: absolute;
+	top: -1px;
+	width: 5px;
+	z-index: 2;
+}
+#addthis-shares .addthis_toolbox .button-que-opinas .pleca-comments i,
+#addthis-shares .addthis_toolbox .button-que-opinas .pleca-comments s {
+	border-color: transparent #D7D7D7 transparent;
+	border-style: solid;
+	border-width: 5px 5px 4px 0;
+	display: block;
+	position:absolute;
+	top: 6px;
+	left: 57.9px;
+}
+#addthis-shares .addthis_toolbox .button-que-opinas .pleca-comments i{
+	border-right-color: #fff;
+	left:59.5px;
+	top: 6px;
+
+}
+.imx-users-metrica-content{
+	width: 100%;
+	margin: 0 0 10px; 
+	height: 30px;
+	float: left;
+}
+.imx-full-time,
+.imx-metrica-view{
+	width: 126px;
+	float: left;
+	margin: 0 2px 0 0;
+	display: block;
+}
+.imx-full-time{
+	width: 250px;
+}
+.imx-text-view{
+	padding: 5px;
+	color: #000;
+	float: left;
+	font: 14px 'Source Sans Pro';
+	background: #f2eeed;
+	position: relative;
+}
+.imx-time-text{
+	display: block;
+	padding: 2px 10px;
+	float: left;
+	font: 18px 'Source Sans Pro';
+	color: #000;
+}
+.imx-tex-pik-gre{
+	border-left: 7px solid #f2eeed;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	position: absolute;
+	top: 8px;
+	right: -6px;
+}

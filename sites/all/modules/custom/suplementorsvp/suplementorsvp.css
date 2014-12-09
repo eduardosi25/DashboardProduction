@@ -1,0 +1,13 @@
+.suplementoDigital{
+  font-size:24px;
+  background-color:#000;
+}
+.suplementoImage{
+  text-align:center;
+  overflow:hidden;
+  padding:10px;
+  margin:5px;
+}
+.suplementoImage img{
+  width:100%; 
+}

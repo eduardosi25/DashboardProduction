@@ -1,0 +1,22 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+
+# Ignore some dirs
+.idea
+.idea/*
+cache
+cache/*
+tmp
+tmp/*
+files
+files/*
+demos
+demos/*
+media
+media/*
+.idea*
+

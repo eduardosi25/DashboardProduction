@@ -1,0 +1,29 @@
+.topicos-listado-columna
+{
+	float:left;
+	margin-top:-20px;
+	margin-bottom:20px;
+	width:320px
+}
+
+.topicos-listado-container > .topicos-listado-columna:first-child
+{
+	margin-right:20px
+}
+
+.topicos-listado-header
+{
+	margin-top:20px;
+	border-bottom:1px solid #000;
+	font:bold 22px/24px 'Titillium Web'
+}
+
+.topicos-listado-list-item
+{
+	border-bottom:1px solid #ccc;
+	font:12px/20px 'Droid Serif'
+}
+
+.topicos-listado-list-item-link:hover{
+	color:#9c2842
+}

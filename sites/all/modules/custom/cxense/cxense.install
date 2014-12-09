@@ -1,0 +1,41 @@
+<?php
+/**
+ * Implements hook_install().
+ */
+function cxense_install() {
+  variable_set('cxense_status',FALSE);
+  variable_set('cxense_accountid','');
+  variable_set('cxense_siteid','');
+  variable_set('cxense_track','sendPageViewEvent');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function cxense_uninstall() {
+  #Delete all variables
+  variable_del('cxense_status');
+  variable_del('cxense_accountid');
+  variable_del('cxense_siteid');
+  variable_del('cxense_track');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function cxense_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $accountId=variable_get('cxense_accountid', '');
+    $siteId=variable_get('cxense_siteid', '');
+    if ((!isset($accountId) || empty($accountId)) || (!isset($siteId) || empty($siteId))) {
+      $requirements['cxense'] = array(
+        'title' => t('Missing basic settings'),
+        'description' => t('You need to set account && site id for this site'),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

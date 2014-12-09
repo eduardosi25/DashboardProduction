@@ -1,0 +1,10 @@
+name = "Zedo Integration"
+description = "Zedo Content Integration"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = zedo.module
+files[] = zedo.admin.inc
+files[] = zedo.install
+configure = admin/config/system/zedo

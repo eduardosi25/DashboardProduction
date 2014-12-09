@@ -1,0 +1,177 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function imx_promote_permission() {
+  $perms = array(
+    'administer nodes' => array(
+    'title' => t('Administer content'),
+    'restrict access' => TRUE,
+    ),
+  );
+  return $perms;
+}
+/**
+ * Implements hook_block_info().
+ */
+function imx_promote_block_info() {
+  return array(
+    'imx_promote_home' => array(
+      'info' => t('Promote contents home'),
+    ),
+    'imx_promote_taxonomy' => array(
+      'info' => t('Promote contents taxonomy'),
+    )
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function imx_promote_block_view($delta = '') {
+  switch ($delta) {
+    case 'imx_promote_home':
+      $block = array(
+        'subject' => t('Contenidos promocionados home'),
+        'content' => _get_promote_home(),
+      );
+    break;
+    case 'imx_promote_taxonomy':
+      $block = array(
+        'subject' => t('Contenidos promocionados canal'),
+        'content' => $items,
+      );
+    break;
+  }
+  return $block;
+}
+
+function _get_promote_home(){
+  //Add CSS
+  drupal_add_css(drupal_get_path('module', 'imx_promote').'/imx_promote.css');
+  $items=_get_promote_list('nodequeue_2','block');
+  if(!$items){
+    return null;
+  }
+  return _get_html_promote($items);
+}
+
+function _get_promote_taxonomy(){
+  $items=_get_promote_list('nodequeue_3');
+}
+
+function _get_promote_list($view_name, $display_id='default'){
+  if (!$view_name)
+    return NULL;
+  $view=views_get_view($view_name, $display_id);
+  $view->preview($display_id);
+  $view=$view->result;
+  $items=array();
+  foreach ($view as $node) {
+    $items[]=array(
+      'image'   => array(
+        'fid'   => isset($node->field_field_portada[0]['rendered']['#item']['fid']) ? $node->field_field_portada[0]['rendered']['#item']['fid'] : NULL,
+        'name'  => isset($node->field_field_portada[0]['rendered']['#item']['name']) ? $node->field_field_portada[0]['rendered']['#item']['name'] : NULL,
+        'uri'   => isset($node->field_field_portada[0]['rendered']['#item']['uri']) ? $node->field_field_portada[0]['rendered']['#item']['uri'] : NULL,
+        'alt'   => isset($node->field_field_portada[0]['rendered']['#item']['alt']) ? $node->field_field_portada[0]['rendered']['#item']['alt'] : NULL,
+        'title' => isset($node->field_field_portada[0]['rendered']['#item']['alt']) ? $node->field_field_portada[0]['rendered']['#item']['alt'] : NULL,
+        'width' => isset($node->field_field_portada[0]['rendered']['#item']['width']) ? $node->field_field_portada[0]['rendered']['#item']['width'] : NULL,
+        'height'=> isset($node->field_field_portada[0]['rendered']['#item']['height']) ? $node->field_field_portada[0]['rendered']['#item']['height'] : NULL,
+        'style' => isset($node->field_field_portada[0]['rendered']['#image_style']) ? $node->field_field_portada[0]['rendered']['#image_style'] : NULL,
+      ),
+      'title'   => isset($node->node_title) ? $node->node_title : NULL,
+      'canal'   => isset($node->node_field_field_canal[0]['rendered']['#markup']) ? $node->node_field_field_canal[0]['rendered']['#markup'] : NULL,
+      'summary' => _get_item_summary_promote($node),
+      'weight'  => isset($node->nodequeue_nodes_node_position) ? $node->nodequeue_nodes_node_position : NULL,
+      'path'    => isset($node->field_field_portada[0]['rendered']['#path']['path']) ? $node->field_field_portada[0]['rendered']['#path']['path'] : NULL,
+    );
+  }
+  return $items;
+}
+
+function _get_item_summary_promote($node){
+  if(!$node){
+    return null;
+  }
+  $summary=isset($node->field_body[0]['rendered']['#markup']) ? $node->field_body[0]['rendered']['#markup'] : NULL;
+  $summary=trim(strip_tags($summary));
+
+  //Summary exists
+  if(isset($summary) && !empty($summary)){
+    return $summary;
+  }else if(isset($node->node_type) && $node->node_type=='gallerie'){
+    return isset($node->field_field_portada[0]['rendered']['#item']['alt']) ? $node->field_field_portada[0]['rendered']['#item']['alt'] : NULL;
+  }
+
+  return null;
+}
+
+
+function _get_html_promote($items){
+  if(!$items)
+    return null;
+  
+  $html='
+<!-- Begin Content Content-->
+<div id="contentContent" class="left">
+  <!-- Begin Content Content Left-->
+  <div id="contentContentLeft" class="left">
+    <ul id="contentListLeft">
+';
+  $count=1;
+  foreach($items as $item){
+    $html.='
+      <li class="itemList left">
+        <div class="itemContent">
+          <a href="'.url($item['path'], array('absolute'=>true)).'">
+            <span class="dblock wrapImg">
+              <img src="'.file_create_url($item['image']['uri']).'" alt="'.$item['image']['alt'].'" />
+            </span>
+            <span class="titleItem titilliumWeb blackColor">
+              '.$item['title'].'
+            </span>
+          </a>
+          <p class="teaserItem whiteColor tinos">'.$item['summary'].'...</p>
+        </div>
+      </li>
+    ';
+    if($count==2){
+      break;
+    }
+    $count++;
+  }
+
+$html.='
+    </ul>
+  </div>
+  <!-- End Content Content Left-->
+  <!-- Begin Content Content Right-->
+  <div id="contentContentRight" class="right">
+    <ul id="contentListRight">
+';
+  $count=1;
+  foreach($items as $item){
+    if($count>2){
+$html.='
+      <li class="itemList left">
+        <div class="itemContent">
+          <a href="'.url($item['path'], array('absolute'=>true)).'">
+            <span class="dblock wrapImg">
+              <img src="'.file_create_url($item['image']['uri']).'" alt="'.$item['image']['alt'].'" />
+            </span>
+            <span class="titleItem titilliumWeb blackColor centertext">
+              '.$item['title'].'
+            </span>
+          </a>
+        </div>
+      </li>
+';
+    }
+    $count++;
+  }
+  $html.='
+    </ul>
+  </div>
+</div>
+  ';
+  return $html;
+}

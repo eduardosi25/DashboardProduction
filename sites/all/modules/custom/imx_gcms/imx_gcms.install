@@ -1,0 +1,259 @@
+<?php
+
+/**
+ * Implements hook_install().
+ */
+function imx_gcms_install() {
+  $node_type='article';
+    variable_set('imx_gcms_api_base_url', 'http://api.inventmx.com/v1/');
+    variable_set('imx_gcms_api_token', '3a5877fc16b6fcbf8eedbe55d091938a');
+    variable_set('imx_gcms_api_site_default', '');
+    variable_set("imx_gcms_config",false);
+    variable_set("imx_gcms_queue_dns", "api-mongo");
+    variable_set("imx_gcms_queue_port", "11300");
+
+
+    //Creamos el campo para filtrado de los contenidos via GCMS
+
+  $bundles=field_info_bundles('node');
+     $types=array();
+        foreach($bundles as $bundle=> $data){
+            $types[]= $bundle;
+        }
+
+
+   _createGCMSFields($types);
+}
+
+
+function imx_gcms_schema(){
+  $schema=array();
+  $schema['imx_gcms_recs_history'] = array(
+    'fields' => array(
+      'sid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The sended id newsml',
+      ),
+      'nid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Node ID',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'User ID',
+      ),
+      'site_dst' => array(
+        'type' => 'varchar',
+        'length' => 300,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name Site',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp for record',
+      ),
+    ),
+    'primary key' => array('sid'),
+    'indexes' => array(
+      'index_sid_nid' => array('sid','nid'),
+      'index_nid_created' => array('nid','created'),
+    ),
+  );
+
+   $schema['imx_gcms_imports_history'] = array(
+      'fields' => array(
+        'sid' => array(
+          'type' => 'serial',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'description' => 'The sended id newsml',
+        ),
+        'id_source' => array(
+          'type' => 'int',
+          'length' => 11,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'description' => 'Node ID',
+        ),
+        'id_dst' => array(
+          'type' => 'int',
+          'length' => 11,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'description' => 'Node ID',
+        ),
+        'uid' => array(
+          'type' => 'int',
+          'length' => 11,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'description' => 'User ID',
+        ),
+        'site_src' => array(
+          'type' => 'varchar',
+          'length' => 300,
+          'not null' => TRUE,
+          'default' => '',
+          'description' => 'Name Site',
+        ),
+        'created' => array(
+          'type' => 'int',
+          'length' => 11,
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+          'default' => 0,
+          'description' => 'Timestamp for record',
+        ),
+      ),
+      'primary key' => array('sid'),
+      'indexes' => array(
+        'index_sid_did' => array('sid','id_source'),
+        'index_nid_created' => array('id_source','created'),
+      ),
+    );
+
+    $schema['imx_gcms_reject_history'] = array(
+          'fields' => array(
+            'sid' => array(
+              'type' => 'serial',
+              'unsigned' => TRUE,
+              'not null' => TRUE,
+              'description' => 'The sended id newsml',
+            ),
+            'id_source' => array(
+              'type' => 'int',
+              'length' => 11,
+              'unsigned' => TRUE,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Node ID',
+            ),
+            'title_src' => array(
+              'type' => 'varchar',
+              'length' => 300,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Name Site',
+            ),
+            'url_src' => array(
+              'type' => 'varchar',
+              'length' => 300,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Name Site',
+            ),
+            'uid' => array(
+              'type' => 'int',
+              'length' => 11,
+              'unsigned' => TRUE,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'User ID',
+            ),
+            'site_src' => array(
+              'type' => 'varchar',
+              'length' => 300,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Name Site',
+            ),
+            'created' => array(
+              'type' => 'int',
+              'length' => 11,
+              'unsigned' => TRUE,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Timestamp for record',
+            ),
+          ),
+          'primary key' => array('sid'),
+          'indexes' => array(
+            'index_sid_did' => array('sid','id_source'),
+            'index_id_source_site' => array('site_src','id_source'),
+            'index_nid_created' => array('id_source','created'),
+          ),
+        );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function imx_gcms_uninstall() {
+   $node_type='article';
+   #Delete all variables
+   variable_del('imx_gcms_api_base_url');
+   variable_del('imx_gcms_api_token');
+   variable_del('imx_gcms_api_site_default');
+   variable_del("imx_gcms_config");
+   variable_del("imx_gcms_queue_dns");
+   variable_del("imx_gcms_queue_port");
+
+   field_delete_field('field_gcms');
+   field_purge_batch(10);
+
+   field_delete_field('field_gcms_id_source');
+   field_purge_batch(10);
+
+   field_delete_field('field_gcms_site_source');
+   field_purge_batch(10);
+
+   field_delete_field('field_gcms_title_source');
+   field_purge_batch(10);
+
+   field_delete_field('field_gcms_url_source');
+   field_purge_batch(10);
+}
+
+ function _createGCMSFields($type){
+
+ $bundles=field_info_bundles('node');
+ $fields[]=array("type"=>"list_boolean","name"=>"field_gcms","label"=>"Contenido importado con GCMS?");
+ $fields[]=array("type"=>"text","name"=>"field_gcms_id_source","label"=>"Id de origen");
+ $fields[]=array("type"=>"text","name"=>"field_gcms_site_source","label"=>"Sitio de origen");
+ $fields[]=array("type"=>"text","name"=>"field_gcms_title_source","label"=>"Titulo de origen");
+ $fields[]=array("type"=>"text","name"=>"field_gcms_url_source","label"=>"Url de origen");
+
+    foreach($fields as $field_data){
+      if (!field_info_field($field_data["name"])) {
+        $field = array(
+           'field_name' => $field_data["name"],
+           'type' => $field_data["type"],
+          'bundles' => array(
+            'node' => $types,
+          ),
+        );
+        field_create_field($field);
+
+       foreach($bundles as $bundle =>$data){
+          $instance = array(
+            'field_name' => $field_data["name"],
+            'entity_type' => 'node',
+            'bundle' => $bundle,
+            'label' => $field_data["label"],
+          );
+          field_create_instance($instance);
+       }
+    }
+  }
+
+}

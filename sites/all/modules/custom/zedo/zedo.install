@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Installation file for Zedo Integration.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function zedo_install() {
+  variable_set('zedo_status',FALSE);
+  variable_set('zedo_debug',FALSE);
+  variable_set('zedo_wrapper','zedo-wrapper');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function zedo_uninstall() {
+  #Delete all variables
+  variable_del('zedo_status');
+  variable_del('zedo_debug');
+  variable_del('zedo_wrapper');
+}

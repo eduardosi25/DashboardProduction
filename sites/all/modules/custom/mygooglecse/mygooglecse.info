@@ -1,0 +1,3 @@
+name = My Google Custom Search Engine
+description = Search my site with Google custom search.
+core = 7.x

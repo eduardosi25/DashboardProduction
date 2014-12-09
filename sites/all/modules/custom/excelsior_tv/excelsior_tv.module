@@ -1,0 +1,1794 @@
+<?php
+#require_once "/var/www/html/class/Classes/PHPExcel.php"; //Libreria para crear reporte en Excel
+/**
+ * @file MODULE
+ * Modulo para Excélsior TV
+ * @Developer by: J. Enrique Montiel,
+ */
+
+/*
+ * @ Hook Menú
+ * 
+ */
+
+ $vars_excelsior = variable_get( 'excelsior_tv_vars','' );  
+
+ $vars_excelsior = get_validate_vars_excelsior_config( $vars_excelsior );
+
+define ( "URL_ALIAS_CANAL",  $vars_excelsior[ "alias_url" ]  );
+define ( "CONFIG_JSON_RUTA_TV",  $vars_excelsior[ "ruta_jsons" ]  ); // Ruta donde se guardan los archivos json
+define ( "CONFIG_JSON_FRAME_EMBED" , $vars_excelsior[ "ruta_embed" ] );
+define ( "CONFIG_JSON_NAME_TV", CONFIG_JSON_RUTA_TV . "config_tv_online_lista.json" );//configuracion de archivos json
+define ( "TimeXFileTvJson", 5 ); //Tiempo de actualización
+
+
+function excelsior_tv_help( $path, $arg ){
+
+    $output = '';
+
+    if(   $path == 'admin/help#excelsior_tv' ) {
+        $output .= '<p>'. t( 'excelsior_tv' ) .'</p>';
+        }
+
+    else 
+        if( $arg[ 0 ] == 'admin' && $arg[ 1 ] == 'excelsior_tv' ) {
+
+            switch( $arg [ 3 ] ) {
+                case NULL:
+                    default:
+                            $output = '<p>'.  t( 'excelsior_tv' ) .'</p>';
+                            break;
+            }//switch
+        }//
+    return $output;
+
+  }//excelsior_tv_help
+
+function excelsior_tv_menu() {
+  //Menu Items Array
+        $items = array();
+
+       $vars_excelsior = variable_get( 'excelsior_tv_vars','' );  
+       $vars_excelsior = get_validate_vars_excelsior_config( $vars_excelsior );  
+       
+        $items[ $vars_excelsior[ "alias_url" ] ] = array(
+                                                     'type' => MENU_CALLBACK,
+                                                     'title' => 'Multimedia',
+                                                     'access callback' => TRUE,
+                                                     'access arguments' => array('access content'),
+                                                     'page callback' => 'excelsior_tv_view_pages'
+                                                    );
+
+        $items[ $vars_excelsior[ "alias_url" ] . "/ticker" ] = array(
+                                                                 'type' => MENU_CALLBACK,
+                                                                 'title' => 'Ticker para Excélsior Tv',
+                                                                 'access callback' => TRUE,
+                                                                 'access arguments' => array('access content'),
+                                                                 'page callback' => 'excelsior_tv_ticker_excel'
+                                                                );   
+        $items['feed/multimedia'] = array(
+                                           'type' => MENU_CALLBACK,
+                                           'title' => 'Feed',
+                                           'access callback' => TRUE,
+                                           'access arguments' => array('access content'),
+                                           'page callback' => 'excelsior_feed_multimedia'
+                                          );
+        $items['feed/multimedia-list'] = array(
+                                           'type' => MENU_CALLBACK,
+                                           'title' => 'lista',
+                                           'access callback' => TRUE,
+                                           'access arguments' => array('access content'),
+                                           'page callback' => 'excelsior_feed_play_list'
+                                          );   
+
+      $items[ $vars_excelsior[ "alias_url" ] . "/%" ] = array(
+                                                           'type' => MENU_CALLBACK,
+                                                           'title' => 'Multimedia',
+                                                           'access callback' => TRUE,
+                                                           'page callback' => 'excelsior_tv_view_pages'
+                                                         );
+
+     $items['admin/config/excelsior/tv-config'] = array(
+                                                    'title' => 'Modulo de Multimedia',
+                                                    'description' => 'Configuración',
+                                                    'access callback' => TRUE,
+                                                    'page callback' => 'system_admin_menu_block_page',
+                                                    'access arguments' => array( 'administer Excelsior Tv' ),
+                                                    'position' => 'right',        
+                                                    'file' => 'system.admin.inc',
+                                                    'file path' => drupal_get_path( 'module', 'system' ),
+                                                  ); 
+
+      $items[ 'admin/config/excelsior/tv-config/config' ] = array(
+                                                 'title'            => 'Configuración del canal de Multimedia',
+                                                 'description'      => 'Configuración del canal Multimedia',
+                                                 'page callback'    => 'drupal_get_form',
+                                                 'access arguments' => array( 'administer excelsior_tv_administrador' ),
+                                                 'page arguments'   => array( 'excelsior_tv_configuracion' ),
+                                                 'file'             => 'excelsior_tv_configuracion.inc',
+                                                 'type'             => MENU_NORMAL_ITEM,
+    
+                                                             );                                                                                  
+
+
+       $items[ "admin/config/excelsior/tv-config/list" ] = array(
+                                                            'title' => 'Lista de reproducciones de Multimedia',
+                                                            'description' => '',
+                                                            'page callback' => 'lista_reproduccion_excelsior_tv',
+                                                            'access arguments' => array('administer excelsior_tv_administrador'),
+                                                            'type' => MENU_NORMAL_ITEM,
+                                                            'weight' => 1
+                                                        );  
+
+       $items[ "admin/config/excelsior/tv-config/add" ] = array(
+                                                           'title' => 'Añadir una nueva lista de reproducción',
+                                                           'description' => '',
+                                                           'page callback' => 'drupal_get_form',                                                                   
+                                                           'access arguments' => array( 'administer excelsior_tv_administrador' ),
+                                                           'page arguments' => array( 'excelsior_tv_administer_form' ),
+                                                           'file' => 'excelsior_tv_administer_form.inc',
+                                                           'type' => MENU_NORMAL_ITEM,
+                                                           'weight' => 2
+                                                         );        
+
+       $items[ "admin/config/excelsior/tv-config/ajax-update-list" ] = array(
+                                                                    'title' => '',
+                                                                    'description' => '',
+                                                                    'page callback' => 'push_ajax_update_list',
+                                                                    'access arguments' => array('administer excelsior_tv_administrador'),
+                                                                    'type' => MENU_CALLBACK,
+                                                                 );       
+
+       $items['admin/config/excelsior/tv-config/edit'] = array(
+                                                           'title' => 'Editar lista de Multimedia',                                                            
+                                                           'page callback' => 'drupal_get_form',                                                                   
+                                                           'access arguments' => array( 'administer excelsior_tv_administrador' ),
+                                                           'page arguments' => array( 'excelsior_administer_edit_lista' ),                                                           
+                                                           'type' => MENU_LOCAL_ACTION,
+                                                           'file' => 'excelsior_tv_administer_form.inc'
+                                                          );                                                                      
+
+       $items['admin/config/excelsior/tv-config/delete'] = array(
+                                                            'title' => 'Delete lista de Multimedia',
+                                                            'page callback' => 'drupal_get_form',                                                                   
+                                                            'access arguments' => array('administer excelsior_tv_administrador'),          
+                                                            'page arguments' => array( 'excelsior_administer_delete_lista' ),                                                           
+                                                            'type' => MENU_CALLBACK,
+                                                            'file' => 'excelsior_tv_administer_form.inc'                                                            
+                                                           );       
+
+      $items[ "admin/config/excelsior/tv-config/transmision-embed" ] = array(
+                                                                        'title' => 'Transmisión En Vivo',
+                                                                        'description' => 'Edición Transmisión En Vivo',
+                                                                        'page callback' => 'drupal_get_form', 
+                                                                        'page arguments' => array ( 'edit_excelsior_transmision_vivo' ),
+                                                                        'access arguments' => array ('administer excelsior_tv_administrador'),
+                                                                        'type' => MENU_CALLBACK,
+                                                                        'weight' => 3,
+                                                                        'file' => 'excelsior_transmision_vivo_form.inc'                                                         
+                                                                        );           
+
+      $items[ "admin/config/excelsior/tv-config/bloque-videos-home" ] = array(
+                                                                        'title' => 'Bloque Videos del Home',
+                                                                        'description' => 'Editar Videos del Bloque Home',
+                                                                        'page callback' => 'drupal_get_form', 
+                                                                        'page arguments' => array ( 'edit_excelsior_bloque_home_videos' ),
+                                                                        'access arguments' => array ('administer excelsior_tv_administrador'),
+                                                                        'type' => MENU_CALLBACK,
+                                                                        'weight' => 4,
+                                                                        'file' => 'edit_excelsior_bloque_home_videos_form.inc'                                                         
+                                                                        );
+
+      $items[ "admin/config/excelsior/tv-config/bloque-videos-canal" ] = array(
+                                                                        'title' => 'Bloque Multimedia Lo Más Visto',
+                                                                        'description' => 'Editar Videos de Lomas visto',
+                                                                        'page callback' => 'drupal_get_form', 
+                                                                        'page arguments' => array ( 'edit_excelsior_bloque_canal_videos_tv' ),
+                                                                        'access arguments' => array ('administer excelsior_tv_administrador'),
+                                                                        'type' => MENU_CALLBACK,
+                                                                        'weight' => 5,
+                                                                        'file' => 'edit_excelsior_bloque_canal_videos_tv_form.inc'                                                         
+                                                                        );
+
+       $items[ "admin/config/excelsior/tv-config/bloque-videos-portada" ] = array(
+                                                                        'title' => 'Bloque Multimedia Recomendados',
+                                                                        'description' => 'Permite editar un listados de 14 Videos  ',
+                                                                        'page callback' => 'drupal_get_form', 
+                                                                        'page arguments' => array ( 'edit_excelsior_bloque_canal_videos_multimedia' ),
+                                                                        'access arguments' => array ('administer excelsior_tv_administrador'),
+                                                                        'type' => MENU_NORMAL_ITEM,
+                                                                        'weight' => 6,
+                                                                        'file' => 'edit_excelsior_bloque_canal_videos_multimedia_form.inc'                                                         
+                                                                        );
+
+       $items[ "admin/config/excelsior/tv-config/bloque-videos-related" ] = array(
+                                                                        'title' => 'Video principal y videos relacionados',
+                                                                        'description' => 'Videos relacionados y video principal ',
+                                                                        'page callback' => 'drupal_get_form', 
+                                                                        'page arguments' => array ( 'edit_excelsior_bloque_canal_related_multimedia' ),
+                                                                        'access arguments' => array ('administer excelsior_tv_administrador'),
+                                                                        'type' => MENU_NORMAL_ITEM,
+                                                                        'weight' => 7,
+                                                                        'file' => 'edit_excelsior_bloque_canal_related_multimedia_form.inc'                                                         
+                                                                        );
+        unset (  $vars_excelsior );
+        return ( $items );
+     }// excelsior_tv
+
+
+function excelsior_tv_block_info(){
+
+      $blocks = array();
+
+     /*  $blocks[ 'excelsior_tv_parrilla' ] = array(
+                                             'info' => t( 'Excélsior TV - Parrilla Block' ),
+              );
+
+       $blocks[ 'excelsior_tv_vivo_canal' ] = array(
+                                                  'info' => t( 'Multimedia - Transmisión en Vivo' ),
+                                               );
+*/
+       $blocks[ 'excelsior_tv_mas_view_canal' ] = array(
+                                                    'info' => t( 'Multimedia - Lo más visto' ),
+                                                  );
+        $blocks[ 'excelsior_tv_videos_portada' ] = array(
+                                                    'info' => t( 'Canal Multimedia Recomendamos' ),
+                                                  );
+/*
+       $blocks['excelsior_videogaleria_home'] = array(
+                                                  'info' => t( 'Bloque de Videogaleria en home de TV' ),
+                                                );                     
+*/
+      return $blocks;      
+
+  }//excelsior_tv_block_info
+
+function excelsior_tv_block_view( $delta = '' ){
+
+    $block = array();
+
+    switch ( $delta ){
+        case "excelsior_tv_parrilla" : 
+             $block[ 'content' ] = array( '#theme' => 'excelsior_tv_thme_parrilla' );
+            break;
+        case "excelsior_tv_vivo_canal" : 
+            $block[ 'content' ] = array( '#theme' => 'excelsior_tv_thme_transmision_vivo_canal' );
+            break;
+        case "excelsior_tv_videos_portada" : 
+          $data = array();
+          $data_video = array();
+          $is_id_video = array();
+          $related = array();
+          $titulo_videos = '';
+          $id = '';
+          $data = get_data_block_multimedia_portada();
+          $data["relacionados"] = get_data_block_multimedia_portada_relacionados ();
+
+          $path = arg();
+          if (isset($path[1])) {
+            $id_video = check_plain(trim($path[1]));
+
+            if (strlen($id_video) == 11) { //validar id de 11 caracteres
+              $url = "https://gdata.youtube.com/feeds/api/videos/" . $path[1] . "?v=2&alt=jsonc";
+              $yid = excelsior_tv_get_live_video($url); //validar video con youtube
+
+              if (count($yid) > 0) { //video youtube valido
+                $valid_authors = excelsior_tv_get_authorized_authors(); //autores validos
+
+                if (in_array(strtolower($yid['uploader']), $valid_authors)) { //solo mostramos videos de autores validos
+                  //recuperamos los relacionados del video valido
+                  $url_related = "https://gdata.youtube.com/feeds/api/videos/" . $yid['id'] . "/related?v=2&max-results=3&alt=jsonc";
+                  $is_id_video = array();
+                  $yid_related = excelsior_tv_get_live_related($url_related);
+
+                  if (count($yid_related) > 0) { //relacionados validos
+                    $related = $yid_related;
+                  }
+
+                  $is_id_video = array( //video principal
+                    array(
+                      'id' => $yid['id'],
+                      'title' => $yid['title'],
+                      'playlist_title' => 'Live Related',
+                      'src' => "http://www.youtube.com/embed/".$yid['id']."?rel=0&fs=1&autoplay=".variable_get('multimedia_autoplay', 1),
+                    ),
+                  );
+
+                  $titulo_videos = $is_id_video[0]['title'];
+                  $id = $yid['id'];
+                }
+                else { //autor invalido
+                  drupal_goto(URL_ALIAS_CANAL); //redireccionar a canal
+                }
+              }
+              else { //error al recuperar el video ó id de video incorrecto
+                drupal_goto(URL_ALIAS_CANAL); //redireccionar a canal
+              }
+            }
+            else { //validar id de 11 caracteres fin
+              drupal_goto(URL_ALIAS_CANAL); //redireccionar a canal
+            }
+          }
+          else { //cargamos el video principal
+            if (isset($data['relacionados']['data'][0]['title'])) {
+              $titulo_videos = $data['relacionados']['data'][0]['title'];
+              $id = $data['relacionados']['data'][0]['vid'];
+              //autoplay cuando la variable es ausente
+              if (variable_get('multimedia_autoplay',"no_config") === "no_config") {
+                $video_url = $data['relacionados']['data'][0]['url'];
+                $video_url_parse = array();
+                $video_url_parse = parse_url($video_url);
+                if (is_array($video_url_parse) && isset($video_url_parse['query'])) {
+                  $video_url .= '&autoplay=1';
+                  $data['relacionados']['data'][0]['url'] = $video_url;
+                }
+                else {
+                  $video_url .= '?autoplay=1';
+                  $data['relacionados']['data'][0]['url'] = $video_url;
+                }
+              }
+              //fin autoplay cuando la variable es ausente
+            }
+            else {
+              $titulo_videos = 'Multimedia';
+            }
+          }
+
+          /** SEO */
+          drupal_set_title($titulo_videos);
+          $tags = array(
+            array(
+              'meta' => array(
+                'property' => 'og:image',
+                'content' => 'https://i.ytimg.com/vi/'. $id .'/sddefault.jpg',
+              )
+            ),
+            array(
+              'meta' => array(
+                'property' => 'og:description',
+                'content' => $titulo_videos,
+              )
+            ),
+          );
+          _create_html_tag( $tags, 'multimedia' );
+          /** SEO */
+
+          $data_video['path'] = $path;
+          $data_video['title'] = $titulo_videos;
+          $data_video['is_id_video'] = $is_id_video;
+          $data_video['related'] = array_slice($related, 0,3); //solo 3 relacionados
+
+          $content = array(
+              '#theme' => 'excelsior_tv_thme_videos_portada',
+              '#excelsior_tv_thme_videos_portada' => $data,
+              '#excelsior_tv_video' => $data_video,
+          );
+
+          $block['subject'] = t('Canal Multimedia Relacionados');
+          $block['content'] = $content;
+          break;
+        case "excelsior_tv_mas_view_canal" :
+            $content = array(
+                '#theme' => 'excelsior_tv_thme_lo_mas_visto_canal',
+            );
+            $block['subject'] = t('Multimedia - Recomendamos');
+            $block['content'] = $content;
+            break;   
+        case "excelsior_videogaleria_home":
+            drupal_add_css( drupal_get_path( 'module', 'excelsior_tv' ) . '/css/excelsior_video_galery_home.css' );
+            drupal_add_js( drupal_get_path( 'module', 'excelsior_tv' ) . '/js/excelsior_video_galery_home.js', array( 'type' => 'file', 'scope' => 'footer' ) );
+            $block['content'] = array( '#theme' => 'excelsior_videogaleria_home' );
+            break;
+    }//switch
+    return $block;   
+}//excelsior_tv_block_view 
+
+function excelsior_tv_permission() {
+    return array(
+        'administer excelsior_tv_administrador' => array(
+            'title' => t('Administer excelsior_tv_administrador'),
+            'description' => t('Configure Module Excélsior - Tv.'),
+        ),
+    );
+}       
+
+  /* ------------- Para la Pagina del Impreso ------------------------------ */
+ 
+function excelsior_tv_view_pages (){
+          	            
+          return theme( 'excelsior_tv_view_pages' );       	
+			   				      	     		    	  	 
+    } // excelsior_periodico_view
+
+function excelsior_tv_theme($existing, $type, $theme, $path) {
+    return array(
+        'excelsior_tv_view_pages' => array(
+                                          'variables' => array(
+                                                             'excelsior_tv_view_pages' => NULL,
+                                                           ),
+                                          'template' => 'excelsior_tv_view_pages'
+                                      ),
+        'excelsior_tv_administer_form' => array(
+                                          'arguments' => array('form' => NULL),
+                                          'template' => 'excelsior_tv_administer_form',
+                                          'render element' => 'form',
+                                      ),  
+
+        'excelsior_tv_administer_form_edit' => array(
+                                              'arguments' => array('form' => NULL),
+                                              'template' => 'excelsior_tv_administer_form_edit',
+                                              'render element' => 'form',
+                                             ),
+
+        'excelsior_tv_administer_form_delete' => array(
+                                                'arguments' => array('form' => NULL),
+                                                'template' => 'excelsior_tv_administer_form_delete',
+                                                'render element' => 'form',                                                          
+                                              ),                       
+        'excelsior_tv_view_adm_list' => array(
+                                          'variables' => array(
+                                                             'excelsior_tv_view_adm_list' => NULL,
+                                                           ),
+                                          'template' => 'excelsior_tv_view_adm_list',
+                                          ),
+
+        'excelsior_transmision_online_embed' => array(
+                                                'arguments' => array('form' => NULL),
+                                                'template' => 'excelsior_transmision_online_embed',
+                                                'render element' => 'form',                                                          
+                                              ),
+
+        'excelsior_tv_thme_parrilla' => array(
+                                           'variables' => array(
+                                                             'excelsior_tv_thme_parrilla' => NULL,
+                                                            ),
+                                            'template' => 'excelsior_tv_thme_parrilla',
+                                         ),
+
+        'edit_excelsior_bloque_home_videos' => array(
+                                                'arguments' => array('form' => NULL),
+                                                'template' => 'edit_excelsior_bloque_home_videos',
+                                                'render element' => 'form',                                                          
+                                              ), 
+
+        'excelsior_videogaleria_home' => array(
+                                          'variables' => array(
+                                                  'excelsior_galeries_items' => NULL,
+                                              ),
+                                          'template' => 'excelsior_videogaleria_home',
+                                        ),                      
+
+        'edit_excelsior_bloque_canal_videos' => array(
+                                                'arguments' => array('form' => NULL),
+                                                'template' => 'edit_excelsior_bloque_canal_videos',
+                                                'render element' => 'form',                                                          
+                                              ),
+        /* Bloque para Tv */
+
+        'excelsior_tv_thme_transmision_vivo_canal' => array(
+                                                       'variables' => array(
+                                                                        'excelsior_tv_thme_transmision_vivo_canal' => NULL,
+                                                                      ),
+                                                       'template' => 'excelsior_tv_thme_transmision_vivo_canal',
+                                                      ),
+
+        'excelsior_tv_thme_lo_mas_visto_canal' => array(
+            'variables' => array(
+                'excelsior_tv_thme_lo_mas_visto_canales' => NULL,
+                'excelsior_tv_thme_lo_mas_visto_relacionados' => NULL,
+            ),
+            'template' => 'excelsior_tv_thme_lo_mas_visto_canal',
+        ), 
+        'excelsior_tv_thme_videos_portada' => array(
+            'variables' => array(
+                 'excelsior_tv_thme_videos_portada' => NULL,
+                 'excelsior_tv_video' => NULL,
+            ),
+            'template' => 'excelsior_tv_thme_videos_portada',
+        ),                     
+    );
+
+}//excelsior_tv_theme
+
+function template_preprocess_excelsior_tv_view_pages( &$variables ) {
+    
+          drupal_add_css( drupal_get_path( 'module', 'excelsior_tv' ) . '/css/excelsior_tv_pages.css' );
+          drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/excelsior_tv_pages.js', array( 'type' => 'file', 'scope' => 'footer' ) );	
+
+      //$variables[ 'excelsior_tv_view_pages' ] = get_excelsior_tv_view_pages();
+		           
+  } //template_preprocess_excelsior_tv_view_pages 
+
+function template_preprocess_excelsior_transmision_online_embed( &$variables ){
+        
+        drupal_add_css( drupal_get_path( 'module', 'excelsior_tv' ) . '/css/adm/excelsior_tv_transmision_embed.css' );     
+        drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/adm/excelsior_tv_transmision_embed.js', array( 'type' => 'file', 'scope' => 'footer' ) );
+  }  
+
+function template_preprocess_edit_excelsior_bloque_home_videos( &$variables ){
+        
+        drupal_add_css( drupal_get_path( 'module', 'excelsior_tv' ) . '/css/adm/excelsior_bloque_videos_home.css' );     
+        drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/adm/excelsior_bloque_videos_home.js', array( 'type' => 'file', 'scope' => 'footer' ) );
+   } 
+
+function template_preprocess_excelsior_videogaleria_home( &$variables ) {
+         $variables['excelsior_galeries'] =  excelsior_videoGaleriaTV ();
+  }   
+
+function template_preprocess_excelsior_tv_thme_parrilla( &$variables )  {
+
+       $variables[ 'excelsior_tv_thme_parrilla' ] = time();
+   } 
+
+function template_preprocess_edit_excelsior_bloque_canal_videos( &$variables ){
+        drupal_add_css( drupal_get_path( 'module', 'excelsior_tv' ) . '/css/adm/excelsior_bloque_videos_home.css' );     
+        drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/adm/excelsior_bloque_videos_canal.js', array( 'type' => 'file', 'scope' => 'footer' ) );  
+   }    
+  
+function get_excelsior_tv_view_pages (){
+
+       $data = array ();                  
+      $Class = new getYoutubeLista ( CONFIG_JSON_NAME_TV, CONFIG_JSON_RUTA_TV, "" );
+
+      $configuracion = $Class-> getData ( CONFIG_JSON_NAME_TV );
+
+      if ( array_key_exists( "data" , $configuracion ) ){
+
+            if ( count( $configuracion[ "data" ] ) > 0 ){
+              
+              $I = 0;
+
+              foreach ( $configuracion[ "data" ] as $key ){
+
+                  if ( $key[ "estado" ] == "activar" ){
+                        
+                        /*if ( get_fecha_verifica_file_time ( CONFIG_JSON_RUTA_TV . $key[ "file" ], $key[ "update" ] ) ){
+
+                              $Class-> get_update_lista ( $key[ "file" ], $key[ "lista" ], 50 );
+                              $configuracion[ "data" ][ $I ][ "update" ] = time(); 
+
+                              $Class -> getFileWriteJson ( CONFIG_JSON_NAME_TV, $configuracion );
+
+                           }
+                         */
+                        //if de vericación de time actualización de PlayList dependiendo el tiempo
+                          
+                        $data [] = array (
+                                          "name" => $key[ "nombre" ],
+                                          "placa" => $key[ "placa" ],
+                                          "url_lista" => $key[ "url_lista" ],
+                                          "videos" => $Class-> get_lista( $key[ "file" ], $key[ "lista" ], $key[ "NoListando" ] ),
+                                          "num_videos" => $key[ "NoListando" ]                                          
+                                     );              
+
+                      }//activar  
+                   $I ++; 
+                 } //foreach
+             } // count > 0         
+        }//array_key_exists
+
+     return $data;  
+    // print_r($data); 
+
+     unset ( $data, $Class, $configuracion, $I );
+  } // get_excelsior_tv_view_pages    
+
+/* ******************************** */
+/* Bloques Themes de Excélsior TV */
+
+function template_preprocess_excelsior_tv_thme_transmision_vivo_canal (  &$variables ){
+    
+    $data[ "transmision_online" ] = get_data_transmision_onlineTv ( "canal" );
+    
+    $variables[ "excelsior_tv_thme_transmision_vivo_canal" ] = $data;
+
+
+  }//template_preprocess_excelsior_tv_thme_transmision_vivo_canal
+function template_preprocess_excelsior_tv_thme_videos_portada (  &$variables ){
+}//template_preprocess_excelsior_tv_thme_transmision_vivo_canal
+
+function template_preprocess_excelsior_tv_thme_lo_mas_visto_canal (  &$variables ){
+    
+    $data = get_excelsior_tv_view_pages ();
+
+    /** fix videos desde db*/
+    $new_data = array();
+    foreach ($data as $key => $list) {
+        $new_data[] = array(
+            'name' => $list['name'],
+            'url_lista' => $list['url_lista'],
+            'videos' => excelsior_tv_get_by_playlist($list['name'], 0, $list['num_videos']),
+        );
+    }
+    if (count($new_data) > 0) {
+        $data = $new_data;
+    }
+    /** fix videos desde db*/
+    //$data[ "block_lo_mas_visto_tv" ] = get_data_block_transmision_canal_tv();
+    # $data[ "relacionados" ]= get_data_block_multimedia_portada_relacionados ();
+    $variables[ "excelsior_tv_thme_lo_mas_visto_relacionados" ] = get_data_block_multimedia_portada();
+    $variables[ "excelsior_tv_thme_lo_mas_visto_canales" ] = $data;
+
+  }//template_preprocess_excelsior_tv_thme_lo_mas_visto_canal
+
+/* End Bloques de Excélsior TV */ 
+
+/* Parte Administradora para Excélsior TV */
+
+function template_preprocess_excelsior_tv_administer_form( &$variables ) {
+    
+      $variables["styles"]= drupal_get_css();
+      $variables['scripts'] = drupal_get_js();
+   } // excelsior_suscripcion_form
+
+function template_preprocess_excelsior_tv_administer_form_edit( &$variables ) {
+    
+    drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/excelsior_tv_admin.js', array( 'type' => 'file', 'scope' => 'footer' ) );    
+    $variables["styles"]= drupal_get_css();
+    $variables['scripts'] = drupal_get_js();
+  } // excelsior_suscripcion_form
+
+
+function template_preprocess_excelsior_tv_administer_form_delete( &$variables ) {
+    
+    drupal_add_js( drupal_get_path ( 'module', 'excelsior_tv' ) .'/js/excelsior_tv_admin.js', array( 'type' => 'file', 'scope' => 'footer' ) );    
+    $variables["styles"]= drupal_get_css();
+    $variables['scripts'] = drupal_get_js();
+
+  } // excelsior_suscripcion_form
+
+function excelsior_videoGaleriaTV() {
+         $file = CONFIG_JSON_RUTA_TV . "video-galeria-home.json";
+        
+        if ( file_exists( $file ) ) {
+             $data = json_decode( file_get_contents( $file ), TRUE );
+             
+             $data[ "transmision_online" ] = get_data_transmision_onlineTv ( "bloque" );
+             $data[ "existe_vivo" ]  = portada_transmision_tv_online_list();
+          }
+    return ( count( $data ) > 0 ) ? $data : array ();
+}//excelsior_videoGaleriaTV
+
+
+/* Lista de reproduccion */
+
+function lista_reproduccion_excelsior_tv(){
+    return theme( 'excelsior_tv_view_adm_list' );         
+}
+
+
+ function push_ajax_update_list (){
+
+           $key = ( isset ( $_REQUEST[ "id" ] ) ) ? $_REQUEST[ "id" ] : "";
+           $index = ( isset ( $_REQUEST[ "index" ] ) ) ? $_REQUEST[ "index" ] : null;
+
+
+         $Class = new getYoutubeLista ( CONFIG_JSON_NAME_TV, CONFIG_JSON_RUTA_TV, "" );
+
+         $configuracion = $Class-> getData ( CONFIG_JSON_NAME_TV );
+
+               $message = "";
+                $status = "";
+                  $data = ( array_key_exists( "data", $configuracion ) ) ? $configuracion[ "data" ] : array ();
+
+
+            if ( ( count ( $data ) > 0 ) && ( $key != "" ) && ( $index != null ) ) {
+
+               $key_data = search_key_id_lista ( $data, "id", $key );
+
+                if ( count ( $key_data ) > 0 ){
+
+                      $Class-> get_update_lista ( $key_data[ 0 ][ "file" ], $key_data[ 0 ][ "lista" ], 50 );
+                      $configuracion[ "data" ][ $index ][ "update" ] = time(); 
+
+                      $Class -> getFileWriteJson ( CONFIG_JSON_NAME_TV, $configuracion ); 
+
+                     $message = "Se actualizo correctamente la lista : <strong> ". $key_data[ 0 ][ "nombre" ] ." </strong>";
+                      $status = 200;                 
+
+                 }else{
+                      $message = "Error, al procesar la lista <strong>  </strong> y/o problema de conexión con el servidor.";
+                      $status = 203;
+                 }
+              }else{
+                  $message = "Error, al procesar la lista <strong>  </strong> y/o problema de conexión con el servidor.";
+                  $status = 203;
+                }    
+
+        $data = array (
+                       "response" => array ( 
+                                        "status"=> (int)$status,
+                                        "message"=> "OK"
+                         ),
+                       "data" => array ( 
+                                        "message"=> (string) $message
+                         )                       
+                  );
+
+      header('Cache-Control: no-cache, must-revalidate');
+      header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+      header('Content-type: application/json');   
+
+       $vars_excelsior = variable_get( 'excelsior_tv_vars','' );  
+       $vars_excelsior = get_validate_vars_excelsior_config( $vars_excelsior ); 
+
+       curl_clear_cache_varnish_varnishadm ( $vars_excelsior[ "alias_url" ] );
+       curl_clear_cache_varnish_x_refresh ( $vars_excelsior[ "alias_url" ] );
+
+       echo json_encode( $data );
+
+       unset( $data, $key, $index, $Class, $configuracion, $men );
+
+       exit();       
+   } //push_ajax_update_list
+
+function template_preprocess_excelsior_tv_view_adm_list( &$variables ) {
+
+    $Class = new configuracion_youtube ( CONFIG_JSON_NAME_TV, CONFIG_JSON_RUTA_TV, "" );
+    
+  $content = $Class-> getData();
+     $data = array ();
+
+       if ( count ( $content [ "data" ] ) > 0 ){
+
+             $data = $content[ "data" ];
+
+         } //if 
+      
+      drupal_add_js( drupal_get_path('module', 'excelsior_tv') . '/js/excelsior_tv_admin.js', array( 'type' => 'file', 'scope' => 'footer' ) );
+      $variables[ 'excelsior_tv_view_adm_list' ] = $data;
+               
+  } //template_preprocess_excelsior_tv_view_pages 
+
+
+function get_data_transmision_onlineTv ( $canal ){
+
+          $data_transmision = array ();
+
+          $file = CONFIG_JSON_RUTA_TV . "transmision_online.json";
+
+        if ( file_exists( $file ) ){
+                 $data_transmision = json_decode( file_get_contents( $file ), TRUE );
+          }
+        
+        if ( count ( $data_transmision )  > 0 ){
+            
+            switch ( $canal ) {
+                case 'canal':
+                              $embed = $data_transmision[ "canal" ][ "embed" ];
+
+                              preg_match("/\/media\/embed\/auto-play.html/", $embed, $output_array);
+
+                               if ( count ( $output_array ) > 0 ){
+                                    $embed = str_replace( "/media/embed/auto-play.html" , "/media/embed/auto-play.html?height=670&width=980", $embed );
+                                 }                            
+
+                              $data_transmision[ "canal" ][ "embed" ] =  $embed ;                
+
+                             break;              
+                case 'bloque':                              
+                                   $embed_home = $data_transmision[ "home" ][ "embed" ];
+                                  $embed_canal = $data_transmision[ "canal" ][ "embed" ];
+
+                                  preg_match("/\/media\/embed\/auto-play.html/", $embed_canal, $output_array);
+
+                                  if ( count ( $output_array ) > 0 ){
+                                       $embed_canal = str_replace( "/media/embed/auto-play.html" , "/media/embed/auto-play.html?height=410&width=650", $embed_canal );
+                                    }
+
+
+                              $data_transmision[ "home" ][ "embed" ] = "<div class = 'float-left' >" . str_replace( "600", "664", $embed_home ) . "</div>";
+                              $data_transmision[ "home" ][ "embed-full" ] = "<div class = 'float-left' >" . str_replace( "600", "664", $embed_canal ) . "</div>";
+                                                                    
+                            break;
+              }//switch
+         }//if
+
+      return  $data_transmision;
+
+  }//get_data_transmision_onlineTv
+
+function get_data_block_transmision_canal_tv (){
+
+            $data_block = array ();
+                  $data = array();
+
+            $file = CONFIG_JSON_RUTA_TV . "videos-lo-mas-visto-canal-tv.json";
+
+         if ( file_exists( $file ) ){
+              $data_block = json_decode( file_get_contents( $file ), TRUE );
+           }
+          
+         if ( count ( $data_block )  > 0 ){
+              
+           if( $data_block [ "estado" ] == 1 ){
+                $data = $data_block;  
+              }               
+
+          }//if
+       return  $data;    
+  }//get_data_block_transmision_canal_tv
+
+  function get_data_block_multimedia_portada (){
+
+            $data_block = array ();
+                  $data = array();
+
+            $file = CONFIG_JSON_RUTA_TV . "multimedia-portada.json";
+
+         if ( file_exists( $file ) ){
+              $data_block = json_decode( file_get_contents( $file ), TRUE );
+           }
+          
+         if ( count ( $data_block )  > 0 ){
+              
+           if( $data_block [ "estado" ] == 1 ){
+                $data = $data_block;  
+              }               
+
+          }//if
+       return  $data;    
+  }//get_data_block_transmision_canal_tv
+  function get_data_block_multimedia_portada_relacionados (){
+
+            $data_block = array ();
+                  $data = array();
+
+            $file = CONFIG_JSON_RUTA_TV . "multimedia-portada-relacionados.json";
+
+         if ( file_exists( $file ) ){
+             $data_block = json_decode( file_get_contents( $file ), TRUE );
+           }
+          
+         if ( count ( $data_block )  > 0 ){
+              
+                $data = $data_block;                
+
+          }//if
+       return  $data;    
+  }
+
+function get_replace_http( $input ){      
+      return preg_replace( "/^(\/\/|http:\/\/)/", "", $input );
+  }
+
+function get_fecha_verifica_file_time ( $ruta, $time ){
+
+        $band = false;
+
+         if ( file_exists( $ruta ) ){
+
+              $FechaFileRuta = strtotime( date ( "Y-m-d H:i:s", $time ) ); 
+                      $Today = time();
+                   $Segundos = $Today - $FechaFileRuta;                          
+                    $Minutos = floor( $Segundos / 60 );
+                  
+             if ( $Minutos > TimeXFileTvJson ){
+                  $band = true;                  
+              }// if 
+
+          }// File Existe
+
+     return $band;
+    }//get_fecha_verifica_file_time
+
+function search_key_id_lista( $array, $key, $value ) {
+       
+       $results = array();
+       search_key_id_lista_recursive( $array, $key, $value, $results );
+
+     return $results;
+
+   }//search_key_id_lista
+
+function search_key_id_lista_recursive( $array, $key, $value, &$results ) {
+    
+    if ( ! is_array( $array ) )
+        return;
+
+    if ( $array[ $key ] == $value )
+         $results[] = $array;
+
+    foreach ($array as $subarray)
+        search_key_id_lista_recursive( $subarray, $key, $value, $results );
+
+  }//search_key_id_lista_recursive
+
+function num_dia_letra( $num ){
+       
+    $num = ( int )$num;   
+    $response = "";
+
+      switch ( $num ){
+
+          case 1: $response = "Lunes"; break;
+          case 2: $response = "Martes"; break;
+          case 3: $response = "Miercoles"; break;
+          case 4: $response = "Jueves"; break;
+          case 5: $response = "Viernes"; break;
+          case 6: $response = "Sabado"; break;
+          case 7: $response = "Domingo"; break;
+
+        }//switch 
+   
+    return $response;
+
+  }//num_dia_letra 
+
+function getslug( $string ) {
+    
+    $characters = array(
+                    "Á" => "A", "Ç" => "c", "É" => "e", "Í" => "i", "Ñ" => "n", "Ó" => "o", "Ú" => "u",
+                    "á" => "a", "ç" => "c", "é" => "e", "í" => "i", "ñ" => "n", "ó" => "o", "ú" => "u",
+                    "à" => "a", "è" => "e", "ì" => "i", "ò" => "o", "ù" => "u"
+                  );
+ 
+     $string = strtr( $string, $characters ); 
+     $string = strtolower( trim( $string ) ); 
+     $string = preg_replace( "/[^a-z0-9-]/", "-", $string );
+     $string = preg_replace( "/-+/", "-", $string ); 
+      
+     if( substr( $string, strlen( $string ) - 1, strlen( $string ) ) === "-" ) {
+         $string = substr($string, 0, strlen($string) - 1);
+      }
+ 
+     return $string;
+
+   }//etslug  
+
+function CurlLinkXVideo ( $ID ){
+
+         $content = array();
+
+          $URL = "http://gdata.youtube.com/feeds/api/videos/". $ID ."?v=2&alt=jsonc";          
+           $ch = curl_init( $URL );
+
+        curl_setopt( $ch, CURLOPT_HEADER, false );
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt( $ch, CURLOPT_FAILONERROR, true);
+
+        $Curl_Errno = curl_errno( $ch );
+
+        $Data = curl_exec( $ch );
+
+        curl_close( $ch );
+
+        if ( ( strlen ( trim( $Data ) ) > 0 ) && ( $Curl_Errno == 0 ) ) {
+               $content = trim( $Data );
+           }//if
+
+        return ( $content );          
+     }//
+
+
+function excelsior_tv_html_head_alterw( &$head_elements ){
+
+    $vars_excelsior = variable_get( 'excelsior_tv_vars','' );  
+    $vars_excelsior = get_validate_vars_excelsior_config( $vars_excelsior );   
+
+    if( arg( 0 ) == $vars_excelsior[ "alias_url" ] ){
+
+        $facebook_share_image = $vars_excelsior[ "facebook_share_image" ];
+        $facebook_share_tv_title = $vars_excelsior[ "facebook_share_tv_title" ];
+        $facebook_share_tv_desc = $vars_excelsior[ "facebook_share_tv_desc" ];         
+        $facebook_share_tv_url = "http://" . $_SERVER[ "HTTP_HOST" ] . $_SERVER[ "REQUEST_URI" ];
+        $facebook_share_tv_type = $vars_excelsior[ "facebook_share_tv_type" ];
+            
+        $metatag_og_site_name = $vars_excelsior[ "metatag_og_site_name" ];
+        $news_keywords = $vars_excelsior[ "news_keywords" ];
+
+        $metatag_keywords = $news_keywords;
+        $meta_node = "";
+        $meta_fecha = "";
+        $meta_nid = "";
+
+        if ( array_key_exists( 2, arg () ) ){ // Existe id de youtube
+
+            $data = json_decode ( CurlLinkXVideo ( trim( arg( 2 ) ) ), TRUE );
+
+            if ( array_key_exists( "data" , $data ) ){ //existe el video en youtube ya que existe data
+
+                $data = $data[ "data" ];
+                $output_array = array ();
+
+                preg_match_all( "/.+/", $data[ "description" ], $output_array ); //Obtener Descripción y tags
+
+                if ( array_key_exists( 0 , $output_array ) ){
+                         $output_array = $output_array[ 0 ];
+
+                    if ( count ( $output_array ) > 1 ){
+                        $facebook_share_tv_desc = trim ( $output_array[ 0 ] );
+                        $news_keywords = trim ( $output_array[ count ( $output_array ) - 1 ] );
+                        $metatag_keywords = trim ( $output_array[ count ( $output_array ) - 1 ] );
+                    }
+                }//existe key -> 0
+
+                   $facebook_share_image = "http://i1.ytimg.com/vi/". $data[ "id" ] ."/mqdefault.jpg";
+                   $facebook_share_tv_title = trim ( $data[ "title" ] );                                
+                   $facebook_share_tv_url = "http://". $_SERVER[ "HTTP_HOST" ] . $_SERVER[ "REQUEST_URI" ]; 
+                   $facebook_share_tv_type = "video.other";               
+
+            }//array_keys_exists                          
+        }
+
+          // SEO
+
+          #drupal_set_title( $vars_excelsior[ "set_title" ] . $facebook_share_tv_title );
+
+          //Facebook -- <meta property="og:type" content="article" />
+
+        $og_type = array(
+                          '#tag' => 'meta',
+                          '#attributes' => array(
+                                             'property' => 'og:type',
+                                             'content' => $facebook_share_tv_type,
+                                           ),
+                          '#type' => 'html_tag',
+                          '#weight' => 9,
+                         );
+
+        $head_elements[ 'facebook_share_tv_type' ] = $facebook_share_tv_type;          
+
+        $og_title = array(
+                          '#tag' => 'meta',
+                          '#attributes' => array(
+                                             'property' => 'og:title',
+                                             'content' => $facebook_share_tv_title,
+                                           ),
+                          '#type' => 'html_tag',
+                          '#weight' => 10,
+                         );
+
+        $head_elements[ 'facebook_share_tv_title' ] = $og_title;
+
+        $og_description = array(
+                                '#tag' => 'meta',
+                                '#attributes' => array(
+                                                   'property' => 'og:description',
+                                                   'content' => $facebook_share_tv_desc,
+                                                ),
+                                '#type' => 'html_tag',
+                                '#weight' => 11,
+                              );        
+        $head_elements[ 'facebook_share_tv_desc' ] = $og_description;
+
+        $og_image = array(
+                         '#tag' => 'meta',
+                         '#attributes' => array(
+                                          'property' => 'og:image',
+                                          'content' => $facebook_share_image,
+                                       ),
+                          '#type' => 'html_tag',
+                          '#weight' => 12,
+                        );
+
+        $head_elements[ 'facebook_share_image' ] = $og_image;          
+
+        $og_url = array(
+                         '#tag' => 'meta',
+                         '#attributes' => array(
+                                            'property' => 'og:url',
+                                            'content' => $facebook_share_tv_url
+                                          ),
+                         '#type' => 'html_tag',
+                         '#weight' => 13,
+                        );
+
+        $head_elements[ 'facebook_share_tv_url' ] = $og_url;
+
+        $og_site_name = array(
+                         '#tag' => 'meta',
+                         '#attributes' => array(
+                                            'property' => 'og:site_name',
+                                            'content' => $metatag_og_site_name,
+                                          ),
+                         '#type' => 'html_tag',
+                         '#weight' => 13,
+                        );
+
+        $head_elements[ 'metatag_og:site_name' ] = $og_site_name;          
+
+        // metags
+
+        $meta_description = array(
+                                '#tag' => 'meta',
+                                '#attributes' => array(
+                                                  'name' => 'description',
+                                                  'content' => $facebook_share_tv_desc,
+                                               ),
+                                 '#type' => 'html_tag',
+                                 '#weight' => 14,                                
+                                );
+
+        $head_elements[ 'meta_description' ] = $meta_description;
+
+
+        $news_keywords = array(
+                            '#tag' => 'meta',
+                            '#attributes' => array(
+                                              'name' => 'news_keywords',
+                                              'content' => $news_keywords,
+                                            ),
+                             '#type' => 'html_tag',
+                             '#weight' => 15,                             
+                           );
+
+        $head_elements[ 'news_keywords' ] = $news_keywords;
+
+        $metatagkeywords = array (
+                                '#tag' => 'meta',
+                                '#attributes'=> array(
+                                                  'name' => 'keywords' ,
+                                                  'content' => $metatag_keywords 
+                                              ),
+                                 '#type' => 'html_tag',
+                                 '#weight' => 16,                                 
+                              );
+
+        $head_elements[ 'keywords' ] = $metatagkeywords;
+
+        $metatag_abstract = array (
+                              '#tag' => 'meta',
+                              '#attributes'=> array(
+                                                'name' => 'abstract' ,
+                                                'content' => $facebook_share_tv_title 
+                                            ),
+                               '#type' => 'html_tag',
+                               '#weight' => 17,                                 
+                            ); 
+                            
+        $head_elements[ 'metatag_abstract' ] = $metatag_abstract; 
+
+        $shortlink = array(
+                        '#tag' => 'link',
+                        '#name' => 'shortlink',
+                        '#attributes' => array(
+                                          'href' => $facebook_share_tv_url,
+                                          'rel' => 'shortlink',          
+                                       ),
+                        '#type' => 'html_tag',
+                        '#weight' => 18,                     
+                     ); 
+
+        $canonical = array(
+                        '#tag' => 'link',
+                        '#name' => 'canonical',
+                        '#attributes' => array(
+                                          'href' => $facebook_share_tv_url,
+                                          'rel' => 'canonical',          
+                                       ),
+                        '#type' => 'html_tag',
+                        '#weight' => 19,                     
+                     );
+
+        $head_elements[ 'metatag_shortlink' ] = $shortlink;
+        $head_elements[ 'metatag_canonical' ] = $canonical;      
+    } //if arg tv
+
+}//excelsior_tv_html_head_alter
+
+/* General el Excel del Ticker */
+
+function excelsior_tv_ticker_excel (){  
+
+   require_once "/var/www/html/class/Classes/PHPExcel.php";
+
+   $filename = "Excelsior.com.mx_TV-Ticker-Excel_" . date( "Y-m-d_H-i-s" ) . ".xls";
+
+   $ruta_json_ticker = "/var/www/html/dineroenimagen.com/etvfeed/etv.json";
+
+   $data = json_decode( file_get_contents( $ruta_json_ticker ), TRUE );
+
+   if ( count ( $data ) > 0 ){
+
+          $objPHPExcel = new PHPExcel();
+          
+          $objPHPExcel-> getDefaultStyle()-> getFont()-> setName( 'Arial' );  
+          $objPHPExcel-> getDefaultStyle()-> getFont()-> setSize( 10 );  
+           
+           // Propiedades   
+           $objPHPExcel->getProperties()-> setCreator( "Excelsior.com.mx" )
+                                                    -> setLastModifiedBy( "Excelsior.com.mx" )
+                                                    -> setTitle("Office 2007 XLSX - Reporte de Ticker para Exélsior - TV" )
+                                                    -> setSubject("Office 2007 XLSX - Reporte de Ticker para Exélsior - TV" )
+                                                    -> setDescription( "Reporte de Ticker para Exélsior - TV" )
+                                                    -> setKeywords( "Reporte de Ticker para Exélsior - TV" )
+                                                    -> setCategory("Reporte");
+           $objPHPExcel-> setActiveSheetIndex( 0 );          
+           $objPHPExcel-> getActiveSheet()-> getStyle ( 'A1:R1' )-> getFont()-> setBold( false ); 
+
+            $objPHPExcel-> getActiveSheet()->getStyle( 'A1:R1' )-> getAlignment()-> setHorizontal( PHPExcel_Style_Alignment::HORIZONTAL_GENERAL )-> setVertical( PHPExcel_Style_Alignment::VERTICAL_JUSTIFY );
+
+              /* --------------------------------------------------------------- */
+
+                $xlsRow = 1;
+                
+                foreach ( $data AS $row ){                              
+
+                  $objPHPExcel-> setActiveSheetIndex( 0 )
+                              -> setCellValue( 'A' . $xlsRow , $row[ "title" ] );
+
+                      $objPHPExcel-> getActiveSheet()-> getStyle( 'A'. $xlsRow . ':R' . $xlsRow )->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT)-> setVertical(PHPExcel_Style_Alignment::VERTICAL_JUSTIFY);        
+                      $objPHPExcel-> getActiveSheet()-> getStyle( 'A'. $xlsRow . ':R' . $xlsRow )-> getFont()-> setSize( 12 );                      
+                                                                                         
+                      $xlsRow ++;
+                                                                                  
+                   } //foreach   
+                   
+           //Termina de procesar los datos para excel
+           
+            $objPHPExcel-> getActiveSheet()-> getColumnDimension( 'A' )-> setWidth( 450 );
+
+          /* ---------------------------------------------------------------- */
+             // Descarga el Documento
+
+            $objPHPExcel->setActiveSheetIndex(0);   
+
+            header("Content-Type: application/force-download");
+            header("Content-Type: application/octet-stream");
+            header("Content-Type: application/download");  
+            header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            header ('Content-Transfer-Encoding: binary');
+            //header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="'. $filename .'"');
+            header('Cache-Control: max-age=0');
+
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');                                  
+
+            $objWriter->save('php://output');
+
+        }//if count
+
+   exit();
+ }//
+
+ function get_validate_vars_excelsior_config ( $data ){
+
+   $custom = array ();
+      
+      if ( is_array( $data ) ){
+          
+           $custom[ "alias_url" ] = ( array_key_exists( "alias_url" , $data ) ) ? $data[ "alias_url" ] : "tv";
+          $custom[ "ruta_jsons" ] = ( array_key_exists( "ruta_jsons" , $data ) ) ? $data[ "ruta_jsons" ] : "/var/srv/data/files/json/tv/";
+          $custom[ "ruta_embed" ] = ( array_key_exists( "ruta_embed" , $data ) ) ? $data[ "ruta_embed" ] : "/var/srv/data/files/excelsior/embed/";
+           $custom[ "set_title" ] = ( array_key_exists( "set_title" , $data ) ) ? $data[ "set_title" ] : "Excélsior TV | ";
+
+           $custom[ "facebook_share_image" ] = ( array_key_exists( "facebook_share_image" , $data ) ) ? $data[ "facebook_share_image" ] 
+                                                : "http://8d5306c18b850ea7e0ac-65b9b7a2fa68b3c92f951010bb26a4de.r54.cf2.rackcdn.com/excelsior-tv-redes.png";
+           $custom[ "facebook_share_tv_title" ] = ( array_key_exists( "facebook_share_tv_title" , $data ) ) ? $data[ "facebook_share_tv_title" ] 
+                                                : "Excélsior TV | Excélsior.com.mx";
+           $custom[ "facebook_share_tv_desc" ] = ( array_key_exists( "facebook_share_tv_desc" , $data ) ) ? $data[ "facebook_share_tv_desc" ] 
+                                                : "El portal de noticias líder en México con toda la información nacional y del mundo, con las noticas de mayor impacto en tiempo real, ahora en Televisión.";
+           $custom[ "facebook_share_tv_type" ] = ( array_key_exists( "facebook_share_tv_type" , $data ) ) ? $data[ "facebook_share_tv_type" ] 
+                                                : "page";
+           $custom[ "metatag_og_site_name" ] = ( array_key_exists( "metatag_og_site_name" , $data ) ) ? $data[ "metatag_og_site_name" ] 
+                                              : "Excélsior";
+           $custom[ "news_keywords" ] = ( array_key_exists( "news_keywords" , $data ) ) ? $data[ "news_keywords" ] 
+                                       : "excelsior.com.mx, excélsior TV, excélsior televisión, grupo imagen multimedia, noticias, dineroenimagen, función, adrenalina, comunidad, mesa y opinión, entrevistas,
+                                       entretenimiento, titulares de la tarde";
+
+ 
+       }//is_array
+      else{
+           $custom[ "alias_url" ] = "tv";
+          $custom[ "ruta_jsons" ] = "/var/srv/data/files/json/tv/";
+          $custom[ "ruta_embed" ] = "/var/srv/data/files/excelsior/embed/";
+           $custom[ "set_title" ] = "Excélsior TV | ";
+
+           $custom[ "facebook_share_image" ] = "http://8d5306c18b850ea7e0ac-65b9b7a2fa68b3c92f951010bb26a4de.r54.cf2.rackcdn.com/excelsior-tv-redes.png";
+           $custom[ "facebook_share_tv_title" ] = "Excélsior TV | Excélsior.com.mx";
+           $custom[ "facebook_share_tv_desc" ] = "El portal de noticias líder en México con toda la información nacional y del mundo, con las noticas de mayor impacto en tiempo real, ahora en Televisión.";
+           $custom[ "facebook_share_tv_type" ] = "page";
+           $custom[ "metatag_og_site_name" ] = "Excélsior";
+           $custom[ "news_keywords" ] = "excelsior.com.mx, excélsior TV, excélsior televisión, grupo imagen multimedia, noticias, dineroenimagen, función, adrenalina, comunidad, mesa y opinión, entrevistas,
+            entretenimiento, titulares de la tarde";
+        } 
+     return $custom;
+  }//get_validate_vars_excelsior_config
+
+/**
+ * 
+ */
+function excelsior_tv_get_active_list() {
+    $data = array();
+    $data_list = array();
+    $vars_excelsior = variable_get( 'excelsior_tv_vars','' );
+    $file = $vars_excelsior[ "ruta_jsons" ].'config_tv_online_lista.json';
+    if ( file_exists($file) ) {
+        $data = file_get_contents($file);
+        if ($data) {
+            $data = json_decode($data, true);
+            if ($data) {
+                foreach ($data['data'] as $key => $value) {
+                    if ($value['estado'] === "activar") {
+                        array_push($data_list, $data['data'][$key]);
+                    }
+                }
+            }
+        }
+    }
+    #dvm($data_list);
+    return $data_list;
+}
+
+function excelsior_tv_get_gdata($url, $options = null) {
+    $ch_data = array();
+    $options = array(
+        'CURLOPT_HEADER' => 0,
+        'CURLOPT_RETURNTRANSFER' => true,
+        'CURLOPT_TIMEOUT' => 10,
+        #'CURLOPT_SSL_VERIFYPEER' => false,
+    );
+    $ch = curl_init($url);
+    #curl_setopt_array($ch, $options);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $output = curl_exec($ch);
+
+    $ch_data['output'] = json_decode($output, true);
+    $ch_data['error'] = curl_errno($ch);
+    $ch_data['error_msg'] = curl_error($ch);
+    $ch_data['header'] = curl_getinfo($ch);
+    $ch_data['http_code'] = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    curl_close($ch);
+    return $ch_data;
+}
+
+function excelsior_tv_save_gdata($data) {
+    $table = 'excelsior_tv_multimedia';
+    $status = null;
+    $record = array (
+        "id" => $data['video']['id'],
+        "title" => $data['video']['title'],
+        'view_count' => $data['video']['viewCount'],
+        'uploaded' => strtotime($data['video']['uploaded']),
+        'updated' => strtotime($data['video']['updated']),
+        'playlist_id' => $data['pl'],
+        'playlist_title' => $data['nombre'],
+        'playlist_author' => $data['video']['uploader'],
+        'playlist_position' => $data['position'],
+        'created' => time(),
+    );
+    $query = db_select($table, 'tvm')->fields('tvm', array('id'))->condition('tvm.id', $record['id'],'=');
+    $result = $query->execute();
+    $num_of_results = $result->rowCount();
+    if ($result && $num_of_results > 0 ){
+        //Actualizando datos
+        $status = drupal_write_record ($table, $record,array('id'));
+    }else{
+        // Inserting $record (data) into the database. Here $table variable contains the name of the table.
+        $status = drupal_write_record ($table, $record);
+    }
+    return $status;    
+}
+
+function excelsior_tv_save_gdata_video($data) {
+    $table = 'excelsior_tv_multimedia';
+    $status = null;
+    $record = array (
+        "id" => $data['id'],
+        "title" => $data['title'],
+        'view_count' => $data['viewCount'],
+        'uploaded' => strtotime($data['uploaded']),
+        'updated' => strtotime($data['updated']),
+        'playlist_id' => $data['playlist_id'],
+        'playlist_title' => $data['nombre'],
+        'playlist_author' => $data['uploader'],
+        'created' => time(),
+    );
+    $query = db_select($table, 'tvm')->fields('tvm', array('id'))->condition('tvm.id', $record['id'],'=');
+    $result = $query->execute();
+    $num_of_results = $result->rowCount();
+    if ($result && $num_of_results > 0 ){
+        //Actualizando datos
+        $status = drupal_write_record ($table, $record,array('id'));
+    }else{
+        // Inserting $record (data) into the database. Here $table variable contains the name of the table.
+        $status = drupal_write_record ($table, $record);
+    }
+    return $status;    
+}
+
+function excelsior_tv_update_gdata($lists = null) {
+    $data = array();
+    $count = 25;
+    $total_listas = 0;
+
+    if (is_null($lists)) {
+        $lists = excelsior_tv_get_active_list();
+    }
+
+    if (count($lists) > 0) {
+        foreach ($lists as $key => $list) {
+            $pl = excelsior_tv_get_list($list['url_lista']);
+            if (isset($pl['list'])) {
+                $url = "http://gdata.youtube.com/feeds/api/playlists/".$pl['list']."?v=2&alt=jsonc&max-results=$count&orderby=published";
+                $data = excelsior_tv_get_gdata($url);
+
+                if ($data['http_code'] == 200 && $data['error'] == 0) {
+                    if (isset($data['output']['data']['items'])) {
+                        #echo "<pre>";print_r($data['output']['data']['items']);echo "</pre>";
+                        excelsior_tv_delete_list($list['nombre']);
+                        //salvado registros
+                        foreach ($data['output']['data']['items'] as $key_item => $item) {
+                            #echo "<pre>";print_r($item);echo "</pre>";
+                            $item['pl'] = $pl['list'];
+                            $item['nombre'] = $list['nombre'];
+                            excelsior_tv_save_gdata($item);
+                        }
+                        ++$total_listas;
+                    }
+                }
+                else if($data['http_code'] <> 200 && $data['error'] == 0) {
+                    watchdog('excelsior_tv', 'Playlist json: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+                    $log = array(
+                      'url' => $url,
+                      'respuesta' => $data,
+                    );
+                    excelsior_tv_update_log(json_encode($log));
+                }
+                else { //curl error
+                    watchdog('excelsior_tv', 'Playlist cURL: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+                    $log = array(
+                      'url' => $url,
+                      'respuesta' => $data,
+                    );
+                    excelsior_tv_update_log(json_encode($log));
+                }
+            }
+        }
+    }
+    $log = "$total_listas de " . count($lists) . " listas actualizadas.";
+    excelsior_tv_update_log($log);
+    return $total_listas;
+}
+
+function excelsior_tv_update_log($log) {
+  $logs = variable_get('excelsior_tv_log', false);
+  if ($logs) {
+    if (file_exists(CONFIG_JSON_RUTA_TV)) {
+      $archivo = CONFIG_JSON_RUTA_TV . 'multimedia_update.log';
+      $recurso = fopen($archivo, 'a+');
+      fwrite($recurso, date("h:i:s d-m-Y") . ' => ');
+      fwrite($recurso, $log . PHP_EOL);
+      fclose($recurso);
+    }
+  }
+}
+
+function excelsior_tv_get_list($url) {
+    $output = array();
+    $data = parse_url($url);
+    $query_parse = array();
+    if (isset($data['query'])) {
+        parse_str($data['query'], $query_parse);
+        if (isset($query_parse['list'])) {
+            $output['list'] = $query_parse['list'];
+        }
+    }
+    return $output;
+}
+
+function excelsior_tv_get_retrieve_gdata($curl_str, $playlist_title = null) {
+    $data = array();
+    if ($video = json_decode( $curl_str, TRUE )) {
+        if (isset($video['data'])) {
+            $data['video']['id'] = $video['data']['id'];
+            $data['video']['title'] = $video['data']['title'];
+            $data['video']['viewCount'] = $video['data']['viewCount'];
+            $data['video']['uploaded'] = $video['data']['uploaded'];
+            $data['video']['updated'] = $video['data']['updated'];
+            $data['pl'] = null;
+            $data['nombre'] = isset($playlist_title)? $playlist_title : 'Recomendados';
+            $data['video']['uploader'] = $video['data']['uploader'];
+        }
+    }
+    #dvm($data);
+    return $data;
+}
+
+/**
+ * Implements hook_cron.
+ */
+/*
+function excelsior_tv_cron() {
+    $next_execution = variable_get('excelsior_tv_cron', null);
+    $next_time = 60*30; //30 minutos
+    
+    if (is_null($next_execution)) { //por alguna razón no está establecida la variable
+        variable_set('excelsior_tv_cron', time()); // asignamos tiempo de ejecución
+        watchdog('excelsior_tv', 'Variable de ejecución configurada.', $variables = array(), $severity = WATCHDOG_NOTICE);
+        $next_execution = time();
+    }
+
+    if (!is_null($next_execution) && $next_execution < time()) {
+        excelsior_tv_update_gdata();
+        excelsior_tv_feed();
+        variable_set('excelsior_tv_cron', time() + $next_time); // asignamos tiempo de ejecución
+        watchdog('excelsior_tv', 'Se actualizó la cache.', $variables = array(), $severity = WATCHDOG_NOTICE);
+    }
+    else {
+        watchdog('excelsior_tv', 'Cache válida, nada por hacer.', $variables = array(), $severity = WATCHDOG_NOTICE);
+    }
+}
+*/
+
+function excelsior_tv_is_id_video($id) {
+    $id = check_plain($id);
+    $data = array();
+    
+    $query = db_select('excelsior_tv_multimedia', 'tv');
+    $query->fields('tv', array('id', 'title', 'playlist_title'));
+    $query->condition('tv.id', $id, '=');
+
+    $result = $query->execute();
+
+    $num_of_results = $result->rowCount();
+    
+    if ($result && $num_of_results > 0 ){
+        foreach ($result as $key => $value) {
+            $data[] = array(
+                'id' => $value->id,
+                'title' => $value->title,
+                'playlist_title' => $value->playlist_title,
+            );
+        }
+    }
+
+    return $data;
+}
+
+function excelsior_tv_get_related($id, $options) {
+    $data = array();
+    
+    $query = db_select('excelsior_tv_multimedia', 'tv');
+    $query->fields('tv', array('id', 'title', 'playlist_title'));
+    $query->condition('tv.id', $id, '<>');
+    
+    if (isset($options['playlist_title'])) {
+      $query->condition('tv.playlist_title', $options['playlist_title'], '=');
+    }
+
+    if (isset($options['playlist_id'])) {
+      $query->condition('tv.playlist_id', $options['playlist_id'], '=');
+    }
+    #dpq($query);
+    $result = $query->execute();
+
+    $num_of_results = $result->rowCount();
+    
+    if ($result && $num_of_results > 0 ){
+        foreach ($result as $key => $value) {
+            $data['data'][] = array(
+                'id' => $value->id,
+                'title' => $value->title,
+                'playlist_title' => $value->playlist_title,
+            );
+        }
+        $data['count'] = $num_of_results;
+    }
+
+    return $data;
+}
+
+function excelsior_tv_delete_list($playlist_title) {
+    $queryd=db_delete('excelsior_tv_multimedia')->condition('playlist_title',$playlist_title,'=')->execute();
+}
+
+function excelsior_tv_get_by_playlist($playlist_title, $offset, $limit) {
+
+    $data = array();
+
+    $query = db_select('excelsior_tv_multimedia', 'tv');
+    $query->fields('tv', array('id', 'title', 'created', 'uploaded', 'view_count'));
+    $query->condition('tv.playlist_title', $playlist_title, '=');
+    $query->orderby('tv.playlist_position', 'ASC');
+    $query->range($offset, $limit);
+
+    $result = $query->execute();
+
+    $num_of_results = $result->rowCount();
+    
+    if ($result && $num_of_results > 0 ){
+        foreach ($result as $key => $value) {
+            $data[] = array(
+                'id' => $value->id,
+                'title' => $value->title,
+                'created' => $value->created,
+                'uploaded' => $value->uploaded,
+                'views' => $value->view_count,
+            );
+        }
+    }
+
+    return $data;
+}
+
+
+function excelsior_tv_feed(){
+  $file = CONFIG_JSON_RUTA_TV . "multimedia-feed.json";
+  $multimedia = get_excelsior_tv_view_pages();
+  $portada = get_data_block_multimedia_portada ();
+  $relacionados = get_data_block_multimedia_portada_relacionados ();
+    
+  if (!empty($portada)){
+        $lomasvisto = lomasvistofeed($portada);
+      $data[] =$lomasvisto ;
+    }
+  if(!empty($relacionados)){
+       $play_list['principal'] = $relacionados['data'];
+    }
+    /** fix videos desde db*/
+    $new_data = array();
+  foreach ($multimedia as $key => $list) {
+        $new_data[] = array(
+            'name' => $list['name'],
+            'url_lista' => $list['url_lista'],
+            'videos' => excelsior_tv_get_by_playlist($list['name'], 0, 4),
+        );
+    }
+  if (count($new_data) > 0) {
+       $data[] = $new_data;
+
+        foreach ($data as $key => $value) {
+          foreach ($value as $valor) {
+              $play_list['playlist'][] = $valor;
+          }
+        }
+    }
+  if(file_exists(CONFIG_JSON_RUTA_TV)){
+        $multimediafeed = file_put_contents( $file, json_encode( $play_list ) );
+    }else{ 
+        $multimediafeed = array();
+    }   
+}
+function excelsior_play_list(){
+   $data = array();
+   $data_list = array();
+   $file_list = CONFIG_JSON_RUTA_TV . "multimedia-feed-list.json";
+   $file = CONFIG_JSON_RUTA_TV .'config_tv_online_lista.json';
+    if ( file_exists($file) ) {
+        $data = file_get_contents($file);
+        if ($data) {
+            $data = json_decode($data, true);
+            if ($data) {
+                foreach ($data['data'] as $key => $value) {
+                    if ($value['estado'] === "activar") {
+                        $data_list[] = array(
+                          'id'=> $value['id'],
+                          'name'=> $value['nombre'],
+                          'url_list'=>$value['url_lista'],
+                          'key_list'=>$value['lista'],
+                          'num_videos'=>$value['NoListando'],
+                          'update'=>$value['update'],
+                          'created'=>time(), 
+                          );
+                       // array_push($data_list[$key], $value['estado']);
+                    }
+                }
+            }
+        }
+    }
+    if(file_exists(CONFIG_JSON_RUTA_TV)){
+       $data_list = file_put_contents( $file_list, json_encode( $data_list ) );
+     }
+    else{
+      $data_list;
+    }
+}
+
+function lomasvistofeed($feed){
+  $lista_relacionados = $feed;
+  $lomas_visto = array();
+  $new_lista = array();
+  if(is_array($lista_relacionados)){
+    $lista_relacionados = array_slice($lista_relacionados['data'], 0,4);
+      foreach ($lista_relacionados as $key => $value) {
+          $lomas_visto[] = array(
+                'id' =>$value['vid'],
+                'title' =>$value['title'],
+                'peso' =>$value['peso'],
+                'views' => $value['reproduccion'],
+            );
+         }
+  }
+  
+  if(count($lomas_visto) > 0){
+          $new_lista[] =  array(
+            'name' => 'Lo mas visto',
+            'videos'=> $lomas_visto,
+            );
+  }
+    return $new_lista;
+}
+
+function excelsior_feed_multimedia(){
+  $file = CONFIG_JSON_RUTA_TV . "multimedia-feed.json";
+         if ( file_exists( $file ) ){
+             $data = file_get_contents( $file );
+           }
+         header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+         header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
+         header('Content-type: application/json; charset=utf-8' );
+         echo $data;
+      exit();
+}
+function excelsior_feed_play_list(){
+$file = CONFIG_JSON_RUTA_TV . "multimedia-feed-list.json";
+
+         if ( file_exists( $file ) ){
+             $data = file_get_contents( $file );
+           }
+
+         header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+         header("Expires: Sat, 26 Jul 1997 05:00:00 GMT"); // Fecha en el pasado
+         header('Content-type: application/json; charset=utf-8' );
+         echo $data;
+      exit();
+}
+
+function excelsior_tv_get_live_video($url){
+    $video = array();
+
+    $data = excelsior_tv_get_gdata($url);
+    if ($data['http_code'] == 200 && $data['error'] == 0) {
+        if (isset($data['output']['data'])) {
+            #echo "<pre>";print_r($data['output']['data']['items']);echo "</pre>";
+            $video = $data['output']['data'];
+        }
+    }
+    else if($data['http_code'] <> 200 && $data['error'] == 0) {
+        watchdog('excelsior_tv', 'LiveVideo json: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+    }
+    else { //curl error
+        watchdog('excelsior_tv', 'LiveVideo cURL: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+    }
+
+    return $video;
+}
+
+function excelsior_tv_get_live_related($url){
+    $videos = array();
+
+    $data = excelsior_tv_get_gdata($url);
+    if ($data['http_code'] == 200 && $data['error'] == 0) {
+        if (isset($data['output']['data']['items'])) {
+            #echo "<pre>";print_r($data['output']['data']['items']);echo "</pre>";
+            $videos = $data['output']['data']['items'];
+        }
+    }
+    else if($data['http_code'] <> 200 && $data['error'] == 0) {
+        watchdog('excelsior_tv', 'LiveRelated json: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+    }
+    else { //curl error
+        watchdog('excelsior_tv', 'LiveRelated cURL: '. json_encode($data), $variables = array(), $severity = WATCHDOG_ERROR);
+    }
+
+    return $videos;
+}
+
+function excelsior_tv_get_authorized_authors() {
+    $data = array();
+    //select distinct playlist_author from excelsior_tv_multimedia;
+    $query = db_select('excelsior_tv_multimedia', 'tv');
+    $query->fields('tv', array('playlist_author'));
+    $query->distinct();
+    $query->addExpression('LOWER(tv.playlist_author)', 'playlist_author');
+    
+    $result = $query->execute();
+
+    $num_of_results = $result->rowCount();
+    
+    if ($result && $num_of_results > 0 ){
+        foreach ($result as $key => $value) {
+            $data[] = $value->playlist_author;
+        }
+    }
+
+    return $data;
+
+}

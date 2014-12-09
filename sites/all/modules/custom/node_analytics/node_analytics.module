@@ -1,0 +1,280 @@
+<?php
+global $node_analytics, $googleServiceAnalytics;
+
+$node_analytics=node_analytics_get_variables();
+if($node_analytics['status']==1){
+  require_once('google-api-settings.inc');
+}
+
+/**
+ * Implements hook_permisson().
+ */
+function node_analytics_permission() {
+  $permissions['administer node_analytics settings'] = array(
+    'title' => t('Administer Node Analytics Settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_help
+ */
+function node_analytics_help($path, $arg) {
+  if ($path == 'admin/help#node_analytics') {
+    return t('Módulo para configuración de Node Analytics');
+  }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function node_analytics_menu() {
+  $items=array();
+  
+  $items['admin/config/system/node_analytics'] = array(
+    'title'            => t('Node Analytics Settings'),
+    'description'      => t('Configure settings for Node Analytics'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('node_analytics_admin_settings_form'),
+    'access arguments' => array('administer node_analytics settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'node_analytics.admin.inc',
+  );
+  $items['admin/config/system/node_analytics/cronlt'] = array(
+    'title' => t('Light weight cron handler'),
+    'description' => t('A light weight cron handler to allow more frequent runs of Node Analytics cron system'),
+    'page callback' => 'node_analytics_run_cronlt',
+    'access arguments' => array('administer node_analytics settings'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['admin/config/system/node_analytics/debug'] = array(
+    'title' => t('Debug'),
+    'description' => t('Debug'),
+    'page callback' => 'node_analytics_get',
+    'page arguments' => array(arg(5)),
+    'access arguments' => array('administer node_analytics settings'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function node_analytics_run_cronlt() {
+  global $node_analytics;
+  if($node_analytics['debug']){
+    if($node_analytics['status']){
+      node_analytics_log('Internal cron run activated.','info');
+      node_analytics_cron();
+      if (ob_get_level() > 0) {
+        $handlers = ob_list_handlers();
+        if (isset($handlers[0]) && $handlers[0] == 'default output handler') {
+          ob_clean();
+        }
+      }
+      node_analytics_log('Internal cron run completed.','info');
+      return 'Complete!';
+    }else{
+      node_analytics_log('Abort all, module is disabled','warning');
+    }
+    exit();
+  }else{
+    return 'Debug mode not enabled';
+  }
+}
+
+/**
+ * Implementation of hook_cron().
+ */
+function node_analytics_cron() {
+  $hour=date('G');
+  if($hour<24 && $hour>0){
+    node_analytics_log('Start cron','info');
+    //Search nodes for get your analytics
+    $query=db_select('users','u');
+    $query->fields('u', array('uid'));
+    $query->join('field_data_field_node_analytics', 'na', 'u.uid = na.entity_id AND na.field_node_analytics_value=1');
+    $query->condition('u.status',1,'=');
+    $result=$query->execute();
+    $queue = DrupalQueue::get('get_analytics');
+    foreach($result as $row){
+      node_analytics_log('Create cron queue item','info');
+      $queue->createItem($row);
+    }
+  }
+}
+
+/**
+ * Implementation of hook_cron_queue_info().
+ */
+function node_analytics_cron_queue_info(){
+  $queues['get_analytics'] = array(
+    'worker callback' => 'node_analytics_get',
+    'time' => 120
+  );
+  return $queues;
+}
+
+/**
+ * @param null $data
+ * @return null
+ */
+function node_analytics_get($data=null){
+  if(!isset($data) || empty($data) || !is_object($data)){
+    if(arg(4)=='debug'){
+      $data=new stdClass();
+      $data->uid=arg(5);
+    }else{
+      return null;
+    }
+  }
+  //Get nodes per user
+  $user=user_load($data->uid);
+  $content_types = variable_get('imx_users_content_types', array('article'));
+  $options = array(
+    'title' => $user->name,
+    'uid' => $user->uid,
+    'content_types' => $content_types,
+  );
+  $pager_options = array(
+    'pager' => false,
+  );
+  $nids = imx_users_get_nodes_list($options, $offset = 0, $limit = 50, $pager_options);
+  if(count($nids)>0){
+    node_analytics_log('Processing nodes found it','info');
+    foreach($nids as $nid){
+      $path=drupal_get_path_alias('node/'.$nid[0]);
+      node_analytics_log('Get analytics[^~/'.$path.']','info');
+      $results=node_analytics_do_query($path);
+      #Si hay resultados de la peticion API guardar
+      node_analytics_save_results($nid[0],$results);
+    }
+  }else{
+    node_analytics_log('Not found nodes for userid:['.$data->uid.']','warning');
+  }
+}
+
+function node_analytics_save_results($nid,$results){
+  $data=array(
+    'nid'                 => $nid,
+    'status'              => 1,
+    'sessions'            => $results->totalsForAllResults['ga:sessions'],
+    'pageviews'           => $results->totalsForAllResults['ga:pageviews'],
+    'uniquePageviews'     => $results->totalsForAllResults['ga:uniquePageviews'],
+    'sessionDuration'     => $results->totalsForAllResults['ga:sessionDuration'],
+    'timeOnPage'          => $results->totalsForAllResults['ga:timeOnPage'],
+    'exits'               => $results->totalsForAllResults['ga:exits'],
+    'avgSessionDuration'  => $results->totalsForAllResults['ga:avgSessionDuration'],
+    'pageviewsPerSession' => $results->totalsForAllResults['ga:pageviewsPerSession'],
+    'avgTimeOnPage'       => $results->totalsForAllResults['ga:avgTimeOnPage'],
+  );
+  //Search
+  $query=db_select('node_analytics','na');
+  $query->fields('na', array('naid','nid','status','created','changed'));
+  $query->condition('na.nid',$nid,'=');
+  $result=$query->execute()->fetchAssoc();
+  if($result){
+    node_analytics_db('update',$data,$result);
+  }else{
+    node_analytics_db('insert',$data,$result);
+  }
+}
+
+/**
+ * Record newsml sended history
+ * @param array $field Fields array with values for insert in newsml history
+ * @return boolean
+ */
+function node_analytics_db($delta='insert',$fields,$result){
+  switch($delta){
+    case 'insert':
+      $fields['created']=time();
+      $query=db_insert('node_analytics');
+      node_analytics_log('Inserting analytics for node:['.$fields['nid'].']','info');
+    break;
+    case 'update':
+      $fields['naid']=$result['naid'];
+      $fields['changed']=time();
+      $query=db_update('node_analytics');
+      $query->condition('naid',$result['naid'],'=');
+      node_analytics_log('Updating analytics for node:['.$fields['nid'].']','info');
+    break;
+  }
+  $query->fields($fields);
+  $result=$query->execute();
+  if($result){
+    node_analytics_log('Done!','info');
+  }else{
+    node_analytics_log('Something went wrong. Error['.mysql_error().'].','error');
+  }
+}
+
+/**
+ * @param null $path
+ * @return bool
+ */
+function node_analytics_do_query($path=NULL){
+  global $node_analytics, $googleServiceAnalytics;
+
+  if(!isset($path) || empty($path)){
+    return FALSE;
+  }
+
+  $config=array(
+    'ids'       => $node_analytics['settings']['ids'],
+    'startDate' => date('Y-m-d', strtotime('-1 month')),
+    'endDate'   => date('Y-m-d', strtotime('-1 day')),
+    'metrics'   => $node_analytics['settings']['metrics'],
+    'optParams' => array(
+      'dimensions'  => $node_analytics['settings']['dimensions'],
+      'filters'     => 'ga:pagePath=~^/'.$path,
+      'start-index' => 1,
+      'max-results' => $node_analytics['settings']['max-results'],
+    ),
+  );
+
+  # Do query
+  try {
+    return $googleServiceAnalytics->data_ga->get($config['ids'], $config['startDate'], $config['endDate'], $config['metrics'],$config['optParams']);
+  } catch(Exception $e) {
+    return 'There was an error : - ' . $e->getMessage();
+  }
+}
+
+function node_analytics_get_variables() {
+  $variables = &drupal_static(__FUNCTION__);
+  if (!isset($variables)) {
+    $variables=array(
+      'status'    => variable_get('node_analytics_status',FALSE),
+      'debug'     => variable_get('node_analytics_debug',FALSE),
+      'api'       => variable_get('node_analytics_api'),
+      'settings'  => variable_get('node_analytics_settings'),
+      'constants' => variable_get('node_analytics_constants'),
+    );
+  }
+  if (!$variables['api']['CLIENT_ID'] || !$variables['api']['CLIENT_EMAIL'] || !$variables['api']['KEY_FILE']) {
+    node_analytics_log('Missing Service Account Details','warning');
+  }
+  return $variables;
+}
+
+function node_analytics_log($message='Done',$type='info'){
+  global $node_analytics;
+  if($node_analytics['debug']){
+    switch($type){
+      case 'info':
+        $type=WATCHDOG_INFO;
+      break;
+      case 'error':
+        $type=WATCHDOG_ERROR;
+      break;
+      case 'notice':
+        $type=WATCHDOG_NOTICE;
+      break;
+      case 'warning':
+        $type=WATCHDOG_WARNING;
+      break;
+    }
+    watchdog('node_analytics', $message, array(), $type);
+  }
+}

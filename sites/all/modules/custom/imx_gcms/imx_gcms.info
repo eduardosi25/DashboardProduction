@@ -1,0 +1,6 @@
+; $Id$
+name = "InventMx GCMS"
+description = "Módulo para adminstración de contenidos de Toda la Red de InventMx vía IMX-API y IMX-HUB"
+package = "InventMX"
+version = 1.0
+core = 7.x

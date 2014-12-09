@@ -1,0 +1,7 @@
+; $Id$
+name = "Bottom"
+description = "Bottom con sindicación de la red de sitios de InventMX"
+package = "InventMX"
+version = 4.0
+core = 7.x
+files[] = bottom.module

@@ -1,0 +1,317 @@
+#topico-redes-sociales
+{
+	margin-right:5px;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #ccc
+}
+
+#topico-redes-sociales [class^='addthis_button_']
+{
+	margin:0 5px
+}
+
+#topico-redes-sociales .addthis_button_facebook_like{
+	padding-top: 2px
+}
+
+.spriteFull[class*='topicos-taxonomy-badge-']
+{
+	position:relative;
+	float:left;
+	margin-top:-26px;
+	width:100px;
+	height:16px
+}
+
+.topicos-banner
+{
+	float:left;
+	width:343px;
+	height:125px;
+	background-position:-652px -1492px !important
+}
+
+.topicos-banner-link
+{
+	display:block;
+	width:340px;
+	height:93px
+}
+
+.topicos-banner-leyenda
+{
+	display:inline-block;
+	padding-left:10px;
+	width:100%;
+	border-top:1px solid #bdbdbd;
+	border-bottom:1px solid #bdbdbd;
+	background-color:#f9f9f9;
+	font:16px/30px 'Source Sans Pro',Helvetica,'Nimbus Sans L',Arial,sans-serif
+}
+
+.topicos-banner-image
+{
+	float:left;
+	width:321px;
+	height:125px
+}
+
+.topicos-left-column
+{
+	float:left;
+	width:343px
+}
+
+.topicos-banner-title
+{
+	padding:10px;
+	width:317px;
+	border-bottom:1px solid #ccc;
+	letter-spacing:-1px;
+	font:33px/29px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.topicos-body
+{
+	float:right;
+	padding:10px;
+	max-width:300px;
+	border-left:1px solid #ccc;
+	color:#333;
+	font:14px/16px 'Source Sans Pro',Helvetica,'Nimbus Sans L',Arial,sans-serif
+}
+
+.topicos-bio
+{
+	float:left
+}
+
+.topicos-bio-item
+{
+	margin-right:5px;
+	width:166px
+}
+
+.topicos-bio-item-even
+{
+	float:right
+}
+
+.topicos-bio-item-odd
+{
+	float:left
+}
+
+.topicos-top-ruler
+{
+	width:100%;
+	height:5px;
+	border-bottom:1px solid #ccc
+}
+
+#topicos-no-te-pierdas
+{
+	float:left;
+	width:323px
+}
+
+#topicos-mas-leido
+{
+	float:left;
+	width:323px
+}
+
+#topicos-resto-recientes
+{
+	float:left;
+	width:100%
+}
+
+.topicos-bio-titulo
+{
+	text-transform:uppercase;
+	font-weight:700;
+	font-size:12px;
+	line-height: 14px;
+	font-family:'Titillium Web'
+}
+
+.topicos-bio-contenido
+{
+	padding-bottom:2px;
+	border-bottom:1px solid #ccc;
+	color:#333;
+	font:12px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.topicos-nota-resto-recientes
+{
+	display:inline-block;
+	width:100%
+}
+
+img[class*='topicos-imagen-portada']
+{
+	width:325px;
+	height:125px
+}
+
+.topicos-modulos-titulo
+{
+	overflow:hidden;
+	margin-bottom:10px;
+	padding:0 0 0 15px;
+	border-bottom:2px solid #000;
+	background-position:-51px -1736px !important;
+	text-transform:uppercase;
+	letter-spacing:-1px;
+	font:18px/18px 'Titillium Web','Source Sans Pro';
+	font-weight:700
+}
+
+.topicos-fecha
+{
+	margin:0;
+	color:#9a3a4e;
+	font:14px/16px 'Source Sans Pro',Helvetica,'Nimbus Sans L',Arial,sans-serif
+}
+
+.topicos-titulo
+{
+	margin-bottom:15px;
+	color:#000;
+	font:18px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.topicos-nota-no-te-pierdas
+{
+	display:inline-block;
+	margin-bottom:15px;
+	width:100%;
+	border-bottom:1px solid #efeeeb
+}
+
+.topicos-nota-no-te-pierdas:last-child
+{
+	margin-bottom:0;
+	border-bottom:0
+}
+
+.topicos-nota-video
+{
+	float:left;
+	width:322px;
+	background-color:#333;
+	font-size:.8em
+}
+
+#topicos-videos-recientes>:first-child+.topicos-nota-video,#topicos-videos-recientes>:first-child+.topicos-nota-video+.topicos-nota-video+.topicos-nota-video,#topicos-videos-recientes>:first-child+.topicos-nota-video+.topicos-nota-video+.topicos-nota-video+.topicos-nota-video+.topicos-nota-video
+{
+	margin-right:20px
+}
+
+.topicos-nota-video-iframe
+{
+	margin:10px 10px 5px
+}
+
+.topicos-nota-video-titulo
+{
+	display:inline-block;
+	float:left;
+	margin:0 10px 10px;
+	width:296px;
+	color:#fff;
+	text-decoration:none;
+	font:14px 'Titillium Web',SourceSansPro,sans-serif
+}
+
+.topicos-nota-video-titulo:hover
+{
+	text-decoration:underline
+}
+
+.topicos-nota-video-left
+{
+	float:left;
+	width:6px;
+	height:289px;
+	background-color:#222;
+	background-position:-2px -354px !important
+}
+
+.topicos-nota-video-bottom
+{
+	float:left;
+	width:100%;
+	height:6px;
+	background-color:#fff;
+	background-position:-19px -354px !important
+}
+
+.topicos-resto-recientes-list-item-link
+{
+	float:left;
+	width:664px
+}
+
+.topicos-resto-recientes-list-item-image
+{
+	float:left
+}
+
+.topicos-resto-recientes-list-item-image img
+{
+	width:325px;
+	height:125px
+}
+
+.topicos-resto-recientes-list-item-title
+{
+	display:block;
+	margin-bottom:10px;
+	color:#000;
+	font:18px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.topicos-resto-recientes-list-item-time
+{
+	color:#9a3a4e;
+	font:14px/16px 'Source Sans Pro',Helvetica,'Nimbus Sans L',Arial,sans-serif
+}
+
+#topicos-tres-recientes {
+float: left;
+width: 321px;
+}
+
+.topicos-taxonomy-badge-nacional
+{
+	background-position:-2px -2292px !important
+}
+
+.topicos-taxonomy-badge-adrenalina
+{
+	background-position:-2px -2220px !important
+}
+
+.topicos-taxonomy-badge-funcion
+{
+	background-position:-2px -2256px !important
+}
+
+.topicos-taxonomy-badge-comunidad
+{
+	background-position:-2px -2184px !important
+}
+
+.topicos-taxonomy-badge-global
+{
+	background-position:-2px -2238px !important
+}
+
+.topicos-taxonomy-badge-de-la-red
+{
+	background-position:-110px -2184px !important
+}

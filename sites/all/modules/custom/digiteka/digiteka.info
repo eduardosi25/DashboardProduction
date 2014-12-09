@@ -1,0 +1,10 @@
+name = "Digiteka Integration"
+description = "Digiteka Content Integration"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = digiteka.module
+files[] = digiteka.admin.inc
+files[] = digiteka.install
+configure = admin/config/system/digiteka

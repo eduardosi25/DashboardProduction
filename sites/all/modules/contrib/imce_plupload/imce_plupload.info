@@ -1,0 +1,13 @@
+name = "IMCE plupload"
+description = "Integrate plupload with IMCE to enable multi-file uploads."
+dependencies[] = "imce"
+dependencies[] = "plupload"
+package = "Media"
+core = "7.x"
+
+; Information added by drupal.org packaging script on 2013-06-30
+version = "7.x-1.2"
+core = "7.x"
+project = "imce_plupload"
+datestamp = "1372616450"
+

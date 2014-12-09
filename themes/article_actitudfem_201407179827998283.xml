@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NewsML>
+ <Catalog/>
+ <NewsEnvelope>
+  <DateAndTime>1405630590</DateAndTime>
+ </NewsEnvelope>
+ <NewsService FormalName="Feed" link-url="http://www.actitudfem.com">http://www.actitudfem.com</NewsService>
+ <NewsItem>
+  <Identification>
+   <NewsIdentifier>
+    <ProviderId>actitudfem.com</ProviderId>
+    <DateId>20140717</DateId>
+    <NewsItemId>12014071798279</NewsItemId>
+    <RevisionId Update="N" PreviousRevision="0"/>
+    <PublicIdentifier>urn:newsml:actitudfem.com:20140717:98279:98283</PublicIdentifier>
+   </NewsIdentifier>
+  </Identification>
+  <NewsManagement>
+   <NewsItemType FormalName="Article"/>
+   <FirstCreated>2014-07-17T15:56:30-05:00</FirstCreated>
+   <ThisRevisionCreated>2014-07-17T16:26:45-05:00</ThisRevisionCreated>
+   <Status FormalName="Not published"/>
+   <AssociatedWith FormalName="externalURI" NewsItem="http://www.actitudfem.com/sexualidad/articulo/en-defensa-del-sexo-por-venganza"/>
+  </NewsManagement>
+  <NewsComponent>
+   <NewsComponent Duid="summary">
+    <ContentItem FormalName="summary">
+     <MediaType FormalName="Text"/>
+     <Format FormalName="plain"/>
+     <DataContent>  </DataContent>
+    </ContentItem>
+   </NewsComponent>
+   <NewsComponent Duid="newslines">
+    <NewsLines>
+     <Category>Sex</Category>
+     <Headline>En defensa del sexo por venganza</Headline>
+     <ByLine>actitudfem.com</ByLine>
+     <DateLine>2014-07-17T15:56:30-05:00</DateLine>
+     <CopyrightLine>&amp;copy;&amp;nbsp;actitudfem.com</CopyrightLine>
+     <RightsLine>actitudfem.com</RightsLine>
+    </NewsLines>
+    <AdministrativeMetadata>
+     <Provider>
+      <Party FormalName="actitudfem.com"/>
+     </Provider>
+     <Creator FormalName="Autor">
+      <Property FormalName="Editor"/>
+      <Property FormalName="Name">Lorena Ramírez</Property>
+     </Creator>
+    </AdministrativeMetadata>
+    <DescriptiveMetadata>
+     <Language FormalName="es"/>
+    </DescriptiveMetadata>
+    <ContentItem Duid="body">
+     <MediaType FormalName="Text"/>
+     <Format FormalName="bcNITF2.5"/>
+     <DataContent><![CDATA[ <p>&nbsp;</p><p><span style="line-height: 1.5;">Cuando mi primer amor y yo cortamos, era muy nueva en el mundo del sexo. Tenía 22 cuando nos dimos un adiós lleno de lágrimas, sabiendo muy bien que lo que teníamos a esa temprana edad no iba a trascender el tiempo. Recuerdo que pensé que jamás iba a volver a amar y que tampoco volvería a tener sexo. A veces extraño las partes iguales de drama e inocencia que vienen con la juventud.</span></p><p>Para lidiar con la pérdida, acampé en mi sillón con un sinfín de suministros de hamburguesas y Ben &amp; Jerry, y ahogué mis penas en las repeticiones de Beverly Hills 90210. Todavía creo que Emily Valentine era uno de los <em>highlights</em> del show y pasé meses buscando obsesivamente la prueba científica. También vi un poquito de ella en mí.</p><p>Después de que pasaron unos cuantos años, comencé a salir con chicos aquí y allá, tuve ligues superficiales que tenían al alcohol como el común denominador y para el momento en que me mudé a Nueva York, el sexo casual era todo lo que me interesaba. Estaba ahí por la oferta, sabía que lo disfrutaba, al menos la mayoría del tiempo, ¿así que por qué no iba a aprovechar las oportunidades sexuales que la vida me presentaba?</p><p>Entonces me enamoré de nuevo.</p><p>Pero esta vez cuando las cosas terminaron –de hecho, las CUATRO veces que terminó- con botellas de whisky aventadas dramáticamente por las ventanas, una caja de queso casi completa sobre su cabeza después de que me dijo que tuvo sexo con alguien más y varios ruegos con lágrimas de mi parte pidiéndole que me respetara lo suficiente para tratarme como un ser humano… salí del otro lado siendo muy diferente. Cambié de manera irrevocable.</p><p>El amor, la dulzura y el afecto que tuve dentro en algún punto había sido chupado de mi ser. Estaba devastada por la pérdida, una pérdida que como dije tuve que vivir cuatro veces, porque era tan débil que no pude decirle que se fuera. Estaba enojada. Estaba molesta por que no era LA mujer para él, que él nunca me amo, algo que él me dijo una y otra vez, pero que a pesar de eso no me dejó ir y yo me agarré de él con todo esperando que por un milagro regresara a sus sentidos. Esos cuatro años no tuvieron sentido.</p><p>Y no sólo estaba enojada para voltear muebles, estaba enojada para hacer-pedacitos-esa-mesa. Así que tuve sexo con alguien más. Se sintió increíble. Estaba en control y sabía que cada vez que me penetraba de alguna manera obtenía venganza de una relación que me atrapó y me rompió.</p><p>&nbsp;</p><p><img alt="" class="media-image" height="1081" width="798" src="http://www.actitudfem.com/media/files/dv403019.jpg" /></p><p>Con cada orgasmo, sentí una ola de éxito y satisfacción. Tomé toda la energía negativa que tenía y la usé en la cama con otro hombre.&nbsp; Sentí que estaba en la cima del mundo. Tal vez el hombre que rompió mi corazón no me quería, pero iba a usar mi sexualidad para sentir otra cosa que odio y tristeza. Iba a terminar una y otra vez, sabiendo que cada gemido que parecía un grito ayudaba a sacarlo de mi memoria. Fue ahí donde me di cuenta que el sexo por venganza es la mejor clase de sexo.</p><p>Con el sexo por venganza alcancé niveles de placer y satisfacción que ningún tipo de terapia ofrecía. Me sentía empoderada al saber que podía tener sexo, sin ataduras y luego irme sin volver a ver a ese hombre, o si lo necesitaba una o dos veces más.</p><p>En el año siguiente de terminar con el hombre que me rompió el corazón, tuve más sexo casual que en toda mi vida. Tuve tríos. Probé cosas, sexuales y de otro tipo, que nunca había hecho antes; me sentía libre.</p><p>Esto del sexo por venganza fue algo que me sanó y me hizo más fuerte. Estaba regresando de ser esa persona rota que había sido antes. Finalmente tenía el control sobre mi corazón. Sé que el sexo por venganza no es para todos. Tengo un par de amigas que se contraen al pensar en irse a la cama con un hombre por una noche, luego hacer lo mismo la noche siguiente con un hombre diferente y entiendo por qué se sienten así.</p><p>Todos consideramos el sexo de diferente manera y eso es parte de su belleza. Mientras que jamás aconsejaría que alguien vaya y tenga sexo para olvidar su dolor, como<em> Peaches</em> diría: Siempre defenderé al sexo por venganza como un medio para cambiar los sentimientos del cuerpo, como una forma de sacar el dolor de tu corazón y reemplazarlo con orgasmos entre tus piernas. Quiero decir, honestamente, ¿has sido capaz de pensar en algo más que el orgasmo que tienes en las manos?</p><p>Puede que no sea lo que el doctor ordenó, pero cuando se trata de amor y pérdida, creo que nadie debería juzgar la manera que elegimos para aliviar la tristeza para así poder seguir adelante, o en mi casa, regresar a ser la persona que era.</p><p>(via: The Frisky)</p> ]]></DataContent>
+    </ContentItem>
+    <MoreLink>http://www.actitudfem.com/sexualidad/articulo/en-defensa-del-sexo-por-venganza</MoreLink>
+    <RelatedLinks FormalName="Related">
+     <Property Duid="97798" Href="http://www.actitudfem.com/sexualidad/articulo/5-cosas-que-aun-no-sabemos-del-sexo-casual" Title="5 cosas que aún no sabemos del sexo casual" FormalName="link"/>
+     <Property Duid="787" Href="http://www.actitudfem.com/sexualidad/articulo/10-lesiones-frecuentes-durante-el-sexo-0" Title="10 lesiones frecuentes durante el sexo" FormalName="link"/>
+     <Property Duid="67677" Href="http://www.actitudfem.com/belleza/articulo/como-bajar-la-panza" Title="5 tips para quemar la grasa del abdomen" FormalName="link"/>
+    </RelatedLinks>
+   </NewsComponent>
+   <NewsComponent Duid="image_258145">
+    <NewsLines>
+     <Headlines>venganza</Headlines>
+    </NewsLines>
+    <DescriptiveMetadata>
+     <Language FormalName="es"/>
+    </DescriptiveMetadata>
+    <NewsComponent>
+     <ContentItem Href="imagenes/sexrevenge.jpg" Title="venganza" Alternate="venganza">
+      <MediaType FormalName="image"/>
+      <MimeType FormalName="image/jpeg"/>
+     </ContentItem>
+    </NewsComponent>
+   </NewsComponent>
+   <NewsComponent/>
+  </NewsComponent>
+ </NewsItem>
+</NewsML>

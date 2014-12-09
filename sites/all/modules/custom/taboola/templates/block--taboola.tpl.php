@@ -1,0 +1,1 @@
+<div id="taboola"><?php print $content ?></div>

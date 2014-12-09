@@ -1,0 +1,180 @@
+<?php
+
+/**
+ * @file
+ * 
+ * Digital Analytix counter
+ */
+
+/**
+ * Implements hook_schema
+ *
+ * @return array
+ */
+function dax_schema() {
+  //counter based on path
+  $schema['dax_counter_path'] = array(
+    'description' => t('Stores counter based on path.'),
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => t('Primary Key: id'),
+      ),
+      'url' => array(
+        'description' => t('The url to be tagged.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'countername' => array(
+        'description' => t('Digital Analytix counter.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  //counter based on nodes
+  $schema['dax_counter_node'] = array(
+    'description' => t('Stores countername on a per node base.'),
+    'fields' => array(
+      'nid' => array(
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => t('Primary Key: Node Id'),
+      ),
+      'countername' => array(
+        'description' => t('Digital Analytix counter.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('nid'),
+  );
+
+  //labels
+  $schema['dax_labels'] = array(
+    'description' => t('Stores dax labels.'),
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => t('Primary Key: Label Id'),
+      ),
+      'name' => array(
+        'description' => t('Name of the label.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'machinename' => array(
+        'description' => t('Name of the label.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'description' => array(
+        'description' => t('Description of the label.'),
+        'type' => 'text',
+        'size' => 'medium',
+      ),
+      'weight' => array(
+        'description' => t('Weight of the label.'),
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['dax_label_options'] = array(
+    'description' => t('Stores dax label options.'),
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => t('Primary Key: Option Id'),
+      ),
+      'label_id' => array(
+        'description' => t('Label Id.'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => t('Option name.'),
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ),
+      'is_default' => array(
+        'description' => t('Default value.'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'weight' => array(
+        'description' => t('Weight of the option.'),
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  $schema['dax_node_labels'] = array(
+    'description' => t('Stores the dax node labels.'),
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => t('Primary Key: id'),
+      ),
+      'nid' => array(
+        'description' => t('Node id.'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'labelkey' => array(
+        'description' => t('Key of the label.'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'labelvalue' => array(
+        'description' => t('Value of the .'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'weight' => array(
+        'description' => t('Weight of the label.'),
+        'type' => 'int',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install()
+ *
+ * @return void
+ */
+function dax_install() {
+  
+}
+
+/**
+ * Implements hook_uninstall()
+ *
+ * @return void
+ */
+function dax_uninstall() {
+  drupal_uninstall_schema('dax');
+  variable_del('dax_base_url');
+}
+

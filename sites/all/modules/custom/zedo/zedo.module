@@ -1,0 +1,74 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function zedo_permission() {
+  $permissions['administer zedo settings'] = array(
+    'title' => t('Administer Zedo settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function zedo_help($path, $arg) {
+  if ($path == 'admin/help#zedo') {
+    return t('Módulo para configuración de Zedo');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function zedo_menu() {
+  $items=array();
+  
+  $items['admin/config/system/zedo'] = array(
+    'title'            => t('Zedo settings'),
+    'description'      => t('Configure settings for Zedo'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('zedo_admin_settings_form'),
+    'access arguments' => array('administer zedo settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'zedo.admin.inc',
+  );
+  return $items;
+}
+
+function zedo_init(){
+  // check if admin or moderator
+  if(user_access('administer')) {
+    return;
+  }
+  $statusZedo=variable_get('zedo_status',FALSE);
+  if(arg(0)=='node' && $statusZedo){
+    $node=node_load(arg(1));
+    if($node->type=='article'){
+      $wrapperZedo=variable_get('zedo_wrapper','zedo-wrapper');
+      $debugModeZedo=variable_get('zedo_debug',FALSE);
+      if($debugModeZedo){
+        //Debug mode
+        $footerJS='var zflag_parent="'.$wrapperZedo.'";
+var zflag_nid="2264";
+var zflag_cid="1534";
+var zflag_sid="0";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.zedo.com/";
+var zflag_width="1";
+var zflag_height="1";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://c1.zedo.com/jsc/c1/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }else{
+        $footerJS='var zflag_parent="'.$wrapperZedo.'";
+var zflag_nid="2870";
+var zflag_cid="1";
+var zflag_sid="1";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.zedo.com/";
+var zflag_width="1";
+var zflag_height="1";
+var zflag_bchan="2";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://e2.zedo.com/jsc/e2/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }
+      drupal_add_css(drupal_get_path('module', 'zedo').'/zedo.css');
+    }
+  }
+}

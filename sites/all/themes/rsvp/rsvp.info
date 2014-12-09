@@ -1,0 +1,62 @@
+name = R.S.V.P.
+description = Tema para R.S.V.P., sitio de la red de Inventmx - Grupo Imagen Multimedia
+core = 7.x
+engine = phptemplate
+stylesheets[all][] = css/fonts.css
+stylesheets[all][] = css/responsive-style.css
+stylesheets[all][] = css/layout.css
+stylesheets[all][] = flexslider.css
+stylesheets[all][] = style.css
+stylesheets[all][] = color/colors.css
+scripts[] = js/jquery.mobilemenu.js
+scripts[] = js/superfish.js
+scripts[] = js/custom.js
+
+regions[aperture]       = Aperture
+regions[header]         = Header
+regions[help]           = Help
+
+regions[body_scripts]   = Body scripts
+
+regions[skin_fixed]     = Skin fixed
+regions[skin_absolute]  = Skin absolute
+
+regions[front_welcome]  = Front Welcome
+regions[content_top]    = Content Top
+regions[content]        = Content
+
+regions[sidebar_first]  = First Sidebar
+
+regions[footer]         = Footer
+
+regions[footer_first]   = First Bottom
+regions[footer_second]  = Second Bottom
+regions[footer_third]   = Third Bottom
+regions[footer_fourth]  = Fourth Bottom
+
+regions[closure]        = Closure
+
+features[] = logo
+features[] = name
+features[] = slogan
+features[] = node_user_picture
+features[] = favicon
+features[] = main_menu
+features[] = secondary_menu
+
+settings[breadcrumbs]  = 1
+
+settings[slideshow_display]  = 1
+settings[slide1_desc]  = "Acerca de..."
+settings[slide2_desc]  = "Nuestro producto"
+settings[slide3_desc]  = "Nuestro servicio"
+settings[slide1_url]  = "node/1"
+settings[slide2_url]  = "node/2"
+settings[slide3_url]  = "node/3"
+
+settings[socialicon_display]  = 1
+settings[twitter_url]  = "http://twitter.com/#!/rsvp_excelsior"
+settings[facebook_url]  = "http://www.facebook.com/pages/RSVP-Online/299419320097618"
+settings[googleplus_url]  = "https://plus.google.com/u/0/118427729176204518525"
+settings[pinterest_url]  = "http://www.pinterest.com/"
+settings[linkedin_url]  = "http://in.linkedin.com/"

@@ -1,0 +1,61 @@
+<?php
+function excelsior_cxense_block_info(){
+  $blocks = array();
+  $blocks[ "excelsior_cxense_rels_bloque" ] = array(
+   'info' => t( 'Bloque relacionadas cXense' )
+  );
+  $blocks[ "adrenalina_cxense_rels_bloque" ] = array(
+   'info' => t( 'Bloque relacionadas cXense (versión adrenalina)' )
+  );
+
+  return $blocks;
+}
+
+function excelsior_cxense_block_view( $delta = '' ) {
+  $block = array(
+    'subject' => '',
+    'content' => '',
+    );
+  if ( $delta == "excelsior_cxense_rels_bloque" ) {
+    drupal_add_css( drupal_get_path('module', 'excelsior_cxense') . '/css/excelsior_cxense_rels_bloque.css' );         
+    drupal_add_js( drupal_get_path('module', 'excelsior_cxense') . '/js/cx_search.class.js' );
+    drupal_add_js( drupal_get_path('module', 'excelsior_cxense') . '/js/ICanHaz.min.js' );         
+    $block[ "content" ] = array( '#theme' => 'excelsior_cxense_rels_bloque_node' );
+  }
+  if ( $delta == "adrenalina_cxense_rels_bloque" ) {
+    drupal_add_css( drupal_get_path('module', 'excelsior_cxense') . '/css/adrenalina_cxense_rels_bloque.css' );         
+    drupal_add_js( drupal_get_path('module', 'excelsior_cxense') . '/js/cx_search.class.js' );
+    drupal_add_js( drupal_get_path('module', 'excelsior_cxense') . '/js/ICanHaz.min.js' );         
+    $block[ "content" ] = array( '#theme' => 'adrenalina_cxense_rels_bloque_sidebar' );
+  }
+  return $block;
+}
+
+
+function excelsior_cxense_theme($existing, $type, $theme, $path) {
+  return array(
+      'excelsior_cxense_rels_bloque_node' => array(
+        'variables' => array(
+          'excelsior_cxense_rels_bloque_node' => NULL,
+        ),
+        'template' => 'excelsior_cxense_rels_bloque_node',
+      ),
+      'adrenalina_cxense_rels_bloque_sidebar' => array(
+        'variables' => array(
+          'adrenalina_cxense_rels_bloque_sidebar' => NULL,
+        ),
+        'template' => 'adrenalina_cxense_rels_bloque_sidebar',
+      ),
+  );
+}
+
+function template_preprocess_excelsior_cxense_rels_bloque_node( &$variables ) {
+  $variables[ 'excelsior_cxense_rels_bloque_node' ] = excelsior_cxense_rels_bloque_node_list();
+  $variables[ 'adrenalina_cxense_rels_bloque_sidebar' ] = array();
+}
+
+
+function excelsior_cxense_rels_bloque_node_list (){
+  return array(1,2,3,4,5);
+}
+

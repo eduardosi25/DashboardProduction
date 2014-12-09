@@ -1,0 +1,1 @@
+<div id="prehome-node-block"><?php print $content ?></div>

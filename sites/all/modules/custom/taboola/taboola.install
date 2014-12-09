@@ -1,0 +1,58 @@
+<?php
+/**
+ * @file
+ * Installation file for Google Analytics module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function taboola_install() {
+  variable_set('taboola_status',FALSE);
+  $loadername=_taboola_extract_loadername();
+  variable_set('taboola_loadername',$loadername);
+  variable_set('taboola_regionname','');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function taboola_uninstall() {
+  #Delete all variables
+  variable_del('taboola_status');
+  variable_del('taboola_loadername');
+  variable_del('taboola_regionname');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function taboola_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $loaderName=variable_get('taboola_loadername', '');
+    if (!isset($loaderName) || empty($loaderName)) {
+      $requirements['taboola'] = array(
+        'title' => t('Loader name Taboola'),
+        'description' => t('You need to set the minimal config for this <a href="@url">Taboola Integration</a>.', array('@url' => '/admin/config/taboola')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}
+
+function _taboola_extract_loadername(){
+  $pattern='{^(www|local)\.[a-z0-9]+}';
+  $subject=$_SERVER['HTTP_HOST'];
+  $matches=array();
+  preg_match($pattern, $subject, $matches);
+  $subject=isset($matches[0]) && !empty($matches[0]) ? $matches[0] : null;
+  $subject=preg_replace('{^(www|local)\.}', '', $subject);
+  if($subject){
+    return $subject;
+  }
+  return null;
+}
+

@@ -1,0 +1,855 @@
+<?php
+define('STORED_IN_DATABASE', 1);
+define('STORED_IN_CODE', 2);
+/**
+ * Implements hook_permission
+ *
+ * @return array
+ */
+function dax_permission() {
+  return array(
+    'administer dax' => array(
+      'title' => t('Administer dax'),
+      'description' => t('Perform administration tasks for dax module.'),
+    ),
+    'administer dax labels' => array(
+      'title' => t('Administer dax labels'),
+      'description' => t('Create and manage dax labels.'),
+    ),
+    'administer dax paths' => array(
+      'title' => t('Administer dax paths'),
+      'description' => t('Create and manage dax paths.'),
+    ),
+    'administer dax exclude paths' => array(
+      'title' => t('Administer dax exclude paths'),
+      'description' => t('Manage dax exclude paths.'),
+    ),
+  );
+}
+/**
+ * Implements hook_menu()
+ *
+ * @return array
+ */
+function dax_menu() {
+  $items = array();
+  
+  //create a block "Webanalytics"
+  $items['admin/config/webanalytics'] = array(
+    'title' => 'Web Analytics',
+    'description' => 'Web Analytics',
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('administer dax'),
+    'position' => 'right',
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+
+  // Module settings
+  $items["admin/config/webanalytics/dax"] =
+  $items['admin/config/webanalytics/dax/default'] = array(
+    'title' => 'Digital Analytix',
+    'description' => 'Administre la configuración de su implementación DAx.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('dax_admin_settings_form'),
+    'access callback' => 'user_access',
+    'access arguments' => array('administer dax'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/dax.admin.inc',
+    'module' => 'dax',
+  );
+  
+  $items['admin/config/webanalytics/dax/default']['title'] = 'Configuración';
+  $items['admin/config/webanalytics/dax/default']['type'] = MENU_DEFAULT_LOCAL_TASK;
+
+  //labels
+//    $items['admin/config/webanalytics/dax/label'] =
+//            $items['admin/config/webanalytics/dax/label/list'] = array(
+//        'title' => 'Labels',
+//        'description' => 'Manage dax labels',
+//        'page callback' => 'dax_labels_overview_page',
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax labels'),
+//        'type' => MENU_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.labels.inc',
+//        'weight' => 10,
+//    );
+//
+//    $items['admin/config/webanalytics/dax/label/list']['title'] = 'List';
+//    $items['admin/config/webanalytics/dax/label/list']['type'] = MENU_DEFAULT_LOCAL_TASK;
+//
+//    $items['admin/config/webanalytics/dax/label/add'] = array(
+//        'title' => 'Add',
+//        'description' => 'Add label',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_label_form'),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax'),
+//        'type' => MENU_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.labels.inc',
+//        'weight' => 20,
+//    );
+//
+//    $items['admin/config/webanalytics/dax/label/%dax_label_id/edit'] = array(
+//        'title' => 'Edit label',
+//        'description' => 'Edit label',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_label_form', 5),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax labels'),
+//        'type' => MENU_IS_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.labels.inc',
+//        'weight' => 20,
+//    );
+//
+//    $items['admin/config/webanalytics/dax/label/%dax_label_id/delete'] = array(
+//        'title' => 'Delete label',
+//        'description' => 'Delete a label',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_label_delete_form', 5),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax labels'),
+//        'type' => MENU_IS_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.labels.inc',
+//        'weight' => 20,
+//    );
+//
+//
+//    //Path
+//    $items['admin/config/webanalytics/dax/path'] =
+//            $items['admin/config/webanalytics/dax/path/list'] = array(
+//        'title' => 'Path',
+//        'description' => 'Manage dax counternames based on path',
+//        'page callback' => 'dax_path_overview_page',
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax paths'),
+//        'type' => MENU_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.path.inc',
+//        'weight' => 10,
+//    );
+//
+//    $items['admin/config/webanalytics/dax/path/list']['title'] = 'List';
+//    $items['admin/config/webanalytics/dax/path/list']['type'] = MENU_DEFAULT_LOCAL_TASK;
+//
+//    $items['admin/config/webanalytics/dax/path/add'] = array(
+//        'title' => 'Add',
+//        'description' => 'Add countername based on path',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_path_add_form'),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax'),
+//        'type' => MENU_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.path.inc',
+//        'weight' => 20,
+//    );
+
+//    $items['admin/config/webanalytics/dax/path/%dax_path_id/edit'] = array(
+//        'title' => 'Edit path',
+//        'description' => 'Edit countername based on path',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_path_form', 5),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax'),
+//        'type' => MENU_IS_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.path.inc',
+//        'weight' => 20,
+//    );
+//
+//    $items['admin/config/webanalytics/dax/path/%dax_path_id/delete'] = array(
+//        'title' => 'Delete path',
+//        'description' => 'Edit countername based on path',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_path_delete_form', 5),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax'),
+//        'type' => MENU_IS_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.path.inc',
+//        'weight' => 20,
+//    );
+
+//    // Module excludes settings
+//    $items['admin/config/webanalytics/dax/excludes'] = array(
+//        'title' => 'Exclude',
+//        'description' => 'Manage exclude path settings',
+//        'page callback' => 'drupal_get_form',
+//        'page arguments' => array('dax_exclude_form'),
+//        'access callback' => 'user_access',
+//        'access arguments' => array('administer dax exclude paths'),
+//        'type' => MENU_LOCAL_TASK,
+//        'module' => 'dax',
+//        'file' => 'includes/dax.exclude.inc',
+//        'weight' => 30,
+//    );
+  return $items;
+}
+/**
+ * Menu helper, check/load label 
+ * 
+ * @param $id
+ */
+function dax_label_id_load($id) {
+  if (!empty($id) && is_numeric($id)) {
+    module_load_include('inc', 'dax', 'includes/dax.labels');
+    return dax_label_load($id);
+  }
+  
+  return FALSE;
+}
+
+/**
+ * Menu helper, check/load path 
+ * 
+ * @param $id
+ */
+function dax_path_id_load($id) {
+  if (!empty($id) && is_numeric($id)) {
+    module_load_include('inc', 'dax', 'includes/dax.path');
+    return dax_path_load($id);
+  }
+
+  return FALSE;
+}
+
+/**
+ * implementation hook_page_build
+ * 
+ * Why we use hook_page_alter to put no-javascript element in the footer?
+ * see http://drupal.org/node/224333#hook_footer
+ * Because we want to add some code into the top or bottom in a Drupal7 way. 
+ * 
+ * Why we use hook_page_build instead of hook_page_alter?
+ * see http://drupal.org/node/224333#hook_page
+ * Because we want to give other modules the possibility to have access to existing elements.
+ * 
+ * @param array $page 
+ */
+function dax_page_build(&$page) {
+  if (dax_check_exclude($page)) {
+    //normal measurement
+    if (variable_get('dax_measurement_type_normal', FALSE)) {
+      dax_normal_measurement($page);
+    }
+    //Technical measurement
+    if (variable_get('dax_measurement_type_technical', FALSE)) {
+      dax_technical_measurement($page);
+    }
+    //Loading measurement
+    if (variable_get('dax_measurement_type_loading', FALSE)) {
+      dax_loadingtime_measurement($page);
+    }
+    //Click-in measurement
+    if (variable_get('dax_measurement_type_click_in', FALSE)) {
+      dax_click_in_measurement($page);
+    }
+    //Click-out measurement
+    if (variable_get('dax_measurement_type_click_out', FALSE)) {
+      dax_click_out_measurement($page);
+    }
+    //Pdf documents measurement
+    if (variable_get('dax_measurement_type_pdf', FALSE)) {
+      dax_pdf_document_measurement($page);
+    }
+    //Campaign measurement
+    if (variable_get('dax_measurement_type_campaigns', FALSE)) {
+      dax_campaigns_measurement($page);
+    }
+  }
+}
+/**
+ * Check if dax should be executed in this context
+ *
+ * @param $page
+ */
+function dax_check_exclude(&$page) {
+  global $user;
+  //if (empty($page['content'])) {
+  //  return FALSE;
+  //}
+  //load variables
+  $excluded_user_roles = variable_get('dax_settings_exclude_roles', array());
+  $excluded_pages = variable_get('dax_settings_exclude_pages', '');
+
+  //check for excluded user roles
+  foreach ((array) $user->roles as $key => $role) {
+    if (in_array($key, array_values($excluded_user_roles))) {
+      return FALSE;
+    }
+  }
+
+  //check for excluded pages
+  if (!empty($excluded_pages)) {
+    if (drupal_match_path($_GET['q'], $excluded_pages)) {
+      return FALSE;
+    }
+
+    $alias = drupal_get_path_alias($_GET['q']);
+    if ($alias != $_GET['q']) {
+      if (drupal_match_path($alias, $excluded_pages)) {
+        return FALSE;
+      }
+    }
+  }
+
+  return TRUE;
+}
+
+/**
+ * Returns a countername based on content-type or url
+ * 
+ * @param unknown_type $page
+ */
+function dax_get_countername(&$page, &$options) {
+  $countername = '';
+  $url = check_url($_GET['q']);
+  $http_header = drupal_get_http_header();
+  
+  $options['current_url'] = $url;
+  $options['http_header'] = $http_header;
+  $options['is_errorpage'] = FALSE;
+  $options['is_frontpage'] = FALSE;
+  
+  //check if we're on an 404 errorpage
+  if (!empty($http_header['status']) && $http_header['status'] == '404 Not Found') {
+    $countername = variable_get('dax_error_404_settings', '');
+    $options['labels'][] = array('label' => 'ns_http_status', 'value' => '404');
+    $options['is_errorpage'] = TRUE;
+
+    if (empty($countername)) {
+        $countername = 'error.404';
+    }
+  }
+
+  //check if we're on an 403 errorpage
+  if (!empty($http_header['status']) && $http_header['status'] == '403 Forbidden') {
+    $countername = variable_get('dax_error_403_settings', '');
+    $options['labels'][] = array('label' => 'ns_http_status', 'value' => '403');
+    $options['is_errorpage'] = TRUE;
+
+    if (empty($countername)) {
+      $countername = 'error.403';
+    }
+  }
+  
+  if ($options['current_url'] == $options['front_page']) {
+    $countername = variable_get('dax_frontpage_countername', '');
+    $options['is_frontpage'] = TRUE;
+  }
+  
+  $node = dax_fetch_node_from_page_build($page);
+  
+  if (!empty($node)) {
+    $token_preset = variable_get('dax_node_type_' . check_plain($node->type) . '_settings', '');
+    $token_preset = empty($token_preset) ? variable_get('dax_general_node_type_settings', '') : $token_preset;
+    $token_options = array('sanitize' => TRUE, 'callback' => 'dax_cleanup_token_replacement');
+    //@todo: expand data array passed to token_replace
+      $countername = token_replace($token_preset, array('node' => $node, 'site' => variable_get('site_name', '')), $token_options);
+  } else {
+    global $language;
+    module_load_include('inc', 'dax', 'includes/dax.path');
+    $path = dax_path_load_by_url($url);
+    if (is_null($path)) {
+      $alias = drupal_get_path_alias($path, $language->language);
+      $path = dax_path_load_by_url($alias);
+    }
+    if (!empty($path)) {
+      $countername = $path->countername;
+    }
+  }
+	
+  if (variable_get('dax_general_countername_generate_type') == "breadcrumbs") {
+    $bc_str = variable_get('dax_site_name', '');
+    #$index=0;
+    //Patch for node breadcrumb
+    $breadcrumbs =menu_get_active_trail();
+    $trail_length = count($breadcrumbs);
+    for ($i = 0; $i < $trail_length; $i++) {
+      $title=$breadcrumbs[$i]['title'];
+      if($breadcrumbs[$i]['title']=="Taxonomy term"){
+        $tid=taxonomy_term_load($breadcrumbs[$i]['original_map'][2]);
+        $title=$tid->name;
+      }elseif(arg(0)=='node'){
+        $title = drupal_get_path_alias('node/'.arg(1));
+      }elseif (!$breadcrumbs[$i]['title']) {
+        $title = drupal_get_title();
+      }      
+      $trail_str = clean_trail_string($title);
+      if($trail_length > 1 && $i == 0) {
+        $trail_str = "";
+      }
+      $bc_str = $bc_str != "" ? $bc_str . "." . $trail_str : $trail_str;
+    }
+  }
+
+  $bc_str=str_replace("..",".", $bc_str);
+  $bc_str=str_replace("pagina.","", $bc_str);
+  
+  $match=array();
+  preg_match("{\.}",$bc_str,$match);
+  $bc_str=(count($match)) ? (drupal_is_front_page() || arg(0)=='taxonomy' ? $bc_str.'.portada' : $bc_str) : $bc_str.".portada";
+  
+  $options['countername'] = array("trail" => $bc_str);
+  $options['countername']['category']=clean_trail_string($data_node[0]["taxonomy"]);
+  drupal_alter('dax_countername', $options);
+  $options['prefix'] = variable_get('dax_prefix', '');
+  $options['suffix'] = variable_get('dax_suffix', '');
+  return $options;
+}
+
+function _get_trail_dax($data, &$trial, &$index) {
+  $index++;
+  $trail[$index] = array(
+    'title' => $data['title'],
+    'href' => $data['href'],
+    'link_path' => '',
+    'localized_options' => array(),
+    'type' => 0,
+  );
+}
+
+/**
+ * Clean string to avoid non-supported characters into the trail
+ */
+function clean_trail_string($title) {
+    $title = trim($title);
+    $title = str_replace("á", "a", $title);
+    $title = str_replace("é", "e", $title);
+    $title = str_replace("í", "i", $title);
+    $title = str_replace("ó", "o", $title);
+    $title = str_replace("ú", "u", $title);
+    $title = str_replace("ü", "u", $title);
+    $title = str_replace("ñ", "n", $title);
+    $title = str_replace("Á", "A", $title);
+    $title = str_replace("É", "E", $title);
+    $title = str_replace("Í", "I", $title);
+    $title = str_replace("Ó", "O", $title);
+    $title = str_replace("Ú", "U", $title);
+    $title = str_replace("Ü", "U", $title);
+    $title = str_replace("Ñ", "N", $title);
+    $title = str_replace("&acute;", "a", $title);
+    $title = str_replace("&eacute;", "e", $title);
+    $title = str_replace("&iacute;", "i", $title);
+    $title = str_replace("&oacute;", "o", $title);
+    $title = str_replace("&uacute;", "u", $title);
+
+    $title = str_replace("\t","", $title);
+    $title = str_replace("\n","", $title);
+    $title = str_replace("\r","", $title);
+    $title = str_replace(".", "", $title);
+    $title = str_replace(",", "", $title);
+    $title = str_replace("+", "", $title);
+    $title = str_replace("#", "", $title);
+    $title = str_replace("!", "", $title);
+    $title = str_replace("?", "", $title);
+    $title = str_replace("%", "", $title);
+    $title = str_replace("&", "", $title);
+    $title = str_replace("(", "", $title);
+    $title = str_replace(")", "", $title);
+    $title = str_replace("=", "", $title);
+    $title = str_replace("'", "", $title);
+    $title = str_replace("*", "", $title);
+    $title = str_replace("|", "", $title);
+    $title = str_replace(";", "", $title);
+    $title = str_replace(":", "", $title);
+    $title = str_replace("<", "", $title);
+    $title = str_replace(">", "", $title);
+    $title = str_replace("[", "", $title);
+    $title = str_replace("]", "", $title);
+    $title = str_replace("{", "", $title);
+    $title = str_replace("}", "", $title);
+    $title = str_replace("^", "", $title);
+    $title = str_replace("`", "", $title);
+    $title = str_replace("~", "", $title);
+
+    
+    $title = str_replace(" / ", ".", $title);
+    $title = str_replace(" /", ".", $title);
+    $title = str_replace("/ ", ".", $title);
+    $title = str_replace("/", ".", $title);
+    
+    $title = str_replace(" ", "_", $title);
+    $title = str_replace("  ", "_", $title);
+    $title = str_replace("   ", "_", $title);
+    
+
+
+    $title = strtolower($title);
+    return $title;
+}
+
+/**
+ * Get js countername with prefix & suffix
+ * 
+ * @param unknown_type $options
+ */
+function dax_get_js_countername($options) {
+    $countername = $options['countername'];
+
+    if (!empty($countername) && !empty($options['prefix'])) {
+        array_unshift($countername, $options['prefix']);
+    }
+
+    if (!empty($countername) && !empty($options['suffix'])) {
+        $countername[] = $options['suffix'];
+    }
+    $count_countername = count($countername);
+    for ($i = 0; $i < $count_countername; $i++) {
+        // something here...
+    }
+
+    return empty($countername) ? '' : implode(".", $countername);
+}
+
+/**
+ * Fetch node object from page if exists
+ * 
+ * @param $page
+ */
+function dax_fetch_node_from_page_build($page) {
+    $node = NULL;
+    $index = 0;
+
+    if (!empty($page['content']['system_main']['content']) && in_array('nodes', array_keys($page['content']['system_main']['content']), TRUE)) {
+        //check we are on a nodepage
+        $nodes = element_children($page['content']['system_main']['content']['nodes']);
+        $index = current($nodes);
+
+        if (!empty($index)) {
+            $node = $page['content']['system_main']['content']['nodes'][$index]['#node'];
+        }
+    }
+
+    if (!empty($page['content']['system_main']) && in_array('nodes', array_keys($page['content']['system_main']), TRUE)) {
+        //check we are on a nodepage
+        $nodes = element_children($page['content']['system_main']['nodes']);
+        $index = current($nodes);
+
+        if (!empty($index)) {
+            $node = $page['content']['system_main']['nodes'][$index]['#node'];
+        }
+    }
+
+    return $node;
+}
+
+/**
+ * Cleanup the replaced tokens
+ * 
+ * lower strings
+ * replace spaces with dash
+ * 
+ * @param $tokens
+ * @param $arguments
+ */
+function dax_cleanup_token_replacement(&$tokens, &$arguments) {
+    foreach ((array) $tokens as $key => $token) {
+        $tokens[$key] = check_plain($tokens[$key]);
+        $tokens[$key] = strtolower($tokens[$key]);
+        $tokens[$key] = str_replace(' ', '-', $tokens[$key]);
+
+        if (module_exists('transliteration')) {
+            module_load_include('inc', 'transliteration', 'transliteration');
+            $tokens[$key] = _transliteration_process($tokens[$key], '');
+        }
+    }
+}
+
+/**
+ * Normal measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_normal_measurement(&$page) {
+  // check if admin or moderator
+  if(user_access('administer')) {
+    return;
+  }
+
+  //get countername
+  $options = array();
+  $options['labels'] = array();
+  $options['front_page'] = variable_get('site_frontpage', '');
+  dax_get_countername($page, $options);
+  
+  //get additional labels
+  module_load_include('inc', 'dax', 'includes/dax.labels');
+  $label_data = dax_label_load_all();
+  $labels = dax_filter_label_data($label_data);
+  
+  //get sitestat_url
+  $options['base_url'] = TRUE;
+  $options['labels'] = array_merge($options['labels'], $labels);
+  
+  //let other modules alter these options
+  drupal_alter('dax_get_sitestat_url_data', $options);
+  
+  //build the url
+  $sitestat_url = dax_get_sitestat_url($options);
+  
+  //js script (writing this as a string to include immediatly after noscript tag
+  //couldn't achieve this with the drupal_add_js and weight (markup and script are seperatly handled)
+  $baseURL = $_SERVER['SERVER_PORT'] == 443 ? 's://sb' : '://b';
+  $c2 = variable_get('dax_client_name', '');
+  $ns_site = variable_get('dax_site_name', '');
+  $counter_str = $options['countername']['trail'];
+  $counter_category = $options['countername']['category'];
+    $name = $counter_str;
+  $category=($counter_category)? "&category=$counter_category": "";
+    
+    $normal_measurement_script =
+<<< aScript
+<!-- Begin comScore UDM code 1.1104.26 -->
+<script type="text/javascript">
+// <![CDATA[
+function udm_(a){
+  var b="comScore=",c=document,d=c.cookie,e="",f="indexOf",g="substring",h="length",i=2048,j,k="&ns_",l="&",m,n,o,p,q=window,r=q.encodeURIComponent||escape;if(d[f](b)+1)for(o=0,n=d.split(";"),p=n[h];o<p;o++)m=n[o][f](b),m+1&&(e=l+unescape(n[o][g](m+b[h])));a+=k+"_t="+ +(new Date)+k+"c="+(c.characterSet||c.defaultCharset||"")+"&c8="+r(c.title)+e+"&c7="+r(c.URL)+"&c9="+r(c.referrer),a[h]>i&&a[f](l)>0&&(j=a[g](0,i-8).lastIndexOf(l),a=(a[g](0,j)+k+"cut="+r(a[g](j+1)))[g](0,i)),c.images?(m=new Image,q.ns_p||(ns_p=m),m.src=a):c.write("<p><img src='",a,"' height='1' width='1' alt='*'></p>");
+}
+function uid_call(a, b, ui_c2, ui_ns_site){
+  ui_c2 = typeof ui_c2 != 'undefined' ? ui_c2 : 1000001;
+  ui_ns_site = typeof ui_ns_site != 'undefined' ? ui_ns_site : 'test-site';
+  window.b_ui_event = window.c_ui_event != null ? window.c_ui_event:"",window.c_ui_event = a;
+  var ui_pixel_url = 'http://b.scorecardresearch.com/p?c1=2&c2='+ui_c2+'&ns_site='+ui_ns_site+'&name='+a+'&ns_type=hidden&type=hidden&ns_ui_type='+b;
+  var b="comScore=",c=document,d=c.cookie,e="",f="indexOf",g="substring",h="length",i=2048,j,k="&ns_",l="&",m,n,o,p,q=window,r=q.encodeURIComponent||escape;if(d[f](b)+1)for(o=0,n=d.split(";"),p=n[h];o<p;o++)m=n[o][f](b),m+1&&(e=l+unescape(n[o][g](m+b[h])));ui_pixel_url+=k+"_t="+ +(new Date)+k+"c="+(c.characterSet||c.defaultCharset||"")+"&c8="+r(c.title)+e+"&c7="+r(c.URL)+"&c9="+r(c.referrer)+"&b_ui_event="+b_ui_event+"&c_ui_event="+c_ui_event,ui_pixel_url[h]>i&&ui_pixel_url[f](l)>0&&(j=ui_pixel_url[g](0,i-8).lastIndexOf(l),ui_pixel_url=(ui_pixel_url[g](0,j)+k+"cut="+r(ui_pixel_url[g](j+1)))[g](0,i)),c.images?(m=new Image,q.ns_p||(ns_p=m),m.src=ui_pixel_url):c.write("<p><img src='",ui_pixel_url,"' height='1' width='1' alt='*'></p>");
+}
+udm_("http$baseURL.scorecardresearch.com/p?c1=2&c2=$c2&ns_site=$ns_site&name=$name$category");
+// ]]>
+</script>\n\n
+aScript;
+
+    //no script tag
+    $normal_measurement_noscript = '<noscript>
+    <p style="display:none;"><img src="http' . $baseURL . '.scorecardresearch.com/p?c1=2&c2=' . $c2 . '&ns_site=' . $ns_site . '&name=' . $name .$category. '" height="1" width="1" alt="*"></p>
+</noscript>
+<!-- End comScore UDM code -->
+      ';
+
+    $page['page_top']['dax'] = array(
+        'footer' => array(
+            '#type' => 'markup',
+            '#markup' => $normal_measurement_script . $normal_measurement_noscript,
+            '#weight' => 1100,
+        ),
+    );
+    $page['page_bottom']['dax'] = array(
+        'footer' => array(
+            '#type' => 'markup',
+            '#markup' => "<script language='JavaScript1.3' src='http" . $baseURL . ".scorecardresearch.com/c2/" . $c2 . "/cs.js'></script>",
+            '#weight' => 1101
+        )
+    );
+    //add countername to page as js variable
+    $js_countername = dax_get_js_countername($options);
+    $sitestat_base_url = dax_get_sitestat_base_url();
+    drupal_add_js(array('dax' => array('countername' => $js_countername, 'sitestat_base_url' => $sitestat_base_url)), 'setting');
+}
+
+/**
+ * Technical measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_technical_measurement(&$page) {
+    global $language;
+
+    $measure_technical_data = FALSE;
+    $technical_allowed_paths = variable_get('dax_measurement_type_technical_paths', '');
+    $url = check_url($_GET['q']);
+
+    $measure_technical_data = drupal_match_path($url, $technical_allowed_paths);
+    $alias = drupal_get_path_alias($url, $language->language);
+    if (!empty($alias) && $measure_technical_data == FALSE) {
+        $measure_technical_data = drupal_match_path($alias, $technical_allowed_paths);
+    }
+
+    if ($measure_technical_data) {
+        drupal_add_js(drupal_get_path('module', 'dax') . '/js/sitestat.js', array('type' => 'file', 'scope' => 'footer', 'weight' => 10005));
+        //dpm('measure technical data'); 
+    }
+}
+
+/**
+ * Loading time measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_loadingtime_measurement(&$page) {
+    // Loading Measurement (Loading Time 1)
+    $loading_measurement_time1 = 'ns_loadingtime1=(new Date()).getTime()';
+    drupal_add_js($loading_measurement_time1, array('type' => 'inline', 'scope' => 'header', 'weight' => -10000));
+
+    // Loading Measurement (Loading Time 2)
+    $loading_measurement_time2 = 'ns_loadingtime2=(new Date()).getTime()';
+    drupal_add_js($loading_measurement_time2, array('type' => 'inline', 'scope' => 'footer', 'weight' => 10000));
+}
+
+/**
+ * Click in measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_click_in_measurement($page) {
+    //@todo: implement this measurement
+}
+
+/**
+ * Click out measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_click_out_measurement($page) {
+    //@todo: implement this measurement
+}
+
+/**
+ * Pdf documents measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_pdf_document_measurement($page) {
+    //@todo: implement this measurement
+}
+
+/**
+ * Campaigns measurement
+ * 
+ * @param $page
+ * @param $sitestat_url
+ */
+function dax_campaigns_measurement($page) {
+    //@todo: implement this measurement
+}
+
+/**
+ * Implements hook_theme()
+ * 
+ * @param $existing
+ * @param $type
+ * @param $theme
+ * @param $path
+ * 
+ * @return array
+ */
+function dax_theme($existing, $type, $theme, $path) {
+    $theme = array();
+    $path = drupal_get_path('module', 'dax');
+
+    $theme['dax_overview_labels'] = array(
+        'variables' => array('data' => array()),
+        'function' => 'theme_dax_label_overview',
+        'file' => 'theme/dax.theme.inc',
+    );
+
+    $theme['dax_label_options'] = array(
+        'render element' => 'form',
+        'file' => 'theme/dax.theme.inc',
+    );
+
+    $theme['dax_overview_paths'] = array(
+        'variables' => array('data' => array()),
+        'function' => 'theme_dax_path_overview',
+        'file' => 'theme/dax.theme.inc',
+    );
+
+    $theme['dax_path_add_form'] = array(
+        'render element' => 'form',
+        'file' => 'theme/dax.theme.inc',
+    );
+
+    return $theme;
+}
+
+/**
+ * Returns a sitestat base url;
+ */
+function dax_get_sitestat_base_url() {
+    //load various settings
+    $base_url = variable_get('dax_base_url', '');
+    $secure_url = variable_get('dax_secure_url' . '');
+    $client_name = variable_get('dax_client_name', '');
+    $site_name = variable_get('dax_site_name', '');
+
+    //check if sitename has tokens
+    if (preg_match('/^\[(.*)\]$/', $site_name)) {
+        $site_name_preset = $site_name;
+        $token_options = array('sanitize' => TRUE, 'callback' => 'dax_cleanup_token_replacement');
+        $site_name = token_replace($site_name_preset, array('site' => variable_get('site_name', '')), $token_options);
+    }
+
+    return check_plain($base_url) . '/' . check_plain($client_name) . '/' . check_plain($site_name) . '/s?';
+}
+
+/**
+ * Build the sitestat_url based on the given
+ * vars
+ *
+ * - base_url (TRUE/FALSE)
+ * - countername (array)
+ * - labels (array)
+ *
+ * @param $vars
+ */
+function dax_get_sitestat_url($vars) {
+    $sitestat_url = '';
+
+    //base url
+    if (!empty($vars['base_url']) && $vars['base_url'] == TRUE) {
+        $sitestat_url .= dax_get_sitestat_base_url();
+    }
+
+    //countername
+    if (!empty($vars['countername'])) {
+        $countername = '';
+
+        if (!empty($vars['prefix'])) {
+            $countername .= $vars['prefix'] . '.';
+        }
+
+        $countername = implode('.', $vars['countername']);
+        if (empty($countername)) {
+            return;
+        }
+
+        if (!empty($vars['suffix'])) {
+            $countername .= '.' . $vars['suffix'];
+        }
+
+
+        $sitestat_url .= $countername;
+    }
+
+    //additional labels
+    if (!empty($vars['labels'])) {
+        foreach ((array) $vars['labels'] as $item) {
+            $sitestat_url .= '&' . $item['label'] . '=' . $item['value'];
+        }
+    }
+
+    //dpm('Sitestat url: ' . $sitestat_url);
+    return $sitestat_url;
+}
+
+function generate_name($breadcrumbs){
+  $trail_length = count($breadcrumbs);
+  for ($i = 0; $i < $trail_length; $i++) {
+    $title=$breadcrumbs[$i]['title'];
+    $trail_str = clean_trail_string($title);
+    if($trail_length > 1 && $i == 0) {
+      $trail_str = "";
+    }
+    $bc_str = $bc_str != "" ? $bc_str . "." . $trail_str : $trail_str;
+  }
+  return $bc_str;
+}

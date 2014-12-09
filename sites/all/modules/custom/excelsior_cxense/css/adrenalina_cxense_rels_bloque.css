@@ -1,0 +1,113 @@
+#adrenalina-cxense-rels-widget .widget-title
+{
+	color:#e00;
+	font:30px 'Patua One';
+	margin-bottom:20px
+}
+
+#adrenalina-cxense-rels-widget #cxense-rels-list
+{
+	display:block;
+	width:310px;
+	float: left;
+	position:relative
+}
+
+.sidebars .cxense-rels-list-item
+{
+border-bottom: 1px solid #ccc;
+float: left;
+height: 100px;
+padding-top: 10px;
+}
+
+.sidebars .cxense-rels-list-item:last-child
+{
+	border:none
+}
+
+.sidebars .cxense-rels-list-item-link
+{
+	display:inline-block
+}
+
+.sidebars .cxense-rels-list-item-title
+{
+	display:inline-block;
+	float:right;
+	width:175px;
+	color:#000;
+	font:16px/20px 'Noticia Text'
+}
+
+.sidebars .cxense-rels-list-item-image
+{
+	float:left;
+	width:125px;
+	height:91px
+}
+
+.sidebars.expanded #cxense-rels-widget
+{
+	background-color:#f9f9f9
+}
+
+.sidebars.expanded #adrenalina-cxense-rels-widget #cxense-rels-list
+{
+	width: 432px;
+}
+
+.sidebars.expanded .cxense-rels-list-item
+{
+	display:block;
+	padding-top:10px;
+	padding-bottom:10px;
+	width:50%;
+	height:205px;
+	border:none;
+	text-align:center
+}
+
+.sidebars.expanded .cxense-rels-list-item-link
+{
+	width:200px;
+	text-align:left
+}
+
+.sidebars.expanded .cxense-rels-list-item-title
+{
+	display:inline-block;
+	margin-top:5px;
+	width:200px;
+	font:14px/18px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.sidebars.expanded .cxense-rels-list-item-image
+{
+	width:200px;
+	height:145px
+}
+
+#cxense-rels-ver-mas
+{
+	background:#f75a5a;
+	background:-moz-linear-gradient(top,#f75a5a 0%,#f75a5a 50%,#e00 51%,#e00 97%,#9f0000 97%,#9f0000 100%);
+	background:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#f75a5a),color-stop(50%,#f75a5a),color-stop(51%,#e00),color-stop(97%,#e00),color-stop(97%,#9f0000),color-stop(100%,#9f0000));
+	background:-webkit-linear-gradient(top,#f75a5a 0%,#f75a5a 50%,#e00 51%,#e00 97%,#9f0000 97%,#9f0000 100%);
+	background:-o-linear-gradient(top,#f75a5a 0%,#f75a5a 50%,#e00 51%,#e00 97%,#9f0000 97%,#9f0000 100%);
+	background:-ms-linear-gradient(top,#f75a5a 0%,#f75a5a 50%,#e00 51%,#e00 97%,#9f0000 97%,#9f0000 100%);
+	background:linear-gradient(to bottom,#f75a5a 0%,#f75a5a 50%,#e00 51%,#e00 97%,#9f0000 97%,#9f0000 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f75a5a',endColorstr='#9f0000',GradientType=0);
+	width:100%;
+	height:30px;
+	font:18px/30px 'Patua One';
+	text-align:center;
+	color:#fff;
+	cursor:pointer;
+	display:block
+}
+
+#cxense-rels-container
+{
+	overflow:hidden
+}

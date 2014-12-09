@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'HeraBig-Regular';
+  src: url('fonts/HeraBig-Regular.eot');
+  src: local('☺'), 
+    url('fonts/HeraBig-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/HeraBig-Regular.woff') format('woff'),
+    url('fonts/HeraBig-Regular.ttf') format('truetype'),
+    url('fonts/HeraBig-Regular.svg.svg#HeraBig-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'LucasSharp';
+  src: url('fonts/Lucas Sharp - HeraBig-Regular.eot');
+  src: local('☺'), 
+    url('fonts/Lucas Sharp - HeraBig-Regular.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Lucas Sharp - HeraBig-Regular.woff') format('woff'),
+    url('fonts/Lucas Sharp - HeraBig-Regular.ttf') format('truetype'),
+    url('fonts/Lucas Sharp - HeraBig-Regular.svg#LucasSharp') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.titilliumWeb{
+    font-family: 'Titillium Web';
+}
+.tinos{
+    font-family: 'Tinos';
+}
+.heraBig{
+    font-family: 'HeraBig-Regular';
+}

@@ -1,0 +1,118 @@
+<?php
+function excelsior_tv_install() {
+
+           $data = array (
+	                   "alias_url" => "multimedia",
+	                   "ruta_jsons" => "/srv/data/files/json/multimedia/",
+	                   "ruta_embed" => "/srv/data/files/json/multimedia/",
+	                   "set_title" => "Multimedia|",
+
+	                   "facebook_share_image" => "http://8d5306c18b850ea7e0ac-65b9b7a2fa68b3c92f951010bb26a4de.r54.cf2.rackcdn.com/excelsior-tv-redes.png",
+	                   "facebook_share_tv_title" => "Dinero en Imagen|Dineroenimagen.com",
+	                   "facebook_share_tv_desc" => "Dinero en Imagen, análisis financiero, mercados, economía,actualidad, aula, opinión, emprendedores, divisas",
+	                   "facebook_share_tv_type" => "page",
+	                   "metatag_og_site_name" => "Dineroenimagen",
+	                   "news_keywords" => "Dinero en Imagen, Grupo Imagen Multimedia, InventMX"                           
+                     );
+
+	variable_set( 'excelsior_tv_vars', $data );
+    variable_set('excelsior_tv_cron', time()); //tiempos de ejecución del cron 
+    variable_set('excelsior_tv_log', false); //registros de actualización
+}
+
+/**
+* Implements hook_schema().
+*/
+function excelsior_tv_schema() {
+    $schema['excelsior_tv_multimedia'] = array(
+        'description' => t('Table to store data of related youtube video id'),
+        'fields' => array(
+            'id' => array(
+                'description' => t('Id youtube video'),
+		        'type' => 'varchar',
+		        'length' => 11,
+		        'not null' => TRUE,
+            ),
+            'title' => array(
+                'description' => t('Title of video'),
+		        'type' => 'varchar',
+		        'length' => 255,
+		        'not null' => TRUE,
+		        'default' => '',
+            ),
+            'view_count' => array(
+                'description' => t('Views of video'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ),
+            'uploaded' => array(
+                'description' => t('Date uploaded'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0
+            ),
+            'updated' => array(
+                'description' => t('Date updated'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0
+            ),
+            'playlist_id' => array(
+                'description' => t('Id playlist'),
+		        'type' => 'varchar',
+		        'length' => 34,
+		        'not null' => TRUE,
+		        'default' => '',
+            ),
+            'playlist_title' => array(
+                'description' => t('Title of playlist'),
+		        'type' => 'varchar',
+		        'length' => 255,
+		        'not null' => TRUE,
+		        'default' => '',
+            ),
+            'playlist_author' => array(
+                'description' => t('Author or playlist'),
+                'type' => 'varchar',
+                'length' => 255,
+                'not null' => TRUE,
+                'default' => '',
+            ),
+            'playlist_position' => array(
+                'description' => t('Position in playlist'),
+                'type' => 'int',
+                #'size' => 'tiny',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0,
+            ),
+            'created' => array(
+                'description' => t('Date created'),
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'default' => 0
+            ),
+        ),
+        'primary key' => array('id'),
+		'indexes' => array(
+			'excelsior_tv_multimedia_view_count' => array('view_count'),
+			'excelsior_tv_multimedia_title' => array('playlist_id'),
+			'excelsior_tv_multimedia_uploaded' => array('uploaded'),
+		),
+    );
+    return $schema;
+}
+/**
+ * Implements hook_uninstall().
+ */
+function excelsior_tv_uninstall() {
+	variable_del( 'excelsior_tv_vars' );
+	variable_del('excelsior_tv_cron');
+    variable_del('excelsior_tv_log');
+	drupal_uninstall_schema('excelsior_tv_multimedia');
+}
+

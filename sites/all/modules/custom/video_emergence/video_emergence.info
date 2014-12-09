@@ -1,0 +1,8 @@
+name = "Video emergence"
+description = "Injección de player Ooyala sustituyendo a Youtube - Requiere GDocs configurado [video_emergence]"
+package = "FEM"
+version = "7.x.1"
+core = "7.x"
+php = "5.x"
+files[]=video_emergence.module
+files[]=video_emergence.admin.inc

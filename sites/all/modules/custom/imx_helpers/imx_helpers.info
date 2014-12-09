@@ -1,0 +1,8 @@
+name           = "Helpers Invent.mx"
+description    = "Helpers functions - RSVP Online"
+package        = "Inventmx Devel"
+core           = "7.x"
+version        = "7.x.1.0"
+files[]        = "imx_helpers.module"
+dependencies[] = "jquery_update"
+dependencies[] = "libraries (2.x)"

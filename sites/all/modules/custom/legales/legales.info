@@ -1,0 +1,10 @@
+name = "Temas legales"
+description = "Temas legales"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = legales.module
+files[] = legales.admin.inc
+files[] = legales.install
+configure = admin/config/system/legales

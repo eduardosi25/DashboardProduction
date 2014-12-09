@@ -1,0 +1,17 @@
+; $Id: excelsior_tv.info,v 1.1.1 2013-05-31 10:40:00
+name = Excélsior Tv 
+description = Modulo para Excélsior TV
+dependencies[] = system
+dependencies[] = user
+package = Excelsior
+
+files[] = excelsior_tv.module
+files[] = class/youtube.class.php
+files[] = class/VideoGaleriaYoutube.class.php
+files[] = class/getYoutubeLista.class.php
+
+core = 7.x
+version = "7.x"
+php="5.x"
+project = "Excélsior Tv"
+datestamp = "1349088000" 

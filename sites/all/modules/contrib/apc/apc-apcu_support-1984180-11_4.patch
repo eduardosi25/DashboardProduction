@@ -1,0 +1,61 @@
+From d4d08344b8f3d46e0d40ff90cd4ea2d24b53f63d Mon Sep 17 00:00:00 2001
+From: Mark Trapp <mark@marktrapp.com>
+Date: Thu, 24 Oct 2013 20:26:07 -0700
+Subject: [PATCH] Issue #1984180 by Mark Trapp: Add APCu support.
+
+---
+ apc.install | 10 ++++++++--
+ apc.module  | 13 ++++++++-----
+ 2 files changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/apc.install b/apc.install
+index bab073d..da3f1c9 100644
+--- a/apc.install
++++ b/apc.install
+@@ -10,11 +10,17 @@ function apc_requirements($phase) {
+ 
+   // Test APC.
+   $apc_enabled = (function_exists('apc_cache_info') && ($cache = @apc_cache_info('user', TRUE)));
+-  $meets_version = version_compare(phpversion('apc'), '3.1.1')>= 0;
++
++  if (extension_loaded('apcu')) {
++    $meets_version = version_compare(phpversion('apc'), '4.0.2') >= 0;
++  }
++  else {
++    $meets_version = version_compare(phpversion('apc'), '3.1.1') >= 0;
++  }
+ 
+   $requirements['apc'] = array(
+     'title' => $t('APC'),
+-    'value' => $apc_enabled ? ($meets_version ? phpversion('apc') : $t('APC needs version >=3.1.1')) : $t('Not available'),
++    'value' => $apc_enabled ? ($meets_version ? phpversion('apc') : $t('APC needs APC version >=3.1.1 or APCu version >=4.0.2')) : $t('Not available'),
+     'severity' => $apc_enabled && $meets_version ? ($cache['num_entries'] ? REQUIREMENT_OK : REQUIREMENT_WARNING) : REQUIREMENT_ERROR,
+   );
+ 
+diff --git a/apc.module b/apc.module
+index 31c5f2c..03a1924 100644
+--- a/apc.module
++++ b/apc.module
+@@ -92,11 +92,14 @@ function apc_form_system_performance_settings_alter(&$form, $form_state) {
+     '#value' => t('Clear APC user cache'),
+     '#submit' => array('apc_clear_user_cache'),
+   );
+-  $form['clear_cache']['apc_opcode'] = array(
+-    '#type' => 'submit',
+-    '#value' => t('Clear APC opcode cache'),
+-    '#submit' => array('apc_clear_opcode_cache'),
+-  );
++
++  if (!extension_loaded('apcu')) {
++    $form['clear_cache']['apc_opcode'] = array(
++      '#type' => 'submit',
++      '#value' => t('Clear APC opcode cache'),
++      '#submit' => array('apc_clear_opcode_cache'),
++    );
++  }
+ }
+ 
+ /**
+-- 
+1.8.3.4 (Apple Git-47)
+

@@ -1,0 +1,236 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function cxense_permission() {
+  $permissions['administer cxense settings'] = array(
+    'title' => t('Administer Cxense settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_help().
+ */
+function cxense_help($path, $arg) {
+  if ($path == 'admin/help#cxense') {
+    return t('Módulo para configuración de Cxense');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function cxense_menu() {
+  $items=array();
+  
+  $items['admin/config/system/cxense'] = array(
+    'title'            => t('Cxense settings'),
+    'description'      => t('Configure settings for Cxense'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('cxense_admin_settings_form'),
+    'access arguments' => array('administer cxense settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'cxense.admin.inc',
+  );
+  return $items;
+}
+/**
+ * Implements hook_init().
+ */
+function cxense_init(){
+  $statuscxense=variable_get('cxense_status',FALSE);
+  if(arg(0)=='node' && $statuscxense){
+    add_default_node_metatags_harcode(arg(1));
+    $cxense_accountid=variable_get('cxense_accountid','');
+    $cxense_siteid=variable_get('cxense_siteid','');
+    $cxense_track=variable_get('cxense_track','');
+    
+    $cxenseJS ='var cX = cX || {}; cX.callQueue = cX.callQueue || [];';
+    $cxenseJS.='cX.callQueue.push(["setAccountId", "'.$cxense_accountid.'"]);';
+    $cxenseJS.='cX.callQueue.push(["setSiteId", "'.$cxense_siteid.'"]);';
+    $cxenseJS.='cX.callQueue.push(["'.$cxense_track.'"]);';
+    $cxenseJS.='(function(){try{var scriptEl=document.createElement("script");';
+    $cxenseJS.='scriptEl.type="text/javascript";scriptEl.async = "async";';
+    $cxenseJS.='scriptEl.src=("https:"==document.location.protocol)?"https://scdn.cxense.com/cx.js":"http://cdn.cxense.com/cx.js";';
+    $cxenseJS.='var targetEl=document.getElementsByTagName("script")[0];';
+    $cxenseJS.='targetEl.parentNode.insertBefore(scriptEl, targetEl); } catch (e) {};} ());';
+    drupal_add_js($cxenseJS, array('type' => 'inline', 'scope' => 'footer'));
+  }
+}
+/**
+ * Implements helper module settings
+ */
+function _get_cxense_settings(){
+  return array(
+    'accountid' => variable_get('cxense_accountid',''),
+    'siteid' => variable_get('cxense_accountid',''),
+    'track' => variable_get('cxense_track',''),
+  );
+}
+/**
+ * Agrega metatags al header de la pagina
+ * recibe un array con todos los datos de los metatags
+ * @param array $elements
+ */
+function add_default_metatags_harcode($elements = array()) {
+  if (!empty($elements)) {
+    foreach ($elements as $key => $element) {
+      drupal_add_html_head($element['element'], $key);
+    }
+  }
+}
+
+/**
+ * 
+ * @param int $nid
+ */
+function add_default_node_metatags_harcode($nid) {
+  if(!isset($nid) || empty($nid))
+    return NULL;
+
+  $node=node_load($nid);
+  if(!$node)
+    return NULL;
+
+  $elements=array();
+  $elements[]= array(
+    'key' => 'Cxcontenttype',
+    'element' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'cXenseParse:imx:contenttype',
+        'content' => arg(0),
+      ),
+    )
+  );
+  $elements[]=array(
+    'key' => 'cxnodetype',
+    'element' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'cXenseParse:imx:nodetype',
+        'content' => $node->type,
+      ),
+    )
+  );
+  $elements[]=array(
+    'key' => 'cxnodeid',
+    'element' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'cXenseParse:recs:articleid',
+        'content' => $nid,
+      ),
+    )
+  );
+  $elements[]=array(
+    'key' => 'cxnodepublish',
+    'element' => array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'cXenseParse:recs:publishtime',
+        'content' => gmdate("Y-m-d\TH:i:s.000\Z", $node->created),
+      ),
+    )
+  );
+  $image=_get_image_from_field($node,'field_image');
+  if ($image) {
+    $elements[] = array(
+      'key' => 'cxnodeimg',
+      'element' => array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'name' => 'cXenseParse:imx:img-principal',
+          'content' => $image['url'],
+        ),
+      )
+    );
+    if(isset($image['styles']) && count($image['styles']>0)){
+      foreach($image['styles'] as $key => $value){
+        $elements[] = array(
+          'key' => 'cxnodeimg-'.$key,
+          'element' => array(
+            '#tag' => 'meta',
+            '#attributes' => array(
+              'name' => 'cXenseParse:imx:img-'.$key,
+              'content' => $value,
+            ),
+          )
+        );
+        
+      }
+    }
+  }
+  add_default_metatags_harcode($elements);
+}
+function _get_image_from_field(&$node,$field){
+  $fields=field_get_items('node', $node, $field);
+  $image=array();
+  foreach($fields as $field){
+    $image=array(
+      'fid' => $field['fid'],
+      'url' => file_create_url($field['uri']),
+      'alt' => $field['alt'],
+      'styles' => array(
+        'thumbnail' => image_style_url('thumbnail', $field['uri']),
+        'medium'    => image_style_url('medium', $field['uri']),
+        'large'     => image_style_url('large', $field['uri']),
+        'grande200px' => image_style_url('medium', $field['uri']),
+      )
+    );
+  }
+  return $image;
+}
+/***********************************************************************************************************/
+/**
+ * Implements hook_block_info().
+ */
+function cxense_block_info() {
+  $status=variable_get('cxense_status',0);
+  $regionname=variable_get('cxense_siteid','');
+  return array(
+    'cxense_node_block' => array(
+      'info'  => t('Cxense Node Block'),
+      'cache'  => DRUPAL_CACHE_PER_PAGE,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'node/*',
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function cxense_block_view($delta = '') {
+  switch ($delta) {
+    /*Content Left*/
+    case 'cxense_node_block':
+      $block = array(
+        'content' => '<div id="cX-root" style="display:none"></div>',
+      );
+    break;
+  }
+  return $block;
+}
+//Load template files from this module path
+/**
+ * Implements hook_theme_registry_alter()
+**/
+function cxense_theme_registry_alter(&$theme_registry) {
+  $mod_path = drupal_get_path('module', 'cxense').'/templates';
+  $theme_registry_copy = $theme_registry;       // munge on a copy
+  _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'pow', $mod_path);
+  $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+  $hooks = array('node');
+  foreach ($hooks as $h) {
+    _cxense_insert_after_first_element($theme_registry[$h]['theme paths'], $mod_path);
+  }
+}
+/**
+ * Helper function for re-ordering arrays (needed by theme_registry_alter)
+*/
+function _cxense_insert_after_first_element(&$a, $element) {
+  if(is_array($a)) {
+    $first_element = array_shift($a);
+    array_unshift($a, $first_element, $element);
+  }
+}

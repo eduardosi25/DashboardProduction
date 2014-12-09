@@ -1,0 +1,482 @@
+<?php
+/**
+ * @file
+ * The main file for the module.
+ */
+
+/**
+ * Implements hook_libraries_info().
+ */
+function imx_helpers_libraries_info() {
+  $libraries = array();
+
+  // jStorage
+  $libraries['jstorage'] = array(
+    'name' => 'jStorage library',
+    'vendor url' => 'http://www.jstorage.info/',
+    'download url' => 'https://github.com/andris9/jStorage/zipball/master',
+    'version callback' => '_imx_helpers_jstorage_version',
+    'version arguments' => array('1','2'),
+    'versions' => array(
+      '1' => array(),
+      '2' => array(),
+    ),
+    'files' => array(
+      'js' => array(
+        'jstorage.js',
+      ),
+    ),
+    'variants' => array(
+      'minified' => array(
+        'files' => array(
+          'js' => array(
+            'jstorage.min.js',
+          ),
+        ),
+        'variant callback' => '_imx_helpers_test_installed',
+        'variant arguments' => array(),
+      ),
+    ),
+  );
+
+  // Mobile Detect
+  $libraries['Mobile_Detect'] = array(
+    'name' => 'Mobile Detect',
+    'vendor url' => 'http://mobiledetect.net',
+    'download url' => 'https://raw.github.com/serbanghita/Mobile-Detect/master/Mobile_Detect.php',
+    'version callback' => '_imx_helpers_mobiledetect_version',
+    'files' => array(
+      'php' => array('Mobile_Detect.php')
+    ),
+    'versions' => array(
+      '2' => array(),
+    )
+  );
+
+  return $libraries;
+}
+
+/**
+ * Gets the version of jStorage library.
+ */
+function _imx_helpers_jstorage_version($library, $version) {
+  return $version;
+}
+
+/**
+ * Support version 2 of this library.
+ */
+function _imx_helpers_mobiledetect_version($library, $version) {
+  return 2;
+}
+
+/**
+ * Detects whether the variant is installed or not.
+ *
+ * Determines if the JS file exists.
+ */
+function _imx_helpers_test_installed($library, $name, $args) {
+  // Make sure the file exists.
+  $path = DRUPAL_ROOT . '/' . $library['library path'] . '/';
+  $file = file_exists($path . 'jstorage.min.js');
+  if (!$file) {
+    return FALSE;
+  }
+  else {
+    return TRUE;
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function imx_helpers_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#imx_helpers':
+      $output = '';
+      $output .= '<h3>' . t('imx_helpers Help') . '</h3>';
+      $output .= '<h4>' . t('What do we consider a splash page?') . '</h4>';
+      $output .= '<p>' . t("We define a splash page as being content that shows up at a specified interval, at a specified location, one time. If someone goes to a certain page for the first time, we want to make sure the splash content shows up. But if the person is coming from an internal link on the site, we don't want the splash content to show up over and over again (otherwise, the splash page would become a nuisance).") . '</p>';
+      $output .= '<p>' . t('We determine how often the splash page should show up by what is defined under the "When" tab.') . '</p>';
+      return $output;
+  }
+}
+
+
+function imx_helpers_init(){
+  global $theme_key;
+  //Cargar scripts solo en theme default
+  $theme_default=variable_get('theme_default','');
+  $admin_theme=variable_get('admin_theme','');
+  if($admin_theme!==$theme_key && $admin_theme!==$theme_default){
+    drupal_add_js(drupal_get_path('module','imx_helpers').'/imx_helpers.js');
+    $loaded=variable_get('imx_helpers_loaded',FALSE);
+    if($loaded){
+      //Validar url en segunda version
+
+      //Load SlideJS for Gallerie nodes
+      //Home
+      $args=arg();
+      if(drupal_is_front_page()){
+        drupal_add_js(drupal_get_path('module','imx_helpers').'/js/home-slidesjs.js');
+      }
+      //Canales
+      if( $args[0]=='taxonomy' && (isset($args[2]) && !empty($args[2])) ){
+        $taxonomy=taxonomy_term_load((int)$args[2]);
+        if($taxonomy->vid==2){
+          drupal_add_js(drupal_get_path('module','imx_helpers').'/js/taxonomy-slidesjs.js');
+        }
+      }
+      //Nodes
+      if( $args[0]=='node'){
+        //General scripts
+        add_libraries_node();
+        $node=node_load((int)$args[1]);
+        //Selective scripts by node type
+        if($node->type==='gallerie'){
+          drupal_add_js(drupal_get_path('module','imx_helpers').'/js/slidesjs.js', array('type' => 'file', 'scope' => 'footer', 'weight' => '1'));
+          drupal_add_js(drupal_get_path('module','imx_helpers').'/js/jquery.zoom.min.js', array('type' => 'file', 'scope' => 'footer', 'weight' => '2'));
+        }
+        drupal_add_js(drupal_get_path('module','imx_helpers').'/js/helpers.js', array('type' => 'file', 'scope' => 'footer', 'weight' => '0'));
+      }
+    }
+  }
+}
+
+function add_libraries_node(){
+  //Add fixed
+  drupal_add_js(drupal_get_path('module','imx_helpers').'/js/nodes.js', array('type' => 'file', 'scope' => 'header', 'weight' => '1'));
+}
+
+/**
+ * Funciones helpers
+ */
+/**
+ * Search and return a cache file
+ * @filename string
+ */
+function _search_cache($filename = NULL) {
+  if (!$filename)
+    return false;
+  $filename = DRUPAL_ROOT.'/cache/'.$filename.'.cache';
+  if (file_exists($filename)) {
+    //return json_decode(file_get_contents($filename));
+    return unserialize(file_get_contents($filename));
+  }
+  return false;
+}
+/**
+ * Search and delete a cache file
+ * @filename string
+ */
+function _flush_cache($filename = NULL) {
+  if (!$filename)
+  return false;
+  $filename = DRUPAL_ROOT.'/cache/'.$filename.'.cache';
+  if (file_exists($filename)) {
+    return unlink($filename);
+  }
+  return false;
+}
+/**
+ * Create a cache file
+ * @filename string
+ * @content arrays
+ */
+function _create_cache($filename = NULL, $content = array()) {
+  if (!$filename || !$content)
+    return false;
+  $content = serialize($content); //Me esta pasando a objeto, probar serialize
+  $filename = DRUPAL_ROOT.'/cache/'.$filename.'.cache';
+  return file_put_contents($filename, $content, LOCK_EX);
+}
+ 
+/**
+ * Get summary from nodes
+ */
+function node_get_summary($node){
+  if(!$node){
+    return false;
+  }
+  $field=field_get_items('node',$node,'body');
+  if(isset($field[0]['summary']) && !empty($field[0]['summary'])){
+    $summary=strip_tags($field[0]['summary'],'<p>');
+  }else{
+    $summary=drupal_substr(strip_tags($field[0]['value'],'<p>'),0,300);
+  }
+  unset($node,$field);
+  return $summary;
+}
+
+function get_user_profile_html($entity, $type='node'){
+  $data=get_user_profile_from_entity($entity, $type);
+
+  $html=array();
+
+  if(isset($data['url']) && !empty($data['url'])){
+    $data['picture']='<a href="'.$data['url'].'"><img src="'.$data['picture'].'" alt="'.$data['name'].'" width="100%" height="auto" /></a>';
+    $data['name']='<a href="'.$data['url'].'"><span class="editor_name">'.$data['name'].'</span><span class="rolEditor"> | '.$data['rol'].'</span></a>';
+  }else{
+    $data['picture']='<img src="'.$data['picture'].'" alt="'.$data['name'].'" width="100%" height="auto" />';
+    $data['name']='<span class="editor_name">'.$data['name'].'</span>';
+  }
+
+  $html[]='<div id="followme_wrapper" class="left">';
+  $html[]='<div class="editor-pic left">'.$data['picture'].'</div>';
+  $html[]='<div class="followme-content left">';
+  $html[]='<div class="editor-info left">';
+  $html[]='<p class="editor_name_content">'.$data['name'].'</p>';
+  $html[]='<p class="editor_summary_content"><span class="editor_summary">'.$data['summary'].'</span></p>';
+  $html[]='<div class="shares_class left">';
+  $html[]=isset($data['social']['twitter']) && !empty($data['social']['twitter']) ? '<a href="https://twitter.com/'.str_replace('@','',$data['social']['twitter']).'" class="twitter-follow-button left shares" data-show-count="false">Seguir a '.$data['social']['twitter'].'</a>' : '';
+  $html[]=isset($data['social']['facebook']) && !empty($data['social']['facebook']) ? '<div class="fb-follow left shares" data-href="http://www.facebook.com/'.$data['social']['facebook'].'" data-colorscheme="light" data-layout="standard" data-width="20" data-show-faces="false"></div>' : '';
+  $html[]=isset($data['social']['googleplus']) && !empty($data['social']['googleplus']) ? '<div class="g-plusone right shares" data-size="medium" data-href="'.$data['social']['googleplus'].'"></div>' : '';
+  $html[]='</div>';
+  $html[]='</div>';
+  $html[]='</div>';
+  $html[]='</div>';
+
+
+  return implode('',$html);
+}
+
+/**
+ * @param $node
+ * @return mixed
+ */
+function get_user_profile_from_entity($entity, $type='node'){
+  if(!isset($entity) || empty($entity)){
+    return false;
+  }
+  $picture    = variable_get('user_picture_default');
+  $twitter    = check_plain(theme_get_setting('twitter_url'   , 'rsvponline')); 
+  $facebook   = check_plain(theme_get_setting('facebook_url'  , 'rsvponline')); 
+  $googleplus = check_plain(theme_get_setting('googleplus_url', 'rsvponline')); 
+  $youtube    = check_plain(theme_get_setting('youtube_url'   , 'rsvponline'));
+  $instagram  = check_plain(theme_get_setting('instagram_url' , 'rsvponline'));
+  
+  if($type=='node'){
+    //Search user reference
+    if(count($entity->field_colaborador)>0){
+      $profile=field_get_items('node',$entity,'field_colaborador');
+      $profile=user_load($profile['0']['uid']);
+    }else if(count($entity->field_author_content)>0){
+      $author=field_get_items('node',$entity,'field_author_content');
+      $author=isset($author[0]['value']) && !empty($author[0]['value']) ? $author[0]['value'] : NULL;
+      $profile= new stdClass();
+      $profile->name=$author;
+      $profile->roles=array(99=>'Redacción');
+
+    }else if(isset($entity->uid) && $entity->uid>0){
+      $profile=user_load($entity->uid);
+    }else{
+      $profile=FALSE;
+    }
+  }else if($type=='user'){
+    $profile=$entity;
+  }
+  unset($entity);
+  
+  if(is_object($profile)){
+    $profile=array(
+      'uid'     => $profile->uid,
+      'mail'    => $profile->mail,
+      'login'   => $profile->login,
+      'rol'     => array_key_exists(8,$profile->roles) ? 'Editor' : (array_key_exists(5,$profile->roles) ? 'Colaborador' : 'Redacción'),
+      'name'    => ucwords($profile->name),
+      'url'     => isset($profile->uid) && !empty($profile->uid) ? url(drupal_get_path_alias('user/'.$profile->uid),array('absolute'=>true)) : NULL,
+      'picture' => isset($profile->picture) && !empty($profile->picture) ? file_create_url($profile->picture->uri) : $picture,  
+      'summary' => $profile->field_resena[LANGUAGE_NONE][0]['value'],
+      'social'  => array(
+        'facebook'   => isset($profile->field_facebook) && count($profile->field_facebook)>0 ? $profile->field_facebook[LANGUAGE_NONE][0]['value'] : $facebook,
+        'twitter'    => isset($profile->field_twitter) && count($profile->field_twitter)>0 ? $profile->field_twitter[LANGUAGE_NONE][0]['value'] : $twitter,
+        'googleplus' => isset($profile->field_google) && count($profile->field_google)>0 ? $profile->field_google[LANGUAGE_NONE][0]['value'] : NULL,
+        'linkedin'   => isset($profile->field_linkedin) && count($profile->field_linkedin)>0 ? $profile->field_linkedin[LANGUAGE_NONE][0]['value'] : NULL,
+        'youtube'    => isset($profile->field_youtube) && count($profile->field_youtube)>0 ? $profile->field_youtube[LANGUAGE_NONE][0]['value'] : $youtube,
+        'instagram'  => isset($profile->field_instagram) && count($profile->field_instagram)>0 ? $profile->field_instagram[LANGUAGE_NONE][0]['value'] : $instagram,
+      ),
+      'website' => isset($profile->field_webpage) && count($profile->field_webpage)>0 ? $profile->field_webpage[LANGUAGE_NONE][0]['value'] : NULL,
+      'background' => isset($profile->field_background) && count($profile->field_background)>0 ? file_create_url($profile->field_background[LANGUAGE_NONE][0]['uri']) : NULL,
+    );
+  }
+  return $profile;
+}
+
+/***************
+ * HELPER MULTIMEDIA
+ */
+
+/** funciones para cache de varnish */
+function curl_clear_cache_varnish_varnishadm ( $Link = "none" ){
+  /*
+      $Link = ( $Link == "none" ) ? "/" : $Link;
+
+        $ch = curl_init();
+      $info = "";
+      $data = "";
+
+      $options = array(
+                  CURLOPT_URL => 'http://'. IP_VARNISH_LOCAL . $Link ,
+                  CURLOPT_HTTPHEADER => array('Host: www.excelsior.com.mx'),
+                  CURLOPT_CUSTOMREQUEST => 'BAN',
+                  CURLOPT_HEADER => TRUE,
+                  CURLOPT_RETURNTRANSFER => TRUE
+          );
+
+      curl_setopt_array( $ch, $options );
+
+          $curl_errno = curl_errno( $ch );
+                $data = curl_exec( $ch );
+
+            curl_close( $ch ); //close
+
+          if ( ( strlen ( trim( $data ) ) > 0 ) && ( $curl_errno == 0 ) ) {
+              $info = true;
+          }//if
+
+      return ( $info );
+  */
+}
+
+function curl_clear_cache_varnish_x_refresh ( $Link = "none" ){
+  /*
+      $Link = ( $Link == "none" ) ? "/" : $Link;
+
+        $ch = curl_init();
+      $info = "";
+      $data = "";
+
+      $options = array(
+                  CURLOPT_URL => 'http://' . IP_VARNISH_LOCAL . $Link ,
+                  CURLOPT_HTTPHEADER => array( 'REFRESH: varnish refresh' ),
+                  CURLOPT_HEADER => TRUE,
+                  CURLOPT_RETURNTRANSFER => TRUE
+          );
+
+      curl_setopt_array( $ch, $options );
+
+          $curl_errno = curl_errno( $ch );
+                $data = curl_exec( $ch );
+
+            curl_close( $ch ); //close
+
+          if ( ( strlen ( trim( $data ) ) > 0 ) && ( $curl_errno == 0 ) ) {
+              $info = true;
+          }//if
+
+      return ( $info );
+  */
+}
+
+function _get_youtubeid($url) {
+  $match =  '@';
+  $match .=  '(?:https?\:)?';                           #opcional
+  $match .=   '(//www\.youtube\.com/)';                 #forzoso
+  $match .=    '(?:';                                   #agrupador inicio
+  $match .=      '(embed/|watch\?v=|watch\?.+&v=|v/)';  #variación forzoso
+  $match .=    ')';                                     #agrupador fin
+  $match .=    '([\w-]{11})';                           #forzoso
+  $match .=  '@i';
+  $matches = array();
+  preg_match($match, $url, $matches);
+  return isset($matches[3])?$matches[3]:false;
+}
+
+function get_url_videos ($embed , $id_video) {
+  $parse_url = array();
+  // print_r(' parse_url =='.$parse_url);
+  parse_str($embed,$parse_url);
+  // Armando algo como esto //www.youtube.com/embed/oOn9UeOat-U?list=PLYnzMSw5fD7SoebodXMobbj1H_XJjdfVo
+  $src = "//www.youtube.com/embed/" . $id_video;
+  if ( count($parse_url) > 1) {
+    $src .= '?';
+    $slice_parse = array_slice($parse_url,1); // quitamos el primer valor de arreglo
+    for ($i = 0; $i < count($slice_parse); $i++) {
+      $src .= key($slice_parse) .'='. current($slice_parse);
+      if ($i <> (count($slice_parse) - 1) ) {
+        $src .= '&';
+      }
+      next($slice_parse);
+    }
+
+  }
+  return $src;
+}
+
+/* *
+* $arra_asc_peso = ARREGLO A ORDENAR
+* $field = NOMBRE DEL CAMPO
+* $inverse = ASCENDENTE O DESCENDENTE
+*
+*/
+function array_asc_peso ($arra_asc_peso, $field, $inverse = false) {
+  $position = array();
+  $newRow = array();
+  // recorre un array a ordenar
+  foreach ($arra_asc_peso as $key => $row) {
+    /*  obtiene el indice  origina y valor del campo
+     *   [0] => 6 [1] => 2  [2] => 4
+     */
+    $position[$key]  = $row[$field];
+
+    // regresa el indice original  y valor de los campos
+    $newRow[$key] = $row;
+  }
+  // ordena de forma descendente  [0] => 6 [2] => 4  [1] => 2
+  if ($inverse) {
+    arsort($position);
+  }
+  /* ordena de forma ascendente x valor de campo regresando el indice original
+  *  [1] => 2  [2] => 4  [0] => 6
+  */
+  else {
+    asort($position);
+
+  }
+  $returnArray = array();
+  // recorre el array ordenado
+  foreach ($position as $key => $pos) {
+    // hace un arreglo con nuevos indices
+    $returnArray[] = $newRow[$key];
+
+  }
+  return $returnArray;
+}
+
+/**
+ * Genera tags html
+ * @param array $tags
+ * ie.
+ * $tags = array(
+ *   array(
+ *     'meta' => array(
+ *       'http-equiv' => 'refresh',
+ *       'content' => '30',
+ *     )
+ *   ),
+ *   array(
+ *     'meta' => array(
+ *     'http-equiv' => 'refresh2',
+ *     'content' => '30',
+ *     )
+ *   ),
+ * );
+ * @return void
+ */
+function _create_html_tag($tags, $string_key) {
+  $attributes = array();
+  $new_element = array();
+  $index = 0;
+  foreach ($tags as $key => $tag) {
+    foreach ($tag as $tag_key => $tag_attributes) {
+      $new_element = array(
+        '#tag' => $tag_key,
+        '#attributes' => $tag_attributes,
+      );
+    }
+    drupal_add_html_head($new_element, $string_key.$index);
+    unset($new_element);
+    unset($attributes);
+    $index++;
+  }
+}

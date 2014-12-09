@@ -1,0 +1,50 @@
+<?php
+/**
+ * @file
+ * Installation file for Google Analytics module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function digiteka_install() {
+  variable_set('digiteka_status',FALSE);
+  //Default values
+  $settings=array(
+    'mdtk'   => '09847474',
+    'zone'   => '0',
+    'target' => 'ultimedia_wrapper',
+    'date'   => 'created',
+    'async'  => FALSE,
+    'resize' => TRUE,
+  );
+  variable_set('digiteka_settings',$settings);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function digiteka_uninstall() {
+  #Delete all variables
+  variable_del('digiteka_status');
+  variable_del('digiteka_settings');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function digiteka_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $settings=variable_get('digiteka_settings',NULL);
+    if (!isset($settings) || empty($settings)) {
+      $requirements['digiteka'] = array(
+        'title' => t('Settings Digiteka'),
+        'description' => t('You need to set the config for this <a href="@url">Digiteka Integration</a>.', array('@url' => '/admin/config/system/digiteka')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

@@ -1,0 +1,92 @@
+.sidebars #cxense-rels-widget
+{
+	background-color:#f9f9f9
+}
+
+.sidebars #cxense-rels-list
+{
+	display:block;
+	margin:0 20px 20px
+}
+
+.sidebars .cxense-rels-list-item
+{
+	display:inline-block;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	border-bottom:1px solid #ccc
+}
+
+.sidebars .cxense-rels-list-item:last-child
+{
+	border:none
+}
+
+.sidebars .cxense-rels-list-item-link
+{
+	display:inline-block
+}
+
+.sidebars .cxense-rels-list-item-title
+{
+	display:inline-block;
+	float:right;
+	width:125px;
+	font:14px/18px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.sidebars .cxense-rels-list-item-image
+{
+	float:left;
+	width:125px;
+	height:91px
+}
+
+.sidebars.expanded #cxense-rels-widget
+{
+	background-color:#f9f9f9
+}
+
+.sidebars.expanded #cxense-rels-list
+{
+	display:block;
+	margin:0;
+	margin-bottom:20px
+}
+
+.sidebars.expanded .cxense-rels-list-item
+{
+	display:block;
+	float:left;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	width:50%;
+	height:205px;
+	border:none;
+	text-align:center
+}
+
+.sidebars.expanded .cxense-rels-list-item:last-child
+{
+	border:none
+}
+
+.sidebars.expanded .cxense-rels-list-item-link
+{
+	width:200px;
+	text-align:left
+}
+
+.sidebars.expanded .cxense-rels-list-item-title
+{
+	display:inline-block;
+	margin-top:5px;
+	width:200px;
+	font:14px/18px 'Droid Serif',Georgia,'Times New Roman',serif
+}
+
+.sidebars.expanded .cxense-rels-list-item-image
+{
+	width:200px;
+	height:145px
+}

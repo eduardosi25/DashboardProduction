@@ -1,0 +1,10 @@
+name = "Cxense Integration"
+description = "Cxense Integration"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = cxense.module
+files[] = cxense.admin.inc
+files[] = cxense.install
+configure = admin/config/system/cxense

@@ -1,0 +1,47 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function pandg_install() {
+  variable_set('pandg_status',FALSE);
+  variable_set('pandg_debug',FALSE);
+  variable_set('pandg_partnername','inventmx');
+  variable_set('pandg_sendcategory',FALSE);
+  variable_set('pandg_vocabulary','');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function pandg_uninstall() {
+  #Delete all variables
+  variable_del('pandg_status');
+  variable_del('pandg_debug');
+  variable_del('pandg_partnername');
+  variable_del('pandg_sendcategory');
+  variable_set('pandg_vocabulary','');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function pandg_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $sitename=variable_get('pandg_partnername', '');
+    if (!isset($sitename) || empty($sitename)) {
+      $requirements['pandg'] = array(
+        'title' => t('Partner Name P&G Integration'),
+        'description' => t('You need to set the minimal config for this <a href="@url">P&G Integration</a>.', array('@url' => '/admin/config/system/pandg')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

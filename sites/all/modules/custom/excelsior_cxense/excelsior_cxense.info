@@ -1,0 +1,7 @@
+name = cxense 
+description = Módulo con herramientas para la presentación de relacionadas cXense en el sitio
+core = 7.x
+dependencies[] = system
+dependencies[] = user
+package = Excelsior
+files[] = inc/cx_search_class.php

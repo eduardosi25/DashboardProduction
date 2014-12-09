@@ -1,0 +1,114 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function imx_dax_permission() {
+  $permissions['administer imx_dax settings'] = array(
+    'title' => t('Administer imx_dax settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function imx_dax_help($path, $arg) {
+  if ($path == 'admin/help#imx_dax') {
+    return t('Módulo para configuración de imx_dax');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function imx_dax_menu() {
+  $items=array();
+  
+  $items['admin/config/system/imx_dax'] = array(
+    'title'            => t('imx_dax settings'),
+    'description'      => t('Configure settings for imx_dax'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('imx_dax_admin_settings_form'),
+    'access arguments' => array('administer imx_dax settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'imx_dax.admin.inc',
+  );
+  return $items;
+}
+
+function imx_dax_init(){
+  $statusimx_dax=variable_get('imx_dax_status',FALSE);
+  if(arg(0)=='node' && $statusimx_dax){
+    $imx_dax_loadername=variable_get('imx_dax_loadername','');
+    $headerJS='window._imx_dax = window._imx_dax || [];_imx_dax.push({article:"auto"});!function (e, f, u) {e.async = 1;e.src = u;f.parentNode.insertBefore(e, f);}(document.createElement("script"), document.getElementsByTagName("script")[0], "http://cdn.imx_dax.com/libtrc/inventmx-'.$imx_dax_loadername.'/loader.js");';
+    $footerJS='window._imx_dax = window._imx_dax || [];_imx_dax.push({flush:true});';
+    drupal_add_js($headerJS, array('type' => 'inline', 'scope' => 'header', 'weight' => 99));
+    drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer'));
+    drupal_add_css(drupal_get_path('module', 'imx_dax').'/imx_dax.css');
+  }
+}
+
+function imx_dax_block_info() {
+  $status=variable_get('imx_dax_status',0);
+  $regionname=variable_get('imx_dax_regionname','');
+  return array(
+    'imx_dax_node_block' => array(
+      'info'  => t('imx_dax Node Block'),
+      'cache'  => DRUPAL_CACHE_GLOBAL,
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages' => 'node/*',
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function imx_dax_block_view($delta = '') {
+  switch ($delta) {
+    /*Content Left*/
+    case 'imx_dax_node_block':
+      $block = array(
+        'content' => _imx_dax_node_block(),
+      );
+    break;
+  }
+  return $block;
+}
+
+
+function _imx_dax_node_block(){
+  $statusimx_dax=variable_get('imx_dax_status',FALSE);
+  if(arg(0)=='node' && $statusimx_dax){
+    return '<div id="imx_dax-belowarticlethumbnails-mix"></div>
+<script type="text/javascript">
+window._imx_dax = window._imx_dax || [];
+_imx_dax.push({
+  mode:"hybrid-thumbs-2r",
+  container:"imx_dax-belowarticlethumbnails-mix",
+  placement:"Below Article Thumbnails",
+  target_type:"mix"
+});
+</script>';
+  }
+  return null; 
+}
+
+//Load template files from this module path
+/**
+ * Implements hook_theme_registry_alter()
+**/
+function imx_dax_theme_registry_alter(&$theme_registry) {
+  $mod_path = drupal_get_path('module', 'imx_dax').'/templates';
+  $theme_registry_copy = $theme_registry;       // munge on a copy
+  _theme_process_registry($theme_registry_copy, 'phptemplate', 'theme_engine', 'pow', $mod_path);
+  $theme_registry += array_diff_key($theme_registry_copy, $theme_registry);
+  $hooks = array('node');
+  foreach ($hooks as $h) {
+    _imx_dax_insert_after_first_element($theme_registry[$h]['theme paths'], $mod_path);
+  }
+}
+/**
+ * Helper function for re-ordering arrays (needed by theme_registry_alter)
+*/
+function _imx_dax_insert_after_first_element(&$a, $element) {
+  if(is_array($a)) {
+    $first_element = array_shift($a);
+    array_unshift($a, $first_element, $element);
+  }
+}

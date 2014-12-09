@@ -1,0 +1,7 @@
+name = Tópicos 
+description = Módulo para la presentación de tópicos en Drupal 7 con el API de cXense.
+core = 7.x
+dependencies[] = system
+dependencies[] = user
+dependencies[] = field_collection
+package = Excelsior

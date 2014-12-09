@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * My Google Custom Search Engine
+ *
+ * This search is set up to work with the two page search option. See: www.google.co.uk/cse/
+ *
+ */
+function mygooglecse_block_info() {
+    // This example comes from node.module.
+    $blocks['mygooglecse'] = array(
+        'info' => t('My Google Custom Search'),
+        'cache' => DRUPAL_CACHE_PER_PAGE,
+    );
+    return $blocks;
+}
+
+function mygooglecse_block_view($delta = '') {
+    $block = array(
+        'subject' => '',
+        'content' => '',
+    );
+    if ($delta == 'mygooglecse') {
+        $block['subject'] = t('');
+        $block['content'] = array(
+            '#theme' => 'mygooglecse',
+        );
+    }
+    return $block;
+}
+
+function mygooglecse_theme($existing, $type, $theme, $path) {
+    return array(
+        'mygooglecse' => array(
+            'variables' => array(
+                'mygooglecse_items' => NULL,
+            ),
+            'template' => 'mygooglecse',
+        ),
+    );
+}
+
+function template_preprocess_mygooglecse(&$variables) {
+    $variables['mygooglecse_items'] = drupal_get_form('mygooglecse_form');
+}
+
+function mygooglecse_form($form, &$form_state, $no_js_use = FALSE){
+    $form = array();
+    $form['mygooglecse']['parameter'] = array(
+        '#title' => t(''),
+        '#type' => 'textfield',
+        '#default_value' => isset($_REQUEST['as_q']) && !empty($_REQUEST['as_q']) ? $_REQUEST['as_q'] : '',
+        '#size' => 22,
+    );
+    $form['mygooglecse']['submit'] = array(
+        '#type' => 'submit',
+        '#value' => '',
+        '#submit' => array('mygooglecse_form_submit')
+    );
+    return $form;
+}
+
+function mygooglecse_form_submit($form, &$form_state){
+    $options = array(
+        'query' => array(
+            'as_q' => $form_state['values']['parameter']
+        )
+    );
+    drupal_goto('busqueda/google', $options);
+}
+
+/**
+ * Implementation of hook_block().
+ */
+/* function mygooglecse_block($op = 'list', $delta = 0, $edit = array()) {
+  if ($op == 'list') {
+  $blocks['google_custom_search']['info'] = t('My Google Custom Search');
+  // Note, we can't cache this block as it will be set up to include some javascript
+  // in the head of the page if the block is called from the cache this javascript
+  // won't be included.
+  $blocks['google_custom_search']['cache'] = BLOCK_NO_CACHE;
+  return $blocks;
+  }
+  else if ($delta == 'google_custom_search' && $op == 'view' && user_access('use my google custom search')) {
+  $block['title'] = t('Search');
+  drupal_add_js(drupal_get_path('module', 'mygooglecse') . '/mygooglecse.js', 'module', 'header');
+  // Note, the following comes from the first element code box on Google, but
+  // we have set the query parameter name here so it doesn't interfere with Drupal.
+  // See: libretechtips.com/tips-drupal7-drupal6/how-use-google-cse-drupal
+  $block['content'] = '<gcse:searchbox-only queryParameterName="my_gcs"></gcse:searchbox-only>';
+  return $block;
+  }
+  } */
+// We set up a permission to use the search. I did this mainly so that I could do
+// some final testing on the production site with admin access only first to
+// check that I had set it up correctly (i.e. you will need to remember to change
+// the url of your search results page on your Google search engines settings
+// page to the url for the production site.
+/* function mygooglecse_perm() {
+  return array('use my google custom search');
+  }*
+ */
+
+/**
+* Implementation of hook_menu()
+*/
+function mygooglecse_menu() {
+    // Here we set up the page where the results will display:
+    $items['busqueda/google'] = array(// Change this url to wherever you want the page to be
+        'title' => 'Búsqueda ',
+        'description' => 'My Google Custom Search',
+        'page callback' => 'mygooglecse_searchpage', // The function that will be called to set up the search page
+        'access arguments' => array('use_google_custom_search'), // Those with this permission will be allowed to see the results
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+function mygooglecse_permission() {
+    return array(
+        'use_google_custom_search' => array(
+            'title' => t('Use google custom search'),
+            'description' => t('Who can have access to the google search results page.'),
+        ),
+    );
+}
+
+// Here we set up the page:
+function mygooglecse_searchpage() {
+    // puts the call to your javascript file containing the Google code in the header
+    // of the page:
+    //drupal_add_js(drupal_get_path('module', 'mygooglecse') . '/mygooglecse.js');
+    // Now create the content of your page:
+    // This is the search box again - so that it also appears at the top of the search
+    // page.
+//    $content .= '<gcse:searchbox-only enableImageSearch="false" queryParameterName="as_q"></gcse:searchbox-only>';
+    // Drupal search link:
+    // This creates a link to the Drupal standard search from the Google results page:
+    //$content .= l(t('Advanced search'), 'search/node/' . $_GET['as_q']);
+    // This is the code for the results list.
+    // Note we also add the queryParameterName setting here to the code. See
+    // developers.google.com/custom-search/docs/element#supported_attributes
+    // for a full list of supported attributes.
+    // I've also set it so links to pages in the results open in the same window rather
+    // than a new tab/window which is the default.
+    drupal_set_title('Búsqueda: ' . $_REQUEST['as_q']);
+    drupal_add_js(drupal_get_path('module', 'mygooglecse') . '/mygooglecse.js');
+    $content = '';
+    $content .= '<gcse:searchresults-only queryParameterName="as_q" newWindow="false" resultsUrl="http://www.rsvponline.mx/busqueda/google" linkTarget="_self"></gcse:searchresults-only>';
+    return $content;
+}

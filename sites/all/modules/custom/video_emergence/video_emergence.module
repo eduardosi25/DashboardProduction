@@ -1,0 +1,57 @@
+<?php
+function video_emergence_init(){
+  if(arg(0)=='node'){
+    $node=node_load(arg(1));
+    if($node->type=='article'){
+      //Debug
+      error_reporting(E_ALL);
+      ini_set('display_errors', TRUE);
+      ini_set('display_startup_errors', TRUE);
+      //Add video ooyala player
+      _get_video_emergence();
+    }
+  }
+}
+function _get_video_emergence(){
+  $data=_get_video_urls();
+  if(!isset($data) || empty($data)){
+    return NULL;
+  }
+  $video=_find_video_emergence($data);
+  if(!isset($video) || empty($video)){
+    return $video;
+  }
+  drupal_add_js('http://player.ooyala.com/v3/5b47fa3fa53f4c3eb565aa6d3d7e74d9', 'external');
+  drupal_add_js(array('videoOoyala' => array('vid' => $video)), 'setting');
+  drupal_add_js(drupal_get_path('module', 'video_emergence') . '/video_emergence.js', 'file');
+  return NULL;
+}
+function _find_video_emergence($data){
+  foreach($data as $item){
+    if($item['node']==arg(1) && (isset($item['videoidooyala']) && !empty($item['videoidooyala']))){
+      return $item['videoidooyala'];
+    }
+  }
+  return NULL;
+}
+function _get_video_urls() {
+  //Search cache
+  $filename = 'videos_actitudfem';
+  $data = _search_cache($filename);
+  if (!$data) {
+    //Config Google Docs
+    $config = array(
+      'user' => 'webmaster@inventmx.com',
+      'pass' => '$5ap1d3CV$',
+      'shared' => array(
+        'key' => '0Aue3tObof_qddHgzRzJWbHBlSHdfTHFCVUI2UlBHcFE',
+      ),
+      'page' => 1,
+    );
+    //Load ZendGdata
+    module_load_include('inc', 'video_emergence', 'video_emergence.admin');
+    $data = zendGData($config);
+    _create_cache($filename, $data);
+  }
+  return $data;
+}

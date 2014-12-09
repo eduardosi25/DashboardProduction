@@ -1,0 +1,12 @@
+name = Ooyala Channels
+description = Allows the creation and management of Channels from the <a href="http://www.ooyala.com">Ooyala</a> video service.
+core = 7.x
+package = Ooyala
+dependencies[] = ooyala
+
+; Information added by Drupal.org packaging script on 2014-02-03
+version = "7.x-2.0-beta7"
+core = "7.x"
+project = "ooyala"
+datestamp = "1391398705"
+

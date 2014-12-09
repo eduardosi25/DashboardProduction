@@ -1,0 +1,11 @@
+name = "Node Analytics"
+description = "Node Analytics from Google Analytics API"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = node_analytics.module
+files[] = node_analytics.admin.inc
+files[] = node_analytics.install
+dependencies[] = imx_users
+configure = admin/config/system/node_analytics
