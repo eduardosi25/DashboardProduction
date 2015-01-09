@@ -7,7 +7,7 @@
 
     <title>Home | InventMx</title>
 
-    <link rel="stylesheet" type="text/css" href="../css/globals_style.css">
+    <link rel="stylesheet" type="text/css" href="web/css/globals_style.css">
 
 </head>
 <body>
