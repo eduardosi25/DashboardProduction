@@ -23,3 +23,16 @@ function get_cms_admin_paths(){
   $paths=implode("\n",$paths);
   return drupal_match_path($_GET["q"],$paths);
 }
+function get_frontend_paths(){
+  if(drupal_is_front_page()){
+    return true;
+  }else{
+    $paths=array(
+      'web',
+      'web/*',
+    );
+    $paths=implode("\n",$paths);
+    return drupal_match_path($_GET["q"],$paths);
+  }
+  return false;
+}
