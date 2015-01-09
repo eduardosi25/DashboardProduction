@@ -7,7 +7,7 @@
 
     <title>Home | InventMx</title>
 
-    <link rel="stylesheet" type="text/css" href="web/css/globals_style.css">
+    <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
 
 </head>
 <body>
@@ -56,10 +56,10 @@
 
     </footer>    
     
-    <script type="text/javascript" src="js/libs/inventmx_libs.min.js"></script>
-    <script type="text/javascript" src="js/site/alls.js"></script>
-    <script type="text/javascript" src="js/site/view.js"></script>
-    <script type="text/javascript" src="js/site/routing.js"></script>
+    <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>
+    <script type="text/javascript" src="/web/js/site/alls.js"></script>
+    <script type="text/javascript" src="/web/js/site/view.js"></script>
+    <script type="text/javascript" src="/web/js/site/routing.js"></script>
 </body>
 </html>
 

@@ -20,7 +20,7 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {            
-            var url = "/data/home/home.json";
+            var url = "/webdata/home/home.json";
             var params = "";
             
             /* params accordion */
@@ -32,7 +32,7 @@ $(function() {
             var id_section2 = "#section-home-contactos";
             
             /* render handlebars */
-            inventMx.page.wrapper_site.hide().load("app/inventmx/home/home.html", function () {
+            inventMx.page.wrapper_site.hide().load("/web/app/inventmx/home/home.html", function () {
                 inventMx.ajax.getAjax(url, params, function(resp) {
                     if (resp){
                         //$("#page").fadeIn(2000);
