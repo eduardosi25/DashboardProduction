@@ -51,26 +51,20 @@
             <div class="footer-site-invent"></div>
         </div>
         <p class="center">
-            Bucareli No. 1 Col. Centro, delegació Cuauhtémoc, C.P. 06000, México
+            Bucareli No. 1 Col. Centro, delegación Cuauhtémoc, C.P. 06000, México
         </p>
 
     </footer>    
-
-    <!-- <script data-main="js/site/main" src="js/libs/require.js"></script> -->
-    <!-- <script type="text/javascript" src="js/libs/jquery-1.8.3.min.js"></script> -->
-    <script type="text/javascript" src="/js/libs/inventmx_libs.min.js"></script>
-    <!-- <script type="text/javascript" src="js/libs/html5shiv.js"></script>
-    <script type="text/javascript" src="js/libs/underscore-min.js"></script>
-    <script type="text/javascript" src="js/libs/handlebars-v1.3.0.min.js"></script>
-    <script type="text/javascript" src="js/libs/backbone-min.js"></script>     -->
-    <script type="text/javascript" src="/js/site/alls.js"></script>
-    <script type="text/javascript" src="/js/site/view.js"></script>
-    <script type="text/javascript" src="/js/site/routing.js"></script>    
+    
+    <script type="text/javascript" src="js/libs/inventmx_libs.min.js"></script>
+    <script type="text/javascript" src="js/site/alls.js"></script>
+    <script type="text/javascript" src="js/site/view.js"></script>
+    <script type="text/javascript" src="js/site/routing.js"></script>
 </body>
 </html>
 
 <?php
- $rutafisica = "data/home/home.json";
+ /*$rutafisica = "data/home/home.json";
 
   $data_center = array();
 
@@ -134,6 +128,6 @@
   $data_center["data"]["sections"]["1"]["items"]["1"]["sumary"] = "Sitio web de la estación número 1 de la radio hablada en México. Sitio de noticias, finanza, negocios, deportes, vida, música y curiosidades.";  
   
 
-  file_put_contents($rutafisica, json_encode($data_center)); 
+  file_put_contents($rutafisica, json_encode($data_center)); */
 ?>
 
