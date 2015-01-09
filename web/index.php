@@ -7,7 +7,7 @@
 
     <title>Home | InventMx</title>
 
-    <link rel="stylesheet" type="text/css" href="css/globals_style.css">
+    <link rel="stylesheet" type="text/css" href="/css/globals_style.css">
 
 </head>
 <body>
@@ -58,14 +58,14 @@
 
     <!-- <script data-main="js/site/main" src="js/libs/require.js"></script> -->
     <!-- <script type="text/javascript" src="js/libs/jquery-1.8.3.min.js"></script> -->
-    <script type="text/javascript" src="js/libs/inventmx_libs.min.js"></script>
+    <script type="text/javascript" src="/js/libs/inventmx_libs.min.js"></script>
     <!-- <script type="text/javascript" src="js/libs/html5shiv.js"></script>
     <script type="text/javascript" src="js/libs/underscore-min.js"></script>
     <script type="text/javascript" src="js/libs/handlebars-v1.3.0.min.js"></script>
     <script type="text/javascript" src="js/libs/backbone-min.js"></script>     -->
-    <script type="text/javascript" src="js/site/alls.js"></script>
-    <script type="text/javascript" src="js/site/view.js"></script>
-    <script type="text/javascript" src="js/site/routing.js"></script>    
+    <script type="text/javascript" src="/js/site/alls.js"></script>
+    <script type="text/javascript" src="/js/site/view.js"></script>
+    <script type="text/javascript" src="/js/site/routing.js"></script>    
 </body>
 </html>
 
