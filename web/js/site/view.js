@@ -20,7 +20,7 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {            
-            var url = "/webdata/home/home.json";
+            var url = "/web/data/home/home.json";
             var params = "";
             
             /* params accordion */
