@@ -617,6 +617,10 @@ footer {
     header .wrapper-header ul {
       display: none; }
 
+  #wrapper-page-site {
+    max-width: 1950px;
+    min-height: 285px; }
+
   .wrapper-image-section1 {
     max-width: 100%;
     margin-bottom: -3px; }
@@ -703,72 +707,72 @@ footer {
 
   ul.red-invent-sections-sites li.sections-sites span.site-excelsior {
     margin: 0 auto 16px;
-    width: 144px;
+    width: 135px;
     height: 31px;
-    background-position: -69px -203px; }
+    background-position: -72px -203px; }
   ul.red-invent-sections-sites li.sections-sites span.site-imagen {
-    width: 137px;
+    width: 126px;
     height: 57px;
-    background-position: -70px -251px; }
+    background-position: -72px -247px; }
   ul.red-invent-sections-sites li.sections-sites span.site-reporte {
-    width: 138px;
+    width: 128px;
     height: 24px;
-    background-position: -72px -393px; }
+    background-position: -74px -383px; }
   ul.red-invent-sections-sites li.sections-sites span.site-cadenatres {
-    width: 142px;
+    width: 133px;
     height: 40px;
-    background-position: -70px -321px; }
+    background-position: -72px -316px; }
   ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen {
-    width: 136px;
+    width: 128px;
     height: 44px;
-    background-position: -73px -444px; }
+    background-position: -74px -434px; }
   ul.red-invent-sections-sites li.sections-sites span.site-salud180 {
     margin: 0 auto 16px;
-    width: 133px;
+    width: 123px;
     height: 38px;
-    background-position: -68px -566px; }
+    background-position: -70px -550px; }
   ul.red-invent-sections-sites li.sections-sites span.site-actitudfem {
-    width: 152px;
+    width: 142px;
     height: 36px;
-    background-position: -71px -832px; }
+    background-position: -73px -804px; }
   ul.red-invent-sections-sites li.sections-sites span.site-rsvp {
-    width: 113px;
+    width: 104px;
     height: 36px;
-    background-position: -89px -889px; }
+    background-position: -90px -860px; }
   ul.red-invent-sections-sites li.sections-sites span.site-melodijolola {
-    width: 147px;
+    width: 138px;
     height: 51px;
-    background-position: -73px -774px; }
+    background-position: -74px -748px; }
   ul.red-invent-sections-sites li.sections-sites span.site-atraccion360 {
     margin: 0 auto 23px;
-    width: 128px;
+    width: 116px;
     height: 30px;
-    background-position: -81px -959px; }
+    background-position: -85px -926px; }
   ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360 {
-    width: 166px;
+    width: 155px;
     height: 27px;
-    background-position: -61px -513px; }
+    background-position: -62px -500px; }
   ul.red-invent-sections-sites li.sections-sites span.site-garuyo {
-    width: 121px;
+    width: 114px;
     height: 41px;
-    background-position: -91px -1004px; }
+    background-position: -90px -970px; }
   ul.red-invent-sections-sites li.sections-sites span.site-swagger {
-    width: 122px;
+    width: 115px;
     height: 38px;
-    background-position: -89px -1065px; }
+    background-position: -89px -1027px; }
   ul.red-invent-sections-sites li.sections-sites span.site-gamedots {
     margin: 0 auto 4px;
-    width: 135px;
+    width: 126px;
     height: 51px;
-    background-position: -78px -1124px; }
+    background-position: -79px -1085px; }
   ul.red-invent-sections-sites li.sections-sites span.site-estrategia45 {
-    width: 142px;
+    width: 136px;
     height: 37px;
-    background-position: -81px -1232px; }
+    background-position: -82px -1188px; }
   ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit {
-    width: 145px;
+    width: 136px;
     height: 24px;
-    background-position: -76px -1196px; }
+    background-position: -78px -1153px; }
 
   section.main-footer {
     display: block; }

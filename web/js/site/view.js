@@ -56,7 +56,8 @@ $(function() {
                 $(window).resize(function (e) {
                     //console.log(e);
                     e.stopPropagation();
-                    if(inventMx.utilities.accordionStatus != "active"){
+                    deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }                    
                     inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
