@@ -5,7 +5,7 @@
     }
     
     .sprite-invent-movil {
-        background-image: url("../img/sprite_movil.png");
+        background-image: url("../img/sprites/sprite_movil.png");
         background-repeat: no-repeat;
     }
     
@@ -235,12 +235,13 @@
         display:block;        
         ul {
             max-width: 1024px;
-            background-color: #E58436;            
-            //@include measures(100%,36px);
+            background-color: #E58436;
+            @include measures(100%,41px);
             li.items-main {
                 text-align: center;
+                border-left: 2px solid #FFF;
                 //background-color: #E58436;
-                @include measures(48.5%,auto);
+                @include measures(48%,auto);
                 a {
                     color: #FFF;
                     font-size: 16px;
@@ -251,6 +252,7 @@
             }
             li:first-child {
                 margin-right: 3%;
+                border-left: none;
             }
         }
     }

@@ -32,6 +32,12 @@ $(function() {
             var id_section2 = "#section-home-contactos";
             
             /* render handlebars */
+            //inventMx.page.wrapper_site.css("margin-left", "-200%");
+            //inventMx.page.wrapper_site.css("margin-right", "-100%");
+            
+            //inventMx.page.wrapper_site.css("margin-right", "-100%");
+            inventMx.page.wrapper_site.css("margin-right", "-3000px");
+            //inventMx.page.wrapper_site.css("margin-left", "-100%");
             inventMx.page.wrapper_site.hide().load("/web/app/inventmx/home/home.html", function () {
                 inventMx.ajax.getAjax(url, params, function(resp) {
                     if (resp){
@@ -47,6 +53,14 @@ $(function() {
                         inventMx.utilities.loaderHide();
                         $("#home-red-videos").append("<p>No hay datos para mostrar</p>");
                     }
+                    
+                    if ($("img.lazy").length) {
+                        $("img.lazy").lazyload({
+                            effect: "fadeIn"
+                        });
+                    }
+                    
+                    inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 });
                                 
@@ -63,7 +77,15 @@ $(function() {
                     inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 });
                 
-                inventMx.page.wrapper_site.show("fast");
+                //inventMx.page.wrapper_site.show("fast");
+                inventMx.page.wrapper_site.show();
+                inventMx.page.wrapper_site.animate({
+                    //"margin-left": "+=200%"
+                    //"margin-right": "+=100%"
+                    //
+                    //"margin-right": "+=100%"
+                    "margin-right": "+=3000px"
+                }, "slow");
                 return this;
             });
             
