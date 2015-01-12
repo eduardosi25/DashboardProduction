@@ -195,7 +195,7 @@ table {
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.eot");
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.otf?#iefix") format("embedded-opentype"), url("../fuentes/Hind-Semibold/Hind-Semibold.woff") format("woff"), url("../fuentes/Hind-Semibold/Hind-Semibold.ttf") format("truetype"), url("../fuentes/Hind-Semibold/Hind-Semibold.svg#Hind-Semibold") format("svg"); }
 .sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent {
-  background-image: url("../img/sprite_desktop.png");
+  background-image: url("../img/sprites/sprite_desktop.png");
   background-repeat: no-repeat; }
 
 .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title {
@@ -212,6 +212,25 @@ table {
 
 .Hind-Semibold {
   font-family: Hind-Semibold; }
+
+#wrapper-loading-layout {
+  border: 1px solid #000;
+  width: 32px;
+  height: 32px;
+  padding: 5px 4px 4px 5px;
+  background-color: #ffffff;
+  position: fixed;
+  top: 50%;
+  left: 47%;
+  z-index: 21;
+  border-radius: .8em;
+  -webkit-border-radius: .8em;
+  -moz-border-radius: .8em;
+  -o-border-radius: .8em;
+  -ms-border-radius: .8em; }
+  #wrapper-loading-layout img {
+    width: 31px;
+    height: 31px; }
 
 header {
   width: 100%;
@@ -247,7 +266,7 @@ header {
 
 #wrapper-page-site {
   max-width: 1950px;
-  min-height: 300px; }
+  min-height: 600px; }
 
 .wrapper-publish-stage {
   margin: 0 auto 15px;
@@ -597,7 +616,7 @@ footer {
     font-family: Hind-Bold; }
 
   .sprite-invent-movil, header .wrapper-header .site-invent, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
-    background-image: url("../img/sprite_movil.png");
+    background-image: url("../img/sprites/sprite_movil.png");
     background-repeat: no-repeat; }
 
   header .wrapper-header {
@@ -778,10 +797,13 @@ footer {
     display: block; }
     section.main-footer ul {
       max-width: 1024px;
-      background-color: #E58436; }
+      background-color: #E58436;
+      width: 100%;
+      height: 41px; }
       section.main-footer ul li.items-main {
         text-align: center;
-        width: 48.5%;
+        border-left: 2px solid #FFF;
+        width: 48%;
         height: auto; }
         section.main-footer ul li.items-main a {
           color: #FFF;
@@ -789,7 +811,8 @@ footer {
           padding: 10px 0;
           font-family: Hind-Bold; }
       section.main-footer ul li:first-child {
-        margin-right: 3%; }
+        margin-right: 3%;
+        border-left: none; }
 
   footer {
     min-height: 50px;

@@ -8,10 +8,10 @@
     },    
     inventMx.page.wrapper_site = $("#wrapper-page-site"),
     inventMx.utilities.loaderShow = function () {
-        $(".wrapper-loader").css("display", "block");
+        $("#wrapper-loading-layout").css("display", "block");
     },
     inventMx.utilities.loaderHide = function () {
-        $(".wrapper-loader").css("display", "none");
+        $("#wrapper-loading-layout").css("display", "none");
     },
     inventMx.ajax.params = function() {
         params = iMxWebapp.dataSource.params;

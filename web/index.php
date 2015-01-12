@@ -10,7 +10,12 @@
     <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
 
 </head>
-<body>
+<body class="relative">
+    
+    <div id="wrapper-loading-layout">
+        <img class="gif" src="/web/img/ajax-loader.gif">
+    </div>
+    
     <header>
         <div class="wrapper-header">
             <div class="wrapper-site-logo left">
