@@ -8,10 +8,10 @@
     },    
     inventMx.page.wrapper_site = $("#wrapper-page-site"),
     inventMx.utilities.loaderShow = function () {
-        $(".wrapper-loader").css("display", "block");
+        $("#wrapper-loading-layout").css("display", "block");
     },
     inventMx.utilities.loaderHide = function () {
-        $(".wrapper-loader").css("display", "none");
+        $("#wrapper-loading-layout").css("display", "none");
     },
     inventMx.ajax.params = function() {
         params = iMxWebapp.dataSource.params;
@@ -53,15 +53,17 @@
     inventMx.utilities.validateAcordeon = function(id_container, tagHeader, topOffset,e){
         var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
         
-            if (deviceWidthWindow <= 700) {                
+            if (deviceWidthWindow <= 700) {
                 //console.log(deviceWidthWindow + " |");
                 inventMx.utilities.accordionStatus = "active";
-                inventMx.utilities.accordionInit(id_container, tagHeader, topOffset);                
+                inventMx.utilities.accordionInit(id_container, tagHeader, topOffset);
             }else {
                 //console.log("|| "+deviceWidthWindow);
                 ui_state_active = $(id_container + " " + tagHeader+".ui-state-active");
                 if(ui_state_active.length){
+                    //console.log("destroy");
                     inventMx.utilities.accordionDestroy(id_container);
+                    inventMx.utilities.accordionStatus = "destroy";
                 }
             }
         

@@ -7,10 +7,15 @@
 
     <title>Home | InventMx</title>
 
-    <link rel="stylesheet" type="text/css" href="web/css/globals_style.css">
+    <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
 
 </head>
-<body>
+<body class="relative">
+    
+    <div id="wrapper-loading-layout">
+        <img class="gif" src="/web/img/ajax-loader.gif">
+    </div>
+    
     <header>
         <div class="wrapper-header">
             <div class="wrapper-site-logo left">
@@ -51,76 +56,70 @@
             <div class="footer-site-invent"></div>
         </div>
         <p class="center">
-            Bucareli No. 1 Col. Centro, delegació Cuauhtémoc, C.P. 06000, México
+            Bucareli No. 1 Col. Centro, delegación Cuauhtémoc, C.P. 06000, México
         </p>
 
     </footer>    
-
-    <!-- <script data-main="js/site/main" src="web/js/libs/require.js"></script> -->
-    <!-- <script type="text/javascript" src="web/js/libs/jquery-1.8.3.min.js"></script> -->
-    <script type="text/javascript" src="web/js/libs/inventmx_libs.min.js"></script>
-    <!-- <script type="text/javascript" src="js/libs/html5shiv.js"></script>
-    <script type="text/javascript" src="web/js/libs/underscore-min.js"></script>
-    <script type="text/javascript" src="web/js/libs/handlebars-v1.3.0.min.js"></script>
-    <script type="text/javascript" src="web/js/libs/backbone-min.js"></script>     -->
-    <script type="text/javascript" src="web/js/site/alls.js"></script>
-    <script type="text/javascript" src="web/js/site/view.js"></script>
-    <script type="text/javascript" src="web/js/site/routing.js"></script>
+    
+    <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>
+    <script type="text/javascript" src="/web/js/site/alls.js"></script>
+    <script type="text/javascript" src="/web/js/site/view.js"></script>
+    <script type="text/javascript" src="/web/js/site/routing.js"></script>
 </body>
 </html>
 
 <?php
- $rutafisica = "data/home/home.json";
+ /*$rutafisica = "web/data/home/home.json";
 
   $data_center = array();
 
   $data_center["data"]["sections"]["0"]["name"] = "RED DE VIDEOS";
-  $data_center["data"]["sections"]["0"]["items"]["0"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["0"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["0"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["0"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["1"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["1"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["1"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["1"]["title"] = "Tips de Belleza";
   $data_center["data"]["sections"]["0"]["items"]["1"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["2"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["2"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["2"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["2"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["2"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["3"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["3"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["3"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["3"]["title"] = "Tips de Belleza";
   
-  $data_center["data"]["sections"]["0"]["items"]["4"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["4"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["4"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["4"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["4"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["5"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["5"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["5"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["5"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["5"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["6"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["6"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["6"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["6"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["6"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["7"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["7"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["7"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["7"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["7"]["url"] = "/";  
   
-  $data_center["data"]["sections"]["0"]["items"]["8"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["8"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["8"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["8"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["8"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["9"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["9"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["9"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["9"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["9"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["10"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["10"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["10"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["10"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["10"]["url"] = "/";  
-  $data_center["data"]["sections"]["0"]["items"]["11"]["image"] = "web/img/home/global/Talento.png"; 
+  $data_center["data"]["sections"]["0"]["items"]["11"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["11"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["11"]["title"] = "Tips de Belleza";  
   $data_center["data"]["sections"]["0"]["items"]["11"]["url"] = "/";  
@@ -134,6 +133,6 @@
   $data_center["data"]["sections"]["1"]["items"]["1"]["sumary"] = "Sitio web de la estación número 1 de la radio hablada en México. Sitio de noticias, finanza, negocios, deportes, vida, música y curiosidades.";  
   
 
-  file_put_contents($rutafisica, json_encode($data_center)); 
+  file_put_contents($rutafisica, json_encode($data_center)); */
 ?>
 

@@ -52,7 +52,7 @@ and open the template in the editor.
 
 //@media only screen and (min-width: 701px) {
     .sprite-invent {
-        background-image: url("../img/sprite_desktop.png");
+        background-image: url("../img/sprites/sprite_desktop.png");
         background-repeat: no-repeat;
     }
 //}
@@ -72,6 +72,29 @@ and open the template in the editor.
 .Hind-Semibold {
     font-family: Hind-Semibold;
 }
+
+
+#wrapper-loading-layout {
+    //border: 1px solid #798F34;
+    border: 1px solid #000;
+    width: 32px;
+    height: 32px;
+    padding: 5px 4px 4px 5px;
+    background-color: #ffffff;
+    position: fixed;
+    top: 50%;
+    left: 47%;
+    z-index: 21;
+    border-radius: .8em;
+    -webkit-border-radius: .8em;
+    -moz-border-radius: .8em;
+    -o-border-radius: .8em;
+    -ms-border-radius: .8em;
+    img {
+        @include measures(31px,31px);
+    }
+}
+
 
 header {    
     @include measures(100%,auto);
@@ -112,7 +135,7 @@ header {
 
 #wrapper-page-site {
     max-width: 1950px;
-    min-height: 300px;
+    min-height: 600px;
 }
 
 .wrapper-publish-stage {

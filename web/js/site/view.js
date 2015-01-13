@@ -20,7 +20,7 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {            
-            var url = "/data/home/home.json";
+            var url = "/web/data/home/home.json";
             var params = "";
             
             /* params accordion */
@@ -32,7 +32,13 @@ $(function() {
             var id_section2 = "#section-home-contactos";
             
             /* render handlebars */
-            inventMx.page.wrapper_site.hide().load("app/inventmx/home/home.html", function () {
+            //inventMx.page.wrapper_site.css("margin-left", "-200%");
+            //inventMx.page.wrapper_site.css("margin-right", "-100%");
+            
+            //inventMx.page.wrapper_site.css("margin-right", "-100%");
+            inventMx.page.wrapper_site.css("margin-right", "-3000px");
+            //inventMx.page.wrapper_site.css("margin-left", "-100%");
+            inventMx.page.wrapper_site.hide().load("/web/app/inventmx/home/home.html", function () {
                 inventMx.ajax.getAjax(url, params, function(resp) {
                     if (resp){
                         //$("#page").fadeIn(2000);
@@ -47,6 +53,14 @@ $(function() {
                         inventMx.utilities.loaderHide();
                         $("#home-red-videos").append("<p>No hay datos para mostrar</p>");
                     }
+                    
+                    if ($("img.lazy").length) {
+                        $("img.lazy").lazyload({
+                            effect: "fadeIn"
+                        });
+                    }
+                    
+                    inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 });
                                 
@@ -56,13 +70,22 @@ $(function() {
                 $(window).resize(function (e) {
                     //console.log(e);
                     e.stopPropagation();
-                    if(inventMx.utilities.accordionStatus != "active"){
+                    deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }                    
                     inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 });
                 
-                inventMx.page.wrapper_site.show("fast");
+                //inventMx.page.wrapper_site.show("fast");
+                inventMx.page.wrapper_site.show();
+                inventMx.page.wrapper_site.animate({
+                    //"margin-left": "+=200%"
+                    //"margin-right": "+=100%"
+                    //
+                    //"margin-right": "+=100%"
+                    "margin-right": "+=3000px"
+                }, "slow");
                 return this;
             });
             

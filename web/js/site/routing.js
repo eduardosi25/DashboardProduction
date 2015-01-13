@@ -14,7 +14,7 @@ $(function() {
             "*notFound": "notFound"
         },
         initialize: function() {
-
+            
         },
         home: function() {            
             //iMxWebapp.taxonomy.name = {canal: "home"},
