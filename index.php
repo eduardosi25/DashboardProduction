@@ -20,9 +20,10 @@ require_once DRUPAL_ROOT . '/invent.mx.config.inc';
 #Load a bootstrap
 drupal_bootstrap(DRUPAL_BOOTSTRAP_FULL);
 #Check config
-$cms=get_cms_access();
-if($cms){
+if(get_frontend_paths()){
+  require_once(DRUPAL_ROOT.'/web/index.php');
+}else if(get_cms_access()){
   menu_execute_active_handler();
 }else{
-  require_once(DRUPAL_ROOT.'/web/index.php');
+  drupal_access_denied();
 }

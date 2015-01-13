@@ -18,3 +18,5 @@ demos
 demos/*
 .idea*
 
+/InventMx/nbproject/private/
+/nbproject/private/
