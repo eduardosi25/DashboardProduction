@@ -9,19 +9,27 @@ $(function() {
     var AppRoutes = Backbone.Router.extend({
         routes: {
             "": "home",
-            "/": "home",            
+            "/": "home",
+            "caso-de-exito": "casoExito",
+            "afiliate": "afiliate",
             "*default": "default",
             "*notFound": "notFound"
         },
         initialize: function() {
             
         },
-        home: function() {            
+        home: function() {
             //iMxWebapp.taxonomy.name = {canal: "home"},
-            inventMx.home.vista = new inventMx.home.viewHome();
-        },        
-        default: function() {            
-                alert("page no encontrada admin");
+            inventMx.home.vista = new inventMx.home.Home();
+        },
+        casoExito: function() {
+            inventMx.home.homeCasoExito= new inventMx.home.homeCasoExito();
+        },
+        afiliate: function() {
+            inventMx.home.homeAfiliate = new inventMx.home.homeAfiliate();
+        },
+        default: function() {                            
+                inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
         },
         notFound: function() {
 

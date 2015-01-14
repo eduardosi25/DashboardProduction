@@ -26,22 +26,22 @@
             </div>
             <ul class="left">
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">AUDIENCIAS Y CONTENIDOS</a>
+                    <a class="none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">MARKETERS</a>
+                    <a class="none-decoration" href="/#marketers">MARKETERS</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">RED DE VIDEO</a>
+                    <a class="none-decoration" href="/#red-de-video">RED DE VIDEO</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">CASO DE ÉXITO</a>
+                    <a class="none-decoration" href="/#caso-de-exito">CASO DE ÉXITO</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">AFILIATE</a>
+                    <a class="none-decoration" href="/#afiliate">AFILIATE</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/">ANUNCIATE</a>
+                    <a class="none-decoration" href="/#anunciate">ANUNCIATE</a>
                 </li>
                 <span class="clear block"></span>
             </ul>                
@@ -134,5 +134,21 @@
   
 
   file_put_contents($rutafisica, json_encode($data_center)); */
+
+
+/* caso  de exito */
+/*  $rutafisica = "web/data/caso-de-exito/nodes.json";
+  $data_center = array();
+
+  $data_center["data"]["sections"]["0"]["name"] = "Casos de éxito";
+  $data_center["data"]["sections"]["0"]["items"]["0"]["objetive_cliente"] = ""; 
+  $data_center["data"]["sections"]["0"]["items"]["0"]["tender_invent"] = "";  
+  $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/";*/
+  
+  
+
+  file_put_contents($rutafisica, json_encode($data_center));
+
+
 ?>
 

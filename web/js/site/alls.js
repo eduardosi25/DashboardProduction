@@ -3,6 +3,7 @@
     inventMx.header = {},
     inventMx.utilities = {},
     inventMx.home = {},
+    inventMx.pageDefault = {},
     inventMx.page = {},
     inventMx.header.main = function () {
     },    
