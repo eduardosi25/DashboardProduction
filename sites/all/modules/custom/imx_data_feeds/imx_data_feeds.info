@@ -1,0 +1,10 @@
+name        = "Invent Data Feeds"
+description = "Data feeds for Invent.mx site"
+package     = "Inventmx Devel"
+core        = "7.x"
+version     = "7.x"
+php         = "5.x"
+files[]     = imx_data_feeds.module
+files[]     = imx_data_feeds.admin.inc
+files[]     = imx_data_feeds.install
+configure   = admin/config/system/imx_data_feeds

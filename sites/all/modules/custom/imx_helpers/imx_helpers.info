@@ -1,0 +1,8 @@
+name           = "Helpers Invent.mx"
+description    = "Helpers functions - Invent.mx"
+package        = "Inventmx Devel"
+core           = "7.x"
+version        = "7.x"
+files[]        = "imx_helpers.module"
+dependencies[] = "jquery_update"
+dependencies[] = "libraries (2.x)"

@@ -1,0 +1,47 @@
+<?php
+/**
+ * @file
+ * Installation file for Google Analytics module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function imx_data_feeds_install() {
+  variable_set('imx_data_feeds_status',FALSE);
+  //Default values
+  $settings=array(
+    'cache_dir' => DRUPAL_ROOT.'/web/data',
+    'expire'    => TRUE,
+    'cronjob'   => FALSE,
+  );
+  variable_set('imx_data_feeds_settings',$settings);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function imx_data_feeds_uninstall() {
+  #Delete all variables
+  variable_del('imx_data_feeds_status');
+  variable_del('imx_data_feeds_settings');
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function imx_data_feeds_requirements($phase) {
+  $requirements = array();
+  if ($phase == 'runtime') {
+    $settings=variable_get('imx_data_feeds_settings',NULL);
+    if (!isset($settings) || empty($settings)) {
+      $requirements['imx_data_feeds'] = array(
+        'title' => t('Settings imx_data_feeds'),
+        'description' => t('You need to set the config for this <a href="@url"> Invent Data Feeds Integration</a>.', array('@url' => '/admin/config/system/imx_data_feeds')),
+        'severity' => REQUIREMENT_ERROR,
+        'value' => t('Not configured'),
+      );
+    }
+  }
+  return $requirements;
+}

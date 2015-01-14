@@ -1,0 +1,77 @@
+<?php
+/**
+ * @file
+ * The main file for the module.
+ */
+/**
+ * Funciones helpers
+ */
+/**
+ * Implements function for get settings variables
+ */
+function get_imx_data_feeds_variables(){
+  return array(
+    'status'   => variable_get('imx_data_feeds_status',FALSE),
+    'settings' => variable_get('imx_data_feeds_settings',FALSE),
+  );
+}
+function get_cache_file_name($filename='',$extension='cache'){
+  $cache_dir=get_imx_data_feeds_variables();
+  return isset($cache_dir['settings']['cache_dir']) && !empty($settings['settings']['cache_dir']) ? $settings['settings']['cache_dir'].$filename.'.'.$extension : DRUPAL_ROOT.'/cache/'.$filename.'.'.$extension;
+}
+/**
+ * Search and return a cache file
+ * @filename string
+ */
+function _search_cache($filename = NULL) {
+  if (!$filename)
+    return false;
+  $filename=get_cache_file_name($filename);
+  if (file_exists($filename)) {
+    //return json_decode(file_get_contents($filename));
+    return unserialize(file_get_contents($filename));
+  }
+  return false;
+}
+/**
+ * Search and delete a cache file
+ * @filename string
+ */
+function _flush_cache($filename = NULL) {
+  if (!$filename)
+  return false;
+  $filename=get_cache_file_name($filename);
+  if (file_exists($filename)) {
+    return unlink($filename);
+  }
+  return false;
+}
+/**
+ * Create a cache file
+ * @filename string
+ * @content arrays
+ */
+function _create_cache($filename = NULL, $content = array()) {
+  if (!$filename || !$content)
+    return false;
+  $content = serialize($content);
+  $filename=get_cache_file_name($filename);
+  return file_put_contents($filename, $content, LOCK_EX);
+}
+ 
+/**
+ * Get summary from nodes
+ */
+function node_get_summary($node){
+  if(!$node){
+    return false;
+  }
+  $field=field_get_items('node',$node,'body');
+  if(isset($field[0]['summary']) && !empty($field[0]['summary'])){
+    $summary=strip_tags($field[0]['summary'],'<p>');
+  }else{
+    $summary=drupal_substr(strip_tags($field[0]['value'],'<p>'),0,300);
+  }
+  unset($node,$field);
+  return $summary;
+}
