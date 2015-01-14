@@ -1,0 +1,78 @@
+.wrapper-image-background {
+    max-width: 100%;
+    margin-bottom: -5px;
+    .wrapper-section-background {
+        top: 0px;
+        @include measures(100%,auto);
+        .wrapper-form-afiliate{
+            padding-top: 8%;
+        }
+        .form-afiliate {
+            margin: 0 auto;
+            max-width: 700px;
+            //padding-bottom: 10px;
+            background-color: #f2f2f2;
+            @include measures(100%,auto);
+            .afiliate-title {                
+                color: #F69222;
+                font-size: 25px;
+                padding: 10px 0;
+                @extend .Hind-Bold;
+                background-color: #E4E4E4;
+            }
+            .form-block, .form-block-term {
+                margin-top: 20px;
+                padding: 5px 0;
+            }
+            .form-block {                
+                background-color: #E4E4E4;
+            }
+            .form-block-term, .form-block-term a {
+                color: #000;
+                @extend .Hind-Light;
+            }
+            .form-block-term a:hover {
+                text-decoration: none;
+            }
+            span > label {
+                vertical-align: middle;
+            }
+            .label-name {
+                color: #000;
+                font-size: 18px;
+                display: inline-block;
+                @extend .Hind-Light;
+                margin-left: 3%;
+                @include measures(30%,auto);
+            }
+            .label-input {
+                display: inline-block;
+                @include measures(60%,auto);
+                input[type="text"] {
+                    max-width: 100%;
+                    @include measures(100%,25px);
+                }
+            }
+            .afiliate-btn {
+                //max-width: 50px;
+                margin: 0 auto;
+                background-color: #FFF;
+                padding: 10px 0;
+                @include measures(100%,auto);                
+                input[type="button"] {
+                    color: #FFF;
+                    border: none;
+                    font-size: 14px;
+                    @extend .Hind-Bold;
+                    background-color: #F69222;
+                    @include measures(90px,30px);
+                    @include border-radius(8px);
+                }
+                input[type="button"]:hover {
+                    cursor: pointer;
+                    background-color: #EE914F;
+                }
+            }
+        }
+    }
+}

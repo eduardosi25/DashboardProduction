@@ -1,5 +1,9 @@
 @media only screen and (max-width: 700px) {
 
+    /*body {
+        background-color: orange;
+    }*/
+    
     .Hind-Bold {
         font-family: Hind-Bold;
     }
@@ -272,6 +276,11 @@
                 @include img-position(154px, 29px,-60px,-154px);
             }        
         }        
+    }
+    
+    /* afilite */
+    .wrapper-image-background {
+        min-height: 520px;
     }
 
 }

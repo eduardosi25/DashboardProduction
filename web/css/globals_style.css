@@ -60,6 +60,9 @@ table {
 .corange-invent {
   color: #E58436; }
 
+.bg-FFF {
+  background-color: #FFFFFF; }
+
 .fs50 {
   font-size: 50px; }
 
@@ -113,6 +116,15 @@ table {
 
 .inline-block {
   display: inline-block; }
+
+.fs14 {
+  font-size: 14px; }
+
+.fs18 {
+  font-size: 18px; }
+
+.pt10p {
+  padding-top: 10%; }
 
 .pt5 {
   padding-top: 5px !important; }
@@ -198,10 +210,10 @@ table {
   background-image: url("../img/sprites/sprite_desktop.png");
   background-repeat: no-repeat; }
 
-.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title {
+.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
   font-family: Hind-Bold; }
 
-.Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary {
+.Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-afiliate .label-name {
   font-family: Hind-Light; }
 
 .Hind-Medium {
@@ -563,6 +575,74 @@ ul.red-invent-sections-sites {
       height: 97px;
       background-position: -725px -556px; }
 
+.wrapper-image-background {
+  max-width: 100%;
+  margin-bottom: -5px; }
+  .wrapper-image-background .wrapper-section-background {
+    top: 0px;
+    width: 100%;
+    height: auto; }
+    .wrapper-image-background .wrapper-section-background .wrapper-form-afiliate {
+      padding-top: 8%; }
+    .wrapper-image-background .wrapper-section-background .form-afiliate {
+      margin: 0 auto;
+      max-width: 700px;
+      background-color: #f2f2f2;
+      width: 100%;
+      height: auto; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title {
+        color: #F69222;
+        font-size: 25px;
+        padding: 10px 0;
+        background-color: #E4E4E4; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .form-block, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term {
+        margin-top: 20px;
+        padding: 5px 0; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .form-block {
+        background-color: #E4E4E4; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a {
+        color: #000; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a:hover {
+        text-decoration: none; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate span > label {
+        vertical-align: middle; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .label-name {
+        color: #000;
+        font-size: 18px;
+        display: inline-block;
+        margin-left: 3%;
+        width: 30%;
+        height: auto; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .label-input {
+        display: inline-block;
+        width: 60%;
+        height: auto; }
+        .wrapper-image-background .wrapper-section-background .form-afiliate .label-input input[type="text"] {
+          max-width: 100%;
+          width: 100%;
+          height: 25px; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn {
+        margin: 0 auto;
+        background-color: #FFF;
+        padding: 10px 0;
+        width: 100%;
+        height: auto; }
+        .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
+          color: #FFF;
+          border: none;
+          font-size: 14px;
+          background-color: #F69222;
+          width: 90px;
+          height: 30px;
+          border-radius: 8px;
+          -webkit-border-radius: 8px;
+          -moz-border-radius: 8px;
+          -o-border-radius: 8px;
+          -ms-border-radius: 8px; }
+        .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"]:hover {
+          cursor: pointer;
+          background-color: #EE914F; }
+
 footer {
   min-height: 50px;
   padding: 10px 0 3px 0;
@@ -612,7 +692,10 @@ footer {
   .wrapper-image-section2 .wrapper-content-section2 .wrapper-image {
     width: 38% !important; } }
 @media only screen and (max-width: 700px) {
-  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title {
+  /*body {
+      background-color: orange;
+  }*/
+  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
     font-family: Hind-Bold; }
 
   .sprite-invent-movil, header .wrapper-header .site-invent, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
@@ -822,7 +905,11 @@ footer {
       margin: 0 auto;
       width: 154px;
       height: 29px;
-      background-position: -60px -154px; } }
+      background-position: -60px -154px; }
+
+  /* afilite */
+  .wrapper-image-background {
+    min-height: 520px; } }
 @media only screen and (max-width: 695px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 225px; } }
