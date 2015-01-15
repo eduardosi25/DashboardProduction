@@ -20,15 +20,16 @@ $(function() {
         },
         home: function() {
             //iMxWebapp.taxonomy.name = {canal: "home"},
+            inventMx.utilities.loaderShow();
             inventMx.home.vista = new inventMx.home.Home();
         },
-        casoExito: function() {
-            inventMx.home.homeCasoExito= new inventMx.home.homeCasoExito();
+        casoExito: function() {            
+            inventMx.home.pgCasoExito= new inventMx.home.homeCasoExito();
         },
         afiliate: function() {
-            inventMx.home.homeAfiliate = new inventMx.home.homeAfiliate();
+            inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
-        default: function() {                            
+        default: function() {
                 inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
         },
         notFound: function() {

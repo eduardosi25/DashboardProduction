@@ -282,7 +282,31 @@
     .wrapper-image-background {
         min-height: 520px;
     }
-
+    
+    
+    /* caso  de exito */
+    
+    #page-case-exito {
+        .wrapper-case-items {
+            .wrapper-description-case {
+                .head-case {
+                    font-size: 22px;
+                }
+                .logo-case-volskwagen{
+                    @extend .sprite-invent-movil;
+                    @include img-position(51px,53px,-74px,-2299px);
+                }
+                .logo-case-revlon {
+                    @extend .sprite-invent-movil;
+                    @include img-position(107px,22px,-142px,-2316px);
+                }
+                .logo-case-bridgestone {
+                    @extend .sprite-invent-movil;
+                    @include img-position(55px,48px,-260px,-2302px);
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 695px) {
@@ -315,7 +339,35 @@
         li.services-sites{
             min-height: 240px;
         }
+    }
+    
+    /*caso  de exito */
+    #page-case-exito {
+        .wrapper-case-items {
+            .wrapper-description-case, .wrapper-image-case {
+                @include measures(100%,auto);
+            }
+            .wrapper-image-case {
+                margin-left: 0px;
+                text-align: center;
+                padding-top: 25px;
+                img {
+                    @include measures(85%,auto);
+                }
+            }
+        }
+    }
+    
+    /* caso  de exito */
+    #page-case-exito {
+        .main-sections-tools {
+            @include measures(100%,auto);
+        }
+        .btn-publish {
+            font-size: 16px;
+        }
     }    
+    
 }
 
 @media only screen and (max-width: 484px) {
@@ -324,6 +376,10 @@
             min-height: 255px;
         }
     }    
+}
+
+@media only screen and (max-width: 470px) {
+    
 }
 
 @media only screen and (max-width: 450px) {
@@ -362,5 +418,17 @@
         li.services-sites-0, li.services-sites-2, li.services-sites-4 {
             margin-left: 0% !important;
         }
-    }    
+    }
+    
+    /* caso  de exito */
+    #page-case-exito {
+        .wrapper-case-items {            
+            .wrapper-image-case {                
+                img {
+                    @include measures(95%,auto);
+                }
+            }
+        }
+    }
+    
 }

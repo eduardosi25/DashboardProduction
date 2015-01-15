@@ -105,11 +105,12 @@ $(function() {
             this.render();            
         },
         render:function(){
-            inventMx.utilities.loaderHide();
-            
+            //inventMx.utilities.loaderHide();
             inventMx.page.wrapper_site.css("margin-right", "-3000px");
             inventMx.page.wrapper_site.load("/web/app/inventmx/caso-de-exito/home.html", function () {
-                setTimeout(inventMx.utilities.loaderHide, 7000);                
+                
+                inventMx.utilities.loaderHide();
+                setTimeout(inventMx.utilities.loaderHide, 7000);
                 
                 inventMx.page.wrapper_site.show();
                 inventMx.page.wrapper_site.animate({
@@ -127,10 +128,10 @@ $(function() {
             this.render();            
         },
         render:function(){
-            inventMx.utilities.loaderHide();
-            
+            //inventMx.utilities.loaderHide();
             inventMx.page.wrapper_site.css("margin-right", "-3000px");
             inventMx.page.wrapper_site.load("/web/app/inventmx/afiliate/home.html", function () {
+                inventMx.utilities.loaderHide();
                 setTimeout(inventMx.utilities.loaderHide, 7000);
                 
                 inventMx.page.wrapper_site.show();
@@ -138,8 +139,8 @@ $(function() {
                     "margin-right": "+=3000px"
                 }, "slow");
                 return this;
-            });            
-        },        
+            });
+        },
     }),
     
     inventMx.pageDefault.default404 = Backbone.View.extend({        

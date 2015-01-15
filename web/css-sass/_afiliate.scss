@@ -56,10 +56,16 @@
             .afiliate-btn {
                 //max-width: 50px;
                 margin: 0 auto;
-                background-color: #FFF;
                 padding: 10px 0;
-                @include measures(100%,auto);                
-                input[type="button"] {
+                overflow: hidden;
+                background-color: #FFF;
+                border: none !important;                
+                @include measures(100%,28px);
+                .btn-publish {                    
+                    line-height: 0px;
+                    @include measures(200px,44px);
+                }
+                /*input[type="button"] {
                     color: #FFF;
                     border: none;
                     font-size: 14px;
@@ -71,7 +77,7 @@
                 input[type="button"]:hover {
                     cursor: pointer;
                     background-color: #EE914F;
-                }
+                }*/
             }
         }
     }

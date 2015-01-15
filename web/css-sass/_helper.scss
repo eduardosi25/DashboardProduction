@@ -1,10 +1,14 @@
 .cgrey-invent {color: #585858;}
 .corange-invent {color: #E58436;}
-.bg-FFF {
-    background-color: #FFFFFF;
-}
+.c000 { color: #000;}
+.c000-i { color: #000 !important;}
+.bg-FFF { background-color: #FFFFFF; }
 
 .fs50 {font-size: 50px;}
+.p100 {
+    max-width: 100%;
+    @include measures(100%,auto);
+}
 
 .left {float: left;}
 .right {float: right;}
@@ -29,12 +33,14 @@
 
 .pt10p { padding-top: 10%;}
 
+.pt4 {padding-top: 4px !important;}
 .pt5 {padding-top: 5px !important;}
 .pt8 {padding-top: 8px !important;}
 .pt10 {padding-top: 10px !important;}
 .pt15 {padding-top: 15px !important;}
 .pt18 {padding-top: 18px !important;}
 .pt20 {padding-top: 20px !important;}
+.ptb25 {padding: 25px 0;}
 .margin-0a {margin: 0 auto;}
 .mt30 {margin-top: 30px;}
 .mtb {margin: 10px 0;}

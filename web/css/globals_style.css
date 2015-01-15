@@ -60,11 +60,22 @@ table {
 .corange-invent {
   color: #E58436; }
 
+.c000 {
+  color: #000; }
+
+.c000-i {
+  color: #000 !important; }
+
 .bg-FFF {
   background-color: #FFFFFF; }
 
 .fs50 {
   font-size: 50px; }
+
+.p100 {
+  max-width: 100%;
+  width: 100%;
+  height: auto; }
 
 .left {
   float: left; }
@@ -126,6 +137,9 @@ table {
 .pt10p {
   padding-top: 10%; }
 
+.pt4 {
+  padding-top: 4px !important; }
+
 .pt5 {
   padding-top: 5px !important; }
 
@@ -143,6 +157,9 @@ table {
 
 .pt20 {
   padding-top: 20px !important; }
+
+.ptb25 {
+  padding: 25px 0; }
 
 .margin-0a {
   margin: 0 auto; }
@@ -206,11 +223,11 @@ table {
   font-family: 'Hind-Semibold';
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.eot");
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.otf?#iefix") format("embedded-opentype"), url("../fuentes/Hind-Semibold/Hind-Semibold.woff") format("woff"), url("../fuentes/Hind-Semibold/Hind-Semibold.ttf") format("truetype"), url("../fuentes/Hind-Semibold/Hind-Semibold.svg#Hind-Semibold") format("svg"); }
-.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent {
+.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, #page-case-exito .main-sections-tools li .ico-media-kit, footer .footer-content-site-invent .footer-site-invent {
   background-image: url("../img/sprites/sprite_desktop.png");
   background-repeat: no-repeat; }
 
-.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
+.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case .titles {
   font-family: Hind-Bold; }
 
 .Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-afiliate .label-name {
@@ -219,7 +236,7 @@ table {
 .Hind-Medium {
   font-family: Hind-Medium; }
 
-.Hind-Regular, .wrapper-image-section2 .text-info span:first-child, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, footer p {
+.Hind-Regular, .wrapper-image-section2 .text-info span:first-child, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, #page-case-exito .wrapper-case-items .wrapper-description-case .description, footer p {
   font-family: Hind-Regular; }
 
 .Hind-Semibold {
@@ -277,7 +294,7 @@ header {
       color: #e58436; }
 
 #wrapper-page-site {
-  max-width: 1950px;
+  max-width: 1900px;
   min-height: 600px; }
 
 .wrapper-publish-stage {
@@ -287,11 +304,14 @@ header {
 
 .btn-publish {
   color: #FFF;
+  border: none;
   font-size: 22px;
   padding: 10px 0px;
   background-color: #E58436;
   width: 100%;
   height: 15px; }
+  .btn-publish:hover {
+    cursor: pointer; }
 
 article {
   margin: 0 auto;
@@ -575,6 +595,12 @@ ul.red-invent-sections-sites {
       height: 97px;
       background-position: -725px -556px; }
 
+.not-found img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  margin-bottom: -3px; }
+
 .wrapper-image-background {
   max-width: 100%;
   margin-bottom: -5px; }
@@ -623,25 +649,104 @@ ul.red-invent-sections-sites {
           height: 25px; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn {
         margin: 0 auto;
-        background-color: #FFF;
         padding: 10px 0;
+        overflow: hidden;
+        background-color: #FFF;
+        border: none !important;
+        width: 100%;
+        height: 28px;
+        /*input[type="button"] {
+            color: #FFF;
+            border: none;
+            font-size: 14px;
+            @extend .Hind-Bold;
+            background-color: #F69222;
+            @include measures(90px,30px);
+            @include border-radius(8px);
+        }
+        input[type="button"]:hover {
+            cursor: pointer;
+            background-color: #EE914F;
+        }*/ }
+        .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn .btn-publish {
+          line-height: 0px;
+          width: 200px;
+          height: 44px; }
+
+#page-case-exito {
+  width: 100%;
+  height: auto; }
+  #page-case-exito .wrapper-case-items {
+    min-height: 300px;
+    width: 100%;
+    height: auto; }
+    #page-case-exito .wrapper-case-items.item-0 {
+      background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg"); }
+    #page-case-exito .wrapper-case-items.item-1 {
+      background-color: #F1F1F1; }
+    #page-case-exito .wrapper-case-items.item-2 {
+      background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg"); }
+    #page-case-exito .wrapper-case-items .wrapper-description-case {
+      width: 50%;
+      height: auto; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen {
+        width: 98px;
+        height: 99px;
+        background-position: -379px -2766px; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon {
+        width: 198px;
+        height: 46px;
+        background-position: -164px -2793px; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone {
+        width: 98px;
+        height: 91px;
+        background-position: -50px -2755px; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .head-case {
+        color: #FFF;
+        font-size: 30px; }
+        #page-case-exito .wrapper-case-items .wrapper-description-case .head-case > span {
+          vertical-align: middle; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .titles {
+        margin: 10px 0;
+        color: #E58436;
+        font-size: 20px;
+        line-height: 24px; }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .description {
+        color: #FFF;
+        font-size: 16px;
+        line-height: 18px; }
+    #page-case-exito .wrapper-case-items .wrapper-image-case {
+      margin-left: 3%;
+      width: 47%;
+      height: auto; }
+      #page-case-exito .wrapper-case-items .wrapper-image-case img {
+        max-width: 100%;
         width: 100%;
         height: auto; }
-        .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
-          color: #FFF;
-          border: none;
-          font-size: 14px;
-          background-color: #F69222;
-          width: 90px;
-          height: 30px;
-          border-radius: 8px;
-          -webkit-border-radius: 8px;
-          -moz-border-radius: 8px;
-          -o-border-radius: 8px;
-          -ms-border-radius: 8px; }
-        .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"]:hover {
-          cursor: pointer;
-          background-color: #EE914F; }
+  #page-case-exito .main-sections-tools {
+    margin: 0 auto;
+    padding-top: 25px;
+    width: 80%;
+    height: auto; }
+    #page-case-exito .main-sections-tools li {
+      margin-left: 3%;
+      width: 48.5%;
+      height: auto; }
+      #page-case-exito .main-sections-tools li:first-child {
+        margin-left: 0; }
+      #page-case-exito .main-sections-tools li .ico-media-kit {
+        margin-top: -7px;
+        width: 39px;
+        height: 37px;
+        background-position: -57px -2868px; }
+      #page-case-exito .main-sections-tools li a {
+        height: 23px;
+        /*color: #FFF;
+        font-size: 22px;
+        padding: 10px 0;
+        @extend .Hind-Bold;*/ }
+        #page-case-exito .main-sections-tools li a > span {
+          vertical-align: middle; }
 
 footer {
   min-height: 50px;
@@ -695,10 +800,10 @@ footer {
   /*body {
       background-color: orange;
   }*/
-  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn input[type="button"] {
+  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case .titles {
     font-family: Hind-Bold; }
 
-  .sprite-invent-movil, header .wrapper-header .site-invent, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
+  .sprite-invent-movil, header .wrapper-header .site-invent, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone {
     background-image: url("../img/sprites/sprite_movil.png");
     background-repeat: no-repeat; }
 
@@ -909,7 +1014,23 @@ footer {
 
   /* afilite */
   .wrapper-image-background {
-    min-height: 520px; } }
+    min-height: 520px; }
+
+  /* caso  de exito */
+  #page-case-exito .wrapper-case-items .wrapper-description-case .head-case {
+    font-size: 22px; }
+  #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen {
+    width: 51px;
+    height: 53px;
+    background-position: -74px -2299px; }
+  #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon {
+    width: 107px;
+    height: 22px;
+    background-position: -142px -2316px; }
+  #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone {
+    width: 55px;
+    height: 48px;
+    background-position: -260px -2302px; } }
 @media only screen and (max-width: 695px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 225px; } }
@@ -925,7 +1046,26 @@ footer {
     margin-left: 0%; } }
 @media only screen and (max-width: 560px) {
   .wrapper-our-services ul li.services-sites {
-    min-height: 240px; } }
+    min-height: 240px; }
+
+  /*caso  de exito */
+  #page-case-exito .wrapper-case-items .wrapper-description-case, #page-case-exito .wrapper-case-items .wrapper-image-case {
+    width: 100%;
+    height: auto; }
+  #page-case-exito .wrapper-case-items .wrapper-image-case {
+    margin-left: 0px;
+    text-align: center;
+    padding-top: 25px; }
+    #page-case-exito .wrapper-case-items .wrapper-image-case img {
+      width: 85%;
+      height: auto; }
+
+  /* caso  de exito */
+  #page-case-exito .main-sections-tools {
+    width: 100%;
+    height: auto; }
+  #page-case-exito .btn-publish {
+    font-size: 16px; } }
 @media only screen and (max-width: 484px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 255px; } }
@@ -953,6 +1093,11 @@ footer {
   .wrapper-our-services ul li.services-sites-4, .wrapper-our-services ul li.services-sites-5 {
     min-height: 260px !important; }
   .wrapper-our-services ul li.services-sites-0, .wrapper-our-services ul li.services-sites-2, .wrapper-our-services ul li.services-sites-4 {
-    margin-left: 0% !important; } }
+    margin-left: 0% !important; }
+
+  /* caso  de exito */
+  #page-case-exito .wrapper-case-items .wrapper-image-case img {
+    width: 95%;
+    height: auto; } }
 
 /*# sourceMappingURL=globals_style.css.map */

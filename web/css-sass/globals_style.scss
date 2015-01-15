@@ -134,7 +134,7 @@ header {
 }
 
 #wrapper-page-site {
-    max-width: 1950px;
+    max-width: 1900px;
     min-height: 600px;
 }
 
@@ -145,11 +145,15 @@ header {
 
 .btn-publish {    
     color: #FFF;
+    border: none;
     font-size: 22px;
     padding: 10px 0px;
-    @extend .Hind-Bold;
+    @extend .Hind-Bold;    
     background-color: #E58436;
     @include measures(100%,15px);
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 article {
@@ -493,7 +497,9 @@ ul.red-invent-sections-sites {
     }
 }
 
+@import "error404.scss";
 @import "afiliate.scss";
+@import "caso_exito.scss";
 
 footer {
     min-height: 50px;

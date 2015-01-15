@@ -122,6 +122,12 @@
             $(id_section2).html("");
         }
     }
+    
+    $(document).ready(function(){
+       /*$("header ul li a").click(function(){
+           inventMx.utilities.loaderShow();
+       });*/
+    });
 
 })(window.inventMx = window.inventMx || {});
 
