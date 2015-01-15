@@ -36,6 +36,6 @@ function imx_data_feeds_menu() {
 /**
  * Return JSON Home Invent.mx (Private)
  */
-function _imx_data_feeds_view(){
+function _imx_data_feeds_view($name='home'){
 
 }
