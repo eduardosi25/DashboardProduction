@@ -1,0 +1,91 @@
+#page-case-exito {
+    //margin: 0 auto;
+    //max-width: 1024px;
+    @include measures(100%,auto);
+    .wrapper-case-items {
+        min-height: 300px;
+        @include measures(100%,auto);
+        &.item-0 {
+            background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
+        }
+        &.item-1 {
+            background-color: #F1F1F1;
+        }
+        &.item-2 {
+            background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg");
+        }
+        .wrapper-description-case {
+            @include measures(50%,auto);
+            .logo-case-volskwagen {
+                @extend .sprite-invent;
+                @include img-position(98px,99px,-379px,-2766px);
+            }
+            .logo-case-revlon {
+                @extend .sprite-invent;
+                @include img-position(198px,46px,-164px,-2793px);
+            }
+            .logo-case-bridgestone {
+                @extend .sprite-invent;
+                @include img-position(98px,91px,-50px,-2755px);
+            }
+            .head-case {
+                color: #FFF;
+                font-size: 30px;
+                @extend .Hind-Bold;
+                & > span {
+                    vertical-align: middle;
+                }
+            }            
+            .titles {
+                margin: 10px 0;
+                color: #E58436;
+                font-size: 20px;
+                line-height: 24px;
+                @extend .Hind-Bold;
+            }
+            .description {
+                color: #FFF;
+                font-size: 16px;
+                line-height: 18px;
+                @extend .Hind-Regular;
+            }
+        }
+        .wrapper-image-case {
+            margin-left: 3%;
+            @include measures(47%,auto);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+            }            
+        }        
+    }
+    
+    .main-sections-tools {
+        margin: 0 auto;
+        padding-top: 25px;
+        @include measures(80%,auto);
+        li {
+            margin-left: 3%;            
+            @include measures(48.5%,auto);
+            //background-color: #E58436;
+            &:first-child {
+                margin-left: 0;
+            }
+            .ico-media-kit {
+                margin-top: -7px;
+                @extend .sprite-invent;
+                @include img-position(39px,37px,-57px,-2868px);
+            }
+            a {                
+                & > span {
+                    vertical-align: middle;
+                }                
+                height:23px;
+                /*color: #FFF;
+                font-size: 22px;
+                padding: 10px 0;
+                @extend .Hind-Bold;*/
+            }            
+        }
+    }
+}
