@@ -1,5 +1,51 @@
-@media only screen and (min-width: 980px) {
+@media only screen and (max-width: 880px) {
+    #page-case-exito {
+        ul.wrapper-table-case-exito {
+            li.box-item {
+                .type-case {
+                    font-size: 16px !important;
+                }
+                .title-case{
+                    font-size: 14px;
+                }
+                .content-case{
+                    font-size: 14px;
+                }
+            }
+        }
+    }    
     
+}
+
+@media only screen and (max-width: 880px) {
+    #page-case-exito {
+        ul.wrapper-table-case-exito {
+            li.box-item {
+                .type-case {
+                    font-size: 16px !important;
+                }
+                .title-case{
+                    font-size: 14px;
+                }
+                .content-case{
+                    font-size: 14px;
+                }
+            }
+        }
+    }    
+    
+}
+
+@media only screen and (max-width: 840px) {
+    #page-marketers {
+        .wrapper-table-formats {
+            .body-table {
+                .box-table{
+                    font-size: 12px;
+                }
+            } 
+        }
+    }
 }
 
 @media only screen and (min-width: 738px) {

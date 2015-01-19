@@ -10,8 +10,11 @@ $(function() {
         routes: {
             "": "home",
             "/": "home",
+            "marketers": "marketers",
+            "red-de-video": "redeVideo",
             "caso-de-exito": "casoExito",
             "afiliate": "afiliate",
+            "anunciate": "anunciate",
             "*default": "default",
             "*notFound": "notFound"
         },
@@ -20,20 +23,41 @@ $(function() {
         },
         home: function() {
             //iMxWebapp.taxonomy.name = {canal: "home"},
+            inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.loaderShow();
             inventMx.home.vista = new inventMx.home.Home();
         },
-        casoExito: function() {            
-            inventMx.home.pgCasoExito= new inventMx.home.homeCasoExito();
+        marketers: function() {
+            inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.loaderShow();
+            inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
         },
-        afiliate: function() {
+        redeVideo: function() {
+            inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.loaderShow();           
+            inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
+        },
+        casoExito: function() {            
+            inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.loaderShow();
+            inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
+        },
+        afiliate: function() {            
+            inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.loaderShow();
             inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
+        anunciate: function() {
+            inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.loaderShow();
+            inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
+        },
         default: function() {
+                inventMx.page.wrapper_site.hide("slow");
+                inventMx.utilities.loaderShow();
                 inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
         },
         notFound: function() {
-
             alert("page no encontrada admin");
         }
     });

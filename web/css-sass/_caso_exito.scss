@@ -88,4 +88,43 @@
             }            
         }
     }
+    
+    .title-seccion-invent {
+        font-size: 30px;
+        margin: 35px 0 20px 0;
+    }
+    ul.wrapper-table-case-exito {
+        padding: 10px 0 36px 0;
+        li.box-item {
+            text-align: center;
+            @include measures(19.7%,auto);
+            border-right: 1px solid #363636;
+            &:first-child {
+                border-left: 1px solid #363636;
+            }
+            .type-case {
+                margin: 8px 0;
+                color: #E58436;
+                font-size: 18px;
+                @extend .Hind-Bold;
+            }
+            .title-case {                
+                color: #848484;
+                font-size: 16px;
+                margin-top: 5px;
+                @extend .Hind-Medium;
+            }
+            .content-case {                
+                color: #848484;
+                font-size: 16px;
+                margin-top: 5px;
+                @extend .Hind-Bold;
+            }
+        }        
+    }
+    
+    section.main-footer {
+        height: 36px;
+    }
+    
 }

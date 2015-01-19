@@ -121,6 +121,76 @@
             $(id_section1).html("");
             $(id_section2).html("");
         }
+    },    
+    inventMx.utilities.caseExitoAddRemoveSections = function(id_section1,id_section2){
+        deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+        if (deviceWidthWindow >= 701) {
+            script_section1 = $(id_section1+"-1").html();
+            $(id_section1).html(script_section1);
+            
+            script_section2 = $(id_section2+"-1").html();
+            $(id_section2).html(script_section2);
+                    
+        } else {
+            $(id_section1).html("");
+            $(id_section2).html("");
+        }
+    },
+    inventMx.utilities.oneAddRemoveSections = function(id_section1){
+        deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+        if (deviceWidthWindow >= 701) {
+            script_section1 = $(id_section1+"-1").html();
+            $(id_section1).html(script_section1);
+        } else {
+            $(id_section1).html("");
+        }
+    },
+    inventMx.utilities.calculateheightItem = function(items){
+        var numbers = [];
+        $(items).each(function(i,j){
+            numbers[i] = $(this).height();            
+        });console.log(numbers);
+        return inventMx.utilities.searchNumbersMayor(numbers);
+    }
+    inventMx.utilities.searchNumbersMayor = function(number){
+        //function mayor(m){
+        var numbers=[].slice.call(number);
+        return numbers.sort(function(a,b){return a-b;}).pop();
+        //}
+        //j = [101,2,3,14,5,55,205];
+        //alert(mayor(j));
+    }
+    inventMx.utilities.changeResolitionsImg = function(id_image_firts){
+        deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+        //1366       1920x800.jpg
+        active = false;
+        src = $(id_image_firts).attr("data-src");
+        w1920 = "1920x800.jpg";
+        w1024 = "1024x800.jpg";
+        w700  = "700x800.jpg";
+        w400  = "400x800.jpg";
+        
+        if (deviceWidthWindow >= 1300 && !active) {
+            active = true;
+            src = src + w1920;
+            $(id_image_firts).attr("src",src);
+            active = false;
+        } else if(deviceWidthWindow <= 1299 && deviceWidthWindow >= 701 && !active) {
+            active = true;
+            src = src + w1024;            
+            $(id_image_firts).attr("src",src);            
+            active = false;
+        } else if(deviceWidthWindow <= 700 && deviceWidthWindow >= 400 && !active) {
+            active = true;
+            src = src + w700;
+            $(id_image_firts).attr("src",src);
+            active = false;
+        }else if(deviceWidthWindow <= 400 && !active) {
+            active = true;
+            src = src + w400;
+            $(id_image_firts).attr("src",src);
+            active = false;
+        }
     }
     
     $(document).ready(function(){

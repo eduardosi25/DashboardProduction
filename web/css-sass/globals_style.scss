@@ -46,6 +46,17 @@ and open the template in the editor.
     -ms-transition: $transition;
 }
 
+#global-page {
+    margin: 0 auto;
+    overflow: hidden;
+    max-width: 1900px;
+    min-height: 600px;
+}
+#wrapper-page-site {
+    max-width: 1900px;
+    min-height: 600px;
+}
+
 @import "cssreset.scss";
 @import "helper.scss";
 @import "fonts.scss";
@@ -131,11 +142,6 @@ header {
             color: #e58436;
         }
     }
-}
-
-#wrapper-page-site {
-    max-width: 1900px;
-    min-height: 600px;
 }
 
 .wrapper-publish-stage {
@@ -270,7 +276,7 @@ article {
                margin-bottom: 5px;
                @extend .Hind-Regular;
            }
-           .type-content {
+           .type-content, .type-content a {
                color: #6A6A6A;
                font-size: 16px;
                @extend .Hind-Regular;
@@ -498,6 +504,9 @@ ul.red-invent-sections-sites {
 }
 
 @import "error404.scss";
+@import "audiencias_contenidos.scss";
+@import "marketers.scss";
+@import "video_talento.scss";
 @import "afiliate.scss";
 @import "caso_exito.scss";
 

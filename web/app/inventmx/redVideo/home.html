@@ -1,0 +1,180 @@
+<section id="page-video-talento">
+    
+    <section class="wrapper-image-section1 relative">
+        <img class="width-all loader " src="/web/img/perfil-video/desktop/bg-video.jpg" alt="" title=""/>
+        <div class="wrapper-content-section1 absolute center">            
+            <article class="pt4p">
+                <img src="/web/img/perfil-video/desktop/slide_video.png" alt="" title=""/>
+                <div class="wrapper-publish-stage">
+                    <a class="btn-publish center block none-decoration" href="/#afiliate">AFíLIATE</a>
+                </div>
+
+            </article>
+        </div>
+    </section>
+    
+    <section class="wrapper-red-videos">
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">LIFE & STYLE</span>
+        </h2>
+        <article id="red-videos-lifeStyle" class="home-perfil-colaboradores"></article>
+        
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">COCINA</span>
+        </h2>        
+        <article id="red-videos-cocina" class="home-perfil-colaboradores"></article>
+        
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">NOTICIAS Y NEGOCIOS</span>
+        </h2>
+        <article id="red-videos-noticias" class="home-perfil-colaboradores"></article>
+        
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">ENTRETENIMIENTO</span>
+        </h2>
+        <article id="red-videos-entretenimiento" class="home-perfil-colaboradores"></article>
+        
+    </section>
+    
+    
+        
+    <section class="wrapper-image-section3 relative">
+        <div id="section-home-contactos"></div>
+    </section>
+    
+</section>
+
+<script id="section-home-contactos-1" type="template/sectionhomecontactos">
+    <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
+        <div class="wrapper-content-section3 absolute">
+            <article>
+                <div class="right text-info">
+                    <span class="block">LA OFERTA MÁS SOLIDA</span>
+                    <span class="block">Y VARIADA DE</span>
+                    <span class="block">SU CATEGORÍA</span>
+                    
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANUNCIATE</a>                    
+                </div>
+                <div class="clear"></div>
+            </article>
+    </div>
+</script>
+
+<script id="template-red-videos-lifeStyle" type="template/RedVideosTalentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-items box-{{@index}}">
+                    <span class="block wrapper-image">
+                        <a class="none-decoration" href="{{this.url}}">
+                            <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                        </a>
+                    </span>
+                    <span class="block wrapper-description">
+                        <span class="block name-editor">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.name_editor}}
+                            </a>
+                        </span>
+                        <span class="block type-content">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.title}}
+                            </a>
+                        </span>
+                        <span class="block clear"></span>
+                    </span>
+                    <span class="block clear"></span>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+<script id="template-red-videos-cocina" type="template/RedVideosTalentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-items box-{{@index}}">
+                    <span class="block wrapper-image">
+                        <a class="none-decoration" href="{{this.url}}">
+                            <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                        </a>
+                    </span>
+                    <span class="block wrapper-description">
+                        <span class="block name-editor">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.name_editor}}
+                            </a>
+                        </span>
+                        <span class="block type-content">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.title}}
+                            </a>
+                        </span>
+                        <span class="block clear"></span>
+                    </span>
+                    <span class="block clear"></span>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+
+<script id="template-red-videos-noticias" type="template/RedVideosTalentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-items box-{{@index}}">
+                    <span class="block wrapper-image">
+                        <a class="none-decoration" href="{{this.url}}">
+                            <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                        </a>
+                    </span>
+                    <span class="block wrapper-description">
+                        <span class="block name-editor">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.name_editor}}
+                            </a>
+                        </span>
+                        <span class="block type-content">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.title}}
+                            </a>
+                        </span>
+                        <span class="block clear"></span>
+                    </span>
+                    <span class="block clear"></span>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+
+<script id="template-red-videos-entretenimiento" type="template/RedVideosTalentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-items box-{{@index}}">
+                    <span class="block wrapper-image">
+                        <a class="none-decoration" href="{{this.url}}">
+                            <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                        </a>
+                    </span>
+                    <span class="block wrapper-description">
+                        <span class="block name-editor">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.name_editor}}
+                            </a>
+                        </span>
+                        <span class="block type-content">
+                            <a class="none-decoration" href="{{this.url}}">
+                                {{this.title}}
+                            </a>
+                        </span>
+                        <span class="block clear"></span>
+                    </span>
+                    <span class="block clear"></span>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>

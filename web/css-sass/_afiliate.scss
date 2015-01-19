@@ -1,13 +1,28 @@
+#wrapper-page-site {
+    .wrapper-image-background {
+        height: 600px;
+        overflow: hidden;
+        //min-height: 600px;
+        background-color: #000;        
+    }
+}
+
 .wrapper-image-background {
     max-width: 100%;
     margin-bottom: -5px;
+    .bg-degradado{
+        bottom: 0px;
+        background-image: url("../img/bg/dnota_top.png");
+        @include measures(100%,23px);
+    }
     .wrapper-section-background {
         top: 0px;
         @include measures(100%,auto);
         .wrapper-form-afiliate{
-            padding-top: 8%;
+            //padding-top: 8%;
+            padding: 5% 0;
         }
-        .form-afiliate {
+        .form-afiliate, .form-anunciate {
             margin: 0 auto;
             max-width: 700px;
             //padding-bottom: 10px;
@@ -22,7 +37,7 @@
             }
             .form-block, .form-block-term {
                 margin-top: 20px;
-                padding: 5px 0;
+                padding: 5px 0;                
             }
             .form-block {                
                 background-color: #E4E4E4;
@@ -64,7 +79,7 @@
                 .btn-publish {                    
                     line-height: 0px;
                     @include measures(200px,44px);
-                }
+                }                
                 /*input[type="button"] {
                     color: #FFF;
                     border: none;
@@ -78,6 +93,9 @@
                     cursor: pointer;
                     background-color: #EE914F;
                 }*/
+            }
+            .form-bottom {
+                height: 20px;
             }
         }
     }
