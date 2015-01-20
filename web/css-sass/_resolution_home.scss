@@ -3,7 +3,7 @@
     /*body {
         background-color: orange;
     }*/
-
+    
     #page-case-exito {
         #section-case-de-exito {
             display: none;
@@ -322,7 +322,12 @@
     }
     
     /* markerts   */
-    #page-marketers {        
+    #page-marketers {
+        
+        .wrapper-site-markerts {            
+            display: none;
+        }
+        
         .wrapper-description {
             .marketers-info {
                 display: none;

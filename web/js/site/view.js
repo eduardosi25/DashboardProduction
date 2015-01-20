@@ -1,5 +1,18 @@
 $(function() {
-    /* modelos */
+    /* eventos */
+    var inventMx_events = {};
+    IMxevents=_.extend(inventMx_events, Backbone.Events);
+    
+    // Con la funcion bind podemos enlazar un evento cualquiera con una
+    // función callback que se ejecutará cuando este evento ocurra en este objeto
+    inventMx_events.bind("NoData", function (msg) {
+        alert('No hay  más dato en ' + msg);
+    });
+    
+    
+    
+    
+    /* modelos */    
     inventMx.home.Models = Backbone.Model.extend({});
     /* colecciones */
     inventMx.home.Collections = Backbone.Collection.extend({
@@ -59,6 +72,11 @@ $(function() {
                 
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
+                
+                // Un objeto puede disparar un evento en el momento que desee
+                // utilizando la función trigger
+                /*inventMx_events.trigger('NoData','Home');*/
+                
                 
                 $(window).resize(function (e) {
                     //console.log(e);

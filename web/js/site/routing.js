@@ -50,7 +50,7 @@ $(function() {
         redeVideo: function() {
             //inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.loaderShow();
-            inventMx.utilities.section = "red-de-videos";
+            inventMx.utilities.section = "red-de-video";
             inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
         },
         casoExito: function() {            

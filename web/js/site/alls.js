@@ -3,6 +3,7 @@
     inventMx.header = {},
     inventMx.utilities = {},
     inventMx.home = {},
+    inventMx.main = {},
     inventMx.pageDefault = {},
     inventMx.page = {},
     inventMx.header.main = function () {
@@ -159,7 +160,14 @@
         //}
         //j = [101,2,3,14,5,55,205];
         //alert(mayor(j));
-    }
+    },
+    inventMx.main.activeHover = function(url){
+        var  section;
+        section =  inventMx.utilities.section;
+        
+        
+        
+    },
     inventMx.utilities.changeResolitionsImg = function(id_image_firts){
         deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
         //1366       1920x800.jpg

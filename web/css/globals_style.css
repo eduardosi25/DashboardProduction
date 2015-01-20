@@ -1782,6 +1782,8 @@ footer {
     display: none; }
 
   /* markerts   */
+  #page-marketers .wrapper-site-markerts {
+    display: none; }
   #page-marketers .wrapper-description .marketers-info {
     display: none; }
   #page-marketers section {
