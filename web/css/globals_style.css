@@ -1478,7 +1478,7 @@ footer {
       width: 220px;
       height: auto; } }
 @media only screen and (max-width: 800px) {
-  .sprite-movil, .site-invent {
+  .site-invent {
     background-image: url("../img/sprites/sprite_movil.png") !important;
     background-repeat: no-repeat; }
 
