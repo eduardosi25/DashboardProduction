@@ -140,11 +140,16 @@ $(function() {
                 });
                 
                 
-                $(".ico-sumary-active").click(function(e){
+                $(document).on("click",".ico-sumary-active",function(){
+                     $(this).parent().toggleClass("active");
+                });
+                
+                /*$(".ico-sumary-active").click(function(e){
                     e.preventDefault();
+                    alert("x");
                     //$(".red-invent-sections-sites li").removeClass("active");
                     $(this).parent().toggleClass("active");
-                });
+                });*/
                 
                 return this;
             //});                        
