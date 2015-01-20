@@ -1,0 +1,173 @@
+.wrapper-bars {
+    margin: 0 auto;
+    padding-top: 30px;
+    @extend .Hind-Bold;
+    @include measures(770px,auto);
+
+    .content-grafic-1,.content-grafic-2 {
+        @extend .sprite-grafics;
+        @include img-position(176px,176px,-31px,-33px);
+        .info-bars {
+            top: 57px;
+            left: 40px;
+            color: #FFF;
+            .total{
+                font-size: 35px;
+            }
+            .users {
+                font-size: 20px;
+            }
+        }
+    }
+    .content-grafic-1 {
+
+    }
+    .content-grafic-2 {
+
+    }
+    .age-users {
+        color: #FFF;
+        padding-top: 65px;
+        @include measures(80px,auto);
+        .age {
+            font-size: 30px;
+        }
+        .age-name {
+            font-size: 20px;
+        }
+    }
+    .content-visit {
+        padding-top: 60px;
+        @include measures(165px,auto);
+        .total-visit {            
+            color: #E58436;
+            font-size: 26px;
+        }
+        .description-visit{
+            color: #FFF;
+            font-size: 15px;
+        }
+    }
+
+    .bars-5 {
+        top: -2px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(34px,33px,-123px,-224px);
+    }
+    .bars-10 {
+        top: -2px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(58px,43px,-123px,-282px);
+    }
+    .bars-15 {
+        top: -1px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(77px,57px,-123px,-357px);
+    }
+    .bars-20 {
+        top: -2px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(88px,76px,-123px,-433px);
+    }
+    .bars-25 {
+        top: -2px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,94px,-123px,-535px);
+    }
+    .bars-30 {
+        top: -3px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,122px,-123px,-647px);
+    }
+    .bars-35 {
+        top: -3px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,147px,-123px,-780px);
+    }
+    .bars-40 {
+        top: -5px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,165px,-123px,-938px);
+    }
+    .bars-45 {
+        top: -4px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,177px,-123px,-1115px);
+    }
+    .bars-50 {
+        top: -4px;
+        left: 88px;
+        @extend .sprite-grafics;
+        @include img-position(93px,183px,-123px,-1332px);
+    }
+    .bars-55 {
+        top: -3px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(120px,181px,-96px,-1552px);
+    }
+    .bars-60 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(144px,182px,-72px,-1769px);
+    }
+    .bars-65 {
+        top: -3px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(165px,182px,-51px,-2002px);
+    }
+    .bars-70 {
+        top: -2px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(175px,182px,-41px,-2232px);
+    }
+    .bars-75 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-2453px);
+    }
+    .bars-80 {
+        top: -1px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-2457px);
+    }
+    .bars-85 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-2856px);
+    }
+    .bars-90 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-3054px);
+    }
+    .bars-95 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-3253px);
+    }
+    .bars-100 {
+        top: -4px;        
+        right: 0px;
+        @extend .sprite-grafics;
+        @include img-position(182px,182px,-34px,-3458px);
+    }
+
+}

@@ -1,0 +1,133 @@
+<section id="page-perfil-talento">
+
+    <section class="wrapper-image-section1">
+        <article class="middle">
+
+            <div class="wrapper-perfil">
+                <div class="perfil">
+                    <div class="wrapper-img left">
+                        <img src="/web/img/home/global/Talento.png"  alt="" title=""/>
+                    </div>
+                    <div class="description left">
+                        <span class="block name">Ana Domiguez</span>
+                        <span class="block type-perfil">TIPS DE BELLEZA</span>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="summary ">
+                    Ser madre es sin duda el trabajo más hermoso y difícil nadie nace con un manual para ser
+                    buenos padres, pero Ana que es mamá de tres te orienta y te enseña que no es tan
+                    Complicado como parece
+                </div>
+            </div>
+            
+            
+            <div class="wrapper-bars">
+                <div class="left content-grafic-1 relative">
+                    <div class="bars-75 absolute"></div>
+                    <div class="info-bars absolute">
+                        <span class="block total">75%</span>
+                        <span class="block users">HOMBRES</span>
+                    </div>
+                </div>
+                <div class="left age-users center">
+                    <span class="block age">25-30</span>
+                    <span class="block age-name">Años</span>
+                </div>
+                <div class="left content-grafic-2 relative">
+                    <div class="bars-25 absolute"></div>
+                    <div class="info-bars absolute">
+                        <span class="block total">75%</span>
+                        <span class="block users">HOMBRES</span>
+                    </div>
+                </div>
+                <div class="left content-visit center">
+                    <span class="total-visit block">247,886</span>
+                    <span class="description-visit block">VISITAS MENSUALES</span>
+                </div>
+                <div class="left content-visit center">
+                    <span class="total-visit block">37,973</span>
+                    <span class="description-visit block">TOTAL SEGUIDORES</span>
+                </div>
+                <div class="clear"></div>
+            </div>
+            
+
+            <ul class="main-sections-tools">
+                <li class="left">
+                    <a class="block btn-publish none-decoration center" href="/#afiliate">
+                        <span class="inline-block pt4">AFILIATE</span>
+                    </a>
+                </li>
+                <li class="left">
+                    <a class="block btn-publish none-decoration center" href="/#canal-de-youtube">
+                        <span class="inline-block pt4">CANAL DE YOUTUBE</span>
+                    </a>
+                </li>
+                <li class="block clear"></li>
+            </ul>
+
+        </article>
+    </section>
+
+
+    <section class="wrapper-red-videos">
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent"> MÁS DE  LIFE & STYLE</span>
+        </h2>
+
+        <article id="home-talentos" class="home-perfil-colaboradores pt15"></article>
+
+    </section>
+
+
+    <section class="main-footer none">
+        <ul>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#anunciate">ANUNCIATE</a>
+            </li>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#afiliate">CONTACTO</a>
+            </li>
+            <li class="clear block"></li>
+        </ul>
+    </section>
+
+    <section class="wrapper-image-section3 relative">
+        <div id="section-home-contactos"></div>
+    </section>
+
+</section>
+
+<script id="section-home-contactos-1" type="template/sectionhomecontactos">
+    <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
+        <div class="wrapper-content-section3 absolute">
+            <article>
+                <div class="right text-info">
+                    <span class="block">LA OFERTA MÁS SOLIDA</span>
+                    <span class="block">Y VARIADA DE</span>
+                    <span class="block">SU CATEGORÍA</span>
+                    
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANUNCIATE</a>
+                </div>
+                <div class="clear"></div>
+            </article>
+    </div>
+</script>
+
+<script id="template-home-talentos" type="template/template-home-talentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-{{@index}}">
+                <a class="none-decoration" href="{{this.url}}">
+                    <span class="block">
+                        <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                    </span>
+                    <span class="block name-editor">{{this.name_editor}}</span>
+                    <span class="block type-content">{{this.title}}</span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>

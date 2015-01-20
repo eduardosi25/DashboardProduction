@@ -13,26 +13,18 @@
                 }
             }
         }
-    }    
+    }
     
-}
-
-@media only screen and (max-width: 880px) {
-    #page-case-exito {
-        ul.wrapper-table-case-exito {
-            li.box-item {
-                .type-case {
-                    font-size: 16px !important;
-                }
-                .title-case{
-                    font-size: 14px;
-                }
-                .content-case{
-                    font-size: 14px;
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-image {
+                .width-all {
+                    max-width: 100%;
+                    width: 100% !important;
                 }
             }
         }
-    }    
+    }
     
 }
 
@@ -46,6 +38,44 @@
             } 
         }
     }
+    
+    .wrapper-bars {
+        @include measures(445px,auto);
+        .content-visit {
+            padding-top: 20px;
+            @include measures(220px,auto);
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+    
+    .sprite-movil, .site-invent {
+        background-image: url("../img/sprites/sprite_movil.png") !important;
+        background-repeat: no-repeat;
+    }
+    
+    header {
+        ul li {
+            margin-top: 15px;
+            a {
+                font-size: 11px;
+            }
+        }
+        .wrapper-header {
+            .wrapper-site-logo {   
+                padding-top: 4px;
+                @include measures(25%,auto);
+            }
+            .site-invent {
+                margin: 0 auto;
+                //@extend .sprite-movil;                
+                @include img-position(121px, 37px,-59px,-27px);
+            }
+        }
+    }
+
 }
 
 @media only screen and (min-width: 738px) {
@@ -60,7 +90,21 @@
 @media only screen and (max-width: 740px) {
     ul.red-invent-sections-sites li.sections-sites {
         width: 22.9%;
+    }        
+    
+    /* audiencias */
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-description {
+                margin-right: 0%;
+                @include measures(50%,auto);
+            }
+            .wrapper-image {
+                @include measures(50%,auto);
+            }
+        }
     }
+    
 }
 
 @media only screen and (min-width: 1150px) {

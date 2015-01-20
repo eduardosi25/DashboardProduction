@@ -62,10 +62,14 @@ and open the template in the editor.
 @import "fonts.scss";
 
 //@media only screen and (min-width: 701px) {
-    .sprite-invent {
-        background-image: url("../img/sprites/sprite_desktop.png");
-        background-repeat: no-repeat;
-    }
+.sprite-invent {
+    background-image: url("../img/sprites/sprite_desktop.png");
+    background-repeat: no-repeat;
+}
+.sprite-grafics {
+    background-image: url("../img/sprites/sprite_grafica.png");
+    background-repeat: no-repeat;
+}
 //}
 
 .Hind-Bold {
@@ -127,19 +131,30 @@ header {
     ul {
         @include measures(75%,auto);
     }
-    ul li {
-        margin-top: 20px;
-        border-right: 1px solid #363636;
-        margin-right: 1%;
-        //@include measures(20%,auto);
-        a {
-            @extend .Hind-Light;
-            color: #FFF;
-            font-size: 12px;
+    ul {
+        display:block;
+        li {            
+            padding: 0 1%;
+            margin-top: 25px;
+            //margin-top: 20px;
             margin-right: 1%;
-        }
-        a:hover, a.active {
-            color: #e58436;
+            min-height: 20px;
+            text-align: center;
+            @include measures(13.4%,auto);
+            border-right: 1px solid #363636;
+            & > * {
+                display: inline-block;
+                vertical-align:  middle;
+            }
+            a {
+                @extend .Hind-Light;
+                color: #FFF;
+                font-size: 12px;
+                margin-right: 1%;
+            }
+            a:hover, a.active {
+                color: #e58436;
+            }
         }
     }
 }
@@ -259,33 +274,33 @@ article {
 
 .home-perfil-colaboradores {
     ul {
-       @include measures(100%,auto);
-       li {
-           margin-left: 2%;
-           padding: 2%;
-           @include measures(19%,auto);
-           a {
-               color: #000;
-           }
-           img {
-               @include measures(100%,auto);
-           }
-           .name-editor {
-               color: #000;
-               font-size: 20px;
-               margin-bottom: 5px;
-               @extend .Hind-Regular;
-           }
-           .type-content, .type-content a {
-               color: #6A6A6A;
-               font-size: 16px;
-               @extend .Hind-Regular;
-           }
-       }
-       li.box-0, li.box-4, li.box-8, li.box-12,li.box-16
-       li.box-20, li.box-24, li.box-28 {
-           margin-left: 0%;
-       }
+        @include measures(100%,auto);
+        li {
+            margin-left: 2%;
+            padding: 2%;
+            @include measures(19%,auto);
+            a {
+                color: #000;
+            }
+            img {
+                @include measures(100%,auto);
+            }
+            .name-editor {
+                color: #000;
+                font-size: 20px;
+                margin-bottom: 5px;
+                @extend .Hind-Regular;
+            }
+            .type-content, .type-content a {
+                color: #6A6A6A;
+                font-size: 16px;
+                @extend .Hind-Regular;
+            }
+        }
+        li.box-0, li.box-4, li.box-8, li.box-12,li.box-16
+        li.box-20, li.box-24, li.box-28 {
+            margin-left: 0%;
+        }
     }
 }
 
@@ -305,7 +320,7 @@ ul.red-invent-sections {
     li.sections-img-box-0 {
         margin-left: 0%;
     }
-    
+
 }
 
 ul.red-invent-sections-sites {
@@ -328,8 +343,8 @@ ul.red-invent-sections-sites {
     li.sections-sites-3, li.sections-sites-7, li.sections-sites-11, li.sections-sites-15 {
         margin-right: 0% !important;
     }
-    
-    
+
+
     li.sections-sites-1 {
         min-height: 240px !important;
     }
@@ -345,7 +360,7 @@ ul.red-invent-sections-sites {
     li.sections-sites-4, li.sections-sites-5, li.sections-sites-10, li.sections-sites-12 {
         min-height: 225px !important;
     }    
-    
+
     li.sections-sites {
         width: 23.5%;
         //padding: 0 .65% 15px .70%;
@@ -376,7 +391,7 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(151px, 41px,-53px,-927px);
         }
-        
+
         span.site-dineroenimagen {
             margin: 0 auto 10px;
             @extend .sprite-invent;
@@ -397,7 +412,7 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(120px, 37px,-68px,-1165px);
         }
-        
+
         span.site-melodijolola {
             margin: 0 auto 10px;
             @extend .sprite-invent;
@@ -418,7 +433,7 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(138px, 45px,-58px,-1393px);
         }
-        
+
         span.site-swagger {
             margin: 0 auto 12px;
             @extend .sprite-invent;
@@ -503,12 +518,39 @@ ul.red-invent-sections-sites {
     }
 }
 
+.main-sections-tools {
+    margin: 0 auto;
+    padding-top: 25px;
+    @include measures(80%,auto);
+    li {
+        margin-left: 3%;            
+        @include measures(48.5%,auto);            
+        &:first-child {
+            margin-left: 0;
+        }
+        .ico-media-kit {
+            margin-top: -7px;
+            @extend .sprite-invent;
+            @include img-position(39px,37px,-57px,-2868px);
+        }
+        a {                
+            & > span {
+                vertical-align: middle;
+            }                
+            height:23px;                
+        }            
+    }
+}
+
+@import "style_bars.scss";
 @import "error404.scss";
 @import "audiencias_contenidos.scss";
 @import "marketers.scss";
 @import "video_talento.scss";
 @import "afiliate.scss";
 @import "caso_exito.scss";
+@import "perfil_talento.scss";
+@import "sitio_especifico.scss";
 
 footer {
     min-height: 50px;

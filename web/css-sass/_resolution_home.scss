@@ -23,13 +23,15 @@
         background-repeat: no-repeat;
     }
 
-    header {        
+    header {
         .wrapper-header {
             min-height: 50px;
             max-width: 1024px;
             margin: 0 auto;
+            //overflow: hidden;
             @include measures(100%,auto);
-            .wrapper-site-logo {            
+            .wrapper-site-logo {   
+                //padding-top: 4px;
                 @include measures(25%,auto);
             }
             .site-invent{
@@ -37,8 +39,46 @@
                 @extend .sprite-invent-movil;
                 @include img-position(121px, 37px,-59px,-27px);
             }
-            ul {
+            .wrapper-main{
+                display: block;                
+                margin: 7px 5% 0 0;
+                .main-center{
+                    margin: 0 auto;
+                    display: block;                    
+                    @extend .sprite-invent-movil;
+                    @include img-position(37px, 37px,-59px,-80px);
+                }
+            }            
+            ul {                
+                top: 50px;
+                left: 0px;
+                z-index: 9999;
                 display: none;
+                position: absolute;
+                //background-color: #000;
+                background-image: url("/web/img/bg/bg_menu_movil.png");
+                @include measures(100%,auto);
+                li {
+                    float: none;
+                    display: block;
+                    margin: 0 auto;
+                    padding: 10px 0;
+                    //margin-right: 0px;
+                    overflow: hidden;
+                    border-right: none;
+                    @include measures(94%,auto);
+                    border-bottom: 2px solid #C3833E;
+                    a {                        
+                        display:block;
+                        font-size: 14px;
+                        text-align: left;
+                        margin-left: 10px;
+                        font-family: Hind-Bold;
+                        &:hover {
+                            color: #C3833E;
+                        }
+                    }
+                }
             }
         }
     }
@@ -260,7 +300,7 @@
                 a {
                     color: #FFF;
                     font-size: 16px;
-                    padding: 10px 0;
+                    padding: 12px 0;
                     font-family: Hind-Bold;
                     //@extend .Hind-Bold;
                 }
@@ -268,6 +308,15 @@
             li:first-child {
                 //margin-right: 3%;
                 border-left: none;
+            }
+        }
+    }
+    
+    /* audiencias y contenidos */
+    #page-audiencias-contenidos {
+        .wrapper-description {
+            .audiencia-info {
+                display: none;
             }
         }
     }
@@ -396,6 +445,114 @@
             }
         }
     }
+    
+    /* audiencias y contenidos  */
+    #page-audiencias-contenidos {
+        background-color: #F1F1F1;
+        
+        .wrapper-content-section1 {
+            .wrapper-description {
+                margin-top: 15%;
+                .audiencia-title {
+                    font-size: 26px;
+                }
+            }
+        }
+        
+        ul.red-invent-sections-sites {             
+            @include transition(all 1s ease);
+            padding: 0px;
+            li.bg-caca {
+                height: 0px;
+                display: none;                
+            }
+            li.sections-sites.active {  
+                @include transition(all 1s ease);
+                span.ico-sumary-active {
+                    display: block;
+                    top: 15%;
+                    @extend .sprite-invent-movil;
+                    @include img-position(19px, 19px, -84px, -122px);
+                }
+                .site-sumary {                    
+                    display: block;
+                    padding-top: 5px;
+                    line-height: 18px;
+                    @include transition(left 0.2s ease);
+                }
+            }
+            li.sections-sites {
+                border-right: none;
+                position: relative;
+                width: 100% !important;                
+                height: auto !important;                
+                padding: 10px 0 !important;
+                min-height: 40px !important;
+                border-bottom: 2px solid #FFF;                
+                @include transition(all 1s ease);
+                .site-sumary {
+                    display: none;
+                }            
+                span {
+                    margin-bottom: 0px;
+                }
+                span.ico-sumary-active {
+                    display: block;
+                    position: absolute;
+                    top: 27%;
+                    right: 15%;
+                    @extend .sprite-invent-movil;
+                    @include img-position(19px, 19px, -63px, -122px);                    
+                }
+                span.site-bienestar180{
+                    margin: 0 auto 15px;
+                    @extend .sprite-invent-movil;
+                    @include img-position(132px, 27px, -63px, -605px);
+                }
+                span.site-sexualidad180{
+                    margin: 0 auto 15px;
+                    @extend .sprite-invent-movil;
+                    @include img-position(129px, 24px, -71px, -653px);
+                }
+                span.site-enforma180{
+                    margin: 0 auto 15px;
+                    @extend .sprite-invent-movil;
+                    @include img-position(125px, 24px, -74px, -705px);
+                }
+            }
+        }
+    }    
+    
+    /* site especifico */
+    #page-perfil-sitio {        
+        .main-sections-tools {
+            @include measures(100%,auto);
+            li {
+                a {
+                    height: 18px;
+                } 
+            }
+        }
+        .btn-publish {
+            font-size: 12px;            
+        }        
+    }
+    
+    /* perfil  talento */
+    #page-perfil-talento {
+        .main-sections-tools {
+            @include measures(100%,auto);
+        }
+        .btn-publish {
+            font-size: 12px;
+            height: 17px;
+        }        
+    }
+    
+    /* graficas */
+    
+    
+    
 }
 
 @media only screen and (max-width: 695px) {
@@ -476,6 +633,23 @@
             }
         }
     }
+    
+    .wrapper-bars {
+        text-align: center;
+        @include measures(180px,auto);
+        div {
+            float: none !important;
+        }
+        .age-users {
+            padding: 15px 0;
+            @include measures(100%,auto);
+        }
+        .content-visit {
+            padding-top: 20px;
+            @include measures(100%,auto);
+        }
+    }
+    
 }
 
 @media only screen and (max-width: 450px) {        

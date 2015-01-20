@@ -194,6 +194,10 @@
     }
     
     $(document).ready(function(){
+        $("header .main-center").click(function(){
+            //$("header ul").toggle();
+            $("header ul").slideToggle("fast");
+        });
        /*$("header ul li a").click(function(){
            inventMx.utilities.loaderShow();
        });*/

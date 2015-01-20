@@ -60,14 +60,13 @@
         }        
     }
     
-    .main-sections-tools {
+    /*.main-sections-tools {
         margin: 0 auto;
         padding-top: 25px;
         @include measures(80%,auto);
         li {
             margin-left: 3%;            
-            @include measures(48.5%,auto);
-            //background-color: #E58436;
+            @include measures(48.5%,auto);            
             &:first-child {
                 margin-left: 0;
             }
@@ -80,14 +79,10 @@
                 & > span {
                     vertical-align: middle;
                 }                
-                height:23px;
-                /*color: #FFF;
-                font-size: 22px;
-                padding: 10px 0;
-                @extend .Hind-Bold;*/
+                height:23px;                
             }            
         }
-    }
+    }*/
     
     .title-seccion-invent {
         font-size: 30px;

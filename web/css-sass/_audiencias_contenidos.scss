@@ -1,0 +1,68 @@
+#page-audiencias-contenidos {
+    .wrapper-boton-publisher {
+        margin: 0 auto;
+        @include measures(245px,auto);
+    }
+    .wrapper-image-section1 {
+        padding: 30px 0 0 0;
+        background-repeat: no-repeat;
+    }
+    .wrapper-image-section1.noticias-deportes {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_noticias.jpg");
+    }
+    .wrapper-image-section1.mundo-saludable {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_saludable.jpg");
+    }
+    .wrapper-image-section1.mundo-femenino {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_femenino.jpg");
+    }
+    .wrapper-image-section1.life-style {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_lifestyle.jpg");
+    }
+    .wrapper-content-section1 {
+        color: #FFF;
+        .wrapper-description {
+            margin-right: 3%;
+            @include measures(50%,auto);        
+            .audiencia-title{
+                font-size: 35px;
+                @extend .Hind-Bold;
+            }
+            .audiencia-info {                
+                font-size: 16px;
+                margin-top: 15px;
+                line-height: 18px;
+                @extend .Hind-Medium;
+            }
+        }
+        .wrapper-image {
+            @include measures(45%,auto);
+            img {
+                margin-bottom: -3px;
+            }
+        }
+    }
+    
+    ul.red-invent-sections-sites {
+        padding: 0px;        
+        li.sections-sites {            
+            min-height: 185px !important;            
+            span.site-bienestar180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(156px, 30px, -224px, -1057px);
+            }
+            span.site-sexualidad180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(170px, 31px, -429px, -1057px);
+            }
+            span.site-enforma180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(153px, 28px, -646px, -1059px);
+            }
+        }
+    }
+    
+}

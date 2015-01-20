@@ -17,13 +17,18 @@
     </div>
     
     <header>
-        <div class="wrapper-header">
+        <div class="wrapper-header relative">
             <div class="wrapper-site-logo left">
                 <a href="/#">
                     <span class="site-invent block"></span>
                 </a>                    
                 <h1 class="none">Inventmx</h1>
             </div>
+            
+            <div class="wrapper-main right none">
+                    <span class="main-center block"></span>
+            </div>
+            
             <ul class="left">
                 <li class="left inline-block">
                     <a class="none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
@@ -79,52 +84,53 @@
   $data_center["data"]["sections"]["0"]["items"]["0"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["0"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["0"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["1"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["1"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["1"]["title"] = "Tips de Belleza";
-  $data_center["data"]["sections"]["0"]["items"]["1"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["1"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["2"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["2"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["2"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["2"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["2"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["3"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["3"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["3"]["title"] = "Tips de Belleza";
+  $data_center["data"]["sections"]["0"]["items"]["3"]["url"] = "/#perfil/ana-dominguez";  
   
   $data_center["data"]["sections"]["0"]["items"]["4"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["4"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["4"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["4"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["4"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["5"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["5"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["5"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["5"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["5"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["6"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["6"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["6"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["6"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["6"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["7"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["7"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["7"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["7"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["7"]["url"] = "/#perfil/ana-dominguez";  
   
   $data_center["data"]["sections"]["0"]["items"]["8"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["8"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["8"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["8"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["8"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["9"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["9"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["9"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["9"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["9"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["10"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["10"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["10"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["10"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["10"]["url"] = "/#perfil/ana-dominguez";  
   $data_center["data"]["sections"]["0"]["items"]["11"]["image"] = "/web/img/home/global/Talento.png"; 
   $data_center["data"]["sections"]["0"]["items"]["11"]["name_editor"] = "Ana Dominguez";
   $data_center["data"]["sections"]["0"]["items"]["11"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["11"]["url"] = "/#user/ana-dominguez";  
+  $data_center["data"]["sections"]["0"]["items"]["11"]["url"] = "/#perfil/ana-dominguez";  
   
   $data_center["data"]["sections"]["1"]["name"] = "LA RED INVENT";
   $data_center["data"]["sections"]["1"]["items"]["0"]["image"] = "/";  
