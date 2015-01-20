@@ -149,7 +149,7 @@
         var numbers = [];
         $(items).each(function(i,j){
             numbers[i] = $(this).height();            
-        });console.log(numbers);
+        });
         return inventMx.utilities.searchNumbersMayor(numbers);
     }
     inventMx.utilities.searchNumbersMayor = function(number){
@@ -195,12 +195,42 @@
     
     $(document).ready(function(){
         $("header .main-center").click(function(){
-            //$("header ul").toggle();
-            $("header ul").slideToggle("fast");            
+            $("header ul").slideToggle("fast");
         });
+       
+        devicewidth = inventMx.utilities.deviceWidthWindow();
+        
+        if (devicewidth <= 700) {
+            $("header ul li a").click(function () {
+                $("header ul").hide("fast");                
+            });            
+        } else if (devicewidth > 700) {
+            $("header ul li a").click(function () {                
+                $("header ul").css("display","block");
+            });
+            $("header ul").css("display","block");
+        }
+        
        /*$("header ul li a").click(function(){
            inventMx.utilities.loaderShow();
        });*/
+    });
+    
+    
+    $(window).resize(function () {
+        devicewidth = inventMx.utilities.deviceWidthWindow();
+        
+        if (devicewidth <= 700) {
+            $("header ul li a").click(function () {                
+                $("header ul").hide("fast");
+            });            
+        } else if (devicewidth > 700) {
+            $("header ul li a").click(function () {                
+                $("header ul").css("display","block");
+            });
+            $("header ul").css("display","block");
+        }
+                
     });
 
 })(window.inventMx = window.inventMx || {});
