@@ -1478,23 +1478,24 @@ footer {
       width: 220px;
       height: auto; } }
 @media only screen and (max-width: 800px) {
-  .site-invent {
-    background-image: url("../img/sprites/sprite_movil.png") !important;
-    background-repeat: no-repeat; }
-
+  /*.site-invent {
+      background-image: url("../img/sprites/sprite_movil.png") !important;
+      background-repeat: no-repeat;
+  }*/
   header ul li {
     margin-top: 15px; }
     header ul li a {
       font-size: 11px; }
-  header .wrapper-header .wrapper-site-logo {
-    padding-top: 4px;
-    width: 25%;
-    height: auto; }
-  header .wrapper-header .site-invent {
-    margin: 0 auto;
-    width: 121px;
-    height: 37px;
-    background-position: -59px -27px; } }
+  header .wrapper-header {
+    /*.site-invent {
+        margin: 0 auto;
+        //@extend .sprite-movil;                
+        @include img-position(121px, 37px,-59px,-27px);
+    }*/ }
+    header .wrapper-header .wrapper-site-logo {
+      padding-top: 4px;
+      width: 25%;
+      height: auto; } }
 @media only screen and (min-width: 738px) {
   .wrapper-image-section2 .wrapper-content-section2 .wrapper-image {
     width: 23%; }
