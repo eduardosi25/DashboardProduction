@@ -68,6 +68,12 @@
                 padding-top: 4px;
                 @include measures(25%,auto);
             }
+            .site-invent {
+                margin: 0 auto;
+                background-repeat: no-repeat;
+                @include img-position(121px, 37px,-59px,-27px);
+                background-image: url("../img/sprites/sprite_movil.png");                
+            }
             /*.site-invent {
                 margin: 0 auto;
                 //@extend .sprite-movil;                

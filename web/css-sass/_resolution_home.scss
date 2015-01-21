@@ -1,13 +1,12 @@
-@media only screen and (max-width: 800px) {
-    .sprite-invent-movil {
-        background-image: url("../img/sprites/sprite_movil.png") !important;
-        background-repeat: no-repeat;
-    }
+
+
+@media only screen and (max-width: 800px) {    
     header {
         .wrapper-header {
             .site-invent {
                 margin: 0 auto;
-                @extend .sprite-invent-movil;
+                background-image: url("../img/sprites/sprite_movil.png");
+                background-repeat: no-repeat;
                 @include img-position(121px, 37px,-59px,-27px);
             }
         }
@@ -34,10 +33,10 @@
         font-family: Hind-Bold;
     }
 
-    /*.sprite-invent-movil {
+    .sprite-invent-movil {
         background-image: url("../img/sprites/sprite_movil.png");
         background-repeat: no-repeat;
-    }*/
+    }
 
     header {
         .wrapper-header {
