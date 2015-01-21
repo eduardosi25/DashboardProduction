@@ -63,7 +63,7 @@ and open the template in the editor.
 
 //@media only screen and (min-width: 701px) {
 .sprite-invent {
-    background-image: url("../img/sprites/sprite_desktop.png");
+    background-image: url("../img/sprites/sprite_desktop.png") !important;
     background-repeat: no-repeat;
 }
 .sprite-grafics {

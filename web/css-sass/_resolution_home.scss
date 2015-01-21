@@ -1,6 +1,6 @@
 
 
-@media only screen and (max-width: 800px) {    
+/*@media only screen and (max-width: 800px) {    
     header {
         .wrapper-header {
             .site-invent {
@@ -11,7 +11,7 @@
             }
         }
     }
-}
+}*/
 
 @media only screen and (max-width: 700px) {
 
@@ -33,8 +33,8 @@
         font-family: Hind-Bold;
     }
 
-    .sprite-invent-movil {
-        background-image: url("../img/sprites/sprite_movil.png");
+    .invent-mobile-sprite {
+        background-image: url("../img/sprites/sprite_movil.png") !important;
         background-repeat: no-repeat;
     }
 
@@ -51,7 +51,7 @@
             }
             /*.site-invent{
                 margin: 0 auto;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(121px, 37px,-59px,-27px);
             }*/
             .wrapper-main{
@@ -60,7 +60,7 @@
                 .main-center{
                     margin: 0 auto;
                     display: block;                    
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(37px, 37px,-59px,-80px);
                 }
             }            
@@ -213,12 +213,12 @@
 
     .ui-icon-triangle-1-s {
         display: inline-block;
-        @extend .sprite-invent-movil;
+        @extend .invent-mobile-sprite;
         @include img-position(21px, 21px, -62px, -121px);
     }
     .ui-icon-triangle-1-e {
         display: inline-block;
-        @extend .sprite-invent-movil;
+        @extend .invent-mobile-sprite;
         @include img-position(21px, 21px, -83px, -121px);
     }
 
@@ -226,75 +226,75 @@
         li.sections-sites {
             span.site-excelsior {
                 margin: 0 auto 16px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(135px, 31px, -72px, -203px);                
                 //width: 144px;
                 //height: 28px;
                 //background-position: -56px -757px;
             }
             span.site-imagen {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(126px, 57px, -72px, -247px);                
             }
             span.site-reporte {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(128px, 24px, -74px, -383px);                
             }
             span.site-cadenatres {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(133px, 40px, -72px, -316px);                
             }
             span.site-dineroenimagen {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(128px, 44px, -74px, -434px);                
             }
             span.site-salud180 {
                 margin: 0 auto 16px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(123px, 38px, -70px, -550px);                
             }
             span.site-actitudfem {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(142px, 36px, -73px, -804px);                
             }
             span.site-rsvp {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(104px, 36px, -90px, -860px);
             }
             span.site-melodijolola {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(138px, 51px, -74px, -748px);
             }
             span.site-atraccion360 {
                 margin: 0 auto 23px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(116px, 30px, -85px, -926px);
             }
             span.site-adrenalina360 {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(155px, 27px, -62px, -500px);
             }
             span.site-garuyo {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(114px, 41px, -90px, -970px);
             }
             span.site-swagger {
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(115px, 38px, -89px, -1027px);
             }
             span.site-gamedots {
                 margin: 0 auto 4px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(126px, 51px, -79px, -1085px);
             }
             span.site-estrategia45 {
                 //margin: 0 auto 4px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(136px, 37px, -82px, -1188px);
             }
             span.site-fahrenheit {
                 //margin: 0 auto 4px;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(136px, 24px, -78px, -1153px);
             }
         } 
@@ -383,7 +383,7 @@
             //@include measures(93.5%,auto);    
             .footer-site-invent {
                 margin: 0 auto;
-                @extend .sprite-invent-movil;
+                @extend .invent-mobile-sprite;
                 @include img-position(154px, 29px,-60px,-154px);
             }        
         }        
@@ -451,15 +451,15 @@
                     font-size: 22px;
                 }
                 .logo-case-volskwagen{
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(51px,53px,-74px,-2299px);
                 }
                 .logo-case-revlon {
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(107px,22px,-142px,-2316px);
                 }
                 .logo-case-bridgestone {
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(55px,48px,-260px,-2302px);
                 }
             }
@@ -491,7 +491,7 @@
                 span.ico-sumary-active {
                     display: block;
                     top: 15%;
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(19px, 19px, -84px, -122px);
                 }
                 .site-sumary {                    
@@ -521,22 +521,22 @@
                     position: absolute;
                     top: 27%;
                     right: 15%;
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(19px, 19px, -63px, -122px);                    
                 }
                 span.site-bienestar180{
                     margin: 0 auto 15px;
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(132px, 27px, -63px, -605px);
                 }
                 span.site-sexualidad180{
                     margin: 0 auto 15px;
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(129px, 24px, -71px, -653px);
                 }
                 span.site-enforma180{
                     margin: 0 auto 15px;
-                    @extend .sprite-invent-movil;
+                    @extend .invent-mobile-sprite;
                     @include img-position(125px, 24px, -74px, -705px);
                 }
             }
