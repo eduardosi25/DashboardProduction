@@ -40,11 +40,11 @@
                 @include img-position(121px, 37px,-59px,-27px);
             }*/
             .wrapper-main{
-                display: block;                
+                display: block;
                 margin: 7px 5% 0 0;
                 .main-center{
                     margin: 0 auto;
-                    display: block;                    
+                    display: block;
                     @extend .invent-mobile-sprite;
                     @include img-position(37px, 37px,-59px,-80px);
                 }

@@ -12,6 +12,7 @@ $(function() {
             "/": "home",
             "audiencias-y-contenidos": "audienciasContenidos",
             "marketers": "marketers",
+            "marketers/:idSection": "marketers",
             "red-de-video": "redeVideo",
             "caso-de-exito": "casoExito",
             "afiliate": "afiliate",
@@ -25,8 +26,34 @@ $(function() {
             "*default": "default",
             "*notFound": "notFound"
         },
-        initialize: function() {
+        initialize: function() {            
             
+            /*var that = this;
+            $(function () {
+                //var baseFolder = window.location.pathname.replace('/', '').split('/')[0];
+                Backbone.history.start({
+                    root: '/',
+                    //root: '/'+baseFolder+"/",                    
+                    pushState: true,
+                    hashChange: false
+                });
+
+                // Trap links
+                $('body').delegate('a[href]:not([href^=#])', 'click', function (e) {
+                    e.preventDefault();
+                    that.navigate($(this).attr('href'), {trigger: true});
+                });
+
+                // Block anchors for hash-based history
+                if (!Backbone.history._hasPushState) {
+                    $('body').delegate('a[href^=#]', 'click', function (e) {
+                        e.preventDefault();
+                    });
+                }
+             }); */
+            
+            //Backbone.history.start({pushState: true});
+            //Backbone.history.start();
         },
         home: function() {
             //iMxWebapp.taxonomy.name = {canal: "home"},
@@ -35,67 +62,95 @@ $(function() {
             inventMx.utilities.section = "home";
             inventMx.home.vista = new inventMx.home.Home();
         },
-        audienciasContenidos: function() {
+        audienciasContenidos: function(e) {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "audiencias-y-contenidos";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
             inventMx.home.pgAudienciasContenidos = new inventMx.home.HomeAudienciasContenidos();
         },
-        marketers: function() {
+        marketers: function(idSection) {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "marketers";
-            inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
+            idSection = (idSection)? idSection : null;
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
+            //inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
+            inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);
         },
         redeVideo: function() {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "red-de-video";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
             inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
         },
         casoExito: function() {            
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "caso-de-exito";
+            inventMx.main.activeHover();
+            inventMx.utilities.loaderShow();            
+            
             inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
         },
         afiliate: function() {            
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "afiliate";
+            inventMx.utilities.loaderShow();
+            inventMx.main.activeHover();
+            
             inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
         anunciate: function() {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "anunciate";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
             inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
         },
         perfilTalento: function() {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "perfil-talento";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento();
         },
         perfilSitio: function(name) {
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.loaderShow();
             inventMx.utilities.section = "perfil-sitio";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
             inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();
         },
         default: function() {
-                //inventMx.page.wrapper_site.hide("slow");
-                inventMx.utilities.loaderShow();
-                inventMx.utilities.section = "404";
-                inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
+            //inventMx.page.wrapper_site.hide("slow");
+            inventMx.utilities.section = "404";
+            inventMx.utilities.loaderShow();
+            inventMx.main.activeHover();
+            
+            inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
         },
         notFound: function() {
             alert("page no encontrada admin");
         }
     });
 
+    /*var baseFolder = window.location.pathname.replace('/', '').split('/')[0];
     router = new AppRoutes();
-    //Backbone.history.start({pushState: true});
+    Backbone.history.start({
+        pushState: true,
+        hashChange: true,
+        root: baseFolder
+    });*/
+
+    router = new AppRoutes();
     Backbone.history.start();
+    //Backbone.history.start({pushState: true});
 
 });

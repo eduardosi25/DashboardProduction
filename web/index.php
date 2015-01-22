@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
-    <meta name="charset" content="utf-8" />
+    <meta name="charset" content="utf-8" />    
+        
+    <link rel="canonical" href="http://www.inventmx.com" />
+    
+    <link rel="shortcut icon" href="/web/img/favicons/invent_16x16.ico" />
+    <link rel="shortcut icon" href="/web/img/favicons/invent_32x32.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/web/img/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/apple-touch-icon-114x114.png" />
+    
+    <meta name="description" content="Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet" />
+    <!-- meta facebook -->
+    <meta property="og:site_name" content="InventMX" />
+    <meta property="og:title" content="InventMX" />
+    <meta property="og:description" content="Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet"/>
+    <meta property="og:url" content="http://www.inventmx.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/web/img/favicons/mstile-150x150.png" />
+        
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <meta name="language" content="es" />
     <meta name="robots" content="index,follow,noarchive" />        
@@ -31,22 +49,22 @@
             
             <ul class="left">
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
+                    <a class="audiencias-y-contenidos none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#marketers">MARKETERS</a>
+                    <a class="marketers none-decoration" href="/#marketers">MARKETERS</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#red-de-video">RED DE VIDEO</a>
+                    <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#caso-de-exito">CASO DE ÉXITO</a>
+                    <a class="caso-de-exito none-decoration" href="/#caso-de-exito">CASO DE ÉXITO</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#afiliate">AFILIATE</a>
+                    <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="none-decoration" href="/#anunciate">ANUNCIATE</a>
+                    <a class="anunciate none-decoration" href="/#anunciate">ANÚNCIATE</a>
                 </li>
                 <span class="clear block"></span>
             </ul>                
@@ -63,7 +81,7 @@
             <div class="footer-site-invent"></div>
         </div>
         <p class="center">
-            Bucareli No. 1 Col. Centro, delegación Cuauhtémoc, C.P. 06000, México
+            Bucareli No. 1 Col. Centro, Delegación Cuauhtémoc. C.P. 06600. México D.F
         </p>
 
     </footer>    

@@ -9,7 +9,16 @@ $(function() {
         alert('No hay  más dato en ' + msg);
     });
     
-    
+    inventMx_events.bind("Inventform", function (idform,data) {
+        validate = $(idform).validationEngine('validate');        
+        options = {idform:idform}
+        if(validate) {
+            url = "/web/app/inventmx/global/sendmail.php";
+            inventMx.ajax.getAjax(url, data,inventMx.email.data,options);
+        }else {
+            console.log("No validate");
+        }
+    });
     
     
     /* modelos */    
@@ -75,7 +84,7 @@ $(function() {
                 
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
-                /*inventMx_events.trigger('NoData','Home');*/
+                /*inventMx_events.trigger('NoData','Home');*/                
                 
                 
                 $(window).resize(function (e) {
@@ -198,12 +207,14 @@ $(function() {
     
     inventMx.home.homeMarketers = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
-        initialize: function () {
+        initialize: function (idSection) {
             $(this.el).unbind();
             _.bindAll(this, 'render');
-            this.render();            
+            idAncla =  idSection;
+            this.render(idAncla);
+            this.render();
         },
-        render:function(){
+        render:function(idSection){
             var id_section1 = "#section-home-contactos";
             var rich1 = ".formats-rich-media .body-table-1 li.box-table";
             var rich2 = ".formats-rich-media .body-table-2 li.box-table";
@@ -212,7 +223,7 @@ $(function() {
             
             //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/marketers/home.html", function () {
-                
+
                 //inventMx.page.wrapper_site.show("slow");
                 //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
                     
@@ -227,6 +238,18 @@ $(function() {
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});
                 inventMx.utilities.oneAddRemoveSections(id_section1);
+                
+                /*if($("#"+idAncla).length){
+                    offset1 = $("#"+idAncla).offset();
+                    var offset = offset1.top;
+                    console.log(offset);
+                    inventMx.utilities.topOffset(offset);
+                    //console.log("Si");
+                }else {
+                    var ficha = new inventMx.pageDefault.default404();
+                    //inventMx.pageDefault.default404();
+                }*/
+                
                 return this;
             });                        
                         
@@ -375,6 +398,17 @@ $(function() {
                     inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});
+                
+                jQuery("#form-afiliate").validationEngine('attach', {
+                    promptPosition: "bottomLeft"
+                });
+                
+                $(document).on("submit","#form-afiliate",function(e){
+                    e.preventDefault();
+                    data = $(this).serializeArray();                    
+                    inventMx_events.trigger('Inventform','#form-afiliate',data);
+                });
+                
                 return this;
             });
             
@@ -401,8 +435,20 @@ $(function() {
                 //inventMx.page.wrapper_site.show("slow");
                 //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
                     inventMx.utilities.loaderHide();
-                    setTimeout(inventMx.utilities.loaderHide, 7000);
+                    setTimeout(inventMx.utilities.loaderHide, 2000);
                 //});
+                
+                jQuery("#form-anunciate").validationEngine('attach', {
+                    promptPosition: "bottomLeft"
+                });
+                
+                $(document).on("submit","#form-anunciate",function(e){
+                    e.preventDefault();
+                    inventMx.utilities.loaderShow();
+                    data = $(this).serializeArray();
+                    inventMx_events.trigger('Inventform','#form-anunciate',data);
+                });
+                
                 return this;
             });
             

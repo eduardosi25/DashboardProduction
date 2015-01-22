@@ -13,38 +13,38 @@
                     <span class="block form-block">
                         <label class="label-name">Nombre</label>
                         <label class="label-input">
-                            <input type="text" name="name" value="" placeholder="Nombre">
+                            <input class="validate[required]" type="text" name="nombre" value="" placeholder="Nombre">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Apellido</label>
                         <label class="label-input">
-                            <input type="text" name="surname" value="" placeholder="Nombre">
+                            <input class="validate[required]" type="text" name="apellido" value="" placeholder="Nombre">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Correo eléctronico</label>
                         <label class="label-input">
-                            <input type="text" name="email" value="" placeholder="Nombre">
+                            <input class="validate[required,custom[email]]" type="text" name="email" value="" placeholder="Nombre">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Canal de Youtube</label>
                         <label class="label-input">
-                            <input type="text" name="chanel" value="" placeholder="Nombre">
+                            <input class="" type="text" name="chanel" value="" placeholder="Nombre">
                         </label>
                     </span>
-                    
-                    <span class="block form-block-term fs14 center">
+                    <input type="hidden" name="type" value="afiliate">
+                    <!-- <span class="block form-block-term fs14 center">
                         <label><input type="checkbox" name="">Acepto terminos y condiciones</label>                        
                     </span>
                     
                     <span class="block form-block-term bg-FFF center fs18">
                         <a href="/#terminos-y-condiciones">Terminos y condiciones</a>
-                    </span>
+                    </span> -->
                     
-                    <span class="afiliate-btn block center">
-                        <input class="btn-publish" type="button" name="enviar"  value="Afiliarme">
+                    <span class="afiliate-btn block center pt20">
+                        <input class="btn-publish" type="submit" name="enviar"  value="Afiliarme">
                     </span>
                     
                     <span class="block bg-FFF form-bottom"></span>

@@ -2,10 +2,11 @@
     inventMx.ajax = {},
     inventMx.header = {},
     inventMx.utilities = {},
-    inventMx.home = {},
+    inventMx.home = {},    
     inventMx.main = {},
     inventMx.pageDefault = {},
     inventMx.page = {},
+    inventMx.email = {},
     inventMx.header.main = function () {
     },    
     inventMx.page.wrapper_site = $("#wrapper-page-site"),
@@ -25,7 +26,7 @@
         });
         return finshparams;
     },
-    inventMx.ajax.getAjax = function(url, params, callback) {
+    inventMx.ajax.getAjax = function(url, params,callback,options) {
         jQuery.ajax({
             url: url,
             data: params,
@@ -35,16 +36,26 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             success: function(data) {
-                if (data.data.sections) {                    
-                    callback(data);
+                if (data) {
+                    callback(data,options);
                 } else {
+                    inventMx.utilities.loaderHide();
                     alert("Hubo un error inesperado, intenta nuevamente por favor");
                 }
             },
             error: function(request, status, error) {
-                alert("Hubo un error inesperado, intenta nuevamente por favor");
+                return alert("Hubo un error inesperado, intenta nuevamente por favor");
             }
         });
+    },
+    inventMx.email.data = function(data,options){
+        //console.log(data);
+        //console.log(options.idform);
+        alert(data.text);
+        idform = options.idform;
+        $(idform + " :input[type='text']").val("");
+        inventMx.utilities.loaderHide();
+        
     },
     inventMx.utilities.deviceWidthWindow = function(){
         return $(window).width();
@@ -161,12 +172,10 @@
         //j = [101,2,3,14,5,55,205];
         //alert(mayor(j));
     },
-    inventMx.main.activeHover = function(url){
-        var  section;
+    inventMx.main.activeHover = function(){
+        $("header ul li a").removeClass("active");
         section =  inventMx.utilities.section;
-        
-        
-        
+        $("header ul li a."+section).addClass("active");
     },
     inventMx.utilities.changeResolitionsImg = function(id_image_firts){
         deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
@@ -202,59 +211,39 @@
     }
     
     $(document).ready(function(){
-        $("header .main-center").click(function(){
-            $("header ul").slideToggle("fast");
-        });
-       
         devicewidth = inventMx.utilities.deviceWidthWindow();
         
-        if (devicewidth <= 700) {
-            $("header ul li a").click(function () {
-                $("header ul").hide("fast");                
-            });            
-        } else if (devicewidth > 700) {
-            $("header ul li a").click(function () {                
-                $("header ul").css("display","block");
-            });
-            $("header ul").css("display","block");
-        }
+        $("header .main-center").click(function(){
+            if (devicewidth < 701) {
+                $("header ul").slideToggle("fast");
+            }else{
+                $("header ul").css("display", "block");
+            }
+        });
         
-       /*$("header ul li a").click(function(){
-           inventMx.utilities.loaderShow();
-       });*/
+        /*ActveMain = inventMx.utilities.section;
+        $("header ul li a#"+ActveMain).addClass("active");
+        console.log("header ul li a#"+ActveMain);*/
+        
+        
     });
     
     
     $(window).resize(function () {
         devicewidth = inventMx.utilities.deviceWidthWindow();
         
-        if (devicewidth <= 700) {
-            $("header ul li a").click(function () {                
-                $("header ul").hide("fast");
-            });            
-        } else if (devicewidth > 700) {
-            $("header ul li a").click(function () {                
+        $("header .main-center").click(function(){
+            if (devicewidth > 700) {                
                 $("header ul").css("display","block");
-            });
-            $("header ul").css("display","block");
+            }
+        });
+        
+        if (devicewidth > 700) {            
+            $("header ul").css("display", "block");
+        }else {
+            $("header ul").css("display", "none");
         }
-                
+        
     });
 
 })(window.inventMx = window.inventMx || {});
-
-/*define({        
- apen : function(){
- $("body").append("<div>Hola mundo</div>");
- }
- });*/
-
-/*define(function () {
- //Do setup work here
- return {        
- color: "negro claro",
- size: function(){
- alert("entre");
- },
- }
- });*/
