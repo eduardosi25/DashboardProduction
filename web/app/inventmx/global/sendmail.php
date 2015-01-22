@@ -1,10 +1,10 @@
 <?php
 
-$nombre = $_POST['nombre'];
-$apellido = $_POST['apellido'];
-$correo = $_POST['email'];
-$canal  = $_POST['chanel'];
-$type   = $_POST['type'];
+$nombre   = $_REQUEST['nombre'];
+$apellido = $_REQUEST['apellido'];
+$correo   = $_REQUEST['email'];
+$canal    = $_REQUEST['chanel'];
+$type     = $_REQUEST['type'];
 
 $referer=isset($_POST['text-referrer']) ? " Vía ".$_POST['text-referrer'] : '';
 
@@ -24,7 +24,8 @@ $referer=isset($_POST['text-referrer']) ? " Vía ".$_POST['text-referrer'] : '';
 //}
 
 #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
-$to="sergio@inventmx.com,pedro@inventmx.com,jose.cruz@inventmx.com";
+#$to="sergio@inventmx.com,pedro@inventmx.com,jose.cruz@inventmx.com";
+$to="sergio@inventmx.com,jose.cruz@inventmx.com";
 
 $subject = 'InventMX - Nos han contactado! - ' . $type." ".$referer;
 $message = 'Han usuado el formulario de contacto de InventMX, estos son los datos: <br /><br />';
