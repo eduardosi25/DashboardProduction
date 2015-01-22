@@ -6,7 +6,7 @@ $correo   = $_REQUEST['email'];
 $canal    = $_REQUEST['chanel'];
 $type     = $_REQUEST['type'];
 
-$referer=isset($_POST['text-referrer']) ? " Vía ".$_POST['text-referrer'] : '';
+$referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer'] : '';
 
 
 //if( $nombre === '' || $correo === ''  || strlen($nombre) <= 3 || strlen($correo) <= 3  ){
@@ -16,8 +16,8 @@ $referer=isset($_POST['text-referrer']) ? " Vía ".$_POST['text-referrer'] : '';
 
     $nombre = sanitaze_string($nombre);
     $correo = sanitaze_string($correo);
-    $asunto = sanitaze_string($asunto);
-    $phone  = sanitaze_string($phone);
+    //$asunto = sanitaze_string($asunto);
+    //$phone  = sanitaze_string($phone);
 
     $correo = filter_var( $correo, FILTER_SANITIZE_EMAIL);
     $valid = true;
@@ -27,6 +27,7 @@ $referer=isset($_POST['text-referrer']) ? " Vía ".$_POST['text-referrer'] : '';
 #$to="sergio@inventmx.com,pedro@inventmx.com,jose.cruz@inventmx.com";
 #$to="sergio@inventmx.com,jose.cruz@inventmx.com";
 $to="jose.cruz@inventmx.com";
+$cabeceras = "";
 
 $subject = 'InventMX - Nos han contactado! - ' . $type." ".$referer;
 $message = 'Han usuado el formulario de contacto de InventMX, estos son los datos: <br /><br />';
