@@ -36,6 +36,7 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             success: function(data) {
+                console.log(data);
                 if (data) {
                     callback(data,options);
                 } else {
