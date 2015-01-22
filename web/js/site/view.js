@@ -125,12 +125,14 @@ $(function() {
     
     inventMx.home.HomeAudienciasContenidos = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
-        initialize: function () {
+        initialize: function (idSection) {
             $(this.el).unbind();
             _.bindAll(this, 'render');
-            this.render();            
+            //this.render();            
+            idAncla =  idSection;
+            this.render(idAncla);
         },
-        render:function(){
+        render:function(idAncla){
                 var id_section1 = "#section-home-contactos";
                 var noticias = "#noticias-deportes li.sections-sites";
                 var Msaludable = "#mundo-saludable li.sections-sites";
@@ -163,7 +165,21 @@ $(function() {
                 }
                 
                     inventMx.utilities.loaderHide();
-                    setTimeout(inventMx.utilities.loaderHide, 7000);                    
+                    setTimeout(inventMx.utilities.loaderHide, 7000);
+                    
+                    if(idAncla !== true){
+                        //console.log(idAncla);
+                        if($("#"+idAncla).length){
+                            offset1 = $("#"+idAncla).offset();
+                            var offset = offset1.top;
+                            inventMx.utilities.topOffset(offset);
+                            //console.log("Si");
+                        }else {
+                            var ficha = new inventMx.pageDefault.default404();
+                            //inventMx.pageDefault.default404();
+                        }
+                    }
+                    
                 });
                 
                 
@@ -212,9 +228,9 @@ $(function() {
             _.bindAll(this, 'render');
             idAncla =  idSection;
             this.render(idAncla);
-            this.render();
+            //this.render();
         },
-        render:function(idSection){
+        render:function(idAncla){
             var id_section1 = "#section-home-contactos";
             var rich1 = ".formats-rich-media .body-table-1 li.box-table";
             var rich2 = ".formats-rich-media .body-table-2 li.box-table";
@@ -239,16 +255,18 @@ $(function() {
                 //});
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
-                /*if($("#"+idAncla).length){
-                    offset1 = $("#"+idAncla).offset();
-                    var offset = offset1.top;
-                    console.log(offset);
-                    inventMx.utilities.topOffset(offset);
-                    //console.log("Si");
-                }else {
-                    var ficha = new inventMx.pageDefault.default404();
-                    //inventMx.pageDefault.default404();
-                }*/
+                if(idAncla !== true){
+                    //console.log(idAncla);
+                    if($("#"+idAncla).length){
+                        offset1 = $("#"+idAncla).offset();
+                        var offset = offset1.top;
+                        inventMx.utilities.topOffset(offset);
+                        //console.log("Si");
+                    }else {
+                        var ficha = new inventMx.pageDefault.default404();
+                        //inventMx.pageDefault.default404();
+                    }
+                }
                 
                 return this;
             });                        

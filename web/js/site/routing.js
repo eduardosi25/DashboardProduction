@@ -11,6 +11,7 @@ $(function() {
             "": "home",
             "/": "home",
             "audiencias-y-contenidos": "audienciasContenidos",
+            "audiencias-y-contenidos/:idSection": "audienciasContenidos",
             "marketers": "marketers",
             "marketers/:idSection": "marketers",
             "red-de-video": "redeVideo",
@@ -60,24 +61,34 @@ $(function() {
             //inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.loaderShow();
             inventMx.utilities.section = "home";
-            inventMx.home.vista = new inventMx.home.Home();
+            inventMx.utilities.topOffset(0);
+            inventMx.home.vista = new inventMx.home.Home();            
         },
-        audienciasContenidos: function(e) {
+        audienciasContenidos: function(idSection) {
             //inventMx.page.wrapper_site.hide("slow");
+            valueSection = inventMx.utilities.isObject(idSection);
             inventMx.utilities.section = "audiencias-y-contenidos";
+            //idSection = (idSection)? idSection : null;
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
-            inventMx.home.pgAudienciasContenidos = new inventMx.home.HomeAudienciasContenidos();
+            idSection = (valueSection === true)? valueSection : idSection;
+            (valueSection === false) ? inventMx.utilities.topOffset(0) : "";
+            inventMx.home.pgAudienciasContenidos = new inventMx.home.HomeAudienciasContenidos(idSection);
         },
         marketers: function(idSection) {
+            
+            valueSection = inventMx.utilities.isObject(idSection);           
+            //console.log(valueSection);
             //inventMx.page.wrapper_site.hide("slow");
-            inventMx.utilities.section = "marketers";
-            idSection = (idSection)? idSection : null;
-            inventMx.utilities.loaderShow();            
+            inventMx.utilities.section = "marketers";            
+            inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
+            idSection = (valueSection === true)? valueSection : idSection;
+            (valueSection === false) ? inventMx.utilities.topOffset(0) : "";
             //inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
+            
             inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);
         },
         redeVideo: function() {
@@ -86,6 +97,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
+            inventMx.utilities.topOffset(0);
             inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
         },
         casoExito: function() {            
@@ -94,6 +106,7 @@ $(function() {
             inventMx.main.activeHover();
             inventMx.utilities.loaderShow();            
             
+            inventMx.utilities.topOffset(0);
             inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
         },
         afiliate: function() {            
@@ -102,6 +115,7 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
+            inventMx.utilities.topOffset(0);
             inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
         anunciate: function() {
@@ -110,6 +124,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
+            inventMx.utilities.topOffset(0);
             inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
         },
         perfilTalento: function() {
@@ -118,6 +133,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
+            inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento();
         },
         perfilSitio: function(name) {
@@ -126,7 +142,8 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
-            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();
+            inventMx.utilities.topOffset(0);
+            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();            
         },
         default: function() {
             //inventMx.page.wrapper_site.hide("slow");

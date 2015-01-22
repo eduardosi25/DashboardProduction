@@ -16,6 +16,18 @@
     inventMx.utilities.loaderHide = function () {
         $("#wrapper-loading-layout").css("display", "none");
     },
+    inventMx.utilities.isArray = function (value) {
+        //function isArray(value) {
+        return (value === null || typeof value === 'array')? true : false;
+            //return Object.prototype.toString.call(value) === "[object Array]";
+        //}
+    },
+    inventMx.utilities.isObject = function (value) {
+        //function isArray(value) {
+        return (value === null || typeof value === 'object')? true : false;
+            //return Object.prototype.toString.call(value) === "[object Object]";
+        //}
+    },
     inventMx.ajax.params = function() {
         params = iMxWebapp.dataSource.params;
         finshparams = {};
@@ -36,7 +48,7 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             success: function(data) {
-                console.log(data);
+                //console.log(data);
                 if (data) {
                     callback(data,options);
                 } else {
@@ -221,11 +233,6 @@
                 $("header ul").css("display", "block");
             }
         });
-        
-        /*ActveMain = inventMx.utilities.section;
-        $("header ul li a#"+ActveMain).addClass("active");
-        console.log("header ul li a#"+ActveMain);*/
-        
         
     });
     
