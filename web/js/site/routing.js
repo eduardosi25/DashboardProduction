@@ -62,7 +62,9 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.utilities.section = "home";
             inventMx.utilities.topOffset(0);
-            inventMx.home.vista = new inventMx.home.Home();            
+            inventMx.home.vista = new inventMx.home.Home();
+            
+            $("header ul li a").removeClass("active");
         },
         audienciasContenidos: function(idSection) {
             //inventMx.page.wrapper_site.hide("slow");
