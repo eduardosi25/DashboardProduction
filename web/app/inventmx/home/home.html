@@ -15,7 +15,7 @@
 
     <div id="home-accordion">
         <!-- <section class="red-invent"> -->
-        <h2 class="title-seccion-invent center mtb20">
+        <h2 class="title-seccion-invent center pt20">
             <span class="cgrey-invent">LA RED</span> <span class="corange-invent">INVENT</span>
         </h2>
 
@@ -220,7 +220,7 @@
 
 
         <section class="wrapper-our-services">
-            <h2 class="title-seccion-invent center mtb20">
+            <h2 class="title-seccion-invent center pt25">
                 <span class="cgrey-invent">NUESTROS</span> <span class="corange-invent"> SERVICIOS</span>
             </h2>
 
@@ -332,11 +332,24 @@
     <ul>
         {{#each this}}
             <li class="left center box-{{@index}}">
-                <a class="none-decoration" href="{{this.url}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
                     <span class="block">
-                        <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.image.picture.0.styles.medium }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                        
                     </span>
-                    <span class="block name-editor">{{this.name_editor}}</span>
+                    <span class="block name-editor">{{this.title}}</span>
                     <span class="block type-content">{{this.title}}</span>
                 </a>
             </li>            

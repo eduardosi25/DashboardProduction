@@ -20,7 +20,7 @@ $(function() {
             "anunciate": "anunciate",
             //"perfil/:id": "perfilTalento",
             //"perfil/:name": "perfilTalento",
-            "perfil/ana-dominguez": "perfilTalento",
+            ":nameTalento": "perfilTalento",
             //"site/:id": "perfilSitio",
             "site/:name": "perfilSitio",
             //"site/excelsior": "perfilSitio",
@@ -129,14 +129,15 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
         },
-        perfilTalento: function() {
+        perfilTalento: function(nameTalento) {
             //inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.section = "perfil-talento";
-            inventMx.utilities.loaderShow();            
+            inventMx.utilities.nametalento = nameTalento;
+            inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
             inventMx.utilities.topOffset(0);
-            inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento();
+            inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
         },
         perfilSitio: function(name) {
             //inventMx.page.wrapper_site.hide("slow");
@@ -145,7 +146,7 @@ $(function() {
             inventMx.main.activeHover();
             
             inventMx.utilities.topOffset(0);
-            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();            
+            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();
         },
         default: function() {
             //inventMx.page.wrapper_site.hide("slow");

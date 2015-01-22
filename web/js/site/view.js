@@ -43,9 +43,9 @@ $(function() {
         },
         loadPage: function () {  
             
-            var url = "/web/data/home/home.json";
+            //var url = "/web/data/home/home.json";
             //inventMx.dataSource.params.limit = "100";
-            var params = "";
+            //var params = "";
             
             /* params accordion */
             var id_container = "#home-accordion";
@@ -53,38 +53,20 @@ $(function() {
             var topOffset = true;
             
             var id_section1 = "#section-home-talento";
-            var id_section2 = "#section-home-contactos";                        
+            var id_section2 = "#section-home-contactos";
             
             /* render handlebars */
             //inventMx.page.wrapper_site.animate({ "left": "+=3000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
                 
-                /*repo = "vloger.json";
+                //repo = "vloger.json";
+                //inventMx.dataSource.params.url = null;
+                //inventMx.dataSource.params.limit = "100";
+                //inventMx.dataSource.load(repo,inventMx.render.tplHomeTalentos);
+                repo = "vloger.json";
+                inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "100";
-                inventMx.dataSource.load(repo,inventMx.render.tplHomeTalentos);*/
-                
-                inventMx.dataSource.getAjax(url, params, function(resp) {
-                    if (resp){                        
-                        data = resp.data.sections[0].items;
-                        dataVideos = data.slice(0, 15);
-                        var redVideos = $("#template-home-red-videos").html();
-                        var tpl_redVideos = Handlebars.compile(redVideos);
-                        var view_redVideos = tpl_redVideos(dataVideos);
-                        $("#home-red-videos").html(view_redVideos);                        
-                    } else {
-                        inventMx.utilities.loaderHide();
-                        $("#home-red-videos").append("<p>No hay datos para mostrar</p>");
-                    }
-                    
-                    if ($("img.lazy").length) {
-                        $("img.lazy").lazyload({
-                            effect: "fadeIn"
-                        });
-                    }
-                    
-                    inventMx.utilities.loaderHide();
-                    setTimeout(inventMx.utilities.loaderHide, 7000);
-                });
+                listTalentos = new inventMx.home.listPerfilTalentos(repo);
                 
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
@@ -486,21 +468,21 @@ $(function() {
     }),
     
     inventMx.home.homePerfilTalento = Backbone.View.extend({
-        initialize: function () {
-            this.render();
+        initialize: function (nameTalento) {
+            this.render(nameTalento);
         },
-        render:function(){
+        render:function(nameTalento){
             var id_section1 = "#section-home-contactos";
             var url = "/web/data/home/home.json";
             var params = "";
             
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/perfilTalento/home.html", function () {
                 
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
+                repo = "vloger.json";
+                inventMx.dataSource.params.url = nameTalento;
+                inventMx.dataSource.load(repo,inventMx.render.tplPerfilTalentos);
                     
-                    inventMx.dataSource.getAjax(url, params, function(resp) {
+                /*inventMx.dataSource.getAjax(url, params, function(resp) {
                     if (resp){                        
                         data = resp.data.sections[0].items;
                         dataTalentos = data.slice(0, 15);
@@ -518,11 +500,11 @@ $(function() {
                             effect: "fadeIn"
                         });
                     }
-                });
+                });*/
                     
                     
                     inventMx.utilities.oneAddRemoveSections(id_section1);
-                    inventMx.utilities.loaderHide();
+                    //inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});
                 return this;
@@ -566,6 +548,19 @@ $(function() {
         },
     });
     
+    
+    inventMx.home.listPerfilTalentos = Backbone.View.extend({
+        initialize: function (repo) {
+            this.render(repo);
+        },
+        render:function(repo){
+            //repo = "vloger.json";
+            //inventMx.dataSource.params.url = null;
+            //inventMx.dataSource.params.limit = "100";
+            inventMx.dataSource.load(repo, inventMx.render.tplHomeTalentos);
+        }
+        
+    });
     
     inventMx.home.default404 = Backbone.View.extend({
         initialize: function () {

@@ -88,6 +88,9 @@ and open the template in the editor.
     font-family: Hind-Semibold;
 }
 
+body {
+    background-color: #1A1A1A;
+}
 
 #wrapper-loading-layout {
     //border: 1px solid #798F34;
@@ -181,6 +184,18 @@ article {
     margin: 0 auto;
     max-width: 1024px;
     @include measures(93.5%,auto);
+}
+
+#wrapper-page-site {
+    .wrapper-image-section1{
+        img {
+            margin-bottom: -3px;
+        }
+        background-color: #F1F1F1;
+    }
+    #home-accordion {
+        background-color: #FFF;
+    }
 }
 
 .wrapper-image-section1 {
@@ -468,7 +483,7 @@ ul.red-invent-sections-sites {
             padding: 15px 1%;
             min-height: 190px;
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             background-color: #2C2C2C;
             @include measures(30%,auto);
             @include border-radius(.8em);

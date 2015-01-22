@@ -31,7 +31,7 @@
 <body class="relative">
     
     <div id="wrapper-loading-layout">
-        <img class="gif" src="/web/img/ajax-loader.gif">
+        <img class="gif" src="/web/img/global/ajax-loader.gif">
     </div>
     
     <header>
@@ -81,7 +81,7 @@
             <div class="footer-site-invent"></div>
         </div>
         <p class="center">
-            Bucareli No. 1 Col. Centro, Delegación Cuauhtémoc. C.P. 06600. México D.F
+            Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600
         </p>
 
     </footer>    
@@ -92,88 +92,4 @@
     <script type="text/javascript" src="/web/js/site/routing.js"></script>
 </body>
 </html>
-
-<?php
- /*$rutafisica = "web/data/home/home.json";
-
-  $data_center = array();
-
-  $data_center["data"]["sections"]["0"]["name"] = "RED DE VIDEOS";
-  $data_center["data"]["sections"]["0"]["items"]["0"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["0"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["0"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["1"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["1"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["1"]["title"] = "Tips de Belleza";
-  $data_center["data"]["sections"]["0"]["items"]["1"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["2"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["2"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["2"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["2"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["3"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["3"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["3"]["title"] = "Tips de Belleza";
-  $data_center["data"]["sections"]["0"]["items"]["3"]["url"] = "/#perfil/ana-dominguez";  
-  
-  $data_center["data"]["sections"]["0"]["items"]["4"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["4"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["4"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["4"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["5"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["5"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["5"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["5"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["6"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["6"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["6"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["6"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["7"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["7"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["7"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["7"]["url"] = "/#perfil/ana-dominguez";  
-  
-  $data_center["data"]["sections"]["0"]["items"]["8"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["8"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["8"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["8"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["9"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["9"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["9"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["9"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["10"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["10"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["10"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["10"]["url"] = "/#perfil/ana-dominguez";  
-  $data_center["data"]["sections"]["0"]["items"]["11"]["image"] = "/web/img/home/global/Talento.png"; 
-  $data_center["data"]["sections"]["0"]["items"]["11"]["name_editor"] = "Ana Dominguez";
-  $data_center["data"]["sections"]["0"]["items"]["11"]["title"] = "Tips de Belleza";  
-  $data_center["data"]["sections"]["0"]["items"]["11"]["url"] = "/#perfil/ana-dominguez";  
-  
-  $data_center["data"]["sections"]["1"]["name"] = "LA RED INVENT";
-  $data_center["data"]["sections"]["1"]["items"]["0"]["image"] = "/";  
-  $data_center["data"]["sections"]["1"]["items"]["0"]["site"] = "Excelsior";  
-  $data_center["data"]["sections"]["1"]["items"]["0"]["sumary"] = "Portal de noticias líder en México con toda la información nacional y del mundo. Entérate en tiempo real de la vida pública, política de espectáculos, deportes, videos y más…"; 
-  $data_center["data"]["sections"]["1"]["items"]["1"]["image"] = "/";  
-  $data_center["data"]["sections"]["1"]["items"]["1"]["site"] = "Imagen Radio";  
-  $data_center["data"]["sections"]["1"]["items"]["1"]["sumary"] = "Sitio web de la estación número 1 de la radio hablada en México. Sitio de noticias, finanza, negocios, deportes, vida, música y curiosidades.";    
-
-  file_put_contents($rutafisica, json_encode($data_center)); */
-
-
-/* caso  de exito */
-/*  $rutafisica = "web/data/caso-de-exito/nodes.json";
-  $data_center = array();
-
-  $data_center["data"]["sections"]["0"]["name"] = "Casos de éxito";
-  $data_center["data"]["sections"]["0"]["items"]["0"]["objetive_cliente"] = ""; 
-  $data_center["data"]["sections"]["0"]["items"]["0"]["tender_invent"] = "";  
-  $data_center["data"]["sections"]["0"]["items"]["0"]["url"] = "/";*/
-  
-  
-
-  //file_put_contents($rutafisica, json_encode($data_center));
-
-
-?>
 

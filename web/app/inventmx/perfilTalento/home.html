@@ -1,58 +1,11 @@
 <section id="page-perfil-talento">
 
     <section class="wrapper-image-section1">
-        <article class="middle">
-
-            <div class="wrapper-perfil">
-                <div class="perfil">
-                    <div class="wrapper-img left">
-                        <img src="/web/img/home/global/Talento.png"  alt="" title=""/>
-                    </div>
-                    <div class="description left">
-                        <span class="block name">Ana Domiguez</span>
-                        <span class="block type-perfil">TIPS DE BELLEZA</span>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="summary ">
-                    Ser madre es sin duda el trabajo más hermoso y difícil nadie nace con un manual para ser
-                    buenos padres, pero Ana que es mamá de tres te orienta y te enseña que no es tan
-                    Complicado como parece
-                </div>
-            </div>
+        <article id="perfil-talento">
             
-            
-            <div class="wrapper-bars">
-                <div class="left content-grafic-1 relative">
-                    <div class="bars-75 absolute"></div>
-                    <div class="info-bars center absolute">
-                        <span class="block total">75%</span>
-                        <span class="block users">HOMBRES</span>
-                    </div>
-                </div>
-                <div class="left age-users center">
-                    <span class="block age">25-30</span>
-                    <span class="block age-name">Años</span>
-                </div>
-                <div class="left content-grafic-2 relative">
-                    <div class="bars-25 absolute"></div>
-                    <div class="info-bars center absolute">
-                        <span class="block total">25%</span>
-                        <span class="block users">MUJERES</span>
-                    </div>
-                </div>
-                <div class="left content-visit center">
-                    <span class="total-visit block">247,886</span>
-                    <span class="description-visit block">VISITAS MENSUALES</span>
-                </div>
-                <div class="left content-visit center">
-                    <span class="total-visit block">37,973</span>
-                    <span class="description-visit block">TOTAL SEGUIDORES</span>
-                </div>
-                <div class="clear"></div>
-            </div>
-            
-
+        </article>
+        
+        <article>
             <ul class="main-sections-tools">
                 <li class="left">
                     <a class="block btn-publish none-decoration center" href="/#afiliate">
@@ -66,8 +19,8 @@
                 </li>
                 <li class="block clear"></li>
             </ul>
-
         </article>
+        
     </section>
 
 
@@ -76,7 +29,7 @@
             <span class="corange-invent"> MÁS DE  LIFE & STYLE</span>
         </h2>
 
-        <article id="home-talentos" class="home-perfil-colaboradores pt15"></article>
+        <article id="home-red-videos" class="home-perfil-colaboradores pt15"></article>
 
     </section>
 
@@ -99,6 +52,101 @@
 
 </section>
 
+<script id="template-perfil-talento" type="template/perfiltalento">
+    <div class="wrapper-perfil">
+        <div class="perfil">
+            <div class="wrapper-img left">
+                {{#if this.images.picture }}
+                    {{#if this.images.picture.0.styles }}
+                        {{#if this.images.picture.0.styles.medium }}
+                            <img class="loader lazy" src="{{this.image.picture.0.styles.medium }}" alt="" title="{{this.title}}">
+                        {{else}}
+                            <img class="loader lazy" src="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" src="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                {{else}}
+                    <img class="loader lazy" src="/web/img/global/default.png" alt="" title="{{this.title}}">
+                {{/if}}
+            </div>
+            <div class="description left">
+                <span class="block name">{{this.title}}</span>
+                <span class="block type-perfil">{{this.title}}</span>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="summary ">
+            {{#if this.summary }}
+                {{this.summary}}
+            {{/if}}
+        </div>
+    </div>
+            
+            
+    <div class="wrapper-bars">
+        <div class="left content-grafic-1 relative">
+            <div class="bars-75 absolute"></div>
+            <div class="info-bars center absolute">
+                {{#if this.mens }}
+                    <span class="block total">{{this.mens}}%</span>
+                    <span class="block users">HOMBRES</span>
+                {{/if}}
+            </div>
+        </div>
+        <div class="left age-users center">
+            <span class="block age">{{this.ages}}</span>
+            <span class="block age-name">Años</span>
+        </div>
+        <div class="left content-grafic-2 relative">
+            <div class="bars-25 absolute"></div>
+            <div class="info-bars center absolute">
+                <span class="block total">{{this.womens}}%</span>
+                <span class="block users">MUJERES</span>
+            </div>
+        </div>
+        <div class="left content-visit center">
+            <span class="total-visit block">{{this.views}}</span>
+            <span class="description-visit block">VISITAS MENSUALES</span>
+        </div>
+        <div class="left content-visit center">
+            <span class="total-visit block">{{this.followers}}</span>
+            <span class="description-visit block">TOTAL SEGUIDORES</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>
+
+<script id="template-home-red-videos" type="template/template-home-talentos">
+    <ul>
+        {{#each this}}
+            <li class="left center box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.image.picture.0.styles.medium }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                        
+                    </span>
+                    <span class="block name-editor">{{this.title}}</span>
+                    <span class="block type-content">{{this.title}}</span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+    
 <script id="section-home-contactos-1" type="template/sectionhomecontactos">
     <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
         <div class="wrapper-content-section3 absolute">
@@ -113,21 +161,4 @@
                 <div class="clear"></div>
             </article>
     </div>
-</script>
-
-<script id="template-home-talentos" type="template/template-home-talentos">
-    <ul>
-        {{#each this}}
-            <li class="left center box-{{@index}}">
-                <a class="none-decoration" href="{{this.url}}">
-                    <span class="block">
-                        <img class="loader lazy" data-original="{{this.image}}" alt="" title="{{this.name_editor}}">
-                    </span>
-                    <span class="block name-editor">{{this.name_editor}}</span>
-                    <span class="block type-content">{{this.title}}</span>
-                </a>
-            </li>            
-        {{/each}}
-            <li class="clear block"></li>
-    </ul>
 </script>

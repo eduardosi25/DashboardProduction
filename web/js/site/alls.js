@@ -47,9 +47,63 @@
     inventMx.utilities.loaderHide = function () {
         $("#wrapper-loading-layout").css("display", "none");
     },
-    inventMx.render.tplHomeTalentos = function(data){
-        console.log(data);
-    }
+    inventMx.render.tplHomeTalentos = function(resp){
+        if (resp) {
+            dataVideos = resp.data;
+            //dataVideos = data.slice(0, 15);
+            var redVideos = $("#template-home-red-videos").html();
+            var tpl_redVideos = Handlebars.compile(redVideos);
+            var view_redVideos = tpl_redVideos(dataVideos);
+            $("#home-red-videos").html(view_redVideos);
+        } else {
+            inventMx.utilities.loaderHide();
+            $("#home-red-videos").append("<p>No hay datos para mostrar</p>");
+        }
+
+        if ($("img.lazy").length) {
+            $("img.lazy").lazyload({
+                effect: "fadeIn"
+            });
+        }
+
+        inventMx.utilities.loaderHide();
+        setTimeout(inventMx.utilities.loaderHide, 7000);
+    },
+    inventMx.render.tplPerfilTalentos = function(resp){
+        console.log(resp);
+        if (resp.response.status == 200) {
+            
+            dataPerfil = resp.data[0];
+            var perfilTalentos = $("#template-perfil-talento").html();
+            var tpl_perfilTalentos = Handlebars.compile(perfilTalentos);
+            var view_perfilTalentos = tpl_perfilTalentos(dataPerfil);
+            $("#perfil-talento").html(view_perfilTalentos);
+            
+            if(resp.data.length){
+                
+                repo = "vloger.json";
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.limit = "100"; 
+                talentos = new inventMx.home.listPerfilTalentos(repo);
+            }else {
+                
+                url = window.location.href;
+                temp_url = $.url(url);
+                np_url = temp_url.attr('relative');
+                url = np_url.replace('/#', '');
+                
+                perfilSitio = new inventMx.home.homePerfilSitio(url);
+                //error404 = new inventMx.home.default404();
+            }
+            
+        }else {
+            error404 = new inventMx.home.default404();
+        }
+
+        inventMx.utilities.loaderHide();
+        setTimeout(inventMx.utilities.loaderHide, 7000);
+        
+    },
     inventMx.utilities.isArray = function (value) {
         //function isArray(value) {
         return (value === null || typeof value === 'array')? true : false;

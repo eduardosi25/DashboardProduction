@@ -8,30 +8,30 @@
             <article class="wrapper-form-afiliate">
                 <form id="form-afiliate" class="form-afiliate" method="POST" action="">
                     <span class="block afiliate-title center">
-                        SE PARTE DE LA RED
+                        SÉ PARTE DE LA RED
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Nombre</label>
                         <label class="label-input">
-                            <input class="validate[required]" type="text" name="nombre" value="" placeholder="Nombre">
+                            <input class="validate[required,maxSize[20]]" maxlength="30" type="text" name="nombre" value="">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Apellido</label>
                         <label class="label-input">
-                            <input class="validate[required]" type="text" name="apellido" value="" placeholder="Nombre">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="apellido" value="">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Correo eléctronico</label>
                         <label class="label-input">
-                            <input class="validate[required,custom[email]]" type="text" name="email" value="" placeholder="Nombre">
+                            <input class="validate[required,maxSize[50]]" maxlength="50" type="text" name="email" value="">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Canal de Youtube</label>
                         <label class="label-input">
-                            <input class="" type="text" name="chanel" value="" placeholder="Nombre">
+                            <input class="validate[maxSize[40]]" maxlength="40" type="text" name="chanel" value="">
                         </label>
                     </span>
                     <input type="hidden" name="type" value="afiliate">

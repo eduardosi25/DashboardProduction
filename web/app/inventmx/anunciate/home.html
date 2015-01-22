@@ -13,19 +13,19 @@
                     <span class="block form-block">
                         <label class="label-name">Nombre</label>
                         <label class="label-input">
-                            <input class="validate[required]" type="text" name="nombre" value="" placeholder="Nombre">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="nombre" value="">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Apellido</label>
                         <label class="label-input">
-                            <input class="validate[required]" type="text" name="apellido" value="" placeholder="Nombre">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="apellido" value="">
                         </label>
                     </span>
                     <span class="block form-block">
                         <label class="label-name">Correo eléctronico</label>
                         <label class="label-input">
-                            <input class="validate[required,custom[email]]" type="text" name="email" value="" placeholder="Nombre">
+                            <input class="validate[required,custom[email],maxSize[50]]" maxlength="50" type="text" name="email" value="">
                         </label>
                     </span>
                     <input type="hidden" name="type" value="anunciate">
