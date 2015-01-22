@@ -153,7 +153,7 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
-            inventMx.pageDefault.vista404 = new inventMx.pageDefault.default404();
+            inventMx.home.vista404 = new inventMx.home.default404();
         },
         notFound: function() {
             alert("page no encontrada admin");

@@ -14,7 +14,7 @@ $(function() {
         options = {idform:idform}
         if(validate) {
             url = "/web/app/inventmx/global/sendmail.php";
-            inventMx.ajax.getAjax(url, data,inventMx.email.data,options);
+            inventMx.dataSource.getAjax(url, data,inventMx.email.data,options);
         }else {
             console.log("No validate");
         }
@@ -41,8 +41,10 @@ $(function() {
         render: function (data) {            
             //this.loadPage();
         },
-        loadPage: function () {            
+        loadPage: function () {  
+            
             var url = "/web/data/home/home.json";
+            //inventMx.dataSource.params.limit = "100";
             var params = "";
             
             /* params accordion */
@@ -51,12 +53,17 @@ $(function() {
             var topOffset = true;
             
             var id_section1 = "#section-home-talento";
-            var id_section2 = "#section-home-contactos";
+            var id_section2 = "#section-home-contactos";                        
             
             /* render handlebars */
             //inventMx.page.wrapper_site.animate({ "left": "+=3000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
-                inventMx.ajax.getAjax(url, params, function(resp) {
+                
+                /*repo = "vloger.json";
+                inventMx.dataSource.params.limit = "100";
+                inventMx.dataSource.load(repo,inventMx.render.tplHomeTalentos);*/
+                
+                inventMx.dataSource.getAjax(url, params, function(resp) {
                     if (resp){                        
                         data = resp.data.sections[0].items;
                         dataVideos = data.slice(0, 15);
@@ -175,8 +182,8 @@ $(function() {
                             inventMx.utilities.topOffset(offset);
                             //console.log("Si");
                         }else {
-                            var ficha = new inventMx.pageDefault.default404();
-                            //inventMx.pageDefault.default404();
+                            var ficha = new inventMx.home.default404();
+                            //inventMx.home.default404();
                         }
                     }
                     
@@ -263,8 +270,8 @@ $(function() {
                         inventMx.utilities.topOffset(offset);
                         //console.log("Si");
                     }else {
-                        var ficha = new inventMx.pageDefault.default404();
-                        //inventMx.pageDefault.default404();
+                        var ficha = new inventMx.home.default404();
+                        //inventMx.home.default404();
                     }
                 }
                 
@@ -307,7 +314,7 @@ $(function() {
             //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/redVideo/home.html", function () {
                 
-                inventMx.ajax.getAjax(url, params, function(resp) {
+                inventMx.dataSource.getAjax(url, params, function(resp) {
                     if (resp){                        
                         data = resp.data.sections[0].items;
                         dataVideos = data.slice(0, 15);
@@ -493,7 +500,7 @@ $(function() {
                 //inventMx.page.wrapper_site.show("slow");
                 //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
                     
-                    inventMx.ajax.getAjax(url, params, function(resp) {
+                    inventMx.dataSource.getAjax(url, params, function(resp) {
                     if (resp){                        
                         data = resp.data.sections[0].items;
                         dataTalentos = data.slice(0, 15);
@@ -560,7 +567,7 @@ $(function() {
     });
     
     
-    inventMx.pageDefault.default404 = Backbone.View.extend({
+    inventMx.home.default404 = Backbone.View.extend({
         initialize: function () {
             this.render();
         },

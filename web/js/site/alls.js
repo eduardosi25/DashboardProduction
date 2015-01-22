@@ -1,21 +1,55 @@
 (function (inventMx, undefined) {
-    inventMx.ajax = {},
-    inventMx.header = {},
+    //inventMx.ajax = {}, no use
     inventMx.utilities = {},
-    inventMx.home = {},    
-    inventMx.main = {},
-    inventMx.pageDefault = {},
-    inventMx.page = {},
+    inventMx.home = {},   
+    //inventMx.pageDefault = {},  //no use
     inventMx.email = {},
-    inventMx.header.main = function () {
-    },    
-    inventMx.page.wrapper_site = $("#wrapper-page-site"),
+    inventMx.main = {},
+    inventMx.header = {}, //no use
+    inventMx.header.main = function () {}, //no use
+    inventMx.page = {},
+    inventMx.render = {},
+    inventMx.config = {
+        website: 'http://www.inventmx.com/',
+        websiteUrl: 'http://www.inventmx.com/',
+        webAppBaseUrl: 'http://invent.jediteam.mx/',
+        data_source: {
+            baseUrl: "http://api.inventmx.com/v1/inventmx",
+            apiKey: "3a5877fc16b6fcbf8eedbe55d091938a"
+        }
+    };
+    inventMx.dataSource = {
+        params: {
+            sort: null,
+            section_page: null,
+            type: null,
+            fields: null,
+            limit: null,
+            offset: null,
+            audio: null,
+            category_ids: null,
+            tag_ids: null,
+            category_url: null,
+            tag_url: null,
+            created_start: null,
+            created_finish: null,
+            callback: null,
+            not_ids: null,
+            columnista_ids: null,
+            sub_category_url: null
+        }
+    };
+    
+    inventMx.page.wrapper_site = $("#wrapper-page-site");
     inventMx.utilities.loaderShow = function () {
         $("#wrapper-loading-layout").css("display", "block");
     },
     inventMx.utilities.loaderHide = function () {
         $("#wrapper-loading-layout").css("display", "none");
     },
+    inventMx.render.tplHomeTalentos = function(data){
+        console.log(data);
+    }
     inventMx.utilities.isArray = function (value) {
         //function isArray(value) {
         return (value === null || typeof value === 'array')? true : false;
@@ -28,17 +62,25 @@
             //return Object.prototype.toString.call(value) === "[object Object]";
         //}
     },
-    inventMx.ajax.params = function() {
-        params = iMxWebapp.dataSource.params;
-        finshparams = {};
-        $.each(params, function(i, x) {
-            if (x) {
-                finshparams[i] = x;
+    inventMx.dataSource.load = function(repo,callback) {
+        req_url = inventMx.config.data_source.baseUrl;
+        req_api_key = inventMx.config.data_source.apiKey;
+
+        //Dejamos unicamente los parametros que fueron asignados los que no se desechan
+        data_params = inventMx.dataSource.params;
+        params = {};
+        $.each(data_params, function(i, j) {
+            if (j) {
+                params[i] = j;
             }
+
         });
-        return finshparams;
+
+        url_ajax = req_url + "/" + repo + "/" + req_api_key + "?callback=?";
+        inventMx.dataSource.getAjax(url_ajax, params,callback);
+        
     },
-    inventMx.ajax.getAjax = function(url, params,callback,options) {
+    inventMx.dataSource.getAjax = function(url, params,callback,options) {
         jQuery.ajax({
             url: url,
             data: params,
@@ -57,6 +99,7 @@
                 }
             },
             error: function(request, status, error) {
+                inventMx.utilities.loaderHide();
                 return alert("Hubo un error inesperado, intenta nuevamente por favor");
             }
         });
