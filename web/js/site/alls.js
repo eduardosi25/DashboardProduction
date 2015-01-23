@@ -70,7 +70,6 @@
         setTimeout(inventMx.utilities.loaderHide, 7000);
     },
     inventMx.render.tplPerfilTalentos = function(resp){
-        console.log(resp);
         if (resp.response.status == 200) {
             
             dataPerfil = resp.data[0];
@@ -103,6 +102,31 @@
         inventMx.utilities.loaderHide();
         setTimeout(inventMx.utilities.loaderHide, 7000);
         
+    },
+    inventMx.render.tplcaseExito = function(resp){
+        
+        if (resp.response.status == 200) {
+            dataCase = resp.data;
+            
+            if(dataCase){
+                var caseExit = $("#template-sections-case-exito").html();
+                var tpl_case = Handlebars.compile(caseExit);
+                var view_case = tpl_case(dataCase);
+                $("#sections-case-exito").html(view_case);
+                
+                if ($("img.lazy").length) {
+                    $("img.lazy").lazyload({
+                        effect: "fadeIn"
+                });
+        }
+                
+            }else {
+                
+            }
+            
+        }else{
+            error404 = new inventMx.home.default404();
+        }
     },
     inventMx.utilities.isArray = function (value) {
         //function isArray(value) {
@@ -200,10 +224,11 @@
                 inventMx.utilities.topOffset(offset);
             }
     },
-    inventMx.utilities.topOffset = function(position) {
+    inventMx.utilities.topOffset = function(position,transition) {
+        transition = (transition) ? transition : 100;
         $('body,html').delay(position).animate({
             scrollTop: position
-        }, 300,function(){
+        }, transition,function(){
             inventMx.utilities.validateAcordeonOffsetStatus = false;
         });
     },

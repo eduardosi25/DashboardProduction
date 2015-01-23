@@ -1,22 +1,38 @@
 #page-case-exito {
     //margin: 0 auto;
     //max-width: 1024px;
+    #section-table-case-exito {
+        background-color: #F1F1F1;
+    }
     @include measures(100%,auto);
     .wrapper-case-items {
         min-height: 300px;
         @include measures(100%,auto);
-        &.item-0 {
+        &.even {
+            background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
+        }
+        &.odd {            
+            background-color: #F1F1F1;
+            .wrapper-description-case {
+                .head-case {
+                    color: #000; 
+                }
+                color: #000; 
+            }
+        }
+        /*&.item-0 {
             background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
         }
         &.item-1 {
+            color: #000;
             background-color: #F1F1F1;
         }
         &.item-2 {
             background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg");
-        }
+        }*/
         .wrapper-description-case {
-            @include measures(50%,auto);
-            .logo-case-volskwagen {
+            @include measures(50%,auto);            
+            /*.logo-case-volskwagen {
                 @extend .sprite-invent;
                 @include img-position(98px,99px,-379px,-2766px);
             }
@@ -26,8 +42,20 @@
             }
             .logo-case-bridgestone {
                 @extend .sprite-invent;
-                @include img-position(98px,91px,-50px,-2755px);
+                @include img-position(98px,91px,-50px,-2755px);            
+            }*/
+            color: #FFF;
+            font-size: 16px;
+            line-height: 18px;
+            @extend .Hind-Regular;
+            
+            .logo-case{
+                max-width: 198px;
+                img {
+                    @include measures(100%,auto);
+                }
             }
+            
             .head-case {
                 color: #FFF;
                 font-size: 30px;
@@ -35,20 +63,29 @@
                 & > span {
                     vertical-align: middle;
                 }
-            }            
-            .titles {
+            }
+            
+            h2 {
                 margin: 10px 0;
                 color: #E58436;
                 font-size: 20px;
                 line-height: 24px;
                 @extend .Hind-Bold;
             }
-            .description {
+            
+            /*.titles {
+                margin: 10px 0;
+                color: #E58436;
+                font-size: 20px;
+                line-height: 24px;
+                @extend .Hind-Bold;
+            }*/
+            /*.description {
                 color: #FFF;
                 font-size: 16px;
                 line-height: 18px;
                 @extend .Hind-Regular;
-            }
+            }*/
         }
         .wrapper-image-case {
             margin-left: 3%;
@@ -86,7 +123,7 @@
     
     .title-seccion-invent {
         font-size: 30px;
-        margin: 35px 0 20px 0;
+        //margin: 35px 0 20px 0;
     }
     ul.wrapper-table-case-exito {
         padding: 10px 0 36px 0;

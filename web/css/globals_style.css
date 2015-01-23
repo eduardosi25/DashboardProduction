@@ -216,11 +216,20 @@ table {
 .pt50 {
   padding-top: 50px !important; }
 
+.pb5 {
+  padding-bottom: 5px; }
+
 .pb10 {
   padding-bottom: 10px; }
 
+.pb15 {
+  padding-bottom: 15px; }
+
 .pb20 {
   padding-bottom: 10px; }
+
+.pb25 {
+  padding-bottom: 25px; }
 
 .ptb25 {
   padding: 25px 0; }
@@ -305,7 +314,7 @@ table {
   font-family: 'Hind-Semibold';
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.eot");
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.otf?#iefix") format("embedded-opentype"), url("../fuentes/Hind-Semibold/Hind-Semibold.woff") format("woff"), url("../fuentes/Hind-Semibold/Hind-Semibold.ttf") format("truetype"), url("../fuentes/Hind-Semibold/Hind-Semibold.svg#Hind-Semibold") format("svg"); }
-.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, .main-sections-tools li .ico-media-kit, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, #page-perfil-sitio .site-excelsior, #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-salud180, #page-perfil-sitio .site-bienestar180, #page-perfil-sitio .site-sexualidad180, #page-perfil-sitio .site-enforma180, #page-perfil-sitio .site-actitudfem, #page-perfil-sitio .site-rsvp, #page-perfil-sitio .site-melodijolola, #page-perfil-sitio .site-atraccion360, #page-perfil-sitio .site-adrenalina360, #page-perfil-sitio .site-garuyo, #page-perfil-sitio .site-swagger, #page-perfil-sitio .site-gamedots, #page-perfil-sitio .site-estrategia45, #page-perfil-sitio .site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
+.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, .main-sections-tools li .ico-media-kit, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover, #page-perfil-sitio .site-excelsior, #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-salud180, #page-perfil-sitio .site-bienestar180, #page-perfil-sitio .site-sexualidad180, #page-perfil-sitio .site-enforma180, #page-perfil-sitio .site-actitudfem, #page-perfil-sitio .site-rsvp, #page-perfil-sitio .site-melodijolola, #page-perfil-sitio .site-atraccion360, #page-perfil-sitio .site-adrenalina360, #page-perfil-sitio .site-garuyo, #page-perfil-sitio .site-swagger, #page-perfil-sitio .site-gamedots, #page-perfil-sitio .site-estrategia45, #page-perfil-sitio .site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
   background-image: url("../img/sprites/sprite_desktop.png");
   background-repeat: no-repeat; }
 
@@ -313,7 +322,7 @@ table {
   background-image: url("../img/sprites/sprite_grafica.png");
   background-repeat: no-repeat; }
 
-.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case .titles, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
+.Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
   font-family: Hind-Bold; }
 
 .Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-afiliate .label-name, .wrapper-image-background .wrapper-section-background .form-anunciate .label-name {
@@ -322,7 +331,7 @@ table {
 .Hind-Medium, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info, #page-case-exito ul.wrapper-table-case-exito li.box-item .title-case {
   font-family: Hind-Medium; }
 
-.Hind-Regular, .wrapper-image-section2 .text-info span:first-child, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, #page-case-exito .wrapper-case-items .wrapper-description-case .description, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
+.Hind-Regular, .wrapper-image-section2 .text-info span:first-child, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
   font-family: Hind-Regular; }
 
 .Hind-Semibold, #page-marketers .wrapper-table-formats .body-table .box-table {
@@ -1044,223 +1053,227 @@ body.rtl .formError .formErrorArrow {
   height: auto;
   margin-bottom: -3px; }
 
-#page-audiencias-contenidos .wrapper-boton-publisher {
-  margin: 0 auto;
-  width: 245px;
-  height: auto; }
-#page-audiencias-contenidos .wrapper-image-section1 {
-  padding: 30px 0 0 0;
-  background-repeat: no-repeat; }
-#page-audiencias-contenidos .wrapper-image-section1.noticias-deportes {
-  background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_noticias.jpg"); }
-#page-audiencias-contenidos .wrapper-image-section1.mundo-saludable {
-  background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_saludable.jpg"); }
-#page-audiencias-contenidos .wrapper-image-section1.mundo-femenino {
-  background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_femenino.jpg"); }
-#page-audiencias-contenidos .wrapper-image-section1.life-style {
-  background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_lifestyle.jpg"); }
-#page-audiencias-contenidos .wrapper-content-section1 {
-  color: #FFF; }
-  #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
-    margin-right: 3%;
-    width: 50%;
+#page-audiencias-contenidos {
+  background-color: #FFF; }
+  #page-audiencias-contenidos .wrapper-boton-publisher {
+    margin: 0 auto;
+    width: 245px;
     height: auto; }
-    #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
-      font-size: 35px; }
-    #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info {
-      font-size: 16px;
-      margin-top: 15px;
-      line-height: 18px; }
-  #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image {
+  #page-audiencias-contenidos .wrapper-image-section1 {
+    padding: 30px 0 0 0;
+    background-repeat: no-repeat; }
+  #page-audiencias-contenidos .wrapper-image-section1.noticias-deportes {
+    background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_noticias.jpg"); }
+  #page-audiencias-contenidos .wrapper-image-section1.mundo-saludable {
+    background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_saludable.jpg"); }
+  #page-audiencias-contenidos .wrapper-image-section1.mundo-femenino {
+    background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_femenino.jpg"); }
+  #page-audiencias-contenidos .wrapper-image-section1.life-style {
+    background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_lifestyle.jpg"); }
+  #page-audiencias-contenidos .wrapper-content-section1 {
+    color: #FFF; }
+    #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
+      margin-right: 3%;
+      width: 50%;
+      height: auto; }
+      #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
+        font-size: 35px; }
+      #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info {
+        font-size: 16px;
+        margin-top: 15px;
+        line-height: 18px; }
+    #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image {
+      width: 45%;
+      height: auto; }
+      #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image img {
+        margin-bottom: -3px; }
+  #page-audiencias-contenidos ul.red-invent-sections-sites {
+    padding: 0px; }
+    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites {
+      min-height: 185px !important; }
+      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
+        margin: 0 auto 15px;
+        width: 156px;
+        height: 30px;
+        background-position: -224px -1057px; }
+      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
+        margin: 0 auto 15px;
+        width: 170px;
+        height: 31px;
+        background-position: -429px -1057px; }
+      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+        margin: 0 auto 15px;
+        width: 153px;
+        height: 28px;
+        background-position: -646px -1059px; }
+
+#page-marketers {
+  background-color: #FFF; }
+  #page-marketers .wrapper-image-section1 {
+    padding: 30px 0;
+    background-repeat: no-repeat;
+    background-image: url("/web/img/marketers/desktop/bg-marketers.png"); }
+  #page-marketers .marketers-info.versus-mobile {
+    display: none; }
+  #page-marketers .wrapper-description {
     width: 45%;
     height: auto; }
-    #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image img {
-      margin-bottom: -3px; }
-#page-audiencias-contenidos ul.red-invent-sections-sites {
-  padding: 0px; }
-  #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites {
-    min-height: 185px !important; }
-    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
-      margin: 0 auto 15px;
-      width: 156px;
-      height: 30px;
-      background-position: -224px -1057px; }
-    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
-      margin: 0 auto 15px;
-      width: 170px;
-      height: 31px;
-      background-position: -429px -1057px; }
-    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
-      margin: 0 auto 15px;
-      width: 153px;
-      height: 28px;
-      background-position: -646px -1059px; }
-
-#page-marketers .wrapper-image-section1 {
-  padding: 30px 0;
-  background-repeat: no-repeat;
-  background-image: url("/web/img/marketers/desktop/bg-marketers.png"); }
-#page-marketers .marketers-info.versus-mobile {
-  display: none; }
-#page-marketers .wrapper-description {
-  width: 45%;
-  height: auto; }
-  #page-marketers .wrapper-description .marketers-title {
-    color: #FFF;
-    font-size: 35px; }
-  #page-marketers .wrapper-description .marketers-info {
-    color: #FFF;
-    font-size: 16px;
-    margin-top: 20px; }
-    #page-marketers .wrapper-description .marketers-info ul li {
-      list-style-position: inside;
-      list-style-type: square; }
-#page-marketers .wrapper-image {
-  width: 45%;
-  height: auto; }
-#page-marketers .wrapper-table-formats {
-  width: 100%;
-  height: auto; }
-  #page-marketers .wrapper-table-formats .header-table {
+    #page-marketers .wrapper-description .marketers-title {
+      color: #FFF;
+      font-size: 35px; }
+    #page-marketers .wrapper-description .marketers-info {
+      color: #FFF;
+      font-size: 16px;
+      margin-top: 20px; }
+      #page-marketers .wrapper-description .marketers-info ul li {
+        list-style-position: inside;
+        list-style-type: square; }
+  #page-marketers .wrapper-image {
+    width: 45%;
+    height: auto; }
+  #page-marketers .wrapper-table-formats {
     width: 100%;
-    height: auto;
-    background-color: #E4E4E4; }
-    #page-marketers .wrapper-table-formats .header-table .type-publisher {
+    height: auto; }
+    #page-marketers .wrapper-table-formats .header-table {
+      width: 100%;
+      height: auto;
+      background-color: #E4E4E4; }
+      #page-marketers .wrapper-table-formats .header-table .type-publisher {
+        color: #595959;
+        padding: 15px 0;
+        font-size: 20px;
+        border-right: 1px solid #363636;
+        width: 12%;
+        height: auto; }
+        #page-marketers .wrapper-table-formats .header-table .type-publisher > span {
+          vertical-align: middle; }
+      #page-marketers .wrapper-table-formats .header-table .format-exclusive {
+        color: #757575;
+        padding: 15px 0;
+        font-size: 14px;
+        width: 78%;
+        height: auto; }
+    #page-marketers .wrapper-table-formats .body-table .type-publisher {
       color: #595959;
+      font-size: 20px; }
+    #page-marketers .wrapper-table-formats .body-table .box-table {
+      color: #848484;
       padding: 15px 0;
-      font-size: 20px;
-      border-right: 1px solid #363636;
+      font-size: 14px;
+      border-left: 1px solid #363636;
       width: 12%;
       height: auto; }
-      #page-marketers .wrapper-table-formats .header-table .type-publisher > span {
-        vertical-align: middle; }
-    #page-marketers .wrapper-table-formats .header-table .format-exclusive {
-      color: #757575;
-      padding: 15px 0;
-      font-size: 14px;
-      width: 78%;
-      height: auto; }
-  #page-marketers .wrapper-table-formats .body-table .type-publisher {
-    color: #595959;
-    font-size: 20px; }
-  #page-marketers .wrapper-table-formats .body-table .box-table {
-    color: #848484;
-    padding: 15px 0;
-    font-size: 14px;
-    border-left: 1px solid #363636;
-    width: 12%;
-    height: auto; }
-  #page-marketers .wrapper-table-formats .body-table .box-table:first-child {
-    border-left: none; }
-  #page-marketers .wrapper-table-formats.formats-video .body-table .box-table {
-    width: 33%;
-    height: auto; }
-  #page-marketers .wrapper-table-formats.formats-video .body-table-second-video {
-    /*div.content-body:first-child {
-        border-left: none;
-    }*/ }
-    #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header {
-      padding: 3%;
-      color: #848484;
-      font-size: 20px;
-      width: 43%;
-      height: auto;
-      border-left: 1px solid #363636; }
-    #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header:first-child {
+    #page-marketers .wrapper-table-formats .body-table .box-table:first-child {
       border-left: none; }
-    #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body {
-      font-size: 14px;
-      padding: 3%;
-      width: 43%;
-      height: auto;
-      border-right: 1px solid #363636; }
-  #page-marketers .wrapper-table-formats.formats-editorial {
-    color: #848484; }
-    #page-marketers .wrapper-table-formats.formats-editorial .type-content {
-      padding-top: 51px;
-      font-size: 20px;
-      min-height: 62px;
-      width: 30%;
+    #page-marketers .wrapper-table-formats.formats-video .body-table .box-table {
+      width: 33%;
       height: auto; }
-    #page-marketers .wrapper-table-formats.formats-editorial .content-description {
-      padding-top: 30px;
-      font-size: 18px;
-      min-height: 83px;
-      width: 68%;
-      height: auto;
-      border-left: 1px solid #363636; }
-  #page-marketers .wrapper-table-formats.formats-programatic .body-table {
-    width: 100%;
-    height: auto; }
-    #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items {
-      padding: 15px 3%;
-      font-size: 16px;
-      width: 94.1%;
-      height: auto; }
-    #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child {
-      color: #848484;
-      font-size: 20px;
-      padding: 15px 0;
+    #page-marketers .wrapper-table-formats.formats-video .body-table-second-video {
+      /*div.content-body:first-child {
+          border-left: none;
+      }*/ }
+      #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header {
+        padding: 3%;
+        color: #848484;
+        font-size: 20px;
+        width: 43%;
+        height: auto;
+        border-left: 1px solid #363636; }
+      #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header:first-child {
+        border-left: none; }
+      #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body {
+        font-size: 14px;
+        padding: 3%;
+        width: 43%;
+        height: auto;
+        border-right: 1px solid #363636; }
+    #page-marketers .wrapper-table-formats.formats-editorial {
+      color: #848484; }
+      #page-marketers .wrapper-table-formats.formats-editorial .type-content {
+        padding-top: 51px;
+        font-size: 20px;
+        min-height: 62px;
+        width: 30%;
+        height: auto; }
+      #page-marketers .wrapper-table-formats.formats-editorial .content-description {
+        padding-top: 30px;
+        font-size: 18px;
+        min-height: 83px;
+        width: 68%;
+        height: auto;
+        border-left: 1px solid #363636; }
+    #page-marketers .wrapper-table-formats.formats-programatic .body-table {
       width: 100%;
       height: auto; }
-#page-marketers .wrapper-site-markerts {
-  padding: 20px 0 45px 0; }
-  #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites {
-    min-height: 70px !important; }
-    #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials {
-      margin-bottom: 20px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook {
-        width: 32px;
-        height: 30px;
-        background-position: -56px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -56px -2685px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter {
-        width: 32px;
-        height: 30px;
-        background-position: -91px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -91px -2685px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube {
-        width: 32px;
-        height: 30px;
-        background-position: -196px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -196px -2685px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google {
-        width: 32px;
-        height: 30px;
-        background-position: -231px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -231px -2685px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest {
-        width: 32px;
-        height: 30px;
-        background-position: -126px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -126px -2685px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram {
-        width: 32px;
-        height: 30px;
-        background-position: -161px -2647px; }
-      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover {
-        width: 32px;
-        height: 30px;
-        background-position: -161px -2685px; }
-#page-marketers .wrapper-boton-publisher {
-  margin: 0 auto;
-  width: 245px;
-  height: auto; }
+      #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items {
+        padding: 15px 3%;
+        font-size: 16px;
+        width: 94.1%;
+        height: auto; }
+      #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child {
+        color: #848484;
+        font-size: 20px;
+        padding: 15px 0;
+        width: 100%;
+        height: auto; }
+  #page-marketers .wrapper-site-markerts {
+    padding: 20px 0 45px 0; }
+    #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites {
+      min-height: 70px !important; }
+      #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials {
+        margin-bottom: 20px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook {
+          width: 32px;
+          height: 30px;
+          background-position: -56px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -56px -2685px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter {
+          width: 32px;
+          height: 30px;
+          background-position: -91px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -91px -2685px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube {
+          width: 32px;
+          height: 30px;
+          background-position: -196px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -196px -2685px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google {
+          width: 32px;
+          height: 30px;
+          background-position: -231px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -231px -2685px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest {
+          width: 32px;
+          height: 30px;
+          background-position: -126px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -126px -2685px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram {
+          width: 32px;
+          height: 30px;
+          background-position: -161px -2647px; }
+        #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover {
+          width: 32px;
+          height: 30px;
+          background-position: -161px -2685px; }
+  #page-marketers .wrapper-boton-publisher {
+    margin: 0 auto;
+    width: 245px;
+    height: auto; }
 
 #page-video-talento .wrapper-image-section1 img {
   margin-bottom: -3px; }
@@ -1377,45 +1390,76 @@ body.rtl .formError .formErrorArrow {
           }            
       }
   }*/ }
+  #page-case-exito #section-table-case-exito {
+    background-color: #F1F1F1; }
   #page-case-exito .wrapper-case-items {
     min-height: 300px;
     width: 100%;
-    height: auto; }
-    #page-case-exito .wrapper-case-items.item-0 {
+    height: auto;
+    /*&.item-0 {
+        background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
+    }
+    &.item-1 {
+        color: #000;
+        background-color: #F1F1F1;
+    }
+    &.item-2 {
+        background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg");
+    }*/ }
+    #page-case-exito .wrapper-case-items.even {
       background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg"); }
-    #page-case-exito .wrapper-case-items.item-1 {
+    #page-case-exito .wrapper-case-items.odd {
       background-color: #F1F1F1; }
-    #page-case-exito .wrapper-case-items.item-2 {
-      background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg"); }
+      #page-case-exito .wrapper-case-items.odd .wrapper-description-case {
+        color: #000; }
+        #page-case-exito .wrapper-case-items.odd .wrapper-description-case .head-case {
+          color: #000; }
     #page-case-exito .wrapper-case-items .wrapper-description-case {
       width: 50%;
-      height: auto; }
-      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen {
-        width: 98px;
-        height: 99px;
-        background-position: -379px -2766px; }
-      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon {
-        width: 198px;
-        height: 46px;
-        background-position: -164px -2793px; }
-      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone {
-        width: 98px;
-        height: 91px;
-        background-position: -50px -2755px; }
+      height: auto;
+      /*.logo-case-volskwagen {
+          @extend .sprite-invent;
+          @include img-position(98px,99px,-379px,-2766px);
+      }
+      .logo-case-revlon {
+          @extend .sprite-invent;
+          @include img-position(198px,46px,-164px,-2793px);
+      }
+      .logo-case-bridgestone {
+          @extend .sprite-invent;
+          @include img-position(98px,91px,-50px,-2755px);            
+      }*/
+      color: #FFF;
+      font-size: 16px;
+      line-height: 18px;
+      /*.titles {
+          margin: 10px 0;
+          color: #E58436;
+          font-size: 20px;
+          line-height: 24px;
+          @extend .Hind-Bold;
+      }*/
+      /*.description {
+          color: #FFF;
+          font-size: 16px;
+          line-height: 18px;
+          @extend .Hind-Regular;
+      }*/ }
+      #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case {
+        max-width: 198px; }
+        #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case img {
+          width: 100%;
+          height: auto; }
       #page-case-exito .wrapper-case-items .wrapper-description-case .head-case {
         color: #FFF;
         font-size: 30px; }
         #page-case-exito .wrapper-case-items .wrapper-description-case .head-case > span {
           vertical-align: middle; }
-      #page-case-exito .wrapper-case-items .wrapper-description-case .titles {
+      #page-case-exito .wrapper-case-items .wrapper-description-case h2 {
         margin: 10px 0;
         color: #E58436;
         font-size: 20px;
         line-height: 24px; }
-      #page-case-exito .wrapper-case-items .wrapper-description-case .description {
-        color: #FFF;
-        font-size: 16px;
-        line-height: 18px; }
     #page-case-exito .wrapper-case-items .wrapper-image-case {
       margin-left: 3%;
       width: 47%;
@@ -1425,8 +1469,7 @@ body.rtl .formError .formErrorArrow {
         width: 100%;
         height: auto; }
   #page-case-exito .title-seccion-invent {
-    font-size: 30px;
-    margin: 35px 0 20px 0; }
+    font-size: 30px; }
   #page-case-exito ul.wrapper-table-case-exito {
     padding: 10px 0 36px 0; }
     #page-case-exito ul.wrapper-table-case-exito li.box-item {
@@ -1729,7 +1772,7 @@ footer {
   .wrapper-table-formats {
     display: none; }
 
-  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case .titles, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
+  .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
     font-family: Hind-Bold; }
 
   .invent-mobile-sprite, header .wrapper-header .wrapper-main .main-center, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
@@ -1849,7 +1892,7 @@ footer {
     display: block; }
 
   #home-accordion .title-seccion-invent {
-    padding-top: 13px;
+    padding-top: 13px !important;
     font-size: 20px;
     line-height: 24px;
     margin: 0px !important;

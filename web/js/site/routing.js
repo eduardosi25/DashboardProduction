@@ -87,8 +87,8 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
-            idSection = (valueSection === true)? valueSection : idSection;
-            (valueSection === false) ? inventMx.utilities.topOffset(0) : "";
+            idSection = (valueSection == true)? valueSection : idSection;
+            (valueSection == true) ? inventMx.utilities.topOffset(0) : "";
             //inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
             
             inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);

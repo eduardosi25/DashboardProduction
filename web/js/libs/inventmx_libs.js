@@ -31109,6 +31109,12 @@ Handlebars.registerHelper('ifCond', function(v1, operator, v2, options) {
     }
 });
 
+Handlebars.registerHelper('if_even', function(type, options) {
+    //var type = "";
+    typeconten = (type % 2) ? "odd" : "even";
+     return typeconten;
+});
+
 Handlebars.registerHelper('each_upto', function(ary, max, options) {
     if (!ary || ary.length == 0)
         return options.inverse(this);

@@ -59,7 +59,7 @@
                 {{#if this.images.picture }}
                     {{#if this.images.picture.0.styles }}
                         {{#if this.images.picture.0.styles.medium }}
-                            <img class="loader lazy" src="{{this.image.picture.0.styles.medium }}" alt="" title="{{this.title}}">
+                            <img class="loader lazy" src="{{this.image.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
                         {{else}}
                             <img class="loader lazy" src="/web/img/global/default.png" alt="" title="{{this.title}}">
                         {{/if}}
@@ -126,7 +126,7 @@
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
-                                <img class="loader lazy" data-original="{{this.image.picture.0.styles.medium }}" alt="" title="{{this.title}}">
+                                <img class="loader lazy" data-original="{{this.image.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
                             {{else}}
                                 <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                             {{/if}}

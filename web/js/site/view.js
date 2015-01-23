@@ -161,7 +161,7 @@ $(function() {
                         if($("#"+idAncla).length){
                             offset1 = $("#"+idAncla).offset();
                             var offset = offset1.top;
-                            inventMx.utilities.topOffset(offset);
+                            inventMx.utilities.topOffset(offset,0);
                             //console.log("Si");
                         }else {
                             var ficha = new inventMx.home.default404();
@@ -248,8 +248,8 @@ $(function() {
                     //console.log(idAncla);
                     if($("#"+idAncla).length){
                         offset1 = $("#"+idAncla).offset();
-                        var offset = offset1.top;
-                        inventMx.utilities.topOffset(offset);
+                        var offset = offset1.top;                        
+                        inventMx.utilities.topOffset(offset,0);
                         //console.log("Si");
                     }else {
                         var ficha = new inventMx.home.default404();
@@ -351,26 +351,24 @@ $(function() {
         el: inventMx.page.wrapper_site,
         initialize: function () {
             $(this.el).unbind();
-            //inventMx.page.wrapper_site.hide();
             _.bindAll(this, 'render');
-            this.render();            
+            this.render();
         },
         render:function(){
-            //inventMx.utilities.loaderHide();            
             var id_section1 = "#section-home-contactos";
             var id_section2 = "#section-table-case-exito";
-                        
             var li_items = ".wrapper-table-case-exito li.box-item";
-                        
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
+            
             inventMx.page.wrapper_site.load("/web/app/inventmx/caso-de-exito/home.html", function () {
-                inventMx.utilities.caseExitoAddRemoveSections(id_section1,id_section2);
                 
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
-                    inventMx.utilities.loaderHide();
-                    setTimeout(inventMx.utilities.loaderHide, 7000);
-                //});
+                repo = "case.json";
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.limit = 20;
+                inventMx.dataSource.load(repo,inventMx.render.tplcaseExito);
+                
+                inventMx.utilities.caseExitoAddRemoveSections(id_section1,id_section2);
+                inventMx.utilities.loaderHide();
+                setTimeout(inventMx.utilities.loaderHide, 7000);
                
                 finalNumbers = inventMx.utilities.calculateheightItem(li_items);
                 $(li_items).height(finalNumbers);
@@ -473,8 +471,6 @@ $(function() {
         },
         render:function(nameTalento){
             var id_section1 = "#section-home-contactos";
-            var url = "/web/data/home/home.json";
-            var params = "";
             
             inventMx.page.wrapper_site.load("/web/app/inventmx/perfilTalento/home.html", function () {
                 
@@ -502,9 +498,7 @@ $(function() {
                     }
                 });*/
                     
-                    
                     inventMx.utilities.oneAddRemoveSections(id_section1);
-                    //inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});
                 return this;
