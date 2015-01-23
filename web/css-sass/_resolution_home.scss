@@ -356,6 +356,39 @@
         }
     }
     
+    
+    .wrapper-our-services {
+        ul {
+            li.services-sites {
+                span.img-rich-media {                    
+                    @extend .invent-mobile-sprite;
+                    @include img-position(97px,82px,-64px,-2686px);
+                }
+                span.img-content-editorials {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(97px,88px,-202px,-2683px);
+                }
+                span.img-mobile {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(53px,95px,-344px,-2675px);
+                }
+                span.img-buzz-marketing {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(107px,101px,-436px,-2668px);
+                }
+                span.img-video {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(89px,82px,-600px,-2685px);
+                }
+                span.img-programatic {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(88px,90px,-739px,-2688px);
+                }
+            }
+        }
+    }
+    
+    
 
     footer {
         min-height: 50px;
