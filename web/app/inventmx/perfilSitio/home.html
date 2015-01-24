@@ -1,49 +1,9 @@
 <section id="page-perfil-sitio">
 
     <section class="wrapper-image-section1">
-        <article class="middle">
+        <article id="perfil-site" class="middle"></article>
 
-            <div class="wrapper-perfil">
-                <div class="wrapper-img">
-                    <span class="site-excelsior block"></span>
-                </div>
-                <div class="summary ">
-                    Excélsior, el Periódico de la Vida Nacional te invita a navegar 
-                    por el portal de noticias líder en México con toda la información
-                    nacional y del mundo.
-                </div>
-            </div>
-
-            <div class="wrapper-bars">
-                <div class="left content-grafic-1 relative">
-                    <div class="bars-75 absolute"></div>
-                    <div class="info-bars center absolute">
-                        <span class="block total">75%</span>
-                        <span class="block users">HOMBRES</span>
-                    </div>
-                </div>
-                <div class="left age-users center">
-                    <span class="block age">25-30</span>
-                    <span class="block age-name">Años</span>
-                </div>
-                <div class="left content-grafic-2 relative">
-                    <div class="bars-25 absolute"></div>
-                    <div class="info-bars center absolute">
-                        <span class="block total">25%</span>
-                        <span class="block users">MUJERES</span>
-                    </div>
-                </div>
-                <div class="left content-visit center">
-                    <span class="total-visit block">247,886</span>
-                    <span class="description-visit block">VISITAS MENSUALES</span>
-                </div>
-                <div class="left content-visit center">
-                    <span class="total-visit block">37,973</span>
-                    <span class="description-visit block">TOTAL SEGUIDORES</span>
-                </div>
-                <div class="clear"></div>
-            </div>
-
+        <article>
             <ul class="main-sections-tools">
                 <li class="left">
                     <a class="block btn-publish none-decoration center" href="/#tarifario">
@@ -62,13 +22,13 @@
                 </li>
                 <li class="block clear"></li>
             </ul>
-
         </article>
+
     </section>
 
     <section class="plataformas-servicios">
         <article>
-            <h2 class="title-seccion-invent center mtb20">
+            <h2 class="title-seccion-invent center pt30 pb15">
                 <span class="cgrey-invent">PLATAFORMAS Y </span> <span class="corange-invent">SERVICIOS</span>
             </h2>
 
@@ -95,6 +55,47 @@
     </section>
 
 </section>
+
+
+<script id="template-perfil-site" type="template/template-perfil-site">
+    <div class="wrapper-perfil">
+        <div class="wrapper-img">
+            <span class="site-{{ CleanTaxonomy this.url }} block"></span>
+        </div>
+        <div class="summary ">{{{ this.body }}}</div>
+    </div>
+
+    <div class="wrapper-bars">
+        <div class="left content-grafic-1 relative">
+            <div class="bars-75 absolute"></div>
+            <div class="info-bars center absolute">
+                <span class="block total">75%</span>
+                <span class="block users">HOMBRES</span>
+            </div>
+        </div>
+        <div class="left age-users center">
+            <span class="block age">25-30</span>
+            <span class="block age-name">Años</span>
+        </div>
+        <div class="left content-grafic-2 relative">
+            <div class="bars-25 absolute"></div>
+            <div class="info-bars center absolute">
+                <span class="block total">25%</span>
+                <span class="block users">MUJERES</span>
+            </div>
+        </div>
+        <div class="left content-visit center">
+            <span class="total-visit block">247,886</span>
+            <span class="description-visit block">VISITAS MENSUALES</span>
+        </div>
+        <div class="left content-visit center">
+            <span class="total-visit block">37,973</span>
+            <span class="description-visit block">TOTAL SEGUIDORES</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+</script>
+
 
 <script id="section-home-contactos-1" type="template/sectionhomecontactos">
     <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>

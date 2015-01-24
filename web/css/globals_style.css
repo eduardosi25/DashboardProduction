@@ -88,6 +88,16 @@ table {
 .middle > * {
   vertical-align: middle; }
 
+.table-cell {
+  display: table-cell; }
+
+.tc-middle {
+  display: table; }
+
+.tc-middle > span {
+  display: table-cell;
+  vertical-align: middle; }
+
 .fs35 {
   font-size: 35px; }
 
@@ -314,7 +324,7 @@ table {
   font-family: 'Hind-Semibold';
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.eot");
   src: url("../fuentes/Hind-Semibold/Hind-Semibold.otf?#iefix") format("embedded-opentype"), url("../fuentes/Hind-Semibold/Hind-Semibold.woff") format("woff"), url("../fuentes/Hind-Semibold/Hind-Semibold.ttf") format("truetype"), url("../fuentes/Hind-Semibold/Hind-Semibold.svg#Hind-Semibold") format("svg"); }
-.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, .main-sections-tools li .ico-media-kit, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover, #page-perfil-sitio .site-excelsior, #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-salud180, #page-perfil-sitio .site-bienestar180, #page-perfil-sitio .site-sexualidad180, #page-perfil-sitio .site-enforma180, #page-perfil-sitio .site-actitudfem, #page-perfil-sitio .site-rsvp, #page-perfil-sitio .site-melodijolola, #page-perfil-sitio .site-atraccion360, #page-perfil-sitio .site-adrenalina360, #page-perfil-sitio .site-garuyo, #page-perfil-sitio .site-swagger, #page-perfil-sitio .site-gamedots, #page-perfil-sitio .site-estrategia45, #page-perfil-sitio .site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
+.sprite-invent, header .wrapper-header .site-invent, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, .main-sections-tools li .ico-media-kit, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram, #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover, #page-perfil-sitio .site-excelsior, #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio, #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985, #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres, #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen, #page-perfil-sitio .site-salud180, #page-perfil-sitio .site-bienestar180, #page-perfil-sitio .site-sexualidad180, #page-perfil-sitio .site-enforma180, #page-perfil-sitio .site-actitudfem, #page-perfil-sitio .site-rsvp, #page-perfil-sitio .site-melodijolola, #page-perfil-sitio .site-atraccion360, #page-perfil-sitio .site-adrenalina360, #page-perfil-sitio .site-garuyo, #page-perfil-sitio .site-swagger, #page-perfil-sitio .site-gamedots, #page-perfil-sitio .site-estrategia45, #page-perfil-sitio .site-fahrenheit, footer .footer-content-site-invent .footer-site-invent {
   background-image: url("../img/sprites/sprite_desktop.png");
   background-repeat: no-repeat; }
 
@@ -502,9 +512,12 @@ article {
 
 .home-perfil-colaboradores ul {
   width: 100%;
-  height: auto; }
+  height: auto;
+  /*li.box-0, li.box-4, li.box-8, li.box-12,li.box-16
+  li.box-20, li.box-24, li.box-28 {
+      margin-left: 0%;
+  }*/ }
   .home-perfil-colaboradores ul li {
-    margin-left: 2%;
     padding: 2%;
     width: 19%;
     height: auto; }
@@ -516,13 +529,12 @@ article {
     .home-perfil-colaboradores ul li .name-editor {
       color: #000;
       font-size: 20px;
+      height: 40px;
+      overflow: hidden;
       margin-bottom: 5px; }
     .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a {
       color: #6A6A6A;
       font-size: 16px; }
-  .home-perfil-colaboradores ul li.box-0, .home-perfil-colaboradores ul li.box-4, .home-perfil-colaboradores ul li.box-8, .home-perfil-colaboradores ul li.box-12, .home-perfil-colaboradores ul li.box-16
-  li.box-20, .home-perfil-colaboradores ul li.box-24, .home-perfil-colaboradores ul li.box-28 {
-    margin-left: 0%; }
 
 ul.red-invent-sections {
   margin: 0 auto; }
@@ -538,112 +550,140 @@ ul.red-invent-sections {
 
 ul.red-invent-sections-sites {
   margin: 0 auto;
-  padding: 25px 0; }
+  padding: 25px 0;
+    /*li.br1-caca {
+        border-right: 1px solid #cacaca;
+    }
+    li.sections-sites-0, li.sections-sites-4, li.sections-sites-8, li.sections-sites-12 {
+        margin-left: 0% !important;
+    }
+    li.sections-sites-3, li.sections-sites-7, li.sections-sites-11, li.sections-sites-15 {
+        margin-right: 0% !important;
+    }
+
+
+    li.sections-sites-1 {
+        min-height: 240px !important;
+    }
+    li.sections-sites-8 {
+        min-height: 235px !important;
+    }
+    li.sections-sites-9 {
+        min-height:  227px !important;
+    }
+    li.sections-sites-13 {
+        min-height:  230px !important;
+    }
+    li.sections-sites-4, li.sections-sites-5, li.sections-sites-10, li.sections-sites-12 {
+        min-height: 225px !important;
+    }*/ }
+  ul.red-invent-sections-sites li.sections-sites {
+    border-top: 1px solid #cacaca;
+    border-right: 1px solid #cacaca; }
+  ul.red-invent-sections-sites li.sections-sites-0, ul.red-invent-sections-sites li.sections-sites-1, ul.red-invent-sections-sites li.sections-sites-2, ul.red-invent-sections-sites li.sections-sites-3 {
+    border-top: none; }
+  ul.red-invent-sections-sites li.sections-sites-3, ul.red-invent-sections-sites li.sections-sites-7, ul.red-invent-sections-sites li.sections-sites-11, ul.red-invent-sections-sites li.sections-sites-15 {
+    border-right: none; }
+  ul.red-invent-sections-sites li span {
+    margin-bottom: 0px !important; }
+  ul.red-invent-sections-sites li span.tc-middle.wrapper-logo {
+    width: 100%;
+    height: 55px;
+    overflow: hidden; }
   ul.red-invent-sections-sites li.bg-caca {
     margin: 0 auto;
     background-color: #cacaca;
     width: 100%;
     height: 1px; }
-  ul.red-invent-sections-sites li.br1-caca {
-    border-right: 1px solid #cacaca; }
-  ul.red-invent-sections-sites li.sections-sites-0, ul.red-invent-sections-sites li.sections-sites-4, ul.red-invent-sections-sites li.sections-sites-8, ul.red-invent-sections-sites li.sections-sites-12 {
-    margin-left: 0% !important; }
-  ul.red-invent-sections-sites li.sections-sites-3, ul.red-invent-sections-sites li.sections-sites-7, ul.red-invent-sections-sites li.sections-sites-11, ul.red-invent-sections-sites li.sections-sites-15 {
-    margin-right: 0% !important; }
-  ul.red-invent-sections-sites li.sections-sites-1 {
-    min-height: 240px !important; }
-  ul.red-invent-sections-sites li.sections-sites-8 {
-    min-height: 235px !important; }
-  ul.red-invent-sections-sites li.sections-sites-9 {
-    min-height: 227px !important; }
-  ul.red-invent-sections-sites li.sections-sites-13 {
-    min-height: 230px !important; }
-  ul.red-invent-sections-sites li.sections-sites-4, ul.red-invent-sections-sites li.sections-sites-5, ul.red-invent-sections-sites li.sections-sites-10, ul.red-invent-sections-sites li.sections-sites-12 {
-    min-height: 225px !important; }
   ul.red-invent-sections-sites li.sections-sites {
     width: 23.5%;
-    padding: 0 .65% 0 .70%;
-    min-height: 220px; }
+    padding: 1% .65% 1% .70%;
+    /*span.wrapper-logo-site {
+        overflow: hidden;
+        display: table-cell;
+        vertical-align: middle;
+        @include measures(150px,60px);
+    }*/ }
     ul.red-invent-sections-sites li.sections-sites span.site-sumary {
       color: #000;
       font-size: 15px; }
     ul.red-invent-sections-sites li.sections-sites span.site-excelsior {
-      margin: 0 auto 20px;
+      margin: 0 auto;
       width: 144px;
       height: 28px;
       background-position: -56px -757px; }
-    ul.red-invent-sections-sites li.sections-sites span.site-imagen {
-      margin: 0 auto 10px;
+    ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio {
+      margin: 0 auto;
       width: 140px;
       height: 58px;
       background-position: -58px -809px; }
-    ul.red-invent-sections-sites li.sections-sites span.site-reporte {
-      margin: 0 auto 23px;
+    ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985 {
+      margin: 0 auto;
       width: 147px;
       height: 25px;
       background-position: -55px -885px; }
-    ul.red-invent-sections-sites li.sections-sites span.site-cadenatres {
-      margin: 0 auto 12px;
+    ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres {
+      margin: 0 auto;
       width: 151px;
       height: 41px;
       background-position: -53px -927px; }
-    ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen {
-      margin: 0 auto 10px;
+    ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen {
+      margin: 0 auto;
       width: 144px;
       height: 47px;
       background-position: -57px -988px; }
     ul.red-invent-sections-sites li.sections-sites span.site-salud180 {
-      margin: 0 auto 15px;
+      margin: 0 auto;
       width: 147px;
       height: 42px;
       background-position: -56px -1049px; }
     ul.red-invent-sections-sites li.sections-sites span.site-actitudfem {
-      margin: 0 auto 15px;
+      margin: 0 auto;
       width: 153px;
       height: 36px;
       background-position: -52px -1110px; }
     ul.red-invent-sections-sites li.sections-sites span.site-rsvp {
-      margin: 0 auto 20px;
+      margin: 0 auto;
       width: 120px;
       height: 37px;
       background-position: -68px -1165px; }
     ul.red-invent-sections-sites li.sections-sites span.site-melodijolola {
-      margin: 0 auto 10px;
+      margin: 0 auto;
       width: 143px;
       height: 48px;
       background-position: -61px -1221px; }
     ul.red-invent-sections-sites li.sections-sites span.site-atraccion360 {
-      margin: 0 auto 16px;
+      margin: 0 auto;
       width: 146px;
       height: 34px;
       background-position: -57px -1286px; }
     ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360 {
-      margin: 0 auto 25px;
+      margin: 0 auto;
       width: 150px;
       height: 23px;
       background-position: -54px -1340px; }
     ul.red-invent-sections-sites li.sections-sites span.site-garuyo {
-      margin: 0 auto 13px;
+      margin: 0 auto;
       width: 138px;
       height: 45px;
       background-position: -58px -1393px; }
     ul.red-invent-sections-sites li.sections-sites span.site-swagger {
-      margin: 0 auto 12px;
+      margin: 0 auto;
       width: 149px;
       height: 46px;
       background-position: -58px -1450px; }
     ul.red-invent-sections-sites li.sections-sites span.site-gamedots {
-      margin: 0 auto 10px;
+      margin: 0 auto;
       width: 141px;
       height: 52px;
       background-position: -58px -1509px; }
     ul.red-invent-sections-sites li.sections-sites span.site-estrategia45 {
-      margin: 0 auto 16px;
+      margin: 0 auto;
       width: 149px;
       height: 38px;
       background-position: -53px -1576px; }
     ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit {
-      margin: 0 auto 23px;
+      margin: 0 auto;
       width: 147px;
       height: 23px;
       background-position: -55px -1625px; }
@@ -654,11 +694,10 @@ ul.red-invent-sections-sites {
   .wrapper-our-services ul li.services-sites-0, .wrapper-our-services ul li.services-sites-3 {
     margin-left: 0% !important; }
   .wrapper-our-services ul li.services-sites {
-    margin-left: 2%;
+    margin: 0 0 2% 2%;
     padding: 15px 1%;
     min-height: 190px;
     text-align: center;
-    margin-bottom: 15px;
     background-color: #2C2C2C;
     width: 30%;
     height: auto;
@@ -1089,23 +1128,21 @@ body.rtl .formError .formErrorArrow {
         margin-bottom: -3px; }
   #page-audiencias-contenidos ul.red-invent-sections-sites {
     padding: 0px; }
-    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites {
-      min-height: 185px !important; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
-        margin: 0 auto 15px;
-        width: 156px;
-        height: 30px;
-        background-position: -224px -1057px; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
-        margin: 0 auto 15px;
-        width: 170px;
-        height: 31px;
-        background-position: -429px -1057px; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
-        margin: 0 auto 15px;
-        width: 153px;
-        height: 28px;
-        background-position: -646px -1059px; }
+    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
+      margin: 0 auto 15px;
+      width: 156px;
+      height: 30px;
+      background-position: -224px -1057px; }
+    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
+      margin: 0 auto 15px;
+      width: 170px;
+      height: 31px;
+      background-position: -429px -1057px; }
+    #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+      margin: 0 auto 15px;
+      width: 153px;
+      height: 28px;
+      background-position: -646px -1059px; }
 
 #page-marketers {
   background-color: #FFF; }
@@ -1524,138 +1561,140 @@ body.rtl .formError .formErrorArrow {
   font-size: 26px;
   padding-top: 30px; }
 
-#page-perfil-sitio .wrapper-image-section1 {
-  padding-bottom: 20px;
-  background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg"); }
-  #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil {
-    max-width: 600px;
+#page-perfil-sitio {
+  /*.site-dineroenimagen {
+      margin: 0 auto;
+      @extend .sprite-invent;
+      @include img-position(146px,50px,-56px,-1913px);
+  }*/ }
+  #page-perfil-sitio .plataformas-servicios {
+    background-color: #FFF; }
+  #page-perfil-sitio .wrapper-image-section1 {
+    padding-bottom: 20px;
+    background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg"); }
+    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil {
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+      height: auto; }
+      #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .wrapper-img {
+        padding: 20px 0 20px 0; }
+      #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary {
+        color: #FFF;
+        font-size: 18px; }
+  #page-perfil-sitio .title-seccion-invent {
+    font-size: 35px; }
+  #page-perfil-sitio .site-excelsior {
     margin: 0 auto;
-    width: 100%;
-    height: auto; }
-    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .wrapper-img {
-      padding: 20px 0 20px 0; }
-    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary {
-      color: #FFF;
-      font-size: 18px; }
-#page-perfil-sitio .title-seccion-invent {
-  font-size: 35px; }
-#page-perfil-sitio .site-excelsior {
-  margin: 0 auto;
-  width: 147px;
-  height: 32px;
-  background-position: -55px -1682px; }
-#page-perfil-sitio .site-imagen {
-  margin: 0 auto;
-  width: 138px;
-  height: 60px;
-  background-position: -59px -1735px; }
-#page-perfil-sitio .site-reporte {
-  margin: 0 auto;
-  width: 150px;
-  height: 29px;
-  background-position: -54px -1810px; }
-#page-perfil-sitio .site-cadenatres {
-  margin: 0 auto;
-  width: 155px;
-  height: 46px;
-  background-position: -51px -1851px; }
-#page-perfil-sitio .site-dineroenimagen {
-  margin: 0 auto;
-  width: 146px;
-  height: 50px;
-  background-position: -56px -1913px; }
-#page-perfil-sitio .site-dineroenimagen {
-  margin: 0 auto;
-  width: 146px;
-  height: 50px;
-  background-position: -56px -1913px; }
-#page-perfil-sitio .site-salud180 {
-  margin: 0 auto;
-  width: 150px;
-  height: 44px;
-  background-position: -54px -1975px; }
-#page-perfil-sitio .site-bienestar180 {
-  margin: 0 auto;
-  width: 162px;
-  height: 33px;
-  background-position: -221px -1983px; }
-#page-perfil-sitio .site-sexualidad180 {
-  margin: 0 auto;
-  width: 173px;
-  height: 36px;
-  background-position: -428px -1981px; }
-#page-perfil-sitio .site-enforma180 {
-  margin: 0 auto;
-  width: 158px;
-  height: 33px;
-  background-position: -643px -1982px; }
-#page-perfil-sitio .site-actitudfem {
-  margin: 0 auto;
-  width: 157px;
-  height: 38px;
-  background-position: -50px -2036px; }
-#page-perfil-sitio .site-rsvp {
-  margin: 0 auto;
-  width: 122px;
-  height: 42px;
-  background-position: -68px -2089px; }
-#page-perfil-sitio .site-melodijolola {
-  margin: 0 auto;
-  width: 148px;
-  height: 54px;
-  background-position: -59px -2145px; }
-#page-perfil-sitio .site-atraccion360 {
-  margin: 0 auto;
-  width: 148px;
-  height: 36px;
-  background-position: -54px -2211px; }
-#page-perfil-sitio .site-adrenalina360 {
-  margin: 0 auto;
-  width: 152px;
-  height: 24px;
-  background-position: -53px -2267px; }
-#page-perfil-sitio .site-garuyo {
-  margin: 0 auto;
-  width: 139px;
-  height: 47px;
-  background-position: -57px -2319px; }
-#page-perfil-sitio .site-swagger {
-  margin: 0 auto;
-  width: 152px;
-  height: 48px;
-  background-position: -57px -2376px; }
-#page-perfil-sitio .site-gamedots {
-  margin: 0 auto;
-  width: 143px;
-  height: 53px;
-  background-position: -57px -2436px; }
-#page-perfil-sitio .site-estrategia45 {
-  margin: 0 auto;
-  width: 148px;
-  height: 41px;
-  background-position: -54px -2501px; }
-#page-perfil-sitio .site-fahrenheit {
-  margin: 0 auto;
-  width: 152px;
-  height: 28px;
-  background-position: -52px -2548px; }
-#page-perfil-sitio .plataformas-servicios .wrapper-image {
-  margin: 0 auto;
-  max-width: 100%;
-  width: 100%;
-  height: auto; }
-  #page-perfil-sitio .plataformas-servicios .wrapper-image img {
+    width: 147px;
+    height: 32px;
+    background-position: -55px -1682px; }
+  #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
+    margin: 0 auto;
+    width: 138px;
+    height: 60px;
+    background-position: -59px -1735px; }
+  #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
+    margin: 0 auto;
+    width: 150px;
+    height: 29px;
+    background-position: -54px -1810px; }
+  #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
+    margin: 0 auto;
+    width: 155px;
+    height: 46px;
+    background-position: -51px -1851px; }
+  #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
+    margin: 0 auto;
+    width: 146px;
+    height: 50px;
+    background-position: -56px -1913px; }
+  #page-perfil-sitio .site-salud180 {
+    margin: 0 auto;
+    width: 150px;
+    height: 44px;
+    background-position: -54px -1975px; }
+  #page-perfil-sitio .site-bienestar180 {
+    margin: 0 auto;
+    width: 162px;
+    height: 33px;
+    background-position: -221px -1983px; }
+  #page-perfil-sitio .site-sexualidad180 {
+    margin: 0 auto;
+    width: 173px;
+    height: 36px;
+    background-position: -428px -1981px; }
+  #page-perfil-sitio .site-enforma180 {
+    margin: 0 auto;
+    width: 158px;
+    height: 33px;
+    background-position: -643px -1982px; }
+  #page-perfil-sitio .site-actitudfem {
+    margin: 0 auto;
+    width: 157px;
+    height: 38px;
+    background-position: -50px -2036px; }
+  #page-perfil-sitio .site-rsvp {
+    margin: 0 auto;
+    width: 122px;
+    height: 42px;
+    background-position: -68px -2089px; }
+  #page-perfil-sitio .site-melodijolola {
+    margin: 0 auto;
+    width: 148px;
+    height: 54px;
+    background-position: -59px -2145px; }
+  #page-perfil-sitio .site-atraccion360 {
+    margin: 0 auto;
+    width: 148px;
+    height: 36px;
+    background-position: -54px -2211px; }
+  #page-perfil-sitio .site-adrenalina360 {
+    margin: 0 auto;
+    width: 152px;
+    height: 24px;
+    background-position: -53px -2267px; }
+  #page-perfil-sitio .site-garuyo {
+    margin: 0 auto;
+    width: 139px;
+    height: 47px;
+    background-position: -57px -2319px; }
+  #page-perfil-sitio .site-swagger {
+    margin: 0 auto;
+    width: 152px;
+    height: 48px;
+    background-position: -57px -2376px; }
+  #page-perfil-sitio .site-gamedots {
+    margin: 0 auto;
+    width: 143px;
+    height: 53px;
+    background-position: -57px -2436px; }
+  #page-perfil-sitio .site-estrategia45 {
+    margin: 0 auto;
+    width: 148px;
+    height: 41px;
+    background-position: -54px -2501px; }
+  #page-perfil-sitio .site-fahrenheit {
+    margin: 0 auto;
+    width: 152px;
+    height: 28px;
+    background-position: -52px -2548px; }
+  #page-perfil-sitio .plataformas-servicios .wrapper-image {
+    margin: 0 auto;
     max-width: 100%;
     width: 100%;
     height: auto; }
-#page-perfil-sitio .btn-publish {
-  font-size: 16px; }
-#page-perfil-sitio .title-seccion-invent {
-  font-size: 26px;
-  margin: 35px 0 20px 0; }
-#page-perfil-sitio .main-sections-tools li {
-  width: 31.3%;
-  height: auto; }
+    #page-perfil-sitio .plataformas-servicios .wrapper-image img {
+      max-width: 100%;
+      width: 100%;
+      height: auto; }
+  #page-perfil-sitio .btn-publish {
+    font-size: 16px; }
+  #page-perfil-sitio .title-seccion-invent {
+    font-size: 26px; }
+  #page-perfil-sitio .main-sections-tools li {
+    width: 31.3%;
+    height: auto; }
 
 footer {
   min-height: 50px;
@@ -1772,7 +1811,7 @@ footer {
   .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
     font-family: Hind-Bold; }
 
-  .invent-mobile-sprite, header .wrapper-header .wrapper-main .main-center, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+  .invent-mobile-sprite, header .wrapper-header .wrapper-main .main-center, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
     background-image: url("../img/sprites/sprite_movil.png");
     background-repeat: no-repeat; }
 
@@ -1849,44 +1888,60 @@ footer {
   .wrapper-red-videos {
     padding: 0px; }
 
-  ul.red-invent-sections-sites li.sections-sites-0, ul.red-invent-sections-sites li.sections-sites-1 {
-    min-height: 205px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-2, ul.red-invent-sections-sites li.sections-sites-3 {
-    min-height: 185px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-5, ul.red-invent-sections-sites li.sections-sites-6 {
-    min-height: 215px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-8 {
-    min-height: 218px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-9 {
-    min-height: 210px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-10, ul.red-invent-sections-sites li.sections-sites-11 {
-    min-height: 175px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-12, ul.red-invent-sections-sites li.sections-sites-13 {
-    min-height: 170px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-14, ul.red-invent-sections-sites li.sections-sites-15 {
-    min-height: 190px !important;
-    overflow: hidden; }
-  ul.red-invent-sections-sites li.sections-sites-0, ul.red-invent-sections-sites li.sections-sites-2, ul.red-invent-sections-sites li.sections-sites-4, ul.red-invent-sections-sites li.sections-sites-6,
-  ul.red-invent-sections-sites li.sections-sites-8, ul.red-invent-sections-sites li.sections-sites-10, ul.red-invent-sections-sites li.sections-sites-12, ul.red-invent-sections-sites li.sections-sites-14 {
-    border-right: 1px solid #cacaca; }
-  ul.red-invent-sections-sites li.sections-sites-1, ul.red-invent-sections-sites li.sections-sites-3, ul.red-invent-sections-sites li.sections-sites-5, ul.red-invent-sections-sites li.sections-sites-7,
-  ul.red-invent-sections-sites li.sections-sites-9, ul.red-invent-sections-sites li.sections-sites-11, ul.red-invent-sections-sites li.sections-sites-13, ul.red-invent-sections-sites li.sections-sites-15 {
-    border-right: none !important; }
-  ul.red-invent-sections-sites li.sections-sites-4, ul.red-invent-sections-sites li.sections-sites-5 {
-    padding-top: 5px; }
-  ul.red-invent-sections-sites li.sections-sites-11 {
-    padding-top: 8px; }
-  ul.red-invent-sections-sites li.sections-sites-15 {
-    padding-top: 14px; }
-  ul.red-invent-sections-sites .tag-movil {
-    display: block; }
+  ul.red-invent-sections-sites {
+        /*li.sections-sites-0, li.sections-sites-1 {
+            min-height: 205px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-2, li.sections-sites-3 {
+            min-height: 185px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-5, li.sections-sites-6 {
+            min-height: 215px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-8 {
+            min-height: 218px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-9 {
+            min-height: 210px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-10, li.sections-sites-11 {
+            min-height: 175px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-12, li.sections-sites-13 {
+            min-height: 170px !important;
+            overflow: hidden;
+        }
+        li.sections-sites-14, li.sections-sites-15 {
+            min-height: 190px !important;
+            overflow: hidden;
+        }
+
+        li.sections-sites-0, li.sections-sites-2, li.sections-sites-4, li.sections-sites-6,
+        li.sections-sites-8, li.sections-sites-10, li.sections-sites-12, li.sections-sites-14 {
+            border-right: 1px solid #cacaca;
+        }
+        li.sections-sites-1, li.sections-sites-3, li.sections-sites-5, li.sections-sites-7,
+        li.sections-sites-9, li.sections-sites-11, li.sections-sites-13, li.sections-sites-15 {
+            border-right: none !important;
+        }
+
+        li.sections-sites-4, li.sections-sites-5 {
+            padding-top: 5px;
+        }
+        li.sections-sites-11 {
+            padding-top: 8px;
+        }
+        li.sections-sites-15 {
+            padding-top: 14px;
+        }*/ }
+    ul.red-invent-sections-sites .tag-movil {
+      display: block; }
 
   #home-accordion .title-seccion-invent {
     padding-top: 13px !important;
@@ -2085,7 +2140,6 @@ footer {
     height: auto; }
   #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-description {
     float: left;
-    margin-left: 3%;
     padding-top: 10%;
     width: 65%;
     height: auto; }
@@ -2127,78 +2181,86 @@ footer {
       margin-top: 15%; }
       #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
         font-size: 26px; }
-    #page-audiencias-contenidos ul.red-invent-sections-sites {
+
+  /*  */
+  .content-section-site {
+    background-color: #F1F1F1; }
+
+  ul.red-invent-sections-sites {
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    padding: 0px; }
+    ul.red-invent-sections-sites li.bg-caca {
+      height: 0px;
+      display: none; }
+    ul.red-invent-sections-sites li.sections-sites.active {
       transition: all 1s ease;
       -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-      padding: 0px; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.bg-caca {
-        height: 0px;
+      -ms-transition: all 1s ease; }
+      ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active {
+        display: block;
+        top: 15%;
+        width: 19px;
+        height: 19px;
+        background-position: -84px -122px; }
+      ul.red-invent-sections-sites li.sections-sites.active .site-sumary {
+        display: block;
+        padding-top: 5px;
+        line-height: 18px;
+        transition: left 0.2s ease;
+        -webkit-transition: left 0.2s ease;
+        -moz-transition: left 0.2s ease;
+        -o-transition: left 0.2s ease;
+        -ms-transition: left 0.2s ease; }
+    ul.red-invent-sections-sites li.sections-sites {
+      border-right: none;
+      position: relative;
+      width: 100% !important;
+      height: auto !important;
+      padding: 10px 0 !important;
+      border-bottom: 2px solid #FFF;
+      border-top: none;
+      transition: all 1s ease;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      -ms-transition: all 1s ease; }
+      ul.red-invent-sections-sites li.sections-sites a {
+        display: inline-block; }
+      ul.red-invent-sections-sites li.sections-sites .site-sumary {
         display: none; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites.active {
-        transition: all 1s ease;
-        -webkit-transition: all 1s ease;
-        -moz-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        -ms-transition: all 1s ease; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active {
-          display: block;
-          top: 15%;
-          width: 19px;
-          height: 19px;
-          background-position: -84px -122px; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites.active .site-sumary {
-          display: block;
-          padding-top: 5px;
-          line-height: 18px;
-          transition: left 0.2s ease;
-          -webkit-transition: left 0.2s ease;
-          -moz-transition: left 0.2s ease;
-          -o-transition: left 0.2s ease;
-          -ms-transition: left 0.2s ease; }
-      #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites {
-        border-right: none;
-        position: relative;
-        width: 100% !important;
-        height: auto !important;
-        padding: 10px 0 !important;
-        min-height: 40px !important;
-        border-bottom: 2px solid #FFF;
-        transition: all 1s ease;
-        -webkit-transition: all 1s ease;
-        -moz-transition: all 1s ease;
-        -o-transition: all 1s ease;
-        -ms-transition: all 1s ease; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites .site-sumary {
-          display: none; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span {
-          margin-bottom: 0px; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active {
-          display: block;
-          position: absolute;
-          top: 27%;
-          right: 15%;
-          width: 19px;
-          height: 19px;
-          background-position: -63px -122px; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
-          margin: 0 auto 15px;
-          width: 132px;
-          height: 27px;
-          background-position: -63px -605px; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
-          margin: 0 auto 15px;
-          width: 129px;
-          height: 24px;
-          background-position: -71px -653px; }
-        #page-audiencias-contenidos ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
-          margin: 0 auto 15px;
-          width: 125px;
-          height: 24px;
-          background-position: -74px -705px; }
+      ul.red-invent-sections-sites li.sections-sites span {
+        margin-bottom: 0px; }
+      ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active {
+        display: block;
+        position: absolute;
+        top: 35%;
+        right: 15%;
+        width: 19px;
+        height: 19px;
+        background-position: -63px -122px; }
+      ul.red-invent-sections-sites li.sections-sites span.site-bienestar180 {
+        margin: 0 auto 15px;
+        width: 132px;
+        height: 27px;
+        background-position: -63px -605px; }
+      ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180 {
+        margin: 0 auto 15px;
+        width: 129px;
+        height: 24px;
+        background-position: -71px -653px; }
+      ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+        margin: 0 auto 15px;
+        width: 125px;
+        height: 24px;
+        background-position: -74px -705px; }
 
+  /*  */
   /* site especifico */
   #page-perfil-sitio .main-sections-tools {
     width: 100%;
@@ -2224,12 +2286,14 @@ footer {
   .wrapper-our-services ul li.services-sites span.title {
     height: 32px; }
 
-  .home-perfil-colaboradores ul li {
-    width: 28%;
-    height: auto; }
-  .home-perfil-colaboradores ul li.box-0, .home-perfil-colaboradores ul li.box-3, .home-perfil-colaboradores ul li.box-6, .home-perfil-colaboradores ul li.box-9, .home-perfil-colaboradores ul li.box-12, .home-perfil-colaboradores ul li.box-15,
-  .home-perfil-colaboradores ul li.box-18, .home-perfil-colaboradores ul li.box-21, .home-perfil-colaboradores ul li.box-24, .home-perfil-colaboradores ul li.box-27 {
-    margin-left: 0%; } }
+  .home-perfil-colaboradores ul {
+    /*li.box-0, li.box-3,li.box-6, li.box-9,li.box-12, li.box-15, 
+    li.box-18, li.box-21,li.box-24, li.box-27 {
+        margin-left: 0%;
+    }*/ }
+    .home-perfil-colaboradores ul li {
+      width: 29.3%;
+      height: auto; } }
 @media only screen and (max-width: 560px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 240px; }
@@ -2275,17 +2339,18 @@ footer {
       width: 100%;
       height: auto; } }
 @media only screen and (max-width: 450px) {
-  .home-perfil-colaboradores ul li {
-    margin-left: 4%;
-    width: 42%;
-    height: auto; }
-    .home-perfil-colaboradores ul li .name-editor {
-      font-size: 16px; }
-    .home-perfil-colaboradores ul li .type-content {
-      font-size: 14px; }
-  .home-perfil-colaboradores ul li.box-0, .home-perfil-colaboradores ul li.box-2, .home-perfil-colaboradores ul li.box-4, .home-perfil-colaboradores ul li.box-6, .home-perfil-colaboradores ul li.box-8, .home-perfil-colaboradores ul li.box-10, .home-perfil-colaboradores ul li.box-12, .home-perfil-colaboradores ul li.box-14,
-  .home-perfil-colaboradores ul li.box-16, .home-perfil-colaboradores ul li.box-18, .home-perfil-colaboradores ul li.box-20, .home-perfil-colaboradores ul li.box-22, .home-perfil-colaboradores ul li.box-24, .home-perfil-colaboradores ul li.box-26 {
-    margin-left: 4%; }
+  .home-perfil-colaboradores ul {
+    /*li.box-0, li.box-2, li.box-4, li.box-6, li.box-8, li.box-10, li.box-12, li.box-14,
+    li.box-16, li.box-18, li.box-20, li.box-22, li.box-24, li.box-26 {
+        margin-left: 4%;
+    }*/ }
+    .home-perfil-colaboradores ul li {
+      width: 46%;
+      height: auto; }
+      .home-perfil-colaboradores ul li .name-editor {
+        font-size: 16px; }
+      .home-perfil-colaboradores ul li .type-content {
+        font-size: 14px; }
 
   .wrapper-our-services ul li.services-sites {
     padding: 0 2%;

@@ -103,6 +103,53 @@
         setTimeout(inventMx.utilities.loaderHide, 7000);
         
     },
+    inventMx.render.tplPerfilSites = function(resp){
+        if (resp.response.status == 200) {
+            
+            dataSite = resp.data[0];            
+            console.log(dataSite);
+            
+            if(dataSite){
+                var perfilSite = $("#template-perfil-site").html();
+                var tpl_perfilSite = Handlebars.compile(perfilSite);
+                var view_perfilSite = tpl_perfilSite(dataSite);
+                $("#perfil-site").html(view_perfilSite);
+                console.log(view_perfilSite)
+            }else {
+                error404 = new inventMx.home.default404();
+            }
+            
+        }else {
+            error404 = new inventMx.home.default404();
+        }
+        
+        inventMx.utilities.loaderHide();
+        setTimeout(inventMx.utilities.loaderHide, 7000);
+        
+    },
+    inventMx.render.tplSites = function(resp){
+        data = resp.data;
+        
+        if(data){
+            var site = $("#template-sections-sites").html();
+            var tpl_site = Handlebars.compile(site);
+            var view_site = tpl_site(data);
+            $("#sections-sites").html(view_site);
+            
+            /*if ($("img.lazy").length) {
+                    $("img.lazy").lazyload({
+                    effect: "fadeIn"
+                });
+            }*/
+            var sites = "#sections-sites li.sections-sites";
+            finalSites = inventMx.utilities.calculateheightItem(sites);
+            $(sites).height(finalSites);
+            
+        }else {
+            $("#template-sections-sites").append("<p> Ha ocurrido un  error al cargar esta sección</p>")
+        }
+        
+    },
     inventMx.render.tplcaseExito = function(resp){
         
         if (resp.response.status == 200) {
@@ -121,7 +168,7 @@
         }
                 
             }else {
-                
+                $("#template-sections-case-exito").append("<p> Ha ocurrido un  error al cargar esta sección</p>")
             }
             
         }else{
@@ -294,8 +341,8 @@
     },
     inventMx.utilities.calculateheightItem = function(items){
         var numbers = [];
-        $(items).each(function(i,j){
-            numbers[i] = $(this).height();            
+        $(items).each(function(i,j){            
+            numbers[i] = $(this).height();
         });
         return inventMx.utilities.searchNumbersMayor(numbers);
     }
@@ -303,6 +350,8 @@
         //function mayor(m){
         var numbers=[].slice.call(number);
         return numbers.sort(function(a,b){return a-b;}).pop();
+        //Math.round(2);
+        
         //}
         //j = [101,2,3,14,5,55,205];
         //alert(mayor(j));
@@ -354,6 +403,10 @@
             }else{
                 $("header ul").css("display", "block");
             }
+        });
+        
+        $(document).on("click",".ico-sumary-active",function(){
+            $(this).parent().toggleClass("active");
         });
         
     });

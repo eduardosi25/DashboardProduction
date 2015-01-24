@@ -31109,10 +31109,55 @@ Handlebars.registerHelper('ifCond', function(v1, operator, v2, options) {
     }
 });
 
+Handlebars.registerHelper('validGrafic', function(points, options) {
+    var value = "0";
+    if(points > 1 && points <= 8){
+        value = "5";
+    }else if (points > 8 && points <= 13){
+        value = "10";
+    }else if (points > 13 && points <= 18){
+        value = "15";
+    }else if (points > 18 && points <= 23){
+        value = "20";
+    }else if (points > 23 && points <= 28){
+        value = "25";
+    }else if (points > 28 && points <= 33){
+        value = "30";
+    }else if (points > 33 && points <= 38){
+        value = "35";
+    }else if (points > 38 && points <= 43){
+        value = "40";
+    }else if (points > 43 && points <= 48){
+        value = "45";
+    }else if (points > 48 && points <= 53){
+        value = "50";
+    }else if (points > 53 && points <= 58){
+        value = "55";
+    }else if (points > 58 && points <= 63){
+        value = "60";
+    }else if (points > 63 && points <= 68){
+        value = "65";
+    }else if (points > 68 && points <= 73){
+        value = "70";
+    }else if (points > 73 && points <= 78){
+        value = "75";
+    }else if (points > 78 && points <= 83){
+        value = "80";
+    }else if (points > 83 && points <= 88){
+        value = "85";
+    }else if (points > 88 && points <= 93){
+        value = "90";
+    }else if (points > 93 && points <= 98){
+        value = "95";
+    }else if (points > 98 && points <= 100){
+        value = "100";
+    }
+    return value;
+});
+
 Handlebars.registerHelper('if_even', function(type, options) {
-    //var type = "";
-    typeconten = (type % 2) ? "odd" : "even";
-     return typeconten;
+    tyconten = (type % 2) ? "odd" : "even";
+    return tyconten;
 });
 
 Handlebars.registerHelper('each_upto', function(ary, max, options) {
@@ -31161,6 +31206,17 @@ Handlebars.registerHelper('getUrlApp', function(url, options) {
     np_url = 'http://' + window.location.host + "#" + temp_url.attr('relative');
     url = np_url.replace('#/','#');
     return url;
+});
+
+/* remplazar host */
+Handlebars.registerHelper('CleanTaxonomy', function(url, options) {
+    temp_url = $.url(url);
+    np_url =  temp_url.attr('relative');
+    turl = np_url.replace("#/", "");
+    turl = turl.replace("/", "");
+    turl = turl.replace("-0", "");
+
+    return turl;
 });
 
 /* remplazar guión medio por espacio */

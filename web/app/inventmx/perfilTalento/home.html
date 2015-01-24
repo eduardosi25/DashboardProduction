@@ -59,7 +59,7 @@
                 {{#if this.images.picture }}
                     {{#if this.images.picture.0.styles }}
                         {{#if this.images.picture.0.styles.medium }}
-                            <img class="loader lazy" src="{{this.image.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                            <img class="loader lazy" src="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
                         {{else}}
                             <img class="loader lazy" src="/web/img/global/default.png" alt="" title="{{this.title}}">
                         {{/if}}
@@ -72,7 +72,7 @@
             </div>
             <div class="description left">
                 <span class="block name">{{this.title}}</span>
-                <span class="block type-perfil">{{this.title}}</span>
+                <span class="block type-perfil">{{this.audience.0.title}}</span>
             </div>
             <div class="clear"></div>
         </div>
@@ -86,7 +86,7 @@
             
     <div class="wrapper-bars">
         <div class="left content-grafic-1 relative">
-            <div class="bars-75 absolute"></div>
+            <div class="bars-{{validGrafic this.mens }} absolute"></div>
             <div class="info-bars center absolute">
                 {{#if this.mens }}
                     <span class="block total">{{this.mens}}%</span>
@@ -99,7 +99,7 @@
             <span class="block age-name">Años</span>
         </div>
         <div class="left content-grafic-2 relative">
-            <div class="bars-25 absolute"></div>
+            <div class="bars-{{validGrafic this.womens }} absolute"></div>
             <div class="info-bars center absolute">
                 <span class="block total">{{this.womens}}%</span>
                 <span class="block users">MUJERES</span>
@@ -126,7 +126,7 @@
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
-                                <img class="loader lazy" data-original="{{this.image.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
                             {{else}}
                                 <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                             {{/if}}
@@ -139,7 +139,7 @@
                         
                     </span>
                     <span class="block name-editor">{{this.title}}</span>
-                    <span class="block type-content">{{this.title}}</span>
+                    <span class="block type-content">{{this.audience.0.title}}</span>
                 </a>
             </li>            
         {{/each}}

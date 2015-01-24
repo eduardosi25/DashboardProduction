@@ -22,7 +22,7 @@ $(function() {
             //"perfil/:name": "perfilTalento",
             ":nameTalento": "perfilTalento",
             //"site/:id": "perfilSitio",
-            "site/:name": "perfilSitio",
+            ":nameSite": "perfilSitio",
             //"site/excelsior": "perfilSitio",
             "*default": "default",
             "*notFound": "notFound"
@@ -139,14 +139,14 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
         },
-        perfilSitio: function(name) {
+        perfilSitio: function(nameSite) {
             //inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.section = "perfil-sitio";
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
             inventMx.utilities.topOffset(0);
-            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio();
+            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio(nameSite);
         },
         default: function() {
             //inventMx.page.wrapper_site.hide("slow");

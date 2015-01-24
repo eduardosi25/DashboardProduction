@@ -1,4 +1,7 @@
 #page-perfil-sitio {
+    .plataformas-servicios {
+        background-color: #FFF;
+    }
     .wrapper-image-section1 {
         //padding: 20px 0;
         padding-bottom: 20px;
@@ -28,31 +31,31 @@
         @extend .sprite-invent;        
         @include img-position(147px,32px,-55px,-1682px);
     }
-    .site-imagen {
+    .site-imagen, .site-imagen-radio, .site-imagenradio {
         margin: 0 auto;
         @extend .sprite-invent;
         @include img-position(138px,60px,-59px,-1735px);
     }
-    .site-reporte {
+    .site-reporte, .site-reporte98, .site-reporte985, .site-reporte-985 {
         margin: 0 auto;
         @extend .sprite-invent;
         @include img-position(150px,29px,-54px,-1810px);
     }
-    .site-cadenatres {
+    .site-cadenatres, .site-cadena-tres {
         margin: 0 auto;
         @extend .sprite-invent;
         @include img-position(155px,46px,-51px,-1851px);
     }
-    .site-dineroenimagen {
+    .site-dineroenimagen, .site-dinero-en-imagen {
         margin: 0 auto;
         @extend .sprite-invent;
         @include img-position(146px,50px,-56px,-1913px);
     }
-    .site-dineroenimagen {
+    /*.site-dineroenimagen {
         margin: 0 auto;
         @extend .sprite-invent;
         @include img-position(146px,50px,-56px,-1913px);
-    }
+    }*/
     .site-salud180 {
         margin: 0 auto;
         @extend .sprite-invent;
@@ -141,7 +144,7 @@
     }
     .title-seccion-invent {
         font-size: 26px;
-        margin: 35px 0 20px 0;
+        //margin: 35px 0 20px 0;
     }
     .main-sections-tools {
         li {

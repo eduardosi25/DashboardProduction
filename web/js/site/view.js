@@ -38,14 +38,10 @@ $(function() {
             _.bindAll(this, 'render');
             this.loadPage();
         },
-        render: function (data) {            
+        render: function () {            
             //this.loadPage();
         },
-        loadPage: function () {  
-            
-            //var url = "/web/data/home/home.json";
-            //inventMx.dataSource.params.limit = "100";
-            //var params = "";
+        loadPage: function () {
             
             /* params accordion */
             var id_container = "#home-accordion";
@@ -55,14 +51,13 @@ $(function() {
             var id_section1 = "#section-home-talento";
             var id_section2 = "#section-home-contactos";
             
-            /* render handlebars */
-            //inventMx.page.wrapper_site.animate({ "left": "+=3000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
                 
-                //repo = "vloger.json";
-                //inventMx.dataSource.params.url = null;
-                //inventMx.dataSource.params.limit = "100";
-                //inventMx.dataSource.load(repo,inventMx.render.tplHomeTalentos);
+                repo = "sites.json";
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.limit = "30";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites);
+                
                 repo = "vloger.json";
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "100";
@@ -73,22 +68,24 @@ $(function() {
                 
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
-                /*inventMx_events.trigger('NoData','Home');*/                
-                
+                /*inventMx_events.trigger('NoData','Home');*/ 
                 
                 $(window).resize(function (e) {
-                    //console.log(e);
                     e.stopPropagation();
+                    var sites = "#sections-sites li.sections-sites";
+                    $(sites).css("height","auto");
+                    
                     deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
                     if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }
                     inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
+                    
+                    finalSites = inventMx.utilities.calculateheightItem(sites);
+                    $(sites).height(Math.round(finalSites));
+                    
                 });
                 
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=3000px" }, "slow" );
-                                
                 return this;
             });
             
@@ -127,7 +124,7 @@ $(function() {
                 var Msaludable = "#mundo-saludable li.sections-sites";
                 var Mfemenino = "#mundo-femenino li.sections-sites";
                 var lifeStyle = "#life-style li.sections-sites";
-
+                    
             var widthDevice = inventMx.utilities.deviceWidthWindow();
             
             //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
@@ -170,18 +167,6 @@ $(function() {
                     }
                     
                 });
-                
-                
-                $(document).on("click",".ico-sumary-active",function(){
-                     $(this).parent().toggleClass("active");
-                });
-                
-                /*$(".ico-sumary-active").click(function(e){
-                    e.preventDefault();
-                    alert("x");
-                    //$(".red-invent-sections-sites li").removeClass("active");
-                    $(this).parent().toggleClass("active");
-                });*/
                 
                 return this;
             //});                        
@@ -477,29 +462,9 @@ $(function() {
                 repo = "vloger.json";
                 inventMx.dataSource.params.url = nameTalento;
                 inventMx.dataSource.load(repo,inventMx.render.tplPerfilTalentos);
-                    
-                /*inventMx.dataSource.getAjax(url, params, function(resp) {
-                    if (resp){                        
-                        data = resp.data.sections[0].items;
-                        dataTalentos = data.slice(0, 15);
-                        var redTalentos = $("#template-home-talentos").html();
-                        var tpl_talentos = Handlebars.compile(redTalentos);
-                        var view_talentos = tpl_talentos(dataTalentos);
-                        $("#home-talentos").html(view_talentos);
-                    } else {
-                        inventMx.utilities.loaderHide();
-                        $("#home-talentos").append("<p>No hay datos para mostrar</p>");
-                    }
-                    
-                    if ($("img.lazy").length) {
-                        $("img.lazy").lazyload({
-                            effect: "fadeIn"
-                        });
-                    }
-                });*/
-                    
-                    inventMx.utilities.oneAddRemoveSections(id_section1);
-                    setTimeout(inventMx.utilities.loaderHide, 7000);
+                
+                inventMx.utilities.oneAddRemoveSections(id_section1);
+                setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});
                 return this;
             });
@@ -514,22 +479,21 @@ $(function() {
     });
     
     inventMx.home.homePerfilSitio = Backbone.View.extend({
-        initialize: function () {
-            this.render();
+        initialize: function (nameSite) {
+            this.render(nameSite);
         },
-        render:function(){
+        render:function(nameSite){
             var id_section1 = "#section-home-contactos";            
-            
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
+                        
             inventMx.page.wrapper_site.load("/web/app/inventmx/perfilSitio/home.html", function () {
                 
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
-                    
+                repo = "sites.json";
+                inventMx.dataSource.params.url = nameSite;
+                inventMx.dataSource.load(repo,inventMx.render.tplPerfilSites);
+                
                 inventMx.utilities.oneAddRemoveSections(id_section1);
-                inventMx.utilities.loaderHide();
                 setTimeout(inventMx.utilities.loaderHide, 7000);
-                //});
+                
                 return this;
             });
             
