@@ -67,29 +67,29 @@
 
     <div class="wrapper-bars">
         <div class="left content-grafic-1 relative">
-            <div class="bars-75 absolute"></div>
+            <div class="bars-{{validGrafic this.mens }} absolute"></div>
             <div class="info-bars center absolute">
-                <span class="block total">75%</span>
+                    <span class="block total">{{this.mens}}%</span>
                 <span class="block users">HOMBRES</span>
             </div>
         </div>
         <div class="left age-users center">
-            <span class="block age">25-30</span>
+                <span class="block total">{{this.ages}}%</span>
             <span class="block age-name">Años</span>
         </div>
         <div class="left content-grafic-2 relative">
-            <div class="bars-25 absolute"></div>
+            <div class="bars-{{validGrafic this.womens }} absolute"></div>
             <div class="info-bars center absolute">
-                <span class="block total">25%</span>
+                    <span class="block total">{{this.womens}}%</span>
                 <span class="block users">MUJERES</span>
             </div>
         </div>
         <div class="left content-visit center">
-            <span class="total-visit block">247,886</span>
+                <span class="block total">{{this.views}}</span>
             <span class="description-visit block">VISITAS MENSUALES</span>
         </div>
         <div class="left content-visit center">
-            <span class="total-visit block">37,973</span>
+                <span class="block total">{{this.followers}}</span>
             <span class="description-visit block">TOTAL SEGUIDORES</span>
         </div>
         <div class="clear"></div>

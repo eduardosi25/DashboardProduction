@@ -54,9 +54,14 @@ $(function() {
             inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
                 
                 repo = "sites.json";
+                Options_sites = {
+                    section: "#sections-sites",
+                    template: "#template-sections-sites",
+                    idSitesUl: "#sections-sites li.sections-sites",
+                }
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "30";
-                inventMx.dataSource.load(repo,inventMx.render.tplSites);
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_sites);
                 
                 repo = "vloger.json";
                 inventMx.dataSource.params.url = null;
@@ -119,20 +124,107 @@ $(function() {
             this.render(idAncla);
         },
         render:function(idAncla){
-                var id_section1 = "#section-home-contactos";
-                var noticias = "#noticias-deportes li.sections-sites";
-                var Msaludable = "#mundo-saludable li.sections-sites";
-                var Mfemenino = "#mundo-femenino li.sections-sites";
-                var lifeStyle = "#life-style li.sections-sites";
+            var id_section1 = "#section-home-contactos";
+            var noticias = "#site-noticias-deportes li.sections-sites";
+            var Msaludable = "#mundo-saludable li.sections-sites";
+            var Mfemenino = "#mundo-femenino li.sections-sites";
+            var lifeStyle = "#life-style li.sections-sites";
                     
             var widthDevice = inventMx.utilities.deviceWidthWindow();
-            
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
+                        
             inventMx.page.wrapper_site.load("/web/app/inventmx/audiencias-y-contenidos/home.html", function () {
+                                
+                inventMx.dataSource.params.limit = "100";
                 
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
+                /* NOTICIAS, NEGOCIOS */
+                repo = "audience.json";
+                Options_noticias = {
+                    section: "#noticias-negocios",
+                    template: "#template-audiencias-contenidos",
+                }
+                inventMx.dataSource.params.url = "noticias-y-negocios";
+                inventMx.dataSource.params.audience_url = null;
+                inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_noticias);
                 
+                /* sites de noticias y negocios */
+                repo = "sites.json";
+                Options_site_noticias = {
+                    section: "#site-noticias-deportes",
+                    template: "#template-sections-sites",
+                    idSitesUl: "#site-noticias-deportes li.sections-sites",
+                }
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = "noticias-y-negocios";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_noticias);
+                
+                
+                /* MUNDO SALUDABLE */
+                repo = "audience.json";
+                Options_saludable = {
+                    section: "#mundo-saludable",
+                    template: "#template-audiencias-contenidos",
+                }
+                inventMx.dataSource.params.url = "mundo-saludable";
+                inventMx.dataSource.params.audience_url = null;
+                inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_saludable);
+                
+                /* sites de mundo saludable */
+                repo = "sites.json";
+                Options_site_saludable = {
+                    section: "#site-mundo-saludable",
+                    template: "#template-sections-sites",
+                    idSitesUl: "#site-mundo-saludable li.sections-sites",
+                }
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = "mundo-saludable";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_saludable);
+                
+                
+                /* MUNDO FEMENINO */
+                repo = "audience.json";
+                Options_Mfemenino = {
+                    section: "#mundo-femenino",
+                    template: "#template-audiencias-contenidos",
+                }
+                inventMx.dataSource.params.url = "mundo-femenino";
+                inventMx.dataSource.params.audience_url = null;
+                inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_Mfemenino);
+                
+                /* sites de mundo saludable */
+                repo = "sites.json";
+                Options_site_Mfemenino = {
+                    section: "#site-mundo-femenino",
+                    template: "#template-sections-sites",
+                    idSitesUl: "#site-mundo-femenino li.sections-sites",
+                }
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = "mundo-femenino";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_Mfemenino);
+                
+                /* MUNDO FEMENINO */
+                repo = "audience.json";
+                Options_lifestye = {
+                    section: "#lifestye",
+                    template: "#template-audiencias-contenidos",
+                }
+                inventMx.dataSource.params.url = "life-style";
+                inventMx.dataSource.params.audience_url = null;
+                inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_lifestye);
+                
+                /* sites de mundo saludable */
+                repo = "sites.json";
+                Options_site_lifestye = {
+                    section: "#site-lifestye",
+                    template: "#template-sections-sites",
+                    idSitesUl: "#site-lifestye li.sections-sites",
+                }
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = "life-style";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_lifestye);
+                
+                
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = null;
                 
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
@@ -154,37 +246,42 @@ $(function() {
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                     
                     if(idAncla !== true){
-                        //console.log(idAncla);
                         if($("#"+idAncla).length){
-                            offset1 = $("#"+idAncla).offset();
-                            var offset = offset1.top;
-                            inventMx.utilities.topOffset(offset,0);
-                            //console.log("Si");
+                            function top(){
+                                offset1 = $("#"+idAncla).offset();
+                                var offset = offset1.top;
+                                inventMx.utilities.topOffset(offset,0);
+                            }
+                            
+                            setTimeout(top, 1000);
+                            
                         }else {
                             var ficha = new inventMx.home.default404();
-                            //inventMx.home.default404();
                         }
                     }
                     
                 });
                 
                 return this;
-            //});                        
                                     
             $(window).resize(function (e) {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
-                if(widthDevice >= 701){                    
+                if(widthDevice >= 701){
+                    $(noticias).css("height","auto");
                     finalNumbers = inventMx.utilities.calculateheightItem(noticias);
                     $(noticias).height(finalNumbers);
                     
+                    $(Msaludable).css("height","auto");
                     finalNumbers1 = inventMx.utilities.calculateheightItem(Msaludable);
                     $(Msaludable).height(finalNumbers1);
                     
+                    $(Mfemenino).css("height","auto");
                     finalNumbers2 = inventMx.utilities.calculateheightItem(Mfemenino);
                     $(Mfemenino).height(finalNumbers2);
                     
+                    $(lifeStyle).css("height","auto");
                     finalNumbers3 = inventMx.utilities.calculateheightItem(lifeStyle);
                     $(lifeStyle).height(finalNumbers3);
                 }
@@ -210,23 +307,32 @@ $(function() {
             var rich2 = ".formats-rich-media .body-table-2 li.box-table";
             
             var mobile = ".formats-mobile .body-table li.box-table";
-            
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
+                        
             inventMx.page.wrapper_site.load("/web/app/inventmx/marketers/home.html", function () {
-
-                //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
                     
-                    finalNumbers = inventMx.utilities.calculateheightItem(rich1);
-                    $(rich1).height(finalNumbers);
-                    finalNumbers = inventMx.utilities.calculateheightItem(rich2);
-                    $(rich2).height(finalNumbers);
-                    finalNumbers = inventMx.utilities.calculateheightItem(mobile);
-                    $(mobile).height(finalNumbers);
+                repo = "sites.json";
+                Options_sites = {
+                    section: "#sites-socials",
+                    template: "#template-sites-socials",
+                    idSitesUl: "#sites-socials li.sections-sites",
+                }
+                inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.limit = "100";
+                inventMx.dataSource.params.audience_url = null;
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_sites);
+                //inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_Mfemenino);
+                
                     
-                    inventMx.utilities.loaderHide();
-                    setTimeout(inventMx.utilities.loaderHide, 7000);
-                //});
+                finalNumbers = inventMx.utilities.calculateheightItem(rich1);
+                $(rich1).height(finalNumbers);
+                finalNumbers = inventMx.utilities.calculateheightItem(rich2);
+                $(rich2).height(finalNumbers);
+                finalNumbers = inventMx.utilities.calculateheightItem(mobile);
+                $(mobile).height(finalNumbers);
+                    
+                inventMx.utilities.loaderHide();
+                setTimeout(inventMx.utilities.loaderHide, 7000);
+                
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
                 if(idAncla !== true){
@@ -252,12 +358,22 @@ $(function() {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
+                $(rich1).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(rich1);
-                $(rich1).height(finalNumbers);                
+                $(rich1).height(finalNumbers);
+                
+                $(rich2).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(rich2);
                 $(rich2).height(finalNumbers);
+                
+                $(mobile).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(mobile);
                 $(mobile).height(finalNumbers);
+                
+                idSitesUl = "#sites-socials li.sections-sites";
+                $(idSitesUl).css("height","auto");
+                finalNumbers = inventMx.utilities.calculateheightItem(idSitesUl);
+                $(idSitesUl).height(finalNumbers);
                 //finalNumbers = inventMx.utilities.calculateheightItem(rich2);
                 //$(rich2).height(finalNumbers);
                 //inventMx.utilities.changeResolitionsImg(id_image_firts);
@@ -274,50 +390,52 @@ $(function() {
             this.render();            
         },
         render:function(){
-            var url = "/web/data/home/home.json";
-            var params = "";
+            //var url = "/web/data/home/home.json";
+            //var params = "";
             var id_section1 = "#section-home-contactos";
             
-            //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/redVideo/home.html", function () {
                 
-                inventMx.dataSource.getAjax(url, params, function(resp) {
-                    if (resp){                        
-                        data = resp.data.sections[0].items;
-                        dataVideos = data.slice(0, 15);
-                        var redVideos = $("#template-red-videos-lifeStyle").html();
-                        var redVideosCocina = $("#template-red-videos-cocina").html();
-                        var redVideosNoticias = $("#template-red-videos-noticias").html();
-                        var redVideosEntretenimiento = $("#template-red-videos-entretenimiento").html();
-                        var tpl_redVideos = Handlebars.compile(redVideos);
-                        var tpl_redVideosCocina = Handlebars.compile(redVideosCocina);
-                        var tpl_redVideosNoticias = Handlebars.compile(redVideosNoticias);
-                        var tpl_redVideosEntretenimiento = Handlebars.compile(redVideosEntretenimiento);
-                        var view_redVideos = tpl_redVideos(dataVideos);
-                        var view_redVideosCocina = tpl_redVideosCocina(dataVideos);
-                        var view_redVideosNoticias = tpl_redVideosNoticias(dataVideos);
-                        var view_redVideosEntretenimiento = tpl_redVideosEntretenimiento(dataVideos);
-                        $("#red-videos-lifeStyle").html(view_redVideos);
-                        $("#red-videos-cocina").html(view_redVideosCocina);
-                        $("#red-videos-noticias").html(view_redVideosNoticias);
-                        $("#red-videos-entretenimiento").html(view_redVideosEntretenimiento);
-                    } else {
-                        inventMx.utilities.loaderHide();
-                        $("#red-videos-lifeStyle").append("<p>No hay datos para mostrar</p>");
-                    }
-                    
-                    if ($("img.lazy").length) {
-                        $("img.lazy").lazyload({
-                            effect: "fadeIn"
-                        });
-                    }
-                });
+                var repo = "vloger.json";
+                inventMx.dataSource.params.limit = "100";
                 
+                /* NOTICIAS, NEGOCIOS */
+                Options_noticias = {
+                    section: "#red-videos-noticias",
+                    template: "#template-red-videos-noticias",
+                }
+                inventMx.dataSource.params.audience_url = "noticias-y-negocios";
+                inventMx.dataSource.load(repo,inventMx.render.tplRedVideos,Options_noticias);
+                
+                /* MUNDO SALUDABLE */
+                Options_Msaludable = {
+                    section: "#red-videos-mundo-saludable",
+                    template: "#template-red-videos-mundo-saludable",
+                }
+                inventMx.dataSource.params.audience_url = "mundo-saludable";
+                inventMx.dataSource.load(repo,inventMx.render.tplRedVideos,Options_Msaludable);
+                
+                /* MUNDO FEMENINO */
+                Options_Mfemenino = {
+                    section: "#red-videos-mundo-femenino",
+                    template: "#template-red-videos-mundo-femenino",
+                }
+                inventMx.dataSource.params.audience_url = "mundo-femenino";
+                inventMx.dataSource.load(repo,inventMx.render.tplRedVideos,Options_Mfemenino);
+                
+                /* LIFE & STYLE */
+                Options_lifeStyle = {
+                    section: "#red-videos-lifeStyle",
+                    template: "#template-red-videos-lifeStyle",
+                }
+                inventMx.dataSource.params.audience_url = "life-style";
+                inventMx.dataSource.load(repo,inventMx.render.tplRedVideos,Options_lifeStyle);
                 
                 inventMx.utilities.oneAddRemoveSections(id_section1);
-                
+                                
                 //inventMx.page.wrapper_site.show("slow");
                 //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
+                inventMx.dataSource.params.audience_url = null;
                     inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                 //});

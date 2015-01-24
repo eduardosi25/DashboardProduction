@@ -30,6 +30,7 @@
             category_ids: null,
             tag_ids: null,
             category_url: null,
+            audience_url: null,
             tag_url: null,
             created_start: null,
             created_finish: null,
@@ -69,6 +70,26 @@
         inventMx.utilities.loaderHide();
         setTimeout(inventMx.utilities.loaderHide, 7000);
     },
+    inventMx.render.tplAudienciasContenidos = function(resp,options){
+        
+        if (resp.response.status == 200) {
+            dataRedVideo = resp.data[0];
+            
+            if(dataRedVideo){
+                var redVideos = $(options.template).html();
+                var tpl_redVideos = Handlebars.compile(redVideos);
+                var view_redVideos = tpl_redVideos(dataRedVideo);
+                $(options.section).html(view_redVideos);
+                
+            }else {
+                $(options.section).append("<p> Ha ocurrido un  error al cargar esta sección</p>")
+            }
+            
+        }else {
+            error404 = new inventMx.home.default404();
+        }
+        
+    },
     inventMx.render.tplPerfilTalentos = function(resp){
         if (resp.response.status == 200) {
             
@@ -106,8 +127,7 @@
     inventMx.render.tplPerfilSites = function(resp){
         if (resp.response.status == 200) {
             
-            dataSite = resp.data[0];            
-            console.log(dataSite);
+            dataSite = resp.data[0];
             
             if(dataSite){
                 var perfilSite = $("#template-perfil-site").html();
@@ -127,21 +147,16 @@
         setTimeout(inventMx.utilities.loaderHide, 7000);
         
     },
-    inventMx.render.tplSites = function(resp){
+    inventMx.render.tplSites = function(resp,options){
         data = resp.data;
         
         if(data){
-            var site = $("#template-sections-sites").html();
+            var site = $(options.template).html();
             var tpl_site = Handlebars.compile(site);
             var view_site = tpl_site(data);
-            $("#sections-sites").html(view_site);
-            
-            /*if ($("img.lazy").length) {
-                    $("img.lazy").lazyload({
-                    effect: "fadeIn"
-                });
-            }*/
-            var sites = "#sections-sites li.sections-sites";
+            $(options.section).html(view_site);
+                        
+            var sites = options.idSitesUl;
             finalSites = inventMx.utilities.calculateheightItem(sites);
             $(sites).height(finalSites);
             
@@ -164,14 +179,40 @@
                 if ($("img.lazy").length) {
                     $("img.lazy").lazyload({
                         effect: "fadeIn"
-                });
-        }
+                    });
+                }
                 
             }else {
                 $("#template-sections-case-exito").append("<p> Ha ocurrido un  error al cargar esta sección</p>")
             }
             
         }else{
+            error404 = new inventMx.home.default404();
+        }
+    },
+    inventMx.render.tplRedVideos = function(resp,options){
+        if (resp.response.status == 200) {
+            dataRedVideo = resp.data;
+            
+            if(dataRedVideo){
+                
+                var redVideos = $(options.template).html();
+                var tpl_redVideos = Handlebars.compile(redVideos);
+                var view_redVideos = tpl_redVideos(dataRedVideo);
+                $(options.section).html(view_redVideos);
+                
+                if ($("img.lazy").length) {
+                    $("img.lazy").lazyload({
+                        effect: "fadeIn"
+                    });
+                }
+                
+            }else {
+                $(options.section).append("<p> Ha ocurrido un  error al cargar esta sección</p>")
+            }
+            
+            
+        }else {
             error404 = new inventMx.home.default404();
         }
     },
@@ -187,7 +228,7 @@
             //return Object.prototype.toString.call(value) === "[object Object]";
         //}
     },
-    inventMx.dataSource.load = function(repo,callback) {
+    inventMx.dataSource.load = function(repo,callback,options) {
         req_url = inventMx.config.data_source.baseUrl;
         req_api_key = inventMx.config.data_source.apiKey;
 
@@ -202,7 +243,7 @@
         });
 
         url_ajax = req_url + "/" + repo + "/" + req_api_key + "?callback=?";
-        inventMx.dataSource.getAjax(url_ajax, params,callback);
+        inventMx.dataSource.getAjax(url_ajax, params,callback,options);
         
     },
     inventMx.dataSource.getAjax = function(url, params,callback,options) {

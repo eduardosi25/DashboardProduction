@@ -308,6 +308,9 @@ article {
                 margin-bottom: 5px;
                 @extend .Hind-Regular;
             }
+            .type-content{
+                min-height: 15px;
+            }
             .type-content, .type-content a {
                 color: #6A6A6A;
                 font-size: 16px;

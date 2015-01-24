@@ -532,6 +532,8 @@ article {
       height: 40px;
       overflow: hidden;
       margin-bottom: 5px; }
+    .home-perfil-colaboradores ul li .type-content {
+      min-height: 15px; }
     .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a {
       color: #6A6A6A;
       font-size: 16px; }
@@ -1098,16 +1100,16 @@ body.rtl .formError .formErrorArrow {
     margin: 0 auto;
     width: 245px;
     height: auto; }
-  #page-audiencias-contenidos .wrapper-image-section1 {
+  #page-audiencias-contenidos .wrapper-image-section {
     padding: 30px 0 0 0;
     background-repeat: no-repeat; }
-  #page-audiencias-contenidos .wrapper-image-section1.noticias-deportes {
+  #page-audiencias-contenidos #noticias-negocios.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_noticias.jpg"); }
-  #page-audiencias-contenidos .wrapper-image-section1.mundo-saludable {
+  #page-audiencias-contenidos #mundo-saludable.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_saludable.jpg"); }
-  #page-audiencias-contenidos .wrapper-image-section1.mundo-femenino {
+  #page-audiencias-contenidos #mundo-femenino.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_femenino.jpg"); }
-  #page-audiencias-contenidos .wrapper-image-section1.life-style {
+  #page-audiencias-contenidos #lifestye.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/fondo_lifestyle.jpg"); }
   #page-audiencias-contenidos .wrapper-content-section1 {
     color: #FFF; }
@@ -1116,7 +1118,8 @@ body.rtl .formError .formErrorArrow {
       width: 50%;
       height: auto; }
       #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
-        font-size: 35px; }
+        font-size: 35px;
+        text-transform: uppercase; }
       #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info {
         font-size: 16px;
         margin-top: 15px;
