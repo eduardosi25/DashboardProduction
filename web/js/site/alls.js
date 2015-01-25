@@ -80,6 +80,7 @@
                 var tpl_redVideos = Handlebars.compile(redVideos);
                 var view_redVideos = tpl_redVideos(dataRedVideo);
                 $(options.section).html(view_redVideos);
+                inventMx.utilities.loaderHide();
                 
             }else {
                 $(options.section).append("<p> Ha ocurrido un  error al cargar esta sección</p>")
@@ -94,6 +95,7 @@
         if (resp.response.status == 200) {
             
             dataPerfil = resp.data[0];
+            var url_taxonomy = resp.data[0].audience[0].url;
             var perfilTalentos = $("#template-perfil-talento").html();
             var tpl_perfilTalentos = Handlebars.compile(perfilTalentos);
             var view_perfilTalentos = tpl_perfilTalentos(dataPerfil);
@@ -101,12 +103,16 @@
             
             if(resp.data.length){
                 
+                temp_taxonomy = $.url(url_taxonomy);
+                taxonomy_path = temp_taxonomy.attr('relative');
+                
                 repo = "vloger.json";
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.audience_url = taxonomy_path;
                 inventMx.dataSource.params.limit = "100"; 
                 talentos = new inventMx.home.listPerfilTalentos(repo);
+                inventMx.dataSource.params.audience_url = null;
             }else {
-                
                 url = window.location.href;
                 temp_url = $.url(url);
                 np_url = temp_url.attr('relative');
@@ -134,7 +140,6 @@
                 var tpl_perfilSite = Handlebars.compile(perfilSite);
                 var view_perfilSite = tpl_perfilSite(dataSite);
                 $("#perfil-site").html(view_perfilSite);
-                console.log(view_perfilSite)
             }else {
                 error404 = new inventMx.home.default404();
             }
@@ -181,6 +186,8 @@
                         effect: "fadeIn"
                     });
                 }
+                
+                inventMx.utilities.loaderHide();
                 
             }else {
                 $("#template-sections-case-exito").append("<p> Ha ocurrido un  error al cargar esta sección</p>")

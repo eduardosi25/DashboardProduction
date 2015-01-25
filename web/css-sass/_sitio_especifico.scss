@@ -2,11 +2,33 @@
     .plataformas-servicios {
         background-color: #FFF;
     }
+    
+    .bg-site {
+        background-repeat: no-repeat;
+    }
+    .bg-site.noticias-y-negocios {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/noticias.jpg");
+    }
+    .bg-site.mundo-saludable {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/saludable.jpg");
+    }
+    .bg-site.mundo-femenino {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/femenino.jpg");
+    }
+    .bg-site.life-style {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
+    }
+    .bg-site {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
+    }
+    
+    
     .wrapper-image-section1 {
         //padding: 20px 0;
+        background-color: #0E0F13;
         padding-bottom: 20px;
         //min-height: 300px;
-        background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg");
+        //background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg");
         .wrapper-perfil {
             max-width: 600px;
             margin: 0 auto;

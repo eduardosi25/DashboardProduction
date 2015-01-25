@@ -241,8 +241,7 @@ $(function() {
                     finalNumbers3 = inventMx.utilities.calculateheightItem(lifeStyle);
                     $(lifeStyle).height(finalNumbers3);
                 }
-                
-                    inventMx.utilities.loaderHide();
+                                    
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                     
                     if(idAncla !== true){
@@ -455,7 +454,7 @@ $(function() {
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
-            this.render();
+            this.render();            
         },
         render:function(){
             var id_section1 = "#section-home-contactos";
@@ -470,7 +469,6 @@ $(function() {
                 inventMx.dataSource.load(repo,inventMx.render.tplcaseExito);
                 
                 inventMx.utilities.caseExitoAddRemoveSections(id_section1,id_section2);
-                inventMx.utilities.loaderHide();
                 setTimeout(inventMx.utilities.loaderHide, 7000);
                
                 finalNumbers = inventMx.utilities.calculateheightItem(li_items);

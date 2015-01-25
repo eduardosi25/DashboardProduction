@@ -9,7 +9,9 @@
         min-height: 300px;
         @include measures(100%,auto);
         &.even {
-            background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
+            background-color: #161719;
+            background-image: url("/web/img/caso-de-exito/desktop/1920/1920.jpg");
+            //background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
         }
         &.odd {            
             background-color: #F1F1F1;

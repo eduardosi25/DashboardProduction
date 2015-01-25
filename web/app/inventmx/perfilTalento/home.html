@@ -24,13 +24,8 @@
     </section>
 
 
-    <section class="wrapper-red-videos">
-        <h2 class="title-seccion-invent center">
-            <span class="corange-invent"> MÁS DE  LIFE & STYLE</span>
-        </h2>
-
-        <article id="home-red-videos" class="home-perfil-colaboradores pt15"></article>
-
+    <section id="home-red-videos" class="wrapper-red-videos">
+        
     </section>
 
 
@@ -52,7 +47,7 @@
 
 </section>
 
-<script id="template-perfil-talento" type="template/perfiltalento">
+<script id="template-perfil-talento" type="template/perfiltalento">    
     <div class="wrapper-perfil">
         <div class="perfil">
             <div class="wrapper-img left">
@@ -118,33 +113,38 @@
 </script>
 
 <script id="template-home-red-videos" type="template/template-home-talentos">
-    <ul>
-        {{#each this}}
-            <li class="left center box-{{@index}}">
-                <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
-                    {{#if this.images.picture }}
-                        {{#if this.images.picture.0.styles }}
-                            {{#if this.images.picture.0.styles.medium }}
-                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+    <h2 class="title-seccion-invent center">
+        <span class="corange-invent">MÁS DE  {{ this.0.audience.0.title }}</span>
+    </h2>
+    
+    <article class="home-perfil-colaboradores pt15">    
+        <ul>
+            {{#each this}}
+                <li class="left center box-{{@index}}">
+                    <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                        <span class="block">
+                        {{#if this.images.picture }}
+                            {{#if this.images.picture.0.styles }}
+                                {{#if this.images.picture.0.styles.medium }}
+                                    <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                {{else}}
+                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                {{/if}}
                             {{else}}
                                 <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                             {{/if}}
                         {{else}}
                             <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                         {{/if}}
-                    {{else}}
-                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
-                    {{/if}}
-                        
-                    </span>
-                    <span class="block name-editor">{{this.title}}</span>
-                    <span class="block type-content">{{this.audience.0.title}}</span>
-                </a>
-            </li>            
-        {{/each}}
-            <li class="clear block"></li>
-    </ul>
+
+                        </span>
+                        <span class="block name-editor">{{this.title}}</span>
+                    </a>
+                </li>            
+            {{/each}}
+                <li class="clear block"></li>
+        </ul>
+    </article>
 </script>
     
 <script id="section-home-contactos-1" type="template/sectionhomecontactos">

@@ -1,3 +1,49 @@
+@media only screen and (max-width: 1024px) {
+    #page-marketers {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/desktop/1024/1024.jpg");
+        }        
+    }
+    #page-case-exito  {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/desktop/1024/1024.jpg");
+        }        
+    }
+    #page-audiencias-contenidos {
+        #noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/lifestyle.jpg");
+        }
+    }
+    
+    #page-perfil-sitio {
+        .bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/lifestyle.jpg");
+        }
+    }
+    
+}
+
 @media only screen and (max-width: 880px) {
     #page-case-exito {
         ul.wrapper-table-case-exito {

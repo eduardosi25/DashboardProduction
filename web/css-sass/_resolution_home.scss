@@ -321,7 +321,11 @@
     
     /* markerts   */
     #page-marketers {
-        
+                
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
+        }
+
         .wrapper-site-markerts {            
             display: none;
         }
@@ -461,6 +465,9 @@
     /* caso  de exito */
 
     #page-case-exito {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/mobile/700/700.jpg");
+        }
         .wrapper-case-items {
             .wrapper-description-case {
                 .head-case {
@@ -485,7 +492,6 @@
     /* audiencias y contenidos  */
     #page-audiencias-contenidos {
         background-color: #F1F1F1;
-        
         .wrapper-content-section1 {
             .wrapper-description {
                 margin-top: 15%;
@@ -493,8 +499,20 @@
                     font-size: 26px;
                 }
             }
-        }                
-    }    
+        }
+        #noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/lifestyle.jpg");
+        }
+    }
     
     
     /*  */
@@ -572,7 +590,24 @@
     
     
     /* site especifico */
-    #page-perfil-sitio {        
+    #page-perfil-sitio {
+        
+        .bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/mobile/700/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/mobile/700/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/mobile/700/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg");
+        }
+        
         .main-sections-tools {
             @include measures(100%,auto);
             li {
@@ -583,7 +618,7 @@
         }
         .btn-publish {
             font-size: 12px;            
-        }        
+        }
     }
     
     /* perfil  talento */
@@ -700,7 +735,7 @@
     
 }
 
-@media only screen and (max-width: 450px) {        
+@media only screen and (max-width: 450px) {
 
     .home-perfil-colaboradores ul {
         li {
@@ -713,10 +748,6 @@
                 font-size: 14px;
             }
         }
-        /*li.box-0, li.box-2, li.box-4, li.box-6, li.box-8, li.box-10, li.box-12, li.box-14,
-        li.box-16, li.box-18, li.box-20, li.box-22, li.box-24, li.box-26 {
-            margin-left: 4%;
-        }*/
 
     } 
 
@@ -749,4 +780,53 @@
         }
     }
 
+}
+
+@media only screen and (max-width: 400px) {
+    
+    #page-audiencias-contenidos {
+        #noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/lifestyle.jpg");
+        }
+    }
+    
+    #page-marketers {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
+        }
+    }
+    #page-case-exito {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/mobile/400/400.jpg");
+        }
+    }
+    
+    #page-perfil-sitio {
+
+        .bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/mobile/400/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/mobile/400/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/mobile/400/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
+        }
+    }
+    
 }

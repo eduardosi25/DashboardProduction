@@ -255,10 +255,11 @@ article {
     margin-bottom: -5px;
     img.width-all {
         max-width: 100%;
+        margin-bottom: -3px;
     }
     .wrapper-content-section3 {
         top: 0px;
-        left: 0%;        
+        left: 0%;
         //max-width: 1024px;
         @include measures(100%,auto);        
     }
