@@ -1,4 +1,11 @@
 @media only screen and (max-width: 1024px) {
+    
+    #slide-home {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/desktop/1024/1024.jpg");
+        }
+    }
+    
     #page-marketers {
         .wrapper-image-section1 {
             background-image: url("/web/img/marketers/desktop/1024/1024.jpg");
@@ -130,6 +137,16 @@
                 //@extend .sprite-movil;                
                 @include img-position(121px, 37px,-59px,-27px);
             }*/
+        }
+    }
+    
+    .home-perfil-colaboradores {
+        ul {
+            li {
+                .type-content{
+                    height: 33px;
+                }
+            }
         }
     }
 

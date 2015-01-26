@@ -56,6 +56,11 @@
             var tpl_redVideos = Handlebars.compile(redVideos);
             var view_redVideos = tpl_redVideos(dataVideos);
             $("#home-red-videos").html(view_redVideos);
+            
+            /*var perfil = "#home-red-videos ul li";
+            finalPerfil = inventMx.utilities.calculateheightItem(perfil);
+            $(perfil).height(finalPerfil);*/
+            
         } else {
             inventMx.utilities.loaderHide();
             $("#home-red-videos").append("<p>No hay datos para mostrar</p>");
@@ -63,9 +68,10 @@
 
         if ($("img.lazy").length) {
             $("img.lazy").lazyload({
-                effect: "fadeIn"
+                effect: "fadeIn",
+                placeholder:'/web/img/global/default.png'
             });
-        }
+        }                
 
         inventMx.utilities.loaderHide();
         setTimeout(inventMx.utilities.loaderHide, 7000);

@@ -24,6 +24,7 @@
     }
 
     header {
+        //border-bottom: 2px solid #C3BABA;
         .wrapper-header {
             min-height: 50px;
             max-width: 1024px;
@@ -82,6 +83,43 @@
             }
         }
     }
+    
+    
+    #slide-home {
+        &.wrapper-image-section1 {
+            .wrapper-description {
+                max-width: 800px;
+                @include measures(100%,auto);
+                img {
+                    max-width: 100%;
+                    @include measures(100%,auto);
+                }
+            }
+            .wrapper-image {
+                display: none;
+                img {
+                    
+                }
+            }
+            
+            .owl-theme .owl-controls {
+                padding: 0 0 20px 0;
+            }
+            
+            .owl-theme .owl-controls .owl-page span {
+                @extend .invent-mobile-sprite;
+                @include img-position(14px,14px,-75px,-2789px);
+            }
+            .owl-theme .owl-controls .owl-page.active span,
+            .owl-theme .owl-controls.clickable .owl-page:hover span {
+                @extend .invent-mobile-sprite;
+                @include img-position(14px,14px,-92px,-2789px);
+            }
+        }
+    }
+    
+    
+    
 
     #wrapper-page-site {
         max-width: 1950px;
@@ -409,6 +447,12 @@
         }        
     }
     
+    /* home */
+    #slide-home {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/mobile/700/700.jpg");
+        }
+    }
     
     /* videos talentos */
     #page-video-talento {
@@ -798,6 +842,12 @@
 }
 
 @media only screen and (max-width: 400px) {
+    
+    #slide-home {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/mobile/400/400.jpg");
+        }
+    }
     
     #page-audiencias-contenidos {
         #noticias-negocios.wrapper-image-section {

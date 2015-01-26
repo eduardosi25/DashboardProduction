@@ -93,10 +93,10 @@ body {
 }
 
 #wrapper-loading-layout {
-    //border: 1px solid #798F34;
-    border: 1px solid #000;
-    width: 32px;
-    height: 32px;
+    border: 1px solid #798F34;
+    //border: 1px solid #000;
+    width: 31px;
+    height: 31px;
     padding: 5px 4px 4px 5px;
     background-color: #ffffff;
     position: fixed;
@@ -109,6 +109,7 @@ body {
     -o-border-radius: .8em;
     -ms-border-radius: .8em;
     img {
+        //@include measures(100%,auto);
         @include measures(31px,31px);
     }
 }
