@@ -221,7 +221,8 @@
                 
                 if ($("img.lazy").length) {
                     $("img.lazy").lazyload({
-                        effect: "fadeIn"
+                        effect: "fadeIn",
+                        placeholder:'/web/img/global/default.png'
                     });
                 }
                 

@@ -78,7 +78,7 @@ $(function() {
                 $("#slide-home article").owlCarousel({
                     singleItem: true,
                     autoPlay: true,
-                    lazyLoad: true,
+                    lazyLoad: false,
                     pagination: true,
                     navigation: true,
                     navigationText: [
