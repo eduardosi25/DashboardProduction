@@ -4,6 +4,17 @@
         background-color: orange;
     }*/
     
+    footer {
+        margin-bottom: 41px;
+    }
+    #wrapper-page-site {
+        .main-footer {
+            position: fixed;
+            bottom: 0px;
+            @include measures(100%,auto);
+        }
+    }
+    
     #page-case-exito {
         #section-case-de-exito {
             display: none;

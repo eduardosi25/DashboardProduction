@@ -2265,6 +2265,15 @@ footer {
   /*body {
       background-color: orange;
   }*/
+  footer {
+    margin-bottom: 41px; }
+
+  #wrapper-page-site .main-footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: auto; }
+
   #page-case-exito #section-case-de-exito {
     display: none; }
 
