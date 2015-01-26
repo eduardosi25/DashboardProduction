@@ -171,6 +171,7 @@
             var view_site = tpl_site(data);
             $(options.section).html(view_site);
                         
+            $(sites).css("height","auto");
             var sites = options.idSitesUl;
             finalSites = inventMx.utilities.calculateheightItem(sites);
             $(sites).height(finalSites);

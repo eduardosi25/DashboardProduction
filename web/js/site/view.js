@@ -284,6 +284,11 @@ $(function() {
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
                 if(widthDevice >= 701){
+                    
+                    /*$(sites).css("height","auto");
+                    finalSites = inventMx.utilities.calculateheightItem(options.idSitesUl);
+                    $(sites).height(finalSites);*/
+                    
                     $(noticias).css("height","auto");
                     finalNumbers = inventMx.utilities.calculateheightItem(noticias);
                     $(noticias).height(finalNumbers);
