@@ -114,7 +114,7 @@ body {
 }
 
 
-header {    
+header {
     @include measures(100%,auto);
     background-color: #1A1A1A;
     .wrapper-header {
@@ -162,8 +162,43 @@ header {
     }
 }
 
+#slide-home {
+    &.wrapper-image-section1 {
+        background-color: #161719 !important;
+        background-repeat: no-repeat;
+        background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        .wrapper-description {
+            @include measures(50%,auto);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+        .wrapper-image {            
+            @include measures(50%,auto);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+        
+        .owl-theme .owl-controls .owl-page span {
+            @extend .sprite-invent;
+            @include img-position(14px,14px,-80px,-193px);
+        }
+        .owl-theme .owl-controls .owl-page.active span,
+        .owl-theme .owl-controls.clickable .owl-page:hover span {
+            @extend .sprite-invent;
+            @include img-position(14px,14px,-63px,-193px);
+        }
+        //@extend .sprite-invent;
+        //@include img-position(103px,94px,-188px,-553px);
+    }
+}
+
 .wrapper-publish-stage {
-    margin: 0 auto 15px;
+    margin: 0 auto;
+    padding-bottom: 40px;
     @include measures(300px,auto);    
 }
 
@@ -589,6 +624,10 @@ ul.red-invent-sections-sites {
         }            
     }
 }
+
+@import "owlCarousel.scss";
+@import "owlTheme.scss";
+@import "owlTransitions.scss";
 
 @import "validation_engine.scss";
 @import "style_bars.scss";

@@ -75,6 +75,22 @@ $(function() {
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
                 
+                $("#slide-home article").owlCarousel({
+                    singleItem: true,
+                    autoPlay: true,
+                    lazyLoad: true,
+                    pagination: true,
+                    navigation: true,
+                    navigationText: [
+                        "<i class='nex_prev block'></i>",
+                        "<i class='nex_next block'></i>"
+                    ],
+                    autoHeight: true,
+                });
+                
+                
+                
+                
                 $(window).resize(function (e) {
                     e.stopPropagation();
                     var sites = "#sections-sites li.sections-sites";

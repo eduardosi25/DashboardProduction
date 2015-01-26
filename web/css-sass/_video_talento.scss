@@ -1,9 +1,28 @@
 #page-video-talento {
     
-    .wrapper-image-section1 {        
+    #slide-video-talento.wrapper-image-section1 {
+        background-color: #161719;
+        background-repeat: no-repeat;
+        background-image: url("/web/img/perfil-video/desktop/1920/1920.jpg");
+        .wrapper-text{
+            @include measures(50%,auto);
+            img {                
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+        .wrapper-image {
+            @include measures(50%,auto);
+            img {                
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+    }
+    .wrapper-image-section1 {
         img {
             margin-bottom: -3px;
-        }        
+        }
     }
     .wrapper-red-videos {
         padding: 36px 0 15px  0;

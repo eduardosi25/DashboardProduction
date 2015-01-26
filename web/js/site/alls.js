@@ -95,7 +95,11 @@
         if (resp.response.status == 200) {
             
             dataPerfil = resp.data[0];
-            var url_taxonomy = resp.data[0].audience[0].url;
+            var url_taxonomy;
+            
+            if(resp.data.length){
+                url_taxonomy = dataPerfil.audience[0].url;
+            }
             var perfilTalentos = $("#template-perfil-talento").html();
             var tpl_perfilTalentos = Handlebars.compile(perfilTalentos);
             var view_perfilTalentos = tpl_perfilTalentos(dataPerfil);

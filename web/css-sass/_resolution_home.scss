@@ -408,9 +408,24 @@
             }        
         }        
     }
-
+    
+    
     /* videos talentos */
     #page-video-talento {
+        
+        #slide-video-talento.wrapper-image-section1 {
+            background-image: url("/web/img/perfil-video/mobile/700/700.jpg");
+            .wrapper-image {
+                display: none;
+            }
+            .wrapper-text {
+                @include measures(100%,auto);
+                img {
+                    margin-top: -15px;
+                }
+            }
+        }
+        
         .wrapper-red-videos {
             //background-color: orange;
             .title-seccion-invent{
@@ -826,6 +841,12 @@
         }
         .bg-site {
             background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
+        }
+    }
+    
+    #page-video-talento {
+        #slide-video-talento.wrapper-image-section1 {
+            background-image: url("/web/img/perfil-video/mobile/400/400.jpg");
         }
     }
     

@@ -58,7 +58,7 @@
                     <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
                 </li>
                 <li class="left inline-block">
-                    <a class="caso-de-exito none-decoration" href="/#caso-de-exito">CASO DE ÉXITO</a>
+                    <a class="caso-de-exito none-decoration" href="/#caso-de-exito">CASOS DE ÉXITO</a>
                 </li>
                 <li class="left inline-block">
                     <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
