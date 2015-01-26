@@ -534,11 +534,25 @@
 
     /* caso  de exito */
 
+    /*caso  de exito */
+    
     #page-case-exito {
         .wrapper-case-items.even {
             background-image: url("/web/img/caso-de-exito/mobile/700/700.jpg");
         }
         .wrapper-case-items {
+            .wrapper-description-case, .wrapper-image-case {
+                @include measures(100%,auto);
+            }
+            .wrapper-image-case {
+                margin-left: 0px;
+                text-align: center;
+                padding-top: 25px;
+                img {
+                    @include measures(85%,auto);
+                }
+            }
+            
             .wrapper-description-case {
                 .head-case {
                     font-size: 22px;
@@ -737,23 +751,6 @@
     .wrapper-our-services ul {
         li.services-sites{
             min-height: 240px;
-        }
-    }
-
-    /*caso  de exito */
-    #page-case-exito {
-        .wrapper-case-items {
-            .wrapper-description-case, .wrapper-image-case {
-                @include measures(100%,auto);
-            }
-            .wrapper-image-case {
-                margin-left: 0px;
-                text-align: center;
-                padding-top: 25px;
-                img {
-                    @include measures(85%,auto);
-                }
-            }
         }
     }
 

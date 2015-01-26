@@ -166,11 +166,10 @@
     }
     .title-seccion-invent {
         font-size: 26px;
-        //margin: 35px 0 20px 0;
     }
     .main-sections-tools {
         li {
-            @include measures(31.3%,auto);
+            //@include measures(31.3%,auto);
         }
     }
     

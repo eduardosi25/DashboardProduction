@@ -52,7 +52,8 @@
                 color: #595959;
                 padding: 15px 0;
                 font-size: 20px;
-                border-right: 1px solid #363636;
+                border-right: 1px solid gray;
+                //border-right: 1px solid #363636;
                 @include measures(12%,auto);
             }
             .format-exclusive {
@@ -73,7 +74,8 @@
                 padding: 15px 0;
                 font-size: 14px;
                 @extend .Hind-Semibold;
-                border-left: 1px solid #363636;
+                border-left: 1px solid gray;
+                //border-left: 1px solid #363636;
                 @include measures(12%,auto);
             }
             .box-table:first-child {
@@ -94,7 +96,8 @@
                     font-size: 20px;
                     @extend .Hind-Bold;
                     @include measures(43%,auto);
-                    border-left: 1px solid #363636;
+                    border-left: 1px solid gray;
+                    //border-left: 1px solid #363636;
                 }
                 .content-header:first-child {
                     border-left: none;
@@ -104,7 +107,8 @@
                     padding: 3%;
                     @extend .Hind-Regular;
                     @include measures(43%,auto);
-                    border-right: 1px solid #363636;
+                    border-right: 1px solid gray;
+                    //border-right: 1px solid #363636;
                 }
                 /*div.content-body:first-child {
                     border-left: none;
@@ -127,7 +131,8 @@
                 min-height: 83px;                
                 @extend .Hind-Regular;
                 @include measures(68%,auto);
-                border-left: 1px solid #363636;
+                border-left: 1px solid gray;
+                //border-left: 1px solid #363636;
             }
         }
         &.formats-programatic {

@@ -206,7 +206,7 @@ $(function() {
                 inventMx.dataSource.params.audience_url = null;
                 inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_Mfemenino);
                 
-                /* sites de mundo saludable */
+                /* sites de mundo femenino */
                 repo = "sites.json";
                 Options_site_Mfemenino = {
                     section: "#site-mundo-femenino",
@@ -217,7 +217,7 @@ $(function() {
                 inventMx.dataSource.params.audience_url = "mundo-femenino";
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_Mfemenino);
                 
-                /* MUNDO FEMENINO */
+                /* MUNDO LIFE & STYLE */
                 repo = "audience.json";
                 Options_lifestye = {
                     section: "#lifestye",
@@ -227,7 +227,7 @@ $(function() {
                 inventMx.dataSource.params.audience_url = null;
                 inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_lifestye);
                 
-                /* sites de mundo saludable */
+                /* sites de life-style */
                 repo = "sites.json";
                 Options_site_lifestye = {
                     section: "#site-lifestye",
@@ -275,39 +275,63 @@ $(function() {
                         }
                     }
                     
+                    
+                    $(window).resize(function () {
+                        //e.stopPropagation();
+                        inventMx.utilities.oneAddRemoveSections(id_section1);
+                        widthDevice = inventMx.utilities.deviceWidthWindow();
+
+                        if(widthDevice >= 701){
+                            
+                            /* recalcular alto  de los sitios */
+                            idHeightNoticias = Options_site_noticias.idSitesUl;
+                            $(idHeightNoticias).css("height","auto");
+                            finalNoticias = inventMx.utilities.calculateheightItem(idHeightNoticias);
+                            $(idHeightNoticias).height(finalNoticias);
+
+                            idHeightSaludable = Options_site_saludable.idSitesUl;
+                            $(idHeightSaludable).css("height","auto");
+                            finalSaludable = inventMx.utilities.calculateheightItem(idHeightSaludable);
+                            $(idHeightSaludable).height(finalSaludable);
+
+                            idHeightFemenino = Options_site_Mfemenino.idSitesUl;
+                            $(idHeightFemenino).css("height","auto");
+                            finalFemenino = inventMx.utilities.calculateheightItem(idHeightFemenino);
+                            $(idHeightFemenino).height(finalFemenino);                    
+
+                            idHeightLifestye = Options_site_lifestye.idSitesUl;
+                            $(idHeightLifestye).css("height","auto");
+                            finalLifestye = inventMx.utilities.calculateheightItem(idHeightLifestye);
+                            $(idHeightLifestye).height(finalLifestye);
+                            
+                            /*$(sites).css("height","auto");
+                            finalSites = inventMx.utilities.calculateheightItem(options.idSitesUl);
+                            $(sites).height(finalSites);*/
+
+                            $(noticias).css("height","auto");
+                            finalNumbers = inventMx.utilities.calculateheightItem(noticias);
+                            $(noticias).height(finalNumbers);
+
+                            $(Msaludable).css("height","auto");
+                            finalNumbers1 = inventMx.utilities.calculateheightItem(Msaludable);
+                            $(Msaludable).height(finalNumbers1);
+
+                            $(Mfemenino).css("height","auto");
+                            finalNumbers2 = inventMx.utilities.calculateheightItem(Mfemenino);
+                            $(Mfemenino).height(finalNumbers2);
+
+                            $(lifeStyle).css("height","auto");
+                            finalNumbers3 = inventMx.utilities.calculateheightItem(lifeStyle);
+                            $(lifeStyle).height(finalNumbers3);
+                        }
+
+                    });
+                    
+                    
+                    
                 });
                 
                 return this;
-                                    
-            $(window).resize(function (e) {
-                e.stopPropagation();
-                inventMx.utilities.oneAddRemoveSections(id_section1);
-                
-                if(widthDevice >= 701){
-                    
-                    /*$(sites).css("height","auto");
-                    finalSites = inventMx.utilities.calculateheightItem(options.idSitesUl);
-                    $(sites).height(finalSites);*/
-                    
-                    $(noticias).css("height","auto");
-                    finalNumbers = inventMx.utilities.calculateheightItem(noticias);
-                    $(noticias).height(finalNumbers);
-                    
-                    $(Msaludable).css("height","auto");
-                    finalNumbers1 = inventMx.utilities.calculateheightItem(Msaludable);
-                    $(Msaludable).height(finalNumbers1);
-                    
-                    $(Mfemenino).css("height","auto");
-                    finalNumbers2 = inventMx.utilities.calculateheightItem(Mfemenino);
-                    $(Mfemenino).height(finalNumbers2);
-                    
-                    $(lifeStyle).css("height","auto");
-                    finalNumbers3 = inventMx.utilities.calculateheightItem(lifeStyle);
-                    $(lifeStyle).height(finalNumbers3);
-                }
-                
-            });
-            
         },        
     }),
     
