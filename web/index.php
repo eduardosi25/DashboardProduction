@@ -47,23 +47,23 @@
                     <span class="main-center block"></span>
             </div>
             
-            <ul class="left">
-                <li class="left inline-block">
+            <ul class="right">
+                <li class="main-audiencia-contenido  left inline-block">
                     <a class="audiencias-y-contenidos none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
                 </li>
-                <li class="left inline-block">
+                <li class="main-maketers left inline-block">
                     <a class="marketers none-decoration" href="/#marketers">MARKETERS</a>
                 </li>
-                <li class="left inline-block">
+                <li class="main-red-de-videos left inline-block">
                     <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
                 </li>
-                <li class="left inline-block">
+                <li class="main-casos-de-exito left inline-block">
                     <a class="caso-de-exito none-decoration" href="/#caso-de-exito">CASOS DE ÉXITO</a>
                 </li>
-                <li class="left inline-block">
+                <li class="main-afiliate left inline-block">
                     <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
                 </li>
-                <li class="left inline-block">
+                <li class="main-anunciate left inline-block">
                     <a class="anunciate none-decoration" href="/#anunciate">ANÚNCIATE</a>
                 </li>
                 <span class="clear block"></span>

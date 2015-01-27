@@ -64,6 +64,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.vista = new inventMx.home.Home();
             
+            $("footer").css("margin-bottom","41px");
             $("header ul li a").removeClass("active");
         },
         audienciasContenidos: function(idSection) {
@@ -76,6 +77,7 @@ $(function() {
             
             idSection = (valueSection === true)? valueSection : idSection;
             (valueSection === false) ? inventMx.utilities.topOffset(0) : "";
+            $("footer").css("margin-bottom","41px");
             inventMx.home.pgAudienciasContenidos = new inventMx.home.HomeAudienciasContenidos(idSection);
         },
         marketers: function(idSection) {
@@ -91,6 +93,7 @@ $(function() {
             (valueSection == true) ? inventMx.utilities.topOffset(0) : "";
             //inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
             
+            $("footer").css("margin-bottom","41px");
             inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);
         },
         redeVideo: function() {
@@ -100,6 +103,7 @@ $(function() {
             inventMx.main.activeHover();
             
             inventMx.utilities.topOffset(0);
+            $("footer").css("margin-bottom","41px");
             inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
         },
         casoExito: function() {            
@@ -109,6 +113,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             
             inventMx.utilities.topOffset(0);
+            $("footer").css("margin-bottom","41px");
             inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
         },
         afiliate: function() {            
@@ -117,6 +122,7 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
+            $("footer").css("margin-bottom","0px");
             inventMx.utilities.topOffset(0);
             inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
@@ -126,6 +132,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
+            $("footer").css("margin-bottom","0px");
             inventMx.utilities.topOffset(0);
             inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
         },
@@ -136,6 +143,7 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
+            $("footer").css("margin-bottom","41px");
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
         },
@@ -145,6 +153,7 @@ $(function() {
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
+            $("footer").css("margin-bottom","41px");
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio(nameSite);
         },
@@ -154,6 +163,7 @@ $(function() {
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
+            $("footer").css("margin-bottom","0px");
             inventMx.home.vista404 = new inventMx.home.default404();
         },
         notFound: function() {

@@ -118,7 +118,7 @@
     
     header {
         ul li {
-            margin-top: 15px;
+            margin-top: 9px;
             a {
                 font-size: 11px;
             }
@@ -130,14 +130,37 @@
             }
             .site-invent {
                 @include img-position(121px, 37px,-291px,-104px);
-                //background-image: url("../img/sprites/sprite_movil.png");                
             }
-            /*.site-invent {
-                margin: 0 auto;
-                //@extend .sprite-movil;                
-                @include img-position(121px, 37px,-59px,-27px);
-            }*/
         }
+        
+        ul {
+            @include measures(500px,auto);
+            li {
+                &.main-audiencia-contenido {
+                    @include measures(80px,auto);
+                }
+                &.main-maketers {
+                    padding: 7px 0 7px 0;
+                    @include measures(73px,auto);                
+                }
+                &.main-red-de-videos {
+                    padding: 7px 0 7px 0;
+                    @include measures(83px,auto);
+                }
+                &.main-casos-de-exito {
+                    padding: 7px 0 7px 0;
+                    @include measures(95px,auto);
+                }
+                &.main-afiliate {
+                    padding: 7px 0 7px 0;
+                    @include measures(55px,auto);
+                }
+                &.main-anunciate {
+                    padding: 7px 0 7px 0;
+                }
+            }
+        }
+        
     }
     
     .home-perfil-colaboradores {

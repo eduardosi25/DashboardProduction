@@ -766,6 +766,32 @@
 
 }
 
+@media only screen and (max-width: 520px) {
+    #page-perfil-talento {
+        .wrapper-image-section1 {
+            .wrapper-perfil {
+                .perfil {
+                    .wrapper-img {
+                        float: none;
+                        text-align: center;
+                        @include measures(100%,auto);
+                    }
+                    .description  {
+                        float: none;
+                        margin: 3% 0 3% 0;
+                        text-align: center;
+                        @include measures(100%,auto);
+                        .type-perfil {
+                            margin-top: 2%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
 @media only screen and (max-width: 484px) {
     .wrapper-our-services ul {
         li.services-sites {

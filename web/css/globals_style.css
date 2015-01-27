@@ -182,6 +182,9 @@ table {
 .pt10p {
   padding-top: 10%; }
 
+.ptb15 {
+  padding: 15px 0; }
+
 .ptb20 {
   padding: 20px 0; }
 
@@ -396,25 +399,40 @@ header {
       height: 69px;
       background-position: -42px -84px; }
   header ul {
-    width: 75%;
+    width: 580px;
     height: auto; }
   header ul {
     display: block; }
     header ul li {
-      padding: 0 1%;
+      padding: 0 4px;
       margin-top: 25px;
-      margin-right: 1%;
+      margin-right: 4px;
       min-height: 20px;
       text-align: center;
-      width: 13.4%;
+      width: 64px;
       height: auto;
       border-right: 1px solid #363636; }
+      header ul li.main-audiencia-contenido {
+        width: 155px;
+        height: auto; }
       header ul li > * {
         display: inline-block;
         vertical-align: middle; }
+      header ul li.main-red-de-videos {
+        width: 75px;
+        height: auto; }
+      header ul li.main-casos-de-exito {
+        width: 90px;
+        height: auto; }
+      header ul li.main-afiliate {
+        width: 50px;
+        height: auto; }
+      header ul li.main-anunciate {
+        border-right: none; }
       header ul li a {
         color: #FFF;
-        font-size: 12px;
+        font-size: 12px !important;
+        line-height: 16px;
         margin-right: 1%; }
       header ul li a:hover, header ul li a.active {
         color: #e58436; }
@@ -2204,23 +2222,41 @@ footer {
       background-repeat: no-repeat;
   }*/
   header ul li {
-    margin-top: 15px; }
+    margin-top: 9px; }
     header ul li a {
       font-size: 11px; }
-  header .wrapper-header {
-    /*.site-invent {
-        margin: 0 auto;
-        //@extend .sprite-movil;                
-        @include img-position(121px, 37px,-59px,-27px);
-    }*/ }
-    header .wrapper-header .wrapper-site-logo {
-      padding-top: 4px;
-      width: 25%;
+  header .wrapper-header .wrapper-site-logo {
+    padding-top: 4px;
+    width: 25%;
+    height: auto; }
+  header .wrapper-header .site-invent {
+    width: 121px;
+    height: 37px;
+    background-position: -291px -104px; }
+  header ul {
+    width: 500px;
+    height: auto; }
+    header ul li.main-audiencia-contenido {
+      width: 80px;
       height: auto; }
-    header .wrapper-header .site-invent {
-      width: 121px;
-      height: 37px;
-      background-position: -291px -104px; }
+    header ul li.main-maketers {
+      padding: 7px 0 7px 0;
+      width: 73px;
+      height: auto; }
+    header ul li.main-red-de-videos {
+      padding: 7px 0 7px 0;
+      width: 83px;
+      height: auto; }
+    header ul li.main-casos-de-exito {
+      padding: 7px 0 7px 0;
+      width: 95px;
+      height: auto; }
+    header ul li.main-afiliate {
+      padding: 7px 0 7px 0;
+      width: 55px;
+      height: auto; }
+    header ul li.main-anunciate {
+      padding: 7px 0 7px 0; }
 
   .home-perfil-colaboradores ul li .type-content {
     height: 33px; } }
@@ -2845,6 +2881,20 @@ footer {
     height: auto; }
   #page-case-exito .btn-publish {
     font-size: 16px; } }
+@media only screen and (max-width: 520px) {
+  #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .wrapper-img {
+    float: none;
+    text-align: center;
+    width: 100%;
+    height: auto; }
+  #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .description {
+    float: none;
+    margin: 3% 0 3% 0;
+    text-align: center;
+    width: 100%;
+    height: auto; }
+    #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .description .type-perfil {
+      margin-top: 2%; } }
 @media only screen and (max-width: 484px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 255px; } }

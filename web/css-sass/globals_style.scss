@@ -133,27 +133,46 @@ header {
         }
     }
     ul {
-        @include measures(75%,auto);
+        @include measures(580px,auto);
+        //@include measures(75%,auto);
     }
     ul {
         display:block;
-        li {            
-            padding: 0 1%;
+        li {
+            padding: 0 4px;
+            //padding: 0 1%;            
             margin-top: 25px;
-            //margin-top: 20px;
-            margin-right: 1%;
+            //margin-right: 1%;
+            margin-right: 4px;
             min-height: 20px;
             text-align: center;
-            @include measures(13.4%,auto);
+            @include measures(64px,auto);
+            //@include measures(13.4%,auto);
             border-right: 1px solid #363636;
+            &.main-audiencia-contenido {
+                @include measures(155px,auto);
+            }
             & > * {
                 display: inline-block;
                 vertical-align:  middle;
             }
+            &.main-red-de-videos {
+                @include measures(75px,auto);
+            }
+            &.main-casos-de-exito {
+                @include measures(90px,auto);
+            }
+            &.main-afiliate {
+                @include measures(50px,auto);
+            }
+            &.main-anunciate {
+                border-right: none;
+            }
             a {
                 @extend .Hind-Light;
                 color: #FFF;
-                font-size: 12px;
+                font-size: 12px !important;
+                line-height: 16px;
                 margin-right: 1%;
             }
             a:hover, a.active {
