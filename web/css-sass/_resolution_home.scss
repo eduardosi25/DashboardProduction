@@ -3,7 +3,7 @@
     /*body {
         background-color: orange;
     }*/
-    
+
     footer {
         margin-bottom: 41px;
     }
@@ -14,13 +14,13 @@
             @include measures(100%,auto);
         }
     }
-    
+
     #page-case-exito {
         #section-case-de-exito {
             display: none;
         }
     }
-    
+
     .wrapper-table-formats {
         display: none;
     }
@@ -94,8 +94,8 @@
             }
         }
     }
-    
-    
+
+
     #slide-home {
         &.wrapper-image-section1 {
             .wrapper-description {
@@ -109,14 +109,14 @@
             .wrapper-image {
                 display: none;
                 img {
-                    
+
                 }
             }
-            
+
             .owl-theme .owl-controls {
                 padding: 0 0 20px 0;
             }
-            
+
             .owl-theme .owl-controls .owl-page span {
                 @extend .invent-mobile-sprite;
                 @include img-position(14px,14px,-92px,-2789px);                
@@ -128,9 +128,9 @@
             }
         }
     }
-    
-    
-    
+
+
+
 
     #wrapper-page-site {
         max-width: 1950px;
@@ -358,7 +358,7 @@
             }
         }
     }
-    
+
     /* audiencias y contenidos */
     #page-audiencias-contenidos {
         .wrapper-description {
@@ -367,10 +367,10 @@
             }
         }
     }
-    
+
     /* markerts   */
     #page-marketers {
-                
+
         .wrapper-image-section1 {
             background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
         }
@@ -378,7 +378,7 @@
         .wrapper-site-markerts {            
             display: none;
         }
-        
+
         .wrapper-description {
             .marketers-info {
                 display: none;
@@ -406,8 +406,8 @@
             }
         }
     }
-    
-    
+
+
     .wrapper-our-services {
         ul {
             li.services-sites {
@@ -438,8 +438,8 @@
             }
         }
     }
-    
-    
+
+
 
     footer {
         min-height: 50px;
@@ -457,17 +457,17 @@
             }        
         }        
     }
-    
+
     /* home */
     #slide-home {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/700/700.jpg");
         }
     }
-    
+
     /* videos talentos */
     #page-video-talento {
-        
+
         #slide-video-talento.wrapper-image-section1 {
             background-image: url("/web/img/perfil-video/mobile/700/700.jpg");
             .wrapper-image {
@@ -480,7 +480,7 @@
                 }
             }
         }
-        
+
         .wrapper-red-videos {
             //background-color: orange;
             .title-seccion-invent{
@@ -535,7 +535,7 @@
     /* caso  de exito */
 
     /*caso  de exito */
-    
+
     #page-case-exito {
         .wrapper-case-items.even {
             background-image: url("/web/img/caso-de-exito/mobile/700/700.jpg");
@@ -552,7 +552,7 @@
                     @include measures(85%,auto);
                 }
             }
-            
+
             .wrapper-description-case {
                 .head-case {
                     font-size: 22px;
@@ -572,7 +572,7 @@
             }
         }
     }
-    
+
     /* audiencias y contenidos  */
     #page-audiencias-contenidos {
         background-color: #F1F1F1;
@@ -597,85 +597,85 @@
             background-image: url("/web/img/audiencia-y-contenido/mobile/700/lifestyle.jpg");
         }
     }
-    
-    
+
+
     /*  */
     .content-section-site {
         background-color: #F1F1F1;
     }
     ul.red-invent-sections-sites {
+        @include transition(all 1s ease);
+        padding: 0px;
+        li.bg-caca {
+            height: 0px;
+            display: none;                
+        }
+        li.sections-sites.active {  
             @include transition(all 1s ease);
-            padding: 0px;
-            li.bg-caca {
-                height: 0px;
-                display: none;                
+            span.ico-sumary-active {
+                display: block;
+                top: 15%;
+                @extend .invent-mobile-sprite;
+                @include img-position(19px, 19px, -84px, -122px);
             }
-            li.sections-sites.active {  
-                @include transition(all 1s ease);
-                span.ico-sumary-active {
-                    display: block;
-                    top: 15%;
-                    @extend .invent-mobile-sprite;
-                    @include img-position(19px, 19px, -84px, -122px);
-                }
-                .site-sumary {                    
-                    display: block;
-                    padding-top: 5px;
-                    line-height: 18px;
-                    @include transition(left 0.2s ease);
-                }
-            }
-            li.sections-sites {
-                border-right: none;
-                position: relative;
-                width: 100% !important;                
-                height: auto !important;                
-                padding: 10px 0 !important;
-                //min-height: 40px !important;
-                border-bottom: 2px solid #FFF;
-                border-top: none;
-                @include transition(all 1s ease);
-                a {
-                    display: inline-block;
-                }
-                .site-sumary {
-                    display: none;
-                }            
-                span {
-                    margin-bottom: 0px;
-                }
-                span.ico-sumary-active {
-                    display: block;
-                    position: absolute;
-                    top: 35%;
-                    right: 15%;
-                    @extend .invent-mobile-sprite;
-                    @include img-position(19px, 19px, -63px, -122px);                    
-                }
-                span.site-bienestar180{
-                    margin: 0 auto 15px;
-                    @extend .invent-mobile-sprite;
-                    @include img-position(132px, 27px, -63px, -605px);
-                }
-                span.site-sexualidad180{
-                    margin: 0 auto 15px;
-                    @extend .invent-mobile-sprite;
-                    @include img-position(129px, 24px, -71px, -653px);
-                }
-                span.site-enforma180{
-                    margin: 0 auto 15px;
-                    @extend .invent-mobile-sprite;
-                    @include img-position(125px, 24px, -74px, -705px);
-                }
+            .site-sumary {                    
+                display: block;
+                padding-top: 5px;
+                line-height: 18px;
+                @include transition(left 0.2s ease);
             }
         }
-    
+        li.sections-sites {
+            border-right: none;
+            position: relative;
+            width: 100% !important;                
+            height: auto !important;                
+            padding: 10px 0 !important;
+            //min-height: 40px !important;
+            border-bottom: 2px solid #FFF;
+            border-top: none;
+            @include transition(all 1s ease);
+            a {
+                display: inline-block;
+            }
+            .site-sumary {
+                display: none;
+            }            
+            span {
+                margin-bottom: 0px;
+            }
+            span.ico-sumary-active {
+                display: block;
+                position: absolute;
+                top: 35%;
+                right: 15%;
+                @extend .invent-mobile-sprite;
+                @include img-position(19px, 19px, -63px, -122px);                    
+            }
+            span.site-bienestar180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(132px, 27px, -63px, -605px);
+            }
+            span.site-sexualidad180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(129px, 24px, -71px, -653px);
+            }
+            span.site-enforma180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(125px, 24px, -74px, -705px);
+            }
+        }
+    }
+
     /*  */
-    
-    
+
+
     /* site especifico */
     #page-perfil-sitio {
-        
+
         .bg-site.noticias-y-negocios {
             background-image: url("/web/img/perfil-sitio/mobile/700/noticias.jpg");
         }
@@ -691,7 +691,86 @@
         .bg-site {
             background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg");
         }
-        
+
+        /* init icono sprite sitio */
+        .site-excelsior {
+            @extend .invent-mobile-sprite;
+            @include img-position(141px,28px,-88px,-1241px);
+        }
+        .site-imagen, .site-imagen-radio, .site-imagenradio {
+            @extend .invent-mobile-sprite;
+            @include img-position(130px,54px,-90px,-1287px);
+        }
+        .site-reporte, .site-reporte98, .site-reporte985, .site-reporte-985 {
+            @extend .invent-mobile-sprite;
+            @include img-position(132px,26px,-92px,-1421px);
+        }
+        .site-cadenatres, .site-cadena-tres {
+            @extend .invent-mobile-sprite;
+            @include img-position(136px,40px,-90px,-1354px);
+        }
+        .site-dineroenimagen, .site-dinero-en-imagen {
+            @extend .invent-mobile-sprite;
+            @include img-position(131px,45px,-92px,-1470px);
+        }
+        .site-salud180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(129px,38px,-85px,-1583px);
+        }
+        .site-bienestar180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(137px,29px,-80px,-1637px);
+        }
+        .site-sexualidad180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(130px,26px,-91px,-1685px);
+        }
+        .site-enforma180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(130px,29px,-91px,-1736px);
+        }
+        .site-actitudfem {
+            @extend .invent-mobile-sprite;
+            @include img-position(145px,36px,-84px,-1840px);
+        }
+        .site-rsvp {
+            @extend .invent-mobile-sprite;
+            @include img-position(110px,37px,-100px,-1896px);
+        }
+        .site-melodijolola {
+            @extend .invent-mobile-sprite;
+            @include img-position(144px,49px,-91px,-1784px);
+        }
+        .site-atraccion360 {
+            @extend .invent-mobile-sprite;
+            @include img-position(127px,31px,-89px,-1962px);
+        }
+        .site-adrenalina360 {
+            @extend .invent-mobile-sprite;
+            @include img-position(159px,25px,-80px,-1538px);
+        }
+        .site-garuyo {
+            @extend .invent-mobile-sprite;
+            @include img-position(117px,41px,-100px,-2006px);
+        }
+        .site-swagger {
+            @extend .invent-mobile-sprite;
+            @include img-position(120px,39px,-99px,-2063px);
+        }
+        .site-gamedots {
+            @extend .invent-mobile-sprite;
+            @include img-position(131px,50px,-89px,-2120px);
+        }
+        .site-estrategia45 {
+            @extend .invent-mobile-sprite;
+            @include img-position(139px,37px,-91px,-2224px);
+        }
+        .site-fahrenheit {
+            @extend .invent-mobile-sprite;
+            @include img-position(138px,24px,-88px,-2190px);
+        }
+        /* end icono sprite sitio */
+
         .main-sections-tools {
             @include measures(100%,auto);
             li {
@@ -704,7 +783,7 @@
             font-size: 12px;            
         }
     }
-    
+
     /* perfil  talento */
     #page-perfil-talento {
         .main-sections-tools {
@@ -715,11 +794,11 @@
             height: 17px;
         }        
     }
-    
+
     /* graficas */
-    
-    
-    
+
+
+
 }
 
 @media only screen and (max-width: 695px) {
@@ -809,7 +888,7 @@
             }
         }
     }
-    
+
     .wrapper-bars {
         text-align: center;
         @include measures(180px,auto);
@@ -825,7 +904,7 @@
             @include measures(100%,auto);
         }
     }
-    
+
 }
 
 @media only screen and (max-width: 450px) {
@@ -876,13 +955,13 @@
 }
 
 @media only screen and (max-width: 400px) {
-    
+
     #slide-home {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/400/400.jpg");
         }
     }
-    
+
     #page-audiencias-contenidos {
         #noticias-negocios.wrapper-image-section {
             background-image: url("/web/img/audiencia-y-contenido/mobile/400/noticias.jpg");
@@ -897,7 +976,7 @@
             background-image: url("/web/img/audiencia-y-contenido/mobile/400/lifestyle.jpg");
         }
     }
-    
+
     #page-marketers {
         .wrapper-image-section1 {
             background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
@@ -908,7 +987,7 @@
             background-image: url("/web/img/caso-de-exito/mobile/400/400.jpg");
         }
     }
-    
+
     #page-perfil-sitio {
 
         .bg-site.noticias-y-negocios {
@@ -927,11 +1006,11 @@
             background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
         }
     }
-    
+
     #page-video-talento {
         #slide-video-talento.wrapper-image-section1 {
             background-image: url("/web/img/perfil-video/mobile/400/400.jpg");
         }
     }
-    
+
 }

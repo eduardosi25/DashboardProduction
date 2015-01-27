@@ -1998,149 +1998,143 @@ body.rtl .formError .formErrorArrow {
   padding-top: 30px;
   text-transform: uppercase; }
 
-#page-perfil-sitio {
-  /*.site-dineroenimagen {
-      margin: 0 auto;
-      @extend .sprite-invent;
-      @include img-position(146px,50px,-56px,-1913px);
-  }*/ }
-  #page-perfil-sitio .plataformas-servicios {
-    background-color: #FFF; }
-  #page-perfil-sitio .bg-site {
-    background-repeat: no-repeat; }
-  #page-perfil-sitio .bg-site.noticias-y-negocios {
-    background-image: url("/web/img/perfil-sitio/desktop/1920/noticias.jpg"); }
-  #page-perfil-sitio .bg-site.mundo-saludable {
-    background-image: url("/web/img/perfil-sitio/desktop/1920/saludable.jpg"); }
-  #page-perfil-sitio .bg-site.mundo-femenino {
-    background-image: url("/web/img/perfil-sitio/desktop/1920/femenino.jpg"); }
-  #page-perfil-sitio .bg-site.life-style {
-    background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
-  #page-perfil-sitio .bg-site {
-    background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
-  #page-perfil-sitio .wrapper-image-section1 {
-    background-color: #0E0F13;
-    padding-bottom: 20px; }
-    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil {
-      max-width: 600px;
-      margin: 0 auto;
-      width: 100%;
-      height: auto; }
-      #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .wrapper-img {
-        padding: 20px 0 20px 0; }
-      #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary {
-        color: #FFF;
-        font-size: 18px; }
-  #page-perfil-sitio .title-seccion-invent {
-    font-size: 35px; }
-  #page-perfil-sitio .site-excelsior {
+#page-perfil-sitio .plataformas-servicios {
+  background-color: #FFF; }
+#page-perfil-sitio .bg-site {
+  background-repeat: no-repeat; }
+#page-perfil-sitio .bg-site.noticias-y-negocios {
+  background-image: url("/web/img/perfil-sitio/desktop/1920/noticias.jpg"); }
+#page-perfil-sitio .bg-site.mundo-saludable {
+  background-image: url("/web/img/perfil-sitio/desktop/1920/saludable.jpg"); }
+#page-perfil-sitio .bg-site.mundo-femenino {
+  background-image: url("/web/img/perfil-sitio/desktop/1920/femenino.jpg"); }
+#page-perfil-sitio .bg-site.life-style {
+  background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
+#page-perfil-sitio .bg-site {
+  background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
+#page-perfil-sitio .wrapper-image-section1 {
+  background-color: #0E0F13;
+  padding-bottom: 20px; }
+  #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil {
+    max-width: 600px;
     margin: 0 auto;
-    width: 147px;
-    height: 32px;
-    background-position: -55px -1682px; }
-  #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
-    margin: 0 auto;
-    width: 138px;
-    height: 60px;
-    background-position: -59px -1735px; }
-  #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
-    margin: 0 auto;
-    width: 150px;
-    height: 29px;
-    background-position: -54px -1810px; }
-  #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
-    margin: 0 auto;
-    width: 155px;
-    height: 46px;
-    background-position: -51px -1851px; }
-  #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
-    margin: 0 auto;
-    width: 146px;
-    height: 50px;
-    background-position: -56px -1913px; }
-  #page-perfil-sitio .site-salud180 {
-    margin: 0 auto;
-    width: 150px;
-    height: 44px;
-    background-position: -54px -1975px; }
-  #page-perfil-sitio .site-bienestar180 {
-    margin: 0 auto;
-    width: 162px;
-    height: 33px;
-    background-position: -221px -1983px; }
-  #page-perfil-sitio .site-sexualidad180 {
-    margin: 0 auto;
-    width: 173px;
-    height: 36px;
-    background-position: -428px -1981px; }
-  #page-perfil-sitio .site-enforma180 {
-    margin: 0 auto;
-    width: 158px;
-    height: 33px;
-    background-position: -643px -1982px; }
-  #page-perfil-sitio .site-actitudfem {
-    margin: 0 auto;
-    width: 157px;
-    height: 38px;
-    background-position: -50px -2036px; }
-  #page-perfil-sitio .site-rsvp {
-    margin: 0 auto;
-    width: 122px;
-    height: 42px;
-    background-position: -68px -2089px; }
-  #page-perfil-sitio .site-melodijolola {
-    margin: 0 auto;
-    width: 148px;
-    height: 54px;
-    background-position: -59px -2145px; }
-  #page-perfil-sitio .site-atraccion360 {
-    margin: 0 auto;
-    width: 148px;
-    height: 36px;
-    background-position: -54px -2211px; }
-  #page-perfil-sitio .site-adrenalina360 {
-    margin: 0 auto;
-    width: 152px;
-    height: 24px;
-    background-position: -53px -2267px; }
-  #page-perfil-sitio .site-garuyo {
-    margin: 0 auto;
-    width: 139px;
-    height: 47px;
-    background-position: -57px -2319px; }
-  #page-perfil-sitio .site-swagger {
-    margin: 0 auto;
-    width: 152px;
-    height: 48px;
-    background-position: -57px -2376px; }
-  #page-perfil-sitio .site-gamedots {
-    margin: 0 auto;
-    width: 143px;
-    height: 53px;
-    background-position: -57px -2436px; }
-  #page-perfil-sitio .site-estrategia45 {
-    margin: 0 auto;
-    width: 148px;
-    height: 41px;
-    background-position: -54px -2501px; }
-  #page-perfil-sitio .site-fahrenheit {
-    margin: 0 auto;
-    width: 152px;
-    height: 28px;
-    background-position: -52px -2548px; }
-  #page-perfil-sitio .plataformas-servicios .wrapper-image {
-    margin: 0 auto;
+    width: 100%;
+    height: auto; }
+    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .wrapper-img {
+      padding: 20px 0 20px 0; }
+    #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary {
+      color: #FFF;
+      font-size: 18px; }
+#page-perfil-sitio .title-seccion-invent {
+  font-size: 35px; }
+#page-perfil-sitio .site-excelsior {
+  margin: 0 auto;
+  width: 147px;
+  height: 32px;
+  background-position: -55px -1682px; }
+#page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
+  margin: 0 auto;
+  width: 138px;
+  height: 60px;
+  background-position: -59px -1735px; }
+#page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
+  margin: 0 auto;
+  width: 150px;
+  height: 29px;
+  background-position: -54px -1810px; }
+#page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
+  margin: 0 auto;
+  width: 155px;
+  height: 46px;
+  background-position: -51px -1851px; }
+#page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
+  margin: 0 auto;
+  width: 146px;
+  height: 50px;
+  background-position: -56px -1913px; }
+#page-perfil-sitio .site-salud180 {
+  margin: 0 auto;
+  width: 150px;
+  height: 44px;
+  background-position: -54px -1975px; }
+#page-perfil-sitio .site-bienestar180 {
+  margin: 0 auto;
+  width: 162px;
+  height: 33px;
+  background-position: -221px -1983px; }
+#page-perfil-sitio .site-sexualidad180 {
+  margin: 0 auto;
+  width: 173px;
+  height: 36px;
+  background-position: -428px -1981px; }
+#page-perfil-sitio .site-enforma180 {
+  margin: 0 auto;
+  width: 158px;
+  height: 33px;
+  background-position: -643px -1982px; }
+#page-perfil-sitio .site-actitudfem {
+  margin: 0 auto;
+  width: 157px;
+  height: 38px;
+  background-position: -50px -2036px; }
+#page-perfil-sitio .site-rsvp {
+  margin: 0 auto;
+  width: 122px;
+  height: 42px;
+  background-position: -68px -2089px; }
+#page-perfil-sitio .site-melodijolola {
+  margin: 0 auto;
+  width: 148px;
+  height: 54px;
+  background-position: -59px -2145px; }
+#page-perfil-sitio .site-atraccion360 {
+  margin: 0 auto;
+  width: 148px;
+  height: 36px;
+  background-position: -54px -2211px; }
+#page-perfil-sitio .site-adrenalina360 {
+  margin: 0 auto;
+  width: 152px;
+  height: 24px;
+  background-position: -53px -2267px; }
+#page-perfil-sitio .site-garuyo {
+  margin: 0 auto;
+  width: 139px;
+  height: 47px;
+  background-position: -57px -2319px; }
+#page-perfil-sitio .site-swagger {
+  margin: 0 auto;
+  width: 152px;
+  height: 48px;
+  background-position: -57px -2376px; }
+#page-perfil-sitio .site-gamedots {
+  margin: 0 auto;
+  width: 143px;
+  height: 53px;
+  background-position: -57px -2436px; }
+#page-perfil-sitio .site-estrategia45 {
+  margin: 0 auto;
+  width: 148px;
+  height: 41px;
+  background-position: -54px -2501px; }
+#page-perfil-sitio .site-fahrenheit {
+  margin: 0 auto;
+  width: 152px;
+  height: 28px;
+  background-position: -52px -2548px; }
+#page-perfil-sitio .plataformas-servicios .wrapper-image {
+  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  height: auto; }
+  #page-perfil-sitio .plataformas-servicios .wrapper-image img {
     max-width: 100%;
     width: 100%;
     height: auto; }
-    #page-perfil-sitio .plataformas-servicios .wrapper-image img {
-      max-width: 100%;
-      width: 100%;
-      height: auto; }
-  #page-perfil-sitio .btn-publish {
-    font-size: 16px; }
-  #page-perfil-sitio .title-seccion-invent {
-    font-size: 26px; }
+#page-perfil-sitio .btn-publish {
+  font-size: 16px; }
+#page-perfil-sitio .title-seccion-invent {
+  font-size: 26px; }
 
 footer {
   min-height: 50px;
@@ -2320,7 +2314,7 @@ footer {
     font-family: Hind-Bold; }
 
   .invent-mobile-sprite, header .wrapper-header .site-invent, header .wrapper-header .wrapper-main .main-center, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page span, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page.active span,
-  #slide-home.wrapper-image-section1 .owl-theme .owl-controls.clickable .owl-page:hover span, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+  #slide-home.wrapper-image-section1 .owl-theme .owl-controls.clickable .owl-page:hover span, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, ul.red-invent-sections-sites li.sections-sites span.site-enforma180, #page-perfil-sitio .site-excelsior, #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio, #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985, #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres, #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen, #page-perfil-sitio .site-salud180, #page-perfil-sitio .site-bienestar180, #page-perfil-sitio .site-sexualidad180, #page-perfil-sitio .site-enforma180, #page-perfil-sitio .site-actitudfem, #page-perfil-sitio .site-rsvp, #page-perfil-sitio .site-melodijolola, #page-perfil-sitio .site-atraccion360, #page-perfil-sitio .site-adrenalina360, #page-perfil-sitio .site-garuyo, #page-perfil-sitio .site-swagger, #page-perfil-sitio .site-gamedots, #page-perfil-sitio .site-estrategia45, #page-perfil-sitio .site-fahrenheit {
     background-image: url("../img/sprites/sprite_movil.png");
     background-repeat: no-repeat; }
 
@@ -2829,23 +2823,102 @@ footer {
 
   /*  */
   /* site especifico */
-  #page-perfil-sitio .bg-site.noticias-y-negocios {
-    background-image: url("/web/img/perfil-sitio/mobile/700/noticias.jpg"); }
-  #page-perfil-sitio .bg-site.mundo-saludable {
-    background-image: url("/web/img/perfil-sitio/mobile/700/saludable.jpg"); }
-  #page-perfil-sitio .bg-site.mundo-femenino {
-    background-image: url("/web/img/perfil-sitio/mobile/700/femenino.jpg"); }
-  #page-perfil-sitio .bg-site.life-style {
-    background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg"); }
-  #page-perfil-sitio .bg-site {
-    background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg"); }
-  #page-perfil-sitio .main-sections-tools {
-    width: 100%;
-    height: auto; }
-    #page-perfil-sitio .main-sections-tools li a {
-      height: 18px; }
-  #page-perfil-sitio .btn-publish {
-    font-size: 12px; }
+  #page-perfil-sitio {
+    /* init icono sprite sitio */
+    /* end icono sprite sitio */ }
+    #page-perfil-sitio .bg-site.noticias-y-negocios {
+      background-image: url("/web/img/perfil-sitio/mobile/700/noticias.jpg"); }
+    #page-perfil-sitio .bg-site.mundo-saludable {
+      background-image: url("/web/img/perfil-sitio/mobile/700/saludable.jpg"); }
+    #page-perfil-sitio .bg-site.mundo-femenino {
+      background-image: url("/web/img/perfil-sitio/mobile/700/femenino.jpg"); }
+    #page-perfil-sitio .bg-site.life-style {
+      background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg"); }
+    #page-perfil-sitio .bg-site {
+      background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg"); }
+    #page-perfil-sitio .site-excelsior {
+      width: 141px;
+      height: 28px;
+      background-position: -88px -1241px; }
+    #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
+      width: 130px;
+      height: 54px;
+      background-position: -90px -1287px; }
+    #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
+      width: 132px;
+      height: 26px;
+      background-position: -92px -1421px; }
+    #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
+      width: 136px;
+      height: 40px;
+      background-position: -90px -1354px; }
+    #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
+      width: 131px;
+      height: 45px;
+      background-position: -92px -1470px; }
+    #page-perfil-sitio .site-salud180 {
+      width: 129px;
+      height: 38px;
+      background-position: -85px -1583px; }
+    #page-perfil-sitio .site-bienestar180 {
+      width: 137px;
+      height: 29px;
+      background-position: -80px -1637px; }
+    #page-perfil-sitio .site-sexualidad180 {
+      width: 130px;
+      height: 26px;
+      background-position: -91px -1685px; }
+    #page-perfil-sitio .site-enforma180 {
+      width: 130px;
+      height: 29px;
+      background-position: -91px -1736px; }
+    #page-perfil-sitio .site-actitudfem {
+      width: 145px;
+      height: 36px;
+      background-position: -84px -1840px; }
+    #page-perfil-sitio .site-rsvp {
+      width: 110px;
+      height: 37px;
+      background-position: -100px -1896px; }
+    #page-perfil-sitio .site-melodijolola {
+      width: 144px;
+      height: 49px;
+      background-position: -91px -1784px; }
+    #page-perfil-sitio .site-atraccion360 {
+      width: 127px;
+      height: 31px;
+      background-position: -89px -1962px; }
+    #page-perfil-sitio .site-adrenalina360 {
+      width: 159px;
+      height: 25px;
+      background-position: -80px -1538px; }
+    #page-perfil-sitio .site-garuyo {
+      width: 117px;
+      height: 41px;
+      background-position: -100px -2006px; }
+    #page-perfil-sitio .site-swagger {
+      width: 120px;
+      height: 39px;
+      background-position: -99px -2063px; }
+    #page-perfil-sitio .site-gamedots {
+      width: 131px;
+      height: 50px;
+      background-position: -89px -2120px; }
+    #page-perfil-sitio .site-estrategia45 {
+      width: 139px;
+      height: 37px;
+      background-position: -91px -2224px; }
+    #page-perfil-sitio .site-fahrenheit {
+      width: 138px;
+      height: 24px;
+      background-position: -88px -2190px; }
+    #page-perfil-sitio .main-sections-tools {
+      width: 100%;
+      height: auto; }
+      #page-perfil-sitio .main-sections-tools li a {
+        height: 18px; }
+    #page-perfil-sitio .btn-publish {
+      font-size: 12px; }
 
   /* perfil  talento */
   #page-perfil-talento .main-sections-tools {
