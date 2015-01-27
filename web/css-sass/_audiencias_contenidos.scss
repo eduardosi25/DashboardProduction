@@ -8,6 +8,14 @@
         padding: 30px 0 0 0;
         background-color: #161719;
         background-repeat: no-repeat;
+        .wrapper-description {
+            .audiencia-info {
+                ul li {
+                    list-style-type: square;
+                    list-style-position: inside;
+                }
+            } 
+        }
     }
     #noticias-negocios.wrapper-image-section {
         background-image: url("/web/img/audiencia-y-contenido/desktop/1920/noticias.jpg");
@@ -27,14 +35,14 @@
             margin-right: 3%;
             @include measures(50%,auto);        
             .audiencia-title{
-                font-size: 35px;                
+                font-size: 50px;                
                 @extend .Hind-Bold;
                 text-transform: uppercase;
             }
             .audiencia-info {                
-                font-size: 16px;
+                font-size: 17px;
                 margin-top: 15px;
-                line-height: 18px;
+                line-height: 20px;
                 @extend .Hind-Medium;
             }
         }

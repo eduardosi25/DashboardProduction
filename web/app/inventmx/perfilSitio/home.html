@@ -49,27 +49,57 @@
                 <div class="left content-grafic-1 relative">
                     <div class="bars-{{validGrafic this.mens }} absolute"></div>
                     <div class="info-bars center absolute">
-                            <span class="block total">0%</span>
+                            <span class="block total">
+                                {{#if this.mens }}
+                                    {{ this.mens }}
+                                {{else}}
+                                    0
+                                {{/if}} %
+                            </span>
                         <span class="block users">HOMBRES</span>
                     </div>
                 </div>
                 <div class="left age-users center">
-                        <span class="block total">0%</span>
+                        <span class="block total">
+                            {{#if this.ages }}
+                                {{ this.ages }}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
                     <span class="block age-name">Años</span>
                 </div>
                 <div class="left content-grafic-2 relative">
                     <div class="bars-{{validGrafic this.womens }} absolute"></div>
                     <div class="info-bars center absolute">
-                            <span class="block total">0%</span>
+                            <span class="block total">
+                                {{#if this.womens }}
+                                    {{ this.womens }}
+                                {{else}}
+                                    0
+                                {{/if}} %
+                            </span>
                         <span class="block users">MUJERES</span>
                     </div>
                 </div>
                 <div class="left content-visit center">
-                        <span class="block total-visit">0</span>
+                        <span class="block total-visit">
+                            {{#if this.views }}
+                                {{ this.views }}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
                     <span class="description-visit block">VISITAS MENSUALES</span>
                 </div>
                 <div class="left content-visit center">
-                        <span class="block total-visit">0</span>
+                        <span class="block total-visit">
+                            {{#if this.followers }}
+                                {{ this.followers }}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
                     <span class="description-visit block">TOTAL SEGUIDORES</span>
                 </div>
                 <div class="clear"></div>

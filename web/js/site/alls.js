@@ -410,7 +410,7 @@
             }
     },
     inventMx.utilities.topOffset = function(position,transition) {
-        transition = (transition) ? transition : 100;
+        transition = (transition) ? transition : 500;
         $('body,html').delay(position).animate({
             scrollTop: position
         }, transition,function(){

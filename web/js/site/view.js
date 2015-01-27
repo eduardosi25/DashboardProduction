@@ -355,8 +355,6 @@ $(function() {
 
                     });
                     
-                    
-                    
                 });
                 
                 return this;

@@ -47,16 +47,10 @@ $(function() {
                         e.preventDefault();
                     });
                 }
-             }); */
+             });*/
             
             //Backbone.history.start({pushState: true});
             //Backbone.history.start();
-            
-            /*var html = '';
-             $("head meta").each(function () {
-             html += $(this).clone().wrap('<div>').parent().html();
-             });
-             alert(html);*/
             
             inventMx.metas.compile();
             
@@ -74,6 +68,7 @@ $(function() {
         },
         audienciasContenidos: function(idSection) {
             //inventMx.page.wrapper_site.hide("slow");
+            
             valueSection = inventMx.utilities.isObject(idSection);
             inventMx.utilities.section = "audiencias-y-contenidos";
             //idSection = (idSection)? idSection : null;

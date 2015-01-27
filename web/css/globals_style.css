@@ -1516,6 +1516,9 @@ body.rtl .formError .formErrorArrow {
     padding: 30px 0 0 0;
     background-color: #161719;
     background-repeat: no-repeat; }
+    #page-audiencias-contenidos .wrapper-image-section .wrapper-description .audiencia-info ul li {
+      list-style-type: square;
+      list-style-position: inside; }
   #page-audiencias-contenidos #noticias-negocios.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1920/noticias.jpg"); }
   #page-audiencias-contenidos #mundo-saludable.wrapper-image-section {
@@ -1531,12 +1534,12 @@ body.rtl .formError .formErrorArrow {
       width: 50%;
       height: auto; }
       #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
-        font-size: 35px;
+        font-size: 50px;
         text-transform: uppercase; }
       #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info {
-        font-size: 16px;
+        font-size: 17px;
         margin-top: 15px;
-        line-height: 18px; }
+        line-height: 20px; }
     #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image {
       width: 45%;
       height: auto; }
@@ -2011,10 +2014,10 @@ body.rtl .formError .formErrorArrow {
 #page-perfil-sitio .bg-site.life-style {
   background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
 #page-perfil-sitio .bg-site {
+  padding-bottom: 30px;
   background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg"); }
 #page-perfil-sitio .wrapper-image-section1 {
-  background-color: #0E0F13;
-  padding-bottom: 20px; }
+  background-color: #0E0F13; }
   #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil {
     max-width: 600px;
     margin: 0 auto;
@@ -2174,6 +2177,8 @@ footer {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1024/femenino.jpg"); }
   #page-audiencias-contenidos #lifestye.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1024/lifestyle.jpg"); }
+  #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
+    margin-top: 0%; }
 
   #page-perfil-sitio .bg-site.noticias-y-negocios {
     background-image: url("/web/img/perfil-sitio/desktop/1024/noticias.jpg"); }
