@@ -2319,8 +2319,8 @@ footer {
   .Hind-Bold, .btn-publish, .wrapper-image-section2 .text-info span, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
     font-family: Hind-Bold; }
 
-  .invent-mobile-sprite, header .wrapper-header .wrapper-main .main-center, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page span, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page.active span,
-  #slide-home.wrapper-image-section1 .owl-theme .owl-controls.clickable .owl-page:hover span, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
+  .invent-mobile-sprite, header .wrapper-header .site-invent, header .wrapper-header .wrapper-main .main-center, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page span, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page.active span,
+  #slide-home.wrapper-image-section1 .owl-theme .owl-controls.clickable .owl-page:hover span, .ui-icon-triangle-1-s, .ui-icon-triangle-1-e, ul.red-invent-sections-sites li.sections-sites span.site-excelsior, ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio, ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985, ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres, ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen, ul.red-invent-sections-sites li.sections-sites span.site-salud180, ul.red-invent-sections-sites li.sections-sites span.site-actitudfem, ul.red-invent-sections-sites li.sections-sites span.site-rsvp, ul.red-invent-sections-sites li.sections-sites span.site-melodijolola, ul.red-invent-sections-sites li.sections-sites span.site-atraccion360, ul.red-invent-sections-sites li.sections-sites span.site-adrenalina360, ul.red-invent-sections-sites li.sections-sites span.site-garuyo, ul.red-invent-sections-sites li.sections-sites span.site-swagger, ul.red-invent-sections-sites li.sections-sites span.site-gamedots, ul.red-invent-sections-sites li.sections-sites span.site-estrategia45, ul.red-invent-sections-sites li.sections-sites span.site-fahrenheit, .wrapper-our-services ul li.services-sites span.img-rich-media, .wrapper-our-services ul li.services-sites span.img-content-editorials, .wrapper-our-services ul li.services-sites span.img-mobile, .wrapper-our-services ul li.services-sites span.img-buzz-marketing, .wrapper-our-services ul li.services-sites span.img-video, .wrapper-our-services ul li.services-sites span.img-programatic, footer .footer-content-site-invent .footer-site-invent, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-volskwagen, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-revlon, #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case-bridgestone, ul.red-invent-sections-sites li.sections-sites.active span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.ico-sumary-active, ul.red-invent-sections-sites li.sections-sites span.site-bienestar180, ul.red-invent-sections-sites li.sections-sites span.site-sexualidad180, ul.red-invent-sections-sites li.sections-sites span.site-enforma180 {
     background-image: url("../img/sprites/sprite_movil.png");
     background-repeat: no-repeat; }
 
@@ -2329,15 +2329,15 @@ footer {
     max-width: 1024px;
     margin: 0 auto;
     width: 100%;
-    height: auto;
-    /*.site-invent{
-        margin: 0 auto;
-        @extend .invent-mobile-sprite;
-        @include img-position(121px, 37px,-59px,-27px);
-    }*/ }
+    height: auto; }
     header .wrapper-header .wrapper-site-logo {
       width: 25%;
       height: auto; }
+    header .wrapper-header .site-invent {
+      margin: 0 auto;
+      width: 121px;
+      height: 37px;
+      background-position: -59px -27px; }
     header .wrapper-header .wrapper-main {
       display: block;
       margin: 7px 5% 0 0; }
@@ -2390,12 +2390,12 @@ footer {
   #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page span {
     width: 14px;
     height: 14px;
-    background-position: -75px -2789px; }
+    background-position: -92px -2789px; }
   #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page.active span,
   #slide-home.wrapper-image-section1 .owl-theme .owl-controls.clickable .owl-page:hover span {
     width: 14px;
     height: 14px;
-    background-position: -92px -2789px; }
+    background-position: -75px -2789px; }
 
   #wrapper-page-site {
     max-width: 1950px;
@@ -2506,19 +2506,19 @@ footer {
     width: 135px;
     height: 31px;
     background-position: -72px -203px; }
-  ul.red-invent-sections-sites li.sections-sites span.site-imagen {
+  ul.red-invent-sections-sites li.sections-sites span.site-imagen, ul.red-invent-sections-sites li.sections-sites span.site-imagen-radio, ul.red-invent-sections-sites li.sections-sites span.site-imagenradio {
     width: 126px;
     height: 57px;
     background-position: -72px -247px; }
-  ul.red-invent-sections-sites li.sections-sites span.site-reporte {
+  ul.red-invent-sections-sites li.sections-sites span.site-reporte, ul.red-invent-sections-sites li.sections-sites span.site-reporte98, ul.red-invent-sections-sites li.sections-sites span.site-reporte985, ul.red-invent-sections-sites li.sections-sites span.site-reporte-985 {
     width: 128px;
     height: 24px;
     background-position: -74px -383px; }
-  ul.red-invent-sections-sites li.sections-sites span.site-cadenatres {
+  ul.red-invent-sections-sites li.sections-sites span.site-cadenatres, ul.red-invent-sections-sites li.sections-sites span.site-cadena-tres {
     width: 133px;
     height: 40px;
     background-position: -72px -316px; }
-  ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen {
+  ul.red-invent-sections-sites li.sections-sites span.site-dineroenimagen, ul.red-invent-sections-sites li.sections-sites span.site-dinero-en-imagen {
     width: 128px;
     height: 44px;
     background-position: -74px -434px; }

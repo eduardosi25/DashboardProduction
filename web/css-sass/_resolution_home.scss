@@ -46,11 +46,11 @@
                 //padding-top: 4px;
                 @include measures(25%,auto);
             }
-            /*.site-invent{
+            .site-invent{
                 margin: 0 auto;
                 @extend .invent-mobile-sprite;
                 @include img-position(121px, 37px,-59px,-27px);
-            }*/
+            }
             .wrapper-main{
                 display: block;
                 margin: 7px 5% 0 0;
@@ -119,12 +119,12 @@
             
             .owl-theme .owl-controls .owl-page span {
                 @extend .invent-mobile-sprite;
-                @include img-position(14px,14px,-75px,-2789px);
+                @include img-position(14px,14px,-92px,-2789px);                
             }
             .owl-theme .owl-controls .owl-page.active span,
             .owl-theme .owl-controls.clickable .owl-page:hover span {
                 @extend .invent-mobile-sprite;
-                @include img-position(14px,14px,-92px,-2789px);
+                @include img-position(14px,14px,-75px,-2789px);
             }
         }
     }
@@ -264,19 +264,19 @@
                 //height: 28px;
                 //background-position: -56px -757px;
             }
-            span.site-imagen {
+            span.site-imagen, span.site-imagen-radio, span.site-imagenradio {
                 @extend .invent-mobile-sprite;
                 @include img-position(126px, 57px, -72px, -247px);                
             }
-            span.site-reporte {
+            span.site-reporte,span.site-reporte98, span.site-reporte985, span.site-reporte-985  {
                 @extend .invent-mobile-sprite;
                 @include img-position(128px, 24px, -74px, -383px);                
             }
-            span.site-cadenatres {
+            span.site-cadenatres,span.site-cadena-tres {
                 @extend .invent-mobile-sprite;
                 @include img-position(133px, 40px, -72px, -316px);                
             }
-            span.site-dineroenimagen {
+            span.site-dineroenimagen, span.site-dinero-en-imagen {
                 @extend .invent-mobile-sprite;
                 @include img-position(128px, 44px, -74px, -434px);                
             }
