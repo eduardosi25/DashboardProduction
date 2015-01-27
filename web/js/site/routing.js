@@ -15,15 +15,11 @@ $(function() {
             "marketers": "marketers",
             "marketers/:idSection": "marketers",
             "red-de-video": "redeVideo",
-            "caso-de-exito": "casoExito",
+            "casos-de-exito": "casoExito",
             "afiliate": "afiliate",
             "anunciate": "anunciate",
-            //"perfil/:id": "perfilTalento",
-            //"perfil/:name": "perfilTalento",
             ":nameTalento": "perfilTalento",
-            //"site/:id": "perfilSitio",
             ":nameSite": "perfilSitio",
-            //"site/excelsior": "perfilSitio",
             "*default": "default",
             "*notFound": "notFound"
         },
@@ -55,9 +51,18 @@ $(function() {
             
             //Backbone.history.start({pushState: true});
             //Backbone.history.start();
+            
+            /*var html = '';
+             $("head meta").each(function () {
+             html += $(this).clone().wrap('<div>').parent().html();
+             });
+             alert(html);*/
+            
+            inventMx.metas.compile();
+            
+            
         },
         home: function() {
-            //iMxWebapp.taxonomy.name = {canal: "home"},
             //inventMx.page.wrapper_site.hide("slow");
             inventMx.utilities.loaderShow();
             inventMx.utilities.section = "home";

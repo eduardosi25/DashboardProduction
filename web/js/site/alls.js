@@ -9,6 +9,7 @@
     inventMx.header.main = function () {}, //no use
     inventMx.page = {},
     inventMx.render = {},
+    inventMx.metas = {},
     inventMx.config = {
         website: 'http://www.inventmx.com/',
         websiteUrl: 'http://www.inventmx.com/',
@@ -39,6 +40,18 @@
             columnista_ids: null,
             sub_category_url: null
         }
+    },
+    inventMx.metas = {},
+    inventMx.metas.configure = {
+        title: "Home | InventMx",
+        canonical: "http://www.inventmx.com",
+        description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+        og_site_name: "InventMX",
+        og_title: "InventMX",
+        og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+        og_url: "http://www.inventmx.com",
+        og_type: "website",
+        og_image: "/web/img/favicons/mstile-150x150.png",
     };
     
     inventMx.page.wrapper_site = $("#wrapper-page-site");
@@ -47,6 +60,19 @@
     },
     inventMx.utilities.loaderHide = function () {
         $("#wrapper-loading-layout").css("display", "none");
+    },
+    inventMx.metas.compile = function() {
+        
+        var head = $("#metas").html();
+        var tpl_head = Handlebars.compile(head);
+        var view_head = tpl_head(inventMx.metas.configure);
+        //var metas;
+        $("head meta, head link[rel='canonical']").each(function () {
+            //metas += $(this).clone().wrap('<div>').parent().html();
+            $(this).remove();
+        });
+        $("title").remove();
+        $("head").prepend(view_head);
     },
     inventMx.render.tplHomeTalentos = function(resp){
         if (resp) {
@@ -105,6 +131,25 @@
             
             if(resp.data.length){
                 url_taxonomy = dataPerfil.audience[0].url;
+                
+            temp_url = $.url(dataPerfil.url);
+            np_url = 'http://' + window.location.host + "#" + temp_url.attr('relative');
+            url = np_url.replace('#/','#');
+                
+            inventMx.metas.configure = {
+                title: dataPerfil.title +" | InventMx",
+                canonical: url,
+                description: dataPerfil.summary,
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: dataPerfil.summary,
+                og_url: url,
+                og_type: "website",
+                og_image: dataPerfil.images.picture[0].url,
+            };
+            inventMx.metas.compile();
+                
+                
             }
             var perfilTalentos = $("#template-perfil-talento").html();
             var tpl_perfilTalentos = Handlebars.compile(perfilTalentos);
@@ -146,6 +191,25 @@
             dataSite = resp.data[0];
             
             if(dataSite){
+                
+                temp_url = $.url(dataSite.url);
+                np_url = 'http://' + window.location.host + "#" + temp_url.attr('relative');
+                url = np_url.replace('#/','#');
+                
+                inventMx.metas.configure = {
+                    title: dataSite.title +" | InventMx",
+                    canonical: url,
+                    description: dataSite.summary,
+                    og_site_name: "InventMX",
+                    og_title: "InventMX",
+                    og_description: dataSite.summary,
+                    og_url: url,
+                    og_type: "website",
+                    og_image: dataSite.images.logo[0].url,
+                };
+                inventMx.metas.compile();
+                
+                
                 var perfilSite = $("#template-perfil-site").html();
                 var tpl_perfilSite = Handlebars.compile(perfilSite);
                 var view_perfilSite = tpl_perfilSite(dataSite);
@@ -234,6 +298,20 @@
         }else {
             error404 = new inventMx.home.default404();
         }
+    },
+    inventMx.render.tplGenereral = function(resp,options){
+        data = resp.data;
+        
+        if(data){
+            var site = $(options.template).html();
+            var tpl_site = Handlebars.compile(site);
+            var view_site = tpl_site(data);
+            $(options.section).html(view_site);
+            
+        }else {
+            $(options.section).append("<p> Ha ocurrido un  error al cargar esta sección</p>")
+        }
+        
     },
     inventMx.utilities.isArray = function (value) {
         //function isArray(value) {

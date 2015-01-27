@@ -34,6 +34,20 @@ $(function() {
     inventMx.home.Home = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function () {
+            
+            inventMx.metas.configure = {
+                title: "Home | InventMx",
+                canonical: "http://www.inventmx.com",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.loadPage();
@@ -135,7 +149,21 @@ $(function() {
         initialize: function (idSection) {
             $(this.el).unbind();
             _.bindAll(this, 'render');
-            //this.render();            
+            //this.render();
+            
+            inventMx.metas.configure = {
+                title: "Audiencias y Contenidos | InventMx",
+                canonical: "http://www.inventmx.com/#audiencias-y-contenidos",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#audiencias-y-contenidos",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             idAncla =  idSection;
             this.render(idAncla);
         },
@@ -339,6 +367,21 @@ $(function() {
     inventMx.home.homeMarketers = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function (idSection) {
+            
+            inventMx.metas.configure = {
+                title: "Marketers | InventMx",
+                canonical: "http://www.inventmx.com/#marketers",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#marketers",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             idAncla =  idSection;
@@ -429,6 +472,20 @@ $(function() {
     inventMx.home.homeRedeVideo = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function () {
+            
+            inventMx.metas.configure = {
+                title: "Red de Video | InventMx",
+                canonical: "http://www.inventmx.com/#red-de-video",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#red-de-video",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();            
@@ -497,6 +554,20 @@ $(function() {
     inventMx.home.homeCasoExito = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function () {
+            
+            inventMx.metas.configure = {
+                title: "Casos de Éxito | InventMx",
+                canonical: "http://www.inventmx.com/#casos-de-exito",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#casos-de-exito",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();            
@@ -533,6 +604,20 @@ $(function() {
     inventMx.home.homeAfiliate = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function () {
+            
+            inventMx.metas.configure = {
+                title: "Afíliate | InventMx",
+                canonical: "http://www.inventmx.com/#afiliate",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#afiliate",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();            
@@ -573,6 +658,20 @@ $(function() {
     inventMx.home.homeAnunciate = Backbone.View.extend({
         el: inventMx.page.wrapper_site,
         initialize: function () {
+            
+            inventMx.metas.configure = {
+                title: "Anúnciate | InventMx",
+                canonical: "http://www.inventmx.com/#anunciate",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com/#anunciate",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();            
