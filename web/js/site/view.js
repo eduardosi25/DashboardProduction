@@ -75,9 +75,11 @@ $(function() {
                 }
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "30";
-                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_sites);
+                inventMx.dataSource.params.sort = "id:ASC";
+                inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_sites);                
                 
                 repo = "vloger.json";
+                inventMx.dataSource.params.sort = null;
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "100";
                 listTalentos = new inventMx.home.listPerfilTalentos(repo);
@@ -198,6 +200,7 @@ $(function() {
                     idSitesUl: "#site-noticias-deportes li.sections-sites",
                 }
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = "noticias-y-negocios";
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_noticias);
                 
@@ -220,6 +223,7 @@ $(function() {
                     idSitesUl: "#site-mundo-saludable li.sections-sites",
                 }
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = "mundo-saludable";
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_saludable);
                 
@@ -242,6 +246,7 @@ $(function() {
                     idSitesUl: "#site-mundo-femenino li.sections-sites",
                 }
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = "mundo-femenino";
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_Mfemenino);
                 
@@ -263,11 +268,13 @@ $(function() {
                     idSitesUl: "#site-lifestye li.sections-sites",
                 }
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = "life-style";
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_site_lifestye);
                 
                 
                 inventMx.dataSource.params.url = null;
+                inventMx.dataSource.params.sort = null;
                 inventMx.dataSource.params.audience_url = null;
                 
                 inventMx.utilities.oneAddRemoveSections(id_section1);
