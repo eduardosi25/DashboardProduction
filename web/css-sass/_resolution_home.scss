@@ -365,7 +365,6 @@
                 padding: 10px 0 !important;                
                 @include measures(100%,auto);
                 border-bottom: 2px solid #FFF;
-                @include transition(all 1s ease);
                 .wrapper-image-talento {
                     float: left;
                     //max-width: 200px;
@@ -379,11 +378,17 @@
                         @include transition(all 1s ease);
                     }
                 }
-                .name-editor {
+                .wrapper-info {
                     float: left;
-                    text-align: left;
-                    margin: 50px 0 0 0;
-                    display: inline-block;                    
+                    margin: 45px 0 0 0;
+                    .name-editor {
+                        height: 40px;
+                        overflow: initial;
+                        display: block;
+                    }
+                    .type-content, .type-content a {
+                        display: block;
+                    }
                 }
             }
         }
@@ -470,7 +475,7 @@
                 font-size: 26px;
             }
             .home-perfil-colaboradores{                
-                ul li {
+                ul li.sections-perfil-talento {
                     &.box-items{
                         text-align: left;
                         padding: 2% 0 2% 0;                        
@@ -485,6 +490,9 @@
                     .wrapper-image {
                         float: left;
                         @include measures(30%,auto);
+                    }
+                    .wrapper-info {
+                        margin: 65px 0 0 0;
                     }
                     .wrapper-description{
                         & > span {

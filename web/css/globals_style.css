@@ -568,20 +568,32 @@ article {
 
 .home-perfil-colaboradores ul {
   width: 100%;
-  height: auto;
-  /*li.box-0, li.box-4, li.box-8, li.box-12,li.box-16
-  li.box-20, li.box-24, li.box-28 {
-      margin-left: 0%;
-  }*/ }
+  height: auto; }
   .home-perfil-colaboradores ul li {
     padding: 2%;
     width: 19%;
-    height: auto; }
+    height: auto;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease; }
     .home-perfil-colaboradores ul li a {
       color: #000; }
-    .home-perfil-colaboradores ul li img {
-      width: 100%;
-      height: auto; }
+    .home-perfil-colaboradores ul li .wrapper-image-talento {
+      transition: all 1s ease;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      -ms-transition: all 1s ease; }
+      .home-perfil-colaboradores ul li .wrapper-image-talento img {
+        width: 100%;
+        height: auto;
+        transition: all 1s ease;
+        -webkit-transition: all 1s ease;
+        -moz-transition: all 1s ease;
+        -o-transition: all 1s ease;
+        -ms-transition: all 1s ease; }
     .home-perfil-colaboradores ul li .name-editor {
       color: #000;
       font-size: 20px;
@@ -608,33 +620,7 @@ ul.red-invent-sections {
 
 ul.red-invent-sections-sites {
   margin: 0 auto;
-  padding: 25px 0;
-    /*li.br1-caca {
-        border-right: 1px solid #cacaca;
-    }
-    li.sections-sites-0, li.sections-sites-4, li.sections-sites-8, li.sections-sites-12 {
-        margin-left: 0% !important;
-    }
-    li.sections-sites-3, li.sections-sites-7, li.sections-sites-11, li.sections-sites-15 {
-        margin-right: 0% !important;
-    }
-
-
-    li.sections-sites-1 {
-        min-height: 240px !important;
-    }
-    li.sections-sites-8 {
-        min-height: 235px !important;
-    }
-    li.sections-sites-9 {
-        min-height:  227px !important;
-    }
-    li.sections-sites-13 {
-        min-height:  230px !important;
-    }
-    li.sections-sites-4, li.sections-sites-5, li.sections-sites-10, li.sections-sites-12 {
-        min-height: 225px !important;
-    }*/ }
+  padding: 25px 0; }
   ul.red-invent-sections-sites li.sections-sites {
     border-top: 1px solid #cacaca;
     border-right: 1px solid #cacaca; }
@@ -1952,9 +1938,9 @@ body.rtl .formError .formErrorArrow {
       text-align: center;
       width: 19.7%;
       height: auto;
-      border-right: 1px solid gray; }
+      border-right: 1px solid #c4c4c4; }
       #page-case-exito ul.wrapper-table-case-exito li.box-item:first-child {
-        border-left: 1px solid gray; }
+        border-left: 1px solid #c4c4c4; }
       #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case {
         margin: 8px 0;
         color: #E58436;
@@ -2573,12 +2559,7 @@ footer {
     padding: 10px 0 !important;
     width: 100%;
     height: auto;
-    border-bottom: 2px solid #FFF;
-    transition: all 1s ease;
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    -ms-transition: all 1s ease; }
+    border-bottom: 2px solid #FFF; }
     .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image-talento {
       float: left;
       text-align: left;
@@ -2597,11 +2578,15 @@ footer {
         -moz-transition: all 1s ease;
         -o-transition: all 1s ease;
         -ms-transition: all 1s ease; }
-    .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor {
+    .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info {
       float: left;
-      text-align: left;
-      margin: 50px 0 0 0;
-      display: inline-block; }
+      margin: 45px 0 0 0; }
+      .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info .name-editor {
+        height: 40px;
+        overflow: initial;
+        display: block; }
+      .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info .type-content a {
+        display: block; }
 
   /* Fin del listado  de imagenes de los talentos */
   .wrapper-our-services ul li.services-sites span.img-rich-media {
@@ -2655,31 +2640,33 @@ footer {
         margin-top: -15px; }
   #page-video-talento .wrapper-red-videos .title-seccion-invent {
     font-size: 26px; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.box-items {
+  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items {
     text-align: left;
     padding: 2% 0 2% 0;
     margin: 5px 0 0 0;
     width: 100%;
     height: auto;
     border-bottom: 2px solid #FFF; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.box-items:first-child {
+  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items:first-child {
     margin-top: 0px; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-image {
+  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image {
     float: left;
     width: 30%;
     height: auto; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-description {
+  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info {
+    margin: 65px 0 0 0; }
+  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description {
     float: left;
     padding-top: 10%;
     width: 65%;
     height: auto; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-description > span {
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description > span {
       vertical-align: middle; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-description .name-editor {
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .name-editor {
       float: left;
       width: 100%;
       height: auto; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li .wrapper-description .type-content {
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .type-content {
       float: left;
       width: 100%;
       height: auto; }

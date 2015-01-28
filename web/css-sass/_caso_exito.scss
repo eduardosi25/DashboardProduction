@@ -133,10 +133,10 @@
         li.box-item {
             text-align: center;
             @include measures(19.7%,auto);
-            border-right: 1px solid gray;
+            border-right: 1px solid #c4c4c4;
             //border-right: 1px solid #363636;
             &:first-child {
-                border-left: 1px solid gray;
+                border-left: 1px solid #c4c4c4;
                 //border-left: 1px solid #363636;
             }
             .type-case {

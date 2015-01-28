@@ -256,9 +256,12 @@
                     {{else}}
                         <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                     {{/if}}
-                        
                     </span>
-                    <span class="block name-editor">{{this.title}}</span>
+
+                    <span class="inline-block wrapper-info">
+                        <span class="block name-editor">{{this.title}}</span>
+                        <span class="block type-content">{{ this.audience.0.title }}</span>
+                    </span>
                     <span class="clear"></span>
                 </a>
             </li>            
