@@ -3,7 +3,7 @@
 $nombre   = $_REQUEST['nombre'];
 $apellido = $_REQUEST['apellido'];
 $correo   = $_REQUEST['email'];
-$canal    = $_REQUEST['chanel'];
+@$canal    = $_REQUEST['chanel'];
 $type     = $_REQUEST['type'];
 
 $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer'] : '';
@@ -23,22 +23,33 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     $valid = true;
 //}
 
-$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
+
 //$to="sergio@inventmx.com,jose.cruz@inventmx.com";
 #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
-    /*if($type == "afiliate") {
-        $to="pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
+    if($type == "afiliate") {
+        $type = "Afíliate";
+        $to="jose.cruz@inventmx.com";
+
+        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
+        //$to="pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
     }else {
-        $to="pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
-    }*/
+        $type = "Anúnciate";
+        $to="jose.cruz@inventmx.com";
+
+        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
+        //$to="pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
+    }
 
 $cabeceras = "Content-type: text/html";
 
-$subject = 'InventMX - Nos han contactado! - ' . $type." ".$referer;
-$message = 'Han usuado el formulario de contacto de InventMX, estos son los datos: <br /><br />';
+$subject = 'Nos han contactado en Invent.mx! - ' . $type." ".$referer;
+$message = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $message .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $message .= 'Correo: '. $correo . '<br /><br />';
-$message .= 'Youtube Channel: '. $canal . '<br /><br />';
+
+if($canal){
+    $message .= 'Youtube Channel: '. $canal . '<br /><br />';
+}
 
 
 mail($to, $subject, $message, $cabeceras);
