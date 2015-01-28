@@ -23,12 +23,14 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     $valid = true;
 //}
 
+$to="jose.cruz@inventmx.com";
+//$to="sergio@inventmx.com,jose.cruz@inventmx.com";
 #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
-    if($type == "afiliate") {
+    /*if($type == "afiliate") {
         $to="pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
     }else {
         $to="pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
-    }
+    }*/
 
 $cabeceras = "Content-type: text/html";
 

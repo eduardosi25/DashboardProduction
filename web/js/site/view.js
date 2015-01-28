@@ -198,7 +198,7 @@ $(function() {
                     section: "#site-noticias-deportes",
                     template: "#template-sections-sites",
                     idSitesUl: "#site-noticias-deportes li.sections-sites",
-                }
+                }  
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = "noticias-y-negocios";
@@ -410,8 +410,10 @@ $(function() {
                 }
                 inventMx.dataSource.params.url = null;
                 inventMx.dataSource.params.limit = "100";
+                inventMx.dataSource.params.sort = "id:ASC";
                 inventMx.dataSource.params.audience_url = null;
                 inventMx.dataSource.load(repo,inventMx.render.tplSites,Options_sites);
+                inventMx.dataSource.params.sort = null;
                 //inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_Mfemenino);
                 
                     

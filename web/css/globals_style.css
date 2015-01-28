@@ -1596,10 +1596,10 @@ body.rtl .formError .formErrorArrow {
       height: auto;
       background-color: #E4E4E4; }
       #page-marketers .wrapper-table-formats .header-table .type-publisher {
-        color: #595959;
+        color: #757575;
         padding: 15px 0;
         font-size: 20px;
-        border-right: 1px solid gray;
+        border-right: 1px solid #c4c4c4;
         width: 12%;
         height: auto; }
         #page-marketers .wrapper-table-formats .header-table .type-publisher > span {
@@ -1611,13 +1611,13 @@ body.rtl .formError .formErrorArrow {
         width: 78%;
         height: auto; }
     #page-marketers .wrapper-table-formats .body-table .type-publisher {
-      color: #595959;
+      color: #757575;
       font-size: 20px; }
     #page-marketers .wrapper-table-formats .body-table .box-table {
-      color: #848484;
+      color: #757575;
       padding: 15px 0;
       font-size: 14px;
-      border-left: 1px solid gray;
+      border-left: 1px solid #c4c4c4;
       width: 12%;
       height: auto; }
     #page-marketers .wrapper-table-formats .body-table .box-table:first-child {
@@ -1631,11 +1631,11 @@ body.rtl .formError .formErrorArrow {
       }*/ }
       #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header {
         padding: 3%;
-        color: #848484;
+        color: #757575;
         font-size: 20px;
         width: 43%;
         height: auto;
-        border-left: 1px solid gray; }
+        border-left: 1px solid #c4c4c4; }
       #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header:first-child {
         border-left: none; }
       #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body {
@@ -1643,9 +1643,9 @@ body.rtl .formError .formErrorArrow {
         padding: 3%;
         width: 43%;
         height: auto;
-        border-right: 1px solid gray; }
+        border-right: 1px solid #c4c4c4; }
     #page-marketers .wrapper-table-formats.formats-editorial {
-      color: #848484; }
+      color: #757575; }
       #page-marketers .wrapper-table-formats.formats-editorial .type-content {
         padding-top: 51px;
         font-size: 20px;
@@ -1658,7 +1658,7 @@ body.rtl .formError .formErrorArrow {
         min-height: 83px;
         width: 68%;
         height: auto;
-        border-left: 1px solid gray; }
+        border-left: 1px solid #c4c4c4; }
     #page-marketers .wrapper-table-formats.formats-programatic .body-table {
       width: 100%;
       height: auto; }
@@ -1668,7 +1668,7 @@ body.rtl .formError .formErrorArrow {
         width: 94.1%;
         height: auto; }
       #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child {
-        color: #848484;
+        color: #757575;
         font-size: 20px;
         padding: 15px 0;
         width: 100%;
@@ -1680,53 +1680,53 @@ body.rtl .formError .formErrorArrow {
       #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials {
         margin-bottom: 20px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook {
-          width: 32px;
-          height: 30px;
-          background-position: -56px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -51px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -56px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -51px -2955px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter {
-          width: 32px;
-          height: 30px;
-          background-position: -91px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -82px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -91px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -82px -2955px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube {
-          width: 32px;
-          height: 30px;
-          background-position: -196px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -176px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -196px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -176px -2955px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google {
-          width: 32px;
-          height: 30px;
-          background-position: -231px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -209px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -231px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -209px -2955px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest {
-          width: 32px;
-          height: 30px;
-          background-position: -126px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -114px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -126px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -114px -2955px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram {
-          width: 32px;
-          height: 30px;
-          background-position: -161px -2647px; }
+          width: 28px;
+          height: 28px;
+          background-position: -146px -2920px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover {
-          width: 32px;
-          height: 30px;
-          background-position: -161px -2685px; }
+          width: 28px;
+          height: 28px;
+          background-position: -146px -2955px; }
   #page-marketers .wrapper-boton-publisher {
     margin: 0 auto;
     width: 245px;
