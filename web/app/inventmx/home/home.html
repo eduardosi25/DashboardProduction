@@ -191,7 +191,9 @@
                 </span>                
             </a>
             <span class="site-sumary">{{{ this.summary }}}</span>
-            <span class="ico-sumary-active"></span>
+            <span class="block wrapper-ico-sumary">
+                <span class="ico-sumary-active"></span>
+            </span>            
         </li>
     {{/each}}
     <li class="clear block"></li>
@@ -238,9 +240,9 @@
 <script id="template-home-red-videos" type="template/homeRedVideos">
     <ul>
         {{#each this}}
-            <li class="left center box-{{@index}}">
+            <li class="left center sections-perfil-talento box-{{@index}}">
                 <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
+                    <span class="block wrapper-image-talento">
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
@@ -257,10 +259,10 @@
                         
                     </span>
                     <span class="block name-editor">{{this.title}}</span>
-                    <span class="block type-content">{{this.audience.0.title}}</span>
+                    <span class="clear"></span>
                 </a>
             </li>            
         {{/each}}
-            <li class="clear block"></li>
+        <li class="clear block"></li>
     </ul>
 </script>

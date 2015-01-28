@@ -166,58 +166,7 @@
         padding: 0px;        
     }
 
-    ul.red-invent-sections-sites {
-        /*li.sections-sites-0, li.sections-sites-1 {
-            min-height: 205px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-2, li.sections-sites-3 {
-            min-height: 185px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-5, li.sections-sites-6 {
-            min-height: 215px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-8 {
-            min-height: 218px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-9 {
-            min-height: 210px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-10, li.sections-sites-11 {
-            min-height: 175px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-12, li.sections-sites-13 {
-            min-height: 170px !important;
-            overflow: hidden;
-        }
-        li.sections-sites-14, li.sections-sites-15 {
-            min-height: 190px !important;
-            overflow: hidden;
-        }
-
-        li.sections-sites-0, li.sections-sites-2, li.sections-sites-4, li.sections-sites-6,
-        li.sections-sites-8, li.sections-sites-10, li.sections-sites-12, li.sections-sites-14 {
-            border-right: 1px solid #cacaca;
-        }
-        li.sections-sites-1, li.sections-sites-3, li.sections-sites-5, li.sections-sites-7,
-        li.sections-sites-9, li.sections-sites-11, li.sections-sites-13, li.sections-sites-15 {
-            border-right: none !important;
-        }
-
-        li.sections-sites-4, li.sections-sites-5 {
-            padding-top: 5px;
-        }
-        li.sections-sites-11 {
-            padding-top: 8px;
-        }
-        li.sections-sites-15 {
-            padding-top: 14px;
-        }*/
+    ul.red-invent-sections-sites {        
         .tag-movil {
             display: block;
         }
@@ -407,6 +356,40 @@
         }
     }
 
+    
+    /* Inicio del listado  de imagenes de los talentos */
+    .home-perfil-colaboradores {
+        ul {
+            li.sections-perfil-talento {
+                position: relative;
+                padding: 10px 0 !important;                
+                @include measures(100%,auto);
+                border-bottom: 2px solid #FFF;
+                @include transition(all 1s ease);
+                .wrapper-image-talento {
+                    float: left;
+                    //max-width: 200px;
+                    text-align: left;
+                    @include measures(145px,auto);
+                    //@include measures(30%,auto);
+                    @include transition(all 1s ease);
+                    img {
+                        //@include measures(145px,auto);
+                        @include measures(100%,auto);
+                        @include transition(all 1s ease);
+                    }
+                }
+                .name-editor {
+                    float: left;
+                    text-align: left;
+                    margin: 50px 0 0 0;
+                    display: inline-block;                    
+                }
+            }
+        }
+    }
+    /* Fin del listado  de imagenes de los talentos */
+    
 
     .wrapper-our-services {
         ul {
@@ -650,7 +633,7 @@
                 top: 35%;
                 right: 15%;
                 @extend .invent-mobile-sprite;
-                @include img-position(19px, 19px, -63px, -122px);                    
+                @include img-position(19px, 19px, -63px, -122px);
             }
             span.site-bienestar180{
                 margin: 0 auto 15px;

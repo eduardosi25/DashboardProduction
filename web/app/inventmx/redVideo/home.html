@@ -84,9 +84,9 @@
 <script id="template-red-videos-noticias" type="template/RedVideosNoticias">
     <ul>
         {{#each this}}
-            <li class="left center box-{{@index}}">
+            <li class="left center sections-perfil-talento box-{{@index}}">
                 <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
+                    <span class="block wrapper-image-talento">
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
@@ -103,6 +103,7 @@
                         
                     </span>
                     <span class="block name-editor">{{this.title}}</span>
+                    <span class="clear"></span>
                 </a>
             </li>            
         {{/each}}
@@ -113,9 +114,9 @@
 <script id="template-red-videos-mundo-saludable" type="template/RedVideosMundoSaludable">
     <ul>
         {{#each this}}
-            <li class="left center box-{{@index}}">
+            <li class="left center sections-perfil-talento box-{{@index}}">
                 <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
+                    <span class="block wrapper-image-talento">
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
@@ -132,6 +133,7 @@
                         
                     </span>
                     <span class="block name-editor">{{this.title}}</span>
+                    <span class="clear"></span>
                 </a>
             </li>            
         {{/each}}
@@ -142,9 +144,9 @@
 <script id="template-red-videos-mundo-femenino" type="template/RedVideosMundoFemenino">
     <ul>
         {{#each this}}
-            <li class="left center box-{{@index}}">
+            <li class="left center sections-perfil-talento box-{{@index}}">
                 <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
+                    <span class="block wrapper-image-talento">
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
@@ -161,6 +163,7 @@
                         
                     </span>
                     <span class="block name-editor">{{this.title}}</span>
+                    <span class="clear"></span>
                 </a>
             </li>            
         {{/each}}
@@ -171,9 +174,9 @@
 <script id="template-red-videos-lifeStyle" type="template/RedVideosLifeStyle">
     <ul>
         {{#each this}}
-            <li class="left center box-{{@index}}">
+            <li class="left center sections-perfil-talento box-{{@index}}">
                 <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                    <span class="block">
+                    <span class="block wrapper-image-talento">
                     {{#if this.images.picture }}
                         {{#if this.images.picture.0.styles }}
                             {{#if this.images.picture.0.styles.medium }}
@@ -189,7 +192,8 @@
                     {{/if}}
                         
                     </span>
-                    <span class="block name-editor">{{this.title}}</span>                    
+                    <span class="block name-editor">{{this.title}}</span>
+                    <span class="clear"></span>
                 </a>
             </li>            
         {{/each}}

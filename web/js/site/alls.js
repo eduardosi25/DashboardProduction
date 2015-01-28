@@ -543,7 +543,7 @@
             }
         });
         
-        $(document).on("click",".ico-sumary-active",function(){
+        $(document).on("click",".red-invent-sections-sites .wrapper-ico-sumary",function(){
             $(this).parent().toggleClass("active");
         });
         
