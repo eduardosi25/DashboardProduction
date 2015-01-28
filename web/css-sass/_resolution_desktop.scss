@@ -29,10 +29,33 @@
         #lifestye.wrapper-image-section {
             background-image: url("/web/img/audiencia-y-contenido/desktop/1024/lifestyle.jpg");
         }
-                
-        .wrapper-content-section1 {
+
+        //#page-audiencias-contenidos
+        #noticias-negocios .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 7%;
+            }
+        }
+        #mundo-saludable .wrapper-content-section1 {
             .wrapper-description{
                 margin-top: 0%;
+            }
+        }
+        #mundo-femenino .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 7%;
+            }
+        }
+        #lifestye .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 6%;
+            }
+        }
+
+        .wrapper-content-section1 {
+            .wrapper-description{
+                padding-bottom: 15px;
+                //margin-top: 0%;
             }
         }
         
@@ -95,6 +118,18 @@
     
 }
 
+@media only screen and (max-width: 900px) {
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-description {
+                .audiencia-title {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 840px) {
     #page-marketers {
         .wrapper-table-formats {
@@ -111,6 +146,44 @@
         .content-visit {
             padding-top: 20px;
             @include measures(220px,auto);
+        }
+    }
+
+
+    /* audiencias y contenidos */
+    #page-audiencias-contenidos {
+
+        .wrapper-content-section1 {
+            .wrapper-description {
+                .audiencia-title {
+                    font-size: 30px;
+                }
+                .audiencia-info {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        #noticias-negocios .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #mundo-saludable .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #mundo-femenino .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #lifestye .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 4%;
+            }
+        }
+        .wrapper-content-section1 {
+            .wrapper-description{
+            }
         }
     }
     
