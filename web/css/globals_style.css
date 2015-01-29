@@ -2827,7 +2827,7 @@ footer {
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
       ul.red-invent-sections-sites li.sections-sites a {
-        display: inline-block; }
+        display: block; }
       ul.red-invent-sections-sites li.sections-sites .site-sumary {
         display: none; }
       ul.red-invent-sections-sites li.sections-sites span {

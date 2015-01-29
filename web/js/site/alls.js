@@ -543,9 +543,9 @@
             }
         });
         
-        $(document).on("click",".red-invent-sections-sites .wrapper-ico-sumary",function(){
-            $(this).parent().toggleClass("active");
-        });
+        /*$(document).on("click",".red-invent-sections-sites .wrapper-ico-sumary",function(){
+         $(this).parent().toggleClass("active");
+         });*/
         
     });
     
@@ -559,7 +559,7 @@
             }
         });
         
-        if (devicewidth > 700) {            
+        if (devicewidth > 700) {
             $("header ul").css("display", "block");
         }else {
             $("header ul").css("display", "none");

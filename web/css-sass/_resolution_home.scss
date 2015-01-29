@@ -658,14 +658,15 @@
             border-right: none;
             position: relative;
             width: 100% !important;                
-            height: auto !important;                
+            height: auto !important;
             padding: 10px 0 !important;
             //min-height: 40px !important;
             border-bottom: 2px solid #FFF;
             border-top: none;
             @include transition(all 1s ease);
             a {
-                display: inline-block;
+                //display: inline-block;
+                display: block;
             }
             .site-sumary {
                 display: none;
