@@ -542,10 +542,18 @@
                 $("header ul").css("display", "block");
             }
         });
+
+        $("header ul li").click(function(){
+            if (devicewidth < 701) {
+                $("header ul").css("display", "none");
+            }else{
+                $("header ul").css("display", "block");
+            }
+        });
         
         /*$(document).on("click",".red-invent-sections-sites .wrapper-ico-sumary",function(){
          $(this).parent().toggleClass("active");
-         });*/
+         });*/                
         
     });
     
@@ -564,6 +572,15 @@
         }else {
             $("header ul").css("display", "none");
         }
+
+        $("header ul li").click(function(){
+            if (devicewidth < 701) {
+                $("header ul").css("display", "none");
+            }else{
+                $("header ul").css("display", "block");
+            }
+        });
+
         
     });
 

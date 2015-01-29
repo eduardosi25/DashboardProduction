@@ -31228,6 +31228,33 @@ Handlebars.registerHelper('CleanName', function(name, options) {
     return name;
 });
 
+
+/* separar número por coma */
+Handlebars.registerHelper('NumberSeparate', function(tnumbers,options) {
+    
+    if(tnumbers){
+        tnumbers.replace(",", "");
+        tnumbers.replace(".", "");
+        tnumbers =  parseInt(tnumbers);
+        
+        Number.prototype.format = function(n, x) {
+            var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+            return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+        };
+        //return tnumbers..format();
+        return tnumbers.format();
+        //1234..format();           // "1,234"
+        //12345..format(2);         // "12,345.00"
+        //123456.7.format(3, 2);    // "12,34,56.700"
+        //123456.789.format(2, 4);  // "12,3456.79"
+    }else {
+        request = "Not value";
+        return request;
+    }
+    
+});
+
+
 Handlebars.registerHelper('FormatDate', function(timestamp, options) {
 
     var date = new Date(timestamp * 1000);
@@ -31329,7 +31356,7 @@ Handlebars.registerHelper('1timeconvert', function(timestamp, options) {
 });
 
 /*debug*/
-Handlebars.registerHelper("debug", function(optionalValue) {
+Handlebars.registerHelper("debug", function(optionalValue,options) {
     console.log("\nCurrent Context");
     console.log("====================");
     console.log(this);

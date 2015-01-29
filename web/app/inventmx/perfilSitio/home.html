@@ -85,7 +85,7 @@
                 <div class="left content-visit center">
                         <span class="block total-visit">
                             {{#if this.views }}
-                                {{ this.views }}
+                                {{ NumberSeparate this.views }}
                             {{else}}
                                 0
                             {{/if}}
@@ -96,8 +96,8 @@
                 <!-- seguidores fb -->
                 {{#if this.fb_followers }}
                 <div class="left content-visit center">
-                        <span class="block total-visit">
-                            {{ this.fb_followers }}
+                        <span class="block total-visit">                            
+                            {{ NumberSeparate this.fb_followers }}
                         </span>
                     <span class="description-visit block">SEGUIDORES FACEBOOK</span>
                 </div>
@@ -107,7 +107,7 @@
                 {{#if this.tw_followers }}
                 <div class="left content-visit center">
                         <span class="block total-visit">
-                            {{ this.tw_followers }}
+                            {{ NumberSeparate this.tw_followers }}
                         </span>
                     <span class="description-visit block">SEGUIDORES TWITTER </span>
                 </div>
@@ -117,7 +117,7 @@
                 {{#if this.gplus_followers }}
                 <div class="left content-visit center">
                         <span class="block total-visit">
-                            {{ this.gplus_followers }}
+                            {{ NumberSeparate this.gplus_followers }}
                         </span>
                     <span class="description-visit block">SEGUIDORES GOOGLE+ </span>
                 </div>
@@ -127,7 +127,7 @@
                 {{#if this.yt_followers }}
                 <div class="left content-visit center">
                         <span class="block total-visit">
-                            {{ this.yt_followers }}
+                            {{ NumberSeparate this.yt_followers }}
                         </span>
                     <span class="description-visit block">SEGUIDORES YOUTUBE </span>
                 </div>
