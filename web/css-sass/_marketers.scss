@@ -6,35 +6,51 @@
         background-repeat: no-repeat;        
         background-image: url("/web/img/marketers/desktop/1920/1920.jpg");
         //background-image: url("/web/img/marketers/desktop/bg-marketers.png");
-    }        
-    
+    }
+
+    #mobile-display .wrapper-description {
+        margin-top: 15%;
+    }
+    #video .wrapper-description {
+        margin-top: 2%;
+    }
+    #contenido-editorial .wrapper-description {
+        margin-top: 7%;
+    }
+
+
     .marketers-info.versus-mobile {
         display: none;
     }
-    
+
     .wrapper-description{
         //margin-top: 15%;
-        @include measures(45%,auto);
+        text-align: center;
+        @include measures(50%,auto);
         .marketers-title {
             color: #FFF;
-            font-size: 35px;
+            font-size: 50px;
             @extend .Hind-Bold;
         }
         .marketers-info {            
             color: #FFF;
-            font-size: 16px;
+            font-size: 17px;
             margin-top: 20px;
+            text-align: left;
             @extend .Hind-Regular;
             ul li {                
-                list-style-position: inside; 
-                list-style-type: square;
+                list-style-position: inside;
+                list-style-image: url("/web/img/global/vineta.png");
+                //list-style-type: square;
             }
         }
     }
     .wrapper-image {
         //padding-top: 5%;
-        @include measures(45%,auto);
-        img {            
+        @include measures(50%,auto);
+        img {
+            max-width: 340px;
+            @include measures(100%,auto);
             //max-height: 360px;
         }
     }

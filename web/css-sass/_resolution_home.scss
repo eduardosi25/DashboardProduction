@@ -308,6 +308,10 @@
         }
     }
 
+    .wrapper-image-section1 .wrapper-content-section1 img {
+        @include measures(100%,auto);
+    }
+
     /* audiencias y contenidos */
     #page-audiencias-contenidos {
         .wrapper-description {
@@ -324,13 +328,40 @@
             background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
         }
 
+        #rich-media-y-display .wrapper-description {
+            margin-top: 20%;
+        }
+        #mobile-display .wrapper-description {
+            margin-top: 30%;
+        }
+        #video .wrapper-description {
+            margin-top: 12%;
+        }
+        #contenido-editorial .wrapper-description {
+            margin-top: 20%;
+        }
+        #buzz-marketing .wrapper-description {
+            margin-top: 20%;
+        }
+        #programatic .wrapper-description{
+            @include measures(100%,auto);
+        }
+
         .wrapper-site-markerts {            
             display: none;
         }
 
+        .wrapper-image {
+            @include measures(50%,auto);
+        }
+
         .wrapper-description {
+            @include measures(50%,auto);
             .marketers-info {
                 display: none;
+            }
+            .marketers-title {
+                font-size: 30px;
             }
         }
         section {

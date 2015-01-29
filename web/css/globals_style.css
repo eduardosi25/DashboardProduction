@@ -1503,7 +1503,7 @@ body.rtl .formError .formErrorArrow {
     background-color: #161719;
     background-repeat: no-repeat; }
     #page-audiencias-contenidos .wrapper-image-section .wrapper-description .audiencia-info ul li {
-      list-style-type: square;
+      list-style-image: url("/web/img/global/vineta.png");
       list-style-position: inside; }
   #page-audiencias-contenidos #noticias-negocios.wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1920/noticias.jpg"); }
@@ -1556,24 +1556,36 @@ body.rtl .formError .formErrorArrow {
     background-color: #161719;
     background-repeat: no-repeat;
     background-image: url("/web/img/marketers/desktop/1920/1920.jpg"); }
+  #page-marketers #mobile-display .wrapper-description {
+    margin-top: 15%; }
+  #page-marketers #video .wrapper-description {
+    margin-top: 2%; }
+  #page-marketers #contenido-editorial .wrapper-description {
+    margin-top: 7%; }
   #page-marketers .marketers-info.versus-mobile {
     display: none; }
   #page-marketers .wrapper-description {
-    width: 45%;
+    text-align: center;
+    width: 50%;
     height: auto; }
     #page-marketers .wrapper-description .marketers-title {
       color: #FFF;
-      font-size: 35px; }
+      font-size: 50px; }
     #page-marketers .wrapper-description .marketers-info {
       color: #FFF;
-      font-size: 16px;
-      margin-top: 20px; }
+      font-size: 17px;
+      margin-top: 20px;
+      text-align: left; }
       #page-marketers .wrapper-description .marketers-info ul li {
         list-style-position: inside;
-        list-style-type: square; }
+        list-style-image: url("/web/img/global/vineta.png"); }
   #page-marketers .wrapper-image {
-    width: 45%;
+    width: 50%;
     height: auto; }
+    #page-marketers .wrapper-image img {
+      max-width: 340px;
+      width: 100%;
+      height: auto; }
   #page-marketers .wrapper-table-formats {
     width: 100%;
     height: auto; }
@@ -2542,6 +2554,10 @@ footer {
       section.main-footer ul li:first-child {
         border-left: none; }
 
+  .wrapper-image-section1 .wrapper-content-section1 img {
+    width: 100%;
+    height: auto; }
+
   /* audiencias y contenidos */
   #page-audiencias-contenidos .wrapper-description .audiencia-info {
     display: none; }
@@ -2549,10 +2565,31 @@ footer {
   /* markerts   */
   #page-marketers .wrapper-image-section1 {
     background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg"); }
+  #page-marketers #rich-media-y-display .wrapper-description {
+    margin-top: 20%; }
+  #page-marketers #mobile-display .wrapper-description {
+    margin-top: 30%; }
+  #page-marketers #video .wrapper-description {
+    margin-top: 12%; }
+  #page-marketers #contenido-editorial .wrapper-description {
+    margin-top: 20%; }
+  #page-marketers #buzz-marketing .wrapper-description {
+    margin-top: 20%; }
+  #page-marketers #programatic .wrapper-description {
+    width: 100%;
+    height: auto; }
   #page-marketers .wrapper-site-markerts {
     display: none; }
-  #page-marketers .wrapper-description .marketers-info {
-    display: none; }
+  #page-marketers .wrapper-image {
+    width: 50%;
+    height: auto; }
+  #page-marketers .wrapper-description {
+    width: 50%;
+    height: auto; }
+    #page-marketers .wrapper-description .marketers-info {
+      display: none; }
+    #page-marketers .wrapper-description .marketers-title {
+      font-size: 30px; }
   #page-marketers section {
     background-color: #F1F1F1; }
   #page-marketers .marketers-info.versus-mobile {

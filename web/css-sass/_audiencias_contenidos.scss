@@ -11,8 +11,15 @@
         .wrapper-description {
             .audiencia-info {
                 ul li {
-                    list-style-type: square;
+                    list-style-image: url("/web/img/global/vineta.png");
                     list-style-position: inside;
+                    //list-style-type: square;
+                    //list-style: none;
+                    //background-image: url("/web/img/global/vineta.png");
+                    //background-position: left bottom;
+                    //background-repeat: no-repeat;
+                    //padding-left: 15px;
+                    //list-style-image: url("/web/img/global/vineta.png");
                 }
             } 
         }
