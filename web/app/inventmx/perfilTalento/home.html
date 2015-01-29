@@ -115,32 +115,36 @@
         <span class="corange-invent">MÁS DE  {{ this.0.audience.0.title }}</span>
     </h2>
     
-    <article class="home-perfil-colaboradores pt15">    
+    <article class="home-perfil-colaboradores pt15">
         <ul>
             {{#each this}}
-                <li class="left center box-{{@index}}">
-                    <a class="none-decoration" href="{{ getUrlApp this.url}}">
-                        <span class="block">
-                        {{#if this.images.picture }}
-                            {{#if this.images.picture.0.styles }}
-                                {{#if this.images.picture.0.styles.medium }}
-                                    <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
-                                {{else}}
-                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
-                                {{/if}}
+            <li class="left center sections-perfil-talento box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block wrapper-image-talento">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
                             {{else}}
                                 <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                             {{/if}}
                         {{else}}
                             <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
                         {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                    </span>
 
-                        </span>
+                    <span class="inline-block wrapper-info">
                         <span class="block name-editor">{{this.title}}</span>
-                    </a>
-                </li>            
+                        <span class="block type-content">{{ this.audience.0.title }}</span>
+                    </span>
+                    <span class="clear"></span>
+                </a>
+            </li>
             {{/each}}
-                <li class="clear block"></li>
+            <li class="clear block"></li>
         </ul>
     </article>
 </script>
