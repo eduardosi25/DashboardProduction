@@ -82,55 +82,54 @@
                         <span class="block users">MUJERES</span>
                     </div>
                 </div>
-                <div class="left content-visit center">
-                        <span class="block total-visit">
-                            {{#if this.views }}
+
+                {{#if this.views }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
                                 {{ NumberSeparate this.views }}
-                            {{else}}
-                                0
-                            {{/if}}
-                        </span>
-                    <span class="description-visit block">VISITAS MENSUALES</span>
-                </div>
+                            </span>
+                        <span class="description-visit block">VISITAS MENSUALES</span>
+                    </div>
+                {{/if}}
 
                 <!-- seguidores fb -->
                 {{#if this.fb_followers }}
-                <div class="left content-visit center">
-                        <span class="block total-visit">                            
-                            {{ NumberSeparate this.fb_followers }}
-                        </span>
-                    <span class="description-visit block">SEGUIDORES FACEBOOK</span>
-                </div>
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.fb_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES FACEBOOK</span>
+                    </div>
                 {{/if}}
 
                 <!-- seguidores tw -->
                 {{#if this.tw_followers }}
-                <div class="left content-visit center">
-                        <span class="block total-visit">
-                            {{ NumberSeparate this.tw_followers }}
-                        </span>
-                    <span class="description-visit block">SEGUIDORES TWITTER </span>
-                </div>
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.tw_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES TWITTER </span>
+                    </div>
                 {{/if}}
 
                 <!-- seguidores google+ -->
                 {{#if this.gplus_followers }}
-                <div class="left content-visit center">
-                        <span class="block total-visit">
-                            {{ NumberSeparate this.gplus_followers }}
-                        </span>
-                    <span class="description-visit block">SEGUIDORES GOOGLE+ </span>
-                </div>
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.gplus_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES GOOGLE+ </span>
+                    </div>
                 {{/if}}
 
                 <!-- seguidores youtube -->
                 {{#if this.yt_followers }}
-                <div class="left content-visit center">
-                        <span class="block total-visit">
-                            {{ NumberSeparate this.yt_followers }}
-                        </span>
-                    <span class="description-visit block">SEGUIDORES YOUTUBE </span>
-                </div>
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.yt_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES YOUTUBE </span>
+                    </div>
                 {{/if}}
 
 

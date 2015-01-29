@@ -83,14 +83,20 @@
                 <span class="block users">MUJERES</span>
             </div>
         </div>
-        <div class="left content-visit center">
-            <span class="total-visit block">{{NumberSeparate this.views}}</span>
-            <span class="description-visit block">VISITAS MENSUALES</span>
-        </div>
-        <div class="left content-visit center">
-            <span class="total-visit block">{{NumberSeparate this.followers}}</span>
-            <span class="description-visit block">TOTAL SEGUIDORES</span>
-        </div>
+
+        {{#if this.views }}
+            <div class="left content-visit center">
+                <span class="total-visit block">{{NumberSeparate this.views}}</span>
+                <span class="description-visit block">VISITAS MENSUALES</span>
+            </div>
+        {{/if}}
+
+        {{#if this.followers }}
+            <div class="left content-visit center">
+                <span class="total-visit block">{{NumberSeparate this.followers}}</span>
+                <span class="description-visit block">TOTAL SEGUIDORES</span>
+            </div>
+        {{/if}}
         <div class="clear"></div>
     </div>
     
