@@ -2,7 +2,8 @@
     
     img {
         max-width: 100%;
-        @include measures(100%,auto);
         margin-bottom: -3px;
+        @include measures(100%,auto);
+        @include transition(all 1s ease);
     }
 }

@@ -568,7 +568,12 @@ article {
 
 .home-perfil-colaboradores ul {
   width: 100%;
-  height: auto; }
+  height: auto;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease; }
   .home-perfil-colaboradores ul li {
     padding: 2%;
     width: 19%;
@@ -1333,8 +1338,18 @@ body.rtl .formError .formErrorArrow {
   margin: 0 auto;
   padding-top: 30px;
   width: 770px;
-  height: auto; }
+  height: auto;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease; }
   .wrapper-bars .content-grafic-1, .wrapper-bars .content-grafic-2 {
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
     width: 176px;
     height: 176px;
     background-position: -31px -33px; }
@@ -1358,7 +1373,12 @@ body.rtl .formError .formErrorArrow {
   .wrapper-bars .content-visit {
     padding-top: 60px;
     width: 165px;
-    height: auto; }
+    height: auto;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease; }
     .wrapper-bars .content-visit .total-visit {
       color: #E58436;
       font-size: 26px; }
@@ -1488,9 +1508,14 @@ body.rtl .formError .formErrorArrow {
 
 .not-found img {
   max-width: 100%;
+  margin-bottom: -3px;
   width: 100%;
   height: auto;
-  margin-bottom: -3px; }
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease; }
 
 #page-audiencias-contenidos {
   background-color: #FFF; }
@@ -1877,46 +1902,13 @@ body.rtl .formError .formErrorArrow {
 
 #page-case-exito {
   width: 100%;
-  height: auto;
-  /*.main-sections-tools {
-      margin: 0 auto;
-      padding-top: 25px;
-      @include measures(80%,auto);
-      li {
-          margin-left: 3%;            
-          @include measures(48.5%,auto);            
-          &:first-child {
-              margin-left: 0;
-          }
-          .ico-media-kit {
-              margin-top: -7px;
-              @extend .sprite-invent;
-              @include img-position(39px,37px,-57px,-2868px);
-          }
-          a {                
-              & > span {
-                  vertical-align: middle;
-              }                
-              height:23px;                
-          }            
-      }
-  }*/ }
+  height: auto; }
   #page-case-exito #section-table-case-exito {
     background-color: #F1F1F1; }
   #page-case-exito .wrapper-case-items {
     min-height: 300px;
     width: 100%;
-    height: auto;
-    /*&.item-0 {
-        background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
-    }
-    &.item-1 {
-        color: #000;
-        background-color: #F1F1F1;
-    }
-    &.item-2 {
-        background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg");
-    }*/ }
+    height: auto; }
     #page-case-exito .wrapper-case-items.even {
       background-color: #161719;
       background-image: url("/web/img/caso-de-exito/desktop/1920/1920.jpg"); }
@@ -1929,34 +1921,9 @@ body.rtl .formError .formErrorArrow {
     #page-case-exito .wrapper-case-items .wrapper-description-case {
       width: 50%;
       height: auto;
-      /*.logo-case-volskwagen {
-          @extend .sprite-invent;
-          @include img-position(98px,99px,-379px,-2766px);
-      }
-      .logo-case-revlon {
-          @extend .sprite-invent;
-          @include img-position(198px,46px,-164px,-2793px);
-      }
-      .logo-case-bridgestone {
-          @extend .sprite-invent;
-          @include img-position(98px,91px,-50px,-2755px);            
-      }*/
       color: #FFF;
       font-size: 18px;
-      line-height: 22px;
-      /*.titles {
-          margin: 10px 0;
-          color: #E58436;
-          font-size: 20px;
-          line-height: 24px;
-          @extend .Hind-Bold;
-      }*/
-      /*.description {
-          color: #FFF;
-          font-size: 16px;
-          line-height: 18px;
-          @extend .Hind-Regular;
-      }*/ }
+      line-height: 22px; }
       #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case {
         max-width: 120px; }
         #page-case-exito .wrapper-case-items .wrapper-description-case .logo-case img {

@@ -3,9 +3,11 @@
     padding-top: 30px;
     @extend .Hind-Bold;
     @include measures(770px,auto);
+    @include transition(all 1s ease);
 
     .content-grafic-1,.content-grafic-2 {
         @extend .sprite-grafics;
+        @include transition(all 1s ease);
         @include img-position(176px,176px,-31px,-33px);
         .info-bars {
             top: 57px;
@@ -39,6 +41,7 @@
     .content-visit {
         padding-top: 60px;
         @include measures(165px,auto);
+        @include transition(all 1s ease);
         .total-visit {            
             color: #E58436;
             font-size: 26px;

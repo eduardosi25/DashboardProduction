@@ -22,30 +22,9 @@
                 color: #000; 
             }
         }
-        /*&.item-0 {
-            background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
-        }
-        &.item-1 {
-            color: #000;
-            background-color: #F1F1F1;
-        }
-        &.item-2 {
-            background-image: url("/web/img/caso-de-exito/desktop/bg_bridgestone.jpg");
-        }*/
+
         .wrapper-description-case {
-            @include measures(50%,auto);            
-            /*.logo-case-volskwagen {
-                @extend .sprite-invent;
-                @include img-position(98px,99px,-379px,-2766px);
-            }
-            .logo-case-revlon {
-                @extend .sprite-invent;
-                @include img-position(198px,46px,-164px,-2793px);
-            }
-            .logo-case-bridgestone {
-                @extend .sprite-invent;
-                @include img-position(98px,91px,-50px,-2755px);            
-            }*/
+            @include measures(50%,auto);
             color: #FFF;
             font-size: 18px;
             line-height: 22px;
@@ -75,20 +54,7 @@
                 line-height: 29px;
                 @extend .Hind-Bold;
             }
-            
-            /*.titles {
-                margin: 10px 0;
-                color: #E58436;
-                font-size: 20px;
-                line-height: 24px;
-                @extend .Hind-Bold;
-            }*/
-            /*.description {
-                color: #FFF;
-                font-size: 16px;
-                line-height: 18px;
-                @extend .Hind-Regular;
-            }*/
+
         }
         .wrapper-image-case {
             margin-left: 3%;
@@ -99,30 +65,6 @@
             }            
         }        
     }
-    
-    /*.main-sections-tools {
-        margin: 0 auto;
-        padding-top: 25px;
-        @include measures(80%,auto);
-        li {
-            margin-left: 3%;            
-            @include measures(48.5%,auto);            
-            &:first-child {
-                margin-left: 0;
-            }
-            .ico-media-kit {
-                margin-top: -7px;
-                @extend .sprite-invent;
-                @include img-position(39px,37px,-57px,-2868px);
-            }
-            a {                
-                & > span {
-                    vertical-align: middle;
-                }                
-                height:23px;                
-            }            
-        }
-    }*/
     
     .title-seccion-invent {
         font-size: 30px;

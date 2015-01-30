@@ -346,6 +346,7 @@ article {
 .home-perfil-colaboradores {
     ul {
         @include measures(100%,auto);
+        @include transition(all 1s ease);
         li {
             //margin-left: 2%;
             padding: 2%;
