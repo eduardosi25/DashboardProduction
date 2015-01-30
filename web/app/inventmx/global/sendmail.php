@@ -27,15 +27,15 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
 #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
     if($type == "afiliate") {
         $type = "Afíliate";
-        $to="jose.cruz@inventmx.com";
+        //$to="jose.cruz@inventmx.com";
 
-        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
+        $to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
         //$to="pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
     }else {
         $type = "Anúnciate";
-        $to="jose.cruz@inventmx.com";
+        //$to="jose.cruz@inventmx.com";
 
-        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
+        $to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
         //$to="pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
     }
 
