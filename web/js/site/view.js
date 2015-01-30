@@ -10,9 +10,10 @@ $(function() {
     });
     
     inventMx_events.bind("Inventform", function (idform,data) {
-        validate = $(idform).validationEngine('validate');        
-        options = {idform:idform}
+        validate = $(idform).validationEngine('validate');
+        options = {idform:idform};
         if(validate) {
+            inventMx.utilities.loaderShow();
             url = "/web/app/inventmx/global/sendmail.php";
             inventMx.dataSource.getAjax(url, data,inventMx.email.data,options);
         }else {
@@ -648,11 +649,13 @@ $(function() {
                 
                 $(document).on("submit","#form-afiliate",function(e){
                     e.preventDefault();
-                    data = $(this).serializeArray();                    
+                    inventMx.utilities.loaderShow();
+                    console.log("cargando");
+                    data = $(this).serializeArray();
                     inventMx_events.trigger('Inventform','#form-afiliate',data);
+                    return false;
                 });
-                
-                return this;
+                //return this;
             });
             
             $(window).resize(function (e) {
@@ -660,7 +663,7 @@ $(function() {
                 inventMx.utilities.changeResolitionsImg(id_image_firts);
             });
             
-        },
+        }
     }),
     inventMx.home.homeAnunciate = Backbone.View.extend({
         el: inventMx.page.wrapper_site,

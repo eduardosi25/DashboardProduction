@@ -281,6 +281,23 @@
         } 
     }
 
+    /* messaje and fondo form afiliate y anunciate*/
+    .wrapper-messaje-form {
+        .messaje-send {
+            font-size: 25px;
+        }
+        .messaje-interest {
+            font-size: 35px;
+        }
+        .messaje-contact {
+            font-size: 25px;
+        }
+        .btn-publish {
+            font-size: 18px;
+        }
+    }
+
+
     section.main-footer {
         display:block;        
         ul {
@@ -968,6 +985,22 @@
         }
         li.services-sites-0, li.services-sites-2, li.services-sites-4 {
             margin-left: 0% !important;
+        }
+    }
+
+    /* messaje and fondo form afiliate y anunciate*/
+    .wrapper-messaje-form {
+        .messaje-send {
+            font-size: 20px;
+        }
+        .messaje-interest {
+            font-size: 30px;
+        }
+        .messaje-contact {
+            font-size: 20px;
+        }
+        .btn-publish {
+            font-size: 16px;
         }
     }
 
