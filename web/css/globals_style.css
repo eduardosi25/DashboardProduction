@@ -445,7 +445,8 @@ header {
     width: 50%;
     height: auto; }
     #slide-home.wrapper-image-section1 .wrapper-description.text-firts {
-      margin: 20% 0 20% px 0; }
+      margin-top: 20%;
+      margin-bottom: 20%; }
     #slide-home.wrapper-image-section1 .wrapper-description img {
       max-width: 100%;
       width: 100%;
