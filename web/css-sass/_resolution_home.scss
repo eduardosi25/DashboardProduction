@@ -577,7 +577,7 @@
 
     #page-case-exito {
         .wrapper-case-items.even {
-            background-image: url("/web/img/caso-de-exito/mobile/700/700.jpg");
+            background-image: url("/web/img/caso-de-exito/mobile/horizontal/700/700.jpg");
         }
         .wrapper-case-items {
             .wrapper-description-case, .wrapper-image-case {
@@ -618,11 +618,14 @@
         .wrapper-content-section1 {
             .wrapper-description {
                 margin-top: 15%;
+                text-align: center;
                 .audiencia-title {
                     font-size: 26px;
                 }
             }
         }
+
+
         #noticias-negocios.wrapper-image-section {
             background-image: url("/web/img/audiencia-y-contenido/mobile/700/noticias.jpg");
         }
@@ -949,6 +952,9 @@
         .content-visit {
             padding-top: 20px;
             @include measures(100%,auto);
+            &.itemUnit {
+                @include measures(100%,auto);
+            }
         }
     }
 
@@ -1047,7 +1053,7 @@
     }
     #page-case-exito {
         .wrapper-case-items.even {
-            background-image: url("/web/img/caso-de-exito/mobile/400/400.jpg");
+            background-image: url("/web/img/caso-de-exito/mobile/vertical/400/400.jpg");
         }
     }
 

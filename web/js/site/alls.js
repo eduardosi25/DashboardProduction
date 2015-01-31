@@ -220,6 +220,24 @@
                 var tpl_perfilSite = Handlebars.compile(perfilSite);
                 var view_perfilSite = tpl_perfilSite(dataSite);
                 $("#perfil-site").html(view_perfilSite);
+
+                itemsFolow = $(".wrapper-bars .content-visit").length;
+                itemsFolow = parseInt(itemsFolow);
+                //console.log(itemsFolow);
+                if(itemsFolow == 5) {
+                    $(".wrapper-bars .content-visit").css("padding-top","10px");
+                    $(".wrapper-bars .content-visit").eq(4).addClass("itemUnit");
+                    //$(".wrapper-bars .content-visit").eq(4).css({"max-width":"320px","width":"100%","margin":"0  auto"});
+                }else if (itemsFolow == 4) {
+                    $(".wrapper-bars .content-visit").css("padding-top","30px");
+                }else if (itemsFolow == 3) {
+                    $(".wrapper-bars .content-visit").css("padding-top","30px");
+                    //$(".wrapper-bars .content-visit").eq(2).css({"max-width":"320px","width":"100%","margin":"0  auto"});
+                    $(".wrapper-bars .content-visit").eq(2).addClass("itemUnit");
+                }else if (itemsFolow == 2 || itemsFolow == 1) {
+                    $(".wrapper-bars .content-visit").css("padding-top","60px");
+                }
+
             }else {
                 error404 = new inventMx.home.default404();
             }

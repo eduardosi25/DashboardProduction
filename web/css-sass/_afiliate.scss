@@ -17,6 +17,7 @@
     z-index: 999;
     background-repeat: repeat;
     @include measures(100%,100%);
+    @include transition(all 1s ease);
     background-image: url("/web/img/bg/bg_menu_movil.png");
 }
 
@@ -32,6 +33,7 @@
     //position: fixed;
     background-color: #FFF;
     @include measures(94%,auto);
+    @include transition(all 1s ease);
     .messaje-send {
         font-size: 30px;
         margin-bottom: 15px;

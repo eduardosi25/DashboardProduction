@@ -27,10 +27,12 @@
         //margin-top: 15%;
         text-align: center;
         @include measures(50%,auto);
+        @include transition(all 1s ease);
         .marketers-title {
             color: #FFF;
             font-size: 50px;
             @extend .Hind-Bold;
+            @include transition(all 1s ease);
         }
         .marketers-info {            
             color: #FFF;
@@ -38,8 +40,10 @@
             margin-top: 20px;
             text-align: left;
             @extend .Hind-Regular;
+            @include transition(all 1s ease);
             ul li {                
                 list-style-position: inside;
+                @include transition(all 1s ease);
                 list-style-image: url("/web/img/global/vineta.png");
                 //list-style-type: square;
             }
@@ -48,9 +52,11 @@
     .wrapper-image {
         //padding-top: 5%;
         @include measures(50%,auto);
+        @include transition(all 1s ease);
         img {
             max-width: 340px;
             @include measures(100%,auto);
+            @include transition(all 1s ease);
             //max-height: 360px;
         }
     }

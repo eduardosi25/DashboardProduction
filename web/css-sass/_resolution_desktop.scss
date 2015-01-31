@@ -146,6 +146,9 @@
         .content-visit {
             padding-top: 20px;
             @include measures(220px,auto);
+            &.itemUnit {
+                @include measures(440px,auto);
+            }
         }
     }
 

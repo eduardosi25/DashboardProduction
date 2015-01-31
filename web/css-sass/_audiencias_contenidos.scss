@@ -45,18 +45,22 @@
                 font-size: 50px;                
                 @extend .Hind-Bold;
                 text-transform: uppercase;
+                @include transition(all 1s ease);
             }
             .audiencia-info {                
                 font-size: 17px;
                 margin-top: 15px;
                 line-height: 20px;
                 @extend .Hind-Medium;
+                @include transition(all 1s ease);
             }
         }
         .wrapper-image {
             @include measures(45%,auto);
+            @include transition(all 1s ease);
             img {
                 margin-bottom: -3px;
+                @include transition(all 1s ease);
             }
         }
     }

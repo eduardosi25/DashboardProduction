@@ -188,6 +188,9 @@ header {
         background-repeat: no-repeat;
         background-image: url("/web/img/home/desktop/1920/1920.jpg");
         .wrapper-description {
+            &.text-firts {
+                margin: 20% 0 20% 0;
+            }
             @include measures(50%,auto);
             img {
                 max-width: 100%;

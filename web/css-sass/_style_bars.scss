@@ -50,7 +50,11 @@
             color: #FFF;
             font-size: 15px;
         }
+        &.itemUnit {
+            @include measures(330px,auto)
+        }
     }
+
 
     .bars-5 {
         top: -2px;
