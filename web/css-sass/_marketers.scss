@@ -1,0 +1,246 @@
+#page-marketers {
+    background-color: #FFF;
+    .wrapper-image-section1 {
+        padding: 30px 0;
+        background-color: #161719;
+        background-repeat: no-repeat;        
+        background-image: url("/web/img/marketers/desktop/1920/1920.jpg");
+        //background-image: url("/web/img/marketers/desktop/bg-marketers.png");
+    }
+
+    #mobile-display .wrapper-description {
+        margin-top: 15%;
+    }
+    #video .wrapper-description {
+        margin-top: 2%;
+    }
+    #contenido-editorial .wrapper-description {
+        margin-top: 7%;
+    }
+
+
+    .marketers-info.versus-mobile {
+        display: none;
+    }
+
+    .wrapper-description{
+        //margin-top: 15%;
+        text-align: center;
+        @include measures(50%,auto);
+        @include transition(all 1s ease);
+        .marketers-title {
+            color: #FFF;
+            font-size: 50px;
+            @extend .Hind-Bold;
+            @include transition(all 1s ease);
+        }
+        .marketers-info {            
+            color: #FFF;
+            font-size: 17px;
+            margin-top: 20px;
+            text-align: left;
+            @extend .Hind-Regular;
+            @include transition(all 1s ease);
+            ul li {                
+                list-style-position: inside;
+                @include transition(all 1s ease);
+                list-style-image: url("/web/img/global/vineta.png");
+                //list-style-type: square;
+            }
+        }
+    }
+    .wrapper-image {
+        //padding-top: 5%;
+        @include measures(50%,auto);
+        @include transition(all 1s ease);
+        img {
+            max-width: 340px;
+            @include measures(100%,auto);
+            @include transition(all 1s ease);
+            //max-height: 360px;
+        }
+    }
+
+    .wrapper-table-formats {
+        @include measures(100%,auto);
+        .header-table {
+            @extend .Hind-Bold;
+            @include measures(100%,auto);
+            background-color: #E4E4E4;
+            .type-publisher {                
+                & > span {
+                    vertical-align: middle;
+                }
+                color: #757575;
+                padding: 15px 0;
+                font-size: 20px;
+                border-right: 1px solid #c4c4c4;
+                //border-right: 1px solid #363636;
+                @include measures(12%,auto);
+            }
+            .format-exclusive {
+                color: #757575;
+                padding: 15px 0;
+                font-size: 14px;
+                @include measures(78%,auto);
+            }
+        }
+        .body-table {
+            .type-publisher {
+                color: #757575;
+                font-size: 20px;
+                @extend .Hind-Bold;
+            }
+            .box-table {                
+                color: #757575;
+                padding: 15px 0;
+                font-size: 14px;
+                @extend .Hind-Semibold;
+                border-left: 1px solid #c4c4c4;
+                //border-left: 1px solid #363636;
+                @include measures(12%,auto);
+            }
+            .box-table:first-child {
+                border-left: none;
+            }
+        }
+        &.formats-video {
+            .body-table {
+                .box-table {
+                    @include measures(33%,auto);
+                }
+            }
+            .body-table-second-video {
+
+                .content-header {
+                    padding: 3%;
+                    color: #757575;
+                    font-size: 20px;
+                    @extend .Hind-Bold;
+                    @include measures(43%,auto);
+                    border-left: 1px solid #c4c4c4;
+                    //border-left: 1px solid #363636;
+                }
+                .content-header:first-child {
+                    border-left: none;
+                }
+                div.content-body {
+                    font-size: 14px;
+                    padding: 3%;
+                    @extend .Hind-Regular;
+                    @include measures(43%,auto);
+                    border-right: 1px solid #c4c4c4;
+                    //border-right: 1px solid #363636;
+                }
+                /*div.content-body:first-child {
+                    border-left: none;
+                }*/
+            }
+        }
+        &.formats-editorial {
+            color: #757575;
+            .type-content {
+                padding-top: 51px;
+                font-size: 20px;
+                min-height: 62px;
+                @extend .Hind-Bold;                
+                @include measures(30%,auto);                
+
+            }
+            .content-description {
+                padding-top: 30px;
+                font-size: 18px;
+                min-height: 83px;                
+                @extend .Hind-Regular;
+                @include measures(68%,auto);
+                border-left: 1px solid #c4c4c4;
+                //border-left: 1px solid #363636;
+            }
+        }
+        &.formats-programatic {
+            .body-table {
+                @include measures(100%,auto);
+                li.box-items {
+                    padding: 15px 3%;
+                    font-size: 16px;
+                    @extend .Hind-Regular;
+                    @include measures(94.1%,auto);
+                }
+                & li.box-items:first-child {                    
+                    color: #757575;
+                    font-size: 20px;
+                    padding: 15px 0;
+                    @extend .Hind-Bold;
+                    @include measures(100%,auto);
+                }
+            }
+        }
+    }
+    //ul.red-invent-sections-sites li.sections-sites
+    .wrapper-site-markerts {
+        padding: 20px 0 45px 0;
+        ul.red-invent-sections-sites {
+            li.sections-sites {
+                min-height: 70px !important;
+                .follow-socials {
+                    margin-bottom: 20px;
+                    .sprt-facebook {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-51px,-2920px);
+                    }
+                    .sprt-facebook:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-51px,-2955px);
+                    }
+                    .sprt-twitter {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-82px,-2920px);
+                    }
+                    .sprt-twitter:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-82px,-2955px);
+                    }
+                    .sprt-youtube {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-176px,-2920px);
+                    }
+                    .sprt-youtube:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-176px,-2955px);
+                    }
+                    .sprt-google {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-209px,-2920px);
+                    }
+                    .sprt-google:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-209px,-2955px);
+                    }                
+                    .sprt-pinterest {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-114px,-2920px);
+                    }
+                    .sprt-pinterest:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-114px,-2955px);
+                    }
+                    .sprt-instagram {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-146px,-2920px);
+                    }
+                    .sprt-instagram:hover {
+                        @extend .sprite-invent;
+                        @include img-position(28px,28px,-146px,-2955px);
+                    }
+                }                
+            }
+        }
+    }    
+
+
+    .wrapper-boton-publisher {
+        margin: 0 auto;
+        @include measures(245px,auto);
+    }
+
+}

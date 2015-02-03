@@ -1,0 +1,67 @@
+<section class="wrapper-image-background relative">
+    <div>
+        <div class="relative">
+            <img id="bg-firts-afiliate" class="width-all loader" data-src="/web/img/afiliate/global/" alt="" title=""/>
+            <div class="bg-degradado absolute"></div>
+        </div>        
+        <div class="wrapper-section-background absolute">
+            <article class="wrapper-form-afiliate relative">
+                <form id="form-anunciate" class="form-anunciate" method="POST" action="">
+                    <span class="block afiliate-title center">
+                        ANÚNCIATE
+                    </span>
+                    <span class="block form-block">
+                        <label class="label-name">Nombre</label>
+                        <label class="label-input">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="nombre" value="">
+                        </label>
+                    </span>
+                    <span class="block form-block">
+                        <label class="label-name">Apellido</label>
+                        <label class="label-input">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="apellido" value="">
+                        </label>
+                    </span>
+                    <span class="block form-block">
+                        <label class="label-name">Correo eléctronico</label>
+                        <label class="label-input">
+                            <input class="validate[required,custom[email],maxSize[50]]" maxlength="50" type="text" name="email" value="">
+                        </label>
+                    </span>
+                    <input type="hidden" name="type" value="anunciate">
+                    <!-- <span class="block form-block">
+                        <label class="label-name">Canal de Youtube</label>
+                        <label class="label-input">
+                            <input type="text" name="chanel" value="" placeholder="Nombre">
+                        </label>
+                    </span> -->
+                    
+                    <!-- <span class="block form-block-term fs14 center">
+                        <label><input type="checkbox" name="">Acepto terminos y condiciones</label>                        
+                    </span>
+                    
+                    <span class="block form-block-term bg-FFF center fs18">
+                        <a href="/#terminos-y-condiciones">Terminos y condiciones</a>
+                    </span> -->
+                    
+                    <span class="afiliate-btn block center pt20">
+                        <input class="btn-publish" type="submit" name="enviar"  value="Enviar">
+                    </span>
+                    
+                    <span class="block bg-FFF form-bottom"></span>
+                </form>
+
+                <div class="none wrapper-messaje-form">
+                    <span class="block messaje-send">Tu mensaje se ha enviado correctamente</span>
+                    <span class="block messaje-interest">¡Gracias por tu interes!</span>
+                    <span class="block messaje-contact">En breve un representante de invent se pondrá en contacto contigo</span>
+                    <span class="block wrapper-messaje-form-btn">
+                        <span class="btn-publish center block">ACEPTAR</span>
+                    </span>
+                </div>
+
+            </article>
+        </div>
+    </div>
+    <div class="none bg-messaje-send-form"></div>
+</section>

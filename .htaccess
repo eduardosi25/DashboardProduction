@@ -2,6 +2,7 @@
 # Apache/PHP/Drupal settings:
 #
 
+
 # Protect files and directories from prying eyes.
 <FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\..*|Entries.*|Repository|Root|Tag|Template)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig\.save)$">
   Order allow,deny
@@ -111,12 +112,23 @@ DirectoryIndex index.php index.html index.htm
 
   # Pass all requests not referring directly to files in the filesystem to
   # index.php. Clean URLs are handled in drupal_environment_initialize().
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_URI} !=/favicon.ico
-  RewriteCond %{REQUEST_URI} !=^/web/(.+)$
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !=/favicon.ico  
+    RewriteCond %{REQUEST_URI} !=^/web/(.+)$
   
   RewriteRule ^ index.php [L]
+
+# html5 pushstate (history) support:
+#<ifModule mod_rewrite.c>
+#   RewriteEngine On
+    #RewriteBase /web/
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_URI} !index
+    #RewriteRule (.*) index.html [L]
+#</ifModule>
+
 
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.
