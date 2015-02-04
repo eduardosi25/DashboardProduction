@@ -717,7 +717,7 @@ $(function() {
                 
                 $("#slide-home article").owlCarousel({
                     singleItem: true,
-                    autoPlay: true,
+                    autoPlay: 8000,
                     lazyLoad: false,
                     pagination: true,
                     navigation: true,
