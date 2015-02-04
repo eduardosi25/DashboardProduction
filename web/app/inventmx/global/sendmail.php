@@ -22,12 +22,12 @@ if ($type == "afiliate") {
     $type = "Afíliate";
 
     $to = "'sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'";
-    //$to="webmaster@inventmx.com,luis@inventmx.com,pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
+    //$to="'webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com', 'sara@inventmx.com','heberto@inventmx.com'";
 } else {
     $type = "Anúnciate";
 
     $to = "'sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'";
-    //$to="webmaster@inventmx.com,luis@inventmx.com,pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
+    //$to="'webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com'";
 }
 
 $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
@@ -45,7 +45,7 @@ $transport = Swift_SmtpTransport::newInstance('localhost', 25);
 $mailer = Swift_Mailer::newInstance($transport);
 $message = Swift_Message::newInstance($subject)
   ->setFrom(array('webmaster@inventmx.com' => 'Invent.mx'))
-  ->setTo(array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'))
+  ->setTo(array($to))
   ->setContentType('text/html')
   ->setBody($body)
   ;
