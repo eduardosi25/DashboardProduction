@@ -94,7 +94,7 @@ $(function() {
                 
                 $("#slide-home article").owlCarousel({
                     singleItem: true,
-                    autoPlay: true,
+                    autoPlay: 8000,
                     lazyLoad: false,
                     pagination: true,
                     navigation: true,
@@ -445,12 +445,25 @@ $(function() {
                     //console.log(idAncla);
                     if($("#"+idAncla).length){
                         offset1 = $("#"+idAncla).offset();
-                        var offset = offset1.top;                        
+                        var offset = offset1.top;
                         inventMx.utilities.topOffset(offset,0);
                         //console.log("Si");
                     }else {
                         var ficha = new inventMx.home.default404();
                         //inventMx.home.default404();
+                    }
+                }
+                
+                if(idAncla !== true){
+                    if($("#"+idAncla).length){
+                        function top(){
+                            offset1 = $("#"+idAncla).offset();
+                            var offset = offset1.top;
+                            inventMx.utilities.topOffset(offset,0);
+                        }                            
+                        setTimeout(top, 1000);
+                    }else {
+                        var ficha = new inventMx.home.default404();
                     }
                 }
                 

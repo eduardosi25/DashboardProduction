@@ -61,7 +61,8 @@
 
         }
         .wrapper-image-case {
-            margin-left: 3%;
+            //margin-left: 3%;
+            margin: 8% 0 0 3%;
             @include measures(47%,auto);
             @include transition(all 1s ease);
             img {
