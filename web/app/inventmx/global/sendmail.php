@@ -38,7 +38,7 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     }
     
 $cabeceras   = array();
-$cabeceras[] = "Content-type: text/html; charset=utf-8";
+$cabeceras[] = "Content-type: text/html";
 $cabeceras[] = "From: Invent.mx <webmaster@inventmx.com>";
 $cabeceras[] = "Nos han contactado en Invent.mx - " . $type." ".$referer;
 
