@@ -38,12 +38,14 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     }
 
     
-$cabeceras   = array();
-$cabeceras[] = "Content-type: text/html; charset=utf-8";
-$cabeceras[] = "From: Invent.mx <webmaster@inventmx.com>";
+//$cabeceras   = array();
+//$cabeceras[] = "Content-type: text/html; charset=utf-8";
+//$cabeceras[] = "From: Invent.mx <webmaster@inventmx.com>";
 //$cabeceras[] = "Nos han contactado en Invent.mx - " . $type." ".$referer;
 
-//$cabeceras = "Content-type: text/html";
+$cabeceras = "Content-type: text/html";
+$cabeceras .= "From: Invent.mx <webmaster@inventmx.com>";
+
 $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
 $message = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $message .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
