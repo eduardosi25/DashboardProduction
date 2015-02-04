@@ -20,13 +20,13 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
 if ($type == "afiliate") {
     $type = "Afíliate";
-
-    $to = "'sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'";
+    
+    $to = array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com');
     //$to="'webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com', 'sara@inventmx.com','heberto@inventmx.com'";
 } else {
     $type = "Anúnciate";
 
-    $to = "'sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'";
+    $to = array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com');
     //$to="'webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com'";
 }
 
@@ -45,7 +45,7 @@ $transport = Swift_SmtpTransport::newInstance('localhost', 25);
 $mailer = Swift_Mailer::newInstance($transport);
 $message = Swift_Message::newInstance($subject)
   ->setFrom(array('webmaster@inventmx.com' => 'Invent.mx'))
-  ->setTo(array($to))
+  ->setTo($to)
   ->setContentType('text/html')
   ->setBody($body)
   ;
