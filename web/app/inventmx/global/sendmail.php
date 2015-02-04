@@ -37,9 +37,14 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
         //$to="webmaster@inventmx.com,pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
     }
 
-$cabeceras = "Content-type: text/html";
+    
+$cabeceras   = array();
+$cabeceras[] = "Content-type: text/html; charset=utf-8";
+$cabeceras[] = "From: Invent.mx <webmaster@inventmx.com>";
+$cabeceras[] = "Nos han contactado en Invent.mx - " . $type." ".$referer;
 
-$subject = 'Nos han contactado en Invent.mx! - ' . $type." ".$referer;
+//$cabeceras = "Content-type: text/html";
+//$subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
 $message = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $message .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $message .= 'Correo: '. $correo . '<br /><br />';
@@ -48,8 +53,8 @@ if($canal){
     $message .= 'Youtube Channel: '. $canal . '<br /><br />';
 }
 
-
-mail($to, $subject, $message, $cabeceras);
+mail($to, $message, $cabeceras);
+//mail($to, $subject, $message, $cabeceras);
 
 if( $valid ){
     $respond = array(
