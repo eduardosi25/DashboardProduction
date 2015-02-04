@@ -46,6 +46,7 @@ $header = implode("\n",$cabeceras);
 
 //$cabeceras = "Content-type: text/html";
 //$subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
+ini_set('sendmail_from', 'Invent.mx <webmaster@inventmx.com>');
 $message = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $message .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $message .= 'Correo: '. $correo . '<br /><br />';
@@ -54,7 +55,7 @@ if($canal){
     $message .= 'Youtube Channel: '. $canal . '<br /><br />';
 }
 
-mail($to, $message, $cabeceras);
+mail($to, $message, $header);
 //mail($to, $subject, $message, $cabeceras);
 
 if( $valid ){
