@@ -190,7 +190,7 @@ header {
         .wrapper-description {
             &.text-firts {
                 margin-top: 15%;
-                margin-bottom: 15%;
+                margin-bottom: 10%;
                 //margin: 20% 0 20% 0;
             }
             @include measures(50%,auto);
