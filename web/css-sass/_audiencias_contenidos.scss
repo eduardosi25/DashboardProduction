@@ -4,6 +4,18 @@
         margin: 0 auto;
         @include measures(245px,auto);
     }
+    
+    ul#site-noticias-deportes.red-invent-sections-sites {
+        li.sections-sites-3 {
+            border-bottom: 1px solid #cacaca;
+        }
+    }
+    ul#site-lifestye.red-invent-sections-sites {
+        li.sections-sites-6, li.sections-sites-7 {
+            border-bottom: 1px solid #cacaca;
+        }
+    }
+    
     .wrapper-image-section {
         padding: 30px 0 0 0;
         background-color: #161719;
