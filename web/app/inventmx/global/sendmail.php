@@ -55,7 +55,7 @@ if($canal){
     $message .= 'Youtube Channel: '. $canal . '<br /><br />';
 }
 
-mail($to, $message, $header);
+mail($to,$header, $message);
 //mail($to, $subject, $message, $cabeceras);
 
 if( $valid ){
