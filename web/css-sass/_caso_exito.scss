@@ -1,0 +1,119 @@
+#page-case-exito {
+    //margin: 0 auto;
+    //max-width: 1024px;
+    #section-table-case-exito {
+        background-color: #F1F1F1;
+    }
+    @include measures(100%,auto);
+    .wrapper-case-items {
+        min-height: 300px;
+        @include measures(100%,auto);
+        @include transition(all 1s ease);
+        &.even {
+            background-color: #161719;
+            background-image: url("/web/img/caso-de-exito/desktop/1920/1920.jpg");
+            //background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
+        }
+        &.odd {            
+            background-color: #F1F1F1;
+            .wrapper-description-case {
+                .head-case {
+                    color: #000; 
+                }
+                color: #000; 
+            }
+        }
+
+        .wrapper-description-case {
+            @include measures(50%,auto);
+            color: #FFF;
+            font-size: 18px;
+            line-height: 22px;
+            @extend .Hind-Regular;
+            
+            .logo-case{
+                max-width: 120px;
+                @include transition(all 1s ease);
+                //max-width: 198px;
+                img {
+                    @include measures(100%,auto);
+                    @include transition(all 1s ease);
+                }
+            }
+
+            .head-case {
+                color: #FFF;
+                font-size: 34px;
+                @extend .Hind-Bold;
+                & > span {
+                    vertical-align: middle;
+                }
+            }
+            
+            h2 {
+                margin: 10px 0;
+                color: #E58436;
+                font-size: 25px;
+                line-height: 29px;
+                @extend .Hind-Bold;
+                @include transition(all 1s ease);
+            }
+
+        }
+        .wrapper-image-case {
+            margin-left: 3%;
+            @include measures(47%,auto);
+            @include transition(all 1s ease);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+                @include transition(all 1s ease);
+            }            
+        }        
+    }
+    
+    .title-seccion-invent {
+        font-size: 30px;
+        //margin: 35px 0 20px 0;
+    }
+    ul.wrapper-table-case-exito {
+        padding: 10px 0 36px 0;
+        li.box-item {
+            text-align: center;
+            @include measures(19.7%,auto);
+            border-right: 1px solid #c4c4c4;
+            @include transition(all 1s ease);
+            //border-right: 1px solid #363636;
+            &:first-child {
+                border-left: 1px solid #c4c4c4;
+                //border-left: 1px solid #363636;
+            }
+            .type-case {
+                margin: 8px 0;
+                color: #E58436;
+                font-size: 18px;
+                @extend .Hind-Bold;
+                @include transition(all 1s ease);
+            }
+            .title-case {                
+                color: #848484;
+                font-size: 16px;
+                margin-top: 5px;
+                @extend .Hind-Medium;
+                @include transition(all 1s ease);
+            }
+            .content-case {                
+                color: #848484;
+                font-size: 16px;
+                margin-top: 5px;
+                @extend .Hind-Bold;
+                @include transition(all 1s ease);
+            }
+        }        
+    }
+    
+    section.main-footer {
+        height: 36px;
+    }
+    
+}

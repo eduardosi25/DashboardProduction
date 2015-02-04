@@ -26060,6 +26060,283 @@ var effectTransfer = $.effects.effect.transfer = function( o, done ) {
 /* end jquery ui 1.11.2 */
 
 
+
+/* Init purl */
+    /*
+    * JQuery URL Parser plugin, v2.2.1
+    * Developed and maintanined by Mark Perkins, mark@allmarkedup.com
+    * Source repository: https://github.com/allmarkedup/jQuery-URL-Parser
+    * Licensed under an MIT-style license. See https://github.com/allmarkedup/jQuery-URL-Parser/blob/master/LICENSE for details.
+    */
+
+    ;(function(factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD available; use anonymous module
+        if ( typeof jQuery !== 'undefined' ) {
+            define(['jquery'], factory);
+        } else {
+            define([], factory);
+        }
+    } else {
+        // No AMD available; mutate global vars
+        if ( typeof jQuery !== 'undefined' ) {
+            factory(jQuery);
+        } else {
+            factory();
+        }
+    }
+})(function($, undefined) {
+
+    var tag2attr = {
+        a       : 'href',
+        img     : 'src',
+        form    : 'action',
+        base    : 'href',
+        script  : 'src',
+        iframe  : 'src',
+        link    : 'href'
+    },
+
+    key = ['source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'fragment'], // keys available to query
+
+    aliases = { 'anchor' : 'fragment' }, // aliases for backwards compatability
+
+    parser = {
+        strict : /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,  //less intuitive, more accurate to the specs
+        loose :  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // more intuitive, fails on relative paths and deviates from specs
+    },
+
+    toString = Object.prototype.toString,
+
+    isint = /^[0-9]+$/;
+
+    function parseUri( url, strictMode ) {
+        var str = decodeURI( url ),
+        res   = parser[ strictMode || false ? 'strict' : 'loose' ].exec( str ),
+        uri = { attr : {}, param : {}, seg : {} },
+        i   = 14;
+
+        while ( i-- ) {
+            uri.attr[ key[i] ] = res[i] || '';
+        }
+
+        // build query and fragment parameters
+        uri.param['query'] = parseString(uri.attr['query']);
+        uri.param['fragment'] = parseString(uri.attr['fragment']);
+
+        // split path and fragement into segments
+        uri.seg['path'] = uri.attr.path.replace(/^\/+|\/+$/g,'').split('/');
+        uri.seg['fragment'] = uri.attr.fragment.replace(/^\/+|\/+$/g,'').split('/');
+
+        // compile a 'base' domain attribute
+        uri.attr['base'] = uri.attr.host ? (uri.attr.protocol ?  uri.attr.protocol+'://'+uri.attr.host : uri.attr.host) + (uri.attr.port ? ':'+uri.attr.port : '') : '';
+
+        return uri;
+    };
+
+    function getAttrName( elm ) {
+        var tn = elm.tagName;
+        if ( typeof tn !== 'undefined' ) return tag2attr[tn.toLowerCase()];
+        return tn;
+    }
+
+    function promote(parent, key) {
+        if (parent[key].length == 0) return parent[key] = {};
+        var t = {};
+        for (var i in parent[key]) t[i] = parent[key][i];
+        parent[key] = t;
+        return t;
+    }
+
+    function parse(parts, parent, key, val) {
+        var part = parts.shift();
+        if (!part) {
+            if (isArray(parent[key])) {
+                parent[key].push(val);
+            } else if ('object' == typeof parent[key]) {
+                parent[key] = val;
+            } else if ('undefined' == typeof parent[key]) {
+                parent[key] = val;
+            } else {
+                parent[key] = [parent[key], val];
+            }
+        } else {
+            var obj = parent[key] = parent[key] || [];
+            if (']' == part) {
+                if (isArray(obj)) {
+                    if ('' != val) obj.push(val);
+                } else if ('object' == typeof obj) {
+                    obj[keys(obj).length] = val;
+                } else {
+                    obj = parent[key] = [parent[key], val];
+                }
+            } else if (~part.indexOf(']')) {
+                part = part.substr(0, part.length - 1);
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+                // key
+            } else {
+                if (!isint.test(part) && isArray(obj)) obj = promote(parent, key);
+                parse(parts, obj, part, val);
+            }
+        }
+    }
+
+    function merge(parent, key, val) {
+        if (~key.indexOf(']')) {
+            var parts = key.split('['),
+            len = parts.length,
+            last = len - 1;
+            parse(parts, parent, 'base', val);
+        } else {
+            if (!isint.test(key) && isArray(parent.base)) {
+                var t = {};
+                for (var k in parent.base) t[k] = parent.base[k];
+                parent.base = t;
+            }
+            set(parent.base, key, val);
+        }
+        return parent;
+    }
+
+    function parseString(str) {
+        return reduce(String(str).split(/&|;/), function(ret, pair) {
+            try {
+                pair = decodeURIComponent(pair.replace(/\+/g, ' '));
+            } catch(e) {
+                // ignore
+            }
+            var eql = pair.indexOf('='),
+            brace = lastBraceInKey(pair),
+            key = pair.substr(0, brace || eql),
+            val = pair.substr(brace || eql, pair.length),
+            val = val.substr(val.indexOf('=') + 1, val.length);
+
+            if ('' == key) key = pair, val = '';
+
+            return merge(ret, key, val);
+        }, { base: {} }).base;
+    }
+
+    function set(obj, key, val) {
+        var v = obj[key];
+        if (undefined === v) {
+            obj[key] = val;
+        } else if (isArray(v)) {
+            v.push(val);
+        } else {
+            obj[key] = [v, val];
+        }
+    }
+
+    function lastBraceInKey(str) {
+        var len = str.length,
+        brace, c;
+        for (var i = 0; i < len; ++i) {
+            c = str[i];
+            if (']' == c) brace = false;
+            if ('[' == c) brace = true;
+            if ('=' == c && !brace) return i;
+        }
+    }
+
+    function reduce(obj, accumulator){
+        var i = 0,
+        l = obj.length >> 0,
+        curr = arguments[2];
+        while (i < l) {
+            if (i in obj) curr = accumulator.call(undefined, curr, obj[i], i, obj);
+            ++i;
+        }
+        return curr;
+    }
+
+    function isArray(vArg) {
+        return Object.prototype.toString.call(vArg) === "[object Array]";
+    }
+
+    function keys(obj) {
+        var keys = [];
+        for ( prop in obj ) {
+            if ( obj.hasOwnProperty(prop) ) keys.push(prop);
+        }
+        return keys;
+    }
+
+    function purl( url, strictMode ) {
+        if ( arguments.length === 1 && url === true ) {
+            strictMode = true;
+            url = undefined;
+        }
+        strictMode = strictMode || false;
+        url = url || window.location.toString();
+
+        return {
+
+            data : parseUri(url, strictMode),
+
+            // get various attributes from the URI
+            attr : function( attr ) {
+                attr = aliases[attr] || attr;
+                return typeof attr !== 'undefined' ? this.data.attr[attr] : this.data.attr;
+            },
+
+            // return query string parameters
+            param : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.query[param] : this.data.param.query;
+            },
+
+            // return fragment parameters
+            fparam : function( param ) {
+                return typeof param !== 'undefined' ? this.data.param.fragment[param] : this.data.param.fragment;
+            },
+
+            // return path segments
+            segment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.path;
+                } else {
+                    seg = seg < 0 ? this.data.seg.path.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.path[seg];
+                }
+            },
+
+            // return fragment segments
+            fsegment : function( seg ) {
+                if ( typeof seg === 'undefined' ) {
+                    return this.data.seg.fragment;
+                } else {
+                    seg = seg < 0 ? this.data.seg.fragment.length + seg : seg - 1; // negative segments count from the end
+                    return this.data.seg.fragment[seg];
+                }
+            }
+
+        };
+
+    };
+
+    if ( typeof $ !== 'undefined' ) {
+
+        $.fn.url = function( strictMode ) {
+            var url = '';
+            if ( this.length ) {
+                url = $(this).attr( getAttrName(this[0]) ) || '';
+            }
+            return purl( url, strictMode );
+        };
+
+        $.url = purl;
+
+    } else {
+        window.purl = purl;
+    }
+
+});
+
+/* End purl */
+
+
+
 /* init lazyload 1.9.3 */
 
 /*
@@ -30832,6 +31109,57 @@ Handlebars.registerHelper('ifCond', function(v1, operator, v2, options) {
     }
 });
 
+Handlebars.registerHelper('validGrafic', function(points, options) {
+    var value = "0";
+    if(points > 1 && points <= 8){
+        value = "5";
+    }else if (points > 8 && points <= 13){
+        value = "10";
+    }else if (points > 13 && points <= 18){
+        value = "15";
+    }else if (points > 18 && points <= 23){
+        value = "20";
+    }else if (points > 23 && points <= 28){
+        value = "25";
+    }else if (points > 28 && points <= 33){
+        value = "30";
+    }else if (points > 33 && points <= 38){
+        value = "35";
+    }else if (points > 38 && points <= 43){
+        value = "40";
+    }else if (points > 43 && points <= 48){
+        value = "45";
+    }else if (points > 48 && points <= 53){
+        value = "50";
+    }else if (points > 53 && points <= 58){
+        value = "55";
+    }else if (points > 58 && points <= 63){
+        value = "60";
+    }else if (points > 63 && points <= 68){
+        value = "65";
+    }else if (points > 68 && points <= 73){
+        value = "70";
+    }else if (points > 73 && points <= 78){
+        value = "75";
+    }else if (points > 78 && points <= 83){
+        value = "80";
+    }else if (points > 83 && points <= 88){
+        value = "85";
+    }else if (points > 88 && points <= 93){
+        value = "90";
+    }else if (points > 93 && points <= 98){
+        value = "95";
+    }else if (points > 98 && points <= 100){
+        value = "100";
+    }
+    return value;
+});
+
+Handlebars.registerHelper('if_even', function(type, options) {
+    tyconten = (type % 2) ? "odd" : "even";
+    return tyconten;
+});
+
 Handlebars.registerHelper('each_upto', function(ary, max, options) {
     if (!ary || ary.length == 0)
         return options.inverse(this);
@@ -30875,8 +31203,20 @@ Handlebars.registerHelper('VaImgOp', function(valor, options) {
 Handlebars.registerHelper('getUrlApp', function(url, options) {
     temp_url = $.url(url);
     hots = temp_url.attr('host');
-    np_url = 'http://' + window.location.host + temp_url.attr('relative');
-    return np_url;
+    np_url = 'http://' + window.location.host + "#" + temp_url.attr('relative');
+    url = np_url.replace('#/','#');
+    return url;
+});
+
+/* remplazar host */
+Handlebars.registerHelper('CleanTaxonomy', function(url, options) {
+    temp_url = $.url(url);
+    np_url =  temp_url.attr('relative');
+    turl = np_url.replace("#/", "");
+    turl = turl.replace("/", "");
+    turl = turl.replace("-0", "");
+
+    return turl;
 });
 
 /* remplazar guión medio por espacio */
@@ -30887,6 +31227,33 @@ Handlebars.registerHelper('CleanName', function(name, options) {
 
     return name;
 });
+
+
+/* separar número por coma */
+Handlebars.registerHelper('NumberSeparate', function(tnumbers,options) {
+    
+    if(tnumbers){
+        tnumbers.replace(",", "");
+        tnumbers.replace(".", "");
+        tnumbers =  parseInt(tnumbers);
+        
+        Number.prototype.format = function(n, x) {
+            var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+            return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+        };
+        //return tnumbers..format();
+        return tnumbers.format();
+        //1234..format();           // "1,234"
+        //12345..format(2);         // "12,345.00"
+        //123456.7.format(3, 2);    // "12,34,56.700"
+        //123456.789.format(2, 4);  // "12,3456.79"
+    }else {
+        request = "Not value";
+        return request;
+    }
+    
+});
+
 
 Handlebars.registerHelper('FormatDate', function(timestamp, options) {
 
@@ -30989,7 +31356,7 @@ Handlebars.registerHelper('1timeconvert', function(timestamp, options) {
 });
 
 /*debug*/
-Handlebars.registerHelper("debug", function(optionalValue) {
+Handlebars.registerHelper("debug", function(optionalValue,options) {
     console.log("\nCurrent Context");
     console.log("====================");
     console.log(this);
@@ -31004,6 +31371,1516 @@ Handlebars.registerHelper("debug", function(optionalValue) {
 /* End Handlebars Helpers */
 
 
+/* Init olw carrusel */
+/*
+ *  jQuery OwlCarousel v1.3.2
+ *
+ *  Copyright (c) 2013 Bartosz Wojciechowski
+ *  http://www.owlgraphic.com/owlcarousel/
+ *
+ *  Licensed under MIT
+ *
+ */
+
+/*JS Lint helpers: */
+/*global dragMove: false, dragEnd: false, $, jQuery, alert, window, document */
+/*jslint nomen: true, continue:true */
+
+if (typeof Object.create !== "function") {
+    Object.create = function (obj) {
+        function F() {}
+        F.prototype = obj;
+        return new F();
+    };
+}
+(function ($, window, document) {
+
+    var Carousel = {
+        init : function (options, el) {
+            var base = this;
+
+            base.$elem = $(el);
+            base.options = $.extend({}, $.fn.owlCarousel.options, base.$elem.data(), options);
+
+            base.userOptions = options;
+            base.loadContent();            
+        },
+
+        loadContent : function () {
+            var base = this, url;
+
+            function getData(data) {
+                var i, content = "";
+                if (typeof base.options.jsonSuccess === "function") {
+                    base.options.jsonSuccess.apply(this, [data]);
+                } else {
+                    for (i in data.owl) {
+                        if (data.owl.hasOwnProperty(i)) {
+                            content += data.owl[i].item;
+                        }
+                    }
+                    base.$elem.html(content);
+                }
+                base.logIn();
+            }
+
+            if (typeof base.options.beforeInit === "function") {
+                base.options.beforeInit.apply(this, [base.$elem]);
+            }
+
+            if (typeof base.options.jsonPath === "string") {
+                url = base.options.jsonPath;
+                $.getJSON(url, getData);
+            } else {
+                base.logIn();
+            }
+        },
+
+        logIn : function () {
+            var base = this;
+
+            base.$elem.data("owl-originalStyles", base.$elem.attr("style"))
+                      .data("owl-originalClasses", base.$elem.attr("class"));
+
+            base.$elem.css({opacity: 0});
+            base.orignalItems = base.options.items;
+            base.checkBrowser();
+            base.wrapperWidth = 0;
+            base.checkVisible = null;
+            base.setVars();
+        },
+
+        setVars : function () {
+            var base = this;
+            if (base.$elem.children().length === 0) {return false; }
+            base.baseClass();
+            base.eventTypes();
+            base.$userItems = base.$elem.children();
+            base.itemsAmount = base.$userItems.length;
+            base.wrapItems();
+            base.$owlItems = base.$elem.find(".owl-item");
+            base.$owlWrapper = base.$elem.find(".owl-wrapper");
+            base.playDirection = "next";
+            base.prevItem = 0;
+            base.prevArr = [0];
+            base.currentItem = 0;
+            base.customEvents();
+            base.onStartup();
+        },
+
+        onStartup : function () {
+            var base = this;
+            base.updateItems();
+            base.calculateAll();
+            base.buildControls();
+            base.updateControls();
+            base.response();
+            base.moveEvents();
+            base.stopOnHover();
+            base.owlStatus();
+
+            if (base.options.transitionStyle !== false) {
+                base.transitionTypes(base.options.transitionStyle);
+            }
+            if (base.options.autoPlay === true) {
+                base.options.autoPlay = 5000;
+            }
+            base.play();
+
+            base.$elem.find(".owl-wrapper").css("display", "block");
+
+            if (!base.$elem.is(":visible")) {
+                base.watchVisibility();
+            } else {
+                base.$elem.css("opacity", 1);
+            }
+            base.onstartup = false;
+            base.eachMoveUpdate();
+            if (typeof base.options.afterInit === "function") {
+                base.options.afterInit.apply(this, [base.$elem]);
+            }
+        },
+
+        eachMoveUpdate : function () {
+            var base = this;
+
+            if (base.options.lazyLoad === true) {
+                base.lazyLoad();
+            }
+            if (base.options.autoHeight === true) {
+                base.autoHeight();
+            }
+            base.onVisibleItems();
+
+            if (typeof base.options.afterAction === "function") {
+                base.options.afterAction.apply(this, [base.$elem]);
+            }
+        },
+
+        updateVars : function () {
+            var base = this;
+            if (typeof base.options.beforeUpdate === "function") {
+                base.options.beforeUpdate.apply(this, [base.$elem]);
+            }
+            base.watchVisibility();
+            base.updateItems();
+            base.calculateAll();
+            base.updatePosition();
+            base.updateControls();
+            base.eachMoveUpdate();
+            if (typeof base.options.afterUpdate === "function") {
+                base.options.afterUpdate.apply(this, [base.$elem]);
+            }
+        },
+
+        reload : function () {
+            var base = this;
+            window.setTimeout(function () {
+                base.updateVars();
+            }, 0);
+        },
+
+        watchVisibility : function () {
+            var base = this;
+
+            if (base.$elem.is(":visible") === false) {
+                base.$elem.css({opacity: 0});
+                window.clearInterval(base.autoPlayInterval);
+                window.clearInterval(base.checkVisible);
+            } else {
+                return false;
+            }
+            base.checkVisible = window.setInterval(function () {
+                if (base.$elem.is(":visible")) {
+                    base.reload();
+                    base.$elem.animate({opacity: 1}, 200);
+                    window.clearInterval(base.checkVisible);
+                }
+            }, 500);
+        },
+
+        wrapItems : function () {
+            var base = this;
+            base.$userItems.wrapAll("<div class=\"owl-wrapper\">").wrap("<div class=\"owl-item\"></div>");
+            base.$elem.find(".owl-wrapper").wrap("<div class=\"owl-wrapper-outer\">");
+            base.wrapperOuter = base.$elem.find(".owl-wrapper-outer");
+            base.$elem.css("display", "block");
+        },
+
+        baseClass : function () {
+            var base = this,
+                hasBaseClass = base.$elem.hasClass(base.options.baseClass),
+                hasThemeClass = base.$elem.hasClass(base.options.theme);
+
+            if (!hasBaseClass) {
+                base.$elem.addClass(base.options.baseClass);
+            }
+
+            if (!hasThemeClass) {
+                base.$elem.addClass(base.options.theme);
+            }
+        },
+
+        updateItems : function () {
+            var base = this, width, i;
+
+            if (base.options.responsive === false) {
+                return false;
+            }
+            if (base.options.singleItem === true) {
+                base.options.items = base.orignalItems = 1;
+                base.options.itemsCustom = false;
+                base.options.itemsDesktop = false;
+                base.options.itemsDesktopSmall = false;
+                base.options.itemsTablet = false;
+                base.options.itemsTabletSmall = false;
+                base.options.itemsMobile = false;
+                return false;
+            }
+
+            width = $(base.options.responsiveBaseWidth).width();
+
+            if (width > (base.options.itemsDesktop[0] || base.orignalItems)) {
+                base.options.items = base.orignalItems;
+            }
+            if (base.options.itemsCustom !== false) {
+                //Reorder array by screen size
+                base.options.itemsCustom.sort(function (a, b) {return a[0] - b[0]; });
+
+                for (i = 0; i < base.options.itemsCustom.length; i += 1) {
+                    if (base.options.itemsCustom[i][0] <= width) {
+                        base.options.items = base.options.itemsCustom[i][1];
+                    }
+                }
+
+            } else {
+
+                if (width <= base.options.itemsDesktop[0] && base.options.itemsDesktop !== false) {
+                    base.options.items = base.options.itemsDesktop[1];
+                }
+
+                if (width <= base.options.itemsDesktopSmall[0] && base.options.itemsDesktopSmall !== false) {
+                    base.options.items = base.options.itemsDesktopSmall[1];
+                }
+
+                if (width <= base.options.itemsTablet[0] && base.options.itemsTablet !== false) {
+                    base.options.items = base.options.itemsTablet[1];
+                }
+
+                if (width <= base.options.itemsTabletSmall[0] && base.options.itemsTabletSmall !== false) {
+                    base.options.items = base.options.itemsTabletSmall[1];
+                }
+
+                if (width <= base.options.itemsMobile[0] && base.options.itemsMobile !== false) {
+                    base.options.items = base.options.itemsMobile[1];
+                }
+            }
+
+            //if number of items is less than declared
+            if (base.options.items > base.itemsAmount && base.options.itemsScaleUp === true) {
+                base.options.items = base.itemsAmount;
+            }
+        },
+
+        response : function () {
+            var base = this,
+                smallDelay,
+                lastWindowWidth;
+
+            if (base.options.responsive !== true) {
+                return false;
+            }
+            lastWindowWidth = $(window).width();
+
+            base.resizer = function () {
+                if ($(window).width() !== lastWindowWidth) {
+                    if (base.options.autoPlay !== false) {
+                        window.clearInterval(base.autoPlayInterval);
+                    }
+                    window.clearTimeout(smallDelay);
+                    smallDelay = window.setTimeout(function () {
+                        lastWindowWidth = $(window).width();
+                        base.updateVars();
+                    }, base.options.responsiveRefreshRate);
+                }
+            };
+            $(window).resize(base.resizer);
+        },
+
+        updatePosition : function () {
+            var base = this;
+            base.jumpTo(base.currentItem);
+            if (base.options.autoPlay !== false) {
+                base.checkAp();
+            }
+        },
+
+        appendItemsSizes : function () {
+            var base = this,
+                roundPages = 0,
+                lastItem = base.itemsAmount - base.options.items;
+
+            base.$owlItems.each(function (index) {
+                var $this = $(this);
+                $this
+                    .css({"width": base.itemWidth})
+                    .data("owl-item", Number(index));
+
+                if (index % base.options.items === 0 || index === lastItem) {
+                    if (!(index > lastItem)) {
+                        roundPages += 1;
+                    }
+                }
+                $this.data("owl-roundPages", roundPages);
+            });
+        },
+
+        appendWrapperSizes : function () {
+            var base = this,
+                width = base.$owlItems.length * base.itemWidth;
+
+            base.$owlWrapper.css({
+                "width": width * 2,
+                "left": 0
+            });
+            base.appendItemsSizes();
+        },
+
+        calculateAll : function () {
+            var base = this;
+            base.calculateWidth();
+            base.appendWrapperSizes();
+            base.loops();
+            base.max();
+        },
+
+        calculateWidth : function () {
+            var base = this;
+            base.itemWidth = Math.round(base.$elem.width() / base.options.items);
+        },
+
+        max : function () {
+            var base = this,
+                maximum = ((base.itemsAmount * base.itemWidth) - base.options.items * base.itemWidth) * -1;
+            if (base.options.items > base.itemsAmount) {
+                base.maximumItem = 0;
+                maximum = 0;
+                base.maximumPixels = 0;
+            } else {
+                base.maximumItem = base.itemsAmount - base.options.items;
+                base.maximumPixels = maximum;
+            }
+            return maximum;
+        },
+
+        min : function () {
+            return 0;
+        },
+
+        loops : function () {
+            var base = this,
+                prev = 0,
+                elWidth = 0,
+                i,
+                item,
+                roundPageNum;
+
+            base.positionsInArray = [0];
+            base.pagesInArray = [];
+
+            for (i = 0; i < base.itemsAmount; i += 1) {
+                elWidth += base.itemWidth;
+                base.positionsInArray.push(-elWidth);
+
+                if (base.options.scrollPerPage === true) {
+                    item = $(base.$owlItems[i]);
+                    roundPageNum = item.data("owl-roundPages");
+                    if (roundPageNum !== prev) {
+                        base.pagesInArray[prev] = base.positionsInArray[i];
+                        prev = roundPageNum;
+                    }
+                }
+            }
+        },
+
+        buildControls : function () {
+            var base = this;
+            if (base.options.navigation === true || base.options.pagination === true) {
+                base.owlControls = $("<div class=\"owl-controls\"/>").toggleClass("clickable", !base.browser.isTouch).appendTo(base.$elem);
+            }
+            if (base.options.pagination === true) {
+                base.buildPagination();
+            }
+            if (base.options.navigation === true) {
+                base.buildButtons();
+            }
+        },
+
+        buildButtons : function () {
+            var base = this,
+                buttonsWrapper = $("<div class=\"owl-buttons\"/>");
+            base.owlControls.append(buttonsWrapper);
+
+            base.buttonPrev = $("<div/>", {
+                "class" : "owl-prev",
+                "html" : base.options.navigationText[0] || ""
+            });
+
+            base.buttonNext = $("<div/>", {
+                "class" : "owl-next",
+                "html" : base.options.navigationText[1] || ""
+            });
+
+            buttonsWrapper
+                .append(base.buttonPrev)
+                .append(base.buttonNext);
+
+            buttonsWrapper.on("touchstart.owlControls mousedown.owlControls", "div[class^=\"owl\"]", function (event) {
+                event.preventDefault();
+            });
+
+            buttonsWrapper.on("touchend.owlControls mouseup.owlControls", "div[class^=\"owl\"]", function (event) {
+                event.preventDefault();
+                if ($(this).hasClass("owl-next")) {
+                    base.next();
+                } else {
+                    base.prev();
+                }
+            });
+        },
+
+        buildPagination : function () {
+            var base = this;
+
+            base.paginationWrapper = $("<div class=\"owl-pagination\"/>");
+            base.owlControls.append(base.paginationWrapper);
+
+            base.paginationWrapper.on("touchend.owlControls mouseup.owlControls", ".owl-page", function (event) {
+                event.preventDefault();
+                if (Number($(this).data("owl-page")) !== base.currentItem) {
+                    base.goTo(Number($(this).data("owl-page")), true);
+                }
+            });
+        },        
+        updatePagination : function () {
+            var base = this,
+                counter,
+                lastPage,
+                lastItem,
+                i,
+                paginationButton,
+                paginationButtonInner;
+
+            if (base.options.pagination === false) {
+                return false;
+            }
+
+            base.paginationWrapper.html("");
+
+            counter = 0;
+            lastPage = base.itemsAmount - base.itemsAmount % base.options.items;
+
+            for (i = 0; i < base.itemsAmount; i += 1) {
+                if (i % base.options.items === 0) {
+                    counter += 1;
+                    if (lastPage === i) {
+                        lastItem = base.itemsAmount - base.options.items;
+                    }
+                    paginationButton = $("<div/>", {
+                        "class" : "owl-page"
+                    });
+                    paginationButtonInner = $("<span></span>", {
+                        "text": base.options.paginationNumbers === true ? counter : "",
+                        "class": base.options.paginationNumbers === true ? "owl-numbers" : ""
+                    });
+                    paginationButton.append(paginationButtonInner);
+                    
+                    paginationButton.data("owl-page", lastPage === i ? lastItem : i);
+                    paginationButton.data("owl-roundPages", counter);                    
+                    base.paginationWrapper.append(paginationButton);
+                }
+            }
+            base.checkPagination();
+        },
+        checkPagination : function () {
+            var base = this;
+            if (base.options.pagination === false) {
+                return false;
+            }
+            base.paginationWrapper.find(".owl-page").each(function () {
+                if ($(this).data("owl-roundPages") === $(base.$owlItems[base.currentItem]).data("owl-roundPages")) {
+                    base.paginationWrapper
+                        .find(".owl-page")
+                        .removeClass("active");
+                    $(this).addClass("active");
+                }
+            });
+        },
+
+        checkNavigation : function () {
+            var base = this;
+
+            if (base.options.navigation === false) {
+                return false;
+            }
+            if (base.options.rewindNav === false) {
+                if (base.currentItem === 0 && base.maximumItem === 0) {
+                    base.buttonPrev.addClass("disabled");
+                    base.buttonNext.addClass("disabled");
+                } else if (base.currentItem === 0 && base.maximumItem !== 0) {
+                    base.buttonPrev.addClass("disabled");
+                    base.buttonNext.removeClass("disabled");
+                } else if (base.currentItem === base.maximumItem) {
+                    base.buttonPrev.removeClass("disabled");
+                    base.buttonNext.addClass("disabled");
+                } else if (base.currentItem !== 0 && base.currentItem !== base.maximumItem) {
+                    base.buttonPrev.removeClass("disabled");
+                    base.buttonNext.removeClass("disabled");
+                }
+            }
+        },
+
+        updateControls : function () {
+            var base = this;
+            base.updatePagination();
+            base.checkNavigation();
+            if (base.owlControls) {
+                if (base.options.items >= base.itemsAmount) {
+                    base.owlControls.hide();
+                } else {
+                    base.owlControls.show();
+                }
+            }
+        },
+
+        destroyControls : function () {
+            var base = this;
+            if (base.owlControls) {
+                base.owlControls.remove();
+            }
+        },
+
+        next : function (speed) {
+            var base = this;
+            if (base.isTransition) {
+                return false;
+            }
+
+            base.currentItem += base.options.scrollPerPage === true ? base.options.items : 1;
+            if (base.currentItem > base.maximumItem + (base.options.scrollPerPage === true ? (base.options.items - 1) : 0)) {
+                if (base.options.rewindNav === true) {
+                    base.currentItem = 0;
+                    speed = "rewind";
+                } else {
+                    base.currentItem = base.maximumItem;
+                    return false;
+                }
+            }
+            base.goTo(base.currentItem, speed);
+        },
+
+        prev : function (speed) {
+            var base = this;
+            if (base.isTransition) {
+                return false;
+            }
+
+            if (base.options.scrollPerPage === true && base.currentItem > 0 && base.currentItem < base.options.items) {
+                base.currentItem = 0;
+            } else {
+                base.currentItem -= base.options.scrollPerPage === true ? base.options.items : 1;
+            }
+            if (base.currentItem < 0) {
+                if (base.options.rewindNav === true) {
+                    base.currentItem = base.maximumItem;
+                    speed = "rewind";
+                } else {
+                    base.currentItem = 0;
+                    return false;
+                }
+            }
+            base.goTo(base.currentItem, speed);
+        },
+
+        goTo : function (position, speed, drag) {
+            var base = this,
+                goToPixel;
+
+            if (base.isTransition) {
+                return false;
+            }
+            if (typeof base.options.beforeMove === "function") {
+                base.options.beforeMove.apply(this, [base.$elem]);
+            }
+            if (position >= base.maximumItem) {
+                position = base.maximumItem;
+            } else if (position <= 0) {
+                position = 0;
+            }
+
+            base.currentItem = base.owl.currentItem = position;
+            if (base.options.transitionStyle !== false && drag !== "drag" && base.options.items === 1 && base.browser.support3d === true) {
+                base.swapSpeed(0);
+                if (base.browser.support3d === true) {
+                    base.transition3d(base.positionsInArray[position]);
+                } else {
+                    base.css2slide(base.positionsInArray[position], 1);
+                }
+                base.afterGo();
+                base.singleItemTransition();
+                return false;
+            }
+            goToPixel = base.positionsInArray[position];
+
+            if (base.browser.support3d === true) {
+                base.isCss3Finish = false;
+
+                if (speed === true) {
+                    base.swapSpeed("paginationSpeed");
+                    window.setTimeout(function () {
+                        base.isCss3Finish = true;
+                    }, base.options.paginationSpeed);
+
+                } else if (speed === "rewind") {
+                    base.swapSpeed(base.options.rewindSpeed);
+                    window.setTimeout(function () {
+                        base.isCss3Finish = true;
+                    }, base.options.rewindSpeed);
+
+                } else {
+                    base.swapSpeed("slideSpeed");
+                    window.setTimeout(function () {
+                        base.isCss3Finish = true;
+                    }, base.options.slideSpeed);
+                }
+                base.transition3d(goToPixel);
+            } else {
+                if (speed === true) {
+                    base.css2slide(goToPixel, base.options.paginationSpeed);
+                } else if (speed === "rewind") {
+                    base.css2slide(goToPixel, base.options.rewindSpeed);
+                } else {
+                    base.css2slide(goToPixel, base.options.slideSpeed);
+                }
+            }
+            base.afterGo();
+        },
+
+        jumpTo : function (position) {
+            var base = this;
+            if (typeof base.options.beforeMove === "function") {
+                base.options.beforeMove.apply(this, [base.$elem]);
+            }
+            if (position >= base.maximumItem || position === -1) {
+                position = base.maximumItem;
+            } else if (position <= 0) {
+                position = 0;
+            }
+            base.swapSpeed(0);
+            if (base.browser.support3d === true) {
+                base.transition3d(base.positionsInArray[position]);
+            } else {
+                base.css2slide(base.positionsInArray[position], 1);
+            }
+            base.currentItem = base.owl.currentItem = position;
+            base.afterGo();
+        },
+
+        afterGo : function () {
+            var base = this;
+
+            base.prevArr.push(base.currentItem);
+            base.prevItem = base.owl.prevItem = base.prevArr[base.prevArr.length - 2];
+            base.prevArr.shift(0);
+
+            if (base.prevItem !== base.currentItem) {
+                base.checkPagination();
+                base.checkNavigation();
+                base.eachMoveUpdate();
+
+                if (base.options.autoPlay !== false) {
+                    base.checkAp();
+                }
+            }
+            if (typeof base.options.afterMove === "function" && base.prevItem !== base.currentItem) {
+                base.options.afterMove.apply(this, [base.$elem]);
+            }
+        },
+
+        stop : function () {
+            var base = this;
+            base.apStatus = "stop";
+            window.clearInterval(base.autoPlayInterval);
+        },
+
+        checkAp : function () {
+            var base = this;
+            if (base.apStatus !== "stop") {
+                base.play();
+            }
+        },
+
+        play : function () {
+            var base = this;
+            base.apStatus = "play";
+            if (base.options.autoPlay === false) {
+                return false;
+            }
+            window.clearInterval(base.autoPlayInterval);
+            base.autoPlayInterval = window.setInterval(function () {
+                base.next(true);
+            }, base.options.autoPlay);
+        },
+
+        swapSpeed : function (action) {
+            var base = this;
+            if (action === "slideSpeed") {
+                base.$owlWrapper.css(base.addCssSpeed(base.options.slideSpeed));
+            } else if (action === "paginationSpeed") {
+                base.$owlWrapper.css(base.addCssSpeed(base.options.paginationSpeed));
+            } else if (typeof action !== "string") {
+                base.$owlWrapper.css(base.addCssSpeed(action));
+            }
+        },
+
+        addCssSpeed : function (speed) {
+            return {
+                "-webkit-transition": "all " + speed + "ms ease",
+                "-moz-transition": "all " + speed + "ms ease",
+                "-o-transition": "all " + speed + "ms ease",
+                "transition": "all " + speed + "ms ease"
+            };
+        },
+
+        removeTransition : function () {
+            return {
+                "-webkit-transition": "",
+                "-moz-transition": "",
+                "-o-transition": "",
+                "transition": ""
+            };
+        },
+
+        doTranslate : function (pixels) {
+            return {
+                "-webkit-transform": "translate3d(" + pixels + "px, 0px, 0px)",
+                "-moz-transform": "translate3d(" + pixels + "px, 0px, 0px)",
+                "-o-transform": "translate3d(" + pixels + "px, 0px, 0px)",
+                "-ms-transform": "translate3d(" + pixels + "px, 0px, 0px)",
+                "transform": "translate3d(" + pixels + "px, 0px,0px)"
+            };
+        },
+
+        transition3d : function (value) {
+            var base = this;
+            base.$owlWrapper.css(base.doTranslate(value));
+        },
+
+        css2move : function (value) {
+            var base = this;
+            base.$owlWrapper.css({"left" : value});
+        },
+
+        css2slide : function (value, speed) {
+            var base = this;
+
+            base.isCssFinish = false;
+            base.$owlWrapper.stop(true, true).animate({
+                "left" : value
+            }, {
+                duration : speed || base.options.slideSpeed,
+                complete : function () {
+                    base.isCssFinish = true;
+                }
+            });
+        },
+
+        checkBrowser : function () {
+            var base = this,
+                translate3D = "translate3d(0px, 0px, 0px)",
+                tempElem = document.createElement("div"),
+                regex,
+                asSupport,
+                support3d,
+                isTouch;
+
+            tempElem.style.cssText = "  -moz-transform:" + translate3D +
+                                  "; -ms-transform:"     + translate3D +
+                                  "; -o-transform:"      + translate3D +
+                                  "; -webkit-transform:" + translate3D +
+                                  "; transform:"         + translate3D;
+            regex = /translate3d\(0px, 0px, 0px\)/g;
+            asSupport = tempElem.style.cssText.match(regex);
+            support3d = (asSupport !== null && asSupport.length === 1);
+
+            isTouch = "ontouchstart" in window || window.navigator.msMaxTouchPoints;
+
+            base.browser = {
+                "support3d" : support3d,
+                "isTouch" : isTouch
+            };
+        },
+
+        moveEvents : function () {
+            var base = this;
+            if (base.options.mouseDrag !== false || base.options.touchDrag !== false) {
+                base.gestures();
+                base.disabledEvents();
+            }
+        },
+
+        eventTypes : function () {
+            var base = this,
+                types = ["s", "e", "x"];
+
+            base.ev_types = {};
+
+            if (base.options.mouseDrag === true && base.options.touchDrag === true) {
+                types = [
+                    "touchstart.owl mousedown.owl",
+                    "touchmove.owl mousemove.owl",
+                    "touchend.owl touchcancel.owl mouseup.owl"
+                ];
+            } else if (base.options.mouseDrag === false && base.options.touchDrag === true) {
+                types = [
+                    "touchstart.owl",
+                    "touchmove.owl",
+                    "touchend.owl touchcancel.owl"
+                ];
+            } else if (base.options.mouseDrag === true && base.options.touchDrag === false) {
+                types = [
+                    "mousedown.owl",
+                    "mousemove.owl",
+                    "mouseup.owl"
+                ];
+            }
+
+            base.ev_types.start = types[0];
+            base.ev_types.move = types[1];
+            base.ev_types.end = types[2];
+        },
+
+        disabledEvents :  function () {
+            var base = this;
+            base.$elem.on("dragstart.owl", function (event) { event.preventDefault(); });
+            base.$elem.on("mousedown.disableTextSelect", function (e) {
+                return $(e.target).is('input, textarea, select, option');
+            });
+        },
+
+        gestures : function () {
+            /*jslint unparam: true*/
+            var base = this,
+                locals = {
+                    offsetX : 0,
+                    offsetY : 0,
+                    baseElWidth : 0,
+                    relativePos : 0,
+                    position: null,
+                    minSwipe : null,
+                    maxSwipe: null,
+                    sliding : null,
+                    dargging: null,
+                    targetElement : null
+                };
+
+            base.isCssFinish = true;
+
+            function getTouches(event) {
+                if (event.touches !== undefined) {
+                    return {
+                        x : event.touches[0].pageX,
+                        y : event.touches[0].pageY
+                    };
+                }
+
+                if (event.touches === undefined) {
+                    if (event.pageX !== undefined) {
+                        return {
+                            x : event.pageX,
+                            y : event.pageY
+                        };
+                    }
+                    if (event.pageX === undefined) {
+                        return {
+                            x : event.clientX,
+                            y : event.clientY
+                        };
+                    }
+                }
+            }
+
+            function swapEvents(type) {
+                if (type === "on") {
+                    $(document).on(base.ev_types.move, dragMove);
+                    $(document).on(base.ev_types.end, dragEnd);
+                } else if (type === "off") {
+                    $(document).off(base.ev_types.move);
+                    $(document).off(base.ev_types.end);
+                }
+            }
+
+            function dragStart(event) {
+                var ev = event.originalEvent || event || window.event,
+                    position;
+
+                if (ev.which === 3) {
+                    return false;
+                }
+                if (base.itemsAmount <= base.options.items) {
+                    return;
+                }
+                if (base.isCssFinish === false && !base.options.dragBeforeAnimFinish) {
+                    return false;
+                }
+                if (base.isCss3Finish === false && !base.options.dragBeforeAnimFinish) {
+                    return false;
+                }
+
+                if (base.options.autoPlay !== false) {
+                    window.clearInterval(base.autoPlayInterval);
+                }
+
+                if (base.browser.isTouch !== true && !base.$owlWrapper.hasClass("grabbing")) {
+                    base.$owlWrapper.addClass("grabbing");
+                }
+
+                base.newPosX = 0;
+                base.newRelativeX = 0;
+
+                $(this).css(base.removeTransition());
+
+                position = $(this).position();
+                locals.relativePos = position.left;
+
+                locals.offsetX = getTouches(ev).x - position.left;
+                locals.offsetY = getTouches(ev).y - position.top;
+
+                swapEvents("on");
+
+                locals.sliding = false;
+                locals.targetElement = ev.target || ev.srcElement;
+            }
+
+            function dragMove(event) {
+                var ev = event.originalEvent || event || window.event,
+                    minSwipe,
+                    maxSwipe;
+
+                base.newPosX = getTouches(ev).x - locals.offsetX;
+                base.newPosY = getTouches(ev).y - locals.offsetY;
+                base.newRelativeX = base.newPosX - locals.relativePos;
+
+                if (typeof base.options.startDragging === "function" && locals.dragging !== true && base.newRelativeX !== 0) {
+                    locals.dragging = true;
+                    base.options.startDragging.apply(base, [base.$elem]);
+                }
+
+                if ((base.newRelativeX > 8 || base.newRelativeX < -8) && (base.browser.isTouch === true)) {
+                    if (ev.preventDefault !== undefined) {
+                        ev.preventDefault();
+                    } else {
+                        ev.returnValue = false;
+                    }
+                    locals.sliding = true;
+                }
+
+                if ((base.newPosY > 10 || base.newPosY < -10) && locals.sliding === false) {
+                    $(document).off("touchmove.owl");
+                }
+
+                minSwipe = function () {
+                    return base.newRelativeX / 5;
+                };
+
+                maxSwipe = function () {
+                    return base.maximumPixels + base.newRelativeX / 5;
+                };
+
+                base.newPosX = Math.max(Math.min(base.newPosX, minSwipe()), maxSwipe());
+                if (base.browser.support3d === true) {
+                    base.transition3d(base.newPosX);
+                } else {
+                    base.css2move(base.newPosX);
+                }
+            }
+
+            function dragEnd(event) {
+                var ev = event.originalEvent || event || window.event,
+                    newPosition,
+                    handlers,
+                    owlStopEvent;
+
+                ev.target = ev.target || ev.srcElement;
+
+                locals.dragging = false;
+
+                if (base.browser.isTouch !== true) {
+                    base.$owlWrapper.removeClass("grabbing");
+                }
+
+                if (base.newRelativeX < 0) {
+                    base.dragDirection = base.owl.dragDirection = "left";
+                } else {
+                    base.dragDirection = base.owl.dragDirection = "right";
+                }
+
+                if (base.newRelativeX !== 0) {
+                    newPosition = base.getNewPosition();
+                    base.goTo(newPosition, false, "drag");
+                    if (locals.targetElement === ev.target && base.browser.isTouch !== true) {
+                        $(ev.target).on("click.disable", function (ev) {
+                            ev.stopImmediatePropagation();
+                            ev.stopPropagation();
+                            ev.preventDefault();
+                            $(ev.target).off("click.disable");
+                        });
+                        handlers = $._data(ev.target, "events").click;
+                        owlStopEvent = handlers.pop();
+                        handlers.splice(0, 0, owlStopEvent);
+                    }
+                }
+                swapEvents("off");
+            }
+            base.$elem.on(base.ev_types.start, ".owl-wrapper", dragStart);
+        },
+
+        getNewPosition : function () {
+            var base = this,
+                newPosition = base.closestItem();
+
+            if (newPosition > base.maximumItem) {
+                base.currentItem = base.maximumItem;
+                newPosition  = base.maximumItem;
+            } else if (base.newPosX >= 0) {
+                newPosition = 0;
+                base.currentItem = 0;
+            }
+            return newPosition;
+        },
+        closestItem : function () {
+            var base = this,
+                array = base.options.scrollPerPage === true ? base.pagesInArray : base.positionsInArray,
+                goal = base.newPosX,
+                closest = null;
+
+            $.each(array, function (i, v) {
+                if (goal - (base.itemWidth / 20) > array[i + 1] && goal - (base.itemWidth / 20) < v && base.moveDirection() === "left") {
+                    closest = v;
+                    if (base.options.scrollPerPage === true) {
+                        base.currentItem = $.inArray(closest, base.positionsInArray);
+                    } else {
+                        base.currentItem = i;
+                    }
+                } else if (goal + (base.itemWidth / 20) < v && goal + (base.itemWidth / 20) > (array[i + 1] || array[i] - base.itemWidth) && base.moveDirection() === "right") {
+                    if (base.options.scrollPerPage === true) {
+                        closest = array[i + 1] || array[array.length - 1];
+                        base.currentItem = $.inArray(closest, base.positionsInArray);
+                    } else {
+                        closest = array[i + 1];
+                        base.currentItem = i + 1;
+                    }
+                }
+            });
+            return base.currentItem;
+        },
+        
+        moveDirection : function () {
+            var base = this,
+                direction;                
+            if (base.newRelativeX < 0) {
+                direction = "right";
+                base.playDirection = "next";
+            } else {
+                direction = "left";
+                base.playDirection = "prev";
+            }
+            return direction;
+        },
+
+        customEvents : function () {
+            /*jslint unparam: true*/
+            var base = this;
+            base.$elem.on("owl.next", function () {
+                base.next();                
+            });
+            base.$elem.on("owl.prev", function () {
+                base.prev();                
+            });
+            base.$elem.on("owl.play", function (event, speed) {
+                base.options.autoPlay = speed;
+                base.play();
+                base.hoverStatus = "play";
+            });
+            base.$elem.on("owl.stop", function () {
+                base.stop();
+                base.hoverStatus = "stop";
+            });
+            base.$elem.on("owl.goTo", function (event, item) {
+                base.goTo(item);
+            });
+            base.$elem.on("owl.jumpTo", function (event, item) {
+                base.jumpTo(item);
+            });
+        },
+
+        stopOnHover : function () {
+            var base = this;
+            if (base.options.stopOnHover === true && base.browser.isTouch !== true && base.options.autoPlay !== false) {
+                base.$elem.on("mouseover", function () {
+                    base.stop();
+                });
+                base.$elem.on("mouseout", function () {
+                    if (base.hoverStatus !== "stop") {
+                        base.play();
+                    }
+                });
+            }
+        },
+
+        lazyLoad : function () {
+            var base = this,
+                i,
+                $item,
+                itemNumber,
+                $lazyImg,
+                follow;
+
+            if (base.options.lazyLoad === false) {
+                return false;
+            }
+            for (i = 0; i < base.itemsAmount; i += 1) {
+                $item = $(base.$owlItems[i]);
+
+                if ($item.data("owl-loaded") === "loaded") {
+                    continue;
+                }
+
+                itemNumber = $item.data("owl-item");
+                $lazyImg = $item.find(".lazyOwl");
+
+                if (typeof $lazyImg.data("src") !== "string") {
+                    $item.data("owl-loaded", "loaded");
+                    continue;
+                }
+                if ($item.data("owl-loaded") === undefined) {
+                    $lazyImg.hide();
+                    $item.addClass("loading").data("owl-loaded", "checked");
+                }
+                if (base.options.lazyFollow === true) {
+                    follow = itemNumber >= base.currentItem;
+                } else {
+                    follow = true;
+                }
+                if (follow && itemNumber < base.currentItem + base.options.items && $lazyImg.length) {
+                    base.lazyPreload($item, $lazyImg);
+                }
+            }
+        },
+
+        lazyPreload : function ($item, $lazyImg) {
+            var base = this,
+                iterations = 0,
+                isBackgroundImg;
+
+            if ($lazyImg.prop("tagName") === "DIV") {
+                $lazyImg.css("background-image", "url(" + $lazyImg.data("src") + ")");
+                isBackgroundImg = true;
+            } else {
+                $lazyImg[0].src = $lazyImg.data("src");
+            }
+
+            function showImage() {
+                $item.data("owl-loaded", "loaded").removeClass("loading");
+                $lazyImg.removeAttr("data-src");
+                if (base.options.lazyEffect === "fade") {
+                    $lazyImg.fadeIn(400);
+                } else {
+                    $lazyImg.show();
+                }
+                if (typeof base.options.afterLazyLoad === "function") {
+                    base.options.afterLazyLoad.apply(this, [base.$elem]);
+                }
+            }
+
+            function checkLazyImage() {
+                iterations += 1;
+                if (base.completeImg($lazyImg.get(0)) || isBackgroundImg === true) {
+                    showImage();
+                } else if (iterations <= 100) {//if image loads in less than 10 seconds 
+                    window.setTimeout(checkLazyImage, 100);
+                } else {
+                    showImage();
+                }
+            }
+
+            checkLazyImage();
+        },
+
+        autoHeight : function () {
+            var base = this,
+                $currentimg = $(base.$owlItems[base.currentItem]).find("img"),
+                iterations;
+
+            function addHeight() {
+                var $currentItem = $(base.$owlItems[base.currentItem]).height();
+                base.wrapperOuter.css("height", $currentItem + "px");
+                if (!base.wrapperOuter.hasClass("autoHeight")) {
+                    window.setTimeout(function () {
+                        base.wrapperOuter.addClass("autoHeight");
+                    }, 0);
+                }
+            }
+
+            function checkImage() {
+                iterations += 1;
+                if (base.completeImg($currentimg.get(0))) {
+                    addHeight();
+                } else if (iterations <= 100) { //if image loads in less than 10 seconds 
+                    window.setTimeout(checkImage, 100);
+                } else {
+                    base.wrapperOuter.css("height", ""); //Else remove height attribute
+                }
+            }
+
+            if ($currentimg.get(0) !== undefined) {
+                iterations = 0;
+                checkImage();
+            } else {
+                addHeight();
+            }
+        },
+
+        completeImg : function (img) {
+            var naturalWidthType;
+
+            if (!img.complete) {
+                return false;
+            }
+            naturalWidthType = typeof img.naturalWidth;
+            if (naturalWidthType !== "undefined" && img.naturalWidth === 0) {
+                return false;
+            }
+            return true;
+        },
+
+        onVisibleItems : function () {
+            var base = this,
+                i;
+
+            if (base.options.addClassActive === true) {
+                base.$owlItems.removeClass("active");
+            }
+            base.visibleItems = [];
+            for (i = base.currentItem; i < base.currentItem + base.options.items; i += 1) {
+                base.visibleItems.push(i);
+
+                if (base.options.addClassActive === true) {
+                    $(base.$owlItems[i]).addClass("active");
+                }
+            }
+            base.owl.visibleItems = base.visibleItems;
+        },
+
+        transitionTypes : function (className) {
+            var base = this;
+            //Currently available: "fade", "backSlide", "goDown", "fadeUp"
+            base.outClass = "owl-" + className + "-out";
+            base.inClass = "owl-" + className + "-in";
+        },
+
+        singleItemTransition : function () {
+            var base = this,
+                outClass = base.outClass,
+                inClass = base.inClass,
+                $currentItem = base.$owlItems.eq(base.currentItem),
+                $prevItem = base.$owlItems.eq(base.prevItem),
+                prevPos = Math.abs(base.positionsInArray[base.currentItem]) + base.positionsInArray[base.prevItem],
+                origin = Math.abs(base.positionsInArray[base.currentItem]) + base.itemWidth / 2,
+                animEnd = 'webkitAnimationEnd oAnimationEnd MSAnimationEnd animationend';
+
+            base.isTransition = true;
+
+            base.$owlWrapper
+                .addClass('owl-origin')
+                .css({
+                    "-webkit-transform-origin" : origin + "px",
+                    "-moz-perspective-origin" : origin + "px",
+                    "perspective-origin" : origin + "px"
+                });
+            function transStyles(prevPos) {
+                return {
+                    "position" : "relative",
+                    "left" : prevPos + "px"
+                };
+            }
+
+            $prevItem
+                .css(transStyles(prevPos, 10))
+                .addClass(outClass)
+                .on(animEnd, function () {
+                    base.endPrev = true;
+                    $prevItem.off(animEnd);
+                    base.clearTransStyle($prevItem, outClass);
+                });
+
+            $currentItem
+                .addClass(inClass)
+                .on(animEnd, function () {
+                    base.endCurrent = true;
+                    $currentItem.off(animEnd);
+                    base.clearTransStyle($currentItem, inClass);
+                });
+        },
+
+        clearTransStyle : function (item, classToRemove) {
+            var base = this;
+            item.css({
+                "position" : "",
+                "left" : ""
+            }).removeClass(classToRemove);
+
+            if (base.endPrev && base.endCurrent) {
+                base.$owlWrapper.removeClass('owl-origin');
+                base.endPrev = false;
+                base.endCurrent = false;
+                base.isTransition = false;
+            }
+        },
+
+        owlStatus : function () {
+            var base = this;
+            base.owl = {
+                "userOptions"   : base.userOptions,
+                "baseElement"   : base.$elem,
+                "userItems"     : base.$userItems,
+                "owlItems"      : base.$owlItems,
+                "currentItem"   : base.currentItem,
+                "prevItem"      : base.prevItem,
+                "visibleItems"  : base.visibleItems,
+                "isTouch"       : base.browser.isTouch,
+                "browser"       : base.browser,
+                "dragDirection" : base.dragDirection
+            };
+        },
+
+        clearEvents : function () {
+            var base = this;
+            base.$elem.off(".owl owl mousedown.disableTextSelect");
+            $(document).off(".owl owl");
+            $(window).off("resize", base.resizer);
+        },
+
+        unWrap : function () {
+            var base = this;
+            if (base.$elem.children().length !== 0) {
+                base.$owlWrapper.unwrap();
+                base.$userItems.unwrap().unwrap();
+                if (base.owlControls) {
+                    base.owlControls.remove();
+                }
+            }
+            base.clearEvents();
+            base.$elem
+                .attr("style", base.$elem.data("owl-originalStyles") || "")
+                .attr("class", base.$elem.data("owl-originalClasses"));
+        },
+
+        destroy : function () {
+            var base = this;
+            base.stop();
+            window.clearInterval(base.checkVisible);
+            base.unWrap();
+            base.$elem.removeData();
+        },
+
+        reinit : function (newOptions) {
+            var base = this,
+                options = $.extend({}, base.userOptions, newOptions);
+            base.unWrap();
+            base.init(options, base.$elem);
+        },
+
+        addItem : function (htmlString, targetPosition) {
+            var base = this,
+                position;
+
+            if (!htmlString) {return false; }
+
+            if (base.$elem.children().length === 0) {
+                base.$elem.append(htmlString);
+                base.setVars();
+                return false;
+            }
+            base.unWrap();
+            if (targetPosition === undefined || targetPosition === -1) {
+                position = -1;
+            } else {
+                position = targetPosition;
+            }
+            if (position >= base.$userItems.length || position === -1) {
+                base.$userItems.eq(-1).after(htmlString);
+            } else {
+                base.$userItems.eq(position).before(htmlString);
+            }
+
+            base.setVars();
+        },
+
+        removeItem : function (targetPosition) {
+            var base = this,
+                position;
+
+            if (base.$elem.children().length === 0) {
+                return false;
+            }
+            if (targetPosition === undefined || targetPosition === -1) {
+                position = -1;
+            } else {
+                position = targetPosition;
+            }
+
+            base.unWrap();
+            base.$userItems.eq(position).remove();
+            base.setVars();
+        }
+
+    };
+
+    $.fn.owlCarousel = function (options) {
+        return this.each(function () {
+            if ($(this).data("owl-init") === true) {
+                return false;
+            }
+            $(this).data("owl-init", true);
+            var carousel = Object.create(Carousel);
+            carousel.init(options, this);
+            $.data(this, "owlCarousel", carousel);
+        });
+    };
+
+    $.fn.owlCarousel.options = {
+
+        items : 5,
+        itemsCustom : false,
+        itemsDesktop : [1199, 4],
+        itemsDesktopSmall : [979, 3],
+        itemsTablet : [768, 2],
+        itemsTabletSmall : false,
+        itemsMobile : [479, 1],
+        singleItem : false,
+        itemsScaleUp : false,
+
+        slideSpeed : 200,
+        paginationSpeed : 800,
+        rewindSpeed : 1000,
+
+        autoPlay : false,
+        stopOnHover : false,
+
+        navigation : false,
+        navigationText : ["prev", "next"],
+        rewindNav : true,
+        scrollPerPage : false,
+
+        pagination : true,
+        paginationNumbers : false,
+
+        responsive : true,
+        responsiveRefreshRate : 200,
+        responsiveBaseWidth : window,
+
+        baseClass : "owl-carousel",
+        theme : "owl-theme",
+
+        lazyLoad : false,
+        lazyFollow : true,
+        lazyEffect : "fade",
+
+        autoHeight : false,
+
+        jsonPath : false,
+        jsonSuccess : false,
+
+        dragBeforeAnimFinish : true,
+        mouseDrag : true,
+        touchDrag : true,
+
+        addClassActive : false,
+        transitionStyle : false,
+
+        beforeUpdate : false,
+        afterUpdate : false,
+        beforeInit : false,
+        afterInit : false,
+        beforeMove : false,
+        afterMove : false,
+        afterAction : false,
+        startDragging : false,
+        afterLazyLoad: false
+    };
+}(jQuery, window, document));
+/* End olw carrusel */
 
 
 /* backbone */
@@ -32616,3 +34493,2228 @@ Handlebars.registerHelper("debug", function(optionalValue) {
   return Backbone;
 
 }));
+
+
+/* Init validate engine es */
+
+(function($){
+    $.fn.validationEngineLanguage = function(){
+    };
+    $.validationEngineLanguage = {
+        newLang: function(){
+            $.validationEngineLanguage.allRules = {
+                "required": { // Add your regex rules here, you can take telephone as an example
+                    "regex": "none",
+                    "alertText": "* Este campo es obligatorio",
+                    "alertTextCheckboxMultiple": "* Por favor seleccione una opción",
+                    "alertTextCheckboxe": "* Este checkbox es obligatorio"
+                },
+                "requiredInFunction": { 
+                    "func": function(field, rules, i, options){
+                        return (field.val() == "test") ? true : false;
+                    },
+                    "alertText": "* Field must equal test"
+                },
+                "minSize": {
+                    "regex": "none",
+                    "alertText": "* Mínimo de ",
+                    "alertText2": " caracteres autorizados"
+                },
+				"groupRequired": {
+                    "regex": "none",
+                    "alertText": "* Debe de rellenar al menos uno de los siguientes campos"
+                },
+                "maxSize": {
+                    "regex": "none",
+                    "alertText": "* Máximo de ",
+                    "alertText2": " caracteres autorizados"
+                },
+		        "min": {
+                    "regex": "none",
+                    "alertText": "* El valor mínimo es "
+                },
+                "max": {
+                    "regex": "none",
+                    "alertText": "* El valor máximo es "
+                },
+		        "past": {
+                    "regex": "none",
+                    "alertText": "* Fecha anterior a "
+                },
+                "future": {
+                    "regex": "none",
+                    "alertText": "* Fecha posterior a "
+                },	
+                "maxCheckbox": {
+                    "regex": "none",
+                    "alertText": "* Se ha excedido el número de opciones permitidas"
+                },
+                "minCheckbox": {
+                    "regex": "none",
+                    "alertText": "* Por favor seleccione ",
+                    "alertText2": " opciones"
+                },
+                "equals": {
+                    "regex": "none",
+                    "alertText": "* Los campos no coinciden"
+                },
+                "creditCard": {
+                    "regex": "none",
+                    "alertText": "* La tarjeta de crédito no es válida"
+                },
+                "phone": {
+                    // credit: jquery.h5validate.js / orefalo
+                    "regex": /^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/,
+                    "alertText": "* Número de teléfono inválido"
+                },
+                "email": {
+                    // Shamelessly lifted from Scott Gonzalez via the Bassistance Validation plugin http://projects.scottsplayground.com/email_address_validation/
+                    "regex": /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i,
+                    "alertText": "* Correo inválido"
+                },
+                "integer": {
+                    "regex": /^[\-\+]?\d+$/,
+                    "alertText": "* No es un valor entero válido"
+                },
+                "number": {
+                    // Number, including positive, negative, and floating decimal. credit: orefalo
+                    "regex": /^[\-\+]?((([0-9]{1,3})([,][0-9]{3})*)|([0-9]+))?([\.]([0-9]+))?$/,
+                    "alertText": "* No es un valor decimal válido"
+                },
+                "date": {
+                    "regex": /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/,
+                    "alertText": "* Fecha inválida, por favor utilize el formato DD/MM/AAAA"
+                },
+                "ipv4": {
+                	"regex": /^((([01]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))[.]){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))$/,
+                    "alertText": "* Direccion IP inválida"
+                },
+                "url": {
+                    "regex": /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i,
+                    "alertText": "* URL Inválida"
+                },
+                "onlyNumberSp": {
+                    "regex": /^[0-9\ ]+$/,
+                    "alertText": "* Sólo números"
+                },
+			    "onlyLetterSp": {
+                    "regex": /^[a-zA-Z\ \']+$/,
+                    "alertText": "* Sólo letras"
+                },
+                "onlyLetterNumber": {
+                    "regex": /^[0-9a-zA-Z]+$/,
+                    "alertText": "* No se permiten caracteres especiales"
+                },
+				// --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
+                "ajaxUserCall": {
+                    "url": "ajaxValidateFieldUser",
+					// you may want to pass extra data on the ajax call
+                    "extraData": "name=eric",
+                    "alertTextLoad": "* Cargando, espere por favor",
+                    "alertText": "* Este nombre de usuario ya se encuentra usado"
+                },
+                "ajaxNameCall": {
+					// remote json service location
+                    "url": "ajaxValidateFieldName",
+					// error
+                    "alertText": "* Este nombre ya se encuentra usado",
+					// if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextOk": "* Este nombre está disponible",
+					// speaks by itself
+                    "alertTextLoad": "* Cargando, espere por favor"
+                },
+                "validate2fields": {
+                    "alertText": "* Por favor entrar HELLO"
+                }
+            };
+            
+        }
+    };
+    $.validationEngineLanguage.newLang();
+})(jQuery);
+
+/* End validate engine es */
+
+
+
+
+/* Init validate engine */
+/*
+ * Inline Form Validation Engine 2.6.2, jQuery plugin
+ *
+ * Copyright(c) 2010, Cedric Dugas
+ * http://www.position-absolute.com
+ *
+ * 2.0 Rewrite by Olivier Refalo
+ * http://www.crionics.com
+ *
+ * Form validation engine allowing custom regex rules to be added.
+ * Licensed under the MIT License
+ */
+ (function($) {
+
+	"use strict";
+
+	var methods = {
+
+		/**
+		* Kind of the constructor, called before any action
+		* @param {Map} user options
+		*/
+		init: function(options) {
+			var form = this;
+			if (!form.data('jqv') || form.data('jqv') == null ) {
+				options = methods._saveOptions(form, options);
+				// bind all formError elements to close on click
+				$(document).on("click", ".formError", function() {
+					$(this).fadeOut(150, function() {
+						// remove prompt once invisible
+						$(this).parent('.formErrorOuter').remove();
+						$(this).remove();
+					});
+				});
+			}
+			return this;
+		 },
+		/**
+		* Attachs jQuery.validationEngine to form.submit and field.blur events
+		* Takes an optional params: a list of options
+		* ie. jQuery("#formID1").validationEngine('attach', {promptPosition : "centerRight"});
+		*/
+		attach: function(userOptions) {
+
+			var form = this;
+			var options;
+
+			if(userOptions)
+				options = methods._saveOptions(form, userOptions);
+			else
+				options = form.data('jqv');
+
+			options.validateAttribute = (form.find("[data-validation-engine*=validate]").length) ? "data-validation-engine" : "class";
+			if (options.binded) {
+
+				// delegate fields
+				form.on(options.validationEventTrigger, "["+options.validateAttribute+"*=validate]:not([type=checkbox]):not([type=radio]):not(.datepicker)", methods._onFieldEvent);
+				form.on("click", "["+options.validateAttribute+"*=validate][type=checkbox],["+options.validateAttribute+"*=validate][type=radio]", methods._onFieldEvent);
+				form.on(options.validationEventTrigger,"["+options.validateAttribute+"*=validate][class*=datepicker]", {"delay": 300}, methods._onFieldEvent);
+			}
+			if (options.autoPositionUpdate) {
+				$(window).bind("resize", {
+					"noAnimation": true,
+					"formElem": form
+				}, methods.updatePromptsPosition);
+			}
+			form.on("click","a[data-validation-engine-skip], a[class*='validate-skip'], button[data-validation-engine-skip], button[class*='validate-skip'], input[data-validation-engine-skip], input[class*='validate-skip']", methods._submitButtonClick);
+			form.removeData('jqv_submitButton');
+
+			// bind form.submit
+			form.on("submit", methods._onSubmitEvent);
+			return this;
+		},
+		/**
+		* Unregisters any bindings that may point to jQuery.validaitonEngine
+		*/
+		detach: function() {
+
+			var form = this;
+			var options = form.data('jqv');
+
+			// unbind fields
+			form.find("["+options.validateAttribute+"*=validate]").not("[type=checkbox]").off(options.validationEventTrigger, methods._onFieldEvent);
+			form.find("["+options.validateAttribute+"*=validate][type=checkbox],[class*=validate][type=radio]").off("click", methods._onFieldEvent);
+
+			// unbind form.submit
+			form.off("submit", methods._onSubmitEvent);
+			form.removeData('jqv');
+            
+			form.off("click", "a[data-validation-engine-skip], a[class*='validate-skip'], button[data-validation-engine-skip], button[class*='validate-skip'], input[data-validation-engine-skip], input[class*='validate-skip']", methods._submitButtonClick);
+			form.removeData('jqv_submitButton');
+
+			if (options.autoPositionUpdate)
+				$(window).off("resize", methods.updatePromptsPosition);
+
+			return this;
+		},
+		/**
+		* Validates either a form or a list of fields, shows prompts accordingly.
+		* Note: There is no ajax form validation with this method, only field ajax validation are evaluated
+		*
+		* @return true if the form validates, false if it fails
+		*/
+		validate: function() {
+			var element = $(this);
+			var valid = null;
+
+			if (element.is("form") || element.hasClass("validationEngineContainer")) {
+				if (element.hasClass('validating')) {
+					// form is already validating.
+					// Should abort old validation and start new one. I don't know how to implement it.
+					return false;
+				} else {				
+					element.addClass('validating');
+					var options = element.data('jqv');
+					var valid = methods._validateFields(this);
+
+					// If the form doesn't validate, clear the 'validating' class before the user has a chance to submit again
+					setTimeout(function(){
+						element.removeClass('validating');
+					}, 100);
+					if (valid && options.onSuccess) {
+						options.onSuccess();
+					} else if (!valid && options.onFailure) {
+						options.onFailure();
+					}
+				}
+			} else if (element.is('form') || element.hasClass('validationEngineContainer')) {
+				element.removeClass('validating');
+			} else {
+				// field validation
+				var form = element.closest('form, .validationEngineContainer'),
+					options = (form.data('jqv')) ? form.data('jqv') : $.validationEngine.defaults,
+					valid = methods._validateField(element, options);
+
+				if (valid && options.onFieldSuccess)
+					options.onFieldSuccess();
+				else if (options.onFieldFailure && options.InvalidFields.length > 0) {
+					options.onFieldFailure();
+				}
+			}
+			if(options.onValidationComplete) {
+				// !! ensures that an undefined return is interpreted as return false but allows a onValidationComplete() to possibly return true and have form continue processing
+				return !!options.onValidationComplete(form, valid);
+			}
+			return valid;
+		},
+		/**
+		*  Redraw prompts position, useful when you change the DOM state when validating
+		*/
+		updatePromptsPosition: function(event) {
+
+			if (event && this == window) {
+				var form = event.data.formElem;
+				var noAnimation = event.data.noAnimation;
+			}
+			else
+				var form = $(this.closest('form, .validationEngineContainer'));
+
+			var options = form.data('jqv');
+			// No option, take default one
+			form.find('['+options.validateAttribute+'*=validate]').not(":disabled").each(function(){
+				var field = $(this);
+				if (options.prettySelect && field.is(":hidden"))
+				  field = form.find("#" + options.usePrefix + field.attr('id') + options.useSuffix);
+				var prompt = methods._getPrompt(field);
+				var promptText = $(prompt).find(".formErrorContent").html();
+
+				if(prompt)
+					methods._updatePrompt(field, $(prompt), promptText, undefined, false, options, noAnimation);
+			});
+			return this;
+		},
+		/**
+		* Displays a prompt on a element.
+		* Note that the element needs an id!
+		*
+		* @param {String} promptText html text to display type
+		* @param {String} type the type of bubble: 'pass' (green), 'load' (black) anything else (red)
+		* @param {String} possible values topLeft, topRight, bottomLeft, centerRight, bottomRight
+		*/
+		showPrompt: function(promptText, type, promptPosition, showArrow) {
+			var form = this.closest('form, .validationEngineContainer');
+			var options = form.data('jqv');
+			// No option, take default one
+			if(!options)
+				options = methods._saveOptions(this, options);
+			if(promptPosition)
+				options.promptPosition=promptPosition;
+			options.showArrow = showArrow==true;
+
+			methods._showPrompt(this, promptText, type, false, options);
+			return this;
+		},
+		/**
+		* Closes form error prompts, CAN be invidual
+		*/
+		hide: function() {
+			 var form = $(this).closest('form, .validationEngineContainer');
+			 var options = form.data('jqv');
+			 var fadeDuration = (options && options.fadeDuration) ? options.fadeDuration : 0.3;
+			 var closingtag;
+			 
+			 if($(this).is("form") || $(this).hasClass("validationEngineContainer")) {
+				 closingtag = "parentForm"+methods._getClassName($(this).attr("id"));
+			 } else {
+				 closingtag = methods._getClassName($(this).attr("id")) +"formError";
+			 }
+			 $('.'+closingtag).fadeTo(fadeDuration, 0.3, function() {
+				 $(this).parent('.formErrorOuter').remove();
+				 $(this).remove();
+			 });
+			 return this;
+		 },
+		 /**
+		 * Closes all error prompts on the page
+		 */
+		 hideAll: function() {
+
+			 var form = this;
+			 var options = form.data('jqv');
+			 var duration = options ? options.fadeDuration:300;
+			 $('.formError').fadeTo(duration, 300, function() {
+				 $(this).parent('.formErrorOuter').remove();
+				 $(this).remove();
+			 });
+			 return this;
+		 },
+		/**
+		* Typically called when user exists a field using tab or a mouse click, triggers a field
+		* validation
+		*/
+		_onFieldEvent: function(event) {
+			var field = $(this);
+			var form = field.closest('form, .validationEngineContainer');
+			var options = form.data('jqv');
+			options.eventTrigger = "field";
+			// validate the current field
+			window.setTimeout(function() {
+				methods._validateField(field, options);
+				if (options.InvalidFields.length == 0 && options.onFieldSuccess) {
+					options.onFieldSuccess();
+				} else if (options.InvalidFields.length > 0 && options.onFieldFailure) {
+					options.onFieldFailure();
+				}
+			}, (event.data) ? event.data.delay : 0);
+
+		},
+		/**
+		* Called when the form is submited, shows prompts accordingly
+		*
+		* @param {jqObject}
+		*            form
+		* @return false if form submission needs to be cancelled
+		*/
+		_onSubmitEvent: function() {
+			var form = $(this);
+			var options = form.data('jqv');
+			
+			//check if it is trigger from skipped button
+			if (form.data("jqv_submitButton")){
+				var submitButton = $("#" + form.data("jqv_submitButton"));
+				if (submitButton){
+					if (submitButton.length > 0){
+						if (submitButton.hasClass("validate-skip") || submitButton.attr("data-validation-engine-skip") == "true")
+							return true;
+					}
+				}
+			}
+
+			options.eventTrigger = "submit";
+
+			// validate each field 
+			// (- skip field ajax validation, not necessary IF we will perform an ajax form validation)
+			var r=methods._validateFields(form);
+
+			if (r && options.ajaxFormValidation) {
+				methods._validateFormWithAjax(form, options);
+				// cancel form auto-submission - process with async call onAjaxFormComplete
+				return false;
+			}
+
+			if(options.onValidationComplete) {
+				// !! ensures that an undefined return is interpreted as return false but allows a onValidationComplete() to possibly return true and have form continue processing
+				return !!options.onValidationComplete(form, r);
+			}
+			return r;
+		},
+		/**
+		* Return true if the ajax field validations passed so far
+		* @param {Object} options
+		* @return true, is all ajax validation passed so far (remember ajax is async)
+		*/
+		_checkAjaxStatus: function(options) {
+			var status = true;
+			$.each(options.ajaxValidCache, function(key, value) {
+				if (!value) {
+					status = false;
+					// break the each
+					return false;
+				}
+			});
+			return status;
+		},
+		
+		/**
+		* Return true if the ajax field is validated
+		* @param {String} fieldid
+		* @param {Object} options
+		* @return true, if validation passed, false if false or doesn't exist
+		*/
+		_checkAjaxFieldStatus: function(fieldid, options) {
+			return options.ajaxValidCache[fieldid] == true;
+		},
+		/**
+		* Validates form fields, shows prompts accordingly
+		*
+		* @param {jqObject}
+		*            form
+		* @param {skipAjaxFieldValidation}
+		*            boolean - when set to true, ajax field validation is skipped, typically used when the submit button is clicked
+		*
+		* @return true if form is valid, false if not, undefined if ajax form validation is done
+		*/
+		_validateFields: function(form) {
+			var options = form.data('jqv');
+
+			// this variable is set to true if an error is found
+			var errorFound = false;
+
+			// Trigger hook, start validation
+			form.trigger("jqv.form.validating");
+			// first, evaluate status of non ajax fields
+			var first_err=null;
+			form.find('['+options.validateAttribute+'*=validate]').not(":disabled").each( function() {
+				var field = $(this);
+				var names = [];
+				if ($.inArray(field.attr('name'), names) < 0) {
+					errorFound |= methods._validateField(field, options);
+					if (errorFound && first_err==null)
+						if (field.is(":hidden") && options.prettySelect)
+							first_err = field = form.find("#" + options.usePrefix + methods._jqSelector(field.attr('id')) + options.useSuffix);
+						else {
+
+							//Check if we need to adjust what element to show the prompt on
+							//and and such scroll to instead
+							if(field.data('jqv-prompt-at') instanceof jQuery ){
+								field = field.data('jqv-prompt-at');
+							} else if(field.data('jqv-prompt-at')) {
+								field = $(field.data('jqv-prompt-at'));
+							}
+							first_err=field;
+						}
+					if (options.doNotShowAllErrosOnSubmit)
+						return false;
+					names.push(field.attr('name'));
+
+					//if option set, stop checking validation rules after one error is found
+					if(options.showOneMessage == true && errorFound){
+						return false;
+					}
+				}
+			});
+
+			// second, check to see if all ajax calls completed ok
+			// errorFound |= !methods._checkAjaxStatus(options);
+
+			// third, check status and scroll the container accordingly
+			form.trigger("jqv.form.result", [errorFound]);
+
+			if (errorFound) {
+				if (options.scroll) {
+					var destination=first_err.offset().top;
+					var fixleft = first_err.offset().left;
+
+					//prompt positioning adjustment support. Usage: positionType:Xshift,Yshift (for ex.: bottomLeft:+20 or bottomLeft:-20,+10)
+					var positionType=options.promptPosition;
+					if (typeof(positionType)=='string' && positionType.indexOf(":")!=-1)
+						positionType=positionType.substring(0,positionType.indexOf(":"));
+
+					if (positionType!="bottomRight" && positionType!="bottomLeft") {
+						var prompt_err= methods._getPrompt(first_err);
+						if (prompt_err) {
+							destination=prompt_err.offset().top;
+						}
+					}
+					
+					// Offset the amount the page scrolls by an amount in px to accomodate fixed elements at top of page
+					if (options.scrollOffset) {
+						destination -= options.scrollOffset;
+					}
+
+					// get the position of the first error, there should be at least one, no need to check this
+					//var destination = form.find(".formError:not('.greenPopup'):first").offset().top;
+					if (options.isOverflown) {
+						var overflowDIV = $(options.overflownDIV);
+						if(!overflowDIV.length) return false;
+						var scrollContainerScroll = overflowDIV.scrollTop();
+						var scrollContainerPos = -parseInt(overflowDIV.offset().top);
+
+						destination += scrollContainerScroll + scrollContainerPos - 5;
+						var scrollContainer = $(options.overflownDIV + ":not(:animated)");
+
+						scrollContainer.animate({ scrollTop: destination }, 1100, function(){
+							if(options.focusFirstField) first_err.focus();
+						});
+
+					} else {
+						$("html, body").animate({
+							scrollTop: destination
+						}, 1100, function(){
+							if(options.focusFirstField) first_err.focus();
+						});
+						$("html, body").animate({scrollLeft: fixleft},1100)
+					}
+
+				} else if(options.focusFirstField)
+					first_err.focus();
+				return false;
+			}
+			return true;
+		},
+		/**
+		* This method is called to perform an ajax form validation.
+		* During this process all the (field, value) pairs are sent to the server which returns a list of invalid fields or true
+		*
+		* @param {jqObject} form
+		* @param {Map} options
+		*/
+		_validateFormWithAjax: function(form, options) {
+
+			var data = form.serialize();
+									var type = (options.ajaxFormValidationMethod) ? options.ajaxFormValidationMethod : "GET";
+			var url = (options.ajaxFormValidationURL) ? options.ajaxFormValidationURL : form.attr("action");
+									var dataType = (options.dataType) ? options.dataType : "json";
+			$.ajax({
+				type: type,
+				url: url,
+				cache: false,
+				dataType: dataType,
+				data: data,
+				form: form,
+				methods: methods,
+				options: options,
+				beforeSend: function() {
+					return options.onBeforeAjaxFormValidation(form, options);
+				},
+				error: function(data, transport) {
+					if (options.onFailure) {
+						options.onFailure(data, transport);
+					} else {
+						methods._ajaxError(data, transport);
+					}
+				},
+				success: function(json) {
+					if ((dataType == "json") && (json !== true)) {
+						// getting to this case doesn't necessary means that the form is invalid
+						// the server may return green or closing prompt actions
+						// this flag helps figuring it out
+						var errorInForm=false;
+						for (var i = 0; i < json.length; i++) {
+							var value = json[i];
+
+							var errorFieldId = value[0];
+							var errorField = $($("#" + errorFieldId)[0]);
+
+							// make sure we found the element
+							if (errorField.length == 1) {
+
+								// promptText or selector
+								var msg = value[2];
+								// if the field is valid
+								if (value[1] == true) {
+
+									if (msg == ""  || !msg){
+										// if for some reason, status==true and error="", just close the prompt
+										methods._closePrompt(errorField);
+									} else {
+										// the field is valid, but we are displaying a green prompt
+										if (options.allrules[msg]) {
+											var txt = options.allrules[msg].alertTextOk;
+											if (txt)
+												msg = txt;
+										}
+										if (options.showPrompts) methods._showPrompt(errorField, msg, "pass", false, options, true);
+									}
+								} else {
+									// the field is invalid, show the red error prompt
+									errorInForm|=true;
+									if (options.allrules[msg]) {
+										var txt = options.allrules[msg].alertText;
+										if (txt)
+											msg = txt;
+									}
+									if(options.showPrompts) methods._showPrompt(errorField, msg, "", false, options, true);
+								}
+							}
+						}
+						options.onAjaxFormComplete(!errorInForm, form, json, options);
+					} else
+						options.onAjaxFormComplete(true, form, json, options);
+
+				}
+			});
+
+		},
+		/**
+		* Validates field, shows prompts accordingly
+		*
+		* @param {jqObject}
+		*            field
+		* @param {Array[String]}
+		*            field's validation rules
+		* @param {Map}
+		*            user options
+		* @return false if field is valid (It is inversed for *fields*, it return false on validate and true on errors.)
+		*/
+		_validateField: function(field, options, skipAjaxValidation) {
+			if (!field.attr("id")) {
+				field.attr("id", "form-validation-field-" + $.validationEngine.fieldIdCounter);
+				++$.validationEngine.fieldIdCounter;
+			}
+
+           if (!options.validateNonVisibleFields && (field.is(":hidden") && !options.prettySelect || field.parent().is(":hidden")))
+				return false;
+
+			var rulesParsing = field.attr(options.validateAttribute);
+			var getRules = /validate\[(.*)\]/.exec(rulesParsing);
+
+			if (!getRules)
+				return false;
+			var str = getRules[1];
+			var rules = str.split(/\[|,|\]/);
+
+			// true if we ran the ajax validation, tells the logic to stop messing with prompts
+			var isAjaxValidator = false;
+			var fieldName = field.attr("name");
+			var promptText = "";
+			var promptType = "";
+			var required = false;
+			var limitErrors = false;
+			options.isError = false;
+			options.showArrow = true;
+			
+			// If the programmer wants to limit the amount of error messages per field,
+			if (options.maxErrorsPerField > 0) {
+				limitErrors = true;
+			}
+
+			var form = $(field.closest("form, .validationEngineContainer"));
+			// Fix for adding spaces in the rules
+			for (var i = 0; i < rules.length; i++) {
+				rules[i] = rules[i].replace(" ", "");
+				// Remove any parsing errors
+				if (rules[i] === '') {
+					delete rules[i];
+				}
+			}
+
+			for (var i = 0, field_errors = 0; i < rules.length; i++) {
+				
+				// If we are limiting errors, and have hit the max, break
+				if (limitErrors && field_errors >= options.maxErrorsPerField) {
+					// If we haven't hit a required yet, check to see if there is one in the validation rules for this
+					// field and that it's index is greater or equal to our current index
+					if (!required) {
+						var have_required = $.inArray('required', rules);
+						required = (have_required != -1 &&  have_required >= i);
+					}
+					break;
+				}
+				
+				
+				var errorMsg = undefined;
+				switch (rules[i]) {
+
+					case "required":
+						required = true;
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._required);
+						break;
+					case "custom":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._custom);
+						break;
+					case "groupRequired":
+						// Check is its the first of group, if not, reload validation with first field
+						// AND continue normal validation on present field
+						var classGroup = "["+options.validateAttribute+"*=" +rules[i + 1] +"]";
+						var firstOfGroup = form.find(classGroup).eq(0);
+						if(firstOfGroup[0] != field[0]){
+
+							methods._validateField(firstOfGroup, options, skipAjaxValidation); 
+							options.showArrow = true;
+
+						}
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._groupRequired);
+						if(errorMsg)  required = true;
+						options.showArrow = false;
+						break;
+					case "ajax":
+						// AJAX defaults to returning it's loading message
+						errorMsg = methods._ajax(field, rules, i, options);
+						if (errorMsg) {
+							promptType = "load";
+						}
+						break;
+					case "minSize":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._minSize);
+						break;
+					case "maxSize":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._maxSize);
+						break;
+					case "min":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._min);
+						break;
+					case "max":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._max);
+						break;
+					case "past":
+						errorMsg = methods._getErrorMessage(form, field,rules[i], rules, i, options, methods._past);
+						break;
+					case "future":
+						errorMsg = methods._getErrorMessage(form, field,rules[i], rules, i, options, methods._future);
+						break;
+					case "dateRange":
+						var classGroup = "["+options.validateAttribute+"*=" + rules[i + 1] + "]";
+						options.firstOfGroup = form.find(classGroup).eq(0);
+						options.secondOfGroup = form.find(classGroup).eq(1);
+
+						//if one entry out of the pair has value then proceed to run through validation
+						if (options.firstOfGroup[0].value || options.secondOfGroup[0].value) {
+							errorMsg = methods._getErrorMessage(form, field,rules[i], rules, i, options, methods._dateRange);
+						}
+						if (errorMsg) required = true;
+						options.showArrow = false;
+						break;
+
+					case "dateTimeRange":
+						var classGroup = "["+options.validateAttribute+"*=" + rules[i + 1] + "]";
+						options.firstOfGroup = form.find(classGroup).eq(0);
+						options.secondOfGroup = form.find(classGroup).eq(1);
+
+						//if one entry out of the pair has value then proceed to run through validation
+						if (options.firstOfGroup[0].value || options.secondOfGroup[0].value) {
+							errorMsg = methods._getErrorMessage(form, field,rules[i], rules, i, options, methods._dateTimeRange);
+						}
+						if (errorMsg) required = true;
+						options.showArrow = false;
+						break;
+					case "maxCheckbox":
+						field = $(form.find("input[name='" + fieldName + "']"));
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._maxCheckbox);
+						break;
+					case "minCheckbox":
+						field = $(form.find("input[name='" + fieldName + "']"));
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._minCheckbox);
+						break;
+					case "equals":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._equals);
+						break;
+					case "funcCall":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._funcCall);
+						break;
+					case "creditCard":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._creditCard);
+						break;
+					case "condRequired":
+						errorMsg = methods._getErrorMessage(form, field, rules[i], rules, i, options, methods._condRequired);
+						if (errorMsg !== undefined) {
+							required = true;
+						}
+						break;
+
+					default:
+				}
+				
+				var end_validation = false;
+				
+				// If we were passed back an message object, check what the status was to determine what to do
+				if (typeof errorMsg == "object") {
+					switch (errorMsg.status) {
+						case "_break":
+							end_validation = true;
+							break;
+						// If we have an error message, set errorMsg to the error message
+						case "_error":
+							errorMsg = errorMsg.message;
+							break;
+						// If we want to throw an error, but not show a prompt, return early with true
+						case "_error_no_prompt":
+							return true;
+							break;
+						// Anything else we continue on
+						default:
+							break;
+					}
+				}
+				
+				// If it has been specified that validation should end now, break
+				if (end_validation) {
+					break;
+				}
+				
+				// If we have a string, that means that we have an error, so add it to the error message.
+				if (typeof errorMsg == 'string') {
+					promptText += errorMsg + "<br/>";
+					options.isError = true;
+					field_errors++;
+				}	
+			}
+			// If the rules required is not added, an empty field is not validated
+			//the 3rd condition is added so that even empty password fields should be equal
+			//otherwise if one is filled and another left empty, the "equal" condition would fail
+			//which does not make any sense
+			if(!required && !(field.val()) && field.val().length < 1 && rules.indexOf("equals") < 0) options.isError = false;
+
+			// Hack for radio/checkbox group button, the validation go into the
+			// first radio/checkbox of the group
+			var fieldType = field.prop("type");
+			var positionType=field.data("promptPosition") || options.promptPosition;
+
+			if ((fieldType == "radio" || fieldType == "checkbox") && form.find("input[name='" + fieldName + "']").size() > 1) {
+				if(positionType === 'inline') {
+					field = $(form.find("input[name='" + fieldName + "'][type!=hidden]:last"));
+				} else {
+				field = $(form.find("input[name='" + fieldName + "'][type!=hidden]:first"));
+				}
+				options.showArrow = false;
+			}
+
+			if(field.is(":hidden") && options.prettySelect) {
+				field = form.find("#" + options.usePrefix + methods._jqSelector(field.attr('id')) + options.useSuffix);
+			}
+
+			if (options.isError && options.showPrompts){
+				methods._showPrompt(field, promptText, promptType, false, options);
+			}else{
+				if (!isAjaxValidator) methods._closePrompt(field);
+			}
+
+			if (!isAjaxValidator) {
+				field.trigger("jqv.field.result", [field, options.isError, promptText]);
+			}
+
+			/* Record error */
+			var errindex = $.inArray(field[0], options.InvalidFields);
+			if (errindex == -1) {
+				if (options.isError)
+				options.InvalidFields.push(field[0]);
+			} else if (!options.isError) {
+				options.InvalidFields.splice(errindex, 1);
+			}
+				
+			methods._handleStatusCssClasses(field, options);
+	
+			/* run callback function for each field */
+			if (options.isError && options.onFieldFailure)
+				options.onFieldFailure(field);
+
+			if (!options.isError && options.onFieldSuccess)
+				options.onFieldSuccess(field);
+
+			return options.isError;
+		},
+		/**
+		* Handling css classes of fields indicating result of validation 
+		*
+		* @param {jqObject}
+		*            field
+		* @param {Array[String]}
+		*            field's validation rules            
+		* @private
+		*/
+		_handleStatusCssClasses: function(field, options) {
+			/* remove all classes */
+			if(options.addSuccessCssClassToField)
+				field.removeClass(options.addSuccessCssClassToField);
+			
+			if(options.addFailureCssClassToField)
+				field.removeClass(options.addFailureCssClassToField);
+			
+			/* Add classes */
+			if (options.addSuccessCssClassToField && !options.isError)
+				field.addClass(options.addSuccessCssClassToField);
+			
+			if (options.addFailureCssClassToField && options.isError)
+				field.addClass(options.addFailureCssClassToField);		
+		},
+		
+		 /********************
+		  * _getErrorMessage
+		  *
+		  * @param form
+		  * @param field
+		  * @param rule
+		  * @param rules
+		  * @param i
+		  * @param options
+		  * @param originalValidationMethod
+		  * @return {*}
+		  * @private
+		  */
+		 _getErrorMessage:function (form, field, rule, rules, i, options, originalValidationMethod) {
+			 // If we are using the custon validation type, build the index for the rule.
+			 // Otherwise if we are doing a function call, make the call and return the object
+			 // that is passed back.
+	 		 var rule_index = jQuery.inArray(rule, rules);
+			 if (rule === "custom" || rule === "funcCall") {
+				 var custom_validation_type = rules[rule_index + 1];
+				 rule = rule + "[" + custom_validation_type + "]";
+				 // Delete the rule from the rules array so that it doesn't try to call the
+			    // same rule over again
+			    delete(rules[rule_index]);
+			 }
+			 // Change the rule to the composite rule, if it was different from the original
+			 var alteredRule = rule;
+
+
+			 var element_classes = (field.attr("data-validation-engine")) ? field.attr("data-validation-engine") : field.attr("class");
+			 var element_classes_array = element_classes.split(" ");
+
+			 // Call the original validation method. If we are dealing with dates or checkboxes, also pass the form
+			 var errorMsg;
+			 if (rule == "future" || rule == "past"  || rule == "maxCheckbox" || rule == "minCheckbox") {
+				 errorMsg = originalValidationMethod(form, field, rules, i, options);
+			 } else {
+				 errorMsg = originalValidationMethod(field, rules, i, options);
+			 }
+
+			 // If the original validation method returned an error and we have a custom error message,
+			 // return the custom message instead. Otherwise return the original error message.
+			 if (errorMsg != undefined) {
+				 var custom_message = methods._getCustomErrorMessage($(field), element_classes_array, alteredRule, options);
+				 if (custom_message) errorMsg = custom_message;
+			 }
+			 return errorMsg;
+
+		 },
+		 _getCustomErrorMessage:function (field, classes, rule, options) {
+			var custom_message = false;
+			var validityProp = /^custom\[.*\]$/.test(rule) ? methods._validityProp["custom"] : methods._validityProp[rule];
+			 // If there is a validityProp for this rule, check to see if the field has an attribute for it
+			if (validityProp != undefined) {
+				custom_message = field.attr("data-errormessage-"+validityProp);
+				// If there was an error message for it, return the message
+				if (custom_message != undefined) 
+					return custom_message;
+			}
+			custom_message = field.attr("data-errormessage");
+			 // If there is an inline custom error message, return it
+			if (custom_message != undefined) 
+				return custom_message;
+			var id = '#' + field.attr("id");
+			// If we have custom messages for the element's id, get the message for the rule from the id.
+			// Otherwise, if we have custom messages for the element's classes, use the first class message we find instead.
+			if (typeof options.custom_error_messages[id] != "undefined" &&
+				typeof options.custom_error_messages[id][rule] != "undefined" ) {
+						  custom_message = options.custom_error_messages[id][rule]['message'];
+			} else if (classes.length > 0) {
+				for (var i = 0; i < classes.length && classes.length > 0; i++) {
+					 var element_class = "." + classes[i];
+					if (typeof options.custom_error_messages[element_class] != "undefined" &&
+						typeof options.custom_error_messages[element_class][rule] != "undefined") {
+							custom_message = options.custom_error_messages[element_class][rule]['message'];
+							break;
+					}
+				}
+			}
+			if (!custom_message &&
+				typeof options.custom_error_messages[rule] != "undefined" &&
+				typeof options.custom_error_messages[rule]['message'] != "undefined"){
+					 custom_message = options.custom_error_messages[rule]['message'];
+			 }
+			 return custom_message;
+		 },
+		 _validityProp: {
+			 "required": "value-missing",
+			 "custom": "custom-error",
+			 "groupRequired": "value-missing",
+			 "ajax": "custom-error",
+			 "minSize": "range-underflow",
+			 "maxSize": "range-overflow",
+			 "min": "range-underflow",
+			 "max": "range-overflow",
+			 "past": "type-mismatch",
+			 "future": "type-mismatch",
+			 "dateRange": "type-mismatch",
+			 "dateTimeRange": "type-mismatch",
+			 "maxCheckbox": "range-overflow",
+			 "minCheckbox": "range-underflow",
+			 "equals": "pattern-mismatch",
+			 "funcCall": "custom-error",
+			 "creditCard": "pattern-mismatch",
+			 "condRequired": "value-missing"
+		 },
+		/**
+		* Required validation
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @param {bool} condRequired flag when method is used for internal purpose in condRequired check
+		* @return an error string if validation failed
+		*/
+		_required: function(field, rules, i, options, condRequired) {
+			switch (field.prop("type")) {
+				case "text":
+				case "password":
+				case "textarea":
+				case "file":
+				case "select-one":
+				case "select-multiple":
+				default:
+					var field_val      = $.trim( field.val()                               );
+					var dv_placeholder = $.trim( field.attr("data-validation-placeholder") );
+					var placeholder    = $.trim( field.attr("placeholder")                 );
+					if (
+						   ( !field_val                                    )
+						|| ( dv_placeholder && field_val == dv_placeholder )
+						|| ( placeholder    && field_val == placeholder    )
+					) {
+						return options.allrules[rules[i]].alertText;
+					}
+					break;
+				case "radio":
+				case "checkbox":
+					// new validation style to only check dependent field
+					if (condRequired) {
+						if (!field.attr('checked')) {
+							return options.allrules[rules[i]].alertTextCheckboxMultiple;
+						}
+						break;
+					}
+					// old validation style
+					var form = field.closest("form, .validationEngineContainer");
+					var name = field.attr("name");
+					if (form.find("input[name='" + name + "']:checked").size() == 0) {
+						if (form.find("input[name='" + name + "']:visible").size() == 1)
+							return options.allrules[rules[i]].alertTextCheckboxe;
+						else
+							return options.allrules[rules[i]].alertTextCheckboxMultiple;
+					}
+					break;
+			}
+		},
+		/**
+		* Validate that 1 from the group field is required
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_groupRequired: function(field, rules, i, options) {
+			var classGroup = "["+options.validateAttribute+"*=" +rules[i + 1] +"]";
+			var isValid = false;
+			// Check all fields from the group
+			field.closest("form, .validationEngineContainer").find(classGroup).each(function(){
+				if(!methods._required($(this), rules, i, options)){
+					isValid = true;
+					return false;
+				}
+			}); 
+
+			if(!isValid) {
+		  return options.allrules[rules[i]].alertText;
+		}
+		},
+		/**
+		* Validate rules
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_custom: function(field, rules, i, options) {
+			var customRule = rules[i + 1];
+			var rule = options.allrules[customRule];
+			var fn;
+			if(!rule) {
+				alert("jqv:custom rule not found - "+customRule);
+				return;
+			}
+			
+			if(rule["regex"]) {
+				 var ex=rule.regex;
+					if(!ex) {
+						alert("jqv:custom regex not found - "+customRule);
+						return;
+					}
+					var pattern = new RegExp(ex);
+
+					if (!pattern.test(field.val())) return options.allrules[customRule].alertText;
+					
+			} else if(rule["func"]) {
+				fn = rule["func"]; 
+				 
+				if (typeof(fn) !== "function") {
+					alert("jqv:custom parameter 'function' is no function - "+customRule);
+						return;
+				}
+				 
+				if (!fn(field, rules, i, options))
+					return options.allrules[customRule].alertText;
+			} else {
+				alert("jqv:custom type not allowed "+customRule);
+					return;
+			}
+		},
+		/**
+		* Validate custom function outside of the engine scope
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_funcCall: function(field, rules, i, options) {
+			var functionName = rules[i + 1];
+			var fn;
+			if(functionName.indexOf('.') >-1)
+			{
+				var namespaces = functionName.split('.');
+				var scope = window;
+				while(namespaces.length)
+				{
+					scope = scope[namespaces.shift()];
+				}
+				fn = scope;
+			}
+			else
+				fn = window[functionName] || options.customFunctions[functionName];
+			if (typeof(fn) == 'function')
+				return fn(field, rules, i, options);
+
+		},
+		/**
+		* Field match
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_equals: function(field, rules, i, options) {
+			var equalsField = rules[i + 1];
+
+			if (field.val() != $("#" + equalsField).val())
+				return options.allrules.equals.alertText;
+		},
+		/**
+		* Check the maximum size (in characters)
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_maxSize: function(field, rules, i, options) {
+			var max = rules[i + 1];
+			var len = field.val().length;
+
+			if (len > max) {
+				var rule = options.allrules.maxSize;
+				return rule.alertText + max + rule.alertText2;
+			}
+		},
+		/**
+		* Check the minimum size (in characters)
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_minSize: function(field, rules, i, options) {
+			var min = rules[i + 1];
+			var len = field.val().length;
+
+			if (len < min) {
+				var rule = options.allrules.minSize;
+				return rule.alertText + min + rule.alertText2;
+			}
+		},
+		/**
+		* Check number minimum value
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_min: function(field, rules, i, options) {
+			var min = parseFloat(rules[i + 1]);
+			var len = parseFloat(field.val());
+
+			if (len < min) {
+				var rule = options.allrules.min;
+				if (rule.alertText2) return rule.alertText + min + rule.alertText2;
+				return rule.alertText + min;
+			}
+		},
+		/**
+		* Check number maximum value
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_max: function(field, rules, i, options) {
+			var max = parseFloat(rules[i + 1]);
+			var len = parseFloat(field.val());
+
+			if (len >max ) {
+				var rule = options.allrules.max;
+				if (rule.alertText2) return rule.alertText + max + rule.alertText2;
+				//orefalo: to review, also do the translations
+				return rule.alertText + max;
+			}
+		},
+		/**
+		* Checks date is in the past
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_past: function(form, field, rules, i, options) {
+
+			var p=rules[i + 1];
+			var fieldAlt = $(form.find("*[name='" + p.replace(/^#+/, '') + "']"));
+			var pdate;
+
+			if (p.toLowerCase() == "now") {
+				pdate = new Date();
+			} else if (undefined != fieldAlt.val()) {
+				if (fieldAlt.is(":disabled"))
+					return;
+				pdate = methods._parseDate(fieldAlt.val());
+			} else {
+				pdate = methods._parseDate(p);
+			}
+			var vdate = methods._parseDate(field.val());
+
+			if (vdate > pdate ) {
+				var rule = options.allrules.past;
+				if (rule.alertText2) return rule.alertText + methods._dateToString(pdate) + rule.alertText2;
+				return rule.alertText + methods._dateToString(pdate);
+			}
+		},
+		/**
+		* Checks date is in the future
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_future: function(form, field, rules, i, options) {
+
+			var p=rules[i + 1];
+			var fieldAlt = $(form.find("*[name='" + p.replace(/^#+/, '') + "']"));
+			var pdate;
+
+			if (p.toLowerCase() == "now") {
+				pdate = new Date();
+			} else if (undefined != fieldAlt.val()) {
+				if (fieldAlt.is(":disabled"))
+					return;
+				pdate = methods._parseDate(fieldAlt.val());
+			} else {
+				pdate = methods._parseDate(p);
+			}
+			var vdate = methods._parseDate(field.val());
+
+			if (vdate < pdate ) {
+				var rule = options.allrules.future;
+				if (rule.alertText2)
+					return rule.alertText + methods._dateToString(pdate) + rule.alertText2;
+				return rule.alertText + methods._dateToString(pdate);
+			}
+		},
+		/**
+		* Checks if valid date
+		*
+		* @param {string} date string
+		* @return a bool based on determination of valid date
+		*/
+		_isDate: function (value) {
+			var dateRegEx = new RegExp(/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:0?[1-9]|1[0-2])(\/|-)(?:0?[1-9]|1\d|2[0-8]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(0?2(\/|-)29)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$/);
+			return dateRegEx.test(value);
+		},
+		/**
+		* Checks if valid date time
+		*
+		* @param {string} date string
+		* @return a bool based on determination of valid date time
+		*/
+		_isDateTime: function (value){
+			var dateTimeRegEx = new RegExp(/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1}$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^((1[012]|0?[1-9]){1}\/(0?[1-9]|[12][0-9]|3[01]){1}\/\d{2,4}\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1})$/);
+			return dateTimeRegEx.test(value);
+		},
+		//Checks if the start date is before the end date
+		//returns true if end is later than start
+		_dateCompare: function (start, end) {
+			return (new Date(start.toString()) < new Date(end.toString()));
+		},
+		/**
+		* Checks date range
+		*
+		* @param {jqObject} first field name
+		* @param {jqObject} second field name
+		* @return an error string if validation failed
+		*/
+		_dateRange: function (field, rules, i, options) {
+			//are not both populated
+			if ((!options.firstOfGroup[0].value && options.secondOfGroup[0].value) || (options.firstOfGroup[0].value && !options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+
+			//are not both dates
+			if (!methods._isDate(options.firstOfGroup[0].value) || !methods._isDate(options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+
+			//are both dates but range is off
+			if (!methods._dateCompare(options.firstOfGroup[0].value, options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+		},
+		/**
+		* Checks date time range
+		*
+		* @param {jqObject} first field name
+		* @param {jqObject} second field name
+		* @return an error string if validation failed
+		*/
+		_dateTimeRange: function (field, rules, i, options) {
+			//are not both populated
+			if ((!options.firstOfGroup[0].value && options.secondOfGroup[0].value) || (options.firstOfGroup[0].value && !options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+			//are not both dates
+			if (!methods._isDateTime(options.firstOfGroup[0].value) || !methods._isDateTime(options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+			//are both dates but range is off
+			if (!methods._dateCompare(options.firstOfGroup[0].value, options.secondOfGroup[0].value)) {
+				return options.allrules[rules[i]].alertText + options.allrules[rules[i]].alertText2;
+			}
+		},
+		/**
+		* Max number of checkbox selected
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_maxCheckbox: function(form, field, rules, i, options) {
+
+			var nbCheck = rules[i + 1];
+			var groupname = field.attr("name");
+			var groupSize = form.find("input[name='" + groupname + "']:checked").size();
+			if (groupSize > nbCheck) {
+				options.showArrow = false;
+				if (options.allrules.maxCheckbox.alertText2)
+					 return options.allrules.maxCheckbox.alertText + " " + nbCheck + " " + options.allrules.maxCheckbox.alertText2;
+				return options.allrules.maxCheckbox.alertText;
+			}
+		},
+		/**
+		* Min number of checkbox selected
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_minCheckbox: function(form, field, rules, i, options) {
+
+			var nbCheck = rules[i + 1];
+			var groupname = field.attr("name");
+			var groupSize = form.find("input[name='" + groupname + "']:checked").size();
+			if (groupSize < nbCheck) {
+				options.showArrow = false;
+				return options.allrules.minCheckbox.alertText + " " + nbCheck + " " + options.allrules.minCheckbox.alertText2;
+			}
+		},
+		/**
+		* Checks that it is a valid credit card number according to the
+		* Luhn checksum algorithm.
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return an error string if validation failed
+		*/
+		_creditCard: function(field, rules, i, options) {
+			//spaces and dashes may be valid characters, but must be stripped to calculate the checksum.
+			var valid = false, cardNumber = field.val().replace(/ +/g, '').replace(/-+/g, '');
+
+			var numDigits = cardNumber.length;
+			if (numDigits >= 14 && numDigits <= 16 && parseInt(cardNumber) > 0) {
+
+				var sum = 0, i = numDigits - 1, pos = 1, digit, luhn = new String();
+				do {
+					digit = parseInt(cardNumber.charAt(i));
+					luhn += (pos++ % 2 == 0) ? digit * 2 : digit;
+				} while (--i >= 0)
+
+				for (i = 0; i < luhn.length; i++) {
+					sum += parseInt(luhn.charAt(i));
+				}
+				valid = sum % 10 == 0;
+			}
+			if (!valid) return options.allrules.creditCard.alertText;
+		},
+		/**
+		* Ajax field validation
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		*            user options
+		* @return nothing! the ajax validator handles the prompts itself
+		*/
+		 _ajax: function(field, rules, i, options) {
+
+			 var errorSelector = rules[i + 1];
+			 var rule = options.allrules[errorSelector];
+			 var extraData = rule.extraData;
+			 var extraDataDynamic = rule.extraDataDynamic;
+			 var data = {
+				"fieldId" : field.attr("id"),
+				"fieldValue" : field.val()
+			 };
+
+			 if (typeof extraData === "object") {
+				$.extend(data, extraData);
+			 } else if (typeof extraData === "string") {
+				var tempData = extraData.split("&");
+				for(var i = 0; i < tempData.length; i++) {
+					var values = tempData[i].split("=");
+					if (values[0] && values[0]) {
+						data[values[0]] = values[1];
+					}
+				}
+			 }
+
+			 if (extraDataDynamic) {
+				 var tmpData = [];
+				 var domIds = String(extraDataDynamic).split(",");
+				 for (var i = 0; i < domIds.length; i++) {
+					 var id = domIds[i];
+					 if ($(id).length) {
+						 var inputValue = field.closest("form, .validationEngineContainer").find(id).val();
+						 var keyValue = id.replace('#', '') + '=' + escape(inputValue);
+						 data[id.replace('#', '')] = inputValue;
+					 }
+				 }
+			 }
+			 
+			 // If a field change event triggered this we want to clear the cache for this ID
+			 if (options.eventTrigger == "field") {
+				delete(options.ajaxValidCache[field.attr("id")]);
+			 }
+
+			 // If there is an error or if the the field is already validated, do not re-execute AJAX
+			 if (!options.isError && !methods._checkAjaxFieldStatus(field.attr("id"), options)) {
+				 $.ajax({
+					 type: options.ajaxFormValidationMethod,
+					 url: rule.url,
+					 cache: false,
+					 dataType: "json",
+					 data: data,
+					 field: field,
+					 rule: rule,
+					 methods: methods,
+					 options: options,
+					 beforeSend: function() {},
+					 error: function(data, transport) {
+						if (options.onFailure) {
+							options.onFailure(data, transport);
+						} else {
+							methods._ajaxError(data, transport);
+						}
+					 },
+					 success: function(json) {
+
+						 // asynchronously called on success, data is the json answer from the server
+						 var errorFieldId = json[0];
+						 //var errorField = $($("#" + errorFieldId)[0]);
+						 var errorField = $("#"+ errorFieldId).eq(0);
+
+						 // make sure we found the element
+						 if (errorField.length == 1) {
+							 var status = json[1];
+							 // read the optional msg from the server
+							 var msg = json[2];
+							 if (!status) {
+								 // Houston we got a problem - display an red prompt
+								 options.ajaxValidCache[errorFieldId] = false;
+								 options.isError = true;
+
+								 // resolve the msg prompt
+								 if(msg) {
+									 if (options.allrules[msg]) {
+										 var txt = options.allrules[msg].alertText;
+										 if (txt) {
+											msg = txt;
+							}
+									 }
+								 }
+								 else
+									msg = rule.alertText;
+
+								 if (options.showPrompts) methods._showPrompt(errorField, msg, "", true, options);
+							 } else {
+								 options.ajaxValidCache[errorFieldId] = true;
+
+								 // resolves the msg prompt
+								 if(msg) {
+									 if (options.allrules[msg]) {
+										 var txt = options.allrules[msg].alertTextOk;
+										 if (txt) {
+											msg = txt;
+							}
+									 }
+								 }
+								 else
+								 msg = rule.alertTextOk;
+
+								 if (options.showPrompts) {
+									 // see if we should display a green prompt
+									 if (msg)
+										methods._showPrompt(errorField, msg, "pass", true, options);
+									 else
+										methods._closePrompt(errorField);
+								}
+								
+								 // If a submit form triggered this, we want to re-submit the form
+								 if (options.eventTrigger == "submit")
+									field.closest("form").submit();
+							 }
+						 }
+						 errorField.trigger("jqv.field.result", [errorField, options.isError, msg]);
+					 }
+				 });
+				 
+				 return rule.alertTextLoad;
+			 }
+		 },
+		/**
+		* Common method to handle ajax errors
+		*
+		* @param {Object} data
+		* @param {Object} transport
+		*/
+		_ajaxError: function(data, transport) {
+			if(data.status == 0 && transport == null)
+				alert("The page is not served from a server! ajax call failed");
+			else if(typeof console != "undefined")
+				console.log("Ajax error: " + data.status + " " + transport);
+		},
+		/**
+		* date -> string
+		*
+		* @param {Object} date
+		*/
+		_dateToString: function(date) {
+			return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+		},
+		/**
+		* Parses an ISO date
+		* @param {String} d
+		*/
+		_parseDate: function(d) {
+
+			var dateParts = d.split("-");
+			if(dateParts==d)
+				dateParts = d.split("/");
+			if(dateParts==d) {
+				dateParts = d.split(".");
+				return new Date(dateParts[2], (dateParts[1] - 1), dateParts[0]);
+			}
+			return new Date(dateParts[0], (dateParts[1] - 1) ,dateParts[2]);
+		},
+		/**
+		* Builds or updates a prompt with the given information
+		*
+		* @param {jqObject} field
+		* @param {String} promptText html text to display type
+		* @param {String} type the type of bubble: 'pass' (green), 'load' (black) anything else (red)
+		* @param {boolean} ajaxed - use to mark fields than being validated with ajax
+		* @param {Map} options user options
+		*/
+		 _showPrompt: function(field, promptText, type, ajaxed, options, ajaxform) {
+		 	//Check if we need to adjust what element to show the prompt on
+			if(field.data('jqv-prompt-at') instanceof jQuery ){
+				field = field.data('jqv-prompt-at');
+			} else if(field.data('jqv-prompt-at')) {
+				field = $(field.data('jqv-prompt-at'));
+			}
+
+			 var prompt = methods._getPrompt(field);
+			 // The ajax submit errors are not see has an error in the form,
+			 // When the form errors are returned, the engine see 2 bubbles, but those are ebing closed by the engine at the same time
+			 // Because no error was found befor submitting
+			 if(ajaxform) prompt = false;
+			 // Check that there is indded text
+			 if($.trim(promptText)){ 
+				 if (prompt)
+					methods._updatePrompt(field, prompt, promptText, type, ajaxed, options);
+				 else
+					methods._buildPrompt(field, promptText, type, ajaxed, options);
+			}
+		 },
+		/**
+		* Builds and shades a prompt for the given field.
+		*
+		* @param {jqObject} field
+		* @param {String} promptText html text to display type
+		* @param {String} type the type of bubble: 'pass' (green), 'load' (black) anything else (red)
+		* @param {boolean} ajaxed - use to mark fields than being validated with ajax
+		* @param {Map} options user options
+		*/
+		_buildPrompt: function(field, promptText, type, ajaxed, options) {
+
+			// create the prompt
+			var prompt = $('<div>');
+			prompt.addClass(methods._getClassName(field.attr("id")) + "formError");
+			// add a class name to identify the parent form of the prompt
+			prompt.addClass("parentForm"+methods._getClassName(field.closest('form, .validationEngineContainer').attr("id")));
+			prompt.addClass("formError");
+
+			switch (type) {
+				case "pass":
+					prompt.addClass("greenPopup");
+					break;
+				case "load":
+					prompt.addClass("blackPopup");
+					break;
+				default:
+					/* it has error  */
+					//alert("unknown popup type:"+type);
+			}
+			if (ajaxed)
+				prompt.addClass("ajaxed");
+
+			// create the prompt content
+			var promptContent = $('<div>').addClass("formErrorContent").html(promptText).appendTo(prompt);
+
+			// determine position type
+			var positionType=field.data("promptPosition") || options.promptPosition;
+
+			// create the css arrow pointing at the field
+			// note that there is no triangle on max-checkbox and radio
+			if (options.showArrow) {
+				var arrow = $('<div>').addClass("formErrorArrow");
+
+				//prompt positioning adjustment support. Usage: positionType:Xshift,Yshift (for ex.: bottomLeft:+20 or bottomLeft:-20,+10)
+				if (typeof(positionType)=='string') 
+				{
+					var pos=positionType.indexOf(":");
+					if(pos!=-1)
+						positionType=positionType.substring(0,pos);
+				}
+
+				switch (positionType) {
+					case "bottomLeft":
+					case "bottomRight":
+						prompt.find(".formErrorContent").before(arrow);
+						arrow.addClass("formErrorArrowBottom").html('<div class="line1"><!-- --></div><div class="line2"><!-- --></div><div class="line3"><!-- --></div><div class="line4"><!-- --></div><div class="line5"><!-- --></div><div class="line6"><!-- --></div><div class="line7"><!-- --></div><div class="line8"><!-- --></div><div class="line9"><!-- --></div><div class="line10"><!-- --></div>');
+						break;
+					case "topLeft":
+					case "topRight":
+						arrow.html('<div class="line10"><!-- --></div><div class="line9"><!-- --></div><div class="line8"><!-- --></div><div class="line7"><!-- --></div><div class="line6"><!-- --></div><div class="line5"><!-- --></div><div class="line4"><!-- --></div><div class="line3"><!-- --></div><div class="line2"><!-- --></div><div class="line1"><!-- --></div>');
+						prompt.append(arrow);
+						break;
+				}
+			}
+			// Add custom prompt class
+			if (options.addPromptClass)
+				prompt.addClass(options.addPromptClass);
+
+            // Add custom prompt class defined in element
+            var requiredOverride = field.attr('data-required-class');
+            if(requiredOverride !== undefined) {
+                prompt.addClass(requiredOverride);
+            } else {
+                if(options.prettySelect) {
+                    if($('#' + field.attr('id')).next().is('select')) {
+                        var prettyOverrideClass = $('#' + field.attr('id').substr(options.usePrefix.length).substring(options.useSuffix.length)).attr('data-required-class');
+                        if(prettyOverrideClass !== undefined) {
+                            prompt.addClass(prettyOverrideClass);
+                        }
+                    }
+                }
+            }
+
+			prompt.css({
+				"opacity": 0
+			});
+			if(positionType === 'inline') {
+				prompt.addClass("inline");
+				if(typeof field.attr('data-prompt-target') !== 'undefined' && $('#'+field.attr('data-prompt-target')).length > 0) {
+					prompt.appendTo($('#'+field.attr('data-prompt-target')));
+				} else {
+					field.after(prompt);
+				}
+			} else {
+				field.before(prompt);				
+			}
+			
+			var pos = methods._calculatePosition(field, prompt, options);
+			prompt.css({
+				'position': positionType === 'inline' ? 'relative' : 'absolute',
+				"top": pos.callerTopPosition,
+				"left": pos.callerleftPosition,
+				"marginTop": pos.marginTopSize,
+				"opacity": 0
+			}).data("callerField", field);
+			
+
+			if (options.autoHidePrompt) {
+				setTimeout(function(){
+					prompt.animate({
+						"opacity": 0
+					},function(){
+						prompt.closest('.formErrorOuter').remove();
+						prompt.remove();
+					});
+				}, options.autoHideDelay);
+			} 
+			return prompt.animate({
+				"opacity": 0.87
+			});
+		},
+		/**
+		* Updates the prompt text field - the field for which the prompt
+		* @param {jqObject} field
+		* @param {String} promptText html text to display type
+		* @param {String} type the type of bubble: 'pass' (green), 'load' (black) anything else (red)
+		* @param {boolean} ajaxed - use to mark fields than being validated with ajax
+		* @param {Map} options user options
+		*/
+		_updatePrompt: function(field, prompt, promptText, type, ajaxed, options, noAnimation) {
+
+			if (prompt) {
+				if (typeof type !== "undefined") {
+					if (type == "pass")
+						prompt.addClass("greenPopup");
+					else
+						prompt.removeClass("greenPopup");
+
+					if (type == "load")
+						prompt.addClass("blackPopup");
+					else
+						prompt.removeClass("blackPopup");
+				}
+				if (ajaxed)
+					prompt.addClass("ajaxed");
+				else
+					prompt.removeClass("ajaxed");
+
+				prompt.find(".formErrorContent").html(promptText);
+
+				var pos = methods._calculatePosition(field, prompt, options);
+				var css = {"top": pos.callerTopPosition,
+				"left": pos.callerleftPosition,
+				"marginTop": pos.marginTopSize};
+
+				if (noAnimation)
+					prompt.css(css);
+				else
+					prompt.animate(css);
+			}
+		},
+		/**
+		* Closes the prompt associated with the given field
+		*
+		* @param {jqObject}
+		*            field
+		*/
+		 _closePrompt: function(field) {
+			 var prompt = methods._getPrompt(field);
+			 if (prompt)
+				 prompt.fadeTo("fast", 0, function() {
+					 prompt.parent('.formErrorOuter').remove();
+					 prompt.remove();
+				 });
+		 },
+		 closePrompt: function(field) {
+			 return methods._closePrompt(field);
+		 },
+		/**
+		* Returns the error prompt matching the field if any
+		*
+		* @param {jqObject}
+		*            field
+		* @return undefined or the error prompt (jqObject)
+		*/
+		_getPrompt: function(field) {
+				var formId = $(field).closest('form, .validationEngineContainer').attr('id');
+			var className = methods._getClassName(field.attr("id")) + "formError";
+				var match = $("." + methods._escapeExpression(className) + '.parentForm' + methods._getClassName(formId))[0];
+			if (match)
+			return $(match);
+		},
+		/**
+		  * Returns the escapade classname
+		  *
+		  * @param {selector}
+		  *            className
+		  */
+		  _escapeExpression: function (selector) {
+			  return selector.replace(/([#;&,\.\+\*\~':"\!\^$\[\]\(\)=>\|])/g, "\\$1");
+		  },
+		/**
+		 * returns true if we are in a RTLed document
+		 *
+		 * @param {jqObject} field
+		 */
+		isRTL: function(field)
+		{
+			var $document = $(document);
+			var $body = $('body');
+			var rtl =
+				(field && field.hasClass('rtl')) ||
+				(field && (field.attr('dir') || '').toLowerCase()==='rtl') ||
+				$document.hasClass('rtl') ||
+				($document.attr('dir') || '').toLowerCase()==='rtl' ||
+				$body.hasClass('rtl') ||
+				($body.attr('dir') || '').toLowerCase()==='rtl';
+			return Boolean(rtl);
+		},
+		/**
+		* Calculates prompt position
+		*
+		* @param {jqObject}
+		*            field
+		* @param {jqObject}
+		*            the prompt
+		* @param {Map}
+		*            options
+		* @return positions
+		*/
+		_calculatePosition: function (field, promptElmt, options) {
+
+			var promptTopPosition, promptleftPosition, marginTopSize;
+			var fieldWidth 	= field.width();
+			var fieldLeft 	= field.position().left; 
+			var fieldTop 	=  field.position().top;
+			var fieldHeight 	=  field.height();	
+			var promptHeight = promptElmt.height();
+
+
+			// is the form contained in an overflown container?
+			promptTopPosition = promptleftPosition = 0;
+			// compensation for the arrow
+			marginTopSize = -promptHeight;
+		
+
+			//prompt positioning adjustment support
+			//now you can adjust prompt position
+			//usage: positionType:Xshift,Yshift
+			//for example:
+			//   bottomLeft:+20 means bottomLeft position shifted by 20 pixels right horizontally
+			//   topRight:20, -15 means topRight position shifted by 20 pixels to right and 15 pixels to top
+			//You can use +pixels, - pixels. If no sign is provided than + is default.
+			var positionType=field.data("promptPosition") || options.promptPosition;
+			var shift1="";
+			var shift2="";
+			var shiftX=0;
+			var shiftY=0;
+			if (typeof(positionType)=='string') {
+				//do we have any position adjustments ?
+				if (positionType.indexOf(":")!=-1) {
+					shift1=positionType.substring(positionType.indexOf(":")+1);
+					positionType=positionType.substring(0,positionType.indexOf(":"));
+
+					//if any advanced positioning will be needed (percents or something else) - parser should be added here
+					//for now we use simple parseInt()
+
+					//do we have second parameter?
+					if (shift1.indexOf(",") !=-1) {
+						shift2=shift1.substring(shift1.indexOf(",") +1);
+						shift1=shift1.substring(0,shift1.indexOf(","));
+						shiftY=parseInt(shift2);
+						if (isNaN(shiftY)) shiftY=0;
+					};
+
+					shiftX=parseInt(shift1);
+					if (isNaN(shift1)) shift1=0;
+
+				};
+			};
+
+			
+			switch (positionType) {
+				default:
+				case "topRight":
+					promptleftPosition +=  fieldLeft + fieldWidth - 30;
+					promptTopPosition +=  fieldTop;
+					break;
+
+				case "topLeft":
+					promptTopPosition +=  fieldTop;
+					promptleftPosition += fieldLeft; 
+					break;
+
+				case "centerRight":
+					promptTopPosition = fieldTop+4;
+					marginTopSize = 0;
+					promptleftPosition= fieldLeft + field.outerWidth(true)+5;
+					break;
+				case "centerLeft":
+					promptleftPosition = fieldLeft - (promptElmt.width() + 2);
+					promptTopPosition = fieldTop+4;
+					marginTopSize = 0;
+					
+					break;
+
+				case "bottomLeft":
+					promptTopPosition = fieldTop + field.height() + 5;
+					marginTopSize = 0;
+					promptleftPosition = fieldLeft;
+					break;
+				case "bottomRight":
+					promptleftPosition = fieldLeft + fieldWidth - 30;
+					promptTopPosition =  fieldTop +  field.height() + 5;
+					marginTopSize = 0;
+					break;
+				case "inline":
+					promptleftPosition = 0;
+					promptTopPosition = 0;
+					marginTopSize = 0;
+			};
+
+		
+
+			//apply adjusments if any
+			promptleftPosition += shiftX;
+			promptTopPosition  += shiftY;
+
+			return {
+				"callerTopPosition": promptTopPosition + "px",
+				"callerleftPosition": promptleftPosition + "px",
+				"marginTopSize": marginTopSize + "px"
+			};
+		},
+		/**
+		* Saves the user options and variables in the form.data
+		*
+		* @param {jqObject}
+		*            form - the form where the user option should be saved
+		* @param {Map}
+		*            options - the user options
+		* @return the user options (extended from the defaults)
+		*/
+		 _saveOptions: function(form, options) {
+
+			 // is there a language localisation ?
+			 if ($.validationEngineLanguage)
+			 var allRules = $.validationEngineLanguage.allRules;
+			 else
+			 $.error("jQuery.validationEngine rules are not loaded, plz add localization files to the page");
+			 // --- Internals DO NOT TOUCH or OVERLOAD ---
+			 // validation rules and i18
+			 $.validationEngine.defaults.allrules = allRules;
+
+			 var userOptions = $.extend(true,{},$.validationEngine.defaults,options);
+
+			 form.data('jqv', userOptions);
+			 return userOptions;
+		 },
+
+		 /**
+		 * Removes forbidden characters from class name
+		 * @param {String} className
+		 */
+		 _getClassName: function(className) {
+			 if(className)
+				 return className.replace(/:/g, "_").replace(/\./g, "_");
+					  },
+		/**
+		 * Escape special character for jQuery selector
+		 * http://totaldev.com/content/escaping-characters-get-valid-jquery-id
+		 * @param {String} selector
+		 */
+		 _jqSelector: function(str){
+			return str.replace(/([;&,\.\+\*\~':"\!\^#$%@\[\]\(\)=>\|])/g, '\\$1');
+		},
+		/**
+		* Conditionally required field
+		*
+		* @param {jqObject} field
+		* @param {Array[String]} rules
+		* @param {int} i rules index
+		* @param {Map}
+		* user options
+		* @return an error string if validation failed
+		*/
+		_condRequired: function(field, rules, i, options) {
+			var idx, dependingField;
+
+			for(idx = (i + 1); idx < rules.length; idx++) {
+				dependingField = jQuery("#" + rules[idx]).first();
+
+				/* Use _required for determining wether dependingField has a value.
+				 * There is logic there for handling all field types, and default value; so we won't replicate that here
+				 * Indicate this special use by setting the last parameter to true so we only validate the dependingField on chackboxes and radio buttons (#462)
+				 */
+				if (dependingField.length && methods._required(dependingField, ["required"], 0, options, true) == undefined) {
+					/* We now know any of the depending fields has a value,
+					 * so we can validate this field as per normal required code
+					 */
+					return methods._required(field, ["required"], 0, options);
+				}
+			}
+		},
+
+	    _submitButtonClick: function(event) {
+	        var button = $(this);
+	        var form = button.closest('form, .validationEngineContainer');
+	        form.data("jqv_submitButton", button.attr("id"));
+	    }
+		  };
+
+	 /**
+	 * Plugin entry point.
+	 * You may pass an action as a parameter or a list of options.
+	 * if none, the init and attach methods are being called.
+	 * Remember: if you pass options, the attached method is NOT called automatically
+	 *
+	 * @param {String}
+	 *            method (optional) action
+	 */
+	 $.fn.validationEngine = function(method) {
+
+		 var form = $(this);
+		 if(!form[0]) return form;  // stop here if the form does not exist
+
+		 if (typeof(method) == 'string' && method.charAt(0) != '_' && methods[method]) {
+
+			 // make sure init is called once
+			 if(method != "showPrompt" && method != "hide" && method != "hideAll")
+			 methods.init.apply(form);
+
+			 return methods[method].apply(form, Array.prototype.slice.call(arguments, 1));
+		 } else if (typeof method == 'object' || !method) {
+
+			 // default constructor with or without arguments
+			 methods.init.apply(form, arguments);
+			 return methods.attach.apply(form);
+		 } else {
+			 $.error('Method ' + method + ' does not exist in jQuery.validationEngine');
+		 }
+	};
+
+
+
+	// LEAK GLOBAL OPTIONS
+	$.validationEngine= {fieldIdCounter: 0,defaults:{
+
+		// Name of the event triggering field validation
+		validationEventTrigger: "blur",
+		// Automatically scroll viewport to the first error
+		scroll: true,
+		// Focus on the first input
+		focusFirstField:true,
+		// Show prompts, set to false to disable prompts
+		showPrompts: true,
+       // Should we attempt to validate non-visible input fields contained in the form? (Useful in cases of tabbed containers, e.g. jQuery-UI tabs)
+       validateNonVisibleFields: false,
+		// Opening box position, possible locations are: topLeft,
+		// topRight, bottomLeft, centerRight, bottomRight, inline
+		// inline gets inserted after the validated field or into an element specified in data-prompt-target
+		promptPosition: "topRight",
+		bindMethod:"bind",
+		// internal, automatically set to true when it parse a _ajax rule
+		inlineAjax: false,
+		// if set to true, the form data is sent asynchronously via ajax to the form.action url (get)
+		ajaxFormValidation: false,
+		// The url to send the submit ajax validation (default to action)
+		ajaxFormValidationURL: false,
+		// HTTP method used for ajax validation
+		ajaxFormValidationMethod: 'get',
+		// Ajax form validation callback method: boolean onComplete(form, status, errors, options)
+		// retuns false if the form.submit event needs to be canceled.
+		onAjaxFormComplete: $.noop,
+		// called right before the ajax call, may return false to cancel
+		onBeforeAjaxFormValidation: $.noop,
+		// Stops form from submitting and execute function assiciated with it
+		onValidationComplete: false,
+
+		// Used when you have a form fields too close and the errors messages are on top of other disturbing viewing messages
+		doNotShowAllErrosOnSubmit: false,
+		// Object where you store custom messages to override the default error messages
+		custom_error_messages:{},
+		// true if you want to vind the input fields
+		binded: true,
+		// set to true, when the prompt arrow needs to be displayed
+		showArrow: true,
+		// did one of the validation fail ? kept global to stop further ajax validations
+		isError: false,
+		// Limit how many displayed errors a field can have
+		maxErrorsPerField: false,
+		
+		// Caches field validation status, typically only bad status are created.
+		// the array is used during ajax form validation to detect issues early and prevent an expensive submit
+		ajaxValidCache: {},
+		// Auto update prompt position after window resize
+		autoPositionUpdate: false,
+
+		InvalidFields: [],
+		onFieldSuccess: false,
+		onFieldFailure: false,
+		onSuccess: false,
+		onFailure: false,
+		validateAttribute: "class",
+		addSuccessCssClassToField: "",
+		addFailureCssClassToField: "",
+		
+		// Auto-hide prompt
+		autoHidePrompt: false,
+		// Delay before auto-hide
+		autoHideDelay: 10000,
+		// Fade out duration while hiding the validations
+		fadeDuration: 0.3,
+	 // Use Prettify select library
+	 prettySelect: false,
+	 // Add css class on prompt
+	 addPromptClass : "",
+	 // Custom ID uses prefix
+	 usePrefix: "",
+	 // Custom ID uses suffix
+	 useSuffix: "",
+	 // Only show one message per error prompt
+	 showOneMessage: false
+	}};
+	$(function(){$.validationEngine.defaults.promptPosition = methods.isRTL()?'topLeft':"topRight"});
+})(jQuery);
+
+
+    
+/* End validate engine */

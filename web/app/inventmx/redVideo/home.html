@@ -1,0 +1,211 @@
+<section id="page-video-talento">
+    
+    <section id="slide-video-talento" class="wrapper-image-section1 relative">
+        <div class="wrapper-content-section1  center">
+            <article>
+                <div class="wrapper-text  left">
+                    <img src="/web/img/perfil-video/global/lideres_opinion.png" alt="" title=""/>
+                </div>
+                <div class="wrapper-image  left">
+                    <img src="/web/img/perfil-video/global/talento.png" alt="" title=""/>
+                </div>
+                <div class="clear"></div>
+                <div class="wrapper-publish-stage">
+                    <a class="btn-publish center block none-decoration" href="/#afiliate">AFÍLIATE</a>
+                </div>
+
+            </article>
+        </div>
+    </section>
+    
+    <section class="wrapper-red-videos">
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">NOTICIAS Y NEGOCIOS</span>
+        </h2>
+        <article id="red-videos-noticias" class="home-perfil-colaboradores"></article>
+        
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">MUNDO SALUDABLE</span>
+        </h2>
+        <article id="red-videos-mundo-saludable" class="home-perfil-colaboradores"></article>
+        
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">MUNDO FEMENINO</span>
+        </h2>
+        <article id="red-videos-mundo-femenino" class="home-perfil-colaboradores"></article>
+        
+        <h2 class="title-seccion-invent center">
+            <span class="corange-invent">LIFE & STYLE</span>
+        </h2>
+        <article id="red-videos-lifeStyle" class="home-perfil-colaboradores"></article>
+        
+    </section>
+    
+    
+    <section class="main-footer none">
+        <ul>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#anunciate">ANÚNCIATE</a>
+            </li>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#afiliate">AFÍLIATE</a>
+            </li>
+            <li class="clear block"></li>
+        </ul>
+    </section>
+    
+        
+    <section class="wrapper-image-section3 relative">
+        <div id="section-home-contactos"></div>
+    </section>
+    
+</section>
+
+<script id="section-home-contactos-1" type="template/sectionhomecontactos">
+    <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
+        <div class="wrapper-content-section3 absolute">
+            <article>
+                <div class="right text-info">
+                    <span class="block">LA OFERTA MÁS SOLIDA</span>
+                    <span class="block">Y VARIADA DE</span>
+                    <span class="block">SU CATEGORÍA</span>
+                    
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>                    
+                </div>
+                <div class="clear"></div>
+            </article>
+    </div>
+</script>
+
+
+<script id="template-red-videos-noticias" type="template/RedVideosNoticias">
+    <ul>
+        {{#each this}}
+            <li class="left center sections-perfil-talento box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block wrapper-image-talento">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                    </span>
+
+                    <span class="inline-block wrapper-info">
+                        <span class="block name-editor">{{this.title}}</span>
+                    </span>
+                    <span class="clear"></span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+
+<script id="template-red-videos-mundo-saludable" type="template/RedVideosMundoSaludable">
+    <ul>
+        {{#each this}}
+            <li class="left center sections-perfil-talento box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block wrapper-image-talento">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                    </span>
+
+                    <span class="inline-block wrapper-info">
+                        <span class="block name-editor">{{this.title}}</span>
+                    </span>
+                    <span class="clear"></span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+
+<script id="template-red-videos-mundo-femenino" type="template/RedVideosMundoFemenino">
+    <ul>
+        {{#each this}}
+            <li class="left center sections-perfil-talento box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block wrapper-image-talento">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                        
+                    </span>
+
+                    <span class="inline-block wrapper-info">
+                        <span class="block name-editor">{{this.title}}</span>
+                    </span>
+                    <span class="clear"></span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>
+
+<script id="template-red-videos-lifeStyle" type="template/RedVideosLifeStyle">
+    <ul>
+        {{#each this}}
+            <li class="left center sections-perfil-talento box-{{@index}}">
+                <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                    <span class="block wrapper-image-talento">
+                    {{#if this.images.picture }}
+                        {{#if this.images.picture.0.styles }}
+                            {{#if this.images.picture.0.styles.medium }}
+                                <img class="loader lazy" data-original="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                    {{else}}
+                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                    {{/if}}
+                    </span>
+
+                    <span class="inline-block wrapper-info">
+                        <span class="block name-editor">{{this.title}}</span>
+                    </span>
+                    <span class="clear"></span>
+                </a>
+            </li>            
+        {{/each}}
+            <li class="clear block"></li>
+    </ul>
+</script>

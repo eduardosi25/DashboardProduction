@@ -1,0 +1,180 @@
+#page-perfil-sitio {
+    .plataformas-servicios {
+        background-color: #FFF;
+    }
+    
+    .bg-site {
+        background-repeat: no-repeat;
+    }
+    .bg-site.noticias-y-negocios {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/noticias.jpg");
+    }
+    .bg-site.mundo-saludable {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/saludable.jpg");
+    }
+    .bg-site.mundo-femenino {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/femenino.jpg");
+    }
+    .bg-site.life-style {
+        background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
+    }
+    .bg-site {
+        padding-bottom: 30px;
+        background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
+    }
+
+    .wrapper-bars {
+        .content-visit {
+            .description-visit {
+                font-size: 13px;
+            }
+        }
+    }
+
+    
+    .wrapper-image-section1 {
+        //padding: 20px 0;
+        background-color: #0E0F13;
+        //padding-bottom: 20px;
+        //min-height: 300px;
+        //background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg");
+        .wrapper-perfil {
+            max-width: 600px;
+            margin: 0 auto;
+            @include measures(100%,auto);
+            .wrapper-img {
+                padding: 20px 0 20px 0;
+            }
+            .summary {
+                color: #FFF;
+                font-size: 18px;
+                @extend .Hind-Regular;
+            }
+        }
+    }
+    
+    .title-seccion-invent {
+        font-size: 35px;
+    }
+    
+    .site-excelsior {
+        margin: 0 auto;
+        @extend .sprite-invent;        
+        @include img-position(147px,32px,-55px,-1682px);
+    }
+    .site-imagen, .site-imagen-radio, .site-imagenradio {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(138px,60px,-59px,-1735px);
+    }
+    .site-reporte, .site-reporte98, .site-reporte985, .site-reporte-985 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(150px,29px,-54px,-1810px);
+    }
+    .site-cadenatres, .site-cadena-tres {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(155px,46px,-51px,-1851px);
+    }
+    .site-dineroenimagen, .site-dinero-en-imagen {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(146px,50px,-56px,-1913px);
+    }
+    .site-salud180 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(150px,44px,-54px,-1975px);
+    }
+    .site-bienestar180 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(162px,33px,-221px,-1983px);
+    }
+    .site-sexualidad180 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(173px,36px,-428px,-1981px);
+    }
+    .site-enforma180 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(158px,33px,-643px,-1982px);
+    }
+    .site-actitudfem {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(157px,38px,-50px,-2036px);
+    }
+    .site-rsvp {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(122px,42px,-68px,-2089px);
+    }
+    .site-melodijolola {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(148px,54px,-59px,-2145px);
+    }
+    .site-atraccion360 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(148px,36px,-54px,-2211px);
+    }
+    .site-adrenalina360 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(152px,24px,-53px,-2267px);
+    }
+    .site-garuyo {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(139px,47px,-57px,-2319px);
+    }
+    .site-swagger {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(152px,48px,-57px,-2376px);
+    }
+    .site-gamedots {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(143px,53px,-57px,-2436px);
+    }
+    .site-estrategia45 {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(148px,41px,-54px,-2501px);
+    }
+    .site-fahrenheit {
+        margin: 0 auto;
+        @extend .sprite-invent;
+        @include img-position(152px,28px,-52px,-2548px);
+    }
+    
+    .plataformas-servicios {
+        .wrapper-image{
+            margin: 0 auto;
+            max-width: 100%;
+            @include measures(100%,auto);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+    }
+    
+    .btn-publish {
+        font-size: 16px;
+    }
+    .title-seccion-invent {
+        font-size: 26px;
+    }
+    .main-sections-tools {
+        li {
+            //@include measures(31.3%,auto);
+        }
+    }
+    
+}

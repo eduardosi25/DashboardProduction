@@ -1,0 +1,180 @@
+<section id="page-perfil-sitio">
+
+    <section class="wrapper-image-section1">
+        <div id="perfil-site"></div>
+    </section>
+
+    <!--- <section class="plataformas-servicios">
+        <article>
+            <h2 class="title-seccion-invent center pt30 pb15">
+                <span class="cgrey-invent">PLATAFORMAS Y </span> <span class="corange-invent">SERVICIOS</span>
+            </h2>
+
+            <div class="wrapper-image">
+                <img src="/web/img/perfil-sitio/global/sitios_arte/excelsior.jpg" alt="" title=""/>
+            </div>
+        </article>        
+    </section> -->
+
+    <section class="main-footer none">
+        <ul>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#anunciate">ANÚNCIATE</a>
+            </li>
+            <li class="left items-main">
+                <a class="none-decoration block" href="#afiliate">AFÍLIATE</a>
+            </li>
+            <li class="clear block"></li>
+        </ul>
+    </section>
+
+    <section class="wrapper-image-section3 relative">
+        <div id="section-home-contactos"></div>
+    </section>
+
+</section>
+
+
+<script id="template-perfil-site" type="template/template-perfil-site">
+    <div class="bg-site {{ CleanTaxonomy this.audience.0.url }}">
+        <article>
+            <div class="wrapper-perfil">
+                <div class="wrapper-img">
+                    <span class="site-{{ CleanTaxonomy this.url }} block"></span>
+                </div>
+                <div class="summary ">{{{ this.body }}}</div>
+            </div>
+
+            <div class="wrapper-bars">
+                <div class="left content-grafic-1 relative">
+                    <div class="bars-{{validGrafic this.mens }} absolute"></div>
+                    <div class="info-bars center absolute">
+                            <span class="block total">
+                                {{#if this.mens }}
+                                    {{ this.mens }}
+                                {{else}}
+                                    0
+                                {{/if}} %
+                            </span>
+                        <span class="block users">HOMBRES</span>
+                    </div>
+                </div>
+                <div class="left age-users center">
+                        <span class="block total">
+                            {{#if this.ages }}
+                                {{ this.ages }}
+                            {{else}}
+                                0
+                            {{/if}}
+                        </span>
+                    <span class="block age-name">Años</span>
+                </div>
+                <div class="left content-grafic-2 relative">
+                    <div class="bars-{{validGrafic this.womens }} absolute"></div>
+                    <div class="info-bars center absolute">
+                            <span class="block total">
+                                {{#if this.womens }}
+                                    {{ this.womens }}
+                                {{else}}
+                                    0
+                                {{/if}} %
+                            </span>
+                        <span class="block users">MUJERES</span>
+                    </div>
+                </div>
+
+                {{#if this.views }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.views }}
+                            </span>
+                        <span class="description-visit block">VISITAS MENSUALES</span>
+                    </div>
+                {{/if}}
+
+                <!-- seguidores fb -->
+                {{#if this.fb_followers }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.fb_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES FACEBOOK</span>
+                    </div>
+                {{/if}}
+
+                <!-- seguidores tw -->
+                {{#if this.tw_followers }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.tw_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES TWITTER </span>
+                    </div>
+                {{/if}}
+
+                <!-- seguidores google+ -->
+                {{#if this.gplus_followers }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.gplus_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES GOOGLE+ </span>
+                    </div>
+                {{/if}}
+
+                <!-- seguidores youtube -->
+                {{#if this.yt_followers }}
+                    <div class="left content-visit center">
+                            <span class="block total-visit">
+                                {{ NumberSeparate this.yt_followers }}
+                            </span>
+                        <span class="description-visit block">SEGUIDORES YOUTUBE </span>
+                    </div>
+                {{/if}}
+
+
+                <div class="clear"></div>
+            </div>
+        </article>
+
+        <article>
+            <ul class="main-sections-tools">
+                <li class="left">
+                    <a class="block btn-publish none-decoration center" href="/#anunciate">
+                        <span class="inline-block pt4">ANÚNCIATE</span>
+                    </a>
+                </li>
+                <li class="left">
+                    <a class="block btn-publish none-decoration center" target="_blank" href="http://b97306a43daad53c2cb3-3e0cb10d9dcf2af4d660ffc097d48677.r87.cf2.rackcdn.com/invent_final-mk.pdf">
+                        <span class="inline-block pt4">MEDIA KIT</span>
+                    </a>
+                </li>
+                <li class="block clear"></li>
+            </ul>
+        </article>
+
+    </div>
+</script>
+
+
+<script id="section-home-contactos-1" type="template/sectionhomecontactos">
+    <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
+        <div class="wrapper-content-section3 absolute">
+            <article>
+                <div class="right text-info">
+                    <span class="block">LA OFERTA MÁS SOLIDA</span>
+                    <span class="block">Y VARIADA DE</span>
+                    <span class="block">SU CATEGORÍA</span>
+                    
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>
+                </div>
+                <div class="clear"></div>
+            </article>
+    </div>
+</script>
+
+<!-- <li class="left">
+    <a class="block btn-publish none-decoration center" target="_blank" href="http://b97306a43daad53c2cb3-3e0cb10d9dcf2af4d660ffc097d48677.r87.cf2.rackcdn.com/invent_final-mk.pdf">
+        <span class="inline-block pt4">TARIFARIO</span>
+    </a>
+</li> --->
