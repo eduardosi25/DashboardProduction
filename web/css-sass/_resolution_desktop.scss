@@ -1,3 +1,271 @@
+@media only screen and (max-width: 1024px) {
+    
+    #slide-home {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/desktop/1024/1024.jpg");
+        }
+    }
+    
+    #page-marketers {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/desktop/1024/1024.jpg");
+        }        
+    }
+    #page-case-exito  {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/desktop/1024/1024.jpg");
+        }        
+    }
+    #page-audiencias-contenidos {
+        #noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/desktop/1024/lifestyle.jpg");
+        }
+
+        //#page-audiencias-contenidos
+        #noticias-negocios .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 7%;
+            }
+        }
+        #mundo-saludable .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 0%;
+            }
+        }
+        #mundo-femenino .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 7%;
+            }
+        }
+        #lifestye .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 6%;
+            }
+        }
+
+        .wrapper-content-section1 {
+            .wrapper-description{
+                padding-bottom: 15px;
+                //margin-top: 0%;
+            }
+        }
+        
+    }
+    
+    #page-perfil-sitio {
+        .bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/desktop/1024/lifestyle.jpg");
+        }
+    }
+    
+    #page-video-talento {
+        #slide-video-talento.wrapper-image-section1 {
+            background-image: url("/web/img/perfil-video/desktop/1024/1024.jpg");
+        }
+    }
+    
+    
+}
+
+@media only screen and (max-width: 880px) {
+    #page-case-exito {
+        ul.wrapper-table-case-exito {
+            li.box-item {
+                .type-case {
+                    font-size: 16px !important;
+                }
+                .title-case{
+                    font-size: 14px;
+                }
+                .content-case{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+    
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-image {
+                .width-all {
+                    max-width: 100%;
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 900px) {
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-description {
+                .audiencia-title {
+                    font-size: 40px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 840px) {
+    #page-marketers {
+        .wrapper-table-formats {
+            .body-table {
+                .box-table{
+                    font-size: 12px;
+                }
+            } 
+        }
+    }
+    
+    .wrapper-bars {
+        @include measures(445px,auto);
+        .content-visit {
+            padding-top: 20px;
+            @include measures(220px,auto);
+            &.itemUnit {
+                @include measures(440px,auto);
+            }
+        }
+    }
+
+
+    /* talentos */
+    #talento-independiente.wrapper-image-section1 {
+        .wrapper-tex-info {
+            margin-top: 6%;
+        }
+    }
+
+
+    /* audiencias y contenidos */
+    #page-audiencias-contenidos {
+
+        .wrapper-content-section1 {
+            .wrapper-description {
+                .audiencia-title {
+                    font-size: 30px;
+                }
+                .audiencia-info {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        #noticias-negocios .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #mundo-saludable .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #mundo-femenino .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+        #lifestye .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 4%;
+            }
+        }
+        .wrapper-content-section1 {
+            .wrapper-description{
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 800px) {
+    
+    /*.site-invent {
+        background-image: url("../img/sprites/sprite_movil.png") !important;
+        background-repeat: no-repeat;
+    }*/
+    
+    header {
+        ul li {
+            margin-top: 9px;
+            a {
+                font-size: 11px;
+            }
+        }
+        .wrapper-header {
+            .wrapper-site-logo {   
+                padding-top: 4px;
+                @include measures(25%,auto);
+            }
+            .site-invent {
+                @include img-position(121px, 37px,-291px,-104px);
+            }
+        }
+        
+        ul {
+            @include measures(500px,auto);
+            li {
+                &.main-audiencia-contenido {
+                    @include measures(80px,auto);
+                }
+                &.main-maketers {
+                    padding: 7px 0 7px 0;
+                    @include measures(73px,auto);                
+                }
+                &.main-red-de-videos {
+                    padding: 7px 0 7px 0;
+                    @include measures(83px,auto);
+                }
+                &.main-casos-de-exito {
+                    padding: 7px 0 7px 0;
+                    @include measures(95px,auto);
+                }
+                &.main-afiliate {
+                    padding: 7px 0 7px 0;
+                    @include measures(55px,auto);
+                }
+                &.main-anunciate {
+                    padding: 7px 0 7px 0;
+                }
+            }
+        }
+        
+    }
+    
+    .home-perfil-colaboradores {
+        ul {
+            li {
+                .type-content{
+                    height: 33px;
+                }
+            }
+        }
+    }
+
+}
+
 @media only screen and (min-width: 738px) {
     .wrapper-image-section2 .wrapper-content-section2 .wrapper-image {
         width: 23%;
@@ -10,7 +278,21 @@
 @media only screen and (max-width: 740px) {
     ul.red-invent-sections-sites li.sections-sites {
         width: 22.9%;
+    }        
+    
+    /* audiencias */
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-description {
+                margin-right: 0%;
+                @include measures(50%,auto);
+            }
+            .wrapper-image {
+                @include measures(50%,auto);
+            }
+        }
     }
+    
 }
 
 @media only screen and (min-width: 1150px) {
