@@ -45,7 +45,7 @@ $transport = Swift_SmtpTransport::newInstance('localhost', 25);
 $mailer = Swift_Mailer::newInstance($transport);
 $message = Swift_Message::newInstance($subject)
   ->setFrom(array('webmaster@inventmx.com' => 'Invent.mx'))
-  ->setTo(array($to))
+  ->setTo(array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com'))
   //->setTo(array('receiver@domain.org', 'other@domain.org' => 'A name'))
   ->setBody("$body")
   ;
