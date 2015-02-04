@@ -104,8 +104,12 @@ $(function() {
                     ],
                     autoHeight: true,
                 });
-                
-                
+
+
+                services = ".wrapper-our-services ul li.services-sites";
+                $(services).css("height","auto");
+                finalSites = inventMx.utilities.calculateheightItem(services);
+                $(services).height(finalSites);
                 
                 
                 $(window).resize(function (e) {
@@ -121,6 +125,13 @@ $(function() {
                     
                     finalSites = inventMx.utilities.calculateheightItem(sites);
                     $(sites).height(Math.round(finalSites));
+
+
+                    services = ".wrapper-our-services ul li.services-sites";
+                    $(services).css("height","auto");
+                    finalSites = inventMx.utilities.calculateheightItem(services);
+                    $(services).height(finalSites);
+
                     
                 });
                 

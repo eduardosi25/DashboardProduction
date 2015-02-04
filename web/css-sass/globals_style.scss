@@ -189,8 +189,8 @@ header {
         background-image: url("/web/img/home/desktop/1920/1920.jpg");
         .wrapper-description {
             &.text-firts {
-                margin-top: 20%;
-                margin-bottom: 20%;
+                margin-top: 15%;
+                margin-bottom: 15%;
                 //margin: 20% 0 20% 0;
             }
             @include measures(50%,auto);
@@ -220,6 +220,56 @@ header {
         //@include img-position(103px,94px,-188px,-553px);
     }
 }
+
+#talento-independiente.wrapper-image-section1 {
+    max-width: 1900px;
+    @include measures(100%,auto);
+    background-image: url("/web/img/home/desktop/rompimiento.jpg");
+    .wrapper-tex-info {
+        margin-top: 9%;
+        @include measures(50%,auto);
+    }
+    .text-info {
+        margin: 0 auto;
+        @include measures(350px,auto);
+        span {
+            color: #FDFFFE;
+            font-size: 45px;
+            @extend .Hind-Bold;
+        }
+        span:first-child {
+            font-size: 25px;
+            @extend .Hind-Regular;
+        }
+    }
+    .wrapper-image {
+        @include measures(45%,auto);
+        max-width: 500px;
+        padding: 2% 0 0 5%;
+    //@include measures(25%,auto);
+        img {
+            @include measures(100%,auto);
+        }
+    }
+}
+
+
+
+//.wrapper-image-section2 {
+    //max-width: 100%;
+    /*img.width-all {
+        max-width: 100%;
+        min-height: 185px;
+        margin-bottom: -5px;
+    }*/
+    //.wrapper-content-section2 {
+        //top: 0px;
+        //left: 0%;
+        //max-width: 1024px;
+        //@include measures(100%,auto);
+        //.wrapper-image {}
+    //}
+//}
 
 .wrapper-publish-stage {
     margin: 0 auto;
@@ -270,42 +320,6 @@ article {
         img {
             max-width: 848px;
             @include measures(80%,auto);
-        }
-    }
-}
-
-.wrapper-image-section2 {
-    max-width: 100%;
-    img.width-all {
-        max-width: 100%;
-        min-height: 185px;
-        margin-bottom: -5px;
-    }
-    .wrapper-content-section2 {
-        top: 0px;
-        left: 0%;
-        //max-width: 1024px;
-        @include measures(100%,auto);
-        .wrapper-image {
-            max-width: 500px;
-            padding: 2% 0 0 4%;
-            @include measures(25%,auto);
-            img {
-                @include measures(100%,auto);
-            }
-        }
-    }
-    .text-info {
-        margin: 4% 8% 0 8%;
-        @include measures(260px,auto);
-        span {
-            color: #FDFFFE;
-            font-size: 30px;
-            @extend .Hind-Bold;
-        }
-        span:first-child {
-            font-size: 18px;
-            @extend .Hind-Regular;
         }
     }
 }

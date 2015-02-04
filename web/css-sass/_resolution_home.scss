@@ -349,10 +349,10 @@
             margin-top: 20%;
         }
         #mobile-display .wrapper-description {
-            margin-top: 30%;
+            margin-top: 23%;
         }
         #video .wrapper-description {
-            margin-top: 12%;
+            margin-top: 25%;
         }
         #contenido-editorial .wrapper-description {
             margin-top: 20%;
@@ -361,7 +361,8 @@
             margin-top: 20%;
         }
         #programatic .wrapper-description{
-            @include measures(100%,auto);
+            margin-top: 20%;
+            //@include measures(100%,auto);
         }
 
         .wrapper-site-markerts {            

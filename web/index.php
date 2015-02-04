@@ -83,11 +83,8 @@
         </footer>    
 
         <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>
-        <script type="text/javascript" src="/web/js/site/alls.js"></script>
-        <script type="text/javascript" src="/web/js/site/view.js"></script>
-        <script type="text/javascript" src="/web/js/site/routing.js"></script>
+        <script type="text/javascript" src="/web/js/site/tools.min.js"></script>
         
-                
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
             <link rel="canonical" href="{{ canonical }}" />
