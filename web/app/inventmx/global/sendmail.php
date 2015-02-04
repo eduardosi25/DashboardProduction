@@ -26,27 +26,18 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
     if($type == "afiliate") {
         $type = "Afíliate";        
         
-        $to="sergio@inventmx.com,jose.cruz@inventmx.com";
-        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
-        //$to="webmaster@inventmx.com,pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
+        $to="sergio@inventmx.com,jose.cruz@inventmx.com";        
+        //$to="webmaster@inventmx.com,luis@inventmx.com,pedro@inventmx.com, sara@inventmx.com,heberto@inventmx.com";
     }else {
         $type = "Anúnciate";        
         
-        $to="sergio@inventmx.com,jose.cruz@inventmx.com";
-        //$to="sergio@inventmx.com,jose.cruz@inventmx.com,pedro@inventmx.com";
-        //$to="webmaster@inventmx.com,pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
-    }
-    
-$cabeceras   = array();
-$cabeceras[] = "Content-type: text/html";
-$cabeceras[] = "From: Invent.mx <webmaster@inventmx.com>";
-$cabeceras[] = "Nos han contactado en Invent.mx - " . $type." ".$referer;
+        $to="sergio@inventmx.com,jose.cruz@inventmx.com";        
+        //$to="webmaster@inventmx.com,luis@inventmx.com,pedro@inventmx.com,heberto@inventmx.com,kenneth@inventmx.com";
+    }   
 
-$header = implode("\n",$cabeceras);
-
-//$cabeceras = "Content-type: text/html";
-//$subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
-ini_set('sendmail_from', 'Invent.mx <webmaster@inventmx.com>');
+$cabeceras = "Content-type: text/html";
+$subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
+//ini_set('sendmail_from', 'Invent.mx <webmaster@inventmx.com>');
 $message = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $message .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $message .= 'Correo: '. $correo . '<br /><br />';
@@ -55,8 +46,7 @@ if($canal){
     $message .= 'Youtube Channel: '. $canal . '<br /><br />';
 }
 
-mail($to,$header, $message);
-//mail($to, $subject, $message, $cabeceras);
+mail($to, $subject, $message, $cabeceras);
 
 if( $valid ){
     $respond = array(
