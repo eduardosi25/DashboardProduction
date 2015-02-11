@@ -88,6 +88,15 @@
     
 }
 
+@media only screen and (max-width: 960px) {
+    #page-case-exito {
+        .wrapper-case-items {
+            .wrapper-image-case {
+                margin: 15% 0 0 3%;
+            }
+        }
+    }
+}
 @media only screen and (max-width: 880px) {
     #page-case-exito {
         ul.wrapper-table-case-exito {
@@ -149,6 +158,14 @@
             &.itemUnit {
                 @include measures(440px,auto);
             }
+        }
+    }
+
+
+    /* talentos */
+    #talento-independiente.wrapper-image-section1 {
+        .wrapper-tex-info {
+            margin-top: 6%;
         }
     }
 
@@ -255,6 +272,15 @@
             }
         }
     }
+    
+    #page-case-exito {
+        .wrapper-case-items {
+            .wrapper-image-case {
+                margin: 26% 0 0 3%;
+            }
+        }
+    }
+    
 
 }
 

@@ -336,6 +336,18 @@
                 display: none;
             }
         }
+        
+        ul#site-noticias-deportes.red-invent-sections-sites {
+            li.sections-sites-3 {
+                border-bottom: 2px solid #FFF;
+            }
+        }
+        ul#site-lifestye.red-invent-sections-sites {
+            li.sections-sites-6, li.sections-sites-7 {
+                border-bottom: 2px solid #FFF;
+            }
+        }
+        
     }
 
     /* markerts   */
@@ -345,23 +357,24 @@
             background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
         }
 
-        #rich-media-y-display .wrapper-description {
+        #publicidad-premium .wrapper-description {
             margin-top: 20%;
         }
-        #mobile-display .wrapper-description {
-            margin-top: 30%;
+        #mobile .wrapper-description {
+            margin-top: 23%;
         }
-        #video .wrapper-description {
-            margin-top: 12%;
+        #video-ads .wrapper-description {
+            margin-top: 25%;
         }
-        #contenido-editorial .wrapper-description {
+        #sipi-y-content-marketing .wrapper-description {
             margin-top: 20%;
         }
         #buzz-marketing .wrapper-description {
             margin-top: 20%;
         }
         #programatic .wrapper-description{
-            @include measures(100%,auto);
+            margin-top: 20%;
+            //@include measures(100%,auto);
         }
 
         .wrapper-site-markerts {            
@@ -584,9 +597,9 @@
                 @include measures(100%,auto);
             }
             .wrapper-image-case {
-                margin-left: 0px;
+                margin: 0 0 0 0;
                 text-align: center;
-                padding-top: 25px;
+                padding-top: 20px;
                 img {
                     @include measures(85%,auto);
                 }

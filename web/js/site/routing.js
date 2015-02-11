@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 $(function() {
 
     var AppRoutes = Backbone.Router.extend({
@@ -23,8 +17,8 @@ $(function() {
             "*default": "default",
             "*notFound": "notFound"
         },
-        initialize: function() {            
-            
+        initialize: function() {
+             
             /*var that = this;
             $(function () {
                 //var baseFolder = window.location.pathname.replace('/', '').split('/')[0];
@@ -52,12 +46,9 @@ $(function() {
             //Backbone.history.start({pushState: true});
             //Backbone.history.start();
             
-            inventMx.metas.compile();
-            
-            
+            //inventMx.metas.compile();
         },
-        home: function() {
-            //inventMx.page.wrapper_site.hide("slow");
+        home: function() {            
             inventMx.utilities.loaderShow();
             inventMx.utilities.section = "home";
             inventMx.utilities.topOffset(0);
@@ -66,12 +57,10 @@ $(function() {
             $("footer").css("margin-bottom","41px");
             $("header ul li a").removeClass("active");
         },
-        audienciasContenidos: function(idSection) {
-            //inventMx.page.wrapper_site.hide("slow");
+        audienciasContenidos: function(idSection) {            
             
             valueSection = inventMx.utilities.isObject(idSection);
-            inventMx.utilities.section = "audiencias-y-contenidos";
-            //idSection = (idSection)? idSection : null;
+            inventMx.utilities.section = "audiencias-y-contenidos";            
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
             
@@ -82,22 +71,18 @@ $(function() {
         },
         marketers: function(idSection) {
             
-            valueSection = inventMx.utilities.isObject(idSection);           
-            //console.log(valueSection);
-            //inventMx.page.wrapper_site.hide("slow");
+            valueSection = inventMx.utilities.isObject(idSection);                       
             inventMx.utilities.section = "marketers";            
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
             
             idSection = (valueSection == true)? valueSection : idSection;
-            (valueSection == true) ? inventMx.utilities.topOffset(0) : "";
-            //inventMx.home.pgMarketers = new inventMx.home.homeMarketers();
+            (valueSection == true) ? inventMx.utilities.topOffset(0) : "";            
             
             $("footer").css("margin-bottom","41px");
             inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);
         },
-        redeVideo: function() {
-            //inventMx.page.wrapper_site.hide("slow");
+        redeVideo: function() {            
             inventMx.utilities.section = "red-de-video";
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
@@ -106,8 +91,7 @@ $(function() {
             $("footer").css("margin-bottom","41px");
             inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
         },
-        casoExito: function() {            
-            //inventMx.page.wrapper_site.hide("slow");
+        casoExito: function() {                        
             inventMx.utilities.section = "caso-de-exito";
             inventMx.main.activeHover();
             inventMx.utilities.loaderShow();            
@@ -116,8 +100,7 @@ $(function() {
             $("footer").css("margin-bottom","41px");
             inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
         },
-        afiliate: function() {            
-            //inventMx.page.wrapper_site.hide("slow");
+        afiliate: function() {                        
             inventMx.utilities.section = "afiliate";
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
@@ -126,8 +109,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
         },
-        anunciate: function() {
-            //inventMx.page.wrapper_site.hide("slow");
+        anunciate: function() {            
             inventMx.utilities.section = "anunciate";
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
@@ -136,8 +118,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
         },
-        perfilTalento: function(nameTalento) {
-            //inventMx.page.wrapper_site.hide("slow");
+        perfilTalento: function(nameTalento) {            
             inventMx.utilities.section = "perfil-talento";
             inventMx.utilities.nametalento = nameTalento;
             inventMx.utilities.loaderShow();
@@ -147,8 +128,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
         },
-        perfilSitio: function(nameSite) {
-            //inventMx.page.wrapper_site.hide("slow");
+        perfilSitio: function(nameSite) {            
             inventMx.utilities.section = "perfil-sitio";
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
@@ -157,8 +137,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio(nameSite);
         },
-        default: function() {
-            //inventMx.page.wrapper_site.hide("slow");
+        default: function() {            
             inventMx.utilities.section = "404";
             inventMx.utilities.loaderShow();
             inventMx.main.activeHover();
@@ -167,20 +146,16 @@ $(function() {
             inventMx.home.vista404 = new inventMx.home.default404();
         },
         notFound: function() {
-            alert("page no encontrada admin");
+            inventMx.utilities.section = "404";
+            inventMx.utilities.loaderShow();
+            inventMx.main.activeHover();
+            
+            $("footer").css("margin-bottom","0px");
+            inventMx.home.vista404 = new inventMx.home.default404();
         }
     });
-
-    /*var baseFolder = window.location.pathname.replace('/', '').split('/')[0];
-    router = new AppRoutes();
-    Backbone.history.start({
-        pushState: true,
-        hashChange: true,
-        root: baseFolder
-    });*/
-
+    
     router = new AppRoutes();
     Backbone.history.start();
-    //Backbone.history.start({pushState: true});
 
 });
