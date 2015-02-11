@@ -1,0 +1,102 @@
+#page-audiencias-contenidos {
+    background-color: #FFF;
+    .wrapper-boton-publisher {
+        margin: 0 auto;
+        @include measures(245px,auto);
+    }
+    
+    ul#site-noticias-deportes.red-invent-sections-sites {
+        li.sections-sites-3 {
+            border-bottom: 1px solid #cacaca;
+        }
+    }
+    ul#site-lifestye.red-invent-sections-sites {
+        li.sections-sites-6, li.sections-sites-7 {
+            border-bottom: 1px solid #cacaca;
+        }
+    }
+    
+    .wrapper-image-section {
+        padding: 30px 0 0 0;
+        background-color: #161719;
+        background-repeat: no-repeat;
+        .wrapper-description {
+            .audiencia-info {
+                ul li {
+                    list-style-image: url("/web/img/global/vineta.png");
+                    list-style-position: inside;
+                    //list-style-type: square;
+                    //list-style: none;
+                    //background-image: url("/web/img/global/vineta.png");
+                    //background-position: left bottom;
+                    //background-repeat: no-repeat;
+                    //padding-left: 15px;
+                    //list-style-image: url("/web/img/global/vineta.png");
+                }
+            } 
+        }
+    }
+    #noticias-negocios.wrapper-image-section {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/1920/noticias.jpg");
+    }
+    #mundo-saludable.wrapper-image-section {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/1920/saludable.jpg");
+    }
+    #mundo-femenino.wrapper-image-section {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/1920/femenino.jpg");
+    }
+    #lifestye.wrapper-image-section {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/1920/lifestyle.jpg");
+    }
+    .wrapper-content-section1 {
+        color: #FFF;
+        .wrapper-description {
+            margin-right: 3%;
+            @include measures(50%,auto);        
+            .audiencia-title{
+                font-size: 50px;                
+                @extend .Hind-Bold;
+                text-transform: uppercase;
+                @include transition(all 1s ease);
+            }
+            .audiencia-info {                
+                font-size: 17px;
+                margin-top: 15px;
+                line-height: 20px;
+                @extend .Hind-Medium;
+                @include transition(all 1s ease);
+            }
+        }
+        .wrapper-image {
+            @include measures(45%,auto);
+            @include transition(all 1s ease);
+            img {
+                margin-bottom: -3px;
+                @include transition(all 1s ease);
+            }
+        }
+    }
+    
+    ul.red-invent-sections-sites {
+        padding: 0px;        
+        li.sections-sites {            
+            //min-height: 185px !important;            
+            span.site-bienestar180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(156px, 30px, -224px, -1057px);
+            }
+            span.site-sexualidad180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(170px, 31px, -429px, -1057px);
+            }
+            span.site-enforma180{
+                margin: 0 auto 15px;
+                @extend .sprite-invent;
+                @include img-position(153px, 28px, -646px, -1059px);
+            }
+        }
+    }
+    
+}
