@@ -439,20 +439,7 @@ $(function() {
                 inventMx.utilities.loaderHide();
                 setTimeout(inventMx.utilities.loaderHide, 7000);
                 
-                inventMx.utilities.oneAddRemoveSections(id_section1);
-                
-                if(idAncla !== true){
-                    //console.log(idAncla);
-                    if($("#"+idAncla).length){
-                        offset1 = $("#"+idAncla).offset();
-                        var offset = offset1.top;
-                        inventMx.utilities.topOffset(offset,0);
-                        //console.log("Si");
-                    }else {
-                        var ficha = new inventMx.home.default404();
-                        //inventMx.home.default404();
-                    }
-                }
+                inventMx.utilities.oneAddRemoveSections(id_section1);                                
                 
                 if(idAncla !== true){
                     if($("#"+idAncla).length){
