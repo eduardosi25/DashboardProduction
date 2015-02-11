@@ -1,34 +1,22 @@
 <?php
 require_once '/var/www/html/invent/mx/web/app/inventmx/global/swiftmailer-master/lib/swift_required.php';
 
-$nombre   = $_REQUEST['nombre'];
-$apellido = $_REQUEST['apellido'];
-$correo   = $_REQUEST['email'];
-@$canal    = $_REQUEST['chanel'];
-$type     = $_REQUEST['type'];
+$nombre   = $_REQUEST['nombre'] ? $_REQUEST['nombre'] : NULL;
+$apellido = $_REQUEST['apellido'] ? $_REQUEST['apellido'] : NULL;
+$correo   = $_REQUEST['email'] ? $_REQUEST['email'] : NULL;
+@$canal   = $_REQUEST['chanel'] ? $_REQUEST['chanel'] : NULL;
+$type     = $_REQUEST['type'] ? $_REQUEST['type'] : NULL;
+$source   = $type;
 
 $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer'] : '';
-//if( $nombre === '' || $correo === ''  || strlen($nombre) <= 3 || strlen($correo) <= 3  ){
-//    $valid = false;
-//    return 0;
-//} else{
-    //$nombre = sanitaze_string($nombre);
-    //$correo = sanitaze_string($correo);
-    //$asunto = sanitaze_string($asunto);
-    //$phone  = sanitaze_string($phone);
 
-    #$to = 'luis@inventmx.com, kenneth@inventmx.com, informesventas@inventmx.com';
+
 if ($type == "afiliate") {
-    $type = "Afíliate";
-    
-    //$to = array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com');
-    $to = array('webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com', 'sara@inventmx.com','heberto@inventmx.com');
+  $type = "Afíliate";
+  $to = array('webmaster@inventmx.com','pedro@inventmx.com', 'sara@inventmx.com','heberto@inventmx.com');
 } else {
-    $type = "Anúnciate";
-
-    //$to = array('sergio@inventmx.com','jose.cruz@inventmx.com','luis@inventmx.com');
-    $to = array('webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com');
-    //$to="'webmaster@inventmx.com','luis@inventmx.com','pedro@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com'";
+  $type = "Anúnciate";
+  $to = array('webmaster@inventmx.com','pedro@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com');
 }
 
 $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
@@ -52,12 +40,18 @@ $message = Swift_Message::newInstance($subject)
   ;
 // Send the message
 $result = $mailer->send($message);
+$result=true;
 if( $result ){
-    $respond = array(
-        'respond' => true,
-        'text' => 'El correo se ha enviado satisfactoriamente.'
-    );
-    print json_encode( $respond );
+  $respond = array(
+    'respond' => true,
+    'text' => 'El correo se ha enviado satisfactoriamente.'
+  );
+
+  //Save data
+  $data=new apiFile($source.'_'.date('Ymd').'.csv','/var/www/html/invent/mx/web/data');
+  $data->_write(implode(",",$_REQUEST)."\n");
+
+  print json_encode( $respond );
 } else{
     $respond = array(
         'respond' => false,
@@ -74,4 +68,59 @@ function sanitaze_string($str = ''){
     return $str;
 }
 
-?>
+
+class apiFile{
+  /**
+   * @var string Recipe for filename
+   * @see __construct in that place this variable start it.
+   */
+  var $filename='';
+  /**
+   * @var int Write mode
+   */
+  var $mode=0;
+  /**
+   * @var int Write mode
+   * @see http://php.net/manual/es/function.file-put-contents.php
+   */
+  var $append=FILE_APPEND;
+  /**
+   * @var int Write mode
+   * @see http://php.net/manual/es/function.file-put-contents.php
+   */
+  var $lock=LOCK_EX;
+
+  function __construct($name='anunciate.csv',$where='/tmp'){
+    $this->filename=$where.'/'.$name;
+  }
+  /**
+   * Write a line into a file
+   * @param $content
+   * @return bool
+   */
+  public function _write($content){
+    if(!$content)
+      return false;
+    //First search
+    if($this->_search()){
+      $this->mode=$this->append;
+    }else{
+      $this->mode=$this->lock;
+    }
+    return file_put_contents($this->filename,$content,$this->mode);
+  }
+  /**
+   * Search for a file
+   * @return bool
+   */
+  public function _search(){
+    if(file_exists($this->filename)){
+      return true;
+    }
+    return false;
+  }
+
+  function __destruct(){
+
+  }
+}
