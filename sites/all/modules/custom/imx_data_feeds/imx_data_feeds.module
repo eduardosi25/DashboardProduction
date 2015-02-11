@@ -1,0 +1,41 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function imx_data_feeds_permission() {
+  $permissions['administer imx_data_feeds settings'] = array(
+    'title' => t('Administer imx_data_feeds settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_help
+ */
+function imx_data_feeds_help($path, $arg) {
+  if ($path == 'admin/help#imx_data_feeds') {
+    return t('Módulo para configuración de Invent Data Feeds');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function imx_data_feeds_menu() {
+  $items=array();
+  $items['admin/config/system/imx_data_feeds'] = array(
+    'title'            => t('Invent Data Feeds Settings'),
+    'description'      => t('Configure settings for Invent Data Feeds'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('imx_data_feeds_admin_settings_form'),
+    'access arguments' => array('administer imx_data_feeds settings'),
+    'access callback'  => 'user_access',
+    'file'             => 'imx_data_feeds.admin.inc',
+  );
+  return $items;
+}
+/**
+ * Return JSON Home Invent.mx (Private)
+ */
+function _imx_data_feeds_view($name='home'){
+
+}
