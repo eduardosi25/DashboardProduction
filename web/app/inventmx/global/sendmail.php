@@ -48,7 +48,7 @@ if( $result ){
   );
 
   //Save data
-  $data=new apiFile($source.'_'.date('Ymd').'.csv','/var/www/html/invent/mx/web/data');
+  $data=new apiFile($source.'_'.date('Ymd').'.csv','/var/www/html/invent/mx/files');
   $data->_write(implode(",",$_REQUEST)."\n");
 
   print json_encode( $respond );
