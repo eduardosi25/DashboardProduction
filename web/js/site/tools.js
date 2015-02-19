@@ -1442,6 +1442,7 @@ $(function() {
             this.render();
         },
         render:function(){
+            inventMx.page.wrapper_site.html("");
             inventMx.page.wrapper_site.append("<div id='aviso-politicas'><article><article></div>");
             $("#aviso-politicas article").load("/web/app/inventmx/politicas/aviso-de-privacidad.php", function () {
                     inventMx.utilities.loaderHide();
@@ -1457,6 +1458,7 @@ $(function() {
             this.render();
         },
         render:function(){
+            inventMx.page.wrapper_site.html("");
             inventMx.page.wrapper_site.append("<div id='aviso-politicas'><article><article></div>");
             $("#aviso-politicas article").load("/web/app/inventmx/politicas/politica-ambiental.php", function () {
                     inventMx.utilities.loaderHide();
