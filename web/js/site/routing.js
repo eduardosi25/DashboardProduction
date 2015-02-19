@@ -4,6 +4,8 @@ $(function() {
         routes: {
             "": "home",
             "/": "home",
+            "aviso-de-privacidad": "avisoPrivacidad",
+            "politica-ambiental": "politicaAmbiental",
             "audiencias-y-contenidos": "audienciasContenidos",
             "audiencias-y-contenidos/:idSection": "audienciasContenidos",
             "marketers": "marketers",
@@ -128,7 +130,7 @@ $(function() {
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
         },
-        perfilSitio: function(nameSite) {            
+        perfilSitio: function(nameSite) {
             inventMx.utilities.section = "perfil-sitio";
             inventMx.utilities.loaderShow();            
             inventMx.main.activeHover();
@@ -136,7 +138,26 @@ $(function() {
             $("footer").css("margin-bottom","41px");
             inventMx.utilities.topOffset(0);
             inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio(nameSite);
+        },        
+        avisoPrivacidad: function() {
+            inventMx.utilities.section = "aviso-de-privacidad";
+            inventMx.utilities.loaderShow();            
+            inventMx.main.activeHover();
+            
+            $("footer").css("margin-bottom","41px");
+            inventMx.utilities.topOffset(0);
+            inventMx.home.pgAvisoPrivacidad = new inventMx.home.avisoPrivacidad();
+        },        
+        politicaAmbiental: function() {
+            inventMx.utilities.section = "politica-ambiental";
+            inventMx.utilities.loaderShow();
+            inventMx.main.activeHover();
+            
+            $("footer").css("margin-bottom","41px");
+            inventMx.utilities.topOffset(0);
+            inventMx.home.pgPoliticaAmbiental = new inventMx.home.politicAmbiental();
         },
+        
         default: function() {            
             inventMx.utilities.section = "404";
             inventMx.utilities.loaderShow();

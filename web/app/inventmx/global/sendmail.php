@@ -13,12 +13,12 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
 
 if ($type == "afiliate") {
   $type = "Afíliate";
-  //'heberto@inventmx.com'
-  $to = array('erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','pedro@inventmx.com', 'sara@inventmx.com');
+  //'erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','heberto@inventmx.com', 'sara@inventmx.com'
+  $to = array('pedro@inventmx.com');
 } else {
   $type = "Anúnciate";
-  //'heberto@inventmx.com'
-  $to = array('webmaster@inventmx.com','pedro@inventmx.com','kenneth@inventmx.com');
+  //'webmaster@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com'
+  $to = array('pedro@inventmx.com');
 }
 
 $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;

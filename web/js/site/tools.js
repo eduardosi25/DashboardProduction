@@ -1437,6 +1437,38 @@ $(function() {
         
     });
     
+    inventMx.home.avisoPrivacidad = Backbone.View.extend({
+        initialize: function () {
+            this.render();
+        },
+        render:function(){
+            inventMx.page.wrapper_site.html("");
+            inventMx.page.wrapper_site.append("<div id='aviso-politicas'><article><article></div>");
+            $("#aviso-politicas article").load("/web/app/inventmx/politicas/aviso-de-privacidad.php", function () {
+                    inventMx.utilities.loaderHide();
+                    setTimeout(inventMx.utilities.loaderHide, 7000);
+                return this;
+            });
+            return this;
+        },
+    });
+    
+    inventMx.home.politicAmbiental = Backbone.View.extend({
+        initialize: function () {
+            this.render();
+        },
+        render:function(){
+            inventMx.page.wrapper_site.html("");
+            inventMx.page.wrapper_site.append("<div id='aviso-politicas'><article><article></div>");
+            $("#aviso-politicas article").load("/web/app/inventmx/politicas/politica-ambiental.php", function () {
+                    inventMx.utilities.loaderHide();
+                    setTimeout(inventMx.utilities.loaderHide, 7000);
+                return this;
+            });
+        },
+    });
+    
+    
     inventMx.home.default404 = Backbone.View.extend({
         initialize: function () {
             this.render();
