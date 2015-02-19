@@ -934,12 +934,35 @@
 
 }
 
+@media only screen and (max-width: 500px) {
+    footer {
+        .footer-content-site-invent {
+            .footer-site-invent {
+                display: block !important;
+                margin: 0 auto;
+            }
+            .aviso-privacidad {
+                margin-right: 4%;
+            }
+            .politica-ambiental {
+                margin-right: 0;
+            }
+            /*.aviso-privacidad, .politica-ambiental {
+                margin-right: 3%;
+            }*/
+            
+        }
+    }
+}
+
 @media only screen and (max-width: 484px) {
     .wrapper-our-services ul {
         li.services-sites {
             min-height: 255px;
         }
-    }    
+    }
+        
+    
 }
 
 @media only screen and (max-width: 470px) {
