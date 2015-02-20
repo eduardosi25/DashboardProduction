@@ -83,7 +83,7 @@
                 <div class="inline-block footer-site-invent"></div>
             </div>
             <p class="center">
-                Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600
+                Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600 Ext. 3331
             </p>
 
         </footer>    
