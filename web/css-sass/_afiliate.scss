@@ -124,7 +124,7 @@
                 overflow: hidden;
                 background-color: #FFF;
                 border: none !important;                
-                @include measures(100%,28px);
+                @include measures(100%,35px);
                 .btn-publish {                    
                     line-height: 0px;
                     @include measures(200px,44px);

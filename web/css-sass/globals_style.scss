@@ -117,7 +117,8 @@ body {
 
 header {
     @include measures(100%,auto);
-    background-color: #1A1A1A;
+    //background-color: #1A1A1A;
+    background-color: #FFF;
     .wrapper-header {
         min-height: 50px;
         max-width: 1024px;
@@ -170,7 +171,7 @@ header {
             }
             a {
                 @extend .Hind-Light;
-                color: #FFF;
+                color: #a1a0a1;
                 font-size: 12px !important;
                 line-height: 16px;
                 margin-right: 1%;
@@ -284,6 +285,7 @@ header {
     padding: 10px 0px;
     @extend .Hind-Bold;    
     background-color: #E58436;
+    @include border-radius(15px);
     @include measures(100%,15px);
     &:hover {
         cursor: pointer;
