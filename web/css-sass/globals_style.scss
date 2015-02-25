@@ -38,6 +38,14 @@ and open the template in the editor.
     -o-box-shadow: $x $y $s $c;
     -ms-box-shadow: $x $y $s $c;
 }
+
+@mixin box-shadow-inset($x:0px,$y:0px,$s:10px,$c:#000000){
+    box-shadow: inset $x $y $s $c;
+    -webkit-box-shadow: inset $x $y $s $c;
+    -moz-box-shadow: inset 0 0 10px #000000;
+    -o-box-shadow: inset $x $y $s $c;
+    -ms-box-shadow: inset $x $y $s $c;
+}
 @mixin transition($transition) {
     transition: $transition;
     -webkit-transition: $transition;
@@ -50,11 +58,11 @@ and open the template in the editor.
     margin: 0 auto;
     overflow: hidden;
     max-width: 1900px;
-    min-height: 600px;
+    min-height: 300px;
 }
 #wrapper-page-site {
     max-width: 1900px;
-    min-height: 600px;
+    min-height: 300px;
 }
 
 @import "cssreset.scss";
@@ -89,7 +97,7 @@ and open the template in the editor.
 }
 
 body {
-    background-color: #1A1A1A;
+    background-color: #ebebeb;
 }
 
 #wrapper-loading-layout {
@@ -118,7 +126,7 @@ body {
 header {
     @include measures(100%,auto);
     //background-color: #1A1A1A;
-    background-color: #FFF;
+    background-color: #ebebeb;
     .wrapper-header {
         min-height: 50px;
         max-width: 1024px;
@@ -177,10 +185,24 @@ header {
                 margin-right: 1%;
             }
             a:hover, a.active {
-                color: #e58436;
+                color: #e61a7b;
             }
         }
     }
+}
+
+//.site-invent{
+.logo-invent {
+    //margin: 0 auto;
+    @extend .sprite-invent;
+    @include img-position(246px, 72px,-845px,-72px);
+    //@include img-position(195px, 69px,-42px,-84px);
+}
+.logo-invent-play {
+    margin: 0  auto;
+    @extend .sprite-invent;
+    @include img-position(381px, 72px,-441px,-71px);
+    //@include img-position(195px, 69px,-42px,-84px);
 }
 
 #slide-home {
@@ -225,22 +247,19 @@ header {
 #talento-independiente.wrapper-image-section1 {
     max-width: 1900px;
     @include measures(100%,auto);
+    background-color: #DDDFDE;
     background-image: url("/web/img/home/desktop/rompimiento.jpg");
+    background-repeat: no-repeat;
     .wrapper-tex-info {
-        margin-top: 9%;
+        //margin-top: 9%;
         @include measures(50%,auto);
     }
     .text-info {
         margin: 0 auto;
-        @include measures(350px,auto);
-        span {
-            color: #FDFFFE;
-            font-size: 45px;
-            @extend .Hind-Bold;
-        }
-        span:first-child {
-            font-size: 25px;
-            @extend .Hind-Regular;
+        padding-bottom: 40px;
+        @include measures(100%,auto);
+        img {
+            @include measures(100%,auto);
         }
     }
     .wrapper-image {
@@ -278,19 +297,31 @@ header {
     @include measures(300px,auto);    
 }
 
-.btn-publish {    
-    color: #FFF;
+.btn-publish {
+    //color: #FFF;
     border: none;
+    color: #898989;
+    margin: 0 auto;
     font-size: 22px;
+    max-width: 300px;
     padding: 10px 0px;
-    @extend .Hind-Bold;    
-    background-color: #E58436;
-    @include border-radius(15px);
+    @extend .Hind-Bold;
+    //background-color: #E58436;
+    //background-color: #FFF;
+    background-color: initial;
+    border: 1px solid #898989;
+    //@include border-radius(15px);
     @include measures(100%,15px);
     &:hover {
         cursor: pointer;
     }
 }
+
+.btn-publish:hover {
+    color: #FFF;
+    background-color: #898989;    
+}
+
 
 article {
     margin: 0 auto;
@@ -303,7 +334,7 @@ article {
         img {
             margin-bottom: -3px;
         }
-        background-color: #F1F1F1;
+        background-color: #DDDFDE;
     }
     #home-accordion {
         background-color: #FFF;
@@ -316,13 +347,23 @@ article {
         max-width: 100%;
     }
     .wrapper-content-section1 {
-        top: 0px;
-        left: 0%;        
+        text-align: center;
+        .btn-publish {
+            
+        }
         @include measures(100%,auto);
         img {
             max-width: 848px;
             @include measures(80%,auto);
         }
+    }
+}
+
+#section-home-contactos {
+    #registro-contacto {
+        background-color: #D6DCDA;
+        background-repeat: no-repeat;
+        background-image: url("/web/img/home/desktop/registro/1920/1920.jpg");
     }
 }
 
@@ -339,9 +380,18 @@ article {
         //max-width: 1024px;
         @include measures(100%,auto);        
     }
+    .wrapper-image {
+        @include measures(50%,auto);
+        img {
+            max-width: 100%;
+            @include measures(100%,auto);
+        }
+    }    
     .text-info {
-        margin: 5% 8% 0 0;
-        @include measures(245px,auto);
+        //margin: 5% 8% 0 0;
+        //@include measures(245px,auto);
+        padding-bottom: 40px;
+        @include measures(50%,auto);
         span {
             color: #FDFFFE;
             font-size: 35px;
@@ -355,13 +405,23 @@ article {
 }
 
 .wrapper-red-videos {
-    padding: 85px 0 15px 0;
-    background-color: #F1F1F1;
+    padding: 25px 0 15px 0;
+    background-color: #ebebeb;
 }
 
-.title-seccion-invent {    
-    font-size: 50px;
-    @extend .Hind-Bold;    
+.title-seccion-invent {
+    font-size: 55px;
+    @extend .Hind-Bold;
+}
+
+@media only screen and (min-width: 700px) {
+    .title-seccion-invent.our-services {    
+        padding-top: 27px !important;
+    }
+}
+
+h2.title-seccion-invent > span {
+    vertical-align: middle;
 }
 
 .home-perfil-colaboradores {
@@ -569,17 +629,19 @@ ul.red-invent-sections-sites {
             padding: 15px 1%;
             min-height: 190px;
             text-align: center;            
-            background-color: #2C2C2C;
+            background-color: #CCCCCC;
+            //background-color: #2C2C2C;
             @include measures(30%,auto);
             @include border-radius(.8em);
             span.title {                
-                color: #E58437;
+                color: #3C3C3C;
+                //color: #E58437;
                 font-size: 16px;
                 margin: 8px 0;
                 @extend .Hind-Bold;
             }
             span.summary {
-                color: #FFF;
+                color: #4C4E4D;
                 font-size: 14px;
                 line-height: 16px;
                 @extend .Hind-Light;
@@ -715,7 +777,8 @@ ul.red-invent-sections-sites {
 footer {
     min-height: 50px;
     padding: 10px 0 3px 0;
-    background-color: #1A1A1A;
+    //background-color: #1A1A1A;
+    background-color: #ebebeb;
     @include measures(100%,auto);    
     .footer-content-site-invent > div {
         vertical-align: middle;
@@ -725,24 +788,28 @@ footer {
         max-width: 1024px;
         text-align: center;
         @include measures(93.5%,auto);
-        .aviso-privacidad, .politica-ambiental {
-            a {
-                color: #FFF;
-                font-size: 14px;
-                font-family: Arial;
-                text-decoration: none;
-            }
+        .aviso-privacidad {
             margin-right: 2%;
         }
+        .aviso-privacidad, .politica-ambiental {
+            a {
+                color: #3F3F3F;
+                font-size: 14px;                
+                //font-family: Arial;
+                text-decoration: none;
+                @extend .Hind-Semibold;
+            }            
+        }
         .footer-site-invent {
-            //margin: 0 auto;
+            margin: 0 auto;
             @extend .sprite-invent;
-            @include img-position(183px, 34px,-58px,-685px);
+            @include img-position(262px, 49px,-1278px,-99px);
         }
     }
     p {
-        color: #FFF;
+        color: #4C4E4D;
         font-size: 15px;
+        line-height: 19px;
         @extend .Hind-Regular;
     }
 }

@@ -2,25 +2,11 @@
     background-color: #FFF;
     .wrapper-image-section1 {
         padding: 30px 0;
-        background-color: #161719;
+        background-color: #D6DCDA;
         background-repeat: no-repeat;        
         background-image: url("/web/img/marketers/desktop/1920/1920.jpg");
         //background-image: url("/web/img/marketers/desktop/bg-marketers.png");
     }
-
-    #mobile .wrapper-description {
-        margin-top: 8%;
-    }
-    #video-ads .wrapper-description {
-        margin-top: 14%;
-    }
-    #sipi-y-content-marketing .wrapper-description {
-        margin-top: 7%;
-    }
-    #programatic .wrapper-description {
-        margin-top: 10%;
-    }
-
 
     .marketers-info.versus-mobile {
         display: none;
@@ -32,15 +18,15 @@
         @include measures(50%,auto);
         @include transition(all 1s ease);
         .marketers-title {
-            color: #FFF;
+            color: #3D3F3E;
             font-size: 50px;
             @extend .Hind-Bold;
             @include transition(all 1s ease);
         }
         .marketers-info {            
-            color: #FFF;
+            color: #3D3F3E;
             font-size: 17px;
-            margin-top: 20px;
+            //margin-top: 20px;
             text-align: left;
             @extend .Hind-Regular;
             @include transition(all 1s ease);

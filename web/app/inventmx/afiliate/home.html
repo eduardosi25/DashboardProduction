@@ -1,39 +1,49 @@
-<section class="wrapper-image-background relative">
+<section class="wrapper-image-background">
     <div>
-        <div class="relative">
+        <!-- <div class="relative">
             <img id="bg-firts-afiliate" class="width-all loader" data-src="/web/img/afiliate/global/" alt="" title=""/>
             <div class="bg-degradado absolute"></div>
-        </div>        
-        <div class="wrapper-section-background absolute">
+        </div> -->
+        <div class="wrapper-section-background">
             <article class="wrapper-form-afiliate relative">
                 <form id="form-afiliate" class="form-afiliate" method="POST" action="">
                     <span class="block afiliate-title center">
-                        SÉ PARTE DE LA RED
+                        <span class="block bd-size-mobile logo-invent-play"></span>
                     </span>
-                    <span class="block form-block">
-                        <label class="label-name">Nombre</label>
+                    
+                    <span class="block center ptb10 txt-info">
+                        Afilia tu medio a nuestra red para generar mayor audiencia e ingresos.
+                    </span>
+                    <!-- <span class="block center ptb10 txt-info">
+                        En <span class="bold">Invent.PLAY</span> nuestra misión es impulsar el talento y creatividad  independiente
+                        através de nuestra red de  medios.
+                    </span>
+                    <span class="block center pb10 txt-info">
+                        Si tu tienes tu propio canal de  YouTube con contenidos  afines a nuestras audiencias, te invitamos
+                        a que  nos escribas, para ponermos en contacto contigo  vía correo electrónico.
+                    </span>
+                    <span class="block center pb10 bold black txt-info">
+                        ¡Haz que tu talento  se  note!
+                    </span> -->
+                    
+                    <span class="block group-items group-items-0">
+                        <label class="label-input input-name">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="nombre" placeholder="NOMBRE" value="">
+                        </label>
                         <label class="label-input">
-                            <input class="validate[required,maxSize[20]]" maxlength="30" type="text" name="nombre" value="">
+                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="apellido" placeholder="APELLIDO" value="">
                         </label>
                     </span>
-                    <span class="block form-block">
-                        <label class="label-name">Apellido</label>
+                    <span class="block group-items">
+                        <label class="label-input input-mail">
+                            <input class="validate[required,custom[email],maxSize[50]]" maxlength="50" type="text" name="email" placeholder="CORREO ELÉCTRONICO" value="">
+                        </label>
                         <label class="label-input">
-                            <input class="validate[required,maxSize[30]]" maxlength="30" type="text" name="apellido" value="">
+                            <input class="validate[required,maxSize[50]]" type="text" name="chanel" value="" placeholder="Nombre">
                         </label>
                     </span>
-                    <span class="block form-block">
-                        <label class="label-name">Correo electrónico</label>
-                        <label class="label-input">
-                            <input class="validate[required,custom[email],maxSize[50]]" maxlength="50" type="text" name="email" value="">
-                        </label>
-                    </span>
-                    <span class="block form-block">
-                        <label class="label-name">Canal de Youtube</label>
-                        <label class="label-input">
-                            <input class="validate[maxSize[40]]" maxlength="40" type="text" name="chanel" value="">
-                        </label>
-                    </span>
+                                        
+                    
                     <input type="hidden" name="type" value="afiliate">
                     <!-- <span class="block form-block-term fs14 center">
                         <label><input type="checkbox" name="">Acepto terminos y condiciones</label>                        
@@ -44,10 +54,8 @@
                     </span> -->
                     
                     <span class="afiliate-btn block center pt20">
-                        <input class="btn-publish" type="submit" name="enviar"  value="Enviar">
+                        <input class="btn-publish" type="submit" name="enviar"  value="AFÍLIATE">
                     </span>
-                    
-                    <span class="block bg-FFF form-bottom"></span>
                     
                 </form>
 

@@ -5,7 +5,7 @@
     .wrapper-image-section1 {
         padding: 20px 0;
         min-height: 300px;        
-        background-image: url("/web/img/perfil-talento/desktop/fondo.png");
+        background-image: url("/web/img/perfil-talento/desktop/1920/1920.png");
         .wrapper-perfil {
             margin: 0 auto;
             max-width: 800px;
@@ -21,12 +21,12 @@
                         color: #E58436;
                     }
                     .type-perfil {
-                        color: #FFF;
+                        color: #585858;
                     }
                 }
             }
             .summary {
-                color: #FFF;
+                color: #585858;
                 padding: 10px 0;
                 font-size: 18px;                
                 @extend .Hind-Regular;
