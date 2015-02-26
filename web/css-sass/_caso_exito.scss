@@ -4,6 +4,7 @@
     #section-table-case-exito {
         background-color: #F1F1F1;
     }
+    
     @include measures(100%,auto);
     .wrapper-case-items {
         min-height: 300px;
@@ -11,7 +12,7 @@
         @include transition(all 1s ease);
         &.even {
             //background-color: #161719;
-            background-color: #DFE1E0;
+            background-color: #DDDFDE;
             background-image: url("/web/img/caso-de-exito/desktop/1920/1920.jpg");
             background-repeat: no-repeat;
             //background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
