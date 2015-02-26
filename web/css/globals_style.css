@@ -2720,7 +2720,7 @@ footer {
           margin-left: 10px;
           font-family: Hind-Bold; }
           header .wrapper-header ul li a:hover {
-            color: #C3833E; }
+            color: #e61a7b; }
 
   #slide-home.wrapper-image-section1 .wrapper-description {
     max-width: 800px;
@@ -2909,7 +2909,7 @@ footer {
     display: block; }
     section.main-footer ul {
       max-width: 1024px;
-      background-color: #E58436;
+      background-color: #DDDFDE;
       width: 100%;
       height: 41px; }
       section.main-footer ul li.items-main {
@@ -2918,7 +2918,7 @@ footer {
         width: 49.7%;
         height: auto; }
         section.main-footer ul li.items-main a {
-          color: #FFF;
+          color: #898989;
           font-size: 16px;
           padding: 12px 0;
           font-family: Hind-Bold; }

@@ -87,7 +87,7 @@
                         margin-left: 10px;
                         font-family: Hind-Bold;
                         &:hover {
-                            color: #C3833E;
+                            color: #e61a7b;
                         }
                     }
                 }
@@ -335,7 +335,8 @@
         display:block;        
         ul {
             max-width: 1024px;
-            background-color: #E58436;
+            //background-color: #E58436;
+            background-color: #DDDFDE;
             @include measures(100%,41px);
             li.items-main {
                 text-align: center;
@@ -344,7 +345,8 @@
                 //@include measures(48%,auto);
                 @include measures(49.7%,auto);
                 a {
-                    color: #FFF;
+                    //color: #FFF;
+                    color: #898989;
                     font-size: 16px;
                     padding: 12px 0;
                     font-family: Hind-Bold;
