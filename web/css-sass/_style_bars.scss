@@ -12,7 +12,7 @@
         .info-bars {
             top: 57px;
             left: 40px;
-            color: #FFF;
+            color: #585858;
             .total{
                 font-size: 35px;
             }
@@ -28,7 +28,7 @@
 
     }
     .age-users {
-        color: #FFF;
+        color: #585858;
         padding-top: 65px;
         @include measures(80px,auto);
         .age {
@@ -43,11 +43,11 @@
         @include measures(165px,auto);
         @include transition(all 1s ease);
         .total-visit {            
-            color: #E58436;
+            color: #e61a7b;
             font-size: 26px;
         }
         .description-visit{
-            color: #FFF;
+            color: #585858;
             font-size: 15px;
         }
         &.itemUnit {

@@ -74,13 +74,15 @@
 
         <footer>
             <div class="footer-content-site-invent">
+                <div>
+                    <div class="inline-block footer-site-invent"></div>
+                </div>
                 <div class="inline-block aviso-privacidad">
                     <a href="/#aviso-de-privacidad">Aviso de privacidad</a>
                 </div>
                 <div class="inline-block politica-ambiental">
                     <a href="/#politica-ambiental">Política ambiental</a>
-                </div>
-                <div class="inline-block footer-site-invent"></div>
+                </div>                
             </div>
             <p class="center">
                 Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600 Ext. 3331
@@ -88,8 +90,8 @@
 
         </footer>    
 
-        <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
-        <script type="text/javascript" src="/web/js/site/tools.min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>
+        <script type="text/javascript" src="/web/js/site/tools.min.js"></script>        
         
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />

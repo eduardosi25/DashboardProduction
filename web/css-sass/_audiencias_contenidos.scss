@@ -24,7 +24,8 @@
             .audiencia-info {
                 ul li {
                     list-style-image: url("/web/img/global/vineta.png");
-                    list-style-position: inside;
+                    list-style-position: initial;
+                    //list-style-position: inside;
                     //list-style-type: square;
                     //list-style: none;
                     //background-image: url("/web/img/global/vineta.png");
@@ -36,7 +37,10 @@
             } 
         }
     }
-    #noticias-negocios.wrapper-image-section {
+    .wrapper-image-section {
+        background-image: url("/web/img/audiencia-y-contenido/desktop/1920/1920.jpg");
+    }
+    /*#noticias-negocios.wrapper-image-section {
         background-image: url("/web/img/audiencia-y-contenido/desktop/1920/noticias.jpg");
     }
     #mundo-saludable.wrapper-image-section {
@@ -47,9 +51,9 @@
     }
     #lifestye.wrapper-image-section {
         background-image: url("/web/img/audiencia-y-contenido/desktop/1920/lifestyle.jpg");
-    }
+    }*/
     .wrapper-content-section1 {
-        color: #FFF;
+        color: #3D3F3E;
         .wrapper-description {
             margin-right: 3%;
             @include measures(50%,auto);        

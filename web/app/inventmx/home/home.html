@@ -15,14 +15,14 @@
                 <div class="wrapper-image left">
                     <img class="loader" src="/web/img/home/global/casos_exito.png" alt="" title="" />
                 </div>
-                <div class="wrapper-description left">
+                <div class="wrapper-description text-firts left">
                     <img class="loader" src="/web/img/home/global/casos_exitoi.png" alt="" title="" />
                 </div>
                 <div class="clear"></div>
             </div>
 
             <div class="wrapper-slide-items">
-                <div class="wrapper-description left">
+                <div class="wrapper-description text-firts left">
                     <img class="loader" src="/web/img/home/global/solucionesi.png" alt="" title="" />
                 </div>
                 <div class="wrapper-image left">
@@ -35,14 +35,14 @@
                 <div class="wrapper-image left">
                     <img class="loader" src="/web/img/home/global/revolucionamos.png" alt="" title="" />
                 </div>
-                <div class="wrapper-description left">
+                <div class="wrapper-description text-firts left">
                     <img class="loader" src="/web/img/home/global/revolucionamosi.png" alt="" title="" />
                 </div>
                 <div class="clear"></div>
             </div>
             
             <div class="wrapper-slide-items">
-                <div class="wrapper-description left">
+                <div class="wrapper-description text-firts left">
                     <img class="loader" src="/web/img/home/global/talentoi.png" alt="" title="" />
                 </div>
                 <div class="wrapper-image left">
@@ -61,8 +61,10 @@
 
     <div id="home-accordion">
         <!-- <section class="red-invent"> -->
-        <h2 class="title-seccion-invent center pt25">
-            <span class="cgrey-invent">LA RED</span> <span class="corange-invent">INVENT</span>
+        <h2 class="title-seccion-invent center pt10">
+            <span class="cgrey-invent mt24 inline-block">LA RED</span>
+            <span class="logo-invent inline-block"></span>
+            <!-- <span class="corange-invent">INVENT</span> -->
         </h2>
 
         <div class="pt15">
@@ -108,8 +110,8 @@
         </section>
 
         <section class="wrapper-red-videos">
-            <h2 class="title-seccion-invent center">
-                <span class="cgrey-invent">RED</span> <span class="corange-invent"> DE VIDEOS</span>
+            <h2 class="title-seccion-invent center pt10">
+                <span class="block bd-size-mobile logo-invent-play"></span>
             </h2>
 
             <article id="home-red-videos" class="home-perfil-colaboradores pt15"></article>
@@ -118,8 +120,8 @@
 
 
         <section class="wrapper-our-services">
-            <h2 class="title-seccion-invent center pt25">
-                <span class="cgrey-invent">NUESTROS</span> <span class="corange-invent"> SERVICIOS</span>
+            <h2 class="title-seccion-invent our-services center pt13">
+                <span class="cgrey-invent">NUESTROS SERVICIOS PUBLICITARIOS</span>
             </h2>
 
             <article class="pt15 pb10">
@@ -169,6 +171,9 @@
                     </li>
                     <li class="clear block"></li>
                 </ul>
+                <div class="mb10">
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>
+                </div>
             </article>
         </section>
     </div>
@@ -185,7 +190,7 @@
         </ul>
     </section>
     
-    <section class="wrapper-image-section3 relative">
+    <section class="wrapper-image-section3">
         <div id="section-home-contactos"></div>
     </section>
 </div>
@@ -218,10 +223,7 @@
             <article>
                 <div class="wrapper-tex-info left">
                     <div class="text-info">
-                        <span class="block">SOMOS UNA CATAPULTA PARA</span>
-                        <span class="block">EL TALENTO</span>
-                        <span class="block">INDEPENDIENTE</span>
-                        <span class="block text-right">EN INTERNET</span>
+                        <img src="/web/img/home/desktop/texto-rompimiento.png" alt="" title=""/>
                         <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>
                     </div>
                 </div>
@@ -236,20 +238,20 @@
 </script>
 
 <script id="section-home-contactos-1" type="template/sectionhomecontactos">
-    <img class="width-all loader " src="/web/img/home/desktop/imagen_contacto.jpg" alt="" title=""/>
-        <div class="wrapper-content-section3 absolute">
+    <section id="registro-contacto" class="wrapper-image-section1 relative">
+        <div class="wrapper-content-section1">
             <article>
-                <div class="right text-info">
-                    <span class="block">LA OFERTA MÁS SOLIDA</span>
-                    <span class="block">Y VARIADA DE</span>
-                    <span class="block">SU CATEGORÍA</span>
-                    
-                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>
-                    
+                <div class="left wrapper-image">
+                    <img class="loader" src="/web/img/home/desktop/registro/image.png" alt="" title=""/>
                 </div>
-                <div class="clear"></div>
+                <div class="left text-info">
+                    <img src="/web/img/home/desktop/registro/texto.png" alt="" title=""/>
+                    <a class="btn-publish center block none-decoration" href="/#anunciate">ANÚNCIATE</a>
+                </div>
+                <div class="clear"></div>        
             </article>
-    </div>
+        </div>
+    </section>
 </script>
 
 <script id="template-home-red-videos" type="template/homeRedVideos">
@@ -283,4 +285,7 @@
         {{/each}}
         <li class="clear block"></li>
     </ul>
+    <div class="mtb5">
+        <a class="btn-publish center block none-decoration" href="/#afiliate">AFÍLIATE</a>
+    </div>    
 </script>
