@@ -203,7 +203,9 @@
             margin: 0px !important;
             background-color: #000;            
             border-top: 1px solid #FFF;
-            @include measures(100%,35px);
+            padding: 0 3%;
+            min-height: 35px;
+            @include measures(94%,auto);
             background-image: url("../img/gradients/home-header-accordion.jpg");            
             span {
                 color: #FFF;                
@@ -1150,6 +1152,14 @@
         }
     }
 
+}
+
+@media only screen and (max-width: 405px) {
+    #home-accordion {
+        .title-seccion-invent.our-services {
+            padding-bottom: 3%;
+        }
+    }
 }
 
 @media only screen and (max-width: 400px) {
