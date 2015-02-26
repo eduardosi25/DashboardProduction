@@ -1643,7 +1643,7 @@ body.rtl .formError .formErrorArrow {
     background-repeat: no-repeat; }
     #page-audiencias-contenidos .wrapper-image-section .wrapper-description .audiencia-info ul li {
       list-style-image: url("/web/img/global/vineta.png");
-      list-style-position: inside; }
+      list-style-position: initial; }
   #page-audiencias-contenidos .wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1920/1920.jpg"); }
   #page-audiencias-contenidos .wrapper-content-section1 {
