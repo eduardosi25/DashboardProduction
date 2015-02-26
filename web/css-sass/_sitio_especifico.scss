@@ -4,9 +4,11 @@
     }
     
     .bg-site {
+        padding-bottom: 30px;
         background-repeat: no-repeat;
+        background-image: url("/web/img/perfil-sitio/desktop/1920/1920.jpg");
     }
-    .bg-site.noticias-y-negocios {
+    /*.bg-site.noticias-y-negocios {
         background-image: url("/web/img/perfil-sitio/desktop/1920/noticias.jpg");
     }
     .bg-site.mundo-saludable {
@@ -17,11 +19,7 @@
     }
     .bg-site.life-style {
         background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
-    }
-    .bg-site {
-        padding-bottom: 30px;
-        background-image: url("/web/img/perfil-sitio/desktop/1920/lifestyle.jpg");
-    }
+    }*/    
 
     .wrapper-bars {
         .content-visit {
@@ -34,7 +32,7 @@
     
     .wrapper-image-section1 {
         //padding: 20px 0;
-        background-color: #0E0F13;
+        background-color: #DCE0E3;
         //padding-bottom: 20px;
         //min-height: 300px;
         //background-image: url("/web/img/perfil-sitio/desktop/fondo_noticias.jpg");
@@ -46,7 +44,7 @@
                 padding: 20px 0 20px 0;
             }
             .summary {
-                color: #FFF;
+                color: #585858;
                 font-size: 18px;
                 @extend .Hind-Regular;
             }
@@ -59,33 +57,39 @@
     
     .site-excelsior {
         margin: 0 auto;
-        @extend .sprite-invent;        
-        @include img-position(147px,32px,-55px,-1682px);
+        @extend .sprite-invent;
+        @include img-position(144px, 28px,-56px,-757px);
+        //@include img-position(147px,32px,-55px,-1682px);
     }
     .site-imagen, .site-imagen-radio, .site-imagenradio {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(138px,60px,-59px,-1735px);
+        @include img-position(140px, 58px,-58px,-809px);
+        //@include img-position(138px,60px,-59px,-1735px);
     }
     .site-reporte, .site-reporte98, .site-reporte985, .site-reporte-985 {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(150px,29px,-54px,-1810px);
+        @include img-position(147px, 25px,-55px,-885px);
+        //@include img-position(150px,29px,-54px,-1810px);
     }
     .site-cadenatres, .site-cadena-tres {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(155px,46px,-51px,-1851px);
+        @include img-position(151px, 41px,-53px,-927px);
+        //@include img-position(155px,46px,-51px,-1851px);
     }
     .site-dineroenimagen, .site-dinero-en-imagen {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(146px,50px,-56px,-1913px);
+        @include img-position(144px, 47px,-57px,-988px);
+        //@include img-position(146px,50px,-56px,-1913px);
     }
     .site-salud180 {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(150px,44px,-54px,-1975px);
+        @include img-position(147px, 42px,-56px,-1049px);
+        //@include img-position(150px,44px,-54px,-1975px);
     }
     .site-bienestar180 {
         margin: 0 auto;
@@ -105,52 +109,62 @@
     .site-actitudfem {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(157px,38px,-50px,-2036px);
+        @include img-position(153px, 36px,-52px,-1110px);
+        //@include img-position(157px,38px,-50px,-2036px);
     }
     .site-rsvp {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(122px,42px,-68px,-2089px);
+        @include img-position(120px, 37px,-68px,-1165px);
+        //@include img-position(122px,42px,-68px,-2089px);
     }
     .site-melodijolola {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(148px,54px,-59px,-2145px);
+        @include img-position(143px, 48px,-61px,-1221px);
+        //@include img-position(148px,54px,-59px,-2145px);
     }
     .site-atraccion360 {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(148px,36px,-54px,-2211px);
+        @include img-position(146px, 34px,-57px,-1286px);
+        //@include img-position(148px,36px,-54px,-2211px);
     }
     .site-adrenalina360 {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(152px,24px,-53px,-2267px);
+        @include img-position(150px, 23px,-54px,-1340px);
+        //@include img-position(152px,24px,-53px,-2267px);
     }
     .site-garuyo {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(139px,47px,-57px,-2319px);
+        @include img-position(138px, 45px,-58px,-1393px);
+        //@include img-position(139px,47px,-57px,-2319px);
     }
     .site-swagger {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(152px,48px,-57px,-2376px);
+        @include img-position(149px, 46px,-58px,-1450px);
+        //@include img-position(152px,48px,-57px,-2376px);
     }
     .site-gamedots {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(143px,53px,-57px,-2436px);
+        @include img-position(141px, 52px,-58px,-1509px);
+        //@include img-position(143px,53px,-57px,-2436px);
     }
     .site-estrategia45 {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(148px,41px,-54px,-2501px);
+        @include img-position(149px, 38px,-53px,-1576px);
+        //@include img-position(148px,41px,-54px,-2501px);
     }
     .site-fahrenheit {
         margin: 0 auto;
         @extend .sprite-invent;
-        @include img-position(152px,28px,-52px,-2548px);
+        @include img-position(147px, 23px,-55px,-1625px);
+        //@include img-position(152px,28px,-52px,-2548px);
     }
     
     .plataformas-servicios {

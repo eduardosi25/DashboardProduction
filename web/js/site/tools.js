@@ -56,13 +56,7 @@
         og_image: "/web/img/favicons/mstile-150x150.png",
     };
     
-    inventMx.page.wrapper_site = $("#wrapper-page-site");
-    inventMx.page.wrapper_bgMessageSendEmailShow = function(){
-        $(".bg-messaje-send-form, .wrapper-messaje-form").show();
-    },
-    inventMx.page.wrapper_bgMessageSendEmailHide = function(){
-        $(".bg-messaje-send-form, .wrapper-messaje-form").hide();
-    },
+    inventMx.page.wrapper_site = $("#wrapper-page-site");    
     inventMx.utilities.loaderShow = function () {
         $("#wrapper-loading-layout").css("display", "block");
     },
@@ -379,7 +373,7 @@
             contentType: "application/json; charset=utf-8",
             async: false,
             success: function(data) {
-                //console.log(data);
+                console.log(data);
                 if (data) {
                     callback(data,options);
                 } else {
@@ -397,10 +391,12 @@
         //console.log(data);
         //console.log(options.idform);
         //alert(data.text);
-        inventMx.page.wrapper_bgMessageSendEmailShow();
+        //inventMx.page.wrapper_bgMessageSendEmailShow();
         idform = options.idform;
         //$(options.idform + " :input[type='submit']").html("Enviar");
-        $(idform + " :input[type='text']").val("");
+        
+        //$(idform + " :input[type='text']").val("");
+        $(idform).html('<img class="width-all" src="/web/img/afiliate/global/response_form.jpg" alt="" title=""/>');
         inventMx.utilities.loaderHide();
         
     },
@@ -636,8 +632,9 @@ $(function() {
         validate = $(idform).validationEngine('validate');
         options = {idform:idform};
         if(validate) {
-            inventMx.utilities.loaderShow();
+            inventMx.utilities.loaderShow();            
             url = "/web/app/inventmx/global/sendmail.php";
+                                      //url, params,callback,options
             inventMx.dataSource.getAjax(url, data,inventMx.email.data,options);
         }else {
             console.log("No validate");
@@ -1305,11 +1302,6 @@ $(function() {
                 //return this;
             });
             
-            $(window).resize(function (e) {
-                e.stopPropagation();
-                inventMx.utilities.changeResolitionsImg(id_image_firts);
-            });
-            
         }
     }),
     inventMx.home.homeAnunciate = Backbone.View.extend({
@@ -1357,11 +1349,6 @@ $(function() {
                 });
                 
                 return this;
-            });
-            
-            $(window).resize(function (e) {
-                e.stopPropagation();
-                inventMx.utilities.changeResolitionsImg(id_image_firts);
             });
             
         },

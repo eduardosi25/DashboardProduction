@@ -10,8 +10,10 @@
         @include measures(100%,auto);
         @include transition(all 1s ease);
         &.even {
-            background-color: #161719;
+            //background-color: #161719;
+            background-color: #DFE1E0;
             background-image: url("/web/img/caso-de-exito/desktop/1920/1920.jpg");
+            background-repeat: no-repeat;
             //background-image: url("/web/img/caso-de-exito/desktop/bg_volkswagen.jpg");
         }
         &.odd {            
@@ -26,7 +28,8 @@
 
         .wrapper-description-case {
             @include measures(50%,auto);
-            color: #FFF;
+            //color: #FFF;
+            color: #3D3F3E;
             font-size: 18px;
             line-height: 22px;
             @extend .Hind-Regular;
@@ -42,7 +45,8 @@
             }
 
             .head-case {
-                color: #FFF;
+                //color: #FFF;
+                color: #3D3F3E;
                 font-size: 34px;
                 @extend .Hind-Bold;
                 & > span {
@@ -52,7 +56,7 @@
             
             h2 {
                 margin: 10px 0;
-                color: #E58436;
+                color: #e61a7b;
                 font-size: 25px;
                 line-height: 29px;
                 @extend .Hind-Bold;
@@ -91,7 +95,7 @@
             }
             .type-case {
                 margin: 8px 0;
-                color: #E58436;
+                color: #e61a7b;
                 font-size: 18px;
                 @extend .Hind-Bold;
                 @include transition(all 1s ease);

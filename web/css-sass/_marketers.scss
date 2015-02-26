@@ -2,25 +2,11 @@
     background-color: #FFF;
     .wrapper-image-section1 {
         padding: 30px 0;
-        background-color: #161719;
+        background-color: #D6DCDA;
         background-repeat: no-repeat;        
         background-image: url("/web/img/marketers/desktop/1920/1920.jpg");
         //background-image: url("/web/img/marketers/desktop/bg-marketers.png");
     }
-
-    #mobile .wrapper-description {
-        margin-top: 8%;
-    }
-    #video-ads .wrapper-description {
-        margin-top: 14%;
-    }
-    #sipi-y-content-marketing .wrapper-description {
-        margin-top: 7%;
-    }
-    #programatic .wrapper-description {
-        margin-top: 10%;
-    }
-
 
     .marketers-info.versus-mobile {
         display: none;
@@ -32,15 +18,15 @@
         @include measures(50%,auto);
         @include transition(all 1s ease);
         .marketers-title {
-            color: #FFF;
+            color: #3D3F3E;
             font-size: 50px;
             @extend .Hind-Bold;
             @include transition(all 1s ease);
         }
         .marketers-info {            
-            color: #FFF;
+            color: #3D3F3E;
             font-size: 17px;
-            margin-top: 20px;
+            //margin-top: 20px;
             text-align: left;
             @extend .Hind-Regular;
             @include transition(all 1s ease);
@@ -189,51 +175,51 @@
                     margin-bottom: 20px;
                     .sprt-facebook {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-51px,-2920px);
+                        @include img-position(30px,30px,-51px,-2640px);
                     }
                     .sprt-facebook:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-51px,-2955px);
+                        @include img-position(30px,30px,-51px,-2673px);
                     }
                     .sprt-twitter {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-82px,-2920px);
+                        @include img-position(30px,30px,-82px,-2640px);
                     }
                     .sprt-twitter:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-82px,-2955px);
+                        @include img-position(30px,30px,-82px,-2673px);
                     }
                     .sprt-youtube {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-176px,-2920px);
+                        @include img-position(30px,30px,-178px,-2640px);
                     }
                     .sprt-youtube:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-176px,-2955px);
+                        @include img-position(30px,30px,-178px,-2673px);
                     }
                     .sprt-google {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-209px,-2920px);
+                        @include img-position(30px,30px,-209px,-2640px);
                     }
                     .sprt-google:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-209px,-2955px);
+                        @include img-position(30px,30px,-209px,-2673px);
                     }                
                     .sprt-pinterest {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-114px,-2920px);
+                        @include img-position(30px,30px,-114px,-2640px);
                     }
                     .sprt-pinterest:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-114px,-2955px);
+                        @include img-position(30px,30px,-114px,-2673px);
                     }
                     .sprt-instagram {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-146px,-2920px);
+                        @include img-position(30px,30px,-145px,-2640px);
                     }
                     .sprt-instagram:hover {
                         @extend .sprite-invent;
-                        @include img-position(28px,28px,-146px,-2955px);
+                        @include img-position(30px,30px,-145px,-2673px);
                     }
                 }                
             }
