@@ -6,6 +6,7 @@
         background-repeat: no-repeat;
         background-image: url("/web/img/perfil-video/desktop/1920/1920.jpg");
         .wrapper-text{
+            margin-top: 6%;
             @include measures(50%,auto);
             @include transition(all 1s ease);
             img {                

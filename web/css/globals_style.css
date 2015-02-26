@@ -275,6 +275,18 @@ table {
 .mt30 {
   margin-top: 30px; }
 
+.mtb5 {
+  margin: 5px 0; }
+
+.mtb10 {
+  margin: 10px 0; }
+
+.mtb15 {
+  margin: 15px 0; }
+
+.mtb20 {
+  margin: 20px 0; }
+
 .mtb {
   margin: 10px 0; }
 
@@ -361,10 +373,10 @@ table {
 .Hind-Medium, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info, #page-case-exito ul.wrapper-table-case-exito li.box-item .title-case {
   font-family: Hind-Medium; }
 
-.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
+.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
   font-family: Hind-Regular; }
 
-.Hind-Semibold, #page-marketers .wrapper-table-formats .body-table .box-table, footer .footer-content-site-invent .aviso-privacidad a, footer .footer-content-site-invent .politica-ambiental a {
+.Hind-Semibold, #page-marketers .wrapper-table-formats .body-table .box-table, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-field-required, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-field-required, footer .footer-content-site-invent .aviso-privacidad a, footer .footer-content-site-invent .politica-ambiental a {
   font-family: Hind-Semibold; }
 
 body {
@@ -535,7 +547,7 @@ header {
   padding: 10px 0px;
   background-color: initial;
   border: 1px solid #898989;
-  width: 100%;
+  width: 95%;
   height: 15px; }
   .btn-publish:hover {
     cursor: pointer; }
@@ -608,7 +620,7 @@ article {
   background-color: #ebebeb; }
 
 .title-seccion-invent {
-  font-size: 55px; }
+  font-size: 45px; }
 
 @media only screen and (min-width: 700px) {
   .title-seccion-invent.our-services {
@@ -624,7 +636,7 @@ h2.title-seccion-invent > span {
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   -ms-transition: all 1s ease; }
-  .home-perfil-colaboradores ul li {
+  .home-perfil-colaboradores ul li.sections-perfil-talento {
     padding: 2%;
     width: 19%;
     height: auto;
@@ -633,15 +645,15 @@ h2.title-seccion-invent > span {
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease; }
-    .home-perfil-colaboradores ul li a {
+    .home-perfil-colaboradores ul li.sections-perfil-talento a {
       color: #000; }
-    .home-perfil-colaboradores ul li .wrapper-image-talento {
+    .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image-talento {
       transition: all 1s ease;
       -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
-      .home-perfil-colaboradores ul li .wrapper-image-talento img {
+      .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image-talento img {
         width: 100%;
         height: auto;
         transition: all 1s ease;
@@ -649,15 +661,15 @@ h2.title-seccion-invent > span {
         -moz-transition: all 1s ease;
         -o-transition: all 1s ease;
         -ms-transition: all 1s ease; }
-    .home-perfil-colaboradores ul li .name-editor {
+    .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor {
       color: #000;
       font-size: 20px;
       height: 40px;
       overflow: hidden;
       margin-bottom: 5px; }
-    .home-perfil-colaboradores ul li .type-content {
+    .home-perfil-colaboradores ul li.sections-perfil-talento .type-content {
       min-height: 15px; }
-    .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a {
+    .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a {
       color: #6A6A6A;
       font-size: 16px; }
 
@@ -1307,17 +1319,13 @@ margin-top: 4px;
 
 .formError .formErrorContent {
   width: 100%;
-  background: #ee0101;
+  background: #636363;
   position: relative;
   color: #fff;
   min-width: 120px;
   font-size: 16px;
-  border: 2px solid #ddd;
-  box-shadow: 0 0 6px #000;
-  -moz-box-shadow: 0 0 6px #000;
-  -webkit-box-shadow: 0 0 6px #000;
-  -o-box-shadow: 0 0 6px #000;
-  padding: 4px 10px 4px 10px;
+  font-family: Hind-Semibold;
+  padding: 7px 10px 4px 10px;
   border-radius: 6px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
@@ -1359,15 +1367,11 @@ body.rtl .formError .formErrorArrow {
   top: 2px; }
 
 .formError .formErrorArrow div {
-  border-left: 2px solid #ddd;
-  border-right: 2px solid #ddd;
-  box-shadow: 0 2px 3px #444;
-  -moz-box-shadow: 0 2px 3px #444;
-  -webkit-box-shadow: 0 2px 3px #444;
-  -o-box-shadow: 0 2px 3px #444;
+  border-left: 2px solid #636363;
+  border-right: 2px solid #636363;
   font-size: 0px;
   height: 1px;
-  background: #ee0101;
+  background: #636363;
   margin: 0 auto;
   line-height: 0;
   font-size: 0;
@@ -1411,19 +1415,19 @@ body.rtl .formError .formErrorArrow {
 
 .formError .formErrorArrow .line3 {
   width: 1px;
-  border-left: 2px solid #ddd;
-  border-right: 2px solid #ddd;
-  border-bottom: 0 solid #ddd; }
+  border-left: 2px solid #636363;
+  border-right: 2px solid #636363;
+  border-bottom: 0 solid #636363; }
 
 .formError .formErrorArrow .line2 {
   width: 3px;
   border: none;
-  background: #ddd; }
+  background: #636363; }
 
 .formError .formErrorArrow .line1 {
   width: 1px;
   border: none;
-  background: #ddd; }
+  background: #636363; }
 
 .wrapper-bars {
   margin: 0 auto;
@@ -1471,7 +1475,7 @@ body.rtl .formError .formErrorArrow {
     -o-transition: all 1s ease;
     -ms-transition: all 1s ease; }
     .wrapper-bars .content-visit .total-visit {
-      color: #E58436;
+      color: #e61a7b;
       font-size: 26px; }
     .wrapper-bars .content-visit .description-visit {
       color: #585858;
@@ -1850,53 +1854,53 @@ body.rtl .formError .formErrorArrow {
       #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials {
         margin-bottom: 20px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook {
-          width: 28px;
-          height: 28px;
-          background-position: -51px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -51px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-facebook:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -51px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -51px -2673px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter {
-          width: 28px;
-          height: 28px;
-          background-position: -82px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -82px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-twitter:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -82px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -82px -2673px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube {
-          width: 28px;
-          height: 28px;
-          background-position: -176px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -178px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-youtube:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -176px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -178px -2673px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google {
-          width: 28px;
-          height: 28px;
-          background-position: -209px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -209px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-google:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -209px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -209px -2673px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest {
-          width: 28px;
-          height: 28px;
-          background-position: -114px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -114px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-pinterest:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -114px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -114px -2673px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram {
-          width: 28px;
-          height: 28px;
-          background-position: -146px -2920px; }
+          width: 30px;
+          height: 30px;
+          background-position: -145px -2640px; }
         #page-marketers .wrapper-site-markerts ul.red-invent-sections-sites li.sections-sites .follow-socials .sprt-instagram:hover {
-          width: 28px;
-          height: 28px;
-          background-position: -146px -2955px; }
+          width: 30px;
+          height: 30px;
+          background-position: -145px -2673px; }
   #page-marketers .wrapper-boton-publisher {
     margin: 0 auto;
     width: 245px;
@@ -1907,6 +1911,7 @@ body.rtl .formError .formErrorArrow {
   background-repeat: no-repeat;
   background-image: url("/web/img/perfil-video/desktop/1920/1920.jpg"); }
   #page-video-talento #slide-video-talento.wrapper-image-section1 .wrapper-text {
+    margin-top: 6%;
     width: 50%;
     height: auto;
     transition: all 1s ease;
@@ -1945,7 +1950,7 @@ body.rtl .formError .formErrorArrow {
 #page-video-talento .wrapper-red-videos {
   padding: 36px 0 15px  0; }
 
-.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li .name-editor, .home-perfil-colaboradores ul li .type-content, .home-perfil-colaboradores ul li .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
+.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
   font-family: Hind-Regular; }
 
 .Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-second, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-second, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term a {
@@ -2078,6 +2083,13 @@ body.rtl .formError .formErrorArrow {
           height: 25px; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .input-name, .wrapper-image-background .wrapper-section-background .form-afiliate .input-mail, .wrapper-image-background .wrapper-section-background .form-anunciate .input-name, .wrapper-image-background .wrapper-section-background .form-anunciate .input-mail {
         margin-right: 3%; }
+      .wrapper-image-background .wrapper-section-background .form-afiliate .txt-field-required, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-field-required {
+        color: #898989;
+        margin: 0 auto;
+        display: block;
+        padding: 15px 0;
+        width: 93.5%;
+        height: auto; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-btn, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-btn {
         margin: 0 auto;
         padding-bottom: 35px;
@@ -2103,6 +2115,14 @@ body.rtl .formError .formErrorArrow {
           max-width: 300px;
           width: 100%;
           height: 44px; }
+    .wrapper-image-background .wrapper-section-background .form-anunciate .input-mail {
+      margin-right: 0px;
+      width: 100%;
+      height: auto; }
+    .wrapper-image-background .wrapper-section-background .form-anunciate .input-mail input[type="text"] {
+      padding: 1.8%;
+      width: 96%;
+      height: auto; }
 
 #page-case-exito {
   width: 100%;
@@ -2156,7 +2176,7 @@ body.rtl .formError .formErrorArrow {
           vertical-align: middle; }
       #page-case-exito .wrapper-case-items .wrapper-description-case h2 {
         margin: 10px 0;
-        color: #E58436;
+        color: #e61a7b;
         font-size: 25px;
         line-height: 29px;
         transition: all 1s ease;
@@ -2200,7 +2220,7 @@ body.rtl .formError .formErrorArrow {
         border-left: 1px solid #c4c4c4; }
       #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case {
         margin: 8px 0;
-        color: #E58436;
+        color: #e61a7b;
         font-size: 18px;
         transition: all 1s ease;
         -webkit-transition: all 1s ease;
@@ -2247,7 +2267,7 @@ body.rtl .formError .formErrorArrow {
       #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .description {
         margin: 12% 0 0 5%; }
         #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .description .name {
-          color: #E58436; }
+          color: #e61a7b; }
         #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil .description .type-perfil {
           color: #585858; }
     #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary {
@@ -2296,34 +2316,34 @@ body.rtl .formError .formErrorArrow {
     font-size: 35px; }
   #page-perfil-sitio .site-excelsior {
     margin: 0 auto;
-    width: 147px;
-    height: 32px;
-    background-position: -55px -1682px; }
+    width: 144px;
+    height: 28px;
+    background-position: -56px -757px; }
   #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
     margin: 0 auto;
-    width: 138px;
-    height: 60px;
-    background-position: -59px -1735px; }
+    width: 140px;
+    height: 58px;
+    background-position: -58px -809px; }
   #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
     margin: 0 auto;
-    width: 150px;
-    height: 29px;
-    background-position: -54px -1810px; }
+    width: 147px;
+    height: 25px;
+    background-position: -55px -885px; }
   #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
     margin: 0 auto;
-    width: 155px;
-    height: 46px;
-    background-position: -51px -1851px; }
+    width: 151px;
+    height: 41px;
+    background-position: -53px -927px; }
   #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
     margin: 0 auto;
-    width: 146px;
-    height: 50px;
-    background-position: -56px -1913px; }
+    width: 144px;
+    height: 47px;
+    background-position: -57px -988px; }
   #page-perfil-sitio .site-salud180 {
     margin: 0 auto;
-    width: 150px;
-    height: 44px;
-    background-position: -54px -1975px; }
+    width: 147px;
+    height: 42px;
+    background-position: -56px -1049px; }
   #page-perfil-sitio .site-bienestar180 {
     margin: 0 auto;
     width: 162px;
@@ -2341,54 +2361,54 @@ body.rtl .formError .formErrorArrow {
     background-position: -643px -1982px; }
   #page-perfil-sitio .site-actitudfem {
     margin: 0 auto;
-    width: 157px;
-    height: 38px;
-    background-position: -50px -2036px; }
+    width: 153px;
+    height: 36px;
+    background-position: -52px -1110px; }
   #page-perfil-sitio .site-rsvp {
     margin: 0 auto;
-    width: 122px;
-    height: 42px;
-    background-position: -68px -2089px; }
+    width: 120px;
+    height: 37px;
+    background-position: -68px -1165px; }
   #page-perfil-sitio .site-melodijolola {
     margin: 0 auto;
-    width: 148px;
-    height: 54px;
-    background-position: -59px -2145px; }
+    width: 143px;
+    height: 48px;
+    background-position: -61px -1221px; }
   #page-perfil-sitio .site-atraccion360 {
     margin: 0 auto;
-    width: 148px;
-    height: 36px;
-    background-position: -54px -2211px; }
+    width: 146px;
+    height: 34px;
+    background-position: -57px -1286px; }
   #page-perfil-sitio .site-adrenalina360 {
     margin: 0 auto;
-    width: 152px;
-    height: 24px;
-    background-position: -53px -2267px; }
+    width: 150px;
+    height: 23px;
+    background-position: -54px -1340px; }
   #page-perfil-sitio .site-garuyo {
     margin: 0 auto;
-    width: 139px;
-    height: 47px;
-    background-position: -57px -2319px; }
+    width: 138px;
+    height: 45px;
+    background-position: -58px -1393px; }
   #page-perfil-sitio .site-swagger {
     margin: 0 auto;
-    width: 152px;
-    height: 48px;
-    background-position: -57px -2376px; }
+    width: 149px;
+    height: 46px;
+    background-position: -58px -1450px; }
   #page-perfil-sitio .site-gamedots {
     margin: 0 auto;
-    width: 143px;
-    height: 53px;
-    background-position: -57px -2436px; }
+    width: 141px;
+    height: 52px;
+    background-position: -58px -1509px; }
   #page-perfil-sitio .site-estrategia45 {
     margin: 0 auto;
-    width: 148px;
-    height: 41px;
-    background-position: -54px -2501px; }
+    width: 149px;
+    height: 38px;
+    background-position: -53px -1576px; }
   #page-perfil-sitio .site-fahrenheit {
     margin: 0 auto;
-    width: 152px;
-    height: 28px;
-    background-position: -52px -2548px; }
+    width: 147px;
+    height: 23px;
+    background-position: -55px -1625px; }
   #page-perfil-sitio .plataformas-servicios .wrapper-image {
     margin: 0 auto;
     max-width: 100%;
@@ -2919,17 +2939,17 @@ footer {
   #page-marketers .wrapper-image-section1 {
     background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg"); }
   #page-marketers #publicidad-premium .wrapper-description {
-    margin-top: 15%; }
-  #page-marketers #mobile .wrapper-description {
-    margin-top: 15%; }
-  #page-marketers #video-ads .wrapper-description {
-    margin-top: 20%; }
-  #page-marketers #sipi-y-content-marketing .wrapper-description {
-    margin-top: 15%; }
-  #page-marketers #buzz-marketing .wrapper-description {
-    margin-top: 20%; }
-  #page-marketers #programatic .wrapper-description {
     margin-top: 10%; }
+  #page-marketers #mobile .wrapper-description {
+    margin-top: 8%; }
+  #page-marketers #video-ads .wrapper-description {
+    margin-top: 10%; }
+  #page-marketers #sipi-y-content-marketing .wrapper-description {
+    margin-top: 10%; }
+  #page-marketers #buzz-marketing .wrapper-description {
+    margin-top: 12%; }
+  #page-marketers #programatic .wrapper-description {
+    margin-top: 5%; }
   #page-marketers .wrapper-site-markerts {
     display: none; }
   #page-marketers .wrapper-image {
@@ -3131,7 +3151,7 @@ footer {
     #page-audiencias-contenidos .wrapper-image-section {
       background-image: url("/web/img/audiencia-y-contenido/mobile/700/700.jpg"); }
     #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
-      margin-top: 15% !important; }
+      margin-top: 9% !important; }
 
   /*  */
   .content-section-site {
@@ -3234,29 +3254,29 @@ footer {
     #page-perfil-sitio .bg-site {
       background-image: url("/web/img/perfil-sitio/mobile/700/700.jpg"); }
     #page-perfil-sitio .site-excelsior {
-      width: 141px;
-      height: 28px;
-      background-position: -88px -1241px; }
+      width: 135px;
+      height: 31px;
+      background-position: -72px -203px; }
     #page-perfil-sitio .site-imagen, #page-perfil-sitio .site-imagen-radio, #page-perfil-sitio .site-imagenradio {
-      width: 130px;
-      height: 54px;
-      background-position: -90px -1287px; }
+      width: 126px;
+      height: 57px;
+      background-position: -72px -247px; }
     #page-perfil-sitio .site-reporte, #page-perfil-sitio .site-reporte98, #page-perfil-sitio .site-reporte985, #page-perfil-sitio .site-reporte-985 {
-      width: 132px;
-      height: 26px;
-      background-position: -92px -1421px; }
+      width: 128px;
+      height: 24px;
+      background-position: -74px -383px; }
     #page-perfil-sitio .site-cadenatres, #page-perfil-sitio .site-cadena-tres {
-      width: 136px;
+      width: 133px;
       height: 40px;
-      background-position: -90px -1354px; }
+      background-position: -72px -316px; }
     #page-perfil-sitio .site-dineroenimagen, #page-perfil-sitio .site-dinero-en-imagen {
-      width: 131px;
-      height: 45px;
-      background-position: -92px -1470px; }
+      width: 128px;
+      height: 44px;
+      background-position: -74px -434px; }
     #page-perfil-sitio .site-salud180 {
-      width: 129px;
+      width: 123px;
       height: 38px;
-      background-position: -85px -1583px; }
+      background-position: -70px -550px; }
     #page-perfil-sitio .site-bienestar180 {
       width: 137px;
       height: 29px;
@@ -3270,45 +3290,45 @@ footer {
       height: 29px;
       background-position: -91px -1736px; }
     #page-perfil-sitio .site-actitudfem {
-      width: 145px;
+      width: 142px;
       height: 36px;
-      background-position: -84px -1840px; }
+      background-position: -73px -804px; }
     #page-perfil-sitio .site-rsvp {
-      width: 110px;
-      height: 37px;
-      background-position: -100px -1896px; }
+      width: 104px;
+      height: 36px;
+      background-position: -90px -860px; }
     #page-perfil-sitio .site-melodijolola {
-      width: 144px;
-      height: 49px;
-      background-position: -91px -1784px; }
-    #page-perfil-sitio .site-atraccion360 {
-      width: 127px;
-      height: 31px;
-      background-position: -89px -1962px; }
-    #page-perfil-sitio .site-adrenalina360 {
-      width: 159px;
-      height: 25px;
-      background-position: -80px -1538px; }
-    #page-perfil-sitio .site-garuyo {
-      width: 117px;
-      height: 41px;
-      background-position: -100px -2006px; }
-    #page-perfil-sitio .site-swagger {
-      width: 120px;
-      height: 39px;
-      background-position: -99px -2063px; }
-    #page-perfil-sitio .site-gamedots {
-      width: 131px;
-      height: 50px;
-      background-position: -89px -2120px; }
-    #page-perfil-sitio .site-estrategia45 {
-      width: 139px;
-      height: 37px;
-      background-position: -91px -2224px; }
-    #page-perfil-sitio .site-fahrenheit {
       width: 138px;
+      height: 51px;
+      background-position: -74px -748px; }
+    #page-perfil-sitio .site-atraccion360 {
+      width: 116px;
+      height: 30px;
+      background-position: -85px -926px; }
+    #page-perfil-sitio .site-adrenalina360 {
+      width: 155px;
+      height: 27px;
+      background-position: -62px -500px; }
+    #page-perfil-sitio .site-garuyo {
+      width: 114px;
+      height: 41px;
+      background-position: -90px -970px; }
+    #page-perfil-sitio .site-swagger {
+      width: 115px;
+      height: 38px;
+      background-position: -89px -1027px; }
+    #page-perfil-sitio .site-gamedots {
+      width: 126px;
+      height: 51px;
+      background-position: -79px -1085px; }
+    #page-perfil-sitio .site-estrategia45 {
+      width: 136px;
+      height: 37px;
+      background-position: -82px -1188px; }
+    #page-perfil-sitio .site-fahrenheit {
+      width: 136px;
       height: 24px;
-      background-position: -88px -2190px; }
+      background-position: -78px -1153px; }
     #page-perfil-sitio .main-sections-tools {
       width: 100%;
       height: auto; }
@@ -3383,7 +3403,22 @@ footer {
     footer .footer-content-site-invent .aviso-privacidad {
       margin-right: 4%; }
     footer .footer-content-site-invent .politica-ambiental {
-      margin-right: 0; } }
+      margin-right: 0; }
+
+  /*page marketers*/
+  #page-marketers .wrapper-image-section1 {
+    padding: 15px 0; }
+
+  /* form afiliate anunciate */
+  .wrapper-image-background .wrapper-section-background .form-afiliate .label-input, .wrapper-image-background .wrapper-section-background .form-anunciate .label-input {
+    width: 100%;
+    height: auto; }
+  .wrapper-image-background .wrapper-section-background .form-afiliate .input-name, .wrapper-image-background .wrapper-section-background .form-afiliate .input-mail, .wrapper-image-background .wrapper-section-background .form-anunciate .input-name, .wrapper-image-background .wrapper-section-background .form-anunciate .input-mail {
+    margin-bottom: 3%; }
+  .wrapper-image-background .wrapper-section-background .form-anunciate .input-mail input[type="text"] {
+    padding: 3.3% 3.3%;
+    width: 93%;
+    height: auto; } }
 @media only screen and (max-width: 484px) {
   .wrapper-our-services ul li.services-sites {
     min-height: 255px; } }
@@ -3417,13 +3452,6 @@ footer {
       font-size: 16px; }
     .home-perfil-colaboradores ul li .type-content {
       font-size: 14px; }
-
-  /* form afiliate anunciate */
-  .wrapper-image-background .wrapper-section-background .form-afiliate .label-input {
-    width: 100%;
-    height: auto; }
-  .wrapper-image-background .wrapper-section-background .form-afiliate .input-name, .wrapper-image-background .wrapper-section-background .form-afiliate .input-mail {
-    margin-bottom: 3%; }
 
   .wrapper-our-services ul li.services-sites {
     padding: 0 2%;

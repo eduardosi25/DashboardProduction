@@ -311,7 +311,7 @@ header {
     background-color: initial;
     border: 1px solid #898989;
     //@include border-radius(15px);
-    @include measures(100%,15px);
+    @include measures(95%,15px);
     &:hover {
         cursor: pointer;
     }
@@ -410,7 +410,7 @@ article {
 }
 
 .title-seccion-invent {
-    font-size: 55px;
+    font-size: 45px;
     @extend .Hind-Bold;
 }
 
@@ -428,7 +428,7 @@ h2.title-seccion-invent > span {
     ul {
         @include measures(100%,auto);
         @include transition(all 1s ease);
-        li {
+        li.sections-perfil-talento {
             //margin-left: 2%;
             padding: 2%;
             @include measures(19%,auto);
