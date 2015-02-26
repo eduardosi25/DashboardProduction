@@ -2,11 +2,11 @@
 <html lang="es">
     <head>        
 
-        <link rel="shortcut icon" href="/web/img/favicons/invent_16x16.ico" />
-        <link rel="shortcut icon" href="/web/img/favicons/invent_32x32.ico" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/web/img/favicons/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/apple-touch-icon-114x114.png" />
+        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
+        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/web/img/favicons/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/favicon.ico" />
 
         <meta name="charset" content="utf-8" />
         <link rel="canonical" href="http://www.inventmx.com" />
