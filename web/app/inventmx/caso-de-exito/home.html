@@ -37,7 +37,9 @@
                                 {{/if}}
                             {{/if}}
                         </span>
-                        <span class="inline-block">{{ this.title }}</span>
+                        {{#if this.client }}
+                            <span class="inline-block">{{ this.client }}</span>
+                        {{/if}}
                     </div>
                     <div class="description">{{{ this.body }}}</div>
                 </div>
