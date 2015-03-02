@@ -79,7 +79,8 @@
                     overflow: hidden;
                     border-right: none;
                     @include measures(94%,auto);
-                    border-bottom: 2px solid #C3833E;
+                    //border-bottom: 2px solid #C3833E;
+                    border-bottom: 2px solid #ccd0d1;
                     a {                        
                         display:block;
                         font-size: 14px;
