@@ -6,8 +6,10 @@
 }
 
 #wrapper-page-site {
-    .wrapper-image-background {        
-        background-color: #FFF;
+    .wrapper-image-background {
+        background-color: #E2E4E3;
+        background-image: url("/web/img/afiliate/desktop/1920/1920.jpg");
+        background-repeat: no-repeat;
     }
 }
 
@@ -57,20 +59,27 @@
 .wrapper-image-background {
     max-width: 100%;
     margin-bottom: -5px;    
-    .wrapper-section-background {        
-        @include measures(100%,auto);
-        .wrapper-form-afiliate{        
+    .wrapper-section-background {
+        @include measures(100%,auto);        
+        .wrapper-form-afiliate{
             padding: 4% 0;
+            .form-frase {
+                font-size: 28px !important;
+                color : #3D3D3D;
+                font-weight: bold;
+                font-family: Hind-Bold !important;
+            }
         }        
         .form-afiliate, .form-anunciate {
             margin: 0 auto;
-            max-width: 700px;            
-            background-color: #f2f2f2;
-            @include measures(100%,auto);
+            //max-width: 700px;            
+            //background-color: #f2f2f2;
+            @include measures(50%,auto);
             .txt-info {
                 margin: 0 auto;               
                 font-size: 20px;
-                color: #929396;                
+                line-height: 22px;
+                color: #3d3d3d;
                 @extend .Hind-Light;
                 @include measures(94%,auto);
                 .bold {
@@ -83,15 +92,16 @@
                     color: #000 !important;
                 }
             .txt-firts {                
-                color: #3C3C3C;
-                font-size: 28px;
+                color: #3D3D3D;
+                font-size: 35px;
                 margin-top: 10px;
                 @extend .Hind-Bold;
             }
             .txt-second {
                 padding: 0 4%;
-                color: #929396;
+                color: #3D3D3D;
                 font-size: 20px;
+                line-height: 22px;
                 margin: 10px 0;
                 @extend .Hind-Light;
             }
@@ -99,20 +109,24 @@
                 margin: 0 auto;                
             }
             .afiliate-title {                
-                color: #F69222;
-                font-size: 25px;
+                color: #3D3D3D;
+                font-size: 45px;
                 //padding: 10px 0;
                 @extend .Hind-Bold;                
             }            
             .group-items {
                 padding: 3%;
                 margin: 0 auto;
+                background-color: #f2f2f2;
                 border: 1px solid #cacaca;
                 @include border-radius(3px);
                 @include  measures(88%,auto);
             }
             .group-items-0 {
                 margin: 0 auto 20px;
+            }
+            .group-items-1 {
+                margin-bottom: 20px;
             }
             .form-block-term {            
                 margin-top: 20px;
@@ -129,16 +143,31 @@
                 vertical-align: middle;
             }            
             .label-input {
-                display: inline-block;                
-                @include measures(48%,auto);
+                display: inline-block;
+                @include measures(48%,auto);                
                 input[type="text"] {
                     max-width: 100%;
                     padding: 2% 3%;
-                    background-color: #f2f2f2;
+                    //background-color: #f2f2f2;
+                    background-color: #FFF;
+                    @extend .Hind-Regular;
                     border: 1px solid #cacaca;                    
                     @include border-radius(3px);
                     @include measures(94%,25px);
                 }
+                textarea {
+                    padding: 1.8%;
+                    max-width: 96%;
+                    //background-color: #f2f2f2;
+                    background-color: #FFF;
+                    @extend .Hind-Regular;
+                    border: 1px solid #cacaca;                    
+                    @include border-radius(3px);
+                    @include measures(96%,35px);
+                }
+            }
+            .input-producto {                
+                @include measures(100%,auto);
             }
             .input-name, .input-mail {
                 margin-right: 3%;
@@ -184,8 +213,23 @@
             }
             .input-mail input[type="text"] {
                 padding: 1.8%;
-                @include measures(96%,auto);                
+                @include measures(96%,auto);
             }
         }
+        
+        .wrapper-image-section {
+            @include measures(50%,auto);
+            img {
+                max-width: 100%;
+                @include measures(100%,auto);
+            }
+        }
+        .image-section-anunciate {
+            margin-top: 3%;
+        }
+        .image-section-afiliate {
+            margin-top: 7%;
+        }
+        
     }
 }

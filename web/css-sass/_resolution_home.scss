@@ -314,8 +314,72 @@
             }
         } 
     }
-
+    
+    /* form afiliate anunciate */    
     /* messaje and fondo form afiliate y anunciate*/
+    #wrapper-page-site {
+        .wrapper-image-background {
+            background-color: #DDDFDE;
+            background-image: url("/web/img/afiliate/movil/700/700.jpg");
+        }
+    }
+    
+    .wrapper-image-background {
+        .wrapper-section-background {            
+            .form-afiliate, .form-anunciate {
+                @include measures(100%,auto);
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-name {
+                        margin-bottom: 0%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }                
+            }
+            .form-afiliate {
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-name {
+                        margin-bottom: 0%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }
+                .input-mail {
+                    width: 100% !important;
+                    //height: 25px;
+                    input[type="text"] {
+                        //padding: 3.3% 3.3%;                        
+                        @include measures(96%,auto);
+                    }
+                }
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            
+            .wrapper-image-section {
+                text-align: center;
+                margin: 0px !important;
+                @include measures(100%,auto);                
+                img {                    
+                    @include measures(80%,auto);
+                }
+            }
+            
+        }        
+    }
+    
+    
+    
     .wrapper-messaje-form {
         .messaje-send {
             font-size: 25px;
@@ -999,9 +1063,20 @@
 @media only screen and (max-width: 500px) {
     
     /* form afiliate anuncuate */
-    .wrapper-image-background .wrapper-section-background .form-afiliate .label-input {
+    /*.wrapper-image-background .wrapper-section-background .form-afiliate .label-input {
         @include measures(47%,auto);
-    }
+    }*/
+    
+    .wrapper-image-background {
+        .wrapper-section-background {
+            .form-afiliate {
+                @include measures(100%,auto);
+            }
+            .form-anunciate {
+                @include measures(100%,auto);
+            }
+        }
+    }    
     
     footer {
         .footer-content-site-invent {
@@ -1030,7 +1105,7 @@
     }
     
     /* form afiliate anunciate */
-    .wrapper-image-background {
+    /*.wrapper-image-background {
         .wrapper-section-background {
             .form-afiliate, .form-anunciate {
                 .label-input {
@@ -1049,7 +1124,7 @@
                 }
             }
         }
-    }
+    }*/
     
 }
 
@@ -1090,6 +1165,51 @@
                 @include measures(100%,auto);
             }
         }
+    }
+    
+    /* formulario afiliate/anunciate */
+    .wrapper-image-background {
+        .wrapper-section-background {            
+            .form-afiliate, .form-anunciate {
+                @include measures(100%,auto);
+                .label-input {
+                    @include measures(100%,auto);
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 3%;
+                    }
+                }                
+            }
+            .form-afiliate {
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(100%,auto);
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }
+                .input-mail {
+                    width: 100% !important;
+                    //height: 25px;
+                    input[type="text"] {
+                        //padding: 3.3% 3.3%;                        
+                        @include measures(96%,auto);
+                    }
+                }
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+        }        
     }
 
 }
@@ -1235,6 +1355,14 @@
         }
     }
 
+    /* formularios */
+    #wrapper-page-site {
+        .wrapper-image-background {
+            background-color: #DDDFDE;
+            background-image: url("/web/img/afiliate/movil/400/400.jpg");
+        }
+    }
+    
     .home-perfil-colaboradores {
         ul {
             li.sections-perfil-talento {
