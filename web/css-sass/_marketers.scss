@@ -20,8 +20,12 @@
         .marketers-title {
             color: #3D3F3E;
             font-size: 50px;
+            text-align: left;
             @extend .Hind-Bold;
             @include transition(all 1s ease);
+        }
+        .btn-publish{
+            margin: 0px;
         }
         .marketers-info {            
             color: #3D3F3E;

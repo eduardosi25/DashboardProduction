@@ -1644,6 +1644,8 @@ body.rtl .formError .formErrorArrow {
     #page-audiencias-contenidos .wrapper-image-section .wrapper-description .audiencia-info ul li {
       list-style-image: url("/web/img/global/vineta.png");
       list-style-position: initial; }
+    #page-audiencias-contenidos .wrapper-image-section .wrapper-description .btn-publish {
+      margin: 0px; }
   #page-audiencias-contenidos .wrapper-image-section {
     background-image: url("/web/img/audiencia-y-contenido/desktop/1920/1920.jpg"); }
   #page-audiencias-contenidos .wrapper-content-section1 {
@@ -1723,11 +1725,14 @@ body.rtl .formError .formErrorArrow {
     #page-marketers .wrapper-description .marketers-title {
       color: #3D3F3E;
       font-size: 50px;
+      text-align: left;
       transition: all 1s ease;
       -webkit-transition: all 1s ease;
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
+    #page-marketers .wrapper-description .btn-publish {
+      margin: 0px; }
     #page-marketers .wrapper-description .marketers-info {
       color: #3D3F3E;
       font-size: 17px;
@@ -1928,6 +1933,8 @@ body.rtl .formError .formErrorArrow {
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
+    #page-video-talento #slide-video-talento.wrapper-image-section1 .wrapper-text .wrapper-publish-stage {
+      margin: 0px; }
   #page-video-talento #slide-video-talento.wrapper-image-section1 .wrapper-image {
     width: 50%;
     height: auto;
