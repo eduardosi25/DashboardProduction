@@ -91,6 +91,9 @@ table {
 .table-cell {
   display: table-cell; }
 
+strong {
+  font-weight: bold; }
+
 .tc-middle {
   display: table; }
 
@@ -367,7 +370,7 @@ table {
   background-image: url("../img/sprites/sprite_grafica.png");
   background-repeat: no-repeat; }
 
-.Hind-Bold, .btn-publish, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-firts, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-firts, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
+.Hind-Bold, .btn-publish, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-firts, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-firts, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
   font-family: Hind-Bold; }
 
 .Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-second, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-second, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term a {
@@ -376,7 +379,7 @@ table {
 .Hind-Medium, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-info, #page-case-exito ul.wrapper-table-case-exito li.box-item .title-case {
   font-family: Hind-Medium; }
 
-.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, .wrapper-image-background .wrapper-section-background .form-afiliate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-anunciate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-afiliate .label-input textarea, .wrapper-image-background .wrapper-section-background .form-anunciate .label-input textarea, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
+.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, .wrapper-image-background .wrapper-section-background .form-afiliate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-anunciate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-afiliate .label-input textarea, .wrapper-image-background .wrapper-section-background .form-anunciate .label-input textarea, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
   font-family: Hind-Regular; }
 
 .Hind-Semibold, #page-marketers .wrapper-table-formats .body-table .box-table, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-field-required, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-field-required, footer .footer-content-site-invent .aviso-privacidad a, footer .footer-content-site-invent .politica-ambiental a {
@@ -1716,7 +1719,8 @@ body.rtl .formError .formErrorArrow {
       background-position: -646px -1059px; }
 
 #page-marketers {
-  background-color: #FFF; }
+  background-color: #FFF;
+  /*old theme table*/ }
   #page-marketers .wrapper-image-section1 {
     padding: 30px 0;
     background-color: #DDDFDE;
@@ -1778,13 +1782,51 @@ body.rtl .formError .formErrorArrow {
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
+  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-header li.grid {
+    height: 50px; }
+  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-body li.grid {
+    height: 100px; }
+  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main li.grid {
+    width: 29%;
+    height: auto; }
+  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-header li.grid {
+    height: 50px; }
+  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-body li.grid {
+    height: 100px; }
+  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main li.grid {
+    width: 29%;
+    height: auto; }
+  #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main.table-body li.grid {
+    height: 100px; }
+  #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main li.grid {
+    width: 45.8%;
+    height: auto; }
+  #page-marketers .wrapper-table-formats-publisher ul.table-main {
+    width: 100%;
+    height: auto; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header {
+      color: #3D3D3D;
+      font-size: 25px; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body {
+      font-size: 16px;
+      line-height: 20px;
+      margin-bottom: 10px; }
+      #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body li.grid {
+        height: 160px;
+        padding-top: 10px; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid {
+      padding: 0 2%;
+      border-left: 1px solid #c4c4c4;
+      width: 20%;
+      height: auto; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid:first-child {
+      border-left: none; }
   #page-marketers .wrapper-table-formats {
     width: 100%;
     height: auto; }
     #page-marketers .wrapper-table-formats .header-table {
       width: 100%;
-      height: auto;
-      background-color: #E4E4E4; }
+      height: auto; }
       #page-marketers .wrapper-table-formats .header-table .type-publisher {
         color: #757575;
         padding: 15px 0;
@@ -1858,8 +1900,8 @@ body.rtl .formError .formErrorArrow {
         width: 94.1%;
         height: auto; }
       #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child {
-        color: #757575;
-        font-size: 20px;
+        color: #3D3D3D;
+        font-size: 25px;
         padding: 15px 0;
         width: 100%;
         height: auto; }
@@ -1968,7 +2010,7 @@ body.rtl .formError .formErrorArrow {
 #page-video-talento .wrapper-red-videos {
   padding: 36px 0 15px  0; }
 
-.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, .wrapper-image-background .wrapper-section-background .form-afiliate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-anunciate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-afiliate .label-input textarea, .wrapper-image-background .wrapper-section-background .form-anunciate .label-input textarea, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
+.Hind-Regular, .wrapper-image-section3 .text-info span:first-child, .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content, .home-perfil-colaboradores ul li.sections-perfil-talento .type-content a, #page-marketers .wrapper-description .marketers-info, #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video div.content-body, #page-marketers .wrapper-table-formats.formats-editorial .content-description, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items, .wrapper-messaje-form .messaje-send, .wrapper-messaje-form .messaje-interest, .wrapper-messaje-form .messaje-contact, .wrapper-image-background .wrapper-section-background .form-afiliate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-anunciate .label-input input[type="text"], .wrapper-image-background .wrapper-section-background .form-afiliate .label-input textarea, .wrapper-image-background .wrapper-section-background .form-anunciate .label-input textarea, #page-case-exito .wrapper-case-items .wrapper-description-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .summary, #page-perfil-sitio .wrapper-image-section1 .wrapper-perfil .summary, footer p {
   font-family: Hind-Regular; }
 
 .Hind-Light, header ul li a, ul.red-invent-sections-sites li.sections-sites span.site-sumary, .wrapper-our-services ul li.services-sites span.summary, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-second, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-second, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term, .wrapper-image-background .wrapper-section-background .form-afiliate .form-block-term a, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term, .wrapper-image-background .wrapper-section-background .form-anunciate .form-block-term a {
@@ -2612,6 +2654,17 @@ footer {
   #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image .width-all {
     max-width: 100%;
     width: 100% !important; } }
+@media only screen and (max-width: 935px) {
+  #page-marketers {
+    /*videos*/ }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header li.grid {
+      height: 50px; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body li.grid {
+      height: 195px; }
+    #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-body li.grid {
+      height: 140px !important; }
+    #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-body li.grid {
+      height: 120px !important; } }
 @media only screen and (max-width: 900px) {
   #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title {
     font-size: 40px; } }
@@ -2758,10 +2811,10 @@ footer {
   #page-case-exito #section-case-de-exito {
     display: none; }
 
-  .wrapper-table-formats {
+  .wrapper-table-formats, .wrapper-table-formats-publisher {
     display: none; }
 
-  .Hind-Bold, .btn-publish, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-firts, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-firts, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
+  .Hind-Bold, .btn-publish, .wrapper-image-section3 .text-info span, .title-seccion-invent, .wrapper-our-services ul li.services-sites span.title, .wrapper-bars, #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description .audiencia-title, #page-marketers .wrapper-description .marketers-title, #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header, #page-marketers .wrapper-table-formats .header-table, #page-marketers .wrapper-table-formats .body-table .type-publisher, #page-marketers .wrapper-table-formats.formats-video .body-table-second-video .content-header, #page-marketers .wrapper-table-formats.formats-editorial .type-content, #page-marketers .wrapper-table-formats.formats-programatic .body-table li.box-items:first-child, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-info .bold, .wrapper-image-background .wrapper-section-background .form-afiliate .txt-firts, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-firts, .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title, #page-case-exito .wrapper-case-items .wrapper-description-case .head-case, #page-case-exito .wrapper-case-items .wrapper-description-case h2, #page-case-exito ul.wrapper-table-case-exito li.box-item .type-case, #page-case-exito ul.wrapper-table-case-exito li.box-item .content-case, #page-perfil-talento .wrapper-image-section1 .wrapper-perfil .perfil {
     font-family: Hind-Bold; }
 
   .invent-mobile-sprite, header .wrapper-header .site-invent, header .wrapper-header .wrapper-main .main-center, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page span, #slide-home.wrapper-image-section1 .owl-theme .owl-controls .owl-page.active span,

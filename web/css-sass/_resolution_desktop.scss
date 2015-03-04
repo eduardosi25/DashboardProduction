@@ -195,6 +195,46 @@
     
 }
 
+@media only screen and (max-width: 935px) {
+    #page-marketers {
+        .wrapper-table-formats-publisher {
+            ul.table-main {
+                &.table-header {
+                    li.grid {
+                        height: 50px;                        
+                    }
+                }
+                &.table-body {                    
+                    li.grid {
+                        height: 195px;
+                    }
+                }
+            }
+        }
+        /*videos*/
+        .wrapper-table-formats-publisher {
+            &.formats-video {
+                ul.table-main {
+                    &.table-body {                    
+                        li.grid {
+                            height: 140px !important;
+                        }
+                    }
+                }
+            }            
+            &.formats-editorial {
+                ul.table-main {
+                    &.table-body {
+                        li.grid {
+                            height: 120px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}
+
 @media only screen and (max-width: 900px) {
     #page-audiencias-contenidos {
         .wrapper-content-section1 {
