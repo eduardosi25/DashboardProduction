@@ -157,7 +157,8 @@ header {
             text-align: center;
             @include measures(64px,auto);
             //@include measures(13.4%,auto);
-            border-right: 1px solid #363636;
+            //border-right: 1px solid #363636;
+            border-right: 1px solid #ccd0d1;
             &.main-audiencia-contenido {
                 @include measures(155px,auto);
             }
@@ -179,7 +180,8 @@ header {
             }
             a {
                 @extend .Hind-Light;
-                color: #a1a0a1;
+                //color: #a1a0a1;
+                color: #3d3d3d;
                 font-size: 12px !important;
                 line-height: 16px;
                 margin-right: 1%;
