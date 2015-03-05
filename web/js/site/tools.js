@@ -389,8 +389,7 @@
             timeout: 100000,
             contentType: "application/json; charset=utf-8",
             async: false,
-            success: function(data) {
-                console.log(data);
+            success: function(data) {                
                 if (data) {
                     callback(data,options);
                 } else {
