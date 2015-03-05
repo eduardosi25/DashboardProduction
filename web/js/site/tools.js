@@ -130,6 +130,7 @@
             
             dataPerfil = resp.data[0];
             var url_taxonomy;
+            var image;                        
             
             if(resp.data.length){
                 url_taxonomy = dataPerfil.audience[0].url;
@@ -137,6 +138,22 @@
             temp_url = $.url(dataPerfil.url);
             np_url = 'http://' + window.location.host + "#" + temp_url.attr('relative');
             url = np_url.replace('#/','#');
+            
+            if(dataPerfil.images){
+                if(dataPerfil.images.picture){
+                    if(dataPerfil.images.picture[0]){
+                        if(dataPerfil.images.picture[0].url){
+                            var image = dataPerfil.images.picture[0].url;
+                        }else {
+                            var image = "/web/img/global/default.png";
+                        }
+                    }else {
+                        var image = "/web/img/global/default.png";
+                    }
+                }
+            }else {
+                var image = "/web/img/global/default.png";
+            }
                 
             inventMx.metas.configure = {
                 title: dataPerfil.title +" | InventMx",
@@ -147,7 +164,7 @@
                 og_description: dataPerfil.summary,
                 og_url: url,
                 og_type: "website",
-                og_image: dataPerfil.images.picture[0].url,
+                og_image: image,
             };
             inventMx.metas.compile();
                 
@@ -1187,10 +1204,10 @@ $(function() {
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                                 
                 //inventMx.page.wrapper_site.show("slow");
-                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
-                inventMx.dataSource.params.audience_url = null;
+                //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){                
                     inventMx.utilities.loaderHide();
                     setTimeout(inventMx.utilities.loaderHide, 7000);
+                    inventMx.dataSource.params.audience_url = null;
                 //});
                 return this;
             });
