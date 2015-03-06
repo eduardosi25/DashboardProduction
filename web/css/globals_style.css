@@ -105,6 +105,12 @@ strong {
   display: table-cell;
   vertical-align: middle; }
 
+.fs15 {
+  font-size: 15px; }
+
+.fs26 {
+  font-size: 26px; }
+
 .fs28 {
   font-size: 28px !important; }
 
@@ -262,6 +268,9 @@ strong {
 
 .pb25 {
   padding-bottom: 25px; }
+
+.pb30 {
+  padding-bottom: 30px; }
 
 .ptb25 {
   padding: 25px 0; }
@@ -1654,6 +1663,13 @@ body.rtl .formError .formErrorArrow {
     padding: 30px 0 0 0;
     background-color: #DDDFDE;
     background-repeat: no-repeat; }
+    #page-audiencias-contenidos .wrapper-image-section .wrapper-description .wrapper-image-audience {
+      max-width: 350px;
+      width: 100%;
+      height: auto; }
+      #page-audiencias-contenidos .wrapper-image-section .wrapper-description .wrapper-image-audience img {
+        width: 100%;
+        height: auto; }
     #page-audiencias-contenidos .wrapper-image-section .wrapper-description .audiencia-info ul li {
       list-style-image: url("/web/img/global/vineta.png");
       list-style-position: initial; }
@@ -1722,7 +1738,7 @@ body.rtl .formError .formErrorArrow {
   background-color: #FFF;
   /*old theme table*/ }
   #page-marketers .wrapper-image-section1 {
-    padding: 30px 0;
+    padding-top: 30px;
     background-color: #DDDFDE;
     background-repeat: no-repeat;
     background-image: url("/web/img/marketers/desktop/1920/1920.jpg"); }
@@ -1782,45 +1798,64 @@ body.rtl .formError .formErrorArrow {
       -moz-transition: all 1s ease;
       -o-transition: all 1s ease;
       -ms-transition: all 1s ease; }
-  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-header li.grid {
-    height: 50px; }
-  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-body li.grid {
-    height: 100px; }
-  #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main li.grid {
-    width: 29%;
-    height: auto; }
-  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-header li.grid {
-    height: 50px; }
-  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-body li.grid {
-    height: 100px; }
-  #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main li.grid {
-    width: 29%;
-    height: auto; }
-  #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main.table-body li.grid {
-    height: 100px; }
-  #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main li.grid {
-    width: 45.8%;
-    height: auto; }
-  #page-marketers .wrapper-table-formats-publisher ul.table-main {
-    width: 100%;
-    height: auto; }
-    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header {
-      color: #3D3D3D;
-      font-size: 25px; }
-    #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body {
-      font-size: 16px;
-      line-height: 20px;
-      margin-bottom: 10px; }
-      #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body li.grid {
-        height: 160px;
-        padding-top: 10px; }
-    #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid {
-      padding: 0 2%;
-      border-left: 1px solid #c4c4c4;
-      width: 20%;
+  #page-marketers .wrapper-table-formats-publisher {
+    margin-top: -20px;
+    position: relative;
+    z-index: 999; }
+    #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-header li.grid {
+      height: 50px; }
+    #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main.table-body li.grid {
+      height: 100px; }
+    #page-marketers .wrapper-table-formats-publisher.formats-video ul.table-main li.grid {
+      width: 29%;
       height: auto; }
-    #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid:first-child {
-      border-left: none; }
+    #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-header li.grid {
+      height: 50px; }
+    #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main.table-body li.grid {
+      height: 100px; }
+    #page-marketers .wrapper-table-formats-publisher.formats-editorial ul.table-main li.grid {
+      width: 29%;
+      height: auto; }
+    #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main {
+      margin: 0 auto;
+      max-width: 480px;
+      width: 100%;
+      height: auto; }
+      #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main.table-body {
+        border: 1px solid #cacaca;
+        border-top: none;
+        border-bottom: none;
+        /*li.grid:first-child {
+            padding-left: 0px;
+        }*/
+        /*li.grid {
+            text-align: center;
+        }*/ }
+        #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main.table-body li.grid {
+          height: 100px; }
+      #page-marketers .wrapper-table-formats-publisher.formats-mobile ul.table-main li.grid {
+        width: 45.8%;
+        height: auto; }
+    #page-marketers .wrapper-table-formats-publisher ul.table-main {
+      width: 100%;
+      height: auto; }
+      #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header {
+        color: #3D3D3D;
+        font-size: 25px; }
+        #page-marketers .wrapper-table-formats-publisher ul.table-main.table-header li.grid {
+          text-align: center !important; }
+      #page-marketers .wrapper-table-formats-publisher ul.table-main.table-body {
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 10px; }
+      #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid {
+        padding: 0 2%;
+        text-align: left;
+        border-left: 1px solid #c4c4c4;
+        width: 20%;
+        height: auto; }
+      #page-marketers .wrapper-table-formats-publisher ul.table-main li.grid:first-child {
+        border-left: none; }
   #page-marketers .wrapper-table-formats {
     width: 100%;
     height: auto; }
@@ -1963,7 +1998,18 @@ body.rtl .formError .formErrorArrow {
     margin: 0 auto;
     width: 245px;
     height: auto; }
+  #page-marketers .background-table {
+    margin: 0 auto;
+    background-color: #FFF;
+    width: 100%;
+    height: 50px; }
+  #page-marketers .main-sections-tools {
+    padding-bottom: 30px; }
 
+#page-video-talento .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor {
+  height: 27px;
+  font-size: 14px;
+  margin-top: 8px; }
 #page-video-talento #slide-video-talento.wrapper-image-section1 {
   background-color: #DDDFDE;
   background-repeat: no-repeat;
@@ -2098,7 +2144,8 @@ body.rtl .formError .formErrorArrow {
       .wrapper-image-background .wrapper-section-background .form-afiliate .txt-firts, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-firts {
         color: #3D3D3D;
         font-size: 35px;
-        margin-top: 10px; }
+        margin-top: 10px;
+        padding: 0 4%; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .txt-second, .wrapper-image-background .wrapper-section-background .form-anunciate .txt-second {
         padding: 0 4%;
         color: #3D3D3D;
@@ -2109,7 +2156,10 @@ body.rtl .formError .formErrorArrow {
         margin: 0 auto; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .afiliate-title, .wrapper-image-background .wrapper-section-background .form-anunciate .afiliate-title {
         color: #3D3D3D;
-        font-size: 45px; }
+        font-size: 45px;
+        margin: 0 auto;
+        width: 94%;
+        height: auto; }
       .wrapper-image-background .wrapper-section-background .form-afiliate .group-items, .wrapper-image-background .wrapper-section-background .form-anunciate .group-items {
         padding: 3%;
         margin: 0 auto;
@@ -2580,17 +2630,26 @@ footer {
     }
     #lifestye.wrapper-image-section {
         background-image: url("/web/img/audiencia-y-contenido/desktop/1024/lifestyle.jpg");
+    }*/
+    /*#mundo-saludable .wrapper-content-section1 {
+        .wrapper-description{
+            //margin-top: 0%;
+        }
+    }
+    #mundo-femenino .wrapper-content-section1 {
+        .wrapper-description{
+            //margin-top: 7%;
+        }
+    }
+    #lifestye .wrapper-content-section1 {
+        .wrapper-description{
+            //margin-top: 6%;
+        }
     }*/ }
     #page-audiencias-contenidos .wrapper-image-section {
       background-image: url("/web/img/audiencia-y-contenido/desktop/1024/1024.jpg"); }
     #page-audiencias-contenidos #noticias-negocios .wrapper-content-section1 .wrapper-description {
-      margin-top: 7%; }
-    #page-audiencias-contenidos #mundo-saludable .wrapper-content-section1 .wrapper-description {
-      margin-top: 0%; }
-    #page-audiencias-contenidos #mundo-femenino .wrapper-content-section1 .wrapper-description {
-      margin-top: 7%; }
-    #page-audiencias-contenidos #lifestye .wrapper-content-section1 .wrapper-description {
-      margin-top: 6%; }
+      margin-top: 1%; }
     #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
       padding-bottom: 15px; }
 
@@ -2640,6 +2699,11 @@ footer {
     margin-top: 14%; }
   .wrapper-image-background .wrapper-section-background .image-section-anunciate {
     margin-top: 10%; } }
+@media only screen and (max-width: 930px) {
+  #page-audiencias-contenidos .wrapper-content-section1 .wrapper-image {
+    right: 0px;
+    bottom: 0px;
+    position: absolute; } }
 @media only screen and (max-width: 960px) {
   #page-case-exito .wrapper-case-items .wrapper-image-case {
     margin: 15% 0 0 3%; } }
@@ -3157,6 +3221,8 @@ footer {
       display: none; }
     #page-marketers .wrapper-description .marketers-title {
       font-size: 30px; }
+  #page-marketers .background-table {
+    display: none; }
   #page-marketers section {
     background-color: #F1F1F1; }
   #page-marketers .marketers-info.versus-mobile {
@@ -3260,38 +3326,46 @@ footer {
       height: auto; }
       #page-video-talento #slide-video-talento.wrapper-image-section1 .wrapper-text img {
         margin-top: -15px; }
-  #page-video-talento .wrapper-red-videos .title-seccion-invent {
-    font-size: 26px; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items {
-    text-align: left;
-    padding: 2% 0 2% 0;
-    margin: 5px 0 0 0;
-    width: 100%;
-    height: auto;
-    border-bottom: 2px solid #FFF; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items:first-child {
+  #page-video-talento .home-perfil-colaboradores ul li.sections-perfil-talento .name-editor {
+    font-size: 14px;
     margin-top: 0px; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image {
-    float: left;
-    width: 30%;
-    height: auto; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info {
-    margin: 65px 0 0 0; }
-  #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description {
-    float: left;
-    padding-top: 10%;
-    width: 65%;
-    height: auto; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description > span {
-      vertical-align: middle; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .name-editor {
-      float: left;
+  #page-video-talento .wrapper-red-videos {
+    padding: 15px 0 15px 0; }
+    #page-video-talento .wrapper-red-videos .title-seccion-invent {
+      font-size: 26px; }
+      #page-video-talento .wrapper-red-videos .title-seccion-invent span {
+        display: block;
+        margin-top: 15px; }
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items {
+      text-align: left;
+      padding: 2% 0 2% 0;
+      margin: 5px 0 0 0;
       width: 100%;
-      height: auto; }
-    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .type-content {
+      height: auto;
+      border-bottom: 2px solid #FFF; }
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento.box-items:first-child {
+      margin-top: 0px; }
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-image {
       float: left;
-      width: 100%;
+      width: 30%;
       height: auto; }
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-info {
+      margin: 65px 0 0 0; }
+    #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description {
+      float: left;
+      padding-top: 10%;
+      width: 65%;
+      height: auto; }
+      #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description > span {
+        vertical-align: middle; }
+      #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .name-editor {
+        float: left;
+        width: 100%;
+        height: auto; }
+      #page-video-talento .wrapper-red-videos .home-perfil-colaboradores ul li.sections-perfil-talento .wrapper-description .type-content {
+        float: left;
+        width: 100%;
+        height: auto; }
 
   /* afilite */
   /* caso  de exito */
@@ -3346,7 +3420,7 @@ footer {
     #page-audiencias-contenidos .wrapper-image-section {
       background-image: url("/web/img/audiencia-y-contenido/mobile/700/700.jpg"); }
     #page-audiencias-contenidos .wrapper-content-section1 .wrapper-description {
-      margin-top: 9% !important; }
+      margin-top: 0% !important; }
 
   /*  */
   .content-section-site {

@@ -21,6 +21,13 @@
         background-color: #DDDFDE;
         background-repeat: no-repeat;
         .wrapper-description {
+            .wrapper-image-audience {
+                max-width: 350px;
+                @include measures(100%,auto);
+                img {
+                    @include measures(100%,auto);
+                }
+            }
             .audiencia-info {
                 ul li {
                     list-style-image: url("/web/img/global/vineta.png");

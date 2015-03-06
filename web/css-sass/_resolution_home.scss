@@ -455,7 +455,7 @@
 
         .wrapper-image-section1 {
             background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
-        }
+        }        
 
         #publicidad-premium .wrapper-description {
             margin-top: 10%;
@@ -493,6 +493,9 @@
             .marketers-title {
                 font-size: 30px;
             }
+        }
+        .background-table {
+            display: none;
         }
         section {
             background-color: #F1F1F1;
@@ -629,11 +632,28 @@
                 }
             }
         }
-
+        
+        .home-perfil-colaboradores {
+            ul {
+                li.sections-perfil-talento {
+                    .name-editor {
+                        //height: 27px;
+                        font-size: 14px;
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+        
         .wrapper-red-videos {
             //background-color: orange;
+            padding: 15px 0 15px 0;
             .title-seccion-invent{
                 font-size: 26px;
+                span {
+                    display: block;
+                    margin-top: 15px;
+                }
             }
             .home-perfil-colaboradores{                
                 ul li.sections-perfil-talento {
@@ -756,7 +776,7 @@
 
         .wrapper-content-section1 {
             .wrapper-description{
-                margin-top: 9% !important
+                margin-top: 0% !important
             }
         }
 

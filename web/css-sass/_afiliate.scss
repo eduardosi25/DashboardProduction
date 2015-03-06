@@ -93,9 +93,12 @@
                 }
             .txt-firts {                
                 color: #3D3D3D;
+                //margin: 0 auto;
                 font-size: 35px;
                 margin-top: 10px;
                 @extend .Hind-Bold;
+                padding: 0 4%;
+                //@include measures(94%,auto);
             }
             .txt-second {
                 padding: 0 4%;
@@ -108,11 +111,13 @@
             .logo-invent {
                 margin: 0 auto;                
             }
-            .afiliate-title {                
+            .afiliate-title {
                 color: #3D3D3D;
                 font-size: 45px;
                 //padding: 10px 0;
-                @extend .Hind-Bold;                
+                @extend .Hind-Bold;
+                margin: 0 auto;
+                @include measures(94%,auto);
             }            
             .group-items {
                 padding: 3%;
