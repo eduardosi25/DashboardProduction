@@ -123,10 +123,13 @@ body {
 }
 
 
-header {
-    @include measures(100%,auto);
+header {        
     //background-color: #1A1A1A;
-    background-color: #ebebeb;
+    position: relative;
+    z-index: 99;
+    background-color: #ebebeb;    
+    @include measures(100%,auto);
+    @include box-shadow(0px, -2px, 25px, #000);
     .wrapper-header {
         min-height: 50px;
         max-width: 1024px;
@@ -776,12 +779,15 @@ ul.red-invent-sections-sites {
 @import "perfil_talento.scss";
 @import "sitio_especifico.scss";
 
-footer {
+footer {    
+    z-index: 99;
     min-height: 50px;
+    position: relative;    
     padding: 10px 0 3px 0;
     //background-color: #1A1A1A;
     background-color: #ebebeb;
-    @include measures(100%,auto);    
+    @include measures(100%,auto);
+    //@include box-shadow(0px, 4px, 25px, #000);
     .footer-content-site-invent > div {
         vertical-align: middle;
     }
