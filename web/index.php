@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
-        <title>InventMx | Home</title>
+        <title>InventMx</title>
         <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
 
     </head>
