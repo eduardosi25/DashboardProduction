@@ -1,7 +1,8 @@
 #page-marketers {
     background-color: #FFF;
     .wrapper-image-section1 {
-        padding: 30px 0;
+        //padding: 30px 0;
+        padding-top: 30px;
         background-color: #DDDFDE;
         background-repeat: no-repeat;        
         background-image: url("/web/img/marketers/desktop/1920/1920.jpg");
@@ -53,13 +54,108 @@
             //max-height: 360px;
         }
     }
-
-    .wrapper-table-formats {
-        @include measures(100%,auto);
-        .header-table {
-            @extend .Hind-Bold;
+    
+    .wrapper-table-formats-publisher {
+        margin-top: -20px;
+        position: relative;        
+        z-index: 999;
+        &.formats-video {
+            ul.table-main {
+                &.table-header {
+                    li.grid {
+                        height: 50px;
+                    }                    
+                }
+                &.table-body {
+                    li.grid {
+                        height: 100px;
+                    }
+                }
+                li.grid {
+                    @include measures(29%,auto);
+                }
+            }
+        }
+        &.formats-editorial {
+            ul.table-main {
+                &.table-header {
+                    li.grid {
+                        height: 50px;
+                    }                    
+                }
+                &.table-body {
+                    li.grid {
+                        height: 100px;
+                    }
+                }
+                li.grid {
+                    @include measures(29%,auto);
+                }
+            }
+        }
+        &.formats-mobile {
+            ul.table-main {
+                margin: 0 auto;
+                max-width: 480px;
+                @include measures(100%,auto);
+                &.table-body {
+                    border: 1px solid #cacaca;
+                    border-top: none;
+                    border-bottom: none;
+                    li.grid {
+                        height: 100px;                        
+                    }
+                    /*li.grid:first-child {
+                        padding-left: 0px;
+                    }*/
+                    /*li.grid {
+                        text-align: center;
+                    }*/
+                }
+                li.grid {
+                    //@include measures(44%,auto);
+                    @include measures(45.8%,auto);
+                }
+            }
+        }
+    
+        ul.table-main {
+            &.table-header {
+                color: #3D3D3D;
+                font-size: 25px;                
+                @extend .Hind-Bold;
+                li.grid {
+                    text-align: center !important;
+                }
+            }
+            &.table-body {
+                font-size: 16px;
+                line-height: 20px;                
+                margin-bottom: 10px;
+                //@extend .Hind-Light;
+                @extend .Hind-Regular;
+                
+            }
             @include measures(100%,auto);
-            background-color: #E4E4E4;
+            li.grid {
+                padding: 0 2%;
+                text-align: left;
+                border-left: 1px solid #c4c4c4;
+                @include measures(20%,auto);
+            }
+            li.grid:first-child {
+                border-left: none;
+            }
+        }
+    }
+    
+    /*old theme table*/
+    .wrapper-table-formats {        
+        @include measures(100%,auto);        
+        .header-table {
+            @extend .Hind-Bold;            
+            @include measures(100%,auto);
+            //background-color: #E4E4E4;
             .type-publisher {                
                 & > span {
                     vertical-align: middle;
@@ -159,11 +255,14 @@
                     @extend .Hind-Regular;
                     @include measures(94.1%,auto);
                 }
-                & li.box-items:first-child {                    
-                    color: #757575;
-                    font-size: 20px;
-                    padding: 15px 0;
+                & li.box-items:first-child {
+                    color: #3D3D3D;
+                    font-size: 25px;                
                     @extend .Hind-Bold;
+                    //color: #757575;
+                    //font-size: 20px;
+                    padding: 15px 0;
+                    //@extend .Hind-Bold;
                     @include measures(100%,auto);
                 }
             }
@@ -234,6 +333,17 @@
     .wrapper-boton-publisher {
         margin: 0 auto;
         @include measures(245px,auto);
+    }
+    .background-table {
+        //height: 50px;
+        margin: 0 auto;
+        background-color: #FFF;
+        @include measures(100%,50px);
+        //@include measures(93.5%,50px);
+    }
+    
+    .main-sections-tools {
+        padding-bottom: 30px;
     }
 
 }

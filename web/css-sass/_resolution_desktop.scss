@@ -49,24 +49,24 @@
         //#page-audiencias-contenidos
         #noticias-negocios .wrapper-content-section1 {
             .wrapper-description{
-                margin-top: 7%;
+                margin-top: 1%;
             }
         }
-        #mundo-saludable .wrapper-content-section1 {
+        /*#mundo-saludable .wrapper-content-section1 {
             .wrapper-description{
-                margin-top: 0%;
+                //margin-top: 0%;
             }
         }
         #mundo-femenino .wrapper-content-section1 {
             .wrapper-description{
-                margin-top: 7%;
+                //margin-top: 7%;
             }
         }
         #lifestye .wrapper-content-section1 {
             .wrapper-description{
-                margin-top: 6%;
+                //margin-top: 6%;
             }
-        }
+        }*/
 
         .wrapper-content-section1 {
             .wrapper-description{
@@ -75,6 +75,14 @@
             }
         }
         
+    }
+    
+    /* formulario */
+    #wrapper-page-site {
+        .wrapper-image-background {
+            background-color: #DDDFDE;
+            background-image: url("/web/img/afiliate/desktop/1024/1024.jpg");
+        }
     }
     
     #page-perfil-sitio {
@@ -105,6 +113,59 @@
     }
     
     
+}
+
+@media only screen and (max-width: 980px) {
+    .wrapper-image-background {
+        .wrapper-section-background {
+            .form-afiliate {
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-producto {
+                        @include measures(100%,auto);
+                    }
+                    & textarea {
+                        
+                    }
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-producto {
+                        @include measures(100%,auto);
+                    }
+                    & textarea {
+                        
+                    }
+                }
+                .input-mail {
+                    @include measures(100%,auto);
+                }
+            }
+            
+            .image-section-afiliate {
+                margin-top: 14%;
+            }        
+            .image-section-anunciate {
+                margin-top: 10%;
+            }
+            
+        }                
+    }        
+          
+}
+
+@media only screen and (max-width: 930px) {
+    #page-audiencias-contenidos {
+        .wrapper-content-section1 {
+            .wrapper-image{
+                right: 0px;
+                bottom: 0px;
+                position: absolute;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 960px) {
@@ -146,6 +207,46 @@
     
 }
 
+@media only screen and (max-width: 935px) {
+    #page-marketers {
+        .wrapper-table-formats-publisher {
+            ul.table-main {
+                &.table-header {
+                    li.grid {
+                        height: 50px;                        
+                    }
+                }
+                &.table-body {                    
+                    li.grid {
+                        height: 195px;
+                    }
+                }
+            }
+        }
+        /*videos*/
+        .wrapper-table-formats-publisher {
+            &.formats-video {
+                ul.table-main {
+                    &.table-body {                    
+                        li.grid {
+                            height: 140px !important;
+                        }
+                    }
+                }
+            }            
+            &.formats-editorial {
+                ul.table-main {
+                    &.table-body {
+                        li.grid {
+                            height: 120px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}
+
 @media only screen and (max-width: 900px) {
     #page-audiencias-contenidos {
         .wrapper-content-section1 {
@@ -156,6 +257,40 @@
             }
         }
     }
+}
+
+@media only screen and (max-width: 860px) {
+    .wrapper-image-background {
+        .wrapper-section-background {
+            .form-afiliate {
+                .label-input {
+                    @include measures(100%,auto);
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 3%;
+                    }
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(100%,auto);  
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                }
+            }
+            
+            .image-section-afiliate {
+                margin-top: 30%;
+            }        
+            .image-section-anunciate {
+                margin-top: 18%;
+            }
+            
+        }                
+    }         
 }
 
 @media only screen and (max-width: 840px) {

@@ -389,7 +389,7 @@
             timeout: 100000,
             contentType: "application/json; charset=utf-8",
             async: false,
-            success: function(data) {                
+            success: function(data) {
                 if (data) {
                     callback(data,options);
                 } else {
@@ -1043,10 +1043,10 @@ $(function() {
         },
         render:function(idAncla){
             var id_section1 = "#section-home-contactos";
-            var rich1 = ".formats-rich-media .body-table-1 li.box-table";
+            /*var rich1 = ".formats-rich-media .body-table-1 li.box-table";
             var rich2 = ".formats-rich-media .body-table-2 li.box-table";
             
-            var mobile = ".formats-mobile .body-table li.box-table";
+            var mobile = ".formats-mobile .body-table li.box-table";*/
                         
             inventMx.page.wrapper_site.load("/web/app/inventmx/marketers/home.html", function () {
                     
@@ -1065,12 +1065,12 @@ $(function() {
                 //inventMx.dataSource.load(repo,inventMx.render.tplAudienciasContenidos,Options_Mfemenino);
                 
                     
-                finalNumbers = inventMx.utilities.calculateheightItem(rich1);
+                /*finalNumbers = inventMx.utilities.calculateheightItem(rich1);
                 $(rich1).height(finalNumbers);
                 finalNumbers = inventMx.utilities.calculateheightItem(rich2);
                 $(rich2).height(finalNumbers);
                 finalNumbers = inventMx.utilities.calculateheightItem(mobile);
-                $(mobile).height(finalNumbers);
+                $(mobile).height(finalNumbers);*/
                     
                 inventMx.utilities.loaderHide();
                 setTimeout(inventMx.utilities.loaderHide, 7000);
@@ -1113,7 +1113,7 @@ $(function() {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 
-                $(rich1).css("height","auto");
+                /*$(rich1).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(rich1);
                 $(rich1).height(finalNumbers);
                 
@@ -1123,7 +1123,7 @@ $(function() {
                 
                 $(mobile).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(mobile);
-                $(mobile).height(finalNumbers);
+                $(mobile).height(finalNumbers);*/
                 
                 idSitesUl = "#sites-socials li.sections-sites";
                 $(idSitesUl).css("height","auto");
@@ -1310,7 +1310,7 @@ $(function() {
                 $(document).on("submit","#form-afiliate",function(e){
                     e.preventDefault();
                     inventMx.utilities.loaderShow();
-                    console.log("cargando");
+                    //console.log("cargando");
                     data = $(this).serializeArray();
                     inventMx_events.trigger('Inventform','#form-afiliate',data);
                     return false;

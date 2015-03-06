@@ -6,6 +6,7 @@ $apellido = $_REQUEST['apellido'] ? $_REQUEST['apellido'] : NULL;
 $correo   = $_REQUEST['email'] ? $_REQUEST['email'] : NULL;
 @$canal   = $_REQUEST['chanel'] ? $_REQUEST['chanel'] : NULL;
 $type     = $_REQUEST['type'] ? $_REQUEST['type'] : NULL;
+$description     = $_REQUEST['description'] ? $_REQUEST['description'] : NULL;
 $source   = $type;
 
 $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer'] : '';
@@ -25,6 +26,7 @@ $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
 $body = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
 $body .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $body .= 'Correo: '. $correo . '<br /><br />';
+$body .= 'Producto: '. $description . '<br /><br />';
 
 if($canal){
     $body .= 'Youtube Channel: '. $canal . '<br /><br />';
