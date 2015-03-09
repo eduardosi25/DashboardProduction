@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>        
-
+    <head>
         <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
         <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
         <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/favicon.ico" />
