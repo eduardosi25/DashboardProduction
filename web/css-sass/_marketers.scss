@@ -69,6 +69,16 @@
                 &.table-body {
                     li.grid {
                         height: 100px;
+                        ul.formatos-ads {
+                            margin: 0 auto;
+                            max-width: 130px;
+                            @include measures(100%,auto);
+                        }
+                        ul.videos-ads {
+                            margin: 0 auto;
+                            max-width: 165px;
+                            @include measures(100%,auto);
+                        }
                     }
                 }
                 li.grid {
@@ -96,14 +106,27 @@
         &.formats-mobile {
             ul.table-main {
                 margin: 0 auto;
-                max-width: 480px;
-                @include measures(100%,auto);
+                //max-width: 480px;
+                //max-width: 720px;
+                //@include measures(100%,auto);
+                @include measures(80%,auto);
                 &.table-body {
-                    border: 1px solid #cacaca;
-                    border-top: none;
-                    border-bottom: none;
+                    //border: 1px solid #cacaca;
+                    //border-top: none;
+                    //border-bottom: none;
                     li.grid {
-                        height: 100px;                        
+                        height: 100px;
+                        ul.block-1 {
+                            margin: 0 auto;
+                            max-width: 80px;
+                            @include measures(100%,auto);
+                        }
+                        ul.block-2 {
+                            margin: 0 auto;
+                            max-width: 190px;
+                            @include measures(100%,auto);
+                        }
+                        
                     }
                     /*li.grid:first-child {
                         padding-left: 0px;
