@@ -7,7 +7,6 @@ and open the template in the editor.
     Created on : 10/12/2014, 11:57:23 AM
     Author     : angel
 */
-
 @mixin measures($w: 100%, $h: 100%) {
     width: $w;
     height: $h;
@@ -53,7 +52,7 @@ and open the template in the editor.
     -o-transition: $transition;
     -ms-transition: $transition;
 }
-
+/**/
 #global-page {
     margin: 0 auto;
     overflow: hidden;
