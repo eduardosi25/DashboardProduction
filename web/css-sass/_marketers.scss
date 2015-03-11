@@ -64,6 +64,16 @@
                 &.table-header {
                     li.grid {
                         height: 50px;
+                        span.formatos-ads {
+                            margin: 0 auto;
+                            max-width: 135px;
+                            @include measures(100%,auto);
+                        }
+                        span.videos-ads {
+                            margin: 0 auto;
+                            max-width: 165px;
+                            @include measures(100%,auto);
+                        }
                     }                    
                 }
                 &.table-body {
@@ -148,7 +158,7 @@
                 font-size: 25px;                
                 @extend .Hind-Bold;
                 li.grid {
-                    text-align: center !important;
+                    //text-align: center !important;
                 }
             }
             &.table-body {
