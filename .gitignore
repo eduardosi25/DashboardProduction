@@ -17,6 +17,7 @@ files/*
 demos
 demos/*
 .idea*
+.DS*
 
 /InventMx/nbproject/private/
 /nbproject/private/
