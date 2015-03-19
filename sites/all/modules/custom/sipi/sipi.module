@@ -1,0 +1,173 @@
+<?php
+/**
+ * Implements hook_permission().
+ */
+function sipi_permission() {
+  $permissions['use sipi'] = array(
+    'title' => t('Use SIPI.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['use sipi dashboard'] = array(
+    'title' => t('Use SIPI Dashboard.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['use sipi reporting'] = array(
+    'title' => t('Use SIPI reporting.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['run sipi updates'] = array(
+    'title' => t('Run SIPI Updates.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['administer sipi settings'] = array(
+    'title' => t('Administer SIPI settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_help().
+ */
+function sipi_help($path, $arg) {
+  if ($path == 'admin/help#sipi') {
+    return t('invent.SIPI - Módulo para configuración, uso y reporteo de usuarios y contenidos SIPI.');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function sipi_menu() {
+  $items=array();
+  $items['sipi'] = array(
+    'title'            => 'SIPI [Sistema Integral de Publicación en Internet]',
+    'page callback'    => 'sipi_login',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/dashboard'] = array(
+    'title'            => t('Dashboard'),
+    'page callback'    => 'sipi_dashboard',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/client'] = array(
+    'title'            => t('Clients'),
+    'page callback'    => 'sipi_client',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/client-registration'] = array(
+    'title'            => t('Client registration'),
+    'page callback'    => 'sipi_client_registration',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/client-edit'] = array(
+    'title'            => t('Client edit'),
+    'page callback'    => 'sipi_client_edit',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/client-suspend'] = array(
+    'title'            => t('Client suspend'),
+    'page callback'    => 'sipi_client_suspend',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/client-detail'] = array(
+    'title'            => t('Client detail'),
+    'page callback'    => 'sipi_client_detail',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/package'] = array(
+    'title'            => t('Package'),
+    'page callback'    => 'sipi_package',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/package-registration'] = array(
+    'title'            => t('Package registration'),
+    'page callback'    => 'sipi_package_registration',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/package-edit'] = array(
+    'title'            => t('Package edit'),
+    'page callback'    => 'sipi_package_edit',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/package-delete'] = array(
+    'title'            => t('Package delete'),
+    'page callback'    => 'sipi_package_delete',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['sipi/next-completions'] = array(
+    'title'            => t('Next completions'),
+    'page callback'    => 'sipi_next_completions',
+    'access callback'  => TRUE,
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.inc',
+  );
+
+  $items['admin/config/system/sipi'] = array(
+    'title'            => t('SIPI Settings'),
+    'description'      => t('Configure settings for invent.SIPI'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('sipi_admin_settings_form'),
+    'access arguments' => array('administer sipi settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi.admin.inc',
+  );
+  return $items;
+}
+/**+
+ * Implements hook_init().
+ */
+function sipi_init(){
+
+}
+
+/**
+ * Returns variables for sipi implementation
+ * @return array
+ */
+function _sipi_get_variables(){
+  $value = &drupal_static(__FUNCTION__);
+  if (!isset($values)) {
+    if ($cache = cache_get('sipi_variables')) {
+      $value = $cache->data;
+    }else{
+      $value=array(
+        'status'   => variable_get('sipi_status',FALSE),
+        'settings' => variable_get('sipi_settings',NULL),
+      );
+      cache_set('sipi_variables', $value, 'cache');
+    }
+  }
+  return $value;
+}

@@ -1,0 +1,12 @@
+name = "Invent SIPI"
+description = "Sistema Integral de Publicación en Internet"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = sipi.module
+files[] = sipi.inc
+files[] = sipi.admin.inc
+files[] = sipi.class.inc
+files[] = sipi.install
+configure = admin/config/system/sipi

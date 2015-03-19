@@ -19,6 +19,10 @@ function get_cms_admin_paths(){
     '*/ahah/*',
     'batch',
     'batch*',
+    'sipi',
+    'play',
+    'jedi',
+    'feeds',
   );
   $paths=implode("\n",$paths);
   return drupal_match_path($_GET["q"],$paths);
