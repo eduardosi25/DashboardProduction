@@ -1,0 +1,134 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function sipi_install() {
+  variable_set('sipi_status',FALSE);
+  variable_set('sipi_settings',NULL);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function sipi_uninstall() {
+  #Delete all variables
+  variable_del('sipi_status');
+  variable_del('sipi_settings');
+  #Delete all tables
+  if (db_table_exists('sipi_users')) {
+    db_drop_table('sipi_users');
+  }
+  if (db_table_exists('sipi_sites')) {
+    db_drop_table('sipi_sites');
+  }
+  if (db_table_exists('sipi_reports')) {
+    db_drop_table('sipi_reports');
+  }
+}
+
+function sipi_schema(){
+  $schema=array();
+  //Primary table
+  $schema['sipi_users'] = array(
+    'fields' => array(
+      'sid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'User ID',
+      ),
+      'rid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Role ID',
+      ),
+    ),
+    'primary key' => array('sid'),
+    'indexes' => array(
+      'sipi_users_uid' => array('sid','uid'),
+      'sipi_users_rid' => array('sid','rid'),
+    ),
+  );
+
+  $schema['sipi_sites'] = array(
+    'fields' => array(
+      'sid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'SIPI ID',
+      ),
+      'site' => array(
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Site name',
+      ),
+    ),
+    'indexes' => array(
+      'sipi_sites_sid' => array('sid'),
+      'sipi_sites_site' => array('sid','site'),
+    ),
+  );
+
+  $schema['sipi_reports'] = array(
+    'fields' => array(
+      'sid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'SIPI ID',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Created Timestamp',
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Changed Timestamp',
+      ),
+      'report' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Report',
+      ),
+    ),
+    'indexes' => array(
+      'sipi_reports_sid' => array('sid'),
+      'sipi_reports_report' => array('sid','created','changed','report'),
+    ),
+  );
+
+  return $schema;
+}
