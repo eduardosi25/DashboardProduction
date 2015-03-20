@@ -38,12 +38,12 @@ function multi_node_add_menu() {
       'page arguments' => array($type->type),
       'file' => 'multi_node_add.pages.inc',
     );
-    $items['multi_node_add/status/' . $type_url_str . '/%node'] = array(
+    $items['multi_node_add/status/' . $type_url_str . '/%node/%'] = array(
       'type' => MENU_CALLBACK,
       'access callback' => 'node_access',
       'access arguments' => array('create', $type->type),
       'page callback' => 'multi_node_add_frame_status',
-      'page arguments' => array(3),
+      'page arguments' => array(3, 4),
       'file' => 'multi_node_add.pages.inc',
     );
   }
@@ -87,6 +87,6 @@ function multi_node_add_node_form_after_build($form, &$form_state) {
  * Redirects the iFrame to the simple result page instead of full node page.
  */
 function multi_node_add_node_form_submit($form, &$form_state) {
-  $form_state['redirect'] = 'multi_node_add/status/' . arg(2) . '/' . $form_state['nid'];
+  $form_state['redirect'] = 'multi_node_add/status/' . arg(2) . '/' . $form_state['nid'] . '/' . $_GET['view'];
   drupal_get_messages();
 }

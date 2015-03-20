@@ -8,7 +8,8 @@
   function multiNodeAddFields() {
     var fields = [];
     $("input.multi-node-add").each(function () {
-      if ($(this).attr('checked')) {
+      var checker = (typeof ($(this).prop) == 'function') ? 'prop' : 'attr';
+      if ($(this)[checker]('checked')) {
         fields.push($(this).attr('value'));
       }
     });
@@ -35,7 +36,7 @@
   }
   var multiNodeAddNumNodes = 0;
 
-  function multiNodeAddShowForms(numForms) {
+  function multiNodeAddShowForms(numForms, view) {
     if (!multiNodeAddCheckConfig(numForms)) {
       return false;
     }
@@ -47,7 +48,7 @@
       else {
         fields = multiNodeAddFields();
       }
-      $("#multi_node_add_frames").append('<div><iframe class="autoHeight" width="100%" name="node_' + (multiNodeAddNumNodes++) + '" src="' + Drupal.settings.multiNodeAdd.callback + '/' + fields + '"></iframe></div>');
+      $("#multi_node_add_frames").append('<div><iframe class="autoHeight" width="100%" name="node_' + (multiNodeAddNumNodes++) + '" src="' + Drupal.settings.multiNodeAdd.callback + '/' + fields + '?view=' + view + '"></iframe></div>');
     }
 
     // Takes care of the height of the iFrames
@@ -66,7 +67,7 @@
 
       if ('multiNodeAddPreload' in Drupal.settings) {
         try {
-          multiNodeAddShowForms(Drupal.settings.multiNodeAddPreload.num);
+          multiNodeAddShowForms(Drupal.settings.multiNodeAddPreload.num, Drupal.settings.multiNodeAddPreload.view);
         } catch (err) {
           alert(err);
         }
@@ -77,7 +78,7 @@
 
         $('#edit-show', context).click(function () {
           try {
-            if (multiNodeAddShowForms($("#edit-number").val())) {
+            if (multiNodeAddShowForms($("#edit-number").val(), $("#edit-view").attr('checked') === false ? 0 : 1)) {
               $(this).hide(0);
               $('#edit-shortcut').hide(0);
               $('#multi-node-add-page .second-step', context).show(0);
@@ -93,10 +94,11 @@
         $('#edit-shortcut', context).click(function () {
           try {
             var numForms = $("#edit-number").val();
+            var view = $("#edit-view").attr('checked') === false ? 0 : 1;
             if (!multiNodeAddCheckConfig(numForms)) {
               return false;
             }
-            alert(window.location + "?fields=" + multiNodeAddFields() + "&num=" + numForms);
+            alert(window.location + "?fields=" + multiNodeAddFields() + "&num=" + numForms + "&view=" + view);
           } catch (err) {
             alert(err);
           }
@@ -135,9 +137,8 @@
 
             for (var i = 1; i < multiNodeAddNumNodes; i++) {
               try {
-                if ($(this).is(':radio, :checkbox')) {
-                  var checked = $(this).is(':checked');
-                  $('#' + $(this).attr('id'), frames['node_' + i].document).prop('checked', checked);
+                if (($(this).is(':radio, :checkbox')) && $(this).is(':checked')) {
+                  $('#' + $(this).attr('id'), frames['node_' + i].document).attr('checked', true);
                 } else {
                   $('#' + $(this).attr('id'), frames['node_' + i].document).val($(this).val());
                 }

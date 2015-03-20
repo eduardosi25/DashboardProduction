@@ -27,7 +27,10 @@ function multi_node_add_page($form, &$form_state, $type = FALSE) {
       array(
         'multiNodeAddPreload' => array(
           'fields' => explode(',', $_GET['fields']),
-          'num' => $_GET['num'])),
+          'num' => $_GET['num'],
+          'view' => !empty($_GET['view']) ? 1 : 0,
+        ),
+      ),
       'setting'
     );
     $prefilled = TRUE;
@@ -93,6 +96,11 @@ function multi_node_add_page($form, &$form_state, $type = FALSE) {
       '#required' => TRUE,
       '#title' => t('Number of rows'),
     );
+    $form['view'] = array(
+      '#type' => 'checkbox',
+      '#default_value' => FALSE,
+      '#title' => t('Display node after saving it'),
+    );
     $form['show'] = array(
       '#type' => 'button',
       '#value' => t('Show'),
@@ -132,7 +140,6 @@ function multi_node_add_page($form, &$form_state, $type = FALSE) {
  */
 function multi_node_add_frame_page($type) {
   global $user;
-
   $node = (object) array(
     'uid' => $user->uid,
     'name' => (isset($user->name) ? $user->name : ''),
@@ -149,9 +156,9 @@ function multi_node_add_frame_page($type) {
 /**
  * Shows the status after node creation.
  */
-function multi_node_add_frame_status($node) {
-  _multi_node_add_bare_page(
-    t('The node is created. Title: %title , node id: !nid',
+function multi_node_add_frame_status($node, $view) {
+  if (empty($view)) {
+    $page_content = t('The node is created. Title: %title , node id: !nid',
       array(
         '%title' => $node->title,
         '!nid' => l($node->nid, 'node/' . $node->nid,
@@ -162,8 +169,12 @@ function multi_node_add_frame_status($node) {
           )
         ),
       )
-    )
-  );
+    );
+  }
+  else {
+    $page_content = node_view($node);
+  }
+  _multi_node_add_bare_page($page_content);
 }
 
 /**
