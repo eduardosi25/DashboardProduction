@@ -7,7 +7,6 @@ want to use for creating the nodes and it is designed to
 create multiple nodes in one round.
 This module heavily depends on Javascript. Tested on recent
 versions of Google Chrome, Mozilla Firefox, Konqueror and Opera.
-Supports CCK fields as well.
 
 Usage
 -----
