@@ -6,7 +6,7 @@ function sipi_login(){
     module_load_include('module','user');
     return drupal_get_form('user_login');
   }else{
-    return 'Admin SIPI';
+    return 'Administrador SIPI';
   }
 }
 
