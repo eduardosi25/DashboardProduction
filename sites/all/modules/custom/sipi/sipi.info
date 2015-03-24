@@ -5,8 +5,12 @@ core = "7.x"
 version = "7.x"
 php="5.x"
 files[] = sipi.module
-files[] = sipi.inc
-files[] = sipi.admin.inc
-files[] = sipi.class.inc
 files[] = sipi.install
+files[] = sipi.admin.inc
+files[] = inc/sipi.inc
+files[] = inc/sipi.class.inc
+files[] = inc/sipi.client.inc
+files[] = inc/sipi.user.inc
+files[] = inc/sipi.plans.inc
+
 configure = admin/config/system/sipi
