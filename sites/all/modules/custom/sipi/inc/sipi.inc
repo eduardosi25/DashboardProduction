@@ -6,32 +6,12 @@ function sipi_login(){
     module_load_include('module','user');
     return drupal_get_form('user_login');
   }else{
-    return 'Admin SIPI';
+    return 'Administrador SIPI';
   }
 }
 
 function sipi_dashboard(){
   return t('Dashboard');
-}
-
-function sipi_client(){
-  return t('Clients');
-}
-
-function sipi_client_registration(){
-  return t('Client registration');
-}
-
-function sipi_client_edit(){
-  return t('Client edit');
-}
-
-function sipi_client_suspend(){
-  return t('Client suspend');
-}
-
-function sipi_client_detail(){
-  return t('Client detail');
 }
 
 function sipi_package(){

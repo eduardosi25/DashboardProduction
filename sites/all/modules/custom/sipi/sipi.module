@@ -3,16 +3,51 @@
  * Implements hook_permission().
  */
 function sipi_permission() {
+  #Global permission for use SIPI
   $permissions['use sipi'] = array(
     'title' => t('Use SIPI.'),
     'restrict access' => TRUE,
   );
+  #Permissions for BackOffice SIPI
+  $permissions['sipi admin users'] = array(
+    'title' => t('Administer SIPI Users.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipí admin clients'] = array(
+    'title' => t('Administer clients on SIPI.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipi admin plans'] = array(
+    'title' => t('Administer Plans on SIPI.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipi admin stats clients'] = array(
+    'title' => t('Access to Client Reporting Stats.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipi admin stats executive'] = array(
+    'title' => t('Access to Executives Reporting Stats.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipi admin stats salesforce'] = array(
+    'title' => t('Access to SalesForce Reporting Stats.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['sipi admin stats manager'] = array(
+    'title' => t('Access to Manager Reporting Stats.'),
+    'restrict access' => TRUE,
+  );
+  #Other permission for other widgets or modules
   $permissions['use sipi dashboard'] = array(
     'title' => t('Use SIPI Dashboard.'),
     'restrict access' => TRUE,
   );
   $permissions['use sipi reporting'] = array(
-    'title' => t('Use SIPI reporting.'),
+    'title' => t('Use SIPI Reporting.'),
+    'restrict access' => TRUE,
+  );
+  $permissions['use sipi expires'] = array(
+    'title' => t('Use SIPI Expires.'),
     'restrict access' => TRUE,
   );
   $permissions['run sipi updates'] = array(
@@ -38,113 +73,195 @@ function sipi_help($path, $arg) {
  */
 function sipi_menu() {
   $items=array();
+  #SIPI MAIN MENU
   $items['sipi'] = array(
-    'title'            => 'SIPI [Sistema Integral de Publicación en Internet]',
+    'title'            => 'SIPI',
+    'description'      => 'Sistema Integral de Publicación en Internet',
     'page callback'    => 'sipi_login',
     'access callback'  => TRUE,
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.inc',
   );
-
+  #SIPI DASHBOARD
   $items['sipi/dashboard'] = array(
     'title'            => t('Dashboard'),
     'page callback'    => 'sipi_dashboard',
-    'access callback'  => TRUE,
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('use sipi dashboard'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.inc',
   );
-
+  #SIPI USER
+  $items['sipi/user'] = array(
+    'title'            => t('Users'),
+    'page callback'    => 'sipi_user',
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.user.inc',
+  );
+  $items['sipi/user/add'] = array(
+    'title'            => t('Users'),
+    'page callback'    => 'sipi_user_add',
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.user.inc',
+  );
+  $items['sipi/user/%sipi_user/edit'] = array(
+    'title'            => t('User Edit'),
+    'page callback'    => 'sipi_user_edit',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.user.inc',
+  );
+  $items['sipi/user/%sipi_user/delete'] = array(
+    'title'            => t('User Delete'),
+    'page callback'    => 'sipi_user_delete',
+    'page arguments'   => array(1),
+    'access arguments' => array('sipi admin users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.user.inc',
+  );
+  $items['sipi/user/%sipi_user/view'] = array(
+    'title'            => t('User View'),
+    'page callback'    => 'sipi_user_view',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.user.inc',
+  );
+  #SIPI CLIENT
   $items['sipi/client'] = array(
     'title'            => t('Clients'),
     'page callback'    => 'sipi_client',
-    'access callback'  => TRUE,
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipí admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-
-  $items['sipi/client-registration'] = array(
-    'title'            => t('Client registration'),
-    'page callback'    => 'sipi_client_registration',
-    'access callback'  => TRUE,
+  $items['sipi/client/add'] = array(
+    'title'            => t('Client Add'),
+    'page callback'    => 'sipi_client_add',
+    'access arguments' => array('sipí admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-
-  $items['sipi/client-edit'] = array(
-    'title'            => t('Client edit'),
+  $items['sipi/client/%sipi_client/edit'] = array(
+    'title'            => t('Client Edit'),
     'page callback'    => 'sipi_client_edit',
-    'access callback'  => TRUE,
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipí admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-
-  $items['sipi/client-suspend'] = array(
-    'title'            => t('Client suspend'),
-    'page callback'    => 'sipi_client_suspend',
-    'access callback'  => TRUE,
+  $items['sipi/client/%sipi_client/delete'] = array(
+    'title'            => t('Client Delete'),
+    'page callback'    => 'sipi_client_delete',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipí admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-
-  $items['sipi/client-detail'] = array(
-    'title'            => t('Client detail'),
-    'page callback'    => 'sipi_client_detail',
-    'access callback'  => TRUE,
+  $items['sipi/client/%sipi_client/view'] = array(
+    'title'            => t('Client View'),
+    'page callback'    => 'sipi_client_view',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipí admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-
-  $items['sipi/package'] = array(
-    'title'            => t('Package'),
-    'page callback'    => 'sipi_package',
-    'access callback'  => TRUE,
+  #SIPI PLANS
+  $items['sipi/plans'] = array(
+    'title'            => t('Plans'),
+    'page callback'    => 'sipi_plans',
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.plans.inc',
   );
-
-  $items['sipi/package-registration'] = array(
-    'title'            => t('Package registration'),
-    'page callback'    => 'sipi_package_registration',
-    'access callback'  => TRUE,
+  $items['sipi/plans/add'] = array(
+    'title'            => t('Plans registration'),
+    'page callback'    => 'sipi_plans_registration',
+    'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.plans.inc',
   );
-
-  $items['sipi/package-edit'] = array(
-    'title'            => t('Package edit'),
-    'page callback'    => 'sipi_package_edit',
-    'access callback'  => TRUE,
+  $items['sipi/plans/%sipi_plan/edit'] = array(
+    'title'            => t('Plans Edit'),
+    'page callback'    => 'sipi_plans_edit',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.plans.inc',
   );
-
-  $items['sipi/package-delete'] = array(
-    'title'            => t('Package delete'),
-    'page callback'    => 'sipi_package_delete',
-    'access callback'  => TRUE,
+  $items['sipi/plans/%sipi_plan/delete'] = array(
+    'title'            => t('Plans Delete'),
+    'page callback'    => 'sipi_plans_delete',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.plans.inc',
   );
-
-  $items['sipi/next-completions'] = array(
-    'title'            => t('Next completions'),
-    'page callback'    => 'sipi_next_completions',
-    'access callback'  => TRUE,
+  $items['sipi/plans/%sipi_plan/view'] = array(
+    'title'            => t('Plans View'),
+    'page callback'    => 'sipi_plans_view',
+    'page arguments'   => array(1),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'sipi.inc',
+    'file'             => 'inc/sipi.plans.inc',
   );
-
+  #SIPI EXPIRES
+  $items['sipi/expire/%expire'] = array(
+    'title'            => t('Next expires'),
+    'page callback'    => 'sipi_next_expires',
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('use sipi expires'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.inc',
+  );
+  #ADMINISTER SIPI SETTINGS - WEBMASTER ONLY
   $items['admin/config/system/sipi'] = array(
     'title'            => t('SIPI Settings'),
     'description'      => t('Configure settings for invent.SIPI'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('sipi_admin_settings_form'),
+    'access_callback'  => 'sipi_access',
     'access arguments' => array('administer sipi settings'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'sipi.admin.inc',
   );
   return $items;
 }
+/**
+ * Menu access callback.
+ *
+ * @param $action
+ *   The action to be performed. Possible values are:
+ *   - import
+ *   - clear
+ *   - unlock
+ * @param $param
+ *   Node object or FeedsImporter id.
+ */
+function sipi_access($permission) {
+  // Check for permissions
+  if ($permission && user_access($permission)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+
+
 /**+
  * Implements hook_init().
  */
@@ -170,4 +287,16 @@ function _sipi_get_variables(){
     }
   }
   return $value;
+}
+
+function sipi_user_load($user){
+  return $user;
+}
+
+function sipi_client_load($client){
+  return $client;
+}
+
+function sipi_plan_load($plan){
+  return $plan;
 }
