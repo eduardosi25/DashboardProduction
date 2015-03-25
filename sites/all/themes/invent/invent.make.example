@@ -1,8 +1,0 @@
-core = 7.x
-api = 2
-
-libraries[invent][download][type] = "get"
-libraries[invent][download][url] = "https://github.com/twbs/invent/archive/v3.0.2.zip"
-libraries[invent][directory_name] = "invent"
-libraries[invent][destination] = "themes/invent"
-libraries[invent][overwrite] = TRUE
