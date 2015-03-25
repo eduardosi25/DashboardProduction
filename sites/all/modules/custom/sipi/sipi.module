@@ -240,6 +240,14 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'sipi.admin.inc',
   );
+  $items['admin/config/system/sipi/cronlt'] = array(
+    'title' => t('Light weight cron handler'),
+    'description' => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
+    'page callback' => 'sipi_run_cronlt',
+    'access arguments' => array('administer node_analytics settings'),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 /**
