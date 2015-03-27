@@ -20,6 +20,16 @@ function sipi_uninstall() {
   variable_del('sipi_status');
   variable_del('sipi_settings');
   #Delete all tables
+  if (db_table_exists('sipi_plans')) {
+    db_drop_table('sipi_plans');
+  }
+  if (db_table_exists('sipi_clients')) {
+    db_drop_table('sipi_plans');
+  }
+  if (db_table_exists('sipi_plans')) {
+    db_drop_table('sipi_plans');
+  }
+
   if (db_table_exists('sipi_users')) {
     db_drop_table('sipi_users');
   }
@@ -34,59 +44,246 @@ function sipi_uninstall() {
 function sipi_schema(){
   $schema=array();
   //Primary table
-  $schema['sipi_users'] = array(
+  $schema['sipi_plans'] = array(
     'fields' => array(
-      'sid' => array(
+      'pid' => array(
         'type' => 'serial',
+        'size' => 'normal',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'description' => 'The primary identifier',
       ),
-      'uid' => array(
-        'type' => 'int',
-        'length' => 11,
-        'unsigned' => TRUE,
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 60,
         'not null' => TRUE,
-        'default' => 0,
-        'description' => 'User ID',
+        'default' => '',
+        'description' => 'Name',
       ),
-      'rid' => array(
+      'contents' => array(
         'type' => 'int',
-        'length' => 11,
+        'length' => 4,
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
-        'description' => 'Role ID',
+        'description' => 'Contents number',
+      ),
+      'posts' => array(
+        'type' => 'int',
+        'length' => 4,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Social posts',
+      ),
+      'duration' => array(
+        'type' => 'int',
+        'length' => 3,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Duration time',
+      ),
+      'price' => array(
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Price',
       ),
     ),
-    'primary key' => array('sid'),
+    'primary key' => array('pid'),
     'indexes' => array(
-      'sipi_users_uid' => array('sid','uid'),
-      'sipi_users_rid' => array('sid','rid'),
+      'sipi_plans_name' => array('pid','name'),
     ),
   );
 
-  $schema['sipi_sites'] = array(
+  $schema['sipi_users'] = array(
     'fields' => array(
-      'sid' => array(
+      'uid' => array(
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'firstname' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name',
+      ),
+      'lastname' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Lastname',
+      ),
+      'status' => array(
+        'type' => 'int',
+        'length' => 2,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Status user',
+      ),
+      'mail' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Email',
+      ),
+      'pass' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name',
+      ),
+      'company' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Company name',
+      ),
+      'cellphone' => array(
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Cell phone',
+      ),
+      'phone' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Phone',
+      ),
+      'extention' => array(
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Phone extention',
+      ),
+      'web' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Webpage',
+      ),
+      'logo' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Logo',
+      ),
+      'description' => array(
+        'type' => 'text',
+        'size' => normal,
+        'description' => 'Description',
+      ),
+      'facebook' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Facebook url',
+      ),
+      'twitter' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Twitter url',
+      ),
+      'googleplus' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Google+ url',
+      ),
+      'youtube' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Youtube channel url',
+      ),
+      'instagram' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Instagram url',
+      ),
+      'linkedin' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'LinkedIn url',
+      ),
+      'pinterest' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Pinterest url',
+      ),
+      'vine' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Vine url',
+      ),
+      'created' => array(
         'type' => 'int',
         'length' => 11,
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,
-        'description' => 'SIPI ID',
+        'description' => 'Created user timestamp',
       ),
-      'site' => array(
-        'type' => 'varchar',
-        'length' => 50,
+      'changed' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
         'not null' => TRUE,
-        'default' => '',
-        'description' => 'Site name',
+        'default' => 0,
+        'description' => 'Changed user timestamp',
+      ),
+      'access' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Last accessed timestamp',
+      ),
+      'login' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Last login timestamp',
       ),
     ),
+    'primary key' => array('uid'),
     'indexes' => array(
-      'sipi_sites_sid' => array('sid'),
-      'sipi_sites_site' => array('sid','site'),
+      'sipi_users_name' => array('uid','firstname','lastname'),
+      'sipi_users_created' => array('uid','status','created'),
     ),
   );
 

@@ -1,4 +1,8 @@
 <?php
+global $sipi_variables;
+$sipi_variables=sipi_get_variables();
+
+
 /**
  * Implements hook_permission().
  */
@@ -91,7 +95,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.inc',
   );
-  #SIPI USER
+  #SIPI USER == CLIENT
   $items['sipi/user'] = array(
     'title'            => t('Users'),
     'page callback'    => 'sipi_user',
@@ -134,50 +138,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.user.inc',
   );
-  #SIPI CLIENT
-  $items['sipi/client'] = array(
-    'title'            => t('Clients'),
-    'page callback'    => 'sipi_client',
-    'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipí admin clients'),
-    'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.client.inc',
-  );
-  $items['sipi/client/add'] = array(
-    'title'            => t('Client Add'),
-    'page callback'    => 'sipi_client_add',
-    'access arguments' => array('sipí admin clients'),
-    'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.client.inc',
-  );
-  $items['sipi/client/%sipi_client/edit'] = array(
-    'title'            => t('Client Edit'),
-    'page callback'    => 'sipi_client_edit',
-    'page arguments'   => array(1),
-    'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipí admin clients'),
-    'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.client.inc',
-  );
-  $items['sipi/client/%sipi_client/delete'] = array(
-    'title'            => t('Client Delete'),
-    'page callback'    => 'sipi_client_delete',
-    'page arguments'   => array(1),
-    'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipí admin clients'),
-    'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.client.inc',
-  );
-  $items['sipi/client/%sipi_client/view'] = array(
-    'title'            => t('Client View'),
-    'page callback'    => 'sipi_client_view',
-    'page arguments'   => array(1),
-    'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipí admin clients'),
-    'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.client.inc',
-  );
-  #SIPI PLANS
+  #SIPI PLANS == PACKAGES
   $items['sipi/plans'] = array(
     'title'            => t('Plans'),
     'page callback'    => 'sipi_plans',
@@ -187,14 +148,14 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/add'] = array(
-    'title'            => t('Plans registration'),
-    'page callback'    => 'sipi_plans_registration',
+    'title'            => t('Add a plan'),
+    'page callback'    => 'sipi_plans_add',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/edit'] = array(
-    'title'            => t('Plans Edit'),
+    'title'            => t('Edit plan'),
     'page callback'    => 'sipi_plans_edit',
     'page arguments'   => array(1),
     'access_callback'  => 'sipi_access',
@@ -203,7 +164,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/delete'] = array(
-    'title'            => t('Plans Delete'),
+    'title'            => t('Delete plan'),
     'page callback'    => 'sipi_plans_delete',
     'page arguments'   => array(1),
     'access_callback'  => 'sipi_access',
@@ -281,21 +242,7 @@ function sipi_init(){
  * Returns variables for sipi implementation
  * @return array
  */
-function _sipi_get_variables(){
-  $value = &drupal_static(__FUNCTION__);
-  if (!isset($values)) {
-    if ($cache = cache_get('sipi_variables')) {
-      $value = $cache->data;
-    }else{
-      $value=array(
-        'status'   => variable_get('sipi_status',FALSE),
-        'settings' => variable_get('sipi_settings',NULL),
-      );
-      cache_set('sipi_variables', $value, 'cache');
-    }
-  }
-  return $value;
-}
+
 
 function sipi_user_load($user){
   return $user;
@@ -307,4 +254,46 @@ function sipi_client_load($client){
 
 function sipi_plan_load($plan){
   return $plan;
+}
+
+function sipi_logging($message='Done',$type='info'){
+  global $sipi_variables;
+  if($sipi_variables['debug']){
+    switch($type){
+      case 'info':
+        $type=WATCHDOG_INFO;
+        break;
+      case 'error':
+        $type=WATCHDOG_ERROR;
+        break;
+      case 'notice':
+        $type=WATCHDOG_NOTICE;
+        break;
+      case 'warning':
+        $type=WATCHDOG_WARNING;
+        break;
+    }
+    watchdog('sipi', $message, array(), $type);
+  }
+}
+
+/**
+ * Returns variables for sipi implementation
+ * @return array
+ */
+function sipi_get_variables() {
+  $variables = &drupal_static(__FUNCTION__);
+  if (!isset($variables)) {
+    $settings=variable_get('sipi_settings',NULL);
+    $variables=array(
+      'status' => variable_get('sipi_status',FALSE),
+      'debug'  => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
+      'token'  => isset($settings['token']) && !empty($settings['token']) ? $settings['token'] : NULL,
+      'sites'  => isset($settings['sites']) && !empty($settings['sites']) ? $settings['sites'] : NULL,
+    );
+  }
+  if (!$variables['token']) {
+    sipi_logging('Missing API token access','warning');
+  }
+  return $variables;
 }
