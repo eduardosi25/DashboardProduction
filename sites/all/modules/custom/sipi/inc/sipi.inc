@@ -13,23 +13,3 @@ function sipi_login(){
 function sipi_dashboard(){
   return t('Dashboard');
 }
-
-function sipi_package(){
-  return t('Package');
-}
-
-function sipi_package_registration(){
-  return t('Package registration');
-}
-
-function sipi_package_edit(){
-  return t('Package edit');
-}
-
-function sipi_package_delete(){
-  return t('Package delete');
-}
-
-function sipi_next_completions(){
-  return t('Next completions');
-}

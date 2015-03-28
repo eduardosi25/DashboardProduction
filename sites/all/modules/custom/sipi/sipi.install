@@ -23,19 +23,13 @@ function sipi_uninstall() {
   if (db_table_exists('sipi_plans')) {
     db_drop_table('sipi_plans');
   }
-  if (db_table_exists('sipi_clients')) {
-    db_drop_table('sipi_plans');
-  }
-  if (db_table_exists('sipi_plans')) {
-    db_drop_table('sipi_plans');
-  }
-
   if (db_table_exists('sipi_users')) {
     db_drop_table('sipi_users');
   }
-  if (db_table_exists('sipi_sites')) {
-    db_drop_table('sipi_sites');
+  if (db_table_exists('sipi_plans_users')) {
+    db_drop_table('sipi_plans_users');
   }
+
   if (db_table_exists('sipi_reports')) {
     db_drop_table('sipi_reports');
   }
@@ -43,7 +37,6 @@ function sipi_uninstall() {
 
 function sipi_schema(){
   $schema=array();
-  //Primary table
   $schema['sipi_plans'] = array(
     'fields' => array(
       'pid' => array(
@@ -98,7 +91,6 @@ function sipi_schema(){
       'sipi_plans_name' => array('pid','name'),
     ),
   );
-
   $schema['sipi_users'] = array(
     'fields' => array(
       'uid' => array(
@@ -121,14 +113,6 @@ function sipi_schema(){
         'not null' => TRUE,
         'default' => '',
         'description' => 'Lastname',
-      ),
-      'status' => array(
-        'type' => 'int',
-        'length' => 2,
-        'unsigned' => TRUE,
-        'not null' => TRUE,
-        'default' => 1,
-        'description' => 'Status user',
       ),
       'mail' => array(
         'type' => 'varchar',
@@ -286,6 +270,91 @@ function sipi_schema(){
       'sipi_users_created' => array('uid','status','created'),
     ),
   );
+  $schema['sipi_plans_users'] = array(
+    'fields' => array(
+      'mid' => array(
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'pid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default'  => 0,
+        'description' => 'Plan ID',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default'  => 0,
+        'description' => 'User ID',
+      ),
+      'manager' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default'  => 0,
+        'description' => 'Manager ID (Equal to User ID from Core CMS - Role Executive',
+      ),
+      'status' => array(
+        'type' => 'int',
+        'length' => 2,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Status user vs plan',
+      ),
+      'site' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Publisher site for the user',
+      ),
+      'start_date' => array(
+        'type' => 'int',
+        'length' => 11,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Start date user-plan-site in timestamp',
+      ),
+      'end_date' => array(
+        'type' => 'int',
+        'length' => 11,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'End date user-plan-site in timestamp',
+      ),
+    ),
+    'primary key' => array('mid'),
+    'indexes' => array(
+      'sipi_plans_user_status'  => array('mid','pid','uid','status'),
+      'sipi_plans_user_manager' => array('mid','pid','uid','manager'),
+      'sipi_plans_user_sites'   => array('mid','pid','uid','site'),
+      'sipi_plans_user_expire'  => array('mid','pid','uid','end_date'),
+    ),
+    'foreign keys' => array(
+      'sipi_plans' => array(
+        'table' => 'sipi_plans',
+        'columns' => array('pid' => 'pid'),
+      ),
+      'sipi_users' => array(
+        'table' => 'sipi_users',
+        'columns' => array('uid' => 'uid'),
+      ),
+      'users' => array(
+        'table' => 'users',
+        'columns' => array('uid' => 'manager'),
+      ),
+    ),
+  );
 
   $schema['sipi_reports'] = array(
     'fields' => array(
@@ -326,6 +395,7 @@ function sipi_schema(){
       'sipi_reports_report' => array('sid','created','changed','report'),
     ),
   );
+
 
   return $schema;
 }
