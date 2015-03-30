@@ -9,6 +9,8 @@ function get_cms_access(){
 function get_cms_admin_paths(){
   //Admin paths
   $paths=array(
+    'files',
+    'files/*',
     'admin',
     'admin/*',
     'node/*/*',
