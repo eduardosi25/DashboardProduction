@@ -13,6 +13,7 @@ function get_cms_admin_paths(){
     'files/*',
     'admin',
     'admin/*',
+    'node/add',
     'node/*/*',
     'user',
     'user/*',
