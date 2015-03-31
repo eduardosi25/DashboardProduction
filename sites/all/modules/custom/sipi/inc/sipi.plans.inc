@@ -1,24 +1,33 @@
 <?php
 function sipi_plans(){
-  return 'Aqui va el contenido de los planes';
+  return sipi_plans_list();
 }
 function sipi_plans_add(){
   return drupal_get_form('sipi_plans_form');
 }
+
 function sipi_plans_edit($plan){
-  return $plan;
+  return drupal_get_form('sipi_plans_form',$plan);
 }
+
 function sipi_plans_delete($plan){
-  return $plan;
+  return drupal_get_form('sipi_plans_delete_confirm',$plan);
 }
-function sipi_plans_view($plan){
-  return $plan;
-}
-function sipi_plans_form($form_state){
+
+function sipi_plans_form($form, &$form_state, $plans=NULL){
+  $admin = user_access('sipi admin plans');
+  // If we aren't admin but already logged on, go to the dashboard
+  if (!$admin) {
+    drupal_goto('sipi');
+  }
   $form=array();
   $form['sipi_plans'] = array(
     '#type'  => 'fieldset',
-    '#title' => t('Add a plan'),
+    '#title' => !isset($plans) || empty($plans) ? t('Add a plan') : t('Edit a plan'),
+  );
+  $form['sipi_plans']['pid']  = array(
+    '#type' => 'hidden',
+    '#value' => isset($plans['pid']) && !empty($plans['pid']) ? $plans['pid'] : 0,
   );
   $form['sipi_plans']['name'] = array(
     '#title'         => t('Name'),
@@ -60,7 +69,7 @@ function sipi_plans_form($form_state){
     '#type'          => 'textfield',
     '#size'          => 10,
     '#maxlength'     => 10,
-    '#default_value' => isset($plans['posts']) && !empty($plans['posts']) ? $plans['posts'] : 0,
+    '#default_value' => isset($plans['price']) && !empty($plans['price']) ? $plans['price'] : 0,
     '#description'   => t('Price or investment amount (Pesos MXN)'),
     '#required'      => TRUE,
   );
@@ -74,6 +83,7 @@ function sipi_plans_form($form_state){
 
   return $form;
 }
+
 function sipi_plans_form_validate($form, &$form_state){
   //Cancel
   if($form_state['values']['op']==='Cancel'){
@@ -115,7 +125,8 @@ function sipi_plans_form_unset_error($name) {
   $_SESSION['messages']['error'] = array_diff($_SESSION['messages']['error'], $removed_messages);
 }
 
-function sipi_plans_save($values,$pid=0){
+function sipi_plans_save($values){
+  $pid=isset($values['pid']) && !empty($values['pid']) ? $values['pid'] : 0;
   $data=array(
     'name'     => $values['name'],
     'contents' => $values['contents'],
@@ -126,7 +137,7 @@ function sipi_plans_save($values,$pid=0){
 
   //Search
   $query=db_select('sipi_plans','sp');
-  $query->fields('sp', array('name','contents','posts','duration','price'));
+  $query->fields('sp', array('pid','name','contents','posts','duration','price'));
   $query->condition('sp.pid',$pid,'=');
   $result=$query->execute()->fetchAssoc();
   if($result){
@@ -164,4 +175,108 @@ function sipi_plans_save_op($delta='insert',$fields,$result){
   }else{
     sipi_logging('Something went wrong. Error['.mysql_error().'].','error');
   }
+}
+
+function sipi_plans_list(){
+  $header = array(
+    array(
+      'data' => t('PID'),
+      'field' => 'p.pid',
+    ),
+    array(
+      'data' => t('Name'),
+      'field' => 'p.name',
+    ),
+    array(
+      'data' => t('Contents'),
+    ),
+    array(
+      'data' => t('Social Posts'),
+    ),
+    array(
+      'data' => t('Duration'),
+    ),
+    array(
+      'data' => t('Price'),
+    ),
+    array(
+      'data' => t('Actions'),
+    ),
+  );
+
+  // Default ordering
+  if (!isset($_GET['order']) && !isset($_GET['sort'])) {
+    $_GET['order'] = t('PID');
+    $_GET['sort'] = 'ASC';
+  }
+
+  $query = db_select('sipi_plans', 'p')->extend('PagerDefault');
+  $query->limit(20);
+  $query->fields('p', array('pid','name','contents','posts','duration','price'));
+  $query = $query->extend('TableSort')->orderByHeader($header);
+  $result = $query->execute();
+  $rows = array();
+  foreach ($result as $row) {
+    $rows[] = array(
+      $row->pid,
+      l($row->name, "sipi/plans/$row->pid/edit"),
+      $row->contents,
+      $row->posts,
+      $row->duration.' '.t('month(s)'),
+      '$ '.$row->price.' '.t('MXN'),
+      l(t('Edit'),"sipi/plans/$row->pid/edit",array(),'destination=sipi/plans') .' | '. l(t('Delete'),"sipi/plans/$row->pid/delete",array(),'destination=sipi/plans'),
+    );
+  }
+  if (count($rows) && ($pager = theme('pager'))) {
+    $rows[] = array(
+      array(
+        'data' => $pager,
+        'colspan' => 7,
+      ),
+    );
+  }
+  $build['sipi_plans_list'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('There are no plans.'),
+  );
+  return $build;
+
+}
+
+function sipi_plans_delete_confirm($form, &$form_state, $plans=NULL) {
+  $form['#plans'] = $plans;
+  // Always provide entity id in the same form key as in the entity edit form.
+  $form['pid'] = array('#type' => 'value', '#value' => $plans['pid']);
+  return confirm_form($form,
+    t('Are you sure you want to delete %title?', array('%title' => $plans['name'])),
+    'sipi/plans/'.$plans['pid'],
+    t('This action cannot be undone.'),
+    t('Delete'),
+    t('Cancel')
+  );
+}
+
+function sipi_plans_delete_confirm_submit($form, &$form_state) {
+  if ($form_state['values']['confirm']) {
+    db_delete('sipi_plans')
+      ->condition('pid', $form_state['values']['pid'])
+      ->execute();
+  }
+  $form_state['redirect'] = 'sipi/plans';
+}
+
+function sipi_plans_list_items(){
+  $query=db_select('sipi_plans', 'p');
+  $query->fields('p', array('pid','name','contents','posts','duration','price'));
+  $result=$query->execute();
+  if($result){
+    $items=array();
+    foreach($result as $row){
+      $items[]=$row;
+    }
+    return $items;
+  }
+  return null;
 }

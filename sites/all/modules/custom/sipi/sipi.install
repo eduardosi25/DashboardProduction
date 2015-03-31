@@ -123,7 +123,7 @@ function sipi_schema(){
       ),
       'pass' => array(
         'type' => 'varchar',
-        'length' => 150,
+        'length' => 32,
         'not null' => TRUE,
         'default' => '',
         'description' => 'Name',
@@ -172,7 +172,7 @@ function sipi_schema(){
       ),
       'description' => array(
         'type' => 'text',
-        'size' => normal,
+        'size' => 'normal',
         'description' => 'Description',
       ),
       'facebook' => array(
@@ -267,7 +267,7 @@ function sipi_schema(){
     'primary key' => array('uid'),
     'indexes' => array(
       'sipi_users_name' => array('uid','firstname','lastname'),
-      'sipi_users_created' => array('uid','status','created'),
+      'sipi_users_created' => array('uid','created'),
     ),
   );
   $schema['sipi_plans_users'] = array(

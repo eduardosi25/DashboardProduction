@@ -17,10 +17,6 @@ function sipi_permission() {
     'title' => t('Administer SIPI Users.'),
     'restrict access' => TRUE,
   );
-  $permissions['sipí admin clients'] = array(
-    'title' => t('Administer clients on SIPI.'),
-    'restrict access' => TRUE,
-  );
   $permissions['sipi admin plans'] = array(
     'title' => t('Administer Plans on SIPI.'),
     'restrict access' => TRUE,
@@ -115,7 +111,7 @@ function sipi_menu() {
   $items['sipi/user/%sipi_user/edit'] = array(
     'title'            => t('User Edit'),
     'page callback'    => 'sipi_user_edit',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin users'),
     'type'             => MENU_NORMAL_ITEM,
@@ -124,7 +120,7 @@ function sipi_menu() {
   $items['sipi/user/%sipi_user/delete'] = array(
     'title'            => t('User Delete'),
     'page callback'    => 'sipi_user_delete',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access arguments' => array('sipi admin users'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.user.inc',
@@ -132,7 +128,7 @@ function sipi_menu() {
   $items['sipi/user/%sipi_user/view'] = array(
     'title'            => t('User View'),
     'page callback'    => 'sipi_user_view',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin users'),
     'type'             => MENU_NORMAL_ITEM,
@@ -157,7 +153,7 @@ function sipi_menu() {
   $items['sipi/plans/%sipi_plan/edit'] = array(
     'title'            => t('Edit plan'),
     'page callback'    => 'sipi_plans_edit',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
@@ -166,7 +162,7 @@ function sipi_menu() {
   $items['sipi/plans/%sipi_plan/delete'] = array(
     'title'            => t('Delete plan'),
     'page callback'    => 'sipi_plans_delete',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
@@ -175,7 +171,7 @@ function sipi_menu() {
   $items['sipi/plans/%sipi_plan/view'] = array(
     'title'            => t('Plans View'),
     'page callback'    => 'sipi_plans_view',
-    'page arguments'   => array(1),
+    'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
@@ -245,16 +241,31 @@ function sipi_init(){
 
 
 function sipi_user_load($user){
-  return $user;
-}
+  $query = db_select('sipi_user', 'u');
+  $query->fields('u', array('uid','name','contents','posts','duration','price'));
+  $query->condition('u.uid', $user, '=');
+  $result = $query->execute()->fetchAssoc();
+  if($result){
+    foreach($result as $row){
+      $user=$row;
+    }
+    return $user;
+  }
+  return null;
 
-function sipi_client_load($client){
-  return $client;
 }
 
 function sipi_plan_load($plan){
-  return $plan;
+  $query = db_select('sipi_plans', 'p');
+  $query->fields('p', array('pid','name','contents','posts','duration','price'));
+  $query->condition('p.pid', $plan, '=');
+  $result = $query->execute()->fetchAssoc();
+  if($result){
+    return $result;
+  }
+  return NULL;
 }
+
 
 function sipi_logging($message='Done',$type='info'){
   global $sipi_variables;
