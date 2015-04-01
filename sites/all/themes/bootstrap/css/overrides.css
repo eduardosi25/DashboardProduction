@@ -4,3 +4,16 @@ h1,.h1{font-size: 2em;}
 .left{float:left;}
 .right{float:right;}
 .form-type-date-select label{float:left;}
+fieldset #edit-sipi-user-client {
+  float:left;
+}
+#invent-fieldset-wrapper{
+  float:left;
+  margin-left:10px;
+
+}
+@media(max-width:740px) {
+  fieldset #edit-sipi-user-client {
+    float:none;
+  }
+}
