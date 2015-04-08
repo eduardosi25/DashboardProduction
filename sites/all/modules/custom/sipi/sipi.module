@@ -13,7 +13,7 @@ function sipi_permission() {
     'restrict access' => TRUE,
   );
   #Permissions for BackOffice SIPI
-  $permissions['sipi admin users'] = array(
+  $permissions['sipi admin clients'] = array(
     'title' => t('Administer SIPI Users.'),
     'restrict access' => TRUE,
   );
@@ -92,47 +92,47 @@ function sipi_menu() {
     'file'             => 'inc/sipi.inc',
   );
   #SIPI USER == CLIENT
-  $items['sipi/user'] = array(
-    'title'            => t('Users'),
-    'page callback'    => 'sipi_user',
+  $items['sipi/client'] = array(
+    'title'            => t('Clients'),
+    'page callback'    => 'sipi_client',
     'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipi admin users'),
+    'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.user.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/add'] = array(
+  $items['sipi/client/add'] = array(
     'title'            => t('Users'),
-    'page callback'    => 'sipi_user_add',
+    'page callback'    => 'sipi_client_add',
     'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipi admin users'),
+    'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.user.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/%sipi_user/edit'] = array(
+  $items['sipi/client/%sipi_client/edit'] = array(
     'title'            => t('User Edit'),
-    'page callback'    => 'sipi_user_edit',
+    'page callback'    => 'sipi_client_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipi admin users'),
+    'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.user.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/%sipi_user/delete'] = array(
+  $items['sipi/user/%sipi_client/delete'] = array(
     'title'            => t('User Delete'),
-    'page callback'    => 'sipi_user_delete',
+    'page callback'    => 'sipi_client_delete',
     'page arguments'   => array(2),
-    'access arguments' => array('sipi admin users'),
+    'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.user.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/%sipi_user/view'] = array(
+  $items['sipi/user/%sipi_client/view'] = array(
     'title'            => t('User View'),
-    'page callback'    => 'sipi_user_view',
+    'page callback'    => 'sipi_client_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
-    'access arguments' => array('sipi admin users'),
+    'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'inc/sipi.user.inc',
+    'file'             => 'inc/sipi.client.inc',
   );
   #SIPI PLANS == PACKAGES
   $items['sipi/plans'] = array(
@@ -238,23 +238,24 @@ function sipi_init(){
  * Returns variables for sipi implementation
  * @return array
  */
-
-
-function sipi_user_load($user){
-  $query = db_select('sipi_user', 'u');
+function sipi_client_load($sipi_client){
+  $query = db_select('sipi_client', 'u');
   $query->fields('u', array('uid','name','contents','posts','duration','price'));
-  $query->condition('u.uid', $user, '=');
+  $query->condition('u.uid', $sipi_client, '=');
   $result = $query->execute()->fetchAssoc();
   if($result){
     foreach($result as $row){
-      $user=$row;
+      $sipi_client=$row;
     }
-    return $user;
+    return $sipi_client;
   }
   return null;
-
 }
 
+/**
+ * @param $plan
+ * @return null
+ */
 function sipi_plan_load($plan){
   $query = db_select('sipi_plans', 'p');
   $query->fields('p', array('pid','name','contents','posts','duration','price'));

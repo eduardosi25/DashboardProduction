@@ -23,13 +23,12 @@ function sipi_uninstall() {
   if (db_table_exists('sipi_plans')) {
     db_drop_table('sipi_plans');
   }
-  if (db_table_exists('sipi_users')) {
-    db_drop_table('sipi_users');
+  if (db_table_exists('sipi_clients')) {
+    db_drop_table('sipi_clients');
   }
-  if (db_table_exists('sipi_plans_users')) {
-    db_drop_table('sipi_plans_users');
+  if (db_table_exists('sipi_plans_clients')) {
+    db_drop_table('sipi_plans_clients');
   }
-
   if (db_table_exists('sipi_reports')) {
     db_drop_table('sipi_reports');
   }
@@ -91,9 +90,9 @@ function sipi_schema(){
       'sipi_plans_name' => array('pid','name'),
     ),
   );
-  $schema['sipi_users'] = array(
+  $schema['sipi_clients'] = array(
     'fields' => array(
-      'uid' => array(
+      'cid' => array(
         'type' => 'serial',
         'size' => 'normal',
         'unsigned' => TRUE,
@@ -264,13 +263,13 @@ function sipi_schema(){
         'description' => 'Last login timestamp',
       ),
     ),
-    'primary key' => array('uid'),
+    'primary key' => array('cid'),
     'indexes' => array(
-      'sipi_users_name' => array('uid','firstname','lastname'),
-      'sipi_users_created' => array('uid','created'),
+      'sipi_clients_name' => array('cid','firstname','lastname'),
+      'sipi_clients_created' => array('cid','created'),
     ),
   );
-  $schema['sipi_plans_users'] = array(
+  $schema['sipi_plans_clients'] = array(
     'fields' => array(
       'mid' => array(
         'type' => 'serial',
@@ -287,7 +286,7 @@ function sipi_schema(){
         'default'  => 0,
         'description' => 'Plan ID',
       ),
-      'uid' => array(
+      'cid' => array(
         'type' => 'int',
         'length' => 11,
         'unsigned' => TRUE,
@@ -295,13 +294,13 @@ function sipi_schema(){
         'default'  => 0,
         'description' => 'User ID',
       ),
-      'manager' => array(
+      'uid' => array(
         'type' => 'int',
         'length' => 11,
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default'  => 0,
-        'description' => 'Manager ID (Equal to User ID from Core CMS - Role Executive',
+        'description' => 'User ID (From Core CMS - Role Executive',
       ),
       'status' => array(
         'type' => 'int',
@@ -335,23 +334,23 @@ function sipi_schema(){
     ),
     'primary key' => array('mid'),
     'indexes' => array(
-      'sipi_plans_user_status'  => array('mid','pid','uid','status'),
-      'sipi_plans_user_manager' => array('mid','pid','uid','manager'),
-      'sipi_plans_user_sites'   => array('mid','pid','uid','site'),
-      'sipi_plans_user_expire'  => array('mid','pid','uid','end_date'),
+      'sipi_plans_client_status' => array('mid','pid','cid','status'),
+      'sipi_plans_client_uid'    => array('mid','pid','cid','uid'),
+      'sipi_plans_client_sites'  => array('mid','pid','cid','site'),
+      'sipi_plans_client_expire' => array('mid','pid','cid','end_date'),
     ),
     'foreign keys' => array(
       'sipi_plans' => array(
         'table' => 'sipi_plans',
         'columns' => array('pid' => 'pid'),
       ),
-      'sipi_users' => array(
-        'table' => 'sipi_users',
-        'columns' => array('uid' => 'uid'),
+      'sipi_clients' => array(
+        'table' => 'sipi_clients',
+        'columns' => array('cid' => 'cid'),
       ),
       'users' => array(
         'table' => 'users',
-        'columns' => array('uid' => 'manager'),
+        'columns' => array('uid' => 'uid'),
       ),
     ),
   );
