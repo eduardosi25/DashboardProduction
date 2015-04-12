@@ -97,6 +97,7 @@ settings[toggle_search] = 1
 ; JavaScript
 ; --------------
 ; exclude[js][] = 'modules/contextual/contextual.js'
+scripts[] = 'js/autofocus.js'
 
 ; CSS
 ; --------------

@@ -76,6 +76,8 @@ function sipi_admin_settings_form($form_state) {
   return system_settings_form($form);
 }
 function get_checked_options($options){
+  if(!isset($options) || empty($options))
+    return array();
   $items=array();
   foreach($options as $key=>$value){
     if($value){
@@ -112,3 +114,103 @@ function sipi_admin_settings_form_submit($form, &$form_state){
   //Clear cache
   //cache_clear_all('sipi_variables', 'cache');
 }
+
+
+/**
+ * Create Navigation Menu with Links for this module named as: menu-sipi
+ * According to the links that we have in the hook_menu
+ * @see sipi.module
+ */
+function _create_sipi_menu(){
+  //Create SIPI menu
+  $menu = array(
+    'menu_name'   => 'menu-sipi',
+    'title'       => t('Menú SIPI'),
+    'description' => 'Sistema Integral de Publicación en Internet',
+  );
+
+  if(!menu_tree($menu['menu_name'])){
+    menu_save($menu);
+    //Create links
+    $item = array (
+      'link_title' => 'SIPI Home',
+      'link_path'  => 'sipi',
+      'menu_name'  => 'menu-sipi',
+      'weight'     => 0,
+      'plid'       => 0,
+    );
+    menu_link_save($item);
+    $item = array (
+      'link_title' => 'SIPI Dashboard',
+      'link_path'  => 'sipi/dashboard',
+      'menu_name'  => 'menu-sipi',
+      'weight'     => 1,
+      'plid'       => 0,
+    );
+    menu_link_save($item);
+    //Parent :: Plans
+    $item = array (
+      'link_title' => 'SIPI Plans',
+      'link_path'  => 'sipi/plans',
+      'menu_name'  => 'menu-sipi',
+      'weight'     => 2,
+      'plid'       => 0,
+    );
+    $plid = menu_link_save($item);
+    $item = array (
+      'link_title' => 'Plans',
+      'link_path'  => 'sipi/plans',
+      'menu_name'  => 'menu-sipi',
+      'expanded'   => true,
+      'weight'     => 0,
+      'plid'       => $plid,
+    );
+    menu_link_save($item);
+    $item = array (
+      'link_title' => 'Add a plan',
+      'link_path'  => 'sipi/plans/add',
+      'menu_name'  => 'menu-sipi',
+      'expanded'   => true,
+      'weight'     => 1,
+      'plid'       => $plid,
+    );
+    menu_link_save($item);
+    //Parent :: Client
+    $item = array (
+      'link_title' => 'SIPI Clients',
+      'link_path'  => 'sipi/client',
+      'menu_name'  => 'menu-sipi',
+      'weight'     => 3,
+      'plid'       => 0,
+    );
+    $plid = menu_link_save($item);
+    $item = array (
+      'link_title' => 'Clients',
+      'link_path'  => 'sipi/client',
+      'menu_name'  => 'menu-sipi',
+      'expanded'   => true,
+      'weight'     => 0,
+      'plid'       => $plid,
+    );
+    menu_link_save($item);
+    $item = array (
+      'link_title' => 'Add a client',
+      'link_path'  => 'sipi/client/add',
+      'menu_name'  => 'menu-sipi',
+      'expanded'   => true,
+      'weight'     => 1,
+      'plid'       => $plid,
+    );
+    menu_link_save($item);
+    drupal_set_message('SIPI Menu Created.','status');
+    return t('SIPI Menu Created.');
+  }else{
+    drupal_set_message('The SIPI Menu already exists.','error');
+    $holders=array(
+      '@url1'=>'/admin/config/development/performance',
+      '@url2'=>'/admin/structure/menu/manage/menu-sipi'
+    );
+    return t('The SIPI Menu already exists. If you cant see it, please try to <a href="@url1"">clear cache</a> or visit it in <a href="@url2">Manage Menu Page</a>',$holders);
+  }
+}
+

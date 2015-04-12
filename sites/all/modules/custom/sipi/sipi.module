@@ -197,13 +197,35 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'sipi.admin.inc',
   );
+  #SIPI ADMIN
+  $items['admin/config/system/sipi/default'] = array(
+    'title'            => t('SIPI Settings'),
+    'description'      => t('Configure settings for invent.SIPI'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('sipi_admin_settings_form'),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('administer sipi settings'),
+    'type'             => MENU_DEFAULT_LOCAL_TASK,
+    'file'             => 'sipi.admin.inc',
+    'weight'           => 0,
+  );
+  $items['admin/config/system/sipi/menu-sipi'] = array(
+    'title'            => t('Create SIPI menu'),
+    'description'      => t('Create SIPI menu'),
+    'page callback'    => '_create_sipi_menu',
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('administer sipi settings'),
+    'type'             => MENU_LOCAL_TASK,
+    'file'             => 'sipi.admin.inc',
+    'weight'           => 1,
+  );
   $items['admin/config/system/sipi/cronlt'] = array(
-    'title' => t('Light weight cron handler'),
-    'description' => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
-    'page callback' => 'sipi_run_cronlt',
+    'title'            => t('Light weight cron handler'),
+    'description'      => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
+    'page callback'    => 'sipi_run_cronlt',
     'access arguments' => array('administer node_analytics settings'),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
   );
   return $items;
 }

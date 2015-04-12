@@ -32,6 +32,11 @@ function sipi_uninstall() {
   if (db_table_exists('sipi_reports')) {
     db_drop_table('sipi_reports');
   }
+  #Delete menu custom
+  $menu = array(
+    'menu_name'   => 'menu-sipi',
+  );
+  menu_delete($menu);
 }
 
 function sipi_schema(){
@@ -99,19 +104,12 @@ function sipi_schema(){
         'not null' => TRUE,
         'description' => 'The primary identifier',
       ),
-      'firstname' => array(
+      'name' => array(
         'type' => 'varchar',
         'length' => 100,
         'not null' => TRUE,
         'default' => '',
         'description' => 'Name',
-      ),
-      'lastname' => array(
-        'type' => 'varchar',
-        'length' => 100,
-        'not null' => TRUE,
-        'default' => '',
-        'description' => 'Lastname',
       ),
       'mail' => array(
         'type' => 'varchar',
@@ -265,7 +263,7 @@ function sipi_schema(){
     ),
     'primary key' => array('cid'),
     'indexes' => array(
-      'sipi_clients_name' => array('cid','firstname','lastname'),
+      'sipi_clients_name' => array('cid','name'),
       'sipi_clients_created' => array('cid','created'),
     ),
   );
@@ -394,7 +392,5 @@ function sipi_schema(){
       'sipi_reports_report' => array('sid','created','changed','report'),
     ),
   );
-
-
   return $schema;
 }
