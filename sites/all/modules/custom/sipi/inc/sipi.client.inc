@@ -318,7 +318,7 @@ function sipi_client_file_element_process($element, &$form_state, $form) {
   if ($element['#file']) {
     $element["logo_preview"] = array(
       '#type' => 'markup',
-      '#markup' => "<p><img src='" . get_image_style( $element['#file']->uri, "thumbnail" ) . "' /></p>",
+      '#markup' => '<p><img src="'.get_image_style( $element['#file']->uri, "thumbnail" ).'" style="margin-right:20px;"/></p>',
       '#weight' => -15,
     );
     $element['remove_button'] = array(
@@ -596,7 +596,7 @@ function sipi_plans_clients_save_op($delta='insert',$fields,$cid){
     case 'insert':
       foreach($fields['invent'] as $plan){
         $plan['cid']=$cid;
-        $query=db_insert('sipi_plans_clients')->fields($plan)->execute();
+        db_insert('sipi_plans_clients')->fields($plan)->execute();
         drupal_set_message('New plan for user: '.$fields['client']['name'],'status');
         sipi_logging('Insert new plan plan for: '.$fields['client']['name'].' by user:['.$user->name.']','info');
       }
@@ -608,21 +608,17 @@ function sipi_plans_clients_save_op($delta='insert',$fields,$cid){
       $query->fields('pc', array('cid'));
       $query->condition('pc.cid',$cid,'=');
       $result=$query->execute()->fetchAssoc();
-      if($result>0){
-        $plans=$result;
-      }else{
-        $plans=0;
-      }
+
       //Parse plans array from form
       foreach($fields['invent'] as $plan){
         //Search every user-plan
         $query=db_select('sipi_plans_clients','pc');
         $query->fields('pc', array('cid'));
-        $query->condition('pc.cid',$client['cid'],'=');
-        $result=$query->execute()->fetchAssoc();
+        $query->condition('pc.cid',$cid,'=');
+        $query->execute()->fetchAssoc();
 
 
-        $plan['cid']=cid;
+        $plan['cid']=$cid;
         db_insert('sipi_plans_clients')->fields($plan)->execute();
         $lastId = Database::getConnection()->lastInsertId();
         drupal_set_message('New user-plan.','status');
