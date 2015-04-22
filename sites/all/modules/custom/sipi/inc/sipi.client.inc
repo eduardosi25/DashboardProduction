@@ -1,4 +1,5 @@
 <?php
+define('MAX_FILE_SIZE',1);
 function sipi_client(){
   return sipi_client_list();
 }
@@ -106,14 +107,20 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#default_value' => isset($client['web']) && !empty($client['web']) ? $client['web'] : '',
     '#description'   => t('Web page'),
   );
+
   $form['sipi_client']['client']['logo'] = array(
-    '#title'         => t('Logo'),
-    '#type'          => 'textfield',
-    '#size'          => 10,
-    '#maxlength'     => 150,
-    '#default_value' => isset($client['logo']) && !empty($client['logo']) ? $client['logo'] : '',
-    '#description'   => t('Logo'),
+    '#type' => 'managed_file',
+    '#title' => t('Logo'),
+    '#description' => t('Allowed extensions: png jpg jpeg'),
+    '#default_value' => (isset($client['fid']) ? $client['fid'] : ''),
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('png jpg jpeg'),
+      'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
+    ),
+    '#upload_location' => 'public://'.variable_get('file_public_path').'/clients',
+    '#process' => array('sipi_client_file_element_process'),
   );
+
   $form['sipi_client']['client']['description'] = array(
     '#title'         => t('Description'),
     '#type'          => 'textfield',
@@ -301,6 +308,54 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
   );
 
   return $form;
+}
+
+/**
+ * Implements hook_file_element_process().
+ */
+function sipi_client_file_element_process($element, &$form_state, $form) {
+  $element = file_managed_file_process($element, $form_state, $form);
+  if ($element['#file']) {
+    $element["logo_preview"] = array(
+      '#type' => 'markup',
+      '#markup' => "<p><img src='" . get_image_style( $element['#file']->uri, "thumbnail" ) . "' /></p>",
+      '#weight' => -15,
+    );
+    $element['remove_button'] = array(
+      '#name' => 'logo_remove_button',
+      '#type' => 'submit',
+      '#value' => t('Remove'),
+      '#validate' => array(),
+      '#submit' => array('ajax_image_update_callback'),
+      '#limit_validation_errors' => array($element['#parents']),
+      '#ajax' => array(
+        'callback' => 'ajax_image_update_callback',
+        'wrapper' => $element['upload_button']['#ajax']['wrapper'],
+      ),
+      '#weight' => -5,
+    );
+  }
+  return $element;
+}
+/**
+ * Implements ajax_image_update_callback().
+ */
+function ajax_image_update_callback($form, &$form_state){
+  if (!empty($form['sipi_client']['client']["logo"]["#value"])) {
+    $form['sipi_client']['client']["logo"]["#value"]=null;
+    $form['sipi_client']['client']["logo"]['logo_preview']=null;
+    $form['sipi_client']['client']["logo"]["filename"]=null;
+  }
+  return $form['sipi_client']['client']["logo"];
+}
+function get_image_style( $image_url = null, $image_style = null, $alternative = null, $title = null, $attributes = array() ) {
+
+  if ( !$image_url || !$image_style ) {
+    return null;
+  }
+  $image_src = image_style_url( $image_style, $image_url );
+
+  return $image_src;
 }
 
 function sipi_client_add_more_add_one($form, &$form_state) {
