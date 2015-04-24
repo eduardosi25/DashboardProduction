@@ -261,17 +261,41 @@ function sipi_init(){
  * @return array
  */
 function sipi_client_load($sipi_client){
-  $query = db_select('sipi_client', 'u');
-  $query->fields('u', array('uid','name','contents','posts','duration','price'));
-  $query->condition('u.uid', $sipi_client, '=');
-  $result = $query->execute()->fetchAssoc();
+  $query = db_select('sipi_clients', 'c');
+  $query->fields('c', array('cid','name','pass','mail','company','cellphone','phone','extention','web','logo','description'));
+  $query->fields('c', array('facebook','twitter','googleplus','youtube','instagram','linkedin','pinterest','vine','created','changed','access','login'));
+  $query->condition('c.cid', $sipi_client, '=');
+  $result = $query->execute();
   if($result){
+    //Set object
     foreach($result as $row){
-      $sipi_client=$row;
+      $sipi_client = $row;
     }
+    //Get plans
+    sipi_client_build_plans_client($sipi_client);
     return $sipi_client;
   }
   return null;
+}
+
+/**
+ * Build plans for one client with CID
+ * @param $sipi_client
+ */
+function sipi_client_build_plans_client(&$sipi_client){
+  $query = db_select('sipi_plans_clients','pc');
+  $query->join('sipi_plans','p','p.pid=pc.pid');
+  $query->join('users','u','u.uid=pc.uid');
+  $query->fields('pc',array('mid','status','site','start_date','end_date'));
+  $query->fields('p',array('pid','name','contents','posts','duration','price'));
+  $query->fields('u',array('uid','name','mail'));
+  $query->condition('pc.cid', $sipi_client->cid, '=');
+  $result = $query->execute();
+  if($result){
+    foreach($result as $row){
+      $sipi_client->plans[] = $row;
+    }
+  }
 }
 
 /**
@@ -288,7 +312,6 @@ function sipi_plan_load($plan){
   }
   return NULL;
 }
-
 
 function sipi_logging($message='Done',$type='info'){
   global $sipi_variables;

@@ -16,6 +16,9 @@ function sipi_client_view($client){
   return drupal_get_form('sipi_clients_form',$client);
 }
 
+/**
+ * Implements hook_form().
+ */
 function sipi_clients_form($form, &$form_state, $client=NULL){
   $admin = user_access('sipi admin clients');
   // If we aren't admin but already logged on, go to the dashboard
@@ -32,7 +35,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
   );
   $form['sipi_client']['cid']  = array(
     '#type' => 'hidden',
-    '#value' => isset($client['cid']) && !empty($client['cid']) ? intval($client['cid']) : 0,
+    '#value' => isset($client->cid) && !empty($client->cid) ? intval($client->cid) : 0,
   );
   $form['sipi_client']['client'] = array(
     '#type'  => 'fieldset',
@@ -44,7 +47,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 30,
     '#maxlength'     => 100,
-    '#default_value' => isset($client['name']) && !empty($client['name']) ? $client['name'] : '',
+    '#default_value' => isset($client->name) && !empty($client->name) ? $client->name : '',
     '#description'   => t('Name'),
     '#required'      => TRUE,
   );
@@ -53,15 +56,8 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 60,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['mail']) && !empty($client['mail']) ? $client['mail'] : '',
+    '#default_value' => isset($client->mail) && !empty($client->mail) ? $client->mail : '',
     '#description'   => t('Email'),
-    '#required'      => TRUE,
-  );
-  $form['sipi_client']['client']['pass'] = array(
-    '#type'          => 'password_confirm',
-    '#size'          => 15,
-    '#maxlength'     => 32,
-    '#description'   => t('Password'),
     '#required'      => TRUE,
   );
   $form['sipi_client']['client']['company'] = array(
@@ -69,8 +65,8 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 60,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['company']) && !empty($client['company']) ? $client['company'] : '',
-    '#description'   => t('Social posts'),
+    '#default_value' => isset($client->company) && !empty($client->company) ? $client->company : '',
+    '#description'   => t('Company name'),
     '#required'      => TRUE,
   );
   $form['sipi_client']['client']['cellphone'] = array(
@@ -78,7 +74,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 20,
     '#maxlength'     => 20,
-    '#default_value' => isset($client['cellphone']) && !empty($client['cellphone']) ? $client['cellphone'] : '',
+    '#default_value' => isset($client->cellphone) && !empty($client->cellphone) ? $client->cellphone : '',
     '#description'   => t('Cell phone'),
     '#required'      => TRUE,
   );
@@ -87,7 +83,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 30,
     '#maxlength'     => 60,
-    '#default_value' => isset($client['phone']) && !empty($client['phone']) ? $client['phone'] : '',
+    '#default_value' => isset($client->phone) && !empty($client->phone) ? $client->phone : '',
     '#description'   => t('Phone'),
     '#required'      => TRUE,
   );
@@ -96,23 +92,22 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 10,
     '#maxlength'     => 10,
-    '#default_value' => isset($client['extention']) && !empty($client['extention']) ? $client['extention'] : '',
-    '#description'   => t('Extention'),
+    '#default_value' => isset($client->extention) && !empty($client->extention) ? $client->extention : '',
+    '#description'   => t('Phone Extention'),
   );
   $form['sipi_client']['client']['web'] = array(
     '#title'         => t('Web page'),
     '#type'          => 'textfield',
     '#size'          => 10,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['web']) && !empty($client['web']) ? $client['web'] : '',
+    '#default_value' => isset($client->web) && !empty($client->web) ? $client->web : '',
     '#description'   => t('Web page'),
   );
-
   $form['sipi_client']['client']['logo'] = array(
     '#type' => 'managed_file',
     '#title' => t('Logo'),
     '#description' => t('Allowed extensions: png jpg jpeg'),
-    '#default_value' => (isset($client['fid']) ? $client['fid'] : ''),
+    '#default_value' => (isset($client->logo) ? $client->logo : ''),
     '#upload_validators' => array(
       'file_validate_extensions' => array('png jpg jpeg'),
       'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
@@ -120,13 +115,12 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#upload_location' => 'public://'.variable_get('file_public_path').'/clients',
     '#process' => array('sipi_client_file_element_process'),
   );
-
   $form['sipi_client']['client']['description'] = array(
     '#title'         => t('Description'),
-    '#type'          => 'textfield',
-    '#size'          => 10,
-    '#maxlength'     => 150,
-    '#default_value' => isset($client['description']) && !empty($client['description']) ? $client['description'] : '',
+    '#type'          => 'textarea',
+    '#cols'          => 10,
+    '#rows'          => 5,
+    '#default_value' => isset($client->description) && !empty($client->description) ? $client->description : '',
     '#description'   => t('Description'),
   );
   $form['sipi_client']['client']['facebook'] = array(
@@ -134,64 +128,64 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['facebook']) && !empty($client['facebook']) ? $client['facebook'] : '',
-    '#description'   => t('Facebook'),
+    '#default_value' => isset($client->facebook) && !empty($client->facebook) ? $client->facebook : '',
+    '#description'   => t('Facebook URL'),
   );
   $form['sipi_client']['client']['twitter'] = array(
     '#title'         => t('Twitter'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['twitter']) && !empty($client['twitter']) ? $client['twitter'] : '',
-    '#description'   => t('Twitter'),
+    '#default_value' => isset($client->twitter) && !empty($client->twitter) ? $client->twitter : '',
+    '#description'   => t('Twitter URL'),
   );
   $form['sipi_client']['client']['googleplus'] = array(
     '#title'         => t('Google+'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['googleplus']) && !empty($client['googleplus']) ? $client['googleplus'] : '',
-    '#description'   => t('Google+'),
+    '#default_value' => isset($client->googleplus) && !empty($client->googleplus) ? $client->googleplus : '',
+    '#description'   => t('Google+ URL'),
   );
   $form['sipi_client']['client']['youtube'] = array(
     '#title'         => t('Youtube'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['youtube']) && !empty($client['youtube']) ? $client['youtube'] : '',
-    '#description'   => t('Youtube'),
+    '#default_value' => isset($client->youtube) && !empty($client->youtube) ? $client->youtube : '',
+    '#description'   => t('Youtube URL'),
   );
   $form['sipi_client']['client']['instagram'] = array(
     '#title'         => t('Instagram'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['instagram']) && !empty($client['instagram']) ? $client['instagram'] : '',
-    '#description'   => t('Instagram'),
+    '#default_value' => isset($client->instagram) && !empty($client->instagram) ? $client->instagram : '',
+    '#description'   => t('Instagram URL'),
   );
   $form['sipi_client']['client']['linkedin'] = array(
     '#title'         => t('Linkedin'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['linkedin']) && !empty($client['linkedin']) ? $client['linkedin'] : '',
-    '#description'   => t('Linkedin'),
+    '#default_value' => isset($client->linkedin) && !empty($client->linkedin) ? $client->linkedin : '',
+    '#description'   => t('Linkedin URL'),
   );
   $form['sipi_client']['client']['pinterest'] = array(
     '#title'         => t('Pinterest'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['pinterest']) && !empty($client['pinterest']) ? $client['pinterest'] : '',
-    '#description'   => t('Pinterest'),
+    '#default_value' => isset($client->pinterest) && !empty($client->pinterest) ? $client->pinterest : '',
+    '#description'   => t('Pinterest URL'),
   );
   $form['sipi_client']['client']['vine'] = array(
     '#title'         => t('Vine'),
     '#type'          => 'textfield',
     '#size'          => 40,
     '#maxlength'     => 150,
-    '#default_value' => isset($client['vine']) && !empty($client['vine']) ? $client['vine'] : '',
-    '#description'   => t('Vine'),
+    '#default_value' => isset($client->vine) && !empty($client->vine) ? $client->vine : '',
+    '#description'   => t('Vine URL'),
   );
 
   $form['sipi_client']['invent'] = array(
@@ -202,7 +196,9 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#suffix' => '</div>',
   );
 
-  if (empty($form_state['sipi_client']['invent']['items'])) {
+  if((isset($client->plans) && !empty($client->plans)) && empty($form_state['sipi_client']['invent']['items'])){
+    $form_state['sipi_client']['invent']['items'] = count($client->plans);
+  } else if(empty($form_state['sipi_client']['invent']['items'])){
     $form_state['sipi_client']['invent']['items'] = 1;
   }
 
@@ -211,16 +207,17 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
       '#type'   => 'fieldset',
       '#title'  => t('User Data :: '.($i+1)),
       '#tree'   => TRUE,
+      '#attributes' => array('class' => array('sipi-client-invent-fieldset'))
     );
     $form['sipi_client']['invent']['data'][$i]['mid']  = array(
       '#type' => 'hidden',
-      '#value' => isset($client['mid']) && !empty($client['mid']) ? intval($client['mid']) : 0,
+      '#value' => isset($client->plans[$i]->mid) && !empty($client->plans[$i]->mid) ? intval($client->plans[$i]->mid) : 0,
     );
     $form['sipi_client']['invent']['data'][$i]['site'] = array(
       '#title' => t('Site name'),
       '#type' => 'select',
       '#options' => get_sipi_sites(),
-      '#default_value' => isset($client['site']) && !empty($client['site']) ? $client['site'] : '',
+      '#default_value' => isset($client->plans[$i]->site) && !empty($client->plans[$i]->site) ? $client->plans[$i]->site : '',
       '#description' => t('Site name'),
       '#required' => TRUE,
     );
@@ -228,7 +225,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
       '#title' => t('Manager'),
       '#type' => 'select',
       '#options' => get_sipi_client_manager(array('sipi_manager')),
-      '#default_value' => isset($client['manager']) && !empty($client['manager']) ? $client['manager'] : '',
+      '#default_value' => isset($client->plans[$i]->uid) && !empty($client->plans[$i]->uid) ? intval($client->plans[$i]->uid) : '',
       '#description' => t('Manager'),
       '#required' => TRUE,
     );
@@ -236,18 +233,18 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
       '#title' => t('Plan'),
       '#type' => 'select',
       '#options' => get_sipi_plans(),
-      '#default_value' => isset($client['plan']) && !empty($client['plan']) ? $client['plan'] : '',
+      '#default_value' => isset($client->plans[$i]->pid) && !empty($client->plans[$i]->pid) ? intval($client->plans[$i]->pid) : '',
       '#description' => t('Plans'),
       '#required' => TRUE,
     );
-    $format = 'Y-m-d';
-    $date = date($format);
+    $date_format = 'd/m/Y';
+    $date = date('Y-m-d H:i:s');
     $form['sipi_client']['invent']['data'][$i]['start_date'] = array(
       '#title' => t('Start date'),
-      '#type' => 'date_select',
-      '#default_value' => isset($client['start_date']) && !empty($client['start_date']) ? $client['start_date'] : $date,
-      '#date_format' => $format,
-      '#date_label_position' => 'within',
+      '#type' => 'date_popup',
+      '#date_format' => $date_format,
+      '#default_value' => isset($client->plans[$i]->start_date) && !empty($client->plans[$i]->start_date) ? date('Y-m-d',$client->plans[$i]->start_date) : $date,
+      '#date_label_position' => 'none',
       '#date_timezone' => 'America/Mexico_City',
       '#date_year_range' => '-3:+3',
       '#required' => TRUE,
@@ -255,10 +252,10 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     );
     $form['sipi_client']['invent']['data'][$i]['end_date'] = array(
       '#title' => t('End date'),
-      '#type' => 'date_select',
-      '#default_value' => isset($client['end_date']) && !empty($client['end_date']) ? $client['end_date'] : $date,
-      '#date_format' => $format,
-      '#date_label_position' => 'within',
+      '#type' => 'date_popup',
+      '#date_format' => $date_format,
+      '#default_value' => isset($client->plans[$i]->end_date) && !empty($client->plans[$i]->end_date) ? date('Y-m-d',$client->plans[$i]->end_date) : $date,
+      '#date_label_position' => 'none',
       '#date_timezone' => 'America/Mexico_City',
       '#date_year_range' => '-3:+3',
       '#required' => TRUE,
@@ -272,9 +269,8 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
         '1' => t('Enabled'),
         '2' => t('Suspended'),
       ),
-      '#default_value' => isset($client['status']) && !empty($client['status']) ? $client['status'] : '',
+      '#default_value' => isset($client->plans[$i]->status) && !empty($client->plans[$i]->status) ? intval($client->plans[$i]->status) : 0,
       '#description' => t('Status'),
-      '#required' => TRUE,
     );
     if ($form_state['sipi_client']['invent']['items'] > 1) {
       $form['sipi_client']['invent']['data'][$i]['remove'] = array(
@@ -297,6 +293,8 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
       'callback' => 'sipi_client_add_more',
       'wrapper'  => 'invent-fieldset-wrapper',
     ),
+    '#prefix' => '<div id="invent-fieldset-wrapper-addmore">',
+    '#suffix' => '</div>',
   );
 
   $form['cancel'] = array(
@@ -310,175 +308,18 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
   return $form;
 }
 
-/**
- * Implements hook_file_element_process().
- */
-function sipi_client_file_element_process($element, &$form_state, $form) {
-  $element = file_managed_file_process($element, $form_state, $form);
-  if ($element['#file']) {
-    $element["logo_preview"] = array(
-      '#type' => 'markup',
-      '#markup' => '<p><img src="'.get_image_style( $element['#file']->uri, "thumbnail" ).'" style="margin-right:20px;"/></p>',
-      '#weight' => -15,
-    );
-    $element['remove_button'] = array(
-      '#name' => 'logo_remove_button',
-      '#type' => 'submit',
-      '#value' => t('Remove'),
-      '#validate' => array(),
-      '#submit' => array('ajax_image_update_callback'),
-      '#limit_validation_errors' => array($element['#parents']),
-      '#ajax' => array(
-        'callback' => 'ajax_image_update_callback',
-        'wrapper' => $element['upload_button']['#ajax']['wrapper'],
-      ),
-      '#weight' => -5,
-    );
-  }
-  return $element;
-}
-/**
- * Implements ajax_image_update_callback().
- */
-function ajax_image_update_callback($form, &$form_state){
-  if (!empty($form['sipi_client']['client']["logo"]["#value"])) {
-    $form['sipi_client']['client']["logo"]["#value"]=null;
-    $form['sipi_client']['client']["logo"]['logo_preview']=null;
-    $form['sipi_client']['client']["logo"]["filename"]=null;
-  }
-  return $form['sipi_client']['client']["logo"];
-}
-function get_image_style( $image_url = null, $image_style = null, $alternative = null, $title = null, $attributes = array() ) {
-
-  if ( !$image_url || !$image_style ) {
-    return null;
-  }
-  $image_src = image_style_url( $image_style, $image_url );
-
-  return $image_src;
-}
-
-function sipi_client_add_more_add_one($form, &$form_state) {
-  $form_state['sipi_client']['invent']['items']++;
-  $form_state['rebuild'] = TRUE;
-}
-function sipi_client_remove_one($form, &$form_state) {
-  if ($form_state['sipi_client']['invent']['items'] > 1) {
-    $form_state['sipi_client']['invent']['items']--;
-  }
-  $form_state['rebuild'] = TRUE;
-}
-function sipi_client_add_more($form, $form_state){
-  return $form['sipi_client']['invent'];
-}
-
 function sipi_clients_form_validate($form, &$form_state){
-  /**
-#sipi_clients_form_submit
-#values
-  array(6) {
-    ["sipi_client"]=>
-  array(3) {
-      ["cid"]=>
-    int(0)
-    ["client"]=>
-    array(19) {
-      ["name"]=>
-      string(4) "Luis Contreras"
-      ["mail"]=>
-      string(17) "luis@inventmx.com"
-      ["pass"]=>
-      string(8) "sapidecv"
-      ["company"]=>
-      string(6) "invent"
-      ["cellphone"]=>
-      string(13) "0445522525275"
-      ["phone"]=>
-      string(8) "51283600"
-      ["extention"]=>
-      string(4) "2027"
-      ["web"]=>
-      string(12) "inventmx.com"
-      ["logo"]=>
-      string(0) ""
-      ["description"]=>
-      string(61) "Somos una catapulta para el talento independiente en Internet"
-      ["facebook"]=>
-      string(27) "facebook.com/luis.contreras"
-      ["twitter"]=>
-      string(20) "twitter.com/imx_luis"
-      ["googleplus"]=>
-      string(29) "googleplus.com/luis.contreras"
-      ["youtube"]=>
-      string(26) "youtube.com/luis.contreras"
-      ["instagram"]=>
-      string(28) "instagram.com/luis.contreras"
-      ["linkedin"]=>
-      string(27) "linkedin.com/luis.contreras"
-      ["pinterest"]=>
-      string(28) "pinterest.com/luis.contreras"
-      ["vine"]=>
-      string(23) "vine.com/luis.contreras"
-    }
-    ["invent"]=>
-    array(2) {
-        ["data"]=>
-      array(2) {
-          [0]=>
-        array(7) {
-            ["site"]=>
-          string(1) "1"
-          ["manager"]=>
-          string(2) "24"
-          ["plan"]=>
-          string(1) "1"
-          ["start_date"]=>
-          string(10) "2015-04-15"
-          ["end_date"]=>
-          string(10) "2015-07-15"
-          ["status"]=>
-          string(1) "1"
-          ["remove"]=>
-          string(6) "Remove"
-        }
-        [1]=>
-        array(7) {
-            ["site"]=>
-          string(1) "3"
-          ["manager"]=>
-          string(2) "24"
-          ["plan"]=>
-          string(1) "2"
-          ["start_date"]=>
-          string(10) "2015-04-15"
-          ["end_date"]=>
-          string(10) "2015-07-15"
-          ["status"]=>
-          string(1) "1"
-          ["remove"]=>
-          string(6) "Remove"
-        }
-      }
-      ["add"]=>
-      string(8) "Add more"
-    }
+  $cid = isset($form_state['values']['cid']) && !empty($form_state['values']['cid']) ? intval($form_state['values']['cid']) : 0;
+  $client=$form_state['values']['sipi_client']['client'];
+  $invent=$form_state['values']['sipi_client']['invent']['data'];
+  if(isset($client['name']) && !empty($client['name'])){
+    $form_state['values']['sipi_client']['client']['pass']=sipi_client_generate_name_pass($client['name']);
   }
-  ["submit"]=>
-  string(4) "Save"
-  ["form_build_id"]=>
-  string(48) "form-FVRFfvSldtrE9Wf3PrcX8OkY7_9cAf6p4tfVSlhqSBs"
-  ["form_token"]=>
-  string(43) "9HHBc9Zqi0zpJjiERAo0tlTO8ePixMiGbmGVUxFeevI"
-  ["form_id"]=>
-  string(15) "sipi_clients_form"
-  ["op"]=>
-  string(4) "Save"
-  */
-
 }
 
 function sipi_clients_form_submit($form, &$form_state){
-  $cid = isset($form_state['values']['cid']) && !empty($form_state['values']['cid']) ? intval($form_state['values']['cid']) : 0;
+
+  $cid = isset($form_state['values']['sipi_client']['cid']) && !empty($form_state['values']['sipi_client']['cid']) ? intval($form_state['values']['sipi_client']['cid']) : 0;
   $client=$form_state['values']['sipi_client']['client'];
   $invent=$form_state['values']['sipi_client']['invent']['data'];
 
@@ -525,14 +366,6 @@ function sipi_clients_form_submit($form, &$form_state){
   return sipi_clients_save($fields);
 }
 
-function _get_timestmap_from_date($date){
-  if(!isset($date) || empty($date))
-    $date=date('Y-m-d');
-
-  $date=explode('-',$date);
-  return mktime(0,0,0,$date['1'],$date['2'],$date['0']);
-}
-
 function sipi_clients_save($fields){
   if(isset($fields['client']['cid']) && !empty($fields['client']['cid'])){
     //Search
@@ -570,7 +403,7 @@ function sipi_clients_save_op($delta='insert',$fields){
       $client=$fields['client'];
       array_shift($client);
       $query=db_insert('sipi_clients')->fields($client)->execute();
-      drupal_set_message('User inserted.','status');
+      drupal_set_message('User '.$fields['client']['name'].' inserted.','status');
       sipi_logging('Insert new user:['.$fields['client']['name'].'] by user:['.$user->name.']','info');
       return $query;
     break;
@@ -578,9 +411,11 @@ function sipi_clients_save_op($delta='insert',$fields){
       $client=$fields['client'];
       $cid=intval($client['cid']);
       array_shift($client);
-      $query=db_update('sipi_clients')->fields($fields['client'])->execute();
+      $query=db_update('sipi_clients');
+      $query->fields($client);
       $query->condition('cid',$cid,'=');
-      drupal_set_message('User updated.','status');
+      $query->execute();
+      drupal_set_message('User '.$fields['client']['name'].' updated.','status');
       sipi_logging('Update user:['.$fields['client']['name'].'] by user:['.$user->name.']','info');
       return true;
     break;
@@ -594,47 +429,110 @@ function sipi_plans_clients_save_op($delta='insert',$fields,$cid){
   }
   switch($delta){
     case 'insert':
+      $ids=array();
       foreach($fields['invent'] as $plan){
-        $plan['cid']=$cid;
-        db_insert('sipi_plans_clients')->fields($plan)->execute();
-        drupal_set_message('New plan for user: '.$fields['client']['name'],'status');
-        sipi_logging('Insert new plan plan for: '.$fields['client']['name'].' by user:['.$user->name.']','info');
+        if($plan['site']>0 && $plan['uid']>0 && $plan['pid']>0) {
+          $plan['cid']=$cid;
+          $query=db_insert('sipi_plans_clients');
+          $query->fields($plan);
+          $query->execute();
+          $ids[]=$query;
+          drupal_set_message('New plan for user: '.$fields['client']['name'],'status');
+          sipi_logging('Insert new plan plan for: '.$fields['client']['name'].' by user:['.$user->name.']','info');
+        }
       }
-      return true;
+      return $ids;
     break;
     case 'update':
-      //Search all plans.
-      $query=db_select('sipi_plans_clients','pc');
-      $query->fields('pc', array('cid'));
-      $query->condition('pc.cid',$cid,'=');
-      $result=$query->execute()->fetchAssoc();
+      //First delete if exist on DB but not in the form
+      sipi_plans_clients_delete_op($cid,$fields['invent']);
 
-      //Parse plans array from form
-      foreach($fields['invent'] as $plan){
-        //Search every user-plan
-        $query=db_select('sipi_plans_clients','pc');
-        $query->fields('pc', array('cid'));
-        $query->condition('pc.cid',$cid,'=');
-        $query->execute()->fetchAssoc();
+      //Search every plan an update
+      if(count($fields['invent'])>0){
+        $ids=array();
+        //Parse plans array from form
+        foreach($fields['invent'] as $plan){
+          if($plan['site']>0 && $plan['uid']>0 && $plan['pid']>0) {
+            $field=array(
+              'pid'        => $plan['pid'],
+              'uid'        => $plan['uid'],
+              'cid'        => $cid,
+              'status'     => $plan['status'],
+              'site'       => $plan['site'],
+              'start_date' => $plan['start_date'],
+              'end_date'   => $plan['end_date'],
+            );
 
-
-        $plan['cid']=$cid;
-        db_insert('sipi_plans_clients')->fields($plan)->execute();
-        $lastId = Database::getConnection()->lastInsertId();
-        drupal_set_message('New user-plan.','status');
-        sipi_logging('Insert new user-plan by user:['.$user->name.']','info');
-        return $lastId;
+            if(intval($plan['mid'])>0){
+              //Update plan if mid exists
+              $query=db_update('sipi_plans_clients');
+              $query->fields($field);
+              $query->condition('cid',$cid,'=');
+              $query->condition('mid',$plan['mid'],'=');
+              $query->execute();
+              //drupal_set_message('Update user-plan for '.$fields['client']['name'].'.','status');
+              sipi_logging('Update user-plan of '.$fields['client']['name'].' by user:['.$user->name.']','info');
+            }else{
+              //Insert plan
+              $query=db_insert('sipi_plans_clients');
+              $query->fields($field);
+              $query->execute();
+              $ids[] = $query;
+              drupal_set_message('New user-plan for '.$fields['client']['name'].'.','status');
+              sipi_logging('Insert new user-plan for '.$fields['client']['name'].' by user:['.$user->name.']','info');
+            }
+          }
+        }
+        return $ids;
+      }else{
+        return false;
       }
+      /*
       $fields['cid']=$result;
       $query=db_update('sipi_clients')->fields($fields)->execute();
       $query->condition('cid',$fields['cid'],'=');
       drupal_set_message('Plans updated.','status');
       sipi_logging('Plans updated by user:['.$user->name.']','info');
       return true;
+      */
     break;
   }
 }
 
+
+function sipi_plans_clients_delete_op($cid,$plans){
+  global $user;
+  if(!isset($plans) || empty($plans))
+    return null;
+
+  $mids=array();
+  foreach($plans as $plan){
+    if($plan['mid']>0){
+      $mids[]=$plan['mid'];
+    }
+  }
+  if(count($mids)>0){
+    $query=db_select('sipi_plans_clients','pc');
+    $query->fields('pc',array('mid'));
+    $query->condition('pc.cid',$cid,'=');
+    $query->condition('pc.mid',$mids,'NOT IN');
+    $result=$query->execute();
+    if($result){
+      //Delete every record founded
+      foreach($result as $row){
+        $query_delete=db_delete('sipi_plans_clients');
+        $query_delete->condition('mid', $row->mid);
+        $result_delete=$query_delete->execute();
+        if($result_delete){
+          drupal_set_message('Deleted user-plan.','status');
+          sipi_logging('Deleted user-plan by user:['.$user->name.']','info');
+        }
+      }
+    }else{
+      return null;
+    }
+  }
+}
 
 function get_sipi_client_manager($roles=array('sipi_manager')){
   $query=db_select('users','u');
@@ -813,7 +711,7 @@ function sipi_client_delete_confirm($form, &$form_state, $plans=NULL) {
 
 function sipi_client_delete_confirm_submit($form, &$form_state) {
   if ($form_state['values']['confirm']) {
-    db_delete('sipi_client')
+    db_delete('sipi_clients')
       ->condition('pid', $form_state['values']['pid'])
       ->execute();
   }
@@ -821,7 +719,7 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
 }
 
 function sipi_client_list_items(){
-  $query=db_select('sipi_client', 'p');
+  $query=db_select('sipi_clients', 'p');
   $query->fields('p', array('pid','name','contents','posts','duration','price'));
   $result=$query->execute();
   if($result){
@@ -833,3 +731,225 @@ function sipi_client_list_items(){
   }
   return null;
 }
+
+/**
+ * Managed multiple forms. Add or remove dinamycally with Ajax
+ */
+function sipi_client_add_more($form, $form_state){
+  return $form['sipi_client']['invent'];
+}
+function sipi_client_add_more_add_one($form, &$form_state) {
+  $form_state['sipi_client']['invent']['items']++;
+  $form_state['rebuild'] = TRUE;
+}
+function sipi_client_remove_one($form, &$form_state) {
+  if ($form_state['sipi_client']['invent']['items'] > 1) {
+    $form_state['sipi_client']['invent']['items']--;
+  }
+  $form_state['rebuild'] = TRUE;
+}
+/**
+ * Managed files upload for Logo
+ */
+/**
+ * Implements hook_file_element_process().
+ */
+function sipi_client_file_element_process($element, &$form_state, $form) {
+  $element = file_managed_file_process($element, $form_state, $form);
+  if ($element['#file']) {
+    $element["logo_preview"] = array(
+      '#type' => 'markup',
+      '#markup' => '<p><img src="'.get_image_style( $element['#file']->uri, "thumbnail" ).'" style="margin-right:20px;"/></p>',
+      '#weight' => -15,
+    );
+    $element['remove_button'] = array(
+      '#name' => 'logo_remove_button',
+      '#type' => 'submit',
+      '#value' => t('Remove'),
+      '#validate' => array(),
+      '#submit' => array('ajax_image_update_callback'),
+      '#limit_validation_errors' => array($element['#parents']),
+      '#ajax' => array(
+        'callback' => 'ajax_image_update_callback',
+        'wrapper' => $element['upload_button']['#ajax']['wrapper'],
+      ),
+      '#weight' => -5,
+    );
+  }
+  return $element;
+}
+/**
+ * Implements ajax_image_update_callback().
+ */
+function ajax_image_update_callback($form, &$form_state){
+  if (!empty($form['sipi_client']['client']["logo"]["#value"])) {
+    $form['sipi_client']['client']["logo"]["#value"]=null;
+    $form['sipi_client']['client']["logo"]['logo_preview']=null;
+    $form['sipi_client']['client']["logo"]["filename"]=null;
+  }
+  return $form['sipi_client']['client']["logo"];
+}
+/**
+ * Implements get_image_style()
+ */
+function get_image_style( $image_url = null, $image_style = null, $alternative = null, $title = null, $attributes = array() ) {
+  if ( !$image_url || !$image_style ) {
+    return null;
+  }
+  return image_style_url( $image_style, $image_url );
+}
+/**
+ * Implements helpers for pass generator from client name
+ */
+function sipi_client_generate_name_pass($clientName){
+  if(!isset($clientName) || empty($clientName)){
+    return false;
+  }
+  //First convert everything in lowers
+  $clientName=sipi_client_convert_to_lowers($clientName);
+  //Convert vocals to numbers
+  $clientName=sipi_client_convert_to_numbers($clientName);
+  //Generato random number
+  $randomNumber=rand(0,(intval(date('Y'))*1024));
+  return '$'.ucfirst($clientName).'@'.sipi_client_convert_to_letters($randomNumber).'$';
+}
+function sipi_client_generate_random_pass(){
+  $alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*-+#$%&.,:;_";
+  $pass = array();
+  $alphaLength = strlen($alphabet) - 1;
+  for($i=0;$i<16;$i++){
+    $char=rand(0,$alphaLength);
+    $pass[]=$alphabet[$char];
+  }
+  return implode($pass);
+}
+function sipi_client_convert_to_lowers($string){
+  $search  = array('á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ñ' ,'Ñ', '');
+  $replace = array('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U', 'ni' ,'NI', '-');
+  $string  = str_replace($search, $replace, $string);
+  return strtolower($string);
+}
+function sipi_client_convert_to_numbers($string){
+  $search  = array('a', 'e', 'i', 'o', 'u');
+  $replace = array('4', '3', '1', '0', 'y');
+  return str_replace($search, $replace, $string);
+}
+function sipi_client_convert_to_letters($string){
+  $search  = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+  $replace = array('o', 'i', 'z', 'e', 'a', 's', 'g', 't', 'h', 'g');
+  return str_replace($search, $replace, $string);
+}
+
+/**
+ * Implements generic helpers
+ */
+
+function _get_timestmap_from_date($date){
+  if(!isset($date) || empty($date))
+    $date=date('Y-m-d');
+
+  $date=explode('-',$date);
+  return mktime(0,0,0,$date['1'],$date['2'],$date['0']);
+}
+
+/**
+#sipi_clients_form_submit
+#values
+array(6) {
+["sipi_client"]=>
+array(3) {
+["cid"]=>
+int(0)
+["client"]=>
+array(19) {
+["name"]=>
+string(4) "Luis Contreras"
+["mail"]=>
+string(17) "luis@inventmx.com"
+["pass"]=>
+string(8) "sapidecv"
+["company"]=>
+string(6) "invent"
+["cellphone"]=>
+string(13) "0445522525275"
+["phone"]=>
+string(8) "51283600"
+["extention"]=>
+string(4) "2027"
+["web"]=>
+string(12) "inventmx.com"
+["logo"]=>
+string(0) ""
+["description"]=>
+string(61) "Somos una catapulta para el talento independiente en Internet"
+["facebook"]=>
+string(27) "facebook.com/luis.contreras"
+["twitter"]=>
+string(20) "twitter.com/imx_luis"
+["googleplus"]=>
+string(29) "googleplus.com/luis.contreras"
+["youtube"]=>
+string(26) "youtube.com/luis.contreras"
+["instagram"]=>
+string(28) "instagram.com/luis.contreras"
+["linkedin"]=>
+string(27) "linkedin.com/luis.contreras"
+["pinterest"]=>
+string(28) "pinterest.com/luis.contreras"
+["vine"]=>
+string(23) "vine.com/luis.contreras"
+}
+["invent"]=>
+array(2) {
+["data"]=>
+array(2) {
+[0]=>
+array(7) {
+["site"]=>
+string(1) "1"
+["manager"]=>
+string(2) "24"
+["plan"]=>
+string(1) "1"
+["start_date"]=>
+string(10) "2015-04-15"
+["end_date"]=>
+string(10) "2015-07-15"
+["status"]=>
+string(1) "1"
+["remove"]=>
+string(6) "Remove"
+}
+[1]=>
+array(7) {
+["site"]=>
+string(1) "3"
+["manager"]=>
+string(2) "24"
+["plan"]=>
+string(1) "2"
+["start_date"]=>
+string(10) "2015-04-15"
+["end_date"]=>
+string(10) "2015-07-15"
+["status"]=>
+string(1) "1"
+["remove"]=>
+string(6) "Remove"
+}
+}
+["add"]=>
+string(8) "Add more"
+}
+}
+["submit"]=>
+string(4) "Save"
+["form_build_id"]=>
+string(48) "form-FVRFfvSldtrE9Wf3PrcX8OkY7_9cAf6p4tfVSlhqSBs"
+["form_token"]=>
+string(43) "9HHBc9Zqi0zpJjiERAo0tlTO8ePixMiGbmGVUxFeevI"
+["form_id"]=>
+string(15) "sipi_clients_form"
+["op"]=>
+string(4) "Save"
+ */

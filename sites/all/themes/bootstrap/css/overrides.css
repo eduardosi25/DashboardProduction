@@ -17,3 +17,17 @@ fieldset #edit-sipi-user-client {
     float:none;
   }
 }
+#invent-fieldset-wrapper .date-padding {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+.sipi-client-invent-fieldset{
+  float:left;
+  width:45%;
+  margin:10px;
+}
+#invent-fieldset-wrapper-addmore{
+  float:none;
+  clear:both;
+}
