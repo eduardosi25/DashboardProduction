@@ -23,7 +23,7 @@ function get_cms_admin_paths(){
     'batch',
     'batch*',
     'sipi',
-    'play',
+    'play/feeds/*',
     'jedi',
     'feeds',
   );
@@ -37,7 +37,6 @@ function get_frontend_paths(){
     $paths=array(
       'web',
       'web/*',
-      'play/feeds/*',
     );
     $paths=implode("\n",$paths);
     return drupal_match_path($_GET["q"],$paths);
