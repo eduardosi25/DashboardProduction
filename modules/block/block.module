@@ -1023,7 +1023,7 @@ function template_preprocess_block(&$variables) {
 
   $variables['theme_hook_suggestions'][] = 'block__' . $variables['block']->region;
   $variables['theme_hook_suggestions'][] = 'block__' . $variables['block']->module;
-  // Hyphens (-) and underscores (_) play a special role in theme suggestions.
+  // Hyphens (-) and underscores (_) invent.play a special role in theme suggestions.
   // Theme suggestions should only contain underscores, because within
   // drupal_find_theme_templates(), underscores are converted to hyphens to
   // match template file names, and then converted back to underscores to match

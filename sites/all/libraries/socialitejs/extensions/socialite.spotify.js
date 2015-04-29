@@ -6,7 +6,7 @@
  */
 (function(window, document, Socialite, undefined)
 {
-    // https://developer.spotify.com/technologies/spotify-play-button/
+    // https://developer.spotify.com/technologies/spotify-invent.play-button/
 
     Socialite.network('spotify');
 

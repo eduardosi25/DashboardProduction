@@ -1,0 +1,74 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function play_permission() {
+  $permissions['administer play settings'] = array(
+    'title' => t('Administer play settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function play_help($path, $arg) {
+  if ($path == 'admin/help#play') {
+    return t('Módulo para configuración de play');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function play_menu() {
+  $items=array();
+  
+  $items['admin/config/system/play'] = array(
+    'title'            => t('play settings'),
+    'description'      => t('Configure settings for play'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('play_admin_settings_form'),
+    'access arguments' => array('administer play settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'play.admin.inc',
+  );
+  return $items;
+}
+
+function play_init(){
+  // check if admin or moderator
+  if(user_access('administer')) {
+    return;
+  }
+  $statusplay=variable_get('play_status',FALSE);
+  if(arg(0)=='node' && $statusplay){
+    $node=node_load(arg(1));
+    if($node->type=='article'){
+      $wrapperplay=variable_get('play_wrapper','play-wrapper');
+      $debugModeplay=variable_get('play_debug',FALSE);
+      if($debugModeplay){
+        //Debug mode
+        $footerJS='var zflag_parent="'.$wrapperplay.'";
+var zflag_nid="2264";
+var zflag_cid="1534";
+var zflag_sid="0";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.play.com/";
+var zflag_width="1";
+var zflag_height="1";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://c1.play.com/jsc/c1/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }else{
+        $footerJS='var zflag_parent="'.$wrapperplay.'";
+var zflag_nid="2870";
+var zflag_cid="1";
+var zflag_sid="1";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.play.com/";
+var zflag_width="1";
+var zflag_height="1";
+var zflag_bchan="2";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://e2.play.com/jsc/e2/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }
+      drupal_add_css(drupal_get_path('module', 'play').'/play.css');
+    }
+  }
+}

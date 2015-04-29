@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Installation file for Play Feeds Integration.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function play_feeds_install() {
+  variable_set('play_feeds_status',FALSE);
+  variable_set('play_feeds_debug',FALSE);
+  variable_set('play_feeds_wrapper','play-web');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function play_feeds_uninstall() {
+  #Delete all variables
+  variable_del('play_feeds_status');
+  variable_del('play_feeds_debug');
+  variable_del('play_feeds_wrapper');
+}

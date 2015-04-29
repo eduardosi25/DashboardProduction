@@ -1,0 +1,74 @@
+<?php
+/**
+ * Implements hook_permisson().
+ */
+function play_feeds_permission() {
+  $permissions['administer play_feeds settings'] = array(
+    'title' => t('Administer play_feeds settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+function play_feeds_help($path, $arg) {
+  if ($path == 'admin/help#play_feeds') {
+    return t('Módulo para configuración de play_feeds');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function play_feeds_menu() {
+  $items=array();
+  
+  $items['admin/config/system/play_feeds'] = array(
+    'title'            => t('play_feeds settings'),
+    'description'      => t('Configure settings for play_feeds'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('play_feeds_admin_settings_form'),
+    'access arguments' => array('administer play_feeds settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'play_feeds.admin.inc',
+  );
+  return $items;
+}
+
+function play_feeds_init(){
+  // check if admin or moderator
+  if(user_access('administer')) {
+    return;
+  }
+  $statusplay_feeds=variable_get('play_feeds_status',FALSE);
+  if(arg(0)=='node' && $statusplay_feeds){
+    $node=node_load(arg(1));
+    if($node->type=='article'){
+      $wrapperplay_feeds=variable_get('play_feeds_wrapper','play_feeds-wrapper');
+      $debugModeplay_feeds=variable_get('play_feeds_debug',FALSE);
+      if($debugModeplay_feeds){
+        //Debug mode
+        $footerJS='var zflag_parent="'.$wrapperplay_feeds.'";
+var zflag_nid="2264";
+var zflag_cid="1534";
+var zflag_sid="0";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.play_feeds.com/";
+var zflag_width="1";
+var zflag_height="1";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://c1.play_feeds.com/jsc/c1/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }else{
+        $footerJS='var zflag_parent="'.$wrapperplay_feeds.'";
+var zflag_nid="2870";
+var zflag_cid="1";
+var zflag_sid="1";
+var zflag_sz="85";
+var zflag_vast_domain="http://xp1.play_feeds.com/";
+var zflag_width="1";
+var zflag_height="1";
+var zflag_bchan="2";';
+        drupal_add_js($footerJS, array('type' => 'inline', 'scope' => 'footer', 'weight' => 98));
+        drupal_add_js('http://e2.play_feeds.com/jsc/e2/frd.js', array('type' => 'external', 'scope' => 'footer', 'weight' => 99));
+      }
+      drupal_add_css(drupal_get_path('module', 'play_feeds').'/play_feeds.css');
+    }
+  }
+}

@@ -1754,7 +1754,7 @@ class FieldFormTestCase extends FieldTestCase {
     $this->assertNoField("{$this->field_name}[$langcode][2][value]", 'No extraneous widget is displayed');
     // TODO : check that non-field inpurs are preserved ('title')...
 
-    // Yet another time so that we can play with more values -> 3 widgets.
+    // Yet another time so that we can invent.play with more values -> 3 widgets.
     $this->drupalPost(NULL, array(), t('Add another item'));
 
     // Prepare values and weights.

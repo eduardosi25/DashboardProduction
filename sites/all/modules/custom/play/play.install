@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Installation file for Play Integration.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function play_install() {
+  variable_set('play_status',FALSE);
+  variable_set('play_debug',FALSE);
+  variable_set('play_wrapper','play-web');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function play_uninstall() {
+  #Delete all variables
+  variable_del('play_status');
+  variable_del('play_debug');
+  variable_del('play_wrapper');
+}

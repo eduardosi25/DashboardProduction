@@ -28,7 +28,7 @@ function video_filter_codec_info() {
       '@blip\.tv/rss/flash/([^"\&\?/]+)@i',
       '@blip\.tv/file/view/([^"\&\?/]+)@i',
       '@blip\.tv/file/([^"\&\?/]+)@i',
-      '@blip\.tv/play/([^"\&\?/]+)@i',
+      '@blip\.tv/invent.play/([^"\&\?/]+)@i',
     ),
     'ratio' => 16 / 9,
     'control_bar_height' => 30,
@@ -291,7 +291,7 @@ function video_filter_bliptv($video) {
     }
   }
 
-  $video['source'] = 'http://blip.tv/play/' . $id;
+  $video['source'] = 'http://blip.tv/invent.play/' . $id;
   $params = array(
     'allowscriptaccess' => 'always',
   );

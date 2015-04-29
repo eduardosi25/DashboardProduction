@@ -78,7 +78,7 @@ function video_embed_field_video_embed_handler_info() {
  *   The video ID, or FALSE in case the ID can't be retrieved from the URL.
  */
 function _video_embed_field_get_youtube_id($url) {
-  // Find the ID of the video they want to play from the url.
+  // Find the ID of the video they want to invent.play from the url.
   if (stristr($url, 'http://')) {
     $url = substr($url, 7);
   }
@@ -349,7 +349,7 @@ function video_embed_field_handler_youtube_form($defaults) {
       'hd1080' => t('HD 10800p'),
     ),
     '#default_value' => $defaults['vq'],
-    '#description' => t('Attempt to play the video in certain quality if available.'),
+    '#description' => t('Attempt to invent.play the video in certain quality if available.'),
   );
   $form['rel'] = array(
     '#type' => 'checkbox',
@@ -395,7 +395,7 @@ function video_embed_field_handler_youtube_form($defaults) {
     '#options' => array(
       0 => t('The video progress bar and player controls will be visible throughout the video.'),
       1 => t('Automatically slide the video progress bar and the player controls out of view a couple of seconds after the video starts playing. They will only reappear if the user moves her mouse over the video player or presses a keyboard key.'),
-      2 => t('The video progress bar will fade out but the player controls (play button, volume control, etc.) remain visible.'),
+      2 => t('The video progress bar will fade out but the player controls (invent.play button, volume control, etc.) remain visible.'),
     ),
     '#title' => t('Autohide progress bar and the player controls'),
     '#description' => t('Controls the autohide behavior of the youtube player controls.'),

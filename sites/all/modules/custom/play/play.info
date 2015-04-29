@@ -1,0 +1,10 @@
+name = "invent.PLAY Integration"
+description = "invent.PLAY Integration for Invent.mx"
+package = "invent.PLAY"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = play.module
+files[] = play.admin.inc
+files[] = play.install
+configure = admin/config/system/play

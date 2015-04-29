@@ -66,7 +66,7 @@ abstract class Swift
     /**
      * Configure autoloading using Swift Mailer.
      *
-     * This is designed to play nicely with other autoloaders.
+     * This is designed to invent.play nicely with other autoloaders.
      *
      * @param mixed $callable A valid PHP callable that will be called when autoloading the first Swift class
      */

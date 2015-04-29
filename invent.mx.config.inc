@@ -37,6 +37,7 @@ function get_frontend_paths(){
     $paths=array(
       'web',
       'web/*',
+      'play',
     );
     $paths=implode("\n",$paths);
     return drupal_match_path($_GET["q"],$paths);

@@ -1,0 +1,10 @@
+name = "invent.PLAY Feeds Integration"
+description = "invent.PLAY Feeds Integration for Invent.mx"
+package = "invent.PLAY"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = play_feeds.module
+files[] = play_feeds.admin.inc
+files[] = play_feeds.install
+configure = admin/config/system/play/feeds
