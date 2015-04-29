@@ -13,7 +13,7 @@
 $channel=taxonomy_term_load(arg(2));
 ?>
 <?php print "<?xml"; ?> version="1.0" encoding="utf-8" <?php print "?>\n"; ?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:ext="http://ooyala.com/syndication/ext/" xmlns:mediasl="http://www.slide.com/funspace/developer/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:boxee="http://boxee.tv/spec/rss/">
+<rss version="2.0">
   <channel>
     <title><?php print $channel->name; ?></title>
     <link><?php print $channel->field_link['und'][0]['value']; ?></link>
