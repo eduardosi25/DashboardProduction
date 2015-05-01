@@ -789,6 +789,8 @@ function ajax_image_update_callback($form, &$form_state){
   }
   return $form['sipi_client']['client']["logo"];
 }
+
+
 /**
  * Implements get_image_style()
  */
