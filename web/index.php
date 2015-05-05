@@ -73,8 +73,10 @@
 
         <footer>
             <div class="footer-content-site-invent">
-                <div>
+                <div class="center wrapper-ico-site">
                     <div class="inline-block footer-site-invent"></div>
+                    <div class="inline-block footer-social-responsable"></div>
+                    <div class="inline-block footer-group-imagen"></div>
                 </div>
                 <div class="inline-block aviso-privacidad">
                     <a href="/#aviso-de-privacidad">Aviso de privacidad</a>

@@ -791,7 +791,7 @@ footer {
         vertical-align: middle;
     }
     .footer-content-site-invent {        
-        margin: 0 auto;        
+        margin: 0 auto;
         max-width: 1024px;
         text-align: center;
         @include measures(93.5%,auto);
@@ -807,11 +807,30 @@ footer {
                 @extend .Hind-Semibold;
             }            
         }
-        .footer-site-invent {
-            margin: 0 auto;
-            @extend .sprite-invent;
-            @include img-position(262px, 49px,-1278px,-99px);
-        }
+        .wrapper-ico-site {
+            & > div {
+                vertical-align: middle;                
+            }
+            margin-bottom: 7px;
+            .footer-site-invent {
+                margin: 0 auto;
+                @extend .sprite-invent;
+                @include img-position(146px, 43px,-1277px,-98px);
+            }
+            .footer-social-responsable {
+                margin: 0 auto;
+                //logo_esr_invent.png
+                margin: 0 3%;
+                background-repeat: no-repeat;
+                @include img-position(111px, 36px,0,0);
+                background-image: url("../img/sprites/logo_esr_invent.png");
+            }
+            .footer-group-imagen {
+                margin: 0 auto;
+                @extend .sprite-invent;
+                @include img-position(106px, 52px,-1435px,-97px);
+            }
+        }        
     }
     p {
         color: #4C4E4D;
