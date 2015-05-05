@@ -36,5 +36,4 @@ $item_elements=empty($item_elements) ? '' : format_xml_elements($item_elements);
     <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
     <media:thumbnail url="<?php image_style_url('medium',$node->field_cover['und'][0]['uri']);?>"></media:thumbnail>
     <media:content url="<?php print($node->field_content['und'][0]['value']);?>" medium="video" expression="full" lang="es"/>
-    <ext:originalFilename><![CDATA[<?php print(md5($node->field_content['und'][0]['value']));?>]]></ext:originalFilename>
   </item>
