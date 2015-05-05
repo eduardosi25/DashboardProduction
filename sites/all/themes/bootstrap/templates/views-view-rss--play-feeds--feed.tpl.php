@@ -16,7 +16,7 @@ $channel=taxonomy_term_load(arg(2));
 <rss version="2.0">
   <channel>
     <title><?php print $channel->name; ?></title>
-    <link><?php print $channel->field_link['und'][0]['value']; ?></link>
+    <link><?php print isset($channel->field_link['und'][0]['value']) && !empty($channel->field_link['und'][0]['value']) ? $channel->field_link['und'][0]['value'] : ''; ?></link>
     <description><?php print strip_tags($channel->description); ?></description>
     <language>es</language>
     <?php print $channel_elements; ?>
