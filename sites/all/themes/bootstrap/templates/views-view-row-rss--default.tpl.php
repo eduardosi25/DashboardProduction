@@ -17,6 +17,7 @@ unset($channel,$site);
 $item_elements=array();
 foreach($row->elements as $element){
   if($element['key']=='dc:creator'){
+    $element['key']=='author'
     $element['value']=$siteName;
   }elseif($element['key']=='guid'){
     $element['value']=md5($siteName.'|'.$element['value']);
