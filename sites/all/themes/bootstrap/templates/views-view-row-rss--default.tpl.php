@@ -20,6 +20,8 @@ foreach($row->elements as $element){
     $element['value']=$siteName;
   }elseif($element['key']=='guid'){
     $element['value']=md5($siteName.'|'.$element['value']);
+  }elseif($element['key']=='pubDate'){
+    $element['key']=='dc:created';
   }
   $item_elements[]=$element;
 }
