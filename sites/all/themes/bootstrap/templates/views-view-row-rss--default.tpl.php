@@ -29,10 +29,10 @@ $item_elements=empty($item_elements) ? '' : format_xml_elements($item_elements);
   <item>
     <title><?php print $title; ?></title>
     <link><?php print $link; ?></link>
-    <description><?php print $description; ?></description>
+    <description><![CDATA[<?php print $description; ?>]]></description>
     <?php print $item_elements; ?>
     <media:title><?php print($node->title);?></media:title>
-    <media:description><?php print($node->body['und'][0]['value']);?></media:description>
+    <media:description><![CDATA[<?php print($node->body['und'][0]['value']);?>]]></media:description>
     <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
     <media:thumbnail url="<?php image_style_url('medium',$node->field_cover['und'][0]['uri']);?>"></media:thumbnail>
     <media:content url="<?php print($node->field_content['und'][0]['value']);?>" medium="video" expression="full" lang="es"/>
