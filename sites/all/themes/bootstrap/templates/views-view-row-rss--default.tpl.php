@@ -33,8 +33,8 @@ $thumbnail=isset($node->field_cover['und'][0]['uri']) && !empty($node->field_cov
     <description><![CDATA[<?php print $description; ?>]]></description>
     <?php print $item_elements; ?>
     <media:title><?php print($node->title);?></media:title>
-    <media:description><![CDATA[<?php print $description;?>]]></media:description>
     <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
-    <media:thumbnail url="<?php print $thumbnail;?>"></media:thumbnail>
-    <media:content url="<?php print($node->field_content['und'][0]['value']);?>" medium="video" expression="full" lang="es"/>
+    <media:content url="<?php print($node->field_content['und'][0]['value']);?>" medium="video" expression="full" lang="es">
+      <media:thumbnail url="<?php print $thumbnail;?>"/>
+    </media:content>
   </item>
