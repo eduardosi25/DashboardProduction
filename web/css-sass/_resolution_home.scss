@@ -283,7 +283,8 @@
             span.site-atraccion360 {
                 margin: 0 auto 23px;
                 @extend .invent-mobile-sprite;
-                @include img-position(116px, 30px, -85px, -926px);
+                //@include img-position(116px, 30px, -85px, -926px);
+                @include img-position(161px, 31px, -76px, -925px);
             }
             span.site-adrenalina360 {
                 @extend .invent-mobile-sprite;
@@ -959,7 +960,8 @@
         }
         .site-atraccion360 {
             @extend .invent-mobile-sprite;
-            @include img-position(116px, 30px, -85px, -926px);
+            @include img-position(161px, 31px, -76px, -925px);
+            //@include img-position(116px, 30px, -85px, -926px);
             //@include img-position(127px,31px,-89px,-1962px);
         }
         .site-adrenalina360 {
