@@ -6,15 +6,74 @@ function sipi_client(){
 function sipi_client_add(){
   return drupal_get_form('sipi_clients_form');
 }
+function sipi_client_view($client){
+  return module_invoke('sipi', 'block_view', 'sipi_client_detail');
+}
+function sipi_client_cancel($client){
+  return drupal_get_form('sipi_client_cancel_account_form',$client);
+}
 function sipi_client_edit($client){
   return drupal_get_form('sipi_clients_form',$client);
 }
-function sipi_client_delete($client){
-  return drupal_get_form('sipi_clients_form',$client);
+/**
+ * Form builder; confirm form for cancelling client account.
+ */
+function sipi_client_cancel_account_form($form, &$form_state, $client=NULL) {
+  global $user;
+
+  $admin = user_access('sipi admin clients');
+  // If we aren't admin but already logged on, go to the dashboard
+  if (!$admin) {
+    drupal_goto('sipi');
+  }
+  $form=array();
+  $form['sipi_client'] = array(
+    '#type'  => 'fieldset',
+    '#title' => t('Are you sure you want to cancel the account %name?', array('%name' => $client->name)),
+    '#tree'  => TRUE,
+  );
+  $form['sipi_client']['client'] = array(
+    '#type' => 'value',
+    '#value' => $client
+  );
+  $form['sipi_client']['cancel'] = array(
+    '#markup' => l(t('Cancel'), 'sipi/client/'.$client->cid.'/view', array('attributes' => array('style'=>'display:inline-block;float:left;padding:8px;'))),
+  );
+  $form['sipi_client']['submit'] = array(
+    '#type'   => 'submit',
+    '#value'  => t('Delete'),
+  );
+  return $form;
 }
-function sipi_client_view($client){
-  return drupal_get_form('sipi_clients_form',$client);
+
+/**
+ * Submit handler for the account cancellation confirm form.
+ *
+ * @see sipi_client_cancel_account_form()
+ * @see sipi_client_cancel_account_form_submit()
+ */
+function sipi_client_cancel_account_form_submit($form, &$form_state) {
+  global $user;
+  $client = $form_state['values']['sipi_client']['client'];
+  if (user_access('sipi admin clients')) {
+    $transaction = db_transaction();
+    try {
+      db_delete('sipi_plans_clients')
+        ->condition('cid', $client->cid, '=')
+        ->execute();
+      db_delete('sipi_clients')
+        ->condition('cid', $client->cid, '=')
+        ->execute();
+      drupal_set_message($client->name.' - client account deleted!','error');
+    } catch (Exception $e) {
+      $transaction->rollback();
+      watchdog_exception('SIPI Client Cancel Account', $e);
+      throw $e;
+    }
+    $form_state['redirect'] = 'sipi/client';
+  }
 }
+
 
 /**
  * Implements hook_form().
@@ -567,13 +626,38 @@ function get_sipi_plans(){
   }
   return null;
 }
+function get_tids_sites($mode='array'){
+  global $sipi_variables;
+  $items=array();
+  foreach($sipi_variables['sites'] as $key => $value){
+    if(isset($value) && !empty($value)){
+      $items[]=intval($value);
+    }
+  }
+  if($mode=='string'){
+    return implode(',',$items);
+  }
+  if($mode=='object'){
+    return (object)$items;
+  }
+  return $items;
+}
 
 function get_sipi_sites(){
+  $sites=get_tids_sites('string');
+
+  $query="select td.tid, td.name
+          from taxonomy_term_data td
+          where td.vid=1 and td.tid in ($sites)
+          order by td.weight ASC";
+  $result=db_query($query);
+  /**
   $query=db_select('taxonomy_term_data','td');
   $query->fields('td', array('tid','name'));
   $query->condition('td.vid',1,'=');
   $query->orderBy('td.vid','ASC');
   $result=$query->execute();
+  */
   if($result){
     $items=array(
       0 => t('Select one Site for this client'),
@@ -651,7 +735,7 @@ function sipi_client_list(){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
-  $query->limit(20);
+  $query->limit(10);
   $query->fields('c', array('cid','name'));
   $query->addField('pc', 'status','status');
   $query->addField('pc', 'start_date','start_date');
@@ -666,7 +750,7 @@ function sipi_client_list(){
   foreach ($result as $row) {
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/edit"),
+      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -675,7 +759,8 @@ function sipi_client_list(){
       'remain contents',
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Edit'),"sipi/client/$row->cid/edit",array(),'destination=sipi/client') .' <br> '. l(t('Delete'),"sipi/client/$row->cid/delete",array(),'destination=sipi/client'),
+      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
+      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -955,3 +1040,99 @@ string(15) "sipi_clients_form"
 ["op"]=>
 string(4) "Save"
  */
+
+function sipi_client_detail($client=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $header = array(
+    array(
+      'data' => t('Cliente'),
+      'field' => 'c.name',
+    ),
+    array(
+      'data' => t('Ejecutivo de atención'),
+      'field' => 'manager',
+    ),
+    array(
+      'data' => t('Sitio'),
+      'field' => 'site',
+    ),
+    array(
+      'data' => t('Plan'),
+      'field' => 'plan',
+    ),
+    array(
+      'data' => t('Estatus'),
+      'field' => 'pc.status'
+    ),
+    array(
+      'data' => t('Contenidos Publicados'),
+    ),
+    array(
+      'data' => t('Contenidos Restantes'),
+    ),
+    array(
+      'data' => t('Fecha de inicio'),
+      'field' => 'pc.start_date'
+    ),
+    array(
+      'data' => t('Fecha de término'),
+      'field' => 'pc.end_date'
+    ),
+    array(
+      'data' => t('Acciones'),
+    ),
+  );
+
+  $query = db_select('sipi_clients', 'c')->extend('PagerDefault');
+  $query->join('sipi_plans_clients','pc','pc.cid=c.cid');
+  $query->join('sipi_plans','p','p.pid=pc.pid');
+  $query->join('users','u','u.uid=pc.uid');
+  $query->join('taxonomy_term_data','td','td.tid=pc.site');
+  $query->limit(10);
+  $query->fields('c', array('cid','name'));
+  $query->addField('pc', 'status','status');
+  $query->addField('pc', 'start_date','start_date');
+  $query->addField('pc', 'end_date','end_date');
+  $query->addField('p', 'name','plan');
+  $query->addField('u', 'name','manager');
+  $query->addField('td', 'name', 'site');
+  $query->condition('pc.cid',$client,'=');
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
+  foreach ($result as $row) {
+    $rows[] = array(
+      $row->cid,
+      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
+      $row->manager,
+      $row->site,
+      $row->plan,
+      ($row->status==0 ? t('Disabled') : ($row->status==1 ? t('Enabled') : 'N/D')),
+      'contents published',
+      'remain contents',
+      date('Y-m-d',$row->start_date),
+      date('Y-m-d',$row->end_date),
+      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
+      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
+    );
+  }
+  if (count($rows) && ($pager = theme('pager'))) {
+    $rows[] = array(
+      array(
+        'data' => $pager,
+        'colspan' => 11,
+      ),
+    );
+  }
+  $build['sipi_client_list'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('There are no clients.'),
+  );
+  return $build;
+
+}
