@@ -1,8 +1,6 @@
 <?php
 global $sipi_variables;
 $sipi_variables=sipi_get_variables();
-
-
 /**
  * Implements hook_permission().
  */
@@ -75,7 +73,7 @@ function sipi_menu() {
   $items=array();
   #SIPI MAIN MENU
   $items['sipi'] = array(
-    'title'            => 'SIPI',
+    'title'            => 'Sistema Integral de Publicación en Internet',
     'description'      => 'Sistema Integral de Publicación en Internet',
     'page callback'    => 'sipi_login',
     'access callback'  => TRUE,
@@ -101,7 +99,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/add'] = array(
-    'title'            => t('Users'),
+    'title'            => t('Clients'),
     'page callback'    => 'sipi_client_add',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
@@ -109,7 +107,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/edit'] = array(
-    'title'            => t('User Edit'),
+    'title'            => t('Client Edit'),
     'page callback'    => 'sipi_client_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -117,16 +115,18 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/%sipi_client/delete'] = array(
-    'title'            => t('User Delete'),
-    'page callback'    => 'sipi_client_delete',
+  $items['sipi/client/%sipi_client/cancel'] = array(
+    'title'            => t('Client cancel account'),
+    'page callback'    => 'sipi_client_cancel',
     'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/user/%sipi_client/view'] = array(
-    'title'            => t('User View'),
+  $items['sipi/client/%sipi_client/view'] = array(
+    'title'            => t('Client Details'),
+    'description'      => 'Detalle de cliente',
     'page callback'    => 'sipi_client_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -247,15 +247,81 @@ function sipi_access($permission) {
   }
   return FALSE;
 }
-
-
 /**+
  * Implements hook_init().
  */
 function sipi_init(){
-
+  if(arg(0)=='sipi')
+    drupal_add_css(drupal_get_path('module','sipi').'/sipi.css');
 }
+/**
+ * Implements hook_block_info().
+ */
+function sipi_block_info() {
+  return array(
+    'sipi_client_login' => array(
+      'info'       => t('SIPI - Show User Logged'),
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages'      => "sipi\nsipi/*",
+    ),
+    'sipi_client_detail' => array(
+      'info'       => t('SIPI - Detail for Client'),
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages'      => "sipi\nsipi/*",
+    ),
+  );
+}
+/**
+ * Implements hook_block_view().
+ */
+function sipi_block_view($delta) {
+  global $user;
+  if($user->uid<=0)
+    return false;
 
+  switch ($delta) {
+    case 'sipi_client_login' :
+      $title = t('Show logged user');
+      $content = array(
+        '#data' => $user,
+        '#theme' => 'sipi_client_login',
+      );
+    break;
+    case 'sipi_client_detail':
+      $client=sipi_client_load(arg(2));
+      $title = t('Show logged user');
+      $content = array(
+        '#data' => $client,
+        '#theme' => 'sipi_client_detail',
+      );
+    break;
+  }
+  return array(
+    'subject' => $title,
+    'content' => $content,
+  );
+}
+/**
+ * Implements hook_theme
+ */
+function sipi_theme() {
+  return array(
+    'sipi_client_login' => array(
+      'variables' => array(
+        'data' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'templates/sipi_client_login',
+    ),
+    'sipi_client_detail' => array(
+      'variables' => array(
+        'data' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'templates/sipi_client_detail',
+    ),
+  );
+}
 /**
  * Returns variables for sipi implementation
  * @return array
@@ -277,7 +343,6 @@ function sipi_client_load($sipi_client){
   }
   return null;
 }
-
 /**
  * Build plans for one client with CID
  * @param $sipi_client
@@ -297,7 +362,6 @@ function sipi_client_build_plans_client(&$sipi_client){
     }
   }
 }
-
 /**
  * @param $plan
  * @return null
@@ -312,7 +376,11 @@ function sipi_plan_load($plan){
   }
   return NULL;
 }
-
+/**
+ * Set logs
+ * @param string $message
+ * @param string $type
+ */
 function sipi_logging($message='Done',$type='info'){
   global $sipi_variables;
   if($sipi_variables['debug']){
@@ -333,7 +401,6 @@ function sipi_logging($message='Done',$type='info'){
     watchdog('sipi', $message, array(), $type);
   }
 }
-
 /**
  * Returns variables for sipi implementation
  * @return array
