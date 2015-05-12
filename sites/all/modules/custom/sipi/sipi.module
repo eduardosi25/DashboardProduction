@@ -1,6 +1,7 @@
 <?php
 global $sipi_variables;
 $sipi_variables=sipi_get_variables();
+
 /**
  * Implements hook_permission().
  */
@@ -410,14 +411,213 @@ function sipi_get_variables() {
   if (!isset($variables)) {
     $settings=variable_get('sipi_settings',NULL);
     $variables=array(
-      'status' => variable_get('sipi_status',FALSE),
-      'debug'  => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
-      'token'  => isset($settings['token']) && !empty($settings['token']) ? $settings['token'] : NULL,
-      'sites'  => isset($settings['sites']) && !empty($settings['sites']) ? $settings['sites'] : NULL,
+      'status'   => variable_get('sipi_status',FALSE),
+      'debug'    => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
+      'protocol' => isset($settings['protocol']) && !empty($settings['protocol']) ? $settings['protocol'] : 'http',
+      'domain'   => isset($settings['domain']) && !empty($settings['domain']) ? $settings['domain'] : 'api.inventmx.com',
+      'version'  => isset($settings['version']) && !empty($settings['version']) ? $settings['version'] : 'v1',
+      'sites'    => isset($settings['sites']) && !empty($settings['sites']) ? $settings['sites'] : NULL,
+      'users'    => isset($settings['users']) && !empty($settings['users']) ? $settings['users'] : NULL,
+      'contents' => isset($settings['contents']) && !empty($settings['contents']) ? $settings['contents'] : NULL,
+      'format'   => isset($settings['format']) && !empty($settings['format']) ? $settings['format'] : 'json',
+      'token'    => isset($settings['token']) && !empty($settings['token']) ? $settings['token'] : NULL,
     );
   }
   if (!$variables['token']) {
     sipi_logging('Missing API token access','warning');
   }
   return $variables;
+}
+
+function sipi_run_cronlt(){
+  //Search by name
+  $siteName='gamedots';
+  $query=array(
+    'limit'  => 1,
+    'name'   => 'Gameloft',
+    //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
+    'sort'   => 'created:DESC',
+  );
+
+  //Search for new users
+  /*
+  $query=array(
+    'limit'  => 50,
+    'fields' => 'id|name|mail',
+    'sort'   => 'created:DESC',
+  );
+  */
+
+  //Search contents for every users
+  /*
+  $query=array(
+    'limit'  => 1,
+    'name'   => 'Gameloft',
+    'fields' => 'id|name|nodes',
+    'sort'   => 'created:DESC',
+  );
+  */
+  sipi_get_api_users($siteName,$query);
+}
+
+function sipi_get_api_users($siteName='excelsior', $query=array()){
+  $apiRequest=get_api_url_request($siteName, 'users', $query);
+  $result=_do_api_request($apiRequest);
+  if($result){
+    $result=json_decode($result);
+    if($result->response->status=='200'){
+      $result=sipi_process_users_result($result->data);
+    }else{
+      $result=array();
+    }
+  }else{
+    $result=array();
+  }
+  return $result;
+}
+
+function sipi_process_users_result($data){
+  if(!isset($data) || empty($data)){
+    return null;
+  }
+  foreach($data as $item){
+    var_dump($item);
+  }
+}
+
+function sipi_search_client_by_email($email){
+  $id=0;
+  $query="select cid from sipi_clients where mail='$email'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=$row->cid;
+    }
+  }
+  return $id;
+}
+function sipi_search_client_by_id($id){
+  $id=0;
+  $query="select cid from sipi_clients where cid='$id'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=$row->cid;
+    }
+  }
+  return $id;
+}
+
+/**
+ * SIPI REQUESTS
+ * [API_PROTOCOL]://[API_DOMAIN]/[API_VERSION]/[API_SITENAME]/[API_SIPIUSERS|API_SIPICONTENTS].[API_FORMAT]/[API_TOKEN]
+ *
+ * SIPI USERS
+ * http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a
+ *
+ * SIPI CONTENTS
+ * http://api.inventmx.com/v1/gamedots/sipi-analytics.json/3a5877fc16b6fcbf8eedbe55d091938a
+ *
+ * Filter by Name:
+ * http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a?limit=1&name=Gameloft
+ * http://api.inventmx.com/v1/gamedots/sipi-analytics.json/3a5877fc16b6fcbf8eedbe55d091938a?limit=1&name=Gameloft
+ *
+ * @param $siteName
+ * @param null $method
+ * @param array $query
+ * @return null|string
+ */
+function get_api_url_request($siteName,$method=null,$query=array()){
+  global $sipi_variables;
+
+  if(!isset($sipi_variables) || empty($sipi_variables))
+    return null;
+
+  #Create URL
+  if(isset($sipi_variables['protocol']) && !empty($sipi_variables['protocol']))
+    $sipi_variables['protocol'].='://';
+  if(isset($sipi_variables['domain']) && !empty($sipi_variables['domain']))
+    $sipi_variables['domain'].='/';
+  if(isset($sipi_variables['version']) && !empty($sipi_variables['version']))
+    $sipi_variables['version'].='/';
+  if(isset($siteName) && !empty($siteName))
+    $siteName.='/';
+  if(isset($sipi_variables['format']) && !empty($sipi_variables['format']))
+    $sipi_variables['format']='.'.$sipi_variables['format'].'/';
+
+  $path=$sipi_variables['protocol'].$sipi_variables['domain'].$sipi_variables['version'].$siteName.$sipi_variables[$method].$sipi_variables['format'].$sipi_variables['token'];
+
+  if(isset($query) && is_array($query) && count($query)>0)
+    $path .= (strpos($path, '?') !== FALSE ? '&' : '?') . drupal_http_build_query($query);
+
+  return $path;
+}
+
+/**
+ * @param null $url
+ * @param null $ref_url
+ * @param bool $convert
+ * @param string $format
+ * @param bool $bot
+ * @param string $method
+ * @param array $options
+ * @return mixed|null|string
+ */
+function _do_api_request($url=null){
+  if(!$url)
+    return $url;
+
+  $HTTP_RESPONSE = &drupal_static(__FUNCTION__);
+  if (!isset($HTTP_RESPONSE)) {
+    //Capture everything on buffers
+    ob_start();
+    //Start cURL resource
+    $cURL = @curl_init();
+    @curl_setopt($cURL,CURLOPT_HTTPGET,1);
+    //Define basic options
+    @curl_setopt($cURL, CURLOPT_URL, $url);
+    //Custom User-Agent
+    @curl_setopt($cURL, CURLOPT_USERAGENT, "Invent User-Agent/".$_SERVER['SERVER_NAME']."/invent.SIPI/".date('Ymd'));
+    @curl_setopt($cURL, CURLOPT_AUTOREFERER, TRUE);
+    //Headers & other options
+    //@curl_setopt($cURL, CURLOPT_HTTPHEADER, shadow_headers());
+    @curl_setopt($cURL, CURLOPT_RETURNTRANSFER, TRUE);
+    @curl_setopt($cURL, CURLOPT_ENCODING, 'text/html; charset=utf-8');
+    @curl_setopt($cURL, CURLOPT_FOLLOWLOCATION, TRUE);
+    @curl_setopt($cURL, CURLOPT_CONNECTTIMEOUT, 120);
+    @curl_setopt($cURL, CURLOPT_TIMEOUT, 120);
+    @curl_setopt($cURL, CURLOPT_MAXREDIRS, 10);
+    $HTTP_RESPONSE = @curl_exec($cURL);
+    $cURL_ERRNO = @curl_errno($cURL);
+    $cURL_ERROR = @curl_error($cURL);
+    $header=curl_getinfo($cURL);
+
+    //Error handling
+    if($cURL_ERROR)
+      return $cURL_ERRNO.' | '.$cURL_ERROR;
+  }
+  return $HTTP_RESPONSE;
+
+  //Free buffers
+  ab_end_clean();
+  curl_close($cURL);
+  unset($cURL);
+}
+
+/**
+ * Return shadow headers for cURL transactions
+ * @param void
+ * @return array Array with options headers for customize cURL transactions
+ */
+function shadow_headers(){
+  $header=array();
+  $header[0]  = "Accept: text/xml,application/xml,application/xhtml+xml,";
+  $header[0] .= "text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+  $header[] = "Cache-Control: max-age=3600";
+  $header[] = "Connection: keep-alive";
+  $header[] = "Keep-Alive: 300";
+  $header[] = "Accept-Charset: utf-8;";
+  $header[] = "Accept-Language: en-us,es;q=0.5";
+  $header[] = "Pragma: "; // browsers keep this blank.
+  return $header;
 }

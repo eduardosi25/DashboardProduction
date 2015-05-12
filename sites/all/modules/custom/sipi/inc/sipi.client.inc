@@ -283,7 +283,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     $form['sipi_client']['invent']['data'][$i]['uid'] = array(
       '#title' => t('Manager'),
       '#type' => 'select',
-      '#options' => get_sipi_client_manager(array('sipi_manager')),
+      '#options' => get_sipi_client_manager(array('sipi_executive')),
       '#default_value' => isset($client->plans[$i]->uid) && !empty($client->plans[$i]->uid) ? intval($client->plans[$i]->uid) : '',
       '#description' => t('Manager'),
       '#required' => TRUE,
@@ -593,7 +593,7 @@ function sipi_plans_clients_delete_op($cid,$plans){
   }
 }
 
-function get_sipi_client_manager($roles=array('sipi_manager')){
+function get_sipi_client_manager($roles=array('sipi_executive')){
   $query=db_select('users','u');
   $query->fields('u', array('uid','name','mail'));
   $query->join('users_roles','ur','ur.uid=u.uid');

@@ -13,25 +13,27 @@ function sipi_login(){
 function sipi_dashboard(){
   global $user;
 
+  $dashboard=null;
+
   // Check if the user has the 'sipi_god' role.
   if (in_array('sipi_god', $user->roles)) {
-    #$dashboard=sipi_expire_list('sipi_god');
+    $dashboard=sipi_expire_list('sipi_god');
   }
-  // Check if the user has the 'sipi_god' role.
+  // Check if the user has the 'sipi_director' role.
   if (in_array('sipi_director', $user->roles)) {
     $dashboard=sipi_expire_list('sipi_director');
   }
-  // Check if the user has the 'sipi_god' role.
+  // Check if the user has the 'sipi_manager' role.
   if (in_array('sipi_manager', $user->roles)) {
     $dashboard=sipi_expire_list('sipi_manager');
   }
-  // Check if the user has the 'sipi_god' role.
+  // Check if the user has the 'sipi_executive' role.
   if (in_array('sipi_executive', $user->roles)) {
     $dashboard=sipi_expire_list('sipi_executive');
   }
-  // Check if the user has the 'sipi_god' role.
+  // Check if the user has the 'sipi' role.
   if (in_array('sipi', $user->roles)) {
-    #$dashboard=sipi_expire_list();
+    $dashboard=sipi_expire_list();
   }
 
   return $dashboard;

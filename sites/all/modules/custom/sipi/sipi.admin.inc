@@ -21,6 +21,7 @@ function sipi_admin_settings_form($form_state) {
   );
   /**
    * Settings for SIPI
+   * @see http://[API_DOMAIN]/[API_VERSION]/[API_SITENAME]/[API_USERS/API_CONTENTS].[API_FORMAT]/[API_TOKEN]
    * @see http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a
    * @see http://api.inventmx.com/v1/gamedots/sipi-analytics.json/3a5877fc16b6fcbf8eedbe55d091938a
    * @see http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a?limit=1&name=Gameloft
@@ -40,18 +41,70 @@ function sipi_admin_settings_form($form_state) {
     '#default_value' => isset($settings['debug']) ? $settings['debug'] : FALSE,
     '#description' => t('Enabled debug mode'),
   );
-  $form['sipi']['sipi_settings']['token'] = array(
-    '#title' => t('Token Access API Invent'),
+  $form['sipi']['sipi_settings']['protocol'] = array(
+    '#title' => t('API Protocol'),
+    '#type' => 'select',
+    '#options' => array(
+      'none' => t('Select the protocol'),
+      'http' => 'HTTP',
+      'https' => 'HTTPS',
+    ),
+    '#default_value' => isset($settings['domain']) ? $settings['domain'] : NULL,
+  );
+  $form['sipi']['sipi_settings']['domain'] = array(
+    '#title' => t('API Domain'),
     '#type' => 'textfield',
-    '#default_value' => isset($settings['token']) ? $settings['token'] : '339fd1e0444ddbbd4d4528d8df161108',
-    '#size' => 150,
+    '#default_value' => isset($settings['domain']) ? $settings['domain'] : NULL,
+    '#size' => 30,
     '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['version'] = array(
+    '#title' => t('API Version'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['version']) ? $settings['version'] : NULL,
+    '#size' => 10,
+    '#maxlength' => 32,
   );
   $form['sipi']['sipi_settings']['sites'] = array(
     '#title' => t('Select the sites with SIPI Activated'),
     '#type' => 'checkboxes',
     '#options' => get_sites_options(),
     '#default_value' => get_checked_options($settings['sites']),
+  );
+  $form['sipi']['sipi_settings']['users'] = array(
+    '#title' => t('API Repo Users'),
+    '#description' => t('The repo name for query about SIPI Users'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['users']) ? $settings['users'] : NULL,
+    '#size' => 20,
+    '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['contents'] = array(
+    '#title' => t('API Repo COntents'),
+    '#description' => t('The repo name for query about SIPI Contents with Analytics'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['contents']) ? $settings['contents'] : NULL,
+    '#size' => 20,
+    '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['format'] = array(
+    '#title' => t('API Format'),
+    '#type' => 'select',
+    '#options' => array(
+      'none' => t('Select a format'),
+      'json'   => 'JSON',
+      'rss'    => 'RSS',
+      'jsonlt' => 'JSON Lite (MSN)',
+      'xml'    => 'XML Standard'
+    ),
+    '#default_value' => isset($settings['format']) ? $settings['format'] : NULL,
+  );
+  $form['sipi']['sipi_settings']['token'] = array(
+    '#title' => t('Token Access API Invent'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['token']) ? $settings['token'] : '339fd1e0444ddbbd4d4528d8df161108',
+    '#size' => 150,
+    '#maxlength' => 254,
   );
   return system_settings_form($form);
 }

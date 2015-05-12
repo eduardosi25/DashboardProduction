@@ -29,6 +29,12 @@ function sipi_uninstall() {
   if (db_table_exists('sipi_plans_clients')) {
     db_drop_table('sipi_plans_clients');
   }
+  if (db_table_exists('sipi_clients_invent_users')) {
+    db_drop_table('sipi_clients_invent_users');
+  }
+  if (db_table_exists('sipi_clients_invent_contents')) {
+    db_drop_table('sipi_clients_invent_contents');
+  }
   if (db_table_exists('sipi_reports')) {
     db_drop_table('sipi_reports');
   }
@@ -353,9 +359,252 @@ function sipi_schema(){
     ),
   );
 
+  $schema['sipi_clients_invent_users'] = array(
+    'fields' => array(
+      'iid' => array(
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'cid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Sipi Client ID',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Invent User ID',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Client Name between systems',
+      ),
+      'mail' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Client Name between systems',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Created Timestamp',
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Changed Timestamp',
+      ),
+      'access' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Access Timestamp',
+      ),
+      'login' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Login Timestamp',
+      ),
+      'sitename' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Site name on domain',
+      ),
+      'pageviews' => array(
+        'type' => 'bigint',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Pageviews',
+      ),
+      'nodes_published' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Nodes published',
+      ),
+      'last_published' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Last published Timestamp',
+      ),
+      'publish_date' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Publish date Timestamp',
+      ),
+      'last_update' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Last updateTimestamp',
+      ),
+    ),
+    'indexes' => array(
+      'sipi_clients_invent_users_iid' => array('iid'),
+      'sipi_clients_invent_users_ids' => array('iid','cid','uid'),
+      'sipi_clients_invent_users_date' => array('iid','created','changed'),
+    ),
+  );
+
+  $schema['sipi_clients_invent_contents'] = array(
+    'fields' => array(
+      'iid' => array(
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'cid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Sipi Client ID',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Invent User ID',
+      ),
+      'nid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Invent Node ID',
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Content title',
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Content type',
+      ),
+      'path' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Path',
+      ),
+      'pageviews' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Pageviews',
+      ),
+      'uniquePageviews' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'uniquePageviews',
+      ),
+      'fbshares' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'FB Shares',
+      ),
+      'tweets' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Tweets',
+      ),
+      'gpshares' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'GP Shares',
+      ),
+      'created' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Created Timestamp',
+      ),
+      'changed' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Changed Timestamp',
+      ),
+    ),
+    'indexes' => array(
+      'sipi_clients_invent_contents_iid' => array('iid'),
+      'sipi_clients_invent_contents_ids' => array('iid','cid','uid','nid'),
+      'sipi_clients_invent_contents_date' => array('iid','created','changed'),
+    ),
+  );
+
   $schema['sipi_reports'] = array(
     'fields' => array(
-      'sid' => array(
+      'cid' => array(
         'type' => 'int',
         'length' => 11,
         'unsigned' => TRUE,
@@ -388,8 +637,8 @@ function sipi_schema(){
       ),
     ),
     'indexes' => array(
-      'sipi_reports_sid' => array('sid'),
-      'sipi_reports_report' => array('sid','created','changed','report'),
+      'sipi_reports_cid' => array('cid'),
+      'sipi_reports_report' => array('cid','created','changed','report'),
     ),
   );
   return $schema;
