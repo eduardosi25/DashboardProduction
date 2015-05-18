@@ -434,11 +434,10 @@ function sipi_run_cronlt(){
   $siteName='gamedots';
   $query=array(
     'limit'  => 1,
-    'name'   => 'Gameloft',
+    'name'   => 'Electronic Arts',
     //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
     'sort'   => 'created:DESC',
   );
-
   //Search for new users
   /*
   $query=array(
@@ -447,19 +446,46 @@ function sipi_run_cronlt(){
     'sort'   => 'created:DESC',
   );
   */
+  $fields=sipi_get_api_users($siteName,$query);
+  $result=sipi_insert_clients_invent_users($fields);
 
   //Search contents for every users
-  /*
   $query=array(
     'limit'  => 1,
-    'name'   => 'Gameloft',
+    'name'   => 'Electronic Arts',
+    'fields' => 'id|name|nodes',
+    'sort'   => 'created:DESC',
+  );
+  //Search for new contents
+  /*
+  $query=array(
+    'limit'  => 50,
     'fields' => 'id|name|nodes',
     'sort'   => 'created:DESC',
   );
   */
-  sipi_get_api_users($siteName,$query);
+  $fields=sipi_get_api_contents($siteName,$query);
+  $result=sipi_insert_clients_invent_contents($fields);
+
+  return 'Done!';
 }
 
+//########################################################################################################################################
+//########################################################################################################################################
+//########################################################################################################################################
+function sipi_insert_clients_invent_users($fields){
+  if(!isset($fields) || empty($fields) || count($fields)<=0)
+    return false;
+  $found=sipi_search_clients_invent_users_by_id($fields['cid']);
+  if($found) {
+    return $found;
+  }else{
+    $query=db_insert('sipi_clients_invent_users')->fields($fields)->execute();
+    drupal_set_message('User from Invent Network Added | Name: '.$fields['name'].' - Site: '.$fields['sitename'].'.','status');
+    sipi_logging('Insert new invent-client Name: ['.$fields['name'].'] from ['.$fields['sitename'].']','info');
+    return $query;
+  }
+}
 function sipi_get_api_users($siteName='excelsior', $query=array()){
   $apiRequest=get_api_url_request($siteName, 'users', $query);
   $result=_do_api_request($apiRequest);
@@ -475,16 +501,30 @@ function sipi_get_api_users($siteName='excelsior', $query=array()){
   }
   return $result;
 }
-
 function sipi_process_users_result($data){
   if(!isset($data) || empty($data)){
     return null;
   }
   foreach($data as $item){
-    var_dump($item);
+    $client=array(
+      'cid'             => sipi_search_client_by_email($item->mail),
+      'uid'             => $item->id,
+      'name'            => $item->name,
+      'mail'            => $item->mail,
+      'created'         => $item->created,
+      'changed'         => $item->changed,
+      'access'          => $item->user_access,
+      'login'           => $item->user_login,
+      'sitename'        => $item->attribution,
+      'pageviews'       => $item->pageviews[0]->total,
+      'nodes_published' => $item->nodes_published[0]->total,
+      'last_published'  => $item->last_published[0]->timestamp,
+      'publish_date'    => strtotime($item->publish_date),
+      'last_update'     => strtotime($item->last_update),
+    );
   }
+  return $client;
 }
-
 function sipi_search_client_by_email($email){
   $id=0;
   $query="select cid from sipi_clients where mail='$email'";
@@ -496,9 +536,99 @@ function sipi_search_client_by_email($email){
   }
   return $id;
 }
-function sipi_search_client_by_id($id){
+function sipi_search_clients_invent_users_by_id($cid){
+  $id=false;
+  $query="select cid from sipi_clients_invent_users where cid='$cid'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=intval($row->cid);
+    }
+  }
+  return $id;
+}
+function sipi_search_clients_invent_users_by_uid($uid){
+  $id=false;
+  $query="select cid from sipi_clients_invent_users where uid='$uid'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=intval($row->cid);
+    }
+  }
+  return $id;
+}
+//########################################################################################################################################
+//########################################################################################################################################
+//########################################################################################################################################
+function sipi_insert_clients_invent_contents($fields){
+  if(!isset($fields) || empty($fields) || count($fields)<=0)
+    return false;
+
+  foreach($fields['nodes'] as $node){
+    $node['cid']=$fields['cid'];
+    $node['uid']=$fields['uid'];
+    $found=sipi_search_clients_invent_contents_by_iid($node['nid']);
+    if(!$found){
+      //Insert
+      $query=db_insert('sipi_clients_invent_contents')->fields($node)->execute();
+      drupal_set_message('Content from Invent Network Added | Title: '.$node['title'].' - NID: '.$node['nid'].'.','status');
+      sipi_logging('Insert new invent-client-content Ttitle: ['.$node['title'].'] from ['.$node['nid'].']','info');
+    }else if($found>0){
+      //Update
+      $query=db_update('sipi_clients_invent_contents');
+      $query->fields($node);
+      $query->condition('iid',$found,'=');
+      $query->execute();
+      drupal_set_message('Content from Invent Network Updated | Title: '.$node['title'].' - NID: '.$node['nid'].'.','status');
+      sipi_logging('Update invent-client-content Ttitle: ['.$node['title'].'] from ['.$node['nid'].']','info');
+    }
+  }
+}
+function sipi_get_api_contents($siteName='excelsior', $query=array()){
+  $apiRequest=get_api_url_request($siteName, 'contents', $query);
+  $result=_do_api_request($apiRequest);
+  if($result){
+    $result=json_decode($result);
+    if($result->response->status=='200'){
+      $result=sipi_process_contents_result($result->data);
+    }else{
+      $result=array();
+    }
+  }else{
+    $result=array();
+  }
+  return $result;
+}
+function sipi_process_contents_result($data){
+  if(!isset($data) || empty($data)){
+    return null;
+  }
+  $fields=array();
+  foreach($data as $item){
+    $fields['cid']=sipi_search_clients_invent_users_by_uid($item->id);
+    $fields['uid']=$item->id;
+    foreach($item->nodes as $node){
+      $fields['nodes'][]=array(
+        'nid'             => $node->id,
+        'title'           => $node->title,
+        'type'            => $node->type,
+        'path'            => $node->path,
+        'pageviews'       => $node->analytics->pageviews,
+        'uniquePageviews' => $node->analytics->uniquePageviews,
+        'fbshares'        => $node->analytics->fbshares,
+        'tweets'          => $node->analytics->tweets,
+        'gpshares'        => $node->analytics->gpshares,
+        'created'         => $node->analytics->created,
+        'changed'         => $node->analytics->changed,
+      );
+    }
+  }
+  return $fields;
+}
+function sipi_search_content_by_name($email){
   $id=0;
-  $query="select cid from sipi_clients where cid='$id'";
+  $query="select cid from sipi_clients where mail='$email'";
   $result=db_query($query);
   if($result){
     foreach($result as $row){
@@ -507,7 +637,20 @@ function sipi_search_client_by_id($id){
   }
   return $id;
 }
-
+function sipi_search_clients_invent_contents_by_iid($nid){
+  $id=0;
+  $query="select iid from sipi_clients_invent_contents where nid='$nid'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=$row->iid;
+    }
+  }
+  return $id;
+}
+//########################################################################################################################################
+//########################################################################################################################################
+//########################################################################################################################################
 /**
  * SIPI REQUESTS
  * [API_PROTOCOL]://[API_DOMAIN]/[API_VERSION]/[API_SITENAME]/[API_SIPIUSERS|API_SIPICONTENTS].[API_FORMAT]/[API_TOKEN]
@@ -535,17 +678,17 @@ function get_api_url_request($siteName,$method=null,$query=array()){
 
   #Create URL
   if(isset($sipi_variables['protocol']) && !empty($sipi_variables['protocol']))
-    $sipi_variables['protocol'].='://';
+    $protocol=$sipi_variables['protocol'].'://';
   if(isset($sipi_variables['domain']) && !empty($sipi_variables['domain']))
-    $sipi_variables['domain'].='/';
+    $domain=$sipi_variables['domain'].'/';
   if(isset($sipi_variables['version']) && !empty($sipi_variables['version']))
-    $sipi_variables['version'].='/';
+    $version=$sipi_variables['version'].'/';
   if(isset($siteName) && !empty($siteName))
-    $siteName.='/';
+    $siteName=$siteName.'/';
   if(isset($sipi_variables['format']) && !empty($sipi_variables['format']))
-    $sipi_variables['format']='.'.$sipi_variables['format'].'/';
+    $format='.'.$sipi_variables['format'].'/';
 
-  $path=$sipi_variables['protocol'].$sipi_variables['domain'].$sipi_variables['version'].$siteName.$sipi_variables[$method].$sipi_variables['format'].$sipi_variables['token'];
+  $path=$protocol.$domain.$version.$siteName.$sipi_variables[$method].$format.$sipi_variables['token'];
 
   if(isset($query) && is_array($query) && count($query)>0)
     $path .= (strpos($path, '?') !== FALSE ? '&' : '?') . drupal_http_build_query($query);
@@ -567,7 +710,7 @@ function _do_api_request($url=null){
   if(!$url)
     return $url;
 
-  $HTTP_RESPONSE = &drupal_static(__FUNCTION__);
+  $HTTP_RESPONSE = &drupal_static(__FUNCTION__.$url);
   if (!isset($HTTP_RESPONSE)) {
     //Capture everything on buffers
     ob_start();

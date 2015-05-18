@@ -114,7 +114,19 @@ DirectoryIndex index.php index.html index.htm
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_URI} !=/favicon.ico
+  RewriteCond %{REQUEST_URI} !=^/web/(.+)$
   RewriteRule ^ index.php [L]
+
+# html5 pushstate (history) support:
+#<ifModule mod_rewrite.c>
+#   RewriteEngine On
+    #RewriteBase /web/
+    #RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteCond %{REQUEST_FILENAME} !-d
+    #RewriteCond %{REQUEST_URI} !index
+    #RewriteRule (.*) index.html [L]
+#</ifModule>
+
 
   # Rules to correctly serve gzip compressed CSS and JS files.
   # Requires both mod_rewrite and mod_headers to be enabled.

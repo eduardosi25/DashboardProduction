@@ -1,6 +1,6 @@
 <?php
 $file=file_load($data->logo);
-$image=get_image_style($file->uri, "thumbnail" );
+$image=isset($file) && !empty($file) ? get_image_style($file->uri,'thumbnail') : 'http://local.invent.mx/sites/all/themes/bootstrap/logo.png';
 unset($file);
 ?>
 <section class="sipi-client">
@@ -25,7 +25,7 @@ unset($file);
       <strong>Phone:</strong> <?php print $data->phone.' - '.$data->extention; ?>
     </li>
     <li class="web">
-      <a href="http://<?php print $data->web; ?>" target="_blank">Website</a>
+      <a href="http://<?php print(preg_replace('/(http|https)\:\/\//','',$data->web)); ?>" target="_blank">Website</a>
     </li>
   </ul>
 </div>
