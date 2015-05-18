@@ -270,6 +270,11 @@ function sipi_block_info() {
       'visibility' => BLOCK_VISIBILITY_LISTED,
       'pages'      => "sipi\nsipi/*",
     ),
+    'sipi_client_contents_list' => array(
+      'info'       => t('SIPI - Contents List'),
+      'visibility' => BLOCK_VISIBILITY_LISTED,
+      'pages'      => "sipi\nsipi/*",
+    )
   );
 }
 /**
@@ -294,6 +299,15 @@ function sipi_block_view($delta) {
       $content = array(
         '#data' => $client,
         '#theme' => 'sipi_client_detail',
+      );
+    break;
+    case 'sipi_client_contents_list':
+      $client=sipi_client_load(arg(2));
+      $contents=sipi_client_contents_list($client->cid);
+      $title = t('Show client contents');
+      $content = array(
+        '#data' => $contents,
+        '#theme' => 'sipi_client_contents_list',
       );
     break;
   }
@@ -434,7 +448,7 @@ function sipi_run_cronlt(){
   $siteName='gamedots';
   $query=array(
     'limit'  => 1,
-    'name'   => 'Electronic Arts',
+    'name'   => 'Gameloft',
     //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
     'sort'   => 'created:DESC',
   );
@@ -452,7 +466,7 @@ function sipi_run_cronlt(){
   //Search contents for every users
   $query=array(
     'limit'  => 1,
-    'name'   => 'Electronic Arts',
+    'name'   => 'Gameloft',
     'fields' => 'id|name|nodes',
     'sort'   => 'created:DESC',
   );

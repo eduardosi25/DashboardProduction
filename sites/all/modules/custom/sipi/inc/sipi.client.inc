@@ -735,14 +735,17 @@ function sipi_client_list(){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
+  $query->join('sipi_clients_invent_users','ui','ui.cid=c.cid');
   $query->limit(10);
-  $query->fields('c', array('cid','name'));
-  $query->addField('pc', 'status','status');
-  $query->addField('pc', 'start_date','start_date');
-  $query->addField('pc', 'end_date','end_date');
-  $query->addField('p', 'name','plan');
-  $query->addField('u', 'name','manager');
-  $query->addField('td', 'name', 'site');
+  $query->fields('c',array('cid','name'));
+  $query->addField('pc','status','status');
+  $query->addField('pc','start_date','start_date');
+  $query->addField('pc','end_date','end_date');
+  $query->addField('p','name','plan');
+  $query->addField('p','contents','contents_limit');
+  $query->addField('ui','nodes_published','contents_published');
+  $query->addField('u','name','manager');
+  $query->addField('td','name','site');
 
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
@@ -755,8 +758,8 @@ function sipi_client_list(){
       $row->site,
       $row->plan,
       ($row->status==0 ? t('Disabled') : ($row->status==1 ? t('Enabled') : 'N/D')),
-      'contents published',
-      'remain contents',
+      $row->contents_published,
+      ($row->contents_published>0 ? $row->contents_limit-$row->contents_published : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
       l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
@@ -1136,3 +1139,85 @@ function sipi_client_detail($client=null){
   return $build;
 
 }
+
+
+
+function sipi_client_contents_list($client=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $header = array(
+    array(
+      'data' => t('Contenidos'),
+      'field' => 'title',
+    ),
+    array(
+      'data' => t('Estatus'),
+      'field' => 'status',
+    ),
+    array(
+      'data' => t('Fecha de publicación'),
+      'field' => 'created',
+    ),
+    array(
+      'data' => t('Visitas'),
+      'field' => 'pageviews'
+    ),
+    array(
+      'data' => t('Tiempo promedio'),
+      'field' => 'avgSessionDuration'
+    ),
+    array(
+      'data' => t('FB Shares'),
+      'field' => 'fbshares'
+    ),
+    array(
+      'data' => t('Tweets'),
+      'field' => 'tweets'
+    ),
+    array(
+      'data' => t('Google+'),
+      'field' => 'gpshares'
+    ),
+  );
+
+  $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
+  $query->join('sipi_clients','c','c.cid=iu.cid');
+  $query->limit(10);
+  $query->fields('iu', array('title','path','status','created','pageviews','avgSessionDuration','fbshares','tweets','gpshares'));
+  $query->addField('c','name','client');
+  $query->condition('iu.cid',$client,'=');
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
+  foreach ($result as $row) {
+    $rows[] = array(
+      l($row->title, $row->path, array('query'=>array('destination'=>'sipi/client'))),
+      ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
+      ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
+      ($row->pageviews>0 ? $row->pageviews : 0),
+      ($row->avgSessionDuration>0 ? ($row->avgSessionDuration/60) : 0),
+      ($row->fbshares>0 ? $row->fbshares : 0),
+      ($row->tweets>0 ? $row->tweets : 0),
+      ($row->gpshares>0 ? $row->gpshares : 0),
+    );
+  }
+  if (count($rows) && ($pager = theme('pager'))) {
+    $rows[] = array(
+      array(
+        'data' => $pager,
+        'colspan' => 8,
+      ),
+    );
+  }
+  $build['sipi_client_contents_list'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('There are no contents.'),
+  );
+  return $build;
+
+}
+

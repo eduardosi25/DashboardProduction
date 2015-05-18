@@ -30,3 +30,8 @@ unset($file);
   </ul>
 </div>
 </section>
+
+<?php
+echo render(sipi_client_contents_list($data->cid));
+  //echo module_invoke('sipi', 'block_view', 'sipi_client_contents_list');
+?>
