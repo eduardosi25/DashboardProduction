@@ -213,7 +213,32 @@ header {
     &.wrapper-image-section1 {
         background-color: #DDDFDE !important;
         background-repeat: no-repeat;
-        background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        //background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        .wrapper-grupo_medios_crecimiento {
+            @include measures(100%,auto);
+            background-image: url("/web/img/home/desktop/1920/grupo_medios_crecimiento.jpg");
+        }
+        .wrapper-casos_exito {
+            @include measures(100%,auto);
+            background-image: url("/web/img/home/desktop/1920/casos_exito.jpg");
+        }
+        .wrapper-soluciones_innovadoras {
+            @include measures(100%,auto);
+            background-image: url("/web/img/home/desktop/1920/soluciones_innovadoras.jpg");
+        }
+        .wrapper-revolucionamos {
+            @include measures(100%,auto);
+            background-image: url("/web/img/home/desktop/1920/revolucionamos.jpg");
+        }
+        .wrapper-talento_joven {
+            @include measures(100%,auto);
+            background-image: url("/web/img/home/desktop/1920/talento_joven.jpg");
+        }
+        .wrapper-slide-items.article {
+            margin: 0 auto;
+            max-width: 1024px;
+            @include measures(93.5%,auto);
+        }
         .wrapper-description {
             &.text-firts {
                 margin-top: 15%;

@@ -728,7 +728,7 @@ $(function() {
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
                 
-                $("#slide-home article").owlCarousel({
+                $("#slide-home #wrapper-slider-home").owlCarousel({
                     singleItem: true,
                     autoPlay: 8000,
                     lazyLoad: false,

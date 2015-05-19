@@ -1,8 +1,29 @@
 @media only screen and (max-width: 1024px) {
     /* home */
+    
     #slide-home {
         &.wrapper-image-section1 {
-            background-image: url("/web/img/home/desktop/1024/1024.jpg");
+            //background-image: url("/web/img/home/desktop/1024/1024.jpg");
+            .wrapper-grupo_medios_crecimiento {
+                @include measures(100%,auto);
+                background-image: url("/web/img/home/desktop/1024/grupo_medios_crecimiento.jpg");
+            }
+            .wrapper-casos_exito {
+                @include measures(100%,auto);
+                background-image: url("/web/img/home/desktop/1920/casos_exito.jpg");
+            }
+            .wrapper-soluciones_innovadoras {
+                @include measures(100%,auto);
+                background-image: url("/web/img/home/desktop/1024/soluciones_innovadoras.jpg");
+            }
+            .wrapper-revolucionamos {
+                @include measures(100%,auto);
+                background-image: url("/web/img/home/desktop/1024/revolucionamos.jpg");
+            }
+            .wrapper-talento_joven {
+                @include measures(100%,auto);
+                background-image: url("/web/img/home/desktop/1024/talento_joven.jpg");
+            }
         }
     }
     
