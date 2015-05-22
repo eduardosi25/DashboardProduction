@@ -27,11 +27,18 @@ unset($file);
     <li class="web">
       <a href="http://<?php print(preg_replace('/(http|https)\:\/\//','',$data->web)); ?>" target="_blank">Website</a>
     </li>
+    <li class="actions">
+      <a href="<?php print '/sipi/client/'.$data->cid.'/edit?destination=sipi/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Edit</a>
+      <a href="<?php print '/sipi/client/'.$data->cid.'/cancel?destination=sipi/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Cancel</a>
+    </li>
   </ul>
 </div>
 </section>
-
+<section class="sipi-client-contents-list">
 <?php
-echo render(sipi_client_contents_list($data->cid));
-  //echo module_invoke('sipi', 'block_view', 'sipi_client_contents_list');
+$list=isset($data->cid) && !empty($data->cid) ? sipi_client_contents_list($data->cid) : NULL;
+if(isset($list) && !empty($list) && count($list)>0){
+  print drupal_render($list);
+}
 ?>
+</section>

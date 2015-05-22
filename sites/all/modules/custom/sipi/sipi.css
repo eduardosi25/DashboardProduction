@@ -2,11 +2,26 @@
   margin:0;padding:0;display:table;
 }
 caption{
-  font-size: 32px;
+  font-size: 2em;
   font-weight: bold;
   color: #333333;
   background-color: #eeeedd;
 }
 .sipi-login-name{
   line-height: 41px;
+}
+.sipi-client-contents-list{
+  clear:both;
+  float:none;
+  padding:2em 0 2em 0;
+  border-top: 1px solid #e5e5e5;
+}
+.container-inline-date,.form-item-sipi-filter-status,#edit-sipi-filter-submit{
+  float:left;
+}
+.form-item-sipi-filter-status{
+  padding-top:0.7em;
+}
+#edit-sipi-filter-submit{
+  margin: 2.4em 0 0 1em;
 }

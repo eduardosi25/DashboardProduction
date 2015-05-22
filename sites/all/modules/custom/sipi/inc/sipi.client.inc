@@ -1193,11 +1193,11 @@ function sipi_client_contents_list($client=null){
   $rows=array();
   foreach ($result as $row) {
     $rows[] = array(
-      l($row->title, $row->path, array('query'=>array('destination'=>'sipi/client'))),
+      l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
       ($row->pageviews>0 ? $row->pageviews : 0),
-      ($row->avgSessionDuration>0 ? ($row->avgSessionDuration/60) : 0),
+      ($row->avgSessionDuration>0 ? round(($row->avgSessionDuration/60),2) : 0),
       ($row->fbshares>0 ? $row->fbshares : 0),
       ($row->tweets>0 ? $row->tweets : 0),
       ($row->gpshares>0 ? $row->gpshares : 0),
@@ -1216,8 +1216,8 @@ function sipi_client_contents_list($client=null){
     '#header' => $header,
     '#rows' => $rows,
     '#empty' => t('There are no contents.'),
+    '#caption' => 'Contenidos publicados',
   );
   return $build;
 
 }
-
