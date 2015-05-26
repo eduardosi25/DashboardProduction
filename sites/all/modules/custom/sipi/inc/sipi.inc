@@ -158,14 +158,28 @@ function sipi_clients_list_form($form, &$form_state){
   );
 
   $sipi_filter=isset($_SESSION['sipi_filters']) ? $_SESSION['sipi_filters'] : array();
+
+  #echo '<pre>';
+  #var_dump($sipi_filter);
+  #echo '</pre><hr>';
+
+
   if(isset($form_state['filters'])){
     $sipi_filter=array(
-      'date'   => $form_state['filters']['date'],
+      'year'   => $form_state['filters']['year'],
+      'month'  => $form_state['filters']['month'],
       'status' => $form_state['filters']['status'],
     );
   }
-  $date_format = 'F';
-  $date = date($date_format);
+
+  #echo '<pre>';
+  #var_dump($sipi_filter);
+  #echo '</pre><hr>';
+
+  $date_format_year = 'Y';
+  $date_format_month = 'F';
+  $date_year = date($date_format_year);
+  $date_month = date($date_format_month);
 
   $header = array(
     array(
@@ -213,8 +227,6 @@ function sipi_clients_list_form($form, &$form_state){
     $_GET['sort'] = 'DESC';
   }
 
-  // Form ordering
-
   $query = db_select('sipi_clients', 'c')->extend('PagerDefault');
   $query->join('sipi_plans_clients','pc','pc.cid=c.cid');
   $query->join('sipi_plans','p','p.pid=pc.pid');
@@ -232,8 +244,19 @@ function sipi_clients_list_form($form, &$form_state){
   $query->addField('u','name','manager');
   $query->addField('td','name','site');
 
+  if(isset($sipi_filter) && !empty($sipi_filter) && count($sipi_filter)>0){
+    if($sipi_filter['status']!=='select' && $sipi_filter['status']!=='all'){
+      $query->condition('pc.status',sipi_filters_get_status_plans_clients($sipi_filter['status']),'=');
+    }
+    if(isset($sipi_filter['year']) || isset($sipi_filter['month'])){
+      $queryDates=sipi_filters_get_dates_plans_clients($sipi_filter);
+      $query->condition('pc.start_date',$queryDates,'BETWEEN');
+    }
+  }
+
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
+
   $rows=array();
   foreach ($result as $row) {
     $rows[] = array(
@@ -258,13 +281,23 @@ function sipi_clients_list_form($form, &$form_state){
     );
   }
 
-  $form['sipi_filter_clients']['sipi_filter_date'] = array(
+  $form['sipi_filter_clients']['sipi_filter_year'] = array(
     '#type' => 'date_select',
-    '#date_format' => $date_format,
-    '#default_value' => isset($sipi_filter['date']) && !empty($sipi_filter['date']) ? $sipi_filter['date'] : $date,
+    '#date_format' => $date_format_year,
+    '#default_value' => isset($sipi_filter['year']) && !empty($sipi_filter['year']) ? $sipi_filter['year'] : $date_year,
     '#date_label_position' => 'left',
     '#date_timezone' => 'America/Mexico_City',
     '#date_year_range' => '-3:+3',
+    '#description' => t('Select a year'),
+    '#attributes' => array('class' => array('left')),
+  );
+
+  $form['sipi_filter_clients']['sipi_filter_month'] = array(
+    '#type' => 'date_select',
+    '#date_format' => $date_format_month,
+    '#default_value' => isset($sipi_filter['month']) && !empty($sipi_filter['month']) ? $sipi_filter['month'] : $date_month,
+    '#date_label_position' => 'left',
+    '#date_timezone' => 'America/Mexico_City',
     '#description' => t('Select a month'),
     '#attributes' => array('class' => array('left')),
   );
@@ -312,12 +345,99 @@ function sipi_clients_list_form($form, &$form_state){
 function sipi_clients_list_form_submit($form, &$form_state){
   //Session filters
   $values=$form_state['values'];
+  $year  =isset($values['sipi_filter_year']) ? $values['sipi_filter_year'] : date('Y');
+  $month =isset($values['sipi_filter_month']) ? $values['sipi_filter_month'] : 0;
   $status=isset($values['sipi_filter_status']) && $values['sipi_filter_status']!=='select' ? $values['sipi_filter_status'] : 'select';
-  $month =isset($values['sipi_filter_date']) ? $values['sipi_filter_date'] : date('n');
   $form_state['filters']=array(
-    'date'  => $month,
+    'year'   => $year,
+    'month'  => $month,
     'status' => $status,
   );
   $_SESSION['sipi_filters']=$form_state['filters'];
   $form_state['rebuild']=TRUE;
+}
+
+function sipi_filters_get_status_plans_clients($status){
+  if(!isset($status) || empty($status) || $status==='select' || $status==='all')
+    return null;
+
+  switch($status){
+    case 'disabled':
+      return 0;
+      break;
+    case 'enabled':
+      return 1;
+      break;
+    case 'terminated':
+      return 2;
+      break;
+    case 'suspended':
+      return 3;
+      break;
+    case 'canceled':
+      return 4;
+      break;
+    default:
+      return null;
+      break;
+  }
+}
+
+function sipi_filters_get_dates_plans_clients($filter) {
+
+  //Only year
+  if(!isset($filter['month']) || empty($filter['month']) || intval($filter['month']<=0)){
+    $dates=array(
+      0 => $filter['year'].'-01-01',
+      1 => $filter['year'].'-12-31',
+    );
+  }
+
+  //Only month
+  if(!isset($filter['year']) || empty($filter['year']) || intval($filter['year']<=0)){
+    $dates=array(
+      0 => date('Y').'-'.$filter['month'].'-01',
+      1 => date('Y').'-'.$filter['month'].'-'.date('t',strtotime(date('Y').'-'.$filter['month'].'-01')),
+    );
+  }
+
+  //Year && month
+  if(isset($filter['year']) && isset($filter['month']) && (intval($filter['year'])>0 && intval($filter['month']))){
+    $dates=array(
+      0 => $filter['year'].'-'.$filter['month'].'-01',
+      1 => $filter['year'].'-'.$filter['month'].'-'.date('t',strtotime($filter['year'].'-'.$filter['month'].'-01')),
+    );
+  }
+
+  $items=array();
+  foreach($dates as $date){
+    $items[]=strtotime($date);
+  }
+  $dates=$items;
+
+  /*
+  //Only year
+  if(!isset($filter['month']) || empty($filter['month'])){
+    $dates=array(
+      0 => strtotime($filter['year'].'-01-01'),
+      1 => strtotime($filter['year'].'-12-31'),
+    );
+  }
+  //Only month
+  if(!isset($filter['year']) || empty($filter['year'])){
+    $dates=array(
+      0 => strtotime(date('Y').'-'.$filter['month'].'-01'),
+      1 => strtotime(date('Y').'-'.$filter['month'].'-31'),
+    );
+  }
+  //Year && month
+  if(isset($filter['year']) && isset($filter['month'])){
+    $dates=array(
+      0 => strtotime($filter['year'].'-'.$filter['month'].'-01'),
+      1 => strtotime($filter['year'].'-'.$filter['month'].'-31'),
+    );
+  }
+  */
+
+  return $dates;
 }

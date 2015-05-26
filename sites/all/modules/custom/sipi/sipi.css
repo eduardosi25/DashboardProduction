@@ -16,6 +16,9 @@ caption{
   padding:2em 0 2em 0;
   border-top: 1px solid #e5e5e5;
 }
+.container-inline-date{
+  clear:none;
+}
 .container-inline-date,.form-item-sipi-filter-status,#edit-sipi-filter-submit{
   float:left;
 }
@@ -24,4 +27,10 @@ caption{
 }
 #edit-sipi-filter-submit{
   margin: 2.4em 0 0 1em;
+}
+tbody td{
+  text-align: center;
+}
+tbody td.active{
+  text-align: left;
 }
