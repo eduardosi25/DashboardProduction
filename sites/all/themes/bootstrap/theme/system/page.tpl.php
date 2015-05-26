@@ -72,6 +72,9 @@
  *
  * @ingroup themeable
  */
+if(arg(0)==='sipi'){
+  $front_page='sipi';
+}
 ?>
 <header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
   <div class="container">
