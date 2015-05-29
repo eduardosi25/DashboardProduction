@@ -185,6 +185,18 @@
           
 }
 
+@media only screen and (max-width: 965px) {
+    .main-sections-tools {
+        &.perfil-of-site {
+            li {
+                &.ps-mb20 {
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 930px) {
     #page-audiencias-contenidos {
         .wrapper-content-section1 {

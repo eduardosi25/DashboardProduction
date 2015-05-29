@@ -1123,6 +1123,18 @@
 
 }
 
+@media only screen and (max-width: 965px) {
+    .main-sections-tools {
+        &.perfil-of-site {
+            li {
+                &.ps-mb20 {
+                    margin: 0 0 20px 0 !important;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 500px) {
     
     /* form afiliate anuncuate */

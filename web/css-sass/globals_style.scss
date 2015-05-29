@@ -743,8 +743,9 @@ ul.red-invent-sections-sites {
     padding-top: 25px;
     @include measures(80%,auto);
     li {
-        margin-left: 3%;            
-        @include measures(48.5%,auto);            
+        margin-left: 3%;
+        //max-width: 220px;
+        @include measures(48.5%,auto);
         &:first-child {
             margin-left: 0;
         }
@@ -753,12 +754,32 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(39px,37px,-57px,-2868px);
         }
-        a {                
+        a {
             & > span {
                 vertical-align: middle;
-            }                
-            height:23px;                
-        }            
+            }
+            height:23px;
+        }
+    }
+    &.perfil-of-site {
+        
+        li {
+            max-width: 220px;
+            &:first-child {
+                margin-left: 0;
+            }
+            .ico-media-kit {
+                margin-top: -7px;
+                @extend .sprite-invent;
+                @include img-position(39px,37px,-57px,-2868px);
+            }
+            a {
+                & > span {
+                    vertical-align: middle;
+                }
+                height:23px;
+            }
+        }
     }
 }
 
