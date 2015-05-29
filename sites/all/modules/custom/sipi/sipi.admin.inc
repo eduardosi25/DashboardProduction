@@ -21,6 +21,7 @@ function sipi_admin_settings_form($form_state) {
   );
   /**
    * Settings for SIPI
+   * @see http://[API_DOMAIN]/[API_VERSION]/[API_SITENAME]/[API_USERS/API_CONTENTS].[API_FORMAT]/[API_TOKEN]
    * @see http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a
    * @see http://api.inventmx.com/v1/gamedots/sipi-analytics.json/3a5877fc16b6fcbf8eedbe55d091938a
    * @see http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a?limit=1&name=Gameloft
@@ -40,6 +41,64 @@ function sipi_admin_settings_form($form_state) {
     '#default_value' => isset($settings['debug']) ? $settings['debug'] : FALSE,
     '#description' => t('Enabled debug mode'),
   );
+  $form['sipi']['sipi_settings']['protocol'] = array(
+    '#title' => t('API Protocol'),
+    '#type' => 'select',
+    '#options' => array(
+      'none' => t('Select the protocol'),
+      'http' => 'HTTP',
+      'https' => 'HTTPS',
+    ),
+    '#default_value' => isset($settings['domain']) ? $settings['domain'] : NULL,
+  );
+  $form['sipi']['sipi_settings']['domain'] = array(
+    '#title' => t('API Domain'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['domain']) ? $settings['domain'] : NULL,
+    '#size' => 30,
+    '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['version'] = array(
+    '#title' => t('API Version'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['version']) ? $settings['version'] : NULL,
+    '#size' => 10,
+    '#maxlength' => 32,
+  );
+  $form['sipi']['sipi_settings']['sites'] = array(
+    '#title' => t('Select the sites with SIPI Activated'),
+    '#type' => 'checkboxes',
+    '#options' => get_sites_options(),
+    '#default_value' => get_checked_options($settings['sites']),
+  );
+  $form['sipi']['sipi_settings']['users'] = array(
+    '#title' => t('API Repo Users'),
+    '#description' => t('The repo name for query about SIPI Users'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['users']) ? $settings['users'] : NULL,
+    '#size' => 20,
+    '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['contents'] = array(
+    '#title' => t('API Repo COntents'),
+    '#description' => t('The repo name for query about SIPI Contents with Analytics'),
+    '#type' => 'textfield',
+    '#default_value' => isset($settings['contents']) ? $settings['contents'] : NULL,
+    '#size' => 20,
+    '#maxlength' => 254,
+  );
+  $form['sipi']['sipi_settings']['format'] = array(
+    '#title' => t('API Format'),
+    '#type' => 'select',
+    '#options' => array(
+      'none' => t('Select a format'),
+      'json'   => 'JSON',
+      'rss'    => 'RSS',
+      'jsonlt' => 'JSON Lite (MSN)',
+      'xml'    => 'XML Standard'
+    ),
+    '#default_value' => isset($settings['format']) ? $settings['format'] : NULL,
+  );
   $form['sipi']['sipi_settings']['token'] = array(
     '#title' => t('Token Access API Invent'),
     '#type' => 'textfield',
@@ -47,33 +106,20 @@ function sipi_admin_settings_form($form_state) {
     '#size' => 150,
     '#maxlength' => 254,
   );
-  $form['sipi']['sipi_settings']['sites'] = array(
-    '#title' => t('Select the sites with SIPI Users'),
-    '#type' => 'checkboxes',
-    '#options' => array(
-      "atraccion360"   => "Atraccion360"  ,
-      "salud180"       => "Salud180"      ,
-      "imagen"         => "Imagen Radio"  ,
-      "cadenatres"     => "CadenaTres"    ,
-      "actitudfem"     => "ActitudFEM"    ,
-      "dineroenimagen" => "DineroenImagen",
-      "excelsior"      => "Excélsior"     ,
-      "gamedots"       => "GameDots"      ,
-      "reporte"        => "Reporte 98.5"  ,
-      "melodijolola"   => "Melodijolola"  ,
-      "rsvp"           => "RSVPOnline"    ,
-      "estrategia45"   => "Estrategia45"  ,
-      "adrenalina"     => "Adrenalina360" ,
-      "garuyo"         => "Garuyo"        ,
-      "hub-inventmx"   => "HUB-Invent.mx" ,
-      "excelsior-tv"   => "Excélsior TV"  ,
-      "adrenalina360"  => "Adrenalina360" ,
-      "swagger"        => "Swagger"       ,
-      "inventmx"       => "Invent.mx"     ,
-    ),
-    '#default_value' => get_checked_options($settings['sites']),
-  );
   return system_settings_form($form);
+}
+function get_sites_options(){
+  $query="select td.tid, td.name
+          from taxonomy_term_data td
+          inner join field_data_field_api_container fac on fac.entity_id=td.tid
+          where td.vid=1
+          order by td.weight ASC";
+  $result=db_query($query);
+  $items=array();
+  foreach($result as $row){
+    $items[$row->tid]=$row->name;
+  }
+  return $items;
 }
 function get_checked_options($options){
   if(!isset($options) || empty($options))
@@ -133,7 +179,8 @@ function _create_sipi_menu(){
     menu_save($menu);
     //Create links
     $item = array (
-      'link_title' => 'SIPI Home',
+      'link_title' => t('Home'),
+      'description'=> t('SIPI Home'),
       'link_path'  => 'sipi',
       'menu_name'  => 'menu-sipi',
       'weight'     => 0,
@@ -141,7 +188,8 @@ function _create_sipi_menu(){
     );
     menu_link_save($item);
     $item = array (
-      'link_title' => 'SIPI Dashboard',
+      'link_title' => t('Dashboard'),
+      'description'=> t('SIPI Dashboard'),
       'link_path'  => 'sipi/dashboard',
       'menu_name'  => 'menu-sipi',
       'weight'     => 1,
@@ -150,7 +198,8 @@ function _create_sipi_menu(){
     menu_link_save($item);
     //Parent :: Plans
     $item = array (
-      'link_title' => 'SIPI Plans',
+      'link_title' => t('Plans'),
+      'description'=> t('SIPI Plans'),
       'link_path'  => 'sipi/plans',
       'menu_name'  => 'menu-sipi',
       'weight'     => 2,
@@ -158,7 +207,8 @@ function _create_sipi_menu(){
     );
     $plid = menu_link_save($item);
     $item = array (
-      'link_title' => 'Plans',
+      'link_title' => t('Plans'),
+      'description'=> t('SIPI Plans'),
       'link_path'  => 'sipi/plans',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
@@ -167,7 +217,8 @@ function _create_sipi_menu(){
     );
     menu_link_save($item);
     $item = array (
-      'link_title' => 'Add a plan',
+      'link_title' => t('Add a new plan'),
+      'description'=> t('SIPI Add new plan'),
       'link_path'  => 'sipi/plans/add',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
@@ -177,7 +228,8 @@ function _create_sipi_menu(){
     menu_link_save($item);
     //Parent :: Client
     $item = array (
-      'link_title' => 'SIPI Clients',
+      'link_title' => t('Clients'),
+      'description'=> t('SIPI Clients'),
       'link_path'  => 'sipi/client',
       'menu_name'  => 'menu-sipi',
       'weight'     => 3,
@@ -185,8 +237,9 @@ function _create_sipi_menu(){
     );
     $plid = menu_link_save($item);
     $item = array (
-      'link_title' => 'Clients',
+      'link_title' => t('Clients'),
       'link_path'  => 'sipi/client',
+      'description'=> t('SIPI Clients'),
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
       'weight'     => 0,
@@ -194,7 +247,8 @@ function _create_sipi_menu(){
     );
     menu_link_save($item);
     $item = array (
-      'link_title' => 'Add a client',
+      'link_title' => t('Add a new client'),
+      'description'=> t('SIPI Add new client'),
       'link_path'  => 'sipi/client/add',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
