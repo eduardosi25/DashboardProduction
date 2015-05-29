@@ -408,6 +408,34 @@
     inventMx.utilities.deviceWidthDocument = function(){
         return $(document).width();
     },
+    inventMx.utilities.validateImgStage = function(twidth, container, params) {
+                if (twidth > 1024) {
+                    //$("#wrapper-slider-home img.not-img")
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r1920 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth >= 701 && twidth <= 1024) {
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r1024 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth >= 401 && twidth <= 700) {
+                    container.each(function() {
+                        var img = $(this);
+                        img.attr("src", params.r700);
+                    });
+                } else if (twidth <= 400) {
+                    container.each(function() {
+                        var img = $(this);
+                        img.attr("src", params.r400);
+                    });
+                }
+    },
     inventMx.utilities.validateAcordeon = function(id_container, tagHeader, topOffset,e){
         var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
         
