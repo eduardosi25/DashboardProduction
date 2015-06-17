@@ -1082,9 +1082,9 @@ function _media_save_file_permanently($file) {
  */
 function media_get_thumbnail_preview($file, $link = NULL) {
   // If a file has an invalid type, allow file_view_file() to work.
-  //if (!file_info_file_types($file->type)) {
+  if (!file_info_file_types($file->type)) {
     $file->type = media_get_type($file);
-  //}
+  }
 
   $preview = file_view_file($file, 'media_preview');
   $preview['#show_names'] = TRUE;

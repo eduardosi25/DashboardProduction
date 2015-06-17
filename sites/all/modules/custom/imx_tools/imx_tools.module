@@ -1,0 +1,141 @@
+<?php
+/**
+ * Implements hook help
+ */
+function imx_tools_help($path, $arg) {
+  if ($path == 'admin/help#imx_tools') {
+    return t('Herramientas y utilidades para red de sitios de Inventmx');
+  }
+}
+
+/**
+ * Implements hook menu
+ * @return array
+ */
+function imx_tools_menu() {
+  $items = array();
+  $items['admin/imx/%/%'] = array(
+    'title'            => t('Content version'),
+    'access callback'  => TRUE,
+    'access arguments' => array('access content'),
+    'page callback'    => 'imx_tools_action',
+    'page arguments'   => array(2,3),
+    'type'             => MENU_CALLBACK,
+    'file'             => 'imx_tools.inc',
+  );
+  return $items;
+}
+
+/**
+ * Implements render html
+ * @param boolean $type Indica si se trata de versión digital o de impresión
+ * @return string
+ */
+function imx_tools_html_article($version=NULL, $imx_autor = ''){
+  $html=array();
+  $html[]=imx_tools_render_header($version);
+  $html[]='<table style="background:#ffffff;padding: 5px;" border="0" cellpadding="0" cellspacing="0">';
+  $html[]='<tr>';
+  $html[]='<td style="padding:10px;">';
+  $html[]='<h1 class="title">[node:title]</h1>';
+  $html[]='<div class="content">Por: '.$imx_autor.'</div>';
+  $html[]='<div class="image"><img src="[node:field_image]" alt="[node:title]"><div class="image-footer">[node:title]</div></div>';
+  $html[]='<div class="content">[node:body]</div>';
+  $html[]='</td>';
+  $html[]='</tr>';
+  $html[]='</table>';
+  $html[]=imx_tools_render_footer();
+
+  return implode('',$html);
+}
+
+
+/**************************************************************************************************
+ * No modificar las funciones de abajo a menos que se desee cambiar la forma del HTML
+ * Se puede mejorar haciendo uso de más tokens o recuperando información de cada sitio por separado
+ **************************************************************************************************/
+/**
+ * Implements header view HTML
+ * @param string $version
+ * @return string
+ */
+function imx_tools_render_header($version=NULL){
+  if($version=='print')
+    $type='<a href="#" onClick="window.print()">Imprimir</a>';
+  else
+    $type='Versi&oacute;n digital';
+
+  $html=array();
+  $html[]='<html>';
+  $html[]='<head>';
+  $html[]='<meta charset="utf-8" />';
+  $html[]='<title>[node:title] | [site:name]</title>';
+  $html[]='<style type="text/css">';
+  $html[]='body{margin:0; padding:0; font-family: sans-serif,serif; font-size: 12px; }';
+  $html[]='h1, h2, h3, h4, h5, h6 {color: #536800 !important; line-height: 100% !important;}';
+  $html[]='a{text-decoration:none;color:#246D93;}';
+  $html[]='a:active{color:#246D93;}';
+  $html[]='a:visited{color:#246D93;}';
+  $html[]='a:hover{color:#246D93;}';
+  $html[]='h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {color: red !important;}';
+  $html[]='h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {color: purple !important;}';
+  $html[]='table, td{width:694px;}';
+  $html[]='div a {font-weight:bold;font-family:Georgia,Helvetica,sams-serif;serif;}';
+  $html[]='div h1,h2,h3{color:#536800;}';
+  $html[]='div.image{border:1px solid #f5f5f5;margin-bottom:10px;padding:5px;position:relative;}';
+  $html[]='div.image-footer{padding:5px;background-color:#3c3c3c;opacity:0.6;filter:alpha(opacity=60);color:#ffffff;bottom:0;}';
+  $html[]='</style>';
+  $html[]='</head>';
+  $html[]='<body>';
+  $html[]='<div id="ver_print_wrapper"><table style="background:#f5f5f5;padding: 5px;" border="0" cellpadding="0" cellspacing="0">';
+  $html[]='<tr>';
+  $html[]='<td>';
+  $html[]='<table style="background:#ffffff;padding: 5px;" border="0" cellpadding="0" cellspacing="0">';
+  $html[]='<tr style="background: #dee6bf">';
+  $html[]='<td>';
+  $html[]='<img style="margin:0 0 0 10px;" src="http://i.imgur.com/0hP8rPt.png" />';
+  $html[]='</td>';
+  $html[]='<td style="text-align:right;padding:5px;">';
+  $html[]=$type;
+  $html[]='</td>';
+  $html[]='</tr>';
+  $html[]='</table></div>';
+  return implode('',$html);
+}
+
+/**
+ * Implements footer view HTML
+ * @return string
+ */
+function imx_tools_render_footer(){
+  $html=array();
+  $html[]='<table style="background:#ffffff;padding:5px;" border="0" cellpadding="0" cellspacing="0">';
+  $html[]='<tr>';
+  $html[]='<td style="text-align:right;font-size:14px;padding:5px;">';
+  $html[]='S&iacute;guenos en: <a style="text-decoration: none; color: #006699;" href="http://www.facebook.com/Salud180"><img border="0" src="http://i.imgur.com/IPdwYhj.png" />/Salud180</a> <a style="text-decoration: none; color: #006699;" href="http://twitter.com/salud180"><img border="0" src="http://i.imgur.com/0lCjMJF.png" /> RSS</a>';
+  $html[]='</td>';
+  $html[]='</tr>';
+  $html[]='</table>';
+  $html[]='<table style="background:#ffffff;padding:5px;" border="0" cellpadding="0" cellspacing="0">';
+  $html[]='<tr style="background:#dee6bf;">';
+  $html[]='<td valign="middle" align="left" style="vertical-align:middle;padding-left:5px;">';
+  $html[]='<a href="http://www.salud180.com"><img border="0" src="http://i.imgur.com/qA22vCx.png" /></a>';
+  $html[]='</td>';
+  $html[]='<td valign="middle" align="center" style="text-align:center;font-size:10px;vertical-align:middle;width:50%">';
+  $html[]='<a style="color: #006699;" href="http://www.salud180.com">Salud180.com</a> pertenece a la red de sitios de ';
+  $html[]='<a style="color: #006699;" href="http://www.inventmx.com">Inventmx</a>';
+  $html[]='<br />';
+  $html[]='&copy;2011 DERECHOS RESERVADOS INVENTMX, S.A.P.I. DE C.V.';
+  $html[]='</td>';
+  $html[]='<td valign="middle" align="right" style="text-align:right;vertical-align:middle;padding-right:5px;">';
+  $html[]='<a href="http://www.inventmx.com"><img border="0" src="http://i.imgur.com/Z0AXGgp.png" /></a>';
+  $html[]='</td>';
+  $html[]='</tr>';
+  $html[]='</table>';
+  $html[]='</td>';
+  $html[]='</tr>';
+  $html[]='</table>';
+  $html[]='</body>';
+  $html[]='</html>';
+  return implode('',$html);
+}
