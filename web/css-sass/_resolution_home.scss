@@ -98,7 +98,29 @@
     
 
     #slide-home {
-        &.wrapper-image-section1 {
+        &.wrapper-image-section1 {            
+            //background-image: url("/web/img/home/desktop/1024/1024.jpg");
+            background-image: url("/web/img/home/mobile/700/700.jpg");
+                .wrapper-grupo_medios_crecimiento {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
             .wrapper-description {
                 max-width: 800px;
                 @include measures(100%,auto);
@@ -1101,6 +1123,18 @@
 
 }
 
+@media only screen and (max-width: 965px) {
+    .main-sections-tools {
+        &.perfil-of-site {
+            li {
+                &.ps-mb20 {
+                    margin: 0 0 20px 0 !important;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 500px) {
     
     /* form afiliate anuncuate */
@@ -1332,6 +1366,26 @@
     #slide-home {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/400/400.jpg");
+            .wrapper-grupo_medios_crecimiento {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
         }
     }
 

@@ -213,12 +213,47 @@ header {
     &.wrapper-image-section1 {
         background-color: #DDDFDE !important;
         background-repeat: no-repeat;
-        background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        //background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        .wrapper-grupo_medios_crecimiento {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/grupo_medios_crecimiento.jpg");
+        }
+        .wrapper-casos_exito {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/casos_exito.jpg");
+        }
+        .wrapper-soluciones_innovadoras {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/soluciones_innovadoras.jpg");
+        }
+        .wrapper-revolucionamos {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/revolucionamos.jpg");
+        }
+        .wrapper-talento_joven {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/talento_joven.jpg");
+        }
+        /*.wrapper-slide-items.article {
+            margin: 0 auto;
+            max-width: 1024px;
+            @include measures(93.5%,auto);
+        }*/
+        .wrapper-image-slider {
+            @include measures(100%,auto);
+            img {
+                @include measures(100%,auto);
+            }
+            .content-descripcion {
+                top: 0px;
+                left: 0px;
+                @include measures(100%,auto);
+            }
+        }
         .wrapper-description {
             &.text-firts {
-                margin-top: 15%;
-                margin-bottom: 10%;
-                //margin: 20% 0 20% 0;
+                margin-top: 8%;
+                //margin-bottom: 10%;
             }
             @include measures(50%,auto);
             img {
@@ -245,6 +280,25 @@ header {
         }
         //@extend .sprite-invent;
         //@include img-position(103px,94px,-188px,-553px);
+        
+        .wrapper-publish-stage.btn-publish-slider {
+            left: 0%;
+            bottom: 5%;
+            padding: 0px;
+            text-align: center;
+            @include measures(100%,auto);
+            .btn-publish {
+                opacity: 0.7;
+                background-color: #FFF;
+                &:hover {
+                    color: #FFF;
+                    opacity: 1;
+                    border: 1px solid #FFF;
+                    background-color: #898989;
+                }
+            }
+        }
+        
     }
 }
 
@@ -689,8 +743,9 @@ ul.red-invent-sections-sites {
     padding-top: 25px;
     @include measures(80%,auto);
     li {
-        margin-left: 3%;            
-        @include measures(48.5%,auto);            
+        margin-left: 3%;
+        //max-width: 220px;
+        @include measures(48.5%,auto);
         &:first-child {
             margin-left: 0;
         }
@@ -699,12 +754,32 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(39px,37px,-57px,-2868px);
         }
-        a {                
+        a {
             & > span {
                 vertical-align: middle;
-            }                
-            height:23px;                
-        }            
+            }
+            height:23px;
+        }
+    }
+    &.perfil-of-site {
+        
+        li {
+            max-width: 220px;
+            &:first-child {
+                margin-left: 0;
+            }
+            .ico-media-kit {
+                margin-top: -7px;
+                @extend .sprite-invent;
+                @include img-position(39px,37px,-57px,-2868px);
+            }
+            a {
+                & > span {
+                    vertical-align: middle;
+                }
+                height:23px;
+            }
+        }
     }
 }
 

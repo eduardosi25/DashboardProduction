@@ -422,6 +422,34 @@
     inventMx.utilities.deviceWidthDocument = function(){
         return $(document).width();
     },
+    inventMx.utilities.validateImgStage = function(twidth,container,params){
+                if (twidth > 1024) {
+                    //$("#wrapper-slider-home img.not-img")
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r1920 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth >= 701 && twidth <= 1024) {
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r1024 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth >= 401 && twidth <= 700) {
+                    container.each(function() {
+                        var img = $(this);
+                        img.attr("src", params.r700);
+                    });
+                } else if (twidth <= 400) {
+                    container.each(function() {
+                        var img = $(this);
+                        img.attr("src", params.r400);
+                    });
+                }
+    },
     inventMx.utilities.validateAcordeon = function(id_container, tagHeader, topOffset,e){
         var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
         
@@ -724,11 +752,21 @@ $(function() {
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 
+                var paramStage = {
+                    r1920 :"/web/img/home/desktop/1920",
+                    r1024 :"/web/img/home/desktop/1024",
+                    r700 : "/web/img/home/mobile/700/700.jpg",
+                    r400: "/web/img/home/mobile/700/400.jpg",
+                }
+                var wrapperSliderHome = $("#wrapper-slider-home img.not-img");
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperSliderHome, paramStage);
+                
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
                 
-                $("#slide-home article").owlCarousel({
+                $("#slide-home #wrapper-slider-home").owlCarousel({
                     singleItem: true,
                     autoPlay: 8000,
                     lazyLoad: false,
@@ -745,8 +783,7 @@ $(function() {
                 services = ".wrapper-our-services ul li.services-sites";
                 $(services).css("height","auto");
                 finalSites = inventMx.utilities.calculateheightItem(services);
-                $(services).height(finalSites);
-                
+                $(services).height(finalSites);                                
                 
                 $(window).resize(function (e) {
                     e.stopPropagation();
@@ -754,6 +791,8 @@ $(function() {
                     $(sites).css("height","auto");
                     
                     deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperSliderHome, paramStage);
+                    
                     if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }
