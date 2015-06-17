@@ -31254,6 +31254,51 @@ Handlebars.registerHelper('NumberSeparate', function(tnumbers,options) {
     
 });
 
+/* url de los sitios de invent */
+Handlebars.registerHelper('UrlSite', function(url,options) {
+    pathUrl1 = $.url(url);
+    pathUrl = pathUrl1.attr('relative');
+    switch (pathUrl) {
+        case "/estrategia45-0":
+            return "http://www.estrategia45.com/";
+        case "/fahrenheit":
+            return "http://www.fahrenheitmagazine.com/";
+        case "/gamedots-0":
+            return "http://www.gamedots.mx/";
+        case "/swagger-0":
+            return "http://www.swagger.mx/";
+        case "/garuyo-0":
+            return "http://www.garuyo.com/";
+        case "/atraccion360":
+            return "http://www.atraccion360.com/";
+        case "/rsvp-0":
+            return "http://www.rsvponline.mx/";
+        case "/actitudfem-0":
+            return "http://www.actitudfem.com/";
+        case "/melodijolola":
+            return "http://www.melodijolola.com/";
+        case "/salud180-0":
+            return "http://www.salud180.com/";
+        case "/adrenalina360":
+            return "http://www.excelsior.com.mx/adrenalina";
+        case "/dinero-en-imagen-0":
+            return "http://www.dineroenimagen.com/";
+        case "/cadena-tres":
+            return "http://www.cadenatres.com.mx/";
+        case "/reporte-985-0":
+            return "http://www.reporte.com.mx/";
+        case "/imagen-radio-0":
+            return "http://www.imagen.com.mx/";
+        case "/excelsior-0":
+            return "http://www.excelsior.com.mx/";
+        default:
+            host = "http://"+window.location.host;
+            urlhost = window.location.host;
+            return urlhost;
+    }
+    
+});
+
 
 Handlebars.registerHelper('FormatDate', function(timestamp, options) {
 

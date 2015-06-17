@@ -9,6 +9,11 @@
 .middle > * { vertical-align: middle;}
 .table-cell { display: table-cell;}
 strong { font-weight: bold;}
+.article {
+    width: 93.5%;
+    margin: 0 auto;
+    max-width: 1024px;
+}
 .tc-middle {
     display: table;    
 }
