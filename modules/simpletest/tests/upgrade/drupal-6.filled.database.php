@@ -1262,7 +1262,7 @@ db_insert('menu_custom')->fields(array(
 ->values(array(
   'menu_name' => 'secondary-links',
   'title' => 'Secondary links',
-  'description' => 'Secondary links are often used for pages like legal notices, contact details, and other secondary navigation items that invent.play a lesser role than primary links',
+  'description' => 'Secondary links are often used for pages like legal notices, contact details, and other secondary navigation items that play a lesser role than primary links',
 ))
 ->execute();
 

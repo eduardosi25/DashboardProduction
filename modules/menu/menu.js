@@ -20,7 +20,7 @@ Drupal.behaviors.menuLinkAutomaticTitle = {
   attach: function (context) {
     $('fieldset.menu-link-form', context).each(function () {
       // Try to find menu settings widget elements as well as a 'title' field in
-      // the form, but invent.play nicely with user permissions and form alterations.
+      // the form, but play nicely with user permissions and form alterations.
       var $checkbox = $('.form-item-menu-enabled input', this);
       var $link_title = $('.form-item-menu-link-title input', context);
       var $title = $(this).closest('form').find('.form-item-title input');

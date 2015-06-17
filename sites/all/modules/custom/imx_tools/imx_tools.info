@@ -1,0 +1,9 @@
+; $Id$
+name = "Herramientas InventMX"
+description = "Herramientas y utilidades - PDF Requiere wkhtmltopdf, ver shell de instalación"
+package = "Clones"
+version = 1.0
+core = 7.x
+files[]="imx_tools.module"
+files[]="imx_tools.inc"
+dependencies[] = token

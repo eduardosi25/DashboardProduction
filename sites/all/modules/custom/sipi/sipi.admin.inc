@@ -179,8 +179,8 @@ function _create_sipi_menu(){
     menu_save($menu);
     //Create links
     $item = array (
-      'link_title' => t('Home'),
-      'description'=> t('SIPI Home'),
+      'link_title' => 'Inicio',
+      'description'=> 'SIPI Home',
       'link_path'  => 'sipi',
       'menu_name'  => 'menu-sipi',
       'weight'     => 0,
@@ -198,8 +198,8 @@ function _create_sipi_menu(){
     menu_link_save($item);
     //Parent :: Plans
     $item = array (
-      'link_title' => t('Plans'),
-      'description'=> t('SIPI Plans'),
+      'link_title' => 'Planes',
+      'description'=> 'Planes SIPI',
       'link_path'  => 'sipi/plans',
       'menu_name'  => 'menu-sipi',
       'weight'     => 2,
@@ -207,8 +207,8 @@ function _create_sipi_menu(){
     );
     $plid = menu_link_save($item);
     $item = array (
-      'link_title' => t('Plans'),
-      'description'=> t('SIPI Plans'),
+      'link_title' => 'Planes',
+      'description'=> 'Planes SIPI',
       'link_path'  => 'sipi/plans',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
@@ -217,8 +217,8 @@ function _create_sipi_menu(){
     );
     menu_link_save($item);
     $item = array (
-      'link_title' => t('Add a new plan'),
-      'description'=> t('SIPI Add new plan'),
+      'link_title' => 'Agregar nuevo plan',
+      'description'=> 'Agregar nuevo Plan SIPI',
       'link_path'  => 'sipi/plans/add',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
@@ -228,8 +228,8 @@ function _create_sipi_menu(){
     menu_link_save($item);
     //Parent :: Client
     $item = array (
-      'link_title' => t('Clients'),
-      'description'=> t('SIPI Clients'),
+      'link_title' => 'Clientes',
+      'description'=> 'Clientes SIPI',
       'link_path'  => 'sipi/client',
       'menu_name'  => 'menu-sipi',
       'weight'     => 3,
@@ -237,9 +237,9 @@ function _create_sipi_menu(){
     );
     $plid = menu_link_save($item);
     $item = array (
-      'link_title' => t('Clients'),
+      'link_title' => 'Clientes',
       'link_path'  => 'sipi/client',
-      'description'=> t('SIPI Clients'),
+      'description'=> 'Clientes SIPI',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
       'weight'     => 0,
@@ -247,8 +247,8 @@ function _create_sipi_menu(){
     );
     menu_link_save($item);
     $item = array (
-      'link_title' => t('Add a new client'),
-      'description'=> t('SIPI Add new client'),
+      'link_title' => 'Agregar nuevo cliente',
+      'description'=> 'Agregar nuevo Cliente SIPI',
       'link_path'  => 'sipi/client/add',
       'menu_name'  => 'menu-sipi',
       'expanded'   => true,
