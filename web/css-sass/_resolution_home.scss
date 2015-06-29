@@ -121,14 +121,6 @@
                     @include measures(100%,auto);
                     background-image: none;
                 }
-            .wrapper-description {
-                max-width: 800px;
-                @include measures(100%,auto);
-                img {
-                    max-width: 100%;
-                    @include measures(100%,auto);
-                }
-            }
             .wrapper-image {
                 display: none;
                 img {

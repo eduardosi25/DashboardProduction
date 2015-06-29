@@ -95,6 +95,13 @@ and open the template in the editor.
     font-family: Hind-Semibold;
 }
 
+.SourceSansPro-Bold {
+    font-family: SourceSansPro-Bold;
+}
+.SourceSansPro-Semibold {
+    font-family: SourceSansPro-Semibold;
+}
+
 body {
     background-color: #ebebeb;
 }
@@ -239,25 +246,39 @@ header {
             max-width: 1024px;
             @include measures(93.5%,auto);
         }*/
+        .owl-theme .owl-controls {
+            display: none !important;
+        }
         .wrapper-image-slider {
             @include measures(100%,auto);
             img {
                 @include measures(100%,auto);
             }
             .content-descripcion {
-                top: 0px;
+                bottom: 0px;
                 left: 0px;
                 @include measures(100%,auto);
             }
         }
-        .wrapper-description {
-            &.text-firts {
-                margin-top: 8%;
-                //margin-bottom: 10%;
+        .section-description {
+            bottom: 90px;
+            left: 0px;
+            @include measures(100%,auto);
+        }
+        .wrapper-description {            
+            text-align: center;
+            @include measures(100%,auto);
+            .slider-title {
+                color: #FFF;
+                font-size: 80px;
+                font-family: SourceSansPro-Bold;
+                //@extend .SourceSansPro-Bold;
+                @include measures(100%,auto);
             }
-            @include measures(50%,auto);
-            img {
-                max-width: 100%;
+            .slider-description {
+                color: #FFF;
+                font-size: 25px;
+                @extend .SourceSansPro-Semibold;
                 @include measures(100%,auto);
             }
         }
