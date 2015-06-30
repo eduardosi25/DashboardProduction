@@ -10,7 +10,7 @@
     inventMx.header = {}, //no use
     inventMx.header.main = function () {}, //no use
     inventMx.page = {},
-    inventMx.render = {},
+    inventMx.render = {},    
     inventMx.metas = {},
     inventMx.config = {
         website: 'http://www.inventmx.com/',
@@ -56,7 +56,7 @@
         og_image: "/web/img/favicons/mstile-150x150.png",
     };
     
-    inventMx.page.wrapper_site = $("#wrapper-page-site");    
+    inventMx.page.wrapper_site = $("#wrapper-page-site");
     inventMx.utilities.loaderShow = function () {
         $("#wrapper-loading-layout").css("display", "block");
     },
@@ -441,12 +441,16 @@
                 } else if (twidth >= 401 && twidth <= 700) {
                     container.each(function() {
                         var img = $(this);
-                        img.attr("src", params.r700);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r700 + data_src;
+                        img.attr("src", newImg);
                     });
                 } else if (twidth <= 400) {
                     container.each(function() {
                         var img = $(this);
-                        img.attr("src", params.r400);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r400 + data_src;
+                        img.attr("src", newImg);
                     });
                 }
     },
@@ -755,8 +759,8 @@ $(function() {
                 var paramStage = {
                     r1920 :"/web/img/home/desktop/1920",
                     r1024 :"/web/img/home/desktop/1024",
-                    r700 : "/web/img/home/mobile/700/700.jpg",
-                    r400: "/web/img/home/mobile/700/400.jpg",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
                 }
                 var wrapperSliderHome = $("#wrapper-slider-home img.not-img");
                 var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
@@ -765,6 +769,20 @@ $(function() {
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
+                var vander = false;
+                function ShowSubTitle() {
+                    if ($(".cd-headline.push b").hasClass("is-hidden")) {
+                        $(".cd-headline.push b").removeClass("is-hidden");
+                        $(".cd-headline.push b").addClass("is-visible");
+                    } else {
+                        $(".cd-headline.push b").addClass("is-visible");
+                    }
+                }
+                function reloadSubTittle(){                   
+                    if (vander === true) {                        
+                        ShowSubTitle();
+                    }
+                }
                 
                 $("#slide-home #wrapper-slider-home").owlCarousel({
                     singleItem: true,
@@ -777,6 +795,43 @@ $(function() {
                         "<i class='nex_next block'></i>"
                     ],
                     autoHeight: true,
+                    beforeUpdate: function(){
+                        //console.log("beforeUpdate");
+                    },
+                    afterUpdate: function(){
+                        //console.log("afterUpdate");
+                    },
+                    beforeInit: function(){
+                        //console.log("beforeInit");
+                    }, 
+                    afterInit: function(){
+                        //console.log("afterInit");
+                    },
+                    beforeMove: function(){
+                        //console.log("beforeMove");
+                        if($(".cd-headline.push b").hasClass("is-visible")){
+                            $(".cd-headline.push b").removeClass("is-visible");
+                            $(".cd-headline.push b").addClass("is-hidden");
+                        }else {
+                            $(".cd-headline.push b").addClass("is-hidden");
+                        }
+                        vander = true;
+                        setTimeout(reloadSubTittle, 2000);
+                    },
+                    afterAction: function(){
+                        //console.log("afterAction");
+                        vander = false;
+                        ShowSubTitle();                        
+                    },
+                    afterMove: function(){
+                        //console.log("afterMove");
+                    },
+                    startDragging: function (){
+                        //console.log("startDragging");
+                    },
+                    afterLazyLoad: function(){
+                        //console.log("afterLazyLoad");
+                    }
                 });
 
 

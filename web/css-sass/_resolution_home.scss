@@ -127,7 +127,19 @@
 
                 }
             }
-
+            .section-description {
+                bottom: 40px;
+            }
+            .wrapper-description {
+                .slider-title {
+                    font-size: 50px;
+                    margin-bottom: 20px;
+                }
+                .slider-description {
+                    font-size: 25px;
+                }
+            }
+            
             .owl-theme .owl-controls {
                 padding: 0 0 20px 0;
             }
@@ -1377,6 +1389,18 @@
                 .wrapper-talento_joven {
                     @include measures(100%,auto);
                     background-image: none;
+                }
+                .section-description {
+                    bottom: 32px;
+                }
+                .wrapper-description {
+                    .slider-title {
+                        font-size: 30px;
+                        margin-bottom: 20px;
+                    }
+                    .slider-description {
+                        font-size: 18px;
+                    }
                 }
         }
     }

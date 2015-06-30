@@ -107,11 +107,11 @@ body {
 }
 
 #wrapper-loading-layout {
-    border: 1px solid #798F34;
-    //border: 1px solid #000;
-    width: 31px;
-    height: 31px;
-    padding: 5px 4px 4px 5px;
+    //border: 1px solid #798F34;
+    border: 1px solid #000;
+    //width: 31px;
+    //height: 31px;
+    padding: 7px 7px 4px 7px;
     background-color: #ffffff;
     position: fixed;
     top: 50%;
@@ -939,3 +939,4 @@ footer {
 
 @import "resolution_desktop.scss";
 @import "resolution_home.scss";
+@import "letter_animation.scss";

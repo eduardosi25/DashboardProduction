@@ -91,8 +91,8 @@ $(function() {
                 var paramStage = {
                     r1920 :"/web/img/home/desktop/1920",
                     r1024 :"/web/img/home/desktop/1024",
-                    r700 : "/web/img/home/mobile/700/700.jpg",
-                    r400: "/web/img/home/mobile/700/400.jpg",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
                 }
                 var wrapperSliderHome = $("#wrapper-slider-home img.not-img");
                 var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
