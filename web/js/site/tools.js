@@ -819,12 +819,14 @@ $(function() {
                         setTimeout(reloadSubTittle, 2000);
                     },
                     afterAction: function(){
-                        //console.log("afterAction");
-                        vander = false;
-                        ShowSubTitle();                        
+                        console.log("afterAction");
+                        
                     },
                     afterMove: function(){
-                        //console.log("afterMove");
+                        console.log("afterMove");
+                        vander = false;
+                        //ShowSubTitle();
+                        setTimeout(ShowSubTitle, 900);
                     },
                     startDragging: function (){
                         //console.log("startDragging");
