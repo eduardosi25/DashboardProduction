@@ -128,7 +128,7 @@
                 }
             }
             .section-description {
-                bottom: 40px;
+                bottom: 100px;
             }
             .wrapper-description {
                 .slider-title {
@@ -180,7 +180,10 @@
         background-repeat: no-repeat;
     }
     
-
+    .owl-theme .owl-controls {
+        bottom: 17px;
+    }
+    
     #wrapper-page-site {
         max-width: 1950px;
         min-height: 285px;
@@ -1391,7 +1394,7 @@
                     background-image: none;
                 }
                 .section-description {
-                    bottom: 32px;
+                    bottom: 65px;
                 }
                 .wrapper-description {
                     .slider-title {
@@ -1404,7 +1407,11 @@
                 }
         }
     }
-
+    
+    .owl-theme .owl-controls {
+        bottom: 0px;
+    }
+    
     #page-audiencias-contenidos {
         .wrapper-image-section {
             background-image: url("/web/img/audiencia-y-contenido/mobile/400/400.jpg");

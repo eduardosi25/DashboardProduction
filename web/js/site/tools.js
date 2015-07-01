@@ -778,8 +778,31 @@ $(function() {
                         $(".cd-headline.push b").addClass("is-visible");
                     }
                 }
-                function reloadSubTittle(){                   
-                    if (vander === true) {                        
+                function effectLetter(){
+                    var runLetter = ".cd-headline.letters .cd-words-wrapper b i";
+                    $(runLetter).each(function(i,x){
+                        if($(this).hasClass("out")){
+                            $(this).removeClass("out");
+                            $(this).addClass("in");
+                        }
+                        
+                        /*if($(this).hasClass("in")){
+                            $(this).removeClass("in");
+                            $(this).addClass("out");
+                        }else if($(this).hasClass("out")){
+                            $(this).removeClass("out");
+                            $(this).addClass("in");
+                        }*/
+                        
+                    });
+                }
+                function reloadEffectLetter(){
+                    if (vander === true) {
+                        effectLetter();
+                    }
+                }
+                function reloadSubTittle(){
+                    if (vander === true) {
                         ShowSubTitle();
                     }
                 }
@@ -809,24 +832,36 @@ $(function() {
                     },
                     beforeMove: function(){
                         //console.log("beforeMove");
+                        var runLetter = ".cd-headline.letters .cd-words-wrapper b i";
+                        $(runLetter).each(function(i, x) {
+                            if ($(this).hasClass("in")) {
+                                $(this).removeClass("in");
+                                $(this).addClass("out");
+                            }
+                        });
+                        
                         if($(".cd-headline.push b").hasClass("is-visible")){
                             $(".cd-headline.push b").removeClass("is-visible");
                             $(".cd-headline.push b").addClass("is-hidden");
                         }else {
                             $(".cd-headline.push b").addClass("is-hidden");
                         }
+                        //reloadEffectLetter();
                         vander = true;
-                        setTimeout(reloadSubTittle, 2000);
+                        setTimeout(reloadSubTittle, 1500);
+                        setTimeout(reloadEffectLetter, 1500);
                     },
                     afterAction: function(){
-                        console.log("afterAction");
+                        //console.log("afterAction");
                         
                     },
                     afterMove: function(){
-                        console.log("afterMove");
+                        //console.log("afterMove");
                         vander = false;
                         //ShowSubTitle();
+                        //effectLetter();
                         setTimeout(ShowSubTitle, 900);
+                        setTimeout(effectLetter, 900);
                     },
                     startDragging: function (){
                         //console.log("startDragging");

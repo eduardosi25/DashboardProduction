@@ -247,7 +247,7 @@ header {
             @include measures(93.5%,auto);
         }*/
         .owl-theme .owl-controls {
-            display: none !important;
+            //display: none !important;
         }
         .wrapper-image-slider {
             @include measures(100%,auto);
@@ -261,7 +261,7 @@ header {
             }
         }
         .section-description {
-            bottom: 90px;
+            bottom: 130px;
             left: 0px;
             @include measures(100%,auto);
         }
@@ -278,6 +278,7 @@ header {
             .slider-description {
                 color: #FFF;
                 font-size: 25px;
+                text-align: center;
                 @extend .SourceSansPro-Semibold;
                 @include measures(100%,auto);
             }
@@ -383,7 +384,7 @@ header {
     margin: 0 auto;
     font-size: 22px;
     max-width: 300px;
-    padding: 10px 0px;
+    padding: 10px 0px 15px 0px;
     @extend .Hind-Bold;
     //background-color: #E58436;
     //background-color: #FFF;
