@@ -814,8 +814,8 @@ $(function() {
                     pagination: true,
                     navigation: true,
                     navigationText: [
-                        "<i class='nex_prev block'></i>",
-                        "<i class='nex_next block'></i>"
+                        "<span class='nex-prev block'></span>",
+                        "<span class='nex-next block'></span>"
                     ],
                     autoHeight: true,
                     beforeUpdate: function(){

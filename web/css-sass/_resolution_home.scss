@@ -98,7 +98,7 @@
     
 
     #slide-home {
-        &.wrapper-image-section1 {            
+        &.wrapper-image-section1 {
             //background-image: url("/web/img/home/desktop/1024/1024.jpg");
             background-image: url("/web/img/home/mobile/700/700.jpg");
                 .wrapper-grupo_medios_crecimiento {
@@ -138,6 +138,13 @@
                 .slider-description {
                     font-size: 25px;
                 }
+            }
+            
+            .owl-buttons {
+                display: none;
+            }
+            .owl-theme .owl-controls .owl-pagination {
+                display: block;
             }
             
             .owl-theme .owl-controls {

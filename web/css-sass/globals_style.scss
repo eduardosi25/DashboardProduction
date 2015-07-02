@@ -291,6 +291,9 @@ header {
             }
         }
         
+        .owl-theme .owl-controls .owl-pagination {
+            display: none;
+        }
         .owl-theme .owl-controls .owl-page span {
             @extend .sprite-invent;
             @include img-position(14px,14px,-80px,-193px);
@@ -300,12 +303,39 @@ header {
             @extend .sprite-invent;
             @include img-position(14px,14px,-63px,-193px);
         }
+        
+        .owl-buttons {
+            position: absolute;
+            top: -220px;
+            width: 100%;
+            left: 0px;
+            .owl-prev {
+                top: 45%;
+                left: 20px;
+                position: absolute;
+                .nex-prev {                
+                    @extend .sprite-invent;
+                    @include img-position(47px,134px,-54px,-3531px);
+                }
+            }
+
+            .owl-next {
+                top: 45%;
+                right: 20px;
+                position: absolute;
+                .nex-next {                
+                    @extend .sprite-invent;
+                    @include img-position(47px,134px,-153px,-3531px);
+                }
+            }
+        }                
+        
         //@extend .sprite-invent;
         //@include img-position(103px,94px,-188px,-553px);
         
         .wrapper-publish-stage.btn-publish-slider {
             left: 0%;
-            bottom: 5%;
+            bottom: 9%;
             padding: 0px;
             text-align: center;
             @include measures(100%,auto);
