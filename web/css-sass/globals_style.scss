@@ -273,7 +273,7 @@ header {
                 font-size: 80px;
                 font-family: SourceSansPro-Bold;
                 //@extend .SourceSansPro-Bold;
-                @include measures(100%,auto);
+                //@include measures(100%,auto);
             }
             .slider-description {
                 color: #FFF;
