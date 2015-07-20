@@ -1,0 +1,12 @@
+name = "SIPI Users Registration"
+description = "SIPI Users Registration"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = sipi_users.install
+files[] = sipi_users.module
+files[] = sipi_users.admin.inc
+configure = admin/config/system/sipi-users
+
+
