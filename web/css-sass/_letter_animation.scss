@@ -78,9 +78,11 @@
      }
  }
  .cd-words-wrapper {
+     width: 100%;
+     text-align: center;
      display: inline-block;
      position: relative;
-     text-align: left;
+     //text-align: left;
  }
  .cd-words-wrapper b {
      display: inline-block;
