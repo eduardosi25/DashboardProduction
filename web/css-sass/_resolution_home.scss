@@ -97,7 +97,7 @@
     }
     
 
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             //background-image: url("/web/img/home/desktop/1024/1024.jpg");
             background-image: url("/web/img/home/mobile/700/700.jpg");
@@ -667,7 +667,7 @@
     }
 
     /* home */
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/700/700.jpg");
         }
@@ -1377,7 +1377,7 @@
 
 @media only screen and (max-width: 400px) {
 
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/400/400.jpg");
             .wrapper-grupo_medios_crecimiento {
