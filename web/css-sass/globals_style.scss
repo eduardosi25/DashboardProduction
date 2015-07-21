@@ -216,7 +216,7 @@ header {
     //@include img-position(195px, 69px,-42px,-84px);
 }
 
-#slide-home {
+#slide-home, #slide-video-talento {
     &.wrapper-image-section1 {
         background-color: #DDDFDE !important;
         background-repeat: no-repeat;
@@ -357,14 +357,28 @@ header {
 #talento-independiente.wrapper-image-section1 {
     max-width: 1900px;
     @include measures(100%,auto);
-    background-color: #DDDFDE;
+    img {
+            @include measures(100%,auto);
+    }        
+
+    .wrapper-button {
+        bottom: 15%;
+        text-align: center;
+        position: absolute;
+        @include measures(100%,auto);
+        a {
+            img.btn-afiliate-talento {        
+                @include measures(400px,50px);
+            }
+        } 
+    }   
+    /*background-color: #DDDFDE;
     background-image: url("/web/img/home/desktop/rompimiento.jpg");
-    background-repeat: no-repeat;
-    .wrapper-tex-info {
-        //margin-top: 9%;
+    background-repeat: no-repeat;*/
+    /*.wrapper-tex-info {        
         @include measures(50%,auto);
-    }
-    .text-info {
+    }*/
+    /*.text-info {
         margin: 0 auto;
         padding-bottom: 40px;
         @include measures(100%,auto);
@@ -375,14 +389,12 @@ header {
     .wrapper-image {
         @include measures(45%,auto);
         max-width: 500px;
-        padding: 2% 0 0 5%;
-    //@include measures(25%,auto);
+        padding: 2% 0 0 5%;    
         img {
             @include measures(100%,auto);
         }
-    }
+    }*/
 }
-
 
 
 //.wrapper-image-section2 {
