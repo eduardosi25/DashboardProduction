@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function sipi_users_install() {
+  variable_set('sipi_users_status',FALSE);
+  variable_set('sipi_users_role',NULL);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function sipi_users_uninstall() {
+  #Delete all variables
+  variable_del('sipi_users_status');
+  variable_del('sipi_users_role');
+}
