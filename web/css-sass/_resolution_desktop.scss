@@ -1,7 +1,7 @@
 @media only screen and (max-width: 1024px) {
     /* home */
     
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             //background-image: url("/web/img/home/desktop/1024/1024.jpg");
             .wrapper-grupo_medios_crecimiento {
@@ -405,7 +405,7 @@
 }
 
 @media only screen and (max-width: 800px) {
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             .wrapper-description {
                 .slider-title {
