@@ -16,6 +16,8 @@ tmp
 tmp/*
 files
 files/*
+firmas
+firmas/*
 demos
 demos/*
 *nbproject*
