@@ -1,0 +1,126 @@
+<?php
+global $sipi_account;
+module_load_include('inc', 'user', 'user.pages');
+
+function sipi_users_menu() {
+  $items=array();
+
+  #SIPI USERS MAIN MENU
+  $items['admin/people/sipi-users'] = array(
+    'title'            => t('SIPI Users Registration'),
+    'page callback'    => 'sipi_users_register',
+    'access arguments' => array('administer users'),
+    'type'             => MENU_LOCAL_TASK,
+  );
+  #SIPI USERS EDIT MENU
+  $items['admin/people/sipi-users/%user/edit'] = array(
+    'title'            => t('SIPI Users Profile Registration'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('user_profile_form',3),
+    'access arguments' => array('administer users'),
+    'type'             => MENU_NORMAL_ITEM,
+  );
+  #SIPI USERS ADMIN
+  $items['admin/config/system/sipi-users'] = array(
+    'title'            => t('SIPI Users Settings'),
+    'description'      => t('Configure settings for SIPI Users Registration'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('sipi_users_admin_settings_form'),
+    'access arguments' => array('administer users'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'sipi_users.admin.inc',
+    'weight'           => 0,
+  );
+
+  return $items;
+}
+function sipi_users_register() {
+  $build=array();
+  $build['sipi_users_register_form']=drupal_get_form('user_register_form');
+  return $build;
+}
+function sipi_users_profile($account) {
+  $build=array();
+  $build['sipi_users_profile_form']=drupal_get_form('user_profile_form');
+  return $build;
+}
+
+function sipi_users_form_alter(&$form, &$form_state, $form_id){
+  if(variable_get('sipi_users_status',FALSE)){
+    $path = current_path();
+    $patterns = 'admin/people/sipi-users'.PHP_EOL.'admin/people/sipi-users/*/edit';
+    if (drupal_match_path($path, $patterns)) {
+      switch($form_id){
+        case 'user_register_form':
+          $account=$form['account'];
+          //Hide status
+          $account['status']=array(
+            '#type' => 'hidden',
+            '#default_value' => true,
+          );
+          //Change roles
+          $roles = array_map('check_plain', user_roles(TRUE));
+          $sipi_roles=variable_get('sipi_users_role');
+          $options_roles=array();
+          foreach($sipi_roles as $key=>$value){
+            if($value>0){
+              $options_roles[$key]=$roles[$key];
+            }
+          }
+          asort($options_roles);
+          $account['roles'] = array(
+            '#type' => 'checkboxes',
+            '#title' => t('SIPI Users Roles'),
+            '#default_value' => $sipi_roles,
+            '#options' => $options_roles,
+            '#access' => user_access('administer permissions'),
+          );
+          //Disabled checkboxes
+          foreach($options_roles as $key => $value){
+            $account['roles'][$key]=array(
+              '#type' => 'checkbox',
+              '#title' => $value,
+              '#default_value' => isset($value) && is_int($value) ? intval($value) : TRUE,
+              '#disabled' => TRUE,
+            );
+          }
+          //Hide notification
+          $account['notify']['#type'] = 'hidden';
+
+          // Add the final user registration form submit handler.
+          $form['#submit'][] = 'sipi_users_register_submit';
+
+          $form['account']=$account;
+          break;
+        case 'user_profile_form':
+          $account=$form['account'];
+          $account['name']['#title']='Completar perfil para el usuario';
+          $account['name']['#disabled']='true';
+          $account['name']['#description']='';
+          $account['mail']['#type']='hidden';
+          $account['pass']=array();
+          $account['status']=array();
+          $account['roles']=array();
+          // Add the final user registration form submit handler.
+          $form['#submit'][] = 'sipi_users_profile_submit';
+          //Reset fields;
+          $form['account']=$account;
+          break;
+      }
+    }
+  }else{
+    drupal_set_message(t('SIPI Users module not enabled. Please enabled it in the <a href="@url" target="@target">Configuration page</a>.',array('@url'    => '/admin/config/system/sipi-users','@target' => '_blank')),'warning');
+  }
+}
+function sipi_users_register_submit($form, &$form_state){
+  $form_state['redirect']='admin/people/sipi-users/'.$form['#user']->uid.'/edit';
+  $form_state['rebuild'] = TRUE;
+  //Profile
+  drupal_goto('admin/people/sipi-users/'.$form['#user']->uid.'/edit');
+}
+function sipi_users_profile_submit($form, &$form_state){
+  $form_state['redirect']='admin/people';
+  $form_state['rebuild'] = TRUE;
+  //People list
+  drupal_goto('admin/people');
+}

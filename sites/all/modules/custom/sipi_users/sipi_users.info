@@ -1,0 +1,14 @@
+name = "SIPI Users Registration"
+description = "SIPI Users Registration. Requiere el permiso <em><strong>Administer Users</strong></em>"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = sipi_users.install
+files[] = sipi_users.module
+files[] = sipi_users.admin.inc
+dependencies[] = system (>7.10)
+dependencies[] = user (>7.10)
+configure = admin/config/system/sipi-users
+
+
