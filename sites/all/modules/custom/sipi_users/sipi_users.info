@@ -1,5 +1,5 @@
 name = "SIPI Users Registration"
-description = "SIPI Users Registration. Requiere el permiso <em><strong>Administer Users</strong></em>"
+description = "SIPI Users Registration. Requiere el permiso <em><strong>Administer Users</strong></em>. <strong>Activar sólo en sitios de la Red Inventmx.</strong>"
 package = "InventMX"
 core = "7.x"
 version = "7.x"
