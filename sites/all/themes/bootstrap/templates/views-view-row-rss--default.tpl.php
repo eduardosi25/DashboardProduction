@@ -9,7 +9,7 @@
 $node=node_load($row->elements[1]['value']);
 $channel=taxonomy_term_load($node->field_channel['und'][0]['tid']);
 $channel_name=$channel->name;
-$channel_url=$channel->field_content['und'][0]['value'];
+$channel_url=isset($channel->field_content['und'][0]['value']) && !empty($channel->field_content['und'][0]['value']) ? $channel->field_content['und'][0]['value'] : '';
 unset($channel);
 $site=taxonomy_term_load($node->field_site['und'][0]['tid']);
 $siteName=$site->name;
