@@ -74,7 +74,7 @@ function sipi_menu() {
   $items=array();
   #SIPI MAIN MENU
   $items['sipi'] = array(
-    'title'            => 'Sistema Integral de Publicación en Internet',
+    'title'            => 'SIPI',
     'description'      => 'Sistema Integral de Publicación en Internet',
     'page callback'    => 'sipi_login',
     'access callback'  => TRUE,
@@ -83,7 +83,7 @@ function sipi_menu() {
   );
   #SIPI DASHBOARD
   $items['sipi/dashboard'] = array(
-    'title'            => t('Dashboard'),
+    'title'            => 'Panel de control',
     'page callback'    => 'sipi_dashboard',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('use sipi dashboard'),
@@ -92,7 +92,7 @@ function sipi_menu() {
   );
   #SIPI USER == CLIENT
   $items['sipi/client'] = array(
-    'title'            => t('Clients'),
+    'title'            => 'Clientes',
     'page callback'    => 'sipi_client',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
@@ -100,7 +100,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/add'] = array(
-    'title'            => t('Clients'),
+    'title'            => 'Agregar cliente',
     'page callback'    => 'sipi_client_add',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
@@ -108,7 +108,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/edit'] = array(
-    'title'            => t('Client Edit'),
+    'title'            => 'Editar cliente',
     'page callback'    => 'sipi_client_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -117,7 +117,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/cancel'] = array(
-    'title'            => t('Client cancel account'),
+    'title'            => 'Cancelar cuenta del cliente',
     'page callback'    => 'sipi_client_cancel',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -126,8 +126,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/view'] = array(
-    'title'            => t('Client Details'),
-    'description'      => 'Detalle de cliente',
+    'title'            => 'Detalle del cliente',
     'page callback'    => 'sipi_client_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -137,7 +136,7 @@ function sipi_menu() {
   );
   #SIPI PLANS == PACKAGES
   $items['sipi/plans'] = array(
-    'title'            => t('Plans'),
+    'title'            => 'Planes',
     'page callback'    => 'sipi_plans',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin plans'),
@@ -145,14 +144,14 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/add'] = array(
-    'title'            => t('Add a plan'),
+    'title'            => 'Agregar un plan',
     'page callback'    => 'sipi_plans_add',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/edit'] = array(
-    'title'            => t('Edit plan'),
+    'title'            => 'Editar plan',
     'page callback'    => 'sipi_plans_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -161,7 +160,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/delete'] = array(
-    'title'            => t('Delete plan'),
+    'title'            => 'Eliminar plan',
     'page callback'    => 'sipi_plans_delete',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -170,7 +169,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/view'] = array(
-    'title'            => t('Plans View'),
+    'title'            => 'Detalle del plan',
     'page callback'    => 'sipi_plans_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -180,7 +179,7 @@ function sipi_menu() {
   );
   #SIPI EXPIRES
   $items['sipi/expire/%expire'] = array(
-    'title'            => t('Next expires'),
+    'title'            => 'Pr&oacute;ximas finalizaciones',
     'page callback'    => 'sipi_next_expires',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('use sipi expires'),
