@@ -22,15 +22,15 @@ caption{
 .container-inline-date,.form-item-sipi-filter-status,#edit-sipi-filter-submit{
   float:left;
 }
-.form-item-sipi-filter-status{
-  padding-top:0.7em;
-}
 #edit-sipi-filter-submit{
-  margin: 2.4em 0 0 1em;
+  margin: 1.7em 0 0 1em;
 }
 tbody td{
   text-align: center;
 }
 tbody td.active{
   text-align: left;
+}
+.container-inline-date .date-padding{
+  padding:0;
 }
