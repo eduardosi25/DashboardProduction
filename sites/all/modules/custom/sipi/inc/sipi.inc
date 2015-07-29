@@ -14,20 +14,20 @@ function sipi_dashboard(){
   global $user;
 
   $dashboard=null;
-  if (in_array('sipi_god', $user->roles)) {
+  if (in_array('sipi_god', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_god' role.
     //$dashboard=drupal_render(sipi_expire_list('sipi_god'));
     $dashboard=drupal_get_form('sipi_clients_list_form');
-  }else if (in_array('sipi_director', $user->roles)) {
+  }else if (in_array('sipi_director', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_director' role.
     $dashboard=drupal_get_form('sipi_clients_list_form');
-  }else if (in_array('sipi_manager', $user->roles)) {
+  }else if (in_array('sipi_manager', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_manager' role.
     $dashboard=sipi_expire_list('sipi_manager');
-  }else if (in_array('sipi_executive', $user->roles)) {
+  }else if (in_array('sipi_executive', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_executive' role.
     $dashboard=sipi_expire_list('sipi_executive');
-  }else if (in_array('sipi', $user->roles)) {
+  }else if (in_array('sipi', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi' role.
     $dashboard=sipi_expire_list();
   }
