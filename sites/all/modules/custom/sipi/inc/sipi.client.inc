@@ -735,7 +735,7 @@ function sipi_client_list(){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
-  $query->join('sipi_clients_invent_users','ui','ui.cid=c.cid');
+  $query->leftJoin('sipi_clients_invent_users','ui','ui.cid=c.cid');
   $query->limit(10);
   $query->fields('c',array('cid','name'));
   $query->addField('pc','status','status');
@@ -758,7 +758,7 @@ function sipi_client_list(){
       $row->site,
       $row->plan,
       ($row->status==0 ? t('Disabled') : ($row->status==1 ? t('Enabled') : 'N/D')),
-      $row->contents_published,
+      ($row->contents_published*1)>0 ? $row->contents_published : 0,
       ($row->contents_published>0 ? $row->contents_limit-$row->contents_published : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
