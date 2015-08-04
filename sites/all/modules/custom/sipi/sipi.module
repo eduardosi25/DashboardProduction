@@ -444,7 +444,7 @@ function sipi_get_variables() {
 
 function sipi_run_cronlt(){
   //Search by name
-  $siteName='salud180';
+  $siteName='actitudfem';
   $query=array(
     'limit'  => 1,
     'name'   => 'Vime',
