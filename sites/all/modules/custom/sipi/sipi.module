@@ -447,7 +447,7 @@ function sipi_run_cronlt(){
   $siteName='gamedots';
   $query=array(
     'limit'  => 1,
-    'name'   => 'Gameloft',
+    'name'   => 'Vime',
     //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
     'sort'   => 'created:DESC',
   );
@@ -465,7 +465,7 @@ function sipi_run_cronlt(){
   //Search contents for every users
   $query=array(
     'limit'  => 1,
-    'name'   => 'Gameloft',
+    'name'   => 'Vime',
     'fields' => 'id|name|nodes',
     'sort'   => 'created:DESC',
   );

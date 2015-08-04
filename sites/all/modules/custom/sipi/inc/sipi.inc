@@ -163,7 +163,6 @@ function sipi_clients_list_form($form, &$form_state){
   #var_dump($sipi_filter);
   #echo '</pre><hr>';
 
-
   if(isset($form_state['filters'])){
     $sipi_filter=array(
       'year'   => $form_state['filters']['year'],
