@@ -158,7 +158,7 @@ function sipi_admin_settings_form_submit($form, &$form_state){
   variable_set('sipi_settings',$settings);
 
   //Clear cache
-  //cache_clear_all('sipi_variables', 'cache');
+  cache_clear_all('sipi_variables', 'cache');
 }
 
 

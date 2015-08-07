@@ -1,0 +1,31 @@
+name = Flag lists
+core = 7.x
+package = Flags
+dependencies[] = flag (>7.x-3.0)
+dependencies[] = token
+dependencies[] = views
+
+files[] = flag_lists.admin.inc
+files[] = flag_lists.module
+files[] = flag_lists.install
+files[] = includes/flag_lists.views.inc
+files[] = includes/flag_lists.views_default.inc
+files[] = includes/flag_lists_handler_argument_fid.inc
+files[] = includes/flag_lists_handler_field_list.inc
+files[] = includes/flag_lists_handler_field_list_delete.inc
+files[] = includes/flag_lists_handler_field_list_edit.inc
+files[] = includes/flag_lists_handler_field_ops.inc
+files[] = includes/flag_lists_handler_field_template.inc
+files[] = includes/flag_lists_handler_field_template_types.inc
+files[] = includes/flag_lists_handler_filter_template.inc
+files[] = includes/flag_lists_handler_filter_list.inc
+
+description = Allows users to create personal flag lists.
+
+
+; Information added by Drupal.org packaging script on 2015-06-14
+version = "7.x-3.0-beta2"
+core = "7.x"
+project = "flag_lists"
+datestamp = "1434315897"
+

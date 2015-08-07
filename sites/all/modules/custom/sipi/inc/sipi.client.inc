@@ -25,7 +25,10 @@ function sipi_client_cancel_account_form($form, &$form_state, $client=NULL) {
   // If we aren't admin but already logged on, go to the dashboard
   if (!$admin) {
     drupal_goto('sipi');
+  }else if(!isset($client->cid)){
+    drupal_goto('sipi/client');
   }
+
   $form=array();
   $form['sipi_client'] = array(
     '#type'  => 'fieldset',
@@ -43,6 +46,7 @@ function sipi_client_cancel_account_form($form, &$form_state, $client=NULL) {
     '#type'   => 'submit',
     '#value'  => t('Delete'),
   );
+  $form['#redirect'] = 'sipi/client';
   return $form;
 }
 
@@ -64,6 +68,8 @@ function sipi_client_cancel_account_form_submit($form, &$form_state) {
       db_delete('sipi_clients')
         ->condition('cid', $client->cid, '=')
         ->execute();
+      $form_state['redirect'] = 'sipi/client';
+      $form_state['rebuild'] = TRUE;
       drupal_set_message($client->name.' - client account deleted!','error');
     } catch (Exception $e) {
       $transaction->rollback();
@@ -71,6 +77,7 @@ function sipi_client_cancel_account_form_submit($form, &$form_state) {
       throw $e;
     }
     $form_state['redirect'] = 'sipi/client';
+    $form_state['rebuild'] = TRUE;
   }
 }
 
@@ -443,7 +450,11 @@ function sipi_clients_save($fields){
   }else{
     //Insert
     $cid=sipi_clients_save_op('insert',$fields);
-    sipi_plans_clients_save_op('insert',$fields,$cid);
+    $pids=sipi_plans_clients_save_op('insert',$fields,$cid);
+    if($cid>0 && count($pids)>0){
+      //Send email
+      sipi_clients_save_send_email($cid);
+    }
   }
 }
 
@@ -804,6 +815,7 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
       ->execute();
   }
   $form_state['redirect'] = 'sipi/plans';
+  $form_state['rebuild'] = TRUE;
 }
 
 function sipi_client_list_items(){
@@ -1140,8 +1152,6 @@ function sipi_client_detail($client=null){
 
 }
 
-
-
 function sipi_client_contents_list($client=null){
   if(!isset($client) || empty($client))
     return false;
@@ -1219,5 +1229,65 @@ function sipi_client_contents_list($client=null){
     '#caption' => 'Contenidos publicados',
   );
   return $build;
+}
 
+/**
+ * Send email
+ */
+function sipi_clients_save_send_email($cid) {
+  $client=sipi_client_load($cid);
+  //Basic settings
+  $settings=array(
+    'module'  => 'sipi',
+    'delta'   => __FUNCTION__,
+    'from'    => 'webmaster@invent.mx',
+    'to'      => 'luis@invent.mx',
+    'params'  => array(
+      'text'    => array(),
+      'subject' => 'Registro de cliente SIPI - '.$client->name,
+    ),
+  );
+
+  //Attachment
+  $file=file_load($client->logo);
+  if($file){
+    $settings['params']['files'][] = $file;
+  }
+
+  //Sites information
+  $sites=array();
+  foreach($client->plans as $plan){
+    $term=taxonomy_term_load($plan->site);
+    $sites[]=$term->name;
+  }
+  unset($term);
+  $sites=implode(' | ', $sites);
+
+  //Data client
+  $dataClient=array();
+  $dataClientHTML='';
+  foreach($client as $key => $value){
+    if(isset($value) && !empty($value)){
+      if(!in_array($key,array('cid','logo','created','changed','access','login','plans'))){
+        $dataClientHTML=$dataClientHTML.'<tr><td><strong>'.ucfirst(sipi_fields_translate($key)).'</strong>:</td><td><em>'.$value.'</em></td></tr>';
+      }
+    }
+  }
+
+  //Message email
+  $settings['params']['text']=array(
+    '<p>Datos del registro</p>',
+    '<h3>'.$client->name.'</h3>',
+    '<img src="'.file_create_url($file->uri).'" />',
+    '<p>Sitios: '.$sites.'</p>',
+    '<p>Datos para registro (<strong>Deben ser iguales en todos los sitios</strong>)</p>',
+    '<p><table>'.$dataClientHTML.'</table></p>',
+  );
+
+  // Send message.
+  $result=drupal_mail($settings['module'], $settings['delta'], $settings['to'], language_default(), $settings['params'], $settings['from']);
+  if($result['send']){
+    drupal_set_message('Correo electrónico de registro de cliente enviado a: '.$settings['to'],'status');
+  }
+  return $result['send'];
 }

@@ -220,13 +220,20 @@ function sipi_menu() {
     'weight'           => 1,
   );
   $items['admin/config/system/sipi/cronlt'] = array(
-    'title'            => t('Light weight cron handler'),
+    'title'            => t('Light weight cron handler SIPI Analytics'),
     'description'      => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
     'page callback'    => 'sipi_run_cronlt',
     'access arguments' => array('administer node_analytics settings'),
     'access callback'  => TRUE,
     'type'             => MENU_CALLBACK,
   );
+  $items['admin/config/system/sipi/testmail'] = array(
+    'page callback'    => 'sipi_mail_test',
+    'access arguments' => array('administer users'),
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+  );
+
   return $items;
 }
 /**
@@ -443,44 +450,68 @@ function sipi_get_variables() {
 }
 
 function sipi_run_cronlt(){
-  //Search by name
-  $siteName='actitudfem';
-  $query=array(
-    'limit'  => 1,
-    'name'   => 'Vime',
-    //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
-    'sort'   => 'created:DESC',
-  );
+  global $sipi_variables;
+  if($sipi_variables['debug']){
+    $sites=array('actitudfem','salud180');
+    foreach($sites as $siteName){
+      //Search by name
+      $query=array(
+        'limit'  => 1,
+        'name'   => 'Vime',
+        //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
+        'sort'   => 'created:DESC',
+      );
+      $fields=sipi_get_api_users($siteName,$query);
+      $result=sipi_insert_clients_invent_users($fields);
+      if($result){
+        $apiRequest=get_api_url_request($siteName, 'users', $query);
+        echo '<p>Usuarios agregados | Url ['.$apiRequest.']</p>';
+      }
+      //Search contents for every users
+      $query=array(
+        'limit'  => 1,
+        'name'   => 'Vime',
+        'fields' => 'id|name|nodes',
+        'sort'   => 'created:DESC',
+      );
+      $fields=sipi_get_api_contents($siteName,$query);
+      $result=sipi_insert_clients_invent_contents($fields);
+      if($result){
+        $apiRequest=get_api_url_request($siteName, 'contents', $query);
+        echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
+      }
+    }
+    return 'Done!';
+  }else{
+    return 'Debug mode not enabled. Nothing to do!';
+  }
+}
+
+
+function sipi_new_api_users(){
+  $result=null;
   //Search for new users
-  /*
+  $siteName='actitudfem';
   $query=array(
     'limit'  => 50,
     'fields' => 'id|name|mail',
     'sort'   => 'created:DESC',
   );
-  */
   $fields=sipi_get_api_users($siteName,$query);
   $result=sipi_insert_clients_invent_users($fields);
+  echo 'Done search new users - Processed: '.count($result);
 
-  //Search contents for every users
-  $query=array(
-    'limit'  => 1,
-    'name'   => 'Vime',
-    'fields' => 'id|name|nodes',
-    'sort'   => 'created:DESC',
-  );
   //Search for new contents
-  /*
   $query=array(
     'limit'  => 50,
     'fields' => 'id|name|nodes',
     'sort'   => 'created:DESC',
   );
-  */
   $fields=sipi_get_api_contents($siteName,$query);
   $result=sipi_insert_clients_invent_contents($fields);
+  echo 'Search for new contents - Processed: '.count($result);
 
-  return 'Done!';
+  return true;
 }
 
 //########################################################################################################################################
@@ -501,6 +532,8 @@ function sipi_insert_clients_invent_users($fields){
 }
 function sipi_get_api_users($siteName='excelsior', $query=array()){
   $apiRequest=get_api_url_request($siteName, 'users', $query);
+  var_dump($apiRequest);
+  die(__FUNCTION__);
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
@@ -780,4 +813,75 @@ function shadow_headers(){
   $header[] = "Accept-Language: en-us,es;q=0.5";
   $header[] = "Pragma: "; // browsers keep this blank.
   return $header;
+}
+
+function sipi_admin_prepare_email(){
+  return array(
+    'from' => 'webmaster@inventmx.com',
+    'to'   => 'pablo.escobedo@inventmx.com',
+    'cc'   => '',
+    'bcc'  => '',
+  );
+}
+function sipi_admin_send_email($subject,$message){
+  if(!isset($subject) || !isset($message))
+    return false;
+  $send=sipi_admin_prepare_email();
+  $send['subject']=$subject;
+  $send['message']=$message;
+  return true;
+
+}
+
+/**
+ * Implementation of hook_mail().
+ */
+function sipi_mail($key, &$message, $params) {
+  switch($key) {
+    case 'sipi_clients_save_send_email':
+      //Default params
+      $params['format']  = 'text/html';
+      $params['charset'] = 'UTF-8';
+      //Set message
+      $message['subject'] = $params['subject'];
+      $message['body']    = $params['text'];
+      $message['headers']['X-Mailer']='Invent.mx Mailer';
+    break;
+    default:
+      $message['subject'] = $params['subject'];
+      $message['body']    = $params['text'];
+      $message['headers']['X-Mailer']='Invent.mx Mailer';
+    break;
+  }
+}
+
+function sipi_fields_translate($text){
+  $fields=array(
+    'name'        => 'nombre',
+    'pass'        => 'contrase&ntilde;a',
+    'mail'        => 'correo electr&oacute;nico',
+    'company'     => 'empresa',
+    'cellphone'   => 'tel&eacute;fono celular',
+    'phone'       => 'tel&eacute;fono privado o de oficina',
+    'extention'   => 'extensi&oacute;n',
+    'web'         => 'p&aacute;gina web',
+    'logo'        => 'logotipo',
+    'description' => 'descripci&oacute;n',
+    /*
+    'facebook'    => 'facebook',
+    'twitter'     => 'twitter',
+    'googleplus'  => 'googleplus',
+    'youtube'     => 'youtube',
+    'instagram'   => 'instagram',
+    'linkedin'    => 'linkedin',
+    'pinterest'   => 'pinterest',
+    'vine'        => 'vine',
+    */
+    'created'     => 'registrado',
+    'changed'     => 'actualizado',
+    'access'      => 'acceso',
+    'login'       => 'inicio de sesi&oacute;n',
+    'plans'       => 'planes',
+  );
+  return (isset($fields[$text]) && !empty($fields[$text]) ? $fields[$text] : $text);
 }
