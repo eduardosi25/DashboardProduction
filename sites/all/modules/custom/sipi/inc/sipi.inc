@@ -264,7 +264,7 @@ function sipi_clients_list_form($form, &$form_state){
       $row->site,
       $row->plan,
       ($row->status==0 ? t('Disabled') : ($row->status==1 ? t('Enabled') : 'N/D')),
-      $row->contents_published,
+      ($row->contents_published*1)>0 ? $row->contents_published : 0,
       ($row->contents_published>0 ? $row->contents_limit-$row->contents_published : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
