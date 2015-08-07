@@ -1,0 +1,106 @@
+Flag lists (Jun. 10, 2015)
+====
+#2379621: Three Error Messages
+#2379719: Undefined Property Error Message
+#2380077: Hidden Undefined Property Error Message
+#2379743: Ajax Message Problems
+#2379701: Two Required Fields
+#2389083: Ensure that Flag_lists 7.x-3.x can only be used with Flag 7.x-3.0
+#2392489: uid lenght in flag_lists_flags and flag_lists_content
+#2390871: New template creation
+#2388741-11: Special Characters?
+#2452549: Flag List 7.x-3.0-beta1 does to work with Views-generated lists - 0 item(s) added
+#2453679: Add titles to view generated lists
+#2454401: Views & uninstall
+#2453803: Not all Flag lists operations are working
+#2465553: Feature Requests: Option to customize wording; List Operations as block?
+#2388741-24: Special Characters?
+#2388741-28: Special Characters?
+#2465553-8: Feature Requests: Option to customize wording; List Operations as block?
+#2473121: Question about invoking hook_flag (This changes the name of the hooks for this module)
+#2453803-5: Not all Flag lists operations are working
+#2465553-13: Feature Requests: Option to customize wording; List Operations as block?
+#2496007-2: Autocomplete when selecting a flag lists in a view
+#2496007-3: Autocomplete when selecting a flag lists in a view
+
+
+Flag lists (Jan. 27, 2011)
+====
+Fix bug: Incorrectly checking status of non-flag_lists flags.
+Fix bug: Incorrectly applying hook_flag_access() on non-flag_lists flags.
+
+Flag lists (Jan. 14, 2011)
+====
+#1002292 Fixed Tokens not replaced in add-to-list and remove-from-list js messages.
+#1002292 Token module now a required dependency.
+
+Flag lists (Jan. 12, 2011)
+====
+#1023432 by erikwebb: Fixed No default value for $account in flag_lists_fl_delete().
+#1002294 by architectJpres: Fixed List block incompatible with block caching.
+  Block caching turned off for now. Still not making db updates so you need to
+  remove the block from its region and then put it back to turn on caching.
+
+Flag lists (Nov. 24, 2010)
+=====
+Fix bug: Use array_filter instead of array_unique on flag_lists_template_submit()
+  and flag_lists_template_validate();
+Fix bug: Remove GROUP BY in flag_lists_get_user_flags(). Caused postgres bug.
+Fix bug: flag_lists_insert() db_last_insert_id() used wrong table.
+Fix typos in flag_lists_theme().
+Remove flag_lists link ops from regular flag links.
+Add flag-lists-links to item list in theme_flag_lists_list().
+
+
+Flag lists (Nov. 07, 2010)
+=====
+Update view flags_lists_user_lists
+Add view flag_lists_user_list
+Use views when enabled.
+
+Flag lists (Nov. 07, 2010)
+Show which types are in use in template config form.
+Move key from type to name in flag_list_types *NOT creating update for this.
+Fix template naming. Was not saved correctly to flag_lists_types table.
+Change default template messages to anticipate token use.
+Add token support including list terminology and title.
+Added argument handler for fid. Uses list title for display instead fid.
+
+Flag lists (Oct. 11, 2010)
+=====
+flag_lists_get_user_flags() sets $flag->module = flag_lists for lists, and also
+merges in flag module flags.
+theme_flag_lists_list($node, $create = TRUE, $ops = TRUE, $flags = FALSE) adds
+the $flags boolean, which if TRUE will add flag module flags to the list.
+Invoke hook_flag() in flag_lists_do_flag();
+Add hook_flag_lists($flag, $user) with update and insert ops.
+Add config options to list block.
+Don't return anything to the block if there are no available flags or list
+templates.
+Fix theme_flag_lists_list to use block options.
+Fix bug (wrong variable name) in flag_lists_get_user_flags().
+Fix query in flag_lists_get_user_flags(). Was not loading all list type rows.
+Add list and listing generate fucntionality if devel_generate exists.
+Added $account as argument to a variety of functions where the user may not always
+be the current user.
+
+Flag lists (Sept. 24, 2010)
+=====
+Fix rebuild menu path
+
+Flag lists (Sept. 22, 2010)
+=====
+code cleanup
+fix hook_flag_delete
+Change template names from name_fl_template to fl_template_name.
+Text changes in template form.
+Page title change for template form.
+flag_lists_form will take list fid or name.
+Use fids on list edit links
+change menu paths for edit, delete
+improve some messages
+allow users with "administer flags" permission to bypass flag_lists_is_owner()
+checks.
+First run at views integration
+Better admin table for lists
+
