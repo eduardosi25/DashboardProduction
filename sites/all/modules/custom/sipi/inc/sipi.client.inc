@@ -1240,11 +1240,12 @@ function sipi_clients_save_send_email($cid) {
   $settings=array(
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
-    'from'    => 'webmaster@invent.mx',
-    'to'      => 'luis@invent.mx',
+    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
+    'to'      => 'pablo.escobedo@inventmx.com',
     'params'  => array(
       'text'    => array(),
       'subject' => 'Registro de cliente SIPI - '.$client->name,
+      'cco'     => 'luis@inventmx.com',
     ),
   );
 
