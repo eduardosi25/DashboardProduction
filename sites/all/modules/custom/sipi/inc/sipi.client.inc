@@ -819,8 +819,8 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
 }
 
 function sipi_client_list_items(){
-  $query=db_select('sipi_clients', 'p');
-  $query->fields('p', array('pid','name','contents','posts','duration','price'));
+  $query=db_select('sipi_clients', 'c');
+  $query->fields('c', array('cid','name','mail','pass','cellphone','phone','web','logo','description','created','changed','access','login'));
   $result=$query->execute();
   if($result){
     $items=array();
@@ -830,6 +830,29 @@ function sipi_client_list_items(){
     return $items;
   }
   return null;
+}
+
+function sipi_client_list_plans_items($cid=0){
+  if(!isset($cid) || empty($cid))
+    return false;
+  $query = db_select('sipi_clients', 'c');
+  $query->join('sipi_plans_clients','pc','pc.cid=c.cid');
+  $query->join('taxonomy_term_data','td','td.tid=pc.site');
+  $query->join('field_data_field_api_container','ac','ac.entity_id=td.tid');
+  $query->fields('c',array('cid','name','mail','pass'));
+  $query->addField('pc','site','idsite');
+  $query->addField('td','name','site');
+  $query->addField('ac','field_api_container_value','apirepo');
+  $query->condition('c.cid',$cid,'=');
+  $result=$query->execute();
+  if($result->rowCount()>0){
+    $plans=array();
+    foreach ($result as $row) {
+      $plans[]=$row;
+    }
+    return $plans;
+  }
+  return false;
 }
 
 /**
