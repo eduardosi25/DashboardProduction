@@ -1,0 +1,19 @@
+<?php
+/**
+ * Implementation of hook_menu()
+ */
+function sandbox_menu() {
+  $items = array();
+
+  // Ajax dropdown demo
+  $items["sandbox/ajax/dropdown"] = array(
+    "title" => "Ajax Dropdown",
+    "type" => MENU_CALLBACK,
+    "access arguments" => array("access content"),
+    "page callback" => "drupal_get_form",
+    "page arguments" => array("sandbox_ajax_dropdown"),
+    "file" => "includes/dropdown.inc",
+  );
+
+  return $items;
+}
