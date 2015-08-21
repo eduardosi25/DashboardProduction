@@ -51,7 +51,15 @@ function gimrh_menu() {
     'access_callback'  => 'gimrh_access',
     'access arguments' => array('administer gimrh settings'),
     'type'             => MENU_NORMAL_ITEM,
-    'file'             => 'gimrh.admin.inc',
+    'file'             => 'inc/gimrh.admin.inc',
+  );
+  $items['admin/config/system/gimrh/cronlt'] = array(
+    'title'            => t('GIM RH Cron Lite'),
+    'page callback'    => 'gimrh_cronlt',
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_CALLBACK,
+    'file'             => 'inc/gimrh.cron.inc',
   );
   return $items;
 }
@@ -369,16 +377,9 @@ function gimrh_get_variables() {
   if (!isset($variables)) {
     $settings=variable_get('gimrh_settings',NULL);
     $variables=array(
-      'status'   => variable_get('gimrh_status',FALSE),
-      'debug'    => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
-      'protocol' => isset($settings['protocol']) && !empty($settings['protocol']) ? $settings['protocol'] : 'http',
-      'domain'   => isset($settings['domain']) && !empty($settings['domain']) ? $settings['domain'] : 'api.inventmx.com',
-      'version'  => isset($settings['version']) && !empty($settings['version']) ? $settings['version'] : 'v1',
-      'sites'    => isset($settings['sites']) && !empty($settings['sites']) ? $settings['sites'] : NULL,
-      'users'    => isset($settings['users']) && !empty($settings['users']) ? $settings['users'] : NULL,
-      'contents' => isset($settings['contents']) && !empty($settings['contents']) ? $settings['contents'] : NULL,
-      'format'   => isset($settings['format']) && !empty($settings['format']) ? $settings['format'] : 'json',
-      'token'    => isset($settings['token']) && !empty($settings['token']) ? $settings['token'] : NULL,
+      'status' => variable_get('gimrh_status',FALSE),
+      'debug'  => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
+      'email'  => isset($settings['email']) && !empty($settings['email']) ? $settings['email'] : 'webmaster@invent.mx',
     );
   }
   return $variables;
