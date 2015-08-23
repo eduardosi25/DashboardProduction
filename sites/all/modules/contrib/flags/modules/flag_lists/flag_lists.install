@@ -1,0 +1,387 @@
+<?php
+
+/**
+ * @file
+ * The Flag lists module install file.
+ */
+
+ /**
+ * Implementation of hook_install().
+ */
+function flag_lists_schema() {
+  $schema = array();
+  $schema['flag_lists_flags'] = array(
+    'fields' => array(
+      'fid' => array(
+        'type' => 'serial',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'pfid' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'entity_type' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'title' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => FALSE,
+        'default' => '',
+      ),
+      'options' => array(
+        'type' => 'text',
+        'not null' => FALSE,
+      ),
+    ),
+    'primary key' => array('fid'),
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
+  );
+  $schema['flag_lists_content'] = array(
+    'fields' => array(
+      'fcid' => array(
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'fid' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'entity_type' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'entity_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'sid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'timestamp' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-size' => 11,
+      )
+    ),
+    'primary key' => array('fcid'),
+    'unique keys' => array(
+      'fid_content_id_uid_sid' => array('fid', 'entity_id', 'uid', 'sid'),
+    ),
+    'indexes' => array(
+      'entity_type_entity_id' => array('entity_type', 'entity_id'),
+      'entity_type_uid_sid' => array('entity_type', 'uid', 'sid'),
+    ),
+  );
+  $schema['flag_lists_counts'] = array(
+    'fields' => array(
+      'fid' => array(
+        'type' => 'int',
+        'size' => 'small',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'entity_type' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'entity_id' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-width' => '10',
+      ),
+      'count' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'disp-width' => '10',
+      )
+    ),
+    'primary key' => array('fid', 'entity_id'),
+    'indexes' => array(
+      'fid_entity_type' => array('fid', 'entity_type'),
+      'entity_type_entity_id' => array('entity_type', 'entity_id'),
+      'count' => array('count'),
+    ),
+  );
+  $schema['flag_lists_types'] = array(
+    'fields' => array(
+      'name' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => '32',
+        'not null' => FALSE,
+        'default' => '')
+    ),
+    'primary key' => array('name', 'type'),
+    'indexes' => array(
+      'name' => array('name'),
+    ),
+  );
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function flag_lists_install() {
+  // Set up our default template.
+  db_insert('flag_lists_types')
+    ->fields(array(
+      'name' => 'fl_template',
+    ))
+    ->execute();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function flag_lists_uninstall() {
+  // Remove our template flags.
+  $query = db_select('flag_lists_types', 'fl');
+  $query->leftJoin('flag', 'f', 'fl.name = f.name');
+  $query->addField('f', 'fid', 'fid');
+  $query->distinct();
+  $fids = $query->execute();
+
+  foreach ($fids as $fid) {
+    db_delete('flag')->condition('fid', $fid->fid)->execute();
+    db_delete('flagging')->condition('fid', $fid->fid)->execute();
+    db_delete('flag_types')->condition('fid', $fid->fid)->execute();
+    db_delete('flag_counts')->condition('fid', $fid->fid)->execute();
+  }
+
+  db_delete('variable')->condition('name', 'flag_lists%', 'LIKE')->execute();
+
+  $view_to_delete = views_get_view('flag_lists');
+  if (!empty($view_to_delete)) {  
+    views_delete_view($view_to_delete);
+  }
+
+  $view_to_delete =views_get_view('flag_lists_content');
+  if (!empty($view_to_delete)) {  
+    views_delete_view($view_to_delete);
+  }
+
+  $view_to_delete = views_get_view('flag_lists_user_lists');
+  if (!empty($view_to_delete)) {  
+    views_delete_view($view_to_delete);
+  }
+
+  $view_to_delete = views_get_view('flag_lists_user_list');
+  if (!empty($view_to_delete)) {  
+    views_delete_view($view_to_delete);
+  }
+
+  drupal_set_message(t('Flag lists has been uninstalled.'));
+}
+
+/**
+ * Get rid of garbage list entries that are orphaned from a list
+ */
+function flag_lists_update_7000() {
+  $orphans = db_query("SELECT flc.fcid, flc.fid, flc.content_id, flc.uid, flcounts.content_type, count
+              FROM {flag_lists_content} flc
+              JOIN {flag_lists_counts} flcounts ON flcounts.fid=flc.fid AND flc.content_id=flcounts.content_id
+              LEFT JOIN {flag_lists_flags} flf ON flf.fid=flc.fid
+              WHERE flf.fid IS NULL");
+
+  foreach ($orphans as $orphan) {
+    $num_deleted = db_delete('flag_lists_content')
+      ->condition('fid', $orphan->fid)
+      ->condition('fcid', $orphan->fcid)
+      ->condition('uid', $orphan->uid)
+      ->execute();
+
+    if (!empty($num_deleted)) {
+      drupal_set_message("Deleting flag_id: $orphan->fid flag_content_id: $orphan->fcid");
+
+      db_update('flag_lists_counts')
+        ->fields(array(
+          'count' => ($orphan->count <= 1) ? 0 : $orphan->count - 1,
+        ))
+        ->condition('content_type', $orphan->content_type)
+        ->condition('fid', $orphan->fid)
+        ->condition('content_id', $orphan->content_id)
+        ->execute();
+    }
+  }
+}
+
+
+/**
+ * Update the flag_lists_flags table
+ */
+function flag_lists_update_7301() {
+  db_change_field('flag_lists_flags','content_type', 'entity_type',
+    array(
+      'type' => 'varchar',
+      'length' => '32',
+      'not null' => TRUE,
+      'default' => '',
+    ));
+}
+
+/**
+ * Update the flag_lists_content table
+ */
+function flag_lists_update_7302() {
+  db_drop_unique_key('flag_lists_content','fid_content_id_uid_sid');
+  db_drop_index('flag_lists_content','content_type_content_id');
+  db_drop_index('flag_lists_content','content_type_uid_sid');
+ 
+  db_change_field('flag_lists_content','content_type', 'entity_type',
+    array(
+      'type' => 'varchar',
+      'length' => '32',
+      'not null' => TRUE,
+      'default' => '',
+    ));
+
+  db_change_field('flag_lists_content','content_id', 'entity_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+    ));
+
+  db_add_unique_key('flag_lists_content',
+    'fid_entity_id_uid_sid',
+    array('fid', 'entity_id', 'uid', 'sid'));
+  db_add_index('flag_lists_content',
+    'entity_type_uid_sid',
+    array('entity_type', 'uid', 'sid'));
+  db_add_index('flag_lists_content',
+    'entity_type_entity_id', 
+    array('entity_type', 'entity_id'));
+}
+
+/**
+ * Update the flag_lists_counts table
+ */
+function flag_lists_update_7303() {
+  db_drop_primary_key('flag_lists_counts');
+  db_drop_index('flag_lists_counts','fid_content_type');
+  db_drop_index('flag_lists_counts','content_type_content_id');
+
+  db_change_field('flag_lists_counts','content_type', 'entity_type',
+    array(
+      'type' => 'varchar',
+      'length' => '32',
+      'not null' => TRUE,
+      'default' => '',
+    ));
+  db_change_field('flag_lists_counts','content_id', 'entity_id',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+      'default' => 0,
+      'disp-width' => '10',
+    ),
+    array('primary key' => array('fid', 'entity_id')));
+
+  db_add_index('flag_lists_counts',
+    'fid_entity_type',
+    array('fid', 'entity_type'));
+  db_add_index('flag_lists_counts',
+    'entity_type_entity_id',
+    array('entity_type', 'entity_id'));
+}
+
+/**
+ * Update the views
+ */
+function flag_lists_update_7304() {
+
+  $myview = views_get_view('flag_lists', TRUE);
+  $myview->display['default']->display_options['fields']['name_2']['table'] = 'flag';
+  $myview->display['default']->display_options['filters']['name']['table'] = 'flag';
+  views_save_view($myview);
+  // Clear the cache for the pager
+  $cache = $myview->name . ':block:results:';
+  cache_clear_all($cache, 'cache_views_data', TRUE);
+
+  $myview = views_get_view('flag_lists_content', TRUE);
+  unset($myview->display['default']->display_options['relationships']['content_id']);
+  $myview->display['default']->display_options['relationships']['entity_id']['id'] = 'entity_id';
+  $myview->display['default']->display_options['relationships']['entity_id']['table'] = 'flag_lists_content';
+  $myview->display['default']->display_options['relationships']['entity_id']['field'] = 'entity_id';
+  $myview->display['default']->display_options['relationships']['entity_id']['label'] = 'Listed content';
+  $myview->display['default']->display_options['relationships']['entity_id']['required'] = TRUE;
+  views_save_view($myview);
+  // Clear the cache for the pager
+  $cache = $myview->name . ':block:results:';
+  cache_clear_all($cache, 'cache_views_data', TRUE);
+
+  $myview = views_get_view('flag_lists_user_list', TRUE);
+  $myview->display['page_1']->display_options['path'] = 'flag/lists/%';
+  views_save_view($myview);
+  // Clear the cache for the pager
+  $cache = $myview->name . ':block:results:';
+  cache_clear_all($cache, 'cache_views_data', TRUE);
+
+}
+
+/**
+ * Update the flag_lists_flags table
+ */
+function flag_lists_update_7305() {
+  db_change_field('flag_lists_flags','uid', 'uid',
+    array(
+      'type' => 'int',
+      'unsigned' => TRUE,
+      'not null' => TRUE,
+    ));
+}

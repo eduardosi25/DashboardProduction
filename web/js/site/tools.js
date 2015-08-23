@@ -10,7 +10,7 @@
     inventMx.header = {}, //no use
     inventMx.header.main = function () {}, //no use
     inventMx.page = {},
-    inventMx.render = {},
+    inventMx.render = {},    
     inventMx.metas = {},
     inventMx.config = {
         website: 'http://www.inventmx.com/',
@@ -56,7 +56,7 @@
         og_image: "/web/img/favicons/mstile-150x150.png",
     };
     
-    inventMx.page.wrapper_site = $("#wrapper-page-site");    
+    inventMx.page.wrapper_site = $("#wrapper-page-site");
     inventMx.utilities.loaderShow = function () {
         $("#wrapper-loading-layout").css("display", "block");
     },
@@ -422,6 +422,38 @@
     inventMx.utilities.deviceWidthDocument = function(){
         return $(document).width();
     },
+    inventMx.utilities.validateImgStage = function(twidth,container,params){                
+                if (twidth > 1024) {
+                    //$("#talento-independiente img.not-img").each(function() {
+                    container.each(function() {
+                        var img = $(this);                        
+                        var data_src = img.attr("data-src");                        
+                        var newImg = params.r1920 + data_src;                        
+                        img.attr("src", newImg);                        
+                    });
+                } else if (twidth >= 701 && twidth <= 1024) {
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r1024 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth >= 401 && twidth <= 700) {
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r700 + data_src;
+                        img.attr("src", newImg);
+                    });
+                } else if (twidth <= 400) {
+                    container.each(function() {
+                        var img = $(this);
+                        var data_src = img.attr("data-src");
+                        var newImg = params.r400 + data_src;
+                        img.attr("src", newImg);
+                    });
+                }
+    },
     inventMx.utilities.validateAcordeon = function(id_container, tagHeader, topOffset,e){
         var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
         
@@ -489,6 +521,16 @@
         
             script_section2 = $(id_section2+"-1").html();
             $(id_section2).html(script_section2);
+            
+            var paramCatapulta = {
+                r1920 :"/web/img/home/desktop/1920",
+                r1024 :"/web/img/home/desktop/1024",
+                r700 : "/web/img/home/mobile/700",
+                r400: "/web/img/home/mobile/400",
+            };
+            var wrapperCatapultaHome = $("#section-home-talento img.not-img");
+            inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperCatapultaHome, paramCatapulta);
+                        
         } else {
             $(id_section1).html("");
             $(id_section2).html("");
@@ -704,6 +746,15 @@ $(function() {
             
             inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
                 
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/',
+                    'title': inventMx.metas.configure.title
+                });
+                /*var _gaq = _gaq || [];
+                var value = location.pathname;
+                _gaq.push(['_trackPageview', value]);*/
+                
                 repo = "sites.json";
                 Options_sites = {
                     section: "#sections-sites",
@@ -724,39 +775,153 @@ $(function() {
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 
+                var paramStage = {
+                    r1920 :"/web/img/home/desktop/1920",
+                    r1024 :"/web/img/home/desktop/1024",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
+                };
+                var wrapperSliderHome = $("#wrapper-slider-home img.not-img");
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperSliderHome, paramStage);
+                
+                /* bloque home "somos una catapulta" */
+                var paramCatapulta = {
+                    r1920 :"/web/img/home/desktop/1920",
+                    r1024 :"/web/img/home/desktop/1024",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
+                };
+                var wrapperCatapultaHome = $("#section-home-talento img.not-img");
+                inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperCatapultaHome, paramCatapulta);
+                
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
+                var vander = false;
+                function ShowSubTitle() {
+                    if ($("#slide-home .cd-headline.push b").hasClass("is-hidden")) {
+                        $("#slide-home .cd-headline.push b").removeClass("is-hidden");
+                        $("#slide-home  .cd-headline.push b").addClass("is-visible");
+                    } else {
+                        $("#slide-home  .cd-headline.push b").addClass("is-visible");
+                    }
+                }
+                function effectLetter(){
+                    var runLetter = "#slide-home  .cd-headline.letters .cd-words-wrapper b i";
+                    $(runLetter).each(function(i,x){
+                        if($(this).hasClass("out")){
+                            $(this).removeClass("out");
+                            $(this).addClass("in");
+                        }
+                        
+                        /*if($(this).hasClass("in")){
+                            $(this).removeClass("in");
+                            $(this).addClass("out");
+                        }else if($(this).hasClass("out")){
+                            $(this).removeClass("out");
+                            $(this).addClass("in");
+                        }*/
+                        
+                    });
+                }
+                function reloadEffectLetter(){
+                    if (vander === true) {
+                        effectLetter();
+                    }
+                }
+                function reloadSubTittle(){
+                    if (vander === true) {
+                        ShowSubTitle();
+                    }
+                }
                 
-                $("#slide-home article").owlCarousel({
+                $("#slide-home #wrapper-slider-home").owlCarousel({
                     singleItem: true,
                     autoPlay: 8000,
                     lazyLoad: false,
                     pagination: true,
                     navigation: true,
                     navigationText: [
-                        "<i class='nex_prev block'></i>",
-                        "<i class='nex_next block'></i>"
+                        "<span class='nex-prev block'></span>",
+                        "<span class='nex-next block'></span>"
                     ],
                     autoHeight: true,
+                    beforeUpdate: function(){
+                        //console.log("beforeUpdate");
+                    },
+                    afterUpdate: function(){
+                        //console.log("afterUpdate");
+                    },
+                    beforeInit: function(){
+                        //console.log("beforeInit");
+                    }, 
+                    afterInit: function(){
+                        //console.log("afterInit");
+                    },
+                    beforeMove: function(){
+                        //console.log("beforeMove");
+                        var runLetter = "#slide-home .cd-headline.letters .cd-words-wrapper b i";
+                        $(runLetter).each(function(i, x) {
+                            if ($(this).hasClass("in")) {
+                                $(this).removeClass("in");
+                                $(this).addClass("out");
+                            }
+                        });
+                        
+                        if($("#slide-home .cd-headline.push b").hasClass("is-visible")){
+                            $("#slide-home .cd-headline.push b").removeClass("is-visible");
+                            $("#slide-home .cd-headline.push b").addClass("is-hidden");
+                        }else {
+                            $("#slide-home .cd-headline.push b").addClass("is-hidden");
+                        }
+                        //reloadEffectLetter();
+                        vander = true;
+                        setTimeout(reloadSubTittle, 1500);
+                        setTimeout(reloadEffectLetter, 1500);
+                    },
+                    afterAction: function(){
+                        //console.log("afterAction");
+                        
+                    },
+                    afterMove: function(){
+                        //console.log("afterMove");
+                        vander = false;
+                        //ShowSubTitle();
+                        //effectLetter();
+                        setTimeout(ShowSubTitle, 900);
+                        setTimeout(effectLetter, 900);
+                    },
+                    startDragging: function (){
+                        //console.log("startDragging");
+                    },
+                    afterLazyLoad: function(){
+                        //console.log("afterLazyLoad");
+                    }
                 });
 
 
                 services = ".wrapper-our-services ul li.services-sites";
                 $(services).css("height","auto");
                 finalSites = inventMx.utilities.calculateheightItem(services);
-                $(services).height(finalSites);
-                
+                $(services).height(finalSites);                                
                 
                 $(window).resize(function (e) {
                     e.stopPropagation();
                     var sites = "#sections-sites li.sections-sites";
                     $(sites).css("height","auto");
                     
-                    deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    /* render bloque home "stage" resize */
+                    var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperSliderHome, paramStage);
+                      
+                    /* render bloque home "somos una catapulta" resize */                    
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperCatapultaHome, paramCatapulta);
+                    
                     if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }
+                    
                     inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                     
                     finalSites = inventMx.utilities.calculateheightItem(sites);
@@ -827,7 +992,13 @@ $(function() {
             var widthDevice = inventMx.utilities.deviceWidthWindow();
                         
             inventMx.page.wrapper_site.load("/web/app/inventmx/audiencias-y-contenidos/home.html", function () {
-                                
+                
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/audiencias-y-contenidos',
+                    'title': inventMx.metas.configure.title
+                });                
+                
                 inventMx.dataSource.params.limit = "100";
                 
                 /* NOTICIAS, NEGOCIOS */
@@ -1049,7 +1220,13 @@ $(function() {
             var mobile = ".formats-mobile .body-table li.box-table";*/
                         
             inventMx.page.wrapper_site.load("/web/app/inventmx/marketers/home.html", function () {
-                    
+                
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/marketers',
+                    'title': inventMx.metas.configure.title
+                });
+                
                 repo = "sites.json";
                 Options_sites = {
                     section: "#sites-socials",
@@ -1165,6 +1342,22 @@ $(function() {
             
             inventMx.page.wrapper_site.load("/web/app/inventmx/redVideo/home.html", function () {
                 
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/red-de-video',
+                    'title': inventMx.metas.configure.title
+                });
+                
+                var paramStage = {
+                    r1920 :"/web/img/home/desktop/1920",
+                    r1024 :"/web/img/home/desktop/1024",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
+                };
+                var wrapperSliderHome = $("#slide-video-talento img.not-img");
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperSliderHome, paramStage);
+                
                 var repo = "vloger.json";
                 inventMx.dataSource.params.limit = "100";
                 
@@ -1208,12 +1401,17 @@ $(function() {
                     setTimeout(inventMx.utilities.loaderHide, 7000);
                     inventMx.dataSource.params.audience_url = null;
                 //});
-                return this;
-            });
                 
-            $(window).resize(function (e) {
-                e.stopPropagation();
-                inventMx.utilities.oneAddRemoveSections(id_section1);
+                $(window).resize(function (e) {
+                    e.stopPropagation();
+                    inventMx.utilities.oneAddRemoveSections(id_section1);
+
+                    /* render bloque home "stage" resize */
+                    var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperSliderHome, paramStage);
+                });
+                
+                return this;                                                
             });
             
         },
@@ -1246,6 +1444,12 @@ $(function() {
             var li_items = ".wrapper-table-case-exito li.box-item";
             
             inventMx.page.wrapper_site.load("/web/app/inventmx/caso-de-exito/home.html", function () {
+                
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/casos-de-exito',
+                    'title': inventMx.metas.configure.title
+                });
                 
                 repo = "case.json";
                 inventMx.dataSource.params.url = null;
@@ -1296,6 +1500,12 @@ $(function() {
             //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/afiliate/home.html", function () {
                 
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/afiliate',
+                    'title': inventMx.metas.configure.title
+                });                
+                
                 inventMx.utilities.changeResolitionsImg(id_image_firts);
                 //inventMx.page.wrapper_site.show("slow");
                 //inventMx.page.wrapper_site.animate({ "left": "-=2000px" }, "slow",function(){
@@ -1345,6 +1555,12 @@ $(function() {
             id_image_firts = "#bg-firts-afiliate";            
             //inventMx.page.wrapper_site.animate({ "left": "+=2000px" }, "slow" );
             inventMx.page.wrapper_site.load("/web/app/inventmx/anunciate/home.html", function () {
+                
+                /* analitics google */
+                ga('send', 'pageview', {
+                    'page': '/anunciate',
+                    'title': inventMx.metas.configure.title
+                });
                 
                 inventMx.utilities.changeResolitionsImg(id_image_firts);   
                 //inventMx.page.wrapper_site.show("slow");

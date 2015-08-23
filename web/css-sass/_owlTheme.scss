@@ -5,7 +5,12 @@
 
 .owl-theme .owl-controls{
 	//margin-top: 10px;
-        padding: 25px 0;
+        left: 0;
+        width: 100%;
+        //bottom: 15%;
+        bottom: 90px;
+        //padding: 5px 0;
+        position: absolute;
 	text-align: center;
 }
 

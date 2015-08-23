@@ -438,7 +438,8 @@ function sipi_schema(){
         'description' => 'Site name on domain',
       ),
       'pageviews' => array(
-        'type' => 'bigint',
+        'type' => 'int',
+        'size' => 'big',
         'unsigned' => TRUE,
         'not null' => TRUE,
         'default' => 0,

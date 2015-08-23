@@ -1,0 +1,128 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function gimrh_install() {
+  variable_set('gimrh_status',FALSE);
+  variable_set('gimrh_settings',NULL);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function gimrh_uninstall() {
+  #Delete all variables
+  variable_del('gimrh_status');
+  variable_del('gimrh_settings');
+  #Delete all tables
+  if (db_table_exists('gimrh')) {
+    db_drop_table('gimrh');
+  }
+}
+
+function gimrh_schema(){
+  $schema=array();
+  $schema['gimrh'] = array(
+    'fields' => array(
+      'gid' => array(
+        'type' => 'serial',
+        'size' => 'normal',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'The primary identifier',
+      ),
+      'name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name',
+      ),
+      'plname' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Parent Last Name',
+      ),
+      'mlname' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Mother Last Name',
+      ),
+      'mail' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Email',
+      ),
+      'gender' => array(
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Gender',
+      ),
+      'birthdate' => array(
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Birthdate',
+      ),
+      'phone' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Phone',
+      ),
+      'location' => array(
+        'type' => 'int',
+        'length' => 11,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Location ID',
+      ),
+      'degree' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Degree',
+      ),
+      'name_degree' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Name Degree',
+      ),
+      'interest' => array(
+        'type' => 'text',
+        'size' => 'normal',
+        'description' => 'Description',
+      ),
+      'attached' => array(
+        'type' => 'varchar',
+        'length' => 150,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Facebook url',
+      ),
+    ),
+    'primary key' => array('gid'),
+    'indexes' => array(
+      'gimrh_name' => array('gid','name'),
+    ),
+  );
+  return $schema;
+}

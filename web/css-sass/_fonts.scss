@@ -2,6 +2,8 @@
     font-weight: normal;
     font-style: normal; }
 
+$urlCdn: "http://b384e0c28d6eb2031bcd-5a7dc0e66d3274435cc3e35ca0fc37f5.r77.cf2.rackcdn.com/fuentes";
+
 @font-face {
   font-family: 'Hind-Bold';
   src: url("../fuentes/Hind-Bold/Hind-Bold.eot");
@@ -45,4 +47,22 @@
       url("../fuentes/Hind-Semibold/Hind-Semibold.woff") format("woff"),
       url("../fuentes/Hind-Semibold/Hind-Semibold.ttf") format("truetype"),
       url("../fuentes/Hind-Semibold/Hind-Semibold.svg#Hind-Semibold") format("svg");
+}
+
+@font-face {
+  font-family: 'SourceSansPro-Bold';
+  src: url("#{$urlCdn}/SourceSansPro-Bold/SourceSansPro-Bold.eot");
+  src: url("#{$urlCdn}/SourceSansPro-Bold/SourceSansPro-Bold.otf?#iefix") format("embedded-opentype"),
+      url("#{$urlCdn}/SourceSansPro-Bold/SourceSansPro-Bold.woff") format("woff"),
+      url("#{$urlCdn}/SourceSansPro-Bold/SourceSansPro-Bold.ttf") format("truetype"),
+      url("#{$urlCdn}/SourceSansPro-Bold/SourceSansPro-Bold.svg#SourceSansPro-Bold") format("svg");
+}
+
+@font-face {
+  font-family: 'SourceSansPro-Semibold';
+  src: url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.eot");
+  src: url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.otf?#iefix") format("embedded-opentype"),
+      url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.woff") format("woff"),
+      url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.ttf") format("truetype"),
+      url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.svg#SourceSansPro-Semibold") format("svg");
 }

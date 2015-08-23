@@ -8,16 +8,17 @@ sites/*/private
 # Ignore some dirs
 .idea
 .idea/*
+nbproject
+nbproject/*
 cache
 cache/*
 tmp
 tmp/*
 files
 files/*
+firmas
+firmas/*
 demos
 demos/*
-.idea*
-.DS*
+*nbproject*
 
-/InventMx/nbproject/private/
-/nbproject/private/

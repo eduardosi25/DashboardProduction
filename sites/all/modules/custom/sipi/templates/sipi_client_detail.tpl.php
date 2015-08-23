@@ -29,7 +29,7 @@ unset($file);
     </li>
     <li class="actions">
       <a href="<?php print '/sipi/client/'.$data->cid.'/edit?destination=sipi/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Edit</a>
-      <a href="<?php print '/sipi/client/'.$data->cid.'/cancel?destination=sipi/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Cancel</a>
+      <a href="<?php print '/sipi/client/'.$data->cid.'/cancel';?>" style="width:50%;float:left;">Cancel</a>
     </li>
   </ul>
 </div>

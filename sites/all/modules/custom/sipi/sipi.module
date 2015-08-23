@@ -74,7 +74,7 @@ function sipi_menu() {
   $items=array();
   #SIPI MAIN MENU
   $items['sipi'] = array(
-    'title'            => 'Sistema Integral de Publicación en Internet',
+    'title'            => 'SIPI',
     'description'      => 'Sistema Integral de Publicación en Internet',
     'page callback'    => 'sipi_login',
     'access callback'  => TRUE,
@@ -83,7 +83,7 @@ function sipi_menu() {
   );
   #SIPI DASHBOARD
   $items['sipi/dashboard'] = array(
-    'title'            => t('Dashboard'),
+    'title'            => 'Panel de control',
     'page callback'    => 'sipi_dashboard',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('use sipi dashboard'),
@@ -92,7 +92,7 @@ function sipi_menu() {
   );
   #SIPI USER == CLIENT
   $items['sipi/client'] = array(
-    'title'            => t('Clients'),
+    'title'            => 'Clientes',
     'page callback'    => 'sipi_client',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
@@ -100,7 +100,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/add'] = array(
-    'title'            => t('Clients'),
+    'title'            => 'Agregar cliente',
     'page callback'    => 'sipi_client_add',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin clients'),
@@ -108,7 +108,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/edit'] = array(
-    'title'            => t('Client Edit'),
+    'title'            => 'Editar cliente',
     'page callback'    => 'sipi_client_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -117,7 +117,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/cancel'] = array(
-    'title'            => t('Client cancel account'),
+    'title'            => 'Cancelar cuenta del cliente',
     'page callback'    => 'sipi_client_cancel',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -126,8 +126,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.client.inc',
   );
   $items['sipi/client/%sipi_client/view'] = array(
-    'title'            => t('Client Details'),
-    'description'      => 'Detalle de cliente',
+    'title'            => 'Detalle del cliente',
     'page callback'    => 'sipi_client_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -137,7 +136,7 @@ function sipi_menu() {
   );
   #SIPI PLANS == PACKAGES
   $items['sipi/plans'] = array(
-    'title'            => t('Plans'),
+    'title'            => 'Planes',
     'page callback'    => 'sipi_plans',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('sipi admin plans'),
@@ -145,14 +144,14 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/add'] = array(
-    'title'            => t('Add a plan'),
+    'title'            => 'Agregar un plan',
     'page callback'    => 'sipi_plans_add',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/edit'] = array(
-    'title'            => t('Edit plan'),
+    'title'            => 'Editar plan',
     'page callback'    => 'sipi_plans_edit',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -161,7 +160,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/delete'] = array(
-    'title'            => t('Delete plan'),
+    'title'            => 'Eliminar plan',
     'page callback'    => 'sipi_plans_delete',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -170,7 +169,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   $items['sipi/plans/%sipi_plan/view'] = array(
-    'title'            => t('Plans View'),
+    'title'            => 'Detalle del plan',
     'page callback'    => 'sipi_plans_view',
     'page arguments'   => array(2),
     'access_callback'  => 'sipi_access',
@@ -180,7 +179,7 @@ function sipi_menu() {
   );
   #SIPI EXPIRES
   $items['sipi/expire/%expire'] = array(
-    'title'            => t('Next expires'),
+    'title'            => 'Pr&oacute;ximas finalizaciones',
     'page callback'    => 'sipi_next_expires',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('use sipi expires'),
@@ -221,13 +220,20 @@ function sipi_menu() {
     'weight'           => 1,
   );
   $items['admin/config/system/sipi/cronlt'] = array(
-    'title'            => t('Light weight cron handler'),
+    'title'            => t('Light weight cron handler SIPI Analytics'),
     'description'      => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
     'page callback'    => 'sipi_run_cronlt',
     'access arguments' => array('administer node_analytics settings'),
     'access callback'  => TRUE,
     'type'             => MENU_CALLBACK,
   );
+  $items['admin/config/system/sipi/testmail'] = array(
+    'page callback'    => 'sipi_mail_test',
+    'access arguments' => array('administer users'),
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+  );
+
   return $items;
 }
 /**
@@ -444,44 +450,138 @@ function sipi_get_variables() {
 }
 
 function sipi_run_cronlt(){
-  //Search by name
-  $siteName='gamedots';
-  $query=array(
-    'limit'  => 1,
-    'name'   => 'Gameloft',
-    //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
-    'sort'   => 'created:DESC',
-  );
+  global $sipi_variables;
+  if($sipi_variables['debug']){
+    $dataApi=sipi_get_api_data_for_query();
+    if(count($dataApi)>0){
+      foreach($dataApi as $client){
+        if(count($client['plans'])>0){
+          foreach($client['plans'] as $plan){
+            //Search by name
+            $query=array(
+              'limit'  => 1,
+              'name'   => $client['name'],
+              'sort'   => 'created:DESC',
+            );
+            $fields=sipi_get_api_users($plan['apirepo'],$query);
+            $result=sipi_insert_clients_invent_users($fields);
+            if($result){
+              $apiRequest=get_api_url_request($plan['apirepo'], 'users', $query);
+              echo '<p>Usuarios agregados | Url ['.$apiRequest.']</p>';
+            }
+            //Search contents for every users
+            $query=array(
+              'limit'  => 1,
+              'name'   => $client['name'],
+              'fields' => 'id|name|nodes',
+              'sort'   => 'created:DESC',
+            );
+            $fields=sipi_get_api_contents($plan['apirepo'],$query);
+            $result=sipi_insert_clients_invent_contents($fields);
+            if($result){
+              $apiRequest=get_api_url_request($plan['apirepo'], 'contents', $query);
+              echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
+            }
+          }
+        }
+      }
+    }
+
+/**
+    $sites=array('actitudfem','salud180');
+    foreach($sites as $siteName){
+      //Search by name
+      $query=array(
+        'limit'  => 1,
+        'name'   => 'Vime',
+        //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
+        'sort'   => 'created:DESC',
+      );
+      $fields=sipi_get_api_users($siteName,$query);
+      $result=sipi_insert_clients_invent_users($fields);
+      if($result){
+        $apiRequest=get_api_url_request($siteName, 'users', $query);
+        echo '<p>Usuarios agregados | Url ['.$apiRequest.']</p>';
+      }
+      //Search contents for every users
+      $query=array(
+        'limit'  => 1,
+        'name'   => 'Vime',
+        'fields' => 'id|name|nodes',
+        'sort'   => 'created:DESC',
+      );
+      $fields=sipi_get_api_contents($siteName,$query);
+      $result=sipi_insert_clients_invent_contents($fields);
+      if($result){
+        $apiRequest=get_api_url_request($siteName, 'contents', $query);
+        echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
+      }
+    }
+ */
+
+    return 'Done!';
+  }else{
+    return 'Debug mode not enabled. Nothing to do!';
+  }
+}
+
+function sipi_get_api_data_for_query(){
+  //Search clients
+  module_load_include('inc','sipi','inc/sipi.client');
+  $items=array();
+  $clients=sipi_client_list_items();
+  if(count($clients)>0){
+    $items=array();
+    $index=0;
+    foreach($clients as $client){
+      $items[$index]=array(
+        'cid'  => $client->cid,
+        'name' => $client->name,
+        'mail' => $client->mail,
+        'pass' => $client->pass,
+      );
+      //Search plans/sites for every client
+      $plans=sipi_client_list_plans_items($client->cid);
+      if(count($plans)>0){
+        foreach($plans as $plan){
+          $items[$index]['plans'][]=array(
+            'idsite'  => $plan->idsite,
+            'site'    => $plan->site,
+            'apirepo' => $plan->apirepo,
+          );
+        }
+      }
+      $index++;
+    }
+  }
+  return $items;
+}
+
+
+function sipi_new_api_users(){
+  $result=null;
   //Search for new users
-  /*
+  $siteName='actitudfem';
   $query=array(
     'limit'  => 50,
     'fields' => 'id|name|mail',
     'sort'   => 'created:DESC',
   );
-  */
   $fields=sipi_get_api_users($siteName,$query);
   $result=sipi_insert_clients_invent_users($fields);
+  echo 'Done search new users - Processed: '.count($result);
 
-  //Search contents for every users
-  $query=array(
-    'limit'  => 1,
-    'name'   => 'Gameloft',
-    'fields' => 'id|name|nodes',
-    'sort'   => 'created:DESC',
-  );
   //Search for new contents
-  /*
   $query=array(
     'limit'  => 50,
     'fields' => 'id|name|nodes',
     'sort'   => 'created:DESC',
   );
-  */
   $fields=sipi_get_api_contents($siteName,$query);
   $result=sipi_insert_clients_invent_contents($fields);
+  echo 'Search for new contents - Processed: '.count($result);
 
-  return 'Done!';
+  return true;
 }
 
 //########################################################################################################################################
@@ -781,4 +881,75 @@ function shadow_headers(){
   $header[] = "Accept-Language: en-us,es;q=0.5";
   $header[] = "Pragma: "; // browsers keep this blank.
   return $header;
+}
+
+function sipi_admin_prepare_email(){
+  return array(
+    'from' => 'webmaster@inventmx.com',
+    'to'   => 'pablo.escobedo@inventmx.com',
+    'cc'   => '',
+    'bcc'  => '',
+  );
+}
+function sipi_admin_send_email($subject,$message){
+  if(!isset($subject) || !isset($message))
+    return false;
+  $send=sipi_admin_prepare_email();
+  $send['subject']=$subject;
+  $send['message']=$message;
+  return true;
+
+}
+
+/**
+ * Implementation of hook_mail().
+ */
+function sipi_mail($key, &$message, $params) {
+  switch($key) {
+    case 'sipi_clients_save_send_email':
+      //Default params
+      $params['format']  = 'text/html';
+      $params['charset'] = 'UTF-8';
+      //Set message
+      $message['subject'] = $params['subject'];
+      $message['body']    = $params['text'];
+      $message['headers']['X-Mailer']='Invent.mx Mailer';
+    break;
+    default:
+      $message['subject'] = $params['subject'];
+      $message['body']    = $params['text'];
+      $message['headers']['X-Mailer']='Invent.mx Mailer';
+    break;
+  }
+}
+
+function sipi_fields_translate($text){
+  $fields=array(
+    'name'        => 'nombre',
+    'pass'        => 'contrase&ntilde;a',
+    'mail'        => 'correo electr&oacute;nico',
+    'company'     => 'empresa',
+    'cellphone'   => 'tel&eacute;fono celular',
+    'phone'       => 'tel&eacute;fono privado o de oficina',
+    'extention'   => 'extensi&oacute;n',
+    'web'         => 'p&aacute;gina web',
+    'logo'        => 'logotipo',
+    'description' => 'descripci&oacute;n',
+    /*
+    'facebook'    => 'facebook',
+    'twitter'     => 'twitter',
+    'googleplus'  => 'googleplus',
+    'youtube'     => 'youtube',
+    'instagram'   => 'instagram',
+    'linkedin'    => 'linkedin',
+    'pinterest'   => 'pinterest',
+    'vine'        => 'vine',
+    */
+    'created'     => 'registrado',
+    'changed'     => 'actualizado',
+    'access'      => 'acceso',
+    'login'       => 'inicio de sesi&oacute;n',
+    'plans'       => 'planes',
+  );
+  return (isset($fields[$text]) && !empty($fields[$text]) ? $fields[$text] : $text);
 }

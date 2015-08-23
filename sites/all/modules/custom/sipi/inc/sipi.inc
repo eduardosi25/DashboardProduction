@@ -14,20 +14,20 @@ function sipi_dashboard(){
   global $user;
 
   $dashboard=null;
-  if (in_array('sipi_god', $user->roles)) {
+  if (in_array('sipi_god', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_god' role.
     //$dashboard=drupal_render(sipi_expire_list('sipi_god'));
     $dashboard=drupal_get_form('sipi_clients_list_form');
-  }else if (in_array('sipi_director', $user->roles)) {
+  }else if (in_array('sipi_director', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_director' role.
     $dashboard=drupal_get_form('sipi_clients_list_form');
-  }else if (in_array('sipi_manager', $user->roles)) {
+  }else if (in_array('sipi_manager', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_manager' role.
     $dashboard=sipi_expire_list('sipi_manager');
-  }else if (in_array('sipi_executive', $user->roles)) {
+  }else if (in_array('sipi_executive', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi_executive' role.
     $dashboard=sipi_expire_list('sipi_executive');
-  }else if (in_array('sipi', $user->roles)) {
+  }else if (in_array('sipi', $user->roles) || user_access('administer')) {
     // Check if the user has the 'sipi' role.
     $dashboard=sipi_expire_list();
   }
@@ -142,8 +142,8 @@ function sipi_expire_list($role='sipi') {
     '#theme' => 'table',
     '#header' => $header,
     '#rows' => $rows,
-    '#empty' => t('There are no plans or accounts that expire in the next few days.'),
-    '#caption' => t('Next expires'),
+    '#empty' => 'No se encontraron planes o clientes que puedan expirar en los próximos días.',
+    '#caption' => 'Próximas finalizaciones',
   );
   return $build;
 
@@ -154,7 +154,7 @@ function sipi_clients_list_form($form, &$form_state){
   $form=array();
   $form['sipi_filter_clients'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Filters'),
+    '#title' => 'Filtros',
   );
 
   $sipi_filter=isset($_SESSION['sipi_filters']) ? $_SESSION['sipi_filters'] : array();
@@ -162,7 +162,6 @@ function sipi_clients_list_form($form, &$form_state){
   #echo '<pre>';
   #var_dump($sipi_filter);
   #echo '</pre><hr>';
-
 
   if(isset($form_state['filters'])){
     $sipi_filter=array(
@@ -232,7 +231,7 @@ function sipi_clients_list_form($form, &$form_state){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
-  $query->join('sipi_clients_invent_users','ui','ui.cid=c.cid');
+  $query->leftJoin('sipi_clients_invent_users','ui','ui.cid=c.cid');
   $query->limit(10);
   $query->fields('c',array('cid','name'));
   $query->addField('pc','status','status');
@@ -265,7 +264,7 @@ function sipi_clients_list_form($form, &$form_state){
       $row->site,
       $row->plan,
       ($row->status==0 ? t('Disabled') : ($row->status==1 ? t('Enabled') : 'N/D')),
-      $row->contents_published,
+      ($row->contents_published*1)>0 ? $row->contents_published : 0,
       ($row->contents_published>0 ? $row->contents_limit-$row->contents_published : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
@@ -288,7 +287,7 @@ function sipi_clients_list_form($form, &$form_state){
     '#date_label_position' => 'left',
     '#date_timezone' => 'America/Mexico_City',
     '#date_year_range' => '-3:+3',
-    '#description' => t('Select a year'),
+    '#description' => 'Selecciona un a&nacute;o',
     '#attributes' => array('class' => array('left')),
   );
 
@@ -298,7 +297,7 @@ function sipi_clients_list_form($form, &$form_state){
     '#default_value' => isset($sipi_filter['month']) && !empty($sipi_filter['month']) ? $sipi_filter['month'] : $date_month,
     '#date_label_position' => 'left',
     '#date_timezone' => 'America/Mexico_City',
-    '#description' => t('Select a month'),
+    '#description' => 'Selecciona un mes',
     '#attributes' => array('class' => array('left')),
   );
 
@@ -306,7 +305,7 @@ function sipi_clients_list_form($form, &$form_state){
     '#title' => t('Status'),
     '#type' => 'select',
     '#options' => array(
-      'select'     => t('Select a status'),
+      'select'     => t('Elige...'),
       'all'        => t('All'),
       'disabled'   => t('Disabled'),
       'enabled'    => t('Enabled'),
@@ -315,7 +314,7 @@ function sipi_clients_list_form($form, &$form_state){
       'canceled'   => t('Canceled'),
     ),
     '#default_value' => isset($sipi_filter['status']) && !empty($sipi_filter['status']) ? $sipi_filter['status'] : 'select',
-    '#description' => t('Select a status'),
+    '#description' => t('Selecciona un estatus'),
     '#attributes' => array('class' => array('left')),
   );
 
@@ -335,8 +334,8 @@ function sipi_clients_list_form($form, &$form_state){
     '#theme' => 'table',
     '#header' => $header,
     '#rows' => $rows,
-    '#empty' => t('There are no clients in the system.'),
-    '#caption' => t('Clients List'),
+    '#empty' => 'No se encontraron clientes registrados.',
+    '#caption' => 'Clientes',
   );
 
   return $form;

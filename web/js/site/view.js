@@ -88,11 +88,20 @@ $(function() {
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 
+                var paramStage = {
+                    r1920 :"/web/img/home/desktop/1920",
+                    r1024 :"/web/img/home/desktop/1024",
+                    r700 : "/web/img/home/mobile/700",
+                    r400: "/web/img/home/mobile/400",
+                }
+                var wrapperSliderHome = $("#wrapper-slider-home img.not-img");
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperSliderHome, paramStage);
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
                 /*inventMx_events.trigger('NoData','Home');*/ 
                 
-                $("#slide-home article").owlCarousel({
+                $("#slide-home #wrapper-slider-home").owlCarousel({
                     singleItem: true,
                     autoPlay: 8000,
                     lazyLoad: false,
@@ -111,13 +120,13 @@ $(function() {
                 finalSites = inventMx.utilities.calculateheightItem(services);
                 $(services).height(finalSites);
                 
-                
                 $(window).resize(function (e) {
                     e.stopPropagation();
                     var sites = "#sections-sites li.sections-sites";
                     $(sites).css("height","auto");
                     
                     deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperSliderHome, paramStage);
                     if(inventMx.utilities.accordionStatus != "active" || deviceWidthWindow >= 701 && inventMx.utilities.accordionStatus == "active"){
                         inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
                     }

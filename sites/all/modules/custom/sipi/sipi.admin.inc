@@ -49,7 +49,7 @@ function sipi_admin_settings_form($form_state) {
       'http' => 'HTTP',
       'https' => 'HTTPS',
     ),
-    '#default_value' => isset($settings['domain']) ? $settings['domain'] : NULL,
+    '#default_value' => isset($settings['protocol']) ? $settings['protocol'] : NULL,
   );
   $form['sipi']['sipi_settings']['domain'] = array(
     '#title' => t('API Domain'),
@@ -158,7 +158,7 @@ function sipi_admin_settings_form_submit($form, &$form_state){
   variable_set('sipi_settings',$settings);
 
   //Clear cache
-  //cache_clear_all('sipi_variables', 'cache');
+  cache_clear_all('sipi_variables', 'cache');
 }
 
 

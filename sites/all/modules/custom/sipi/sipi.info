@@ -1,5 +1,5 @@
 name = "Invent SIPI"
-description = "Sistema Integral de Publicación en Internet"
+description = "Sistema Integral de Publicación en Internet. <strong>Activar sólo en Invent.mx</strong>"
 package = "InventMX"
 core = "7.x"
 version = "7.x"

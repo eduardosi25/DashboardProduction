@@ -95,16 +95,23 @@ and open the template in the editor.
     font-family: Hind-Semibold;
 }
 
+.SourceSansPro-Bold {
+    font-family: SourceSansPro-Bold;
+}
+.SourceSansPro-Semibold {
+    font-family: SourceSansPro-Semibold;
+}
+
 body {
     background-color: #ebebeb;
 }
 
 #wrapper-loading-layout {
-    border: 1px solid #798F34;
-    //border: 1px solid #000;
-    width: 31px;
-    height: 31px;
-    padding: 5px 4px 4px 5px;
+    //border: 1px solid #798F34;
+    border: 1px solid #000;
+    //width: 31px;
+    //height: 31px;
+    padding: 7px 7px 4px 7px;
     background-color: #ffffff;
     position: fixed;
     top: 50%;
@@ -209,20 +216,70 @@ header {
     //@include img-position(195px, 69px,-42px,-84px);
 }
 
-#slide-home {
+#slide-home, #slide-video-talento {
     &.wrapper-image-section1 {
         background-color: #DDDFDE !important;
         background-repeat: no-repeat;
-        background-image: url("/web/img/home/desktop/1920/1920.jpg");
-        .wrapper-description {
-            &.text-firts {
-                margin-top: 15%;
-                margin-bottom: 10%;
-                //margin: 20% 0 20% 0;
-            }
-            @include measures(50%,auto);
+        //background-image: url("/web/img/home/desktop/1920/1920.jpg");
+        .wrapper-grupo_medios_crecimiento {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/grupo_medios_crecimiento.jpg");
+        }
+        .wrapper-casos_exito {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/casos_exito.jpg");
+        }
+        .wrapper-soluciones_innovadoras {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/soluciones_innovadoras.jpg");
+        }
+        .wrapper-revolucionamos {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/revolucionamos.jpg");
+        }
+        .wrapper-talento_joven {
+            @include measures(100%,auto);
+            //background-image: url("/web/img/home/desktop/1920/talento_joven.jpg");
+        }
+        /*.wrapper-slide-items.article {
+            margin: 0 auto;
+            max-width: 1024px;
+            @include measures(93.5%,auto);
+        }*/
+        .owl-theme .owl-controls {
+            //display: none !important;
+        }
+        .wrapper-image-slider {
+            @include measures(100%,auto);
             img {
-                max-width: 100%;
+                @include measures(100%,auto);
+            }
+            .content-descripcion {
+                bottom: 0px;
+                left: 0px;
+                @include measures(100%,auto);
+            }
+        }
+        .section-description {
+            bottom: 130px;
+            left: 0px;
+            @include measures(100%,auto);
+        }
+        .wrapper-description {            
+            text-align: center;
+            @include measures(100%,auto);
+            .slider-title {
+                color: #FFF;
+                font-size: 80px;
+                font-family: SourceSansPro-Bold;
+                //@extend .SourceSansPro-Bold;
+                //@include measures(100%,auto);
+            }
+            .slider-description {
+                color: #FFF;
+                font-size: 25px;
+                text-align: center;
+                @extend .SourceSansPro-Semibold;
                 @include measures(100%,auto);
             }
         }
@@ -234,6 +291,9 @@ header {
             }
         }
         
+        .owl-theme .owl-controls .owl-pagination {
+            display: none;
+        }
         .owl-theme .owl-controls .owl-page span {
             @extend .sprite-invent;
             @include img-position(14px,14px,-80px,-193px);
@@ -243,22 +303,82 @@ header {
             @extend .sprite-invent;
             @include img-position(14px,14px,-63px,-193px);
         }
+        
+        .owl-buttons {
+            position: absolute;
+            top: -220px;
+            width: 100%;
+            left: 0px;
+            .owl-prev {
+                top: 45%;
+                left: 20px;
+                position: absolute;
+                .nex-prev {                
+                    @extend .sprite-invent;
+                    @include img-position(47px,134px,-54px,-3531px);
+                }
+            }
+
+            .owl-next {
+                top: 45%;
+                right: 20px;
+                position: absolute;
+                .nex-next {                
+                    @extend .sprite-invent;
+                    @include img-position(47px,134px,-153px,-3531px);
+                }
+            }
+        }                
+        
         //@extend .sprite-invent;
         //@include img-position(103px,94px,-188px,-553px);
+        
+        .wrapper-publish-stage.btn-publish-slider {
+            left: 0%;
+            bottom: 9%;
+            padding: 0px;
+            text-align: center;
+            @include measures(100%,auto);
+            .btn-publish {
+                opacity: 0.7;
+                background-color: #FFF;
+                &:hover {
+                    color: #FFF;
+                    opacity: 1;
+                    border: 1px solid #FFF;
+                    background-color: #898989;
+                }
+            }
+        }
+        
     }
 }
 
 #talento-independiente.wrapper-image-section1 {
     max-width: 1900px;
     @include measures(100%,auto);
-    background-color: #DDDFDE;
+    img {
+            @include measures(100%,auto);
+    }        
+
+    .wrapper-button {
+        bottom: 15%;
+        text-align: center;
+        position: absolute;
+        @include measures(100%,auto);
+        a {
+            img.btn-afiliate-talento {        
+                @include measures(400px,50px);
+            }
+        } 
+    }   
+    /*background-color: #DDDFDE;
     background-image: url("/web/img/home/desktop/rompimiento.jpg");
-    background-repeat: no-repeat;
-    .wrapper-tex-info {
-        //margin-top: 9%;
+    background-repeat: no-repeat;*/
+    /*.wrapper-tex-info {        
         @include measures(50%,auto);
-    }
-    .text-info {
+    }*/
+    /*.text-info {
         margin: 0 auto;
         padding-bottom: 40px;
         @include measures(100%,auto);
@@ -269,14 +389,12 @@ header {
     .wrapper-image {
         @include measures(45%,auto);
         max-width: 500px;
-        padding: 2% 0 0 5%;
-    //@include measures(25%,auto);
+        padding: 2% 0 0 5%;    
         img {
             @include measures(100%,auto);
         }
-    }
+    }*/
 }
-
 
 
 //.wrapper-image-section2 {
@@ -308,7 +426,7 @@ header {
     margin: 0 auto;
     font-size: 22px;
     max-width: 300px;
-    padding: 10px 0px;
+    padding: 10px 0px 15px 0px;
     @extend .Hind-Bold;
     //background-color: #E58436;
     //background-color: #FFF;
@@ -689,8 +807,9 @@ ul.red-invent-sections-sites {
     padding-top: 25px;
     @include measures(80%,auto);
     li {
-        margin-left: 3%;            
-        @include measures(48.5%,auto);            
+        margin-left: 3%;
+        //max-width: 220px;
+        @include measures(48.5%,auto);
         &:first-child {
             margin-left: 0;
         }
@@ -699,12 +818,32 @@ ul.red-invent-sections-sites {
             @extend .sprite-invent;
             @include img-position(39px,37px,-57px,-2868px);
         }
-        a {                
+        a {
             & > span {
                 vertical-align: middle;
-            }                
-            height:23px;                
-        }            
+            }
+            height:23px;
+        }
+    }
+    &.perfil-of-site {
+        
+        li {
+            max-width: 220px;
+            &:first-child {
+                margin-left: 0;
+            }
+            .ico-media-kit {
+                margin-top: -7px;
+                @extend .sprite-invent;
+                @include img-position(39px,37px,-57px,-2868px);
+            }
+            a {
+                & > span {
+                    vertical-align: middle;
+                }
+                height:23px;
+            }
+        }
     }
 }
 
@@ -843,3 +982,4 @@ footer {
 
 @import "resolution_desktop.scss";
 @import "resolution_home.scss";
+@import "letter_animation.scss";

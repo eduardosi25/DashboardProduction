@@ -97,23 +97,56 @@
     }
     
 
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
-            .wrapper-description {
-                max-width: 800px;
-                @include measures(100%,auto);
-                img {
-                    max-width: 100%;
+            //background-image: url("/web/img/home/desktop/1024/1024.jpg");
+            background-image: url("/web/img/home/mobile/700/700.jpg");
+                .wrapper-grupo_medios_crecimiento {
                     @include measures(100%,auto);
+                    background-image: none;
                 }
-            }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
             .wrapper-image {
                 display: none;
                 img {
 
                 }
             }
-
+            .section-description {
+                bottom: 100px;
+            }
+            .wrapper-description {
+                .slider-title {
+                    font-size: 50px;
+                    margin-bottom: 20px;
+                }
+                .slider-description {
+                    font-size: 25px;
+                }
+            }
+            
+            .owl-buttons {
+                display: none;
+            }
+            .owl-theme .owl-controls .owl-pagination {
+                display: block;
+            }
+            
             .owl-theme .owl-controls {
                 padding: 0 0 20px 0;
             }
@@ -154,7 +187,10 @@
         background-repeat: no-repeat;
     }
     
-
+    .owl-theme .owl-controls {
+        bottom: 17px;
+    }
+    
     #wrapper-page-site {
         max-width: 1950px;
         min-height: 285px;
@@ -631,7 +667,7 @@
     }
 
     /* home */
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/700/700.jpg");
         }
@@ -1101,6 +1137,18 @@
 
 }
 
+@media only screen and (max-width: 965px) {
+    .main-sections-tools {
+        &.perfil-of-site {
+            li {
+                &.ps-mb20 {
+                    margin: 0 0 20px 0 !important;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 500px) {
     
     /* form afiliate anuncuate */
@@ -1329,12 +1377,48 @@
 
 @media only screen and (max-width: 400px) {
 
-    #slide-home {
+    #slide-home, #slide-video-talento {
         &.wrapper-image-section1 {
             background-image: url("/web/img/home/mobile/400/400.jpg");
+            .wrapper-grupo_medios_crecimiento {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .section-description {
+                    bottom: 65px;
+                }
+                .wrapper-description {
+                    .slider-title {
+                        font-size: 30px;
+                        margin-bottom: 20px;
+                    }
+                    .slider-description {
+                        font-size: 18px;
+                    }
+                }
         }
     }
-
+    
+    .owl-theme .owl-controls {
+        bottom: 0px;
+    }
+    
     #page-audiencias-contenidos {
         .wrapper-image-section {
             background-image: url("/web/img/audiencia-y-contenido/mobile/400/400.jpg");
