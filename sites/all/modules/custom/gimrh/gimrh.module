@@ -397,7 +397,7 @@ function gimrh_getLocation($lid=1){
   $items=array(
     'seleccionar' => '- Seleccionar -',
   );
-  $query="select lid,name from locations where parent={$lid} order by name";
+  $query="select lid,name from {locations} where parent={$lid} order by name";
   $result=db_query($query);
   if($result->rowCount()>0){
     foreach($result as $row){
