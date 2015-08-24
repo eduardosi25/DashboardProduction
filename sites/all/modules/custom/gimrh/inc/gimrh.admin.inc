@@ -20,7 +20,7 @@ function gimrh_admin_settings_form($form_state) {
     '#description' => t('Enabled or disabled GIM RH Integration'),
   );
   $settings=variable_get('gimrh_settings',NULL);
-  $form['gimrh']['gimrh_settings'] = array(
+    $form['gimrh']['gimrh_settings'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
     '#title' => t('GIM RH - Administration'),
@@ -39,6 +39,12 @@ function gimrh_admin_settings_form($form_state) {
     '#default_value' => isset($settings['email']) ? $settings['email'] : NULL,
     '#size' => 80,
     '#maxlength' => 254,
+  );
+  $form['gimrh']['gimrh_settings']['privacy'] = array(
+    '#title' => t('Privacy notice'),
+    '#type' => 'text_format',
+    '#default_value' => isset($settings['privacy']['value']) ? $settings['privacy']['value'] : NULL,
+    '#format' => isset($settings['privacy']['format']) ? $settings['privacy']['format'] : 'filtered_html',
   );
   return system_settings_form($form);
 }
@@ -61,8 +67,9 @@ function gimrh_admin_settings_form_submit($form, &$form_state){
    * Settings
    */
   $settings=array(
-    'debug' => $form_state['values']['gimrh_settings']['debug'],
-    'email' => $form_state['values']['gimrh_settings']['email'],
+    'debug'   => $form_state['values']['gimrh_settings']['debug'],
+    'email'   => $form_state['values']['gimrh_settings']['email'],
+    'privacy' => $form_state['values']['gimrh_settings']['privacy'],
   );
   variable_set('gimrh_settings',$settings);
 
