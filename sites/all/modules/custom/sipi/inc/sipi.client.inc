@@ -178,7 +178,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
       'file_validate_extensions' => array('png jpg jpeg'),
       'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
     ),
-    '#upload_location' => 'public://'.variable_get('file_public_path').'/clients',
+    '#upload_location' => 'public://sipi_clients/',
     '#process' => array('sipi_client_file_element_process'),
   );
   $form['sipi_client']['client']['description'] = array(

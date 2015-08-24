@@ -275,7 +275,7 @@ function gimrh_work_with_us_form($form, &$form_state){
       'file_validate_extensions' => array('doc docx pdf'),
       'file_validate_size'       => array(MAX_FILE_SIZE*1024*1024),
     ),
-    '#upload_location'   => 'public://'.variable_get('file_public_path').'/gimrh',
+    '#upload_location'   => 'public://gimrh_uploads/',
     '#process'           => array('gimrh_file_element_process'),
     '#required'          => TRUE,
   );
