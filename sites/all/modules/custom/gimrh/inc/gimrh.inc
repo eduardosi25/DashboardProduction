@@ -58,24 +58,28 @@ function gimrh_list_form($form, &$form_state){
   }
 
   $query = db_select('gimrh', 'g')->extend('PagerDefault');
-  $query->join('locations','l','l.lid=g.location');
-  $query->join('locations','l2','l2.lid=l.parent');
+  $query->join('locations','l','l.lid=g.city');
+  $query->join('locations','l2','l2.lid=g.state');
   $query->limit(20);
-  $query->fields('g',array('name','plname','mlname','mail','gender','birthdate','phone','degree','name_degree','interest','attached','created','site'));
+  $query->fields('g',array('name','plname','mlname','mail','gender','birthdate','phone','state','city','degree','name_degree','interest','attached','created','site'));
   $query->addField('l','name','city');
   $query->addField('l2','name','state');
 
+  //var_dump($gimrh_filter);
+
   if(isset($gimrh_filter) && !empty($gimrh_filter) && count($gimrh_filter)>0){
-    if($gimrh_filter['interest']!=='select' && $gimrh_filter['interest']!=='all'){
+
+    if($gimrh_filter['interest']!=='select' && $gimrh_filter['interest']!=='all' && $gimrh_filter['interest']!=='seleccionar'){
       $queryFilter='%'.$gimrh_filter['interest'].'%';
       $query->condition('g.interest',$queryFilter,'LIKE');
     }
-    if($gimrh_filter['degree']!=='select' && $gimrh_filter['degree']!=='all'){
+
+    if($gimrh_filter['degree']!=='select' && $gimrh_filter['degree']!=='all' && $gimrh_filter['degree']!=='seleccionar'){
       $queryFilter=$gimrh_filter['degree'];
       $query->condition('g.degree',$queryFilter,'=');
     }
 
-    if(isset($gimrh_filter['gender']) || isset($gimrh_filter['gender'])){
+    if($gimrh_filter['gender']!=='select' && $gimrh_filter['gender']!=='all' && $gimrh_filter['gender']!=='seleccionar'){
       $queryFilter=$gimrh_filter['gender'];
       $query->condition('g.gender',$queryFilter,'=');
     }
@@ -117,12 +121,12 @@ function gimrh_list_form($form, &$form_state){
     '#title'         => 'Nivel de estudios',
     '#type'          => 'select',
     '#options'       => array(
-      'select'   => '- Seleccionar -',
-      'all'      => 'Todas',
-      'basica'   => 'Básica',
-      'media'    => 'Media Superior',
-      'superior' => 'Superior',
-      'posgrado' => 'Posgrado',
+      'seleccionar' => '- Seleccionar -',
+      'all'         => 'Todas',
+      'basica'      => 'Básica',
+      'media'       => 'Media Superior',
+      'superior'    => 'Superior',
+      'posgrado'    => 'Posgrado',
     ),
     '#default_value' => isset($gimrh_filter['degree']) && !empty($gimrh_filter['degree']) ? $gimrh_filter['degree'] : 'seleccionar',
   );
@@ -146,7 +150,7 @@ function gimrh_list_form($form, &$form_state){
   );
   $options=array();
   if (isset($form_state['values']['gimrh_filter']['state']) && intval($form_state['values']['gimrh_filter']['state'])>1) {
-    $options = gimrh_getLocation($form_state['values']['gimrh_filter']['state']);
+    $options = gimrh_getLocation($form_state['values']['state']);
   }
   $form['gimrh_filter']['city']['cityname'] = array(
     '#title'         => 'Delegación/Municipio',
@@ -205,6 +209,8 @@ function gimrh_list_form_submit($form, &$form_state){
   $form_state['rebuild']=TRUE;
 }
 function gimrh_filter_ajax_locations_city($form, $form_state) {
+  #var_dump($form['gimrh_filter']);
+  #die();
   return $form['gimrh_filter']['city'];
 }
 function gimrh_get_interest($interest){

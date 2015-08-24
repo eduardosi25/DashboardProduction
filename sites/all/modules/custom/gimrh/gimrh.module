@@ -363,7 +363,8 @@ function gimrh_work_with_us_form_submit($form, &$form_state){
     'gender'      => check_plain($personal['gender']),
     'birthdate'   => check_plain($personal['birthdate']),
     'phone'       => check_plain($personal['phone']),
-    'location'    => check_plain($personal['city']['cityname']),
+    'state'       => check_plain($personal['state']),
+    'city'        => check_plain($personal['city']['cityname']),
     'degree'      => check_plain($academics['degree']),
     'name_degree' => check_plain($academics['degreename']),
     'interest'    => gimrh_data_interest($interest),
@@ -393,7 +394,9 @@ function gimrh_data_interest($interest){
 }
 
 function gimrh_getLocation($lid=1){
-  $items=array();
+  $items=array(
+    'seleccionar' => '- Seleccionar -',
+  );
   $query="select lid,name from locations where parent={$lid} order by name";
   $result=db_query($query);
   if($result->rowCount()>0){
