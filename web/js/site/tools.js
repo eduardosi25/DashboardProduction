@@ -773,6 +773,7 @@ $(function() {
                 listTalentos = new inventMx.home.listPerfilTalentos(repo);
                 
                 inventMx.utilities.validateAcordeon(id_container,tagHeader,topOffset);
+                /* bloque de contacto */
                 inventMx.utilities.homeAddRemoveSections(id_section1,id_section2);
                 
                 var paramStage = {
@@ -794,6 +795,19 @@ $(function() {
                 };
                 var wrapperCatapultaHome = $("#section-home-talento img.not-img");
                 inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperCatapultaHome, paramCatapulta);
+                
+                
+                /* bloque de contacto */
+                var paramContacto = {
+                    r1920 :"/web/img/home/desktop/registro/1920",
+                    r1024 :"/web/img/home/desktop/registro/1024",
+                    r700 : "/web/img/home/mobile/registro/700",
+                    r400: "/web/img/home/mobile/registro/400",
+                };
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
                 
                 // Un objeto puede disparar un evento en el momento que desee
                 // utilizando la función trigger
@@ -899,8 +913,23 @@ $(function() {
                         //console.log("afterLazyLoad");
                     }
                 });
-
-
+                
+                $(".wrapper-our-services ul li.services-sites a").on("click",function(e){
+                    e.preventDefault();
+                    var href = $(this).attr("href");
+                    var img = $(this).find("img");
+                    var src = $(this).find("img").attr("src");
+                    src = src.replace(/jpg/g,"gif");
+                    img.attr("src",src);
+                    //console.log(src);
+                    function redirec() {
+                        window.location = href;
+                        //console.log(href);
+                    }
+                    setTimeout(redirec, 950);
+                    
+                });
+                
                 services = ".wrapper-our-services ul li.services-sites";
                 $(services).css("height","auto");
                 finalSites = inventMx.utilities.calculateheightItem(services);
@@ -926,7 +955,12 @@ $(function() {
                     
                     finalSites = inventMx.utilities.calculateheightItem(sites);
                     $(sites).height(Math.round(finalSites));
-
+                                        
+                    /* Resize bloque contacto - registro */
+                    if($("#registro-contacto").length){
+                        var wrapperContacto = $("#registro-contacto img.not-img");
+                        inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                    }
 
                     services = ".wrapper-our-services ul li.services-sites";
                     $(services).css("height","auto");
@@ -1129,6 +1163,18 @@ $(function() {
                         }
                     }
                     
+                    var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                    /* bloque de contacto */
+                    var paramContacto = {
+                        r1920 :"/web/img/home/desktop/registro/1920",
+                        r1024 :"/web/img/home/desktop/registro/1024",
+                        r700 : "/web/img/home/mobile/registro/700",
+                        r400: "/web/img/home/mobile/registro/400",
+                    };
+                    if($("#registro-contacto").length){
+                        var wrapperContacto = $("#registro-contacto img.not-img");
+                        inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                    }
                     
                     $(window).resize(function () {
                         //e.stopPropagation();
@@ -1136,6 +1182,12 @@ $(function() {
                         widthDevice = inventMx.utilities.deviceWidthWindow();
 
                         if(widthDevice >= 701){
+                            
+                            /* Resize bloque contacto - registro */
+                            if ($("#registro-contacto").length) {
+                                var wrapperContacto = $("#registro-contacto img.not-img");
+                                inventMx.utilities.validateImgStage(widthDevice, wrapperContacto, paramContacto);
+                            }
                             
                             /* recalcular alto  de los sitios */
                             idHeightNoticias = Options_site_noticias.idSitesUl;
@@ -1215,9 +1267,16 @@ $(function() {
         render:function(idAncla){
             var id_section1 = "#section-home-contactos";
             /*var rich1 = ".formats-rich-media .body-table-1 li.box-table";
-            var rich2 = ".formats-rich-media .body-table-2 li.box-table";
+            var rich2 = ".formats-rich-media .body-table-2 li.box-table";            
+            var mobile = ".formats-mobile .body-table li.box-table";*/   
             
-            var mobile = ".formats-mobile .body-table li.box-table";*/
+            /* bloque de contacto */
+            var paramContacto = {
+                        r1920 :"/web/img/home/desktop/registro/1920",
+                        r1024 :"/web/img/home/desktop/registro/1024",
+                        r700 : "/web/img/home/mobile/registro/700",
+                        r400: "/web/img/home/mobile/registro/400",
+            };            
                         
             inventMx.page.wrapper_site.load("/web/app/inventmx/marketers/home.html", function () {
                 
@@ -1280,6 +1339,12 @@ $(function() {
                     }
                 }
                 
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
+                
                 return this;
             });                        
                         
@@ -1289,6 +1354,13 @@ $(function() {
             $(window).resize(function (e) {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
+                
+                var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                        /* Resize bloque contacto - registro */
+                if ($("#registro-contacto").length) {
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                }
                 
                 /*$(rich1).css("height","auto");
                 finalNumbers = inventMx.utilities.calculateheightItem(rich1);
@@ -1402,6 +1474,19 @@ $(function() {
                     inventMx.dataSource.params.audience_url = null;
                 //});
                 
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                /* bloque de contacto */
+                var paramContacto = {
+                    r1920 :"/web/img/home/desktop/registro/1920",
+                    r1024 :"/web/img/home/desktop/registro/1024",
+                    r700 : "/web/img/home/mobile/registro/700",
+                    r400: "/web/img/home/mobile/registro/400",
+                };
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
+                
                 $(window).resize(function (e) {
                     e.stopPropagation();
                     inventMx.utilities.oneAddRemoveSections(id_section1);
@@ -1409,6 +1494,13 @@ $(function() {
                     /* render bloque home "stage" resize */
                     var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
                     inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperSliderHome, paramStage);
+                    
+                    /* Resize bloque contacto - registro */
+                    if ($("#registro-contacto").length) {
+                        var wrapperContacto = $("#registro-contacto img.not-img");
+                        inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                    }
+                    
                 });
                 
                 return this;                                                
@@ -1443,6 +1535,14 @@ $(function() {
             var id_section2 = "#section-table-case-exito";
             var li_items = ".wrapper-table-case-exito li.box-item";
             
+            /* bloque de contacto */
+            var paramContacto = {
+                r1920 :"/web/img/home/desktop/registro/1920",
+                r1024 :"/web/img/home/desktop/registro/1024",
+                r700 : "/web/img/home/mobile/registro/700",
+                r400: "/web/img/home/mobile/registro/400",
+            };
+            
             inventMx.page.wrapper_site.load("/web/app/inventmx/caso-de-exito/home.html", function () {
                 
                 /* analitics google */
@@ -1461,14 +1561,32 @@ $(function() {
                
                 finalNumbers = inventMx.utilities.calculateheightItem(li_items);
                 $(li_items).height(finalNumbers);
+                
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                /* bloque de contacto */
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
+                
                 return this;
             });
+                
+                
                 
             $(window).resize(function (e) {
                 e.stopPropagation();                
                 inventMx.utilities.caseExitoAddRemoveSections(id_section1,id_section2);
                 finalNumbers = inventMx.utilities.calculateheightItem(li_items);
                 $(li_items).height(finalNumbers);
+                
+                var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                /* Resize bloque contacto - registro */
+                if ($("#registro-contacto").length) {
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                }
+                
             });
             
         },        
@@ -1592,6 +1710,13 @@ $(function() {
         },
         render:function(nameTalento){
             var id_section1 = "#section-home-contactos";
+            /* bloque de contacto */
+            var paramContacto = {
+                r1920 :"/web/img/home/desktop/registro/1920",
+                r1024 :"/web/img/home/desktop/registro/1024",
+                r700 : "/web/img/home/mobile/registro/700",
+                r400: "/web/img/home/mobile/registro/400",
+            };
             
             inventMx.page.wrapper_site.load("/web/app/inventmx/perfilTalento/home.html", function () {
                 
@@ -1601,6 +1726,14 @@ $(function() {
                 
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 setTimeout(inventMx.utilities.loaderHide, 7000);
+                
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                /* bloque de contacto */
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
+                
                 //});
                 return this;
             });
@@ -1609,6 +1742,13 @@ $(function() {
             $(window).resize(function (e) {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
+                
+                var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                /* Resize bloque contacto - registro */
+                if ($("#registro-contacto").length) {
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                }
             });
             
         },
@@ -1620,7 +1760,14 @@ $(function() {
         },
         render:function(nameSite){
             var id_section1 = "#section-home-contactos";            
-                        
+            /* bloque de contacto */
+            var paramContacto = {
+                r1920 :"/web/img/home/desktop/registro/1920",
+                r1024 :"/web/img/home/desktop/registro/1024",
+                r700 : "/web/img/home/mobile/registro/700",
+                r400: "/web/img/home/mobile/registro/400",
+            };
+            
             inventMx.page.wrapper_site.load("/web/app/inventmx/perfilSitio/home.html", function () {
                 
                 repo = "sites.json";
@@ -1630,6 +1777,13 @@ $(function() {
                 inventMx.utilities.oneAddRemoveSections(id_section1);
                 setTimeout(inventMx.utilities.loaderHide, 7000);
                 
+                var deviceWidthDocument = inventMx.utilities.deviceWidthDocument();
+                /* bloque de contacto */
+                if($("#registro-contacto").length){
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthDocument, wrapperContacto, paramContacto);
+                }
+                
                 return this;
             });
             
@@ -1637,6 +1791,13 @@ $(function() {
             $(window).resize(function (e) {
                 e.stopPropagation();
                 inventMx.utilities.oneAddRemoveSections(id_section1);
+                
+                var deviceWidthWindow = inventMx.utilities.deviceWidthWindow();
+                /* Resize bloque contacto - registro */
+                if ($("#registro-contacto").length) {
+                    var wrapperContacto = $("#registro-contacto img.not-img");
+                    inventMx.utilities.validateImgStage(deviceWidthWindow, wrapperContacto, paramContacto);
+                }
             });
             
         },

@@ -1,3 +1,15 @@
+@media only screen and (max-width: 1200px) {
+    #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {
+                .wrapper-description {
+                    margin-top: 8%;
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1024px) {
     /* home */
     
@@ -33,14 +45,6 @@
             
         }
     }
-        
-    
-    #section-home-contactos {
-        #registro-contacto {
-            background-image: url("/web/img/home/desktop/registro/1024/1024.jpg");
-        }
-    }
-    
     
     #page-perfil-talento {
         .wrapper-image-section1 {
@@ -104,6 +108,17 @@
             }
         }
         
+    }
+    
+    /* contacto  */
+    #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {
+                .wrapper-description {
+                    margin-top: 24%;
+                }
+            }
+        }
     }
     
     /* formulario */
@@ -335,6 +350,18 @@
 }
 
 @media only screen and (max-width: 840px) {
+    
+    /* contacto  */
+    #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {
+                .wrapper-description {
+                    margin-top: 30%;
+                }
+            }
+        }
+    }
+    
     #page-marketers {
         .wrapper-table-formats {
             .body-table {
