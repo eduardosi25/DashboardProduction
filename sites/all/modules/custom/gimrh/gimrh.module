@@ -406,7 +406,7 @@ function gimrh_getLocation($lid=1,$offset=1){
     }
   }
   if($offset==1){
-    array_shift($items);
+    $items=array_slice($items, $offset, NULL, true);
     return $items;
   }
   return $items;
