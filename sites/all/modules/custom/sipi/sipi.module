@@ -452,6 +452,42 @@ function sipi_get_variables() {
 function sipi_run_cronlt(){
   global $sipi_variables;
   if($sipi_variables['debug']){
+    $dataApi=sipi_get_api_data_for_query();
+    if(count($dataApi)>0){
+      foreach($dataApi as $client){
+        if(count($client['plans'])>0){
+          foreach($client['plans'] as $plan){
+            //Search by name
+            $query=array(
+              'limit'  => 1,
+              'name'   => $client['name'],
+              'sort'   => 'created:DESC',
+            );
+            $fields=sipi_get_api_users($plan['apirepo'],$query);
+            $result=sipi_insert_clients_invent_users($fields);
+            if($result){
+              $apiRequest=get_api_url_request($plan['apirepo'], 'users', $query);
+              echo '<p>Usuarios agregados | Url ['.$apiRequest.']</p>';
+            }
+            //Search contents for every users
+            $query=array(
+              'limit'  => 1,
+              'name'   => $client['name'],
+              'fields' => 'id|name|nodes',
+              'sort'   => 'created:DESC',
+            );
+            $fields=sipi_get_api_contents($plan['apirepo'],$query);
+            $result=sipi_insert_clients_invent_contents($fields);
+            if($result){
+              $apiRequest=get_api_url_request($plan['apirepo'], 'contents', $query);
+              echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
+            }
+          }
+        }
+      }
+    }
+
+/**
     $sites=array('actitudfem','salud180');
     foreach($sites as $siteName){
       //Search by name
@@ -481,10 +517,44 @@ function sipi_run_cronlt(){
         echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
       }
     }
+ */
+
     return 'Done!';
   }else{
     return 'Debug mode not enabled. Nothing to do!';
   }
+}
+
+function sipi_get_api_data_for_query(){
+  //Search clients
+  module_load_include('inc','sipi','inc/sipi.client');
+  $items=array();
+  $clients=sipi_client_list_items();
+  if(count($clients)>0){
+    $items=array();
+    $index=0;
+    foreach($clients as $client){
+      $items[$index]=array(
+        'cid'  => $client->cid,
+        'name' => $client->name,
+        'mail' => $client->mail,
+        'pass' => $client->pass,
+      );
+      //Search plans/sites for every client
+      $plans=sipi_client_list_plans_items($client->cid);
+      if(count($plans)>0){
+        foreach($plans as $plan){
+          $items[$index]['plans'][]=array(
+            'idsite'  => $plan->idsite,
+            'site'    => $plan->site,
+            'apirepo' => $plan->apirepo,
+          );
+        }
+      }
+      $index++;
+    }
+  }
+  return $items;
 }
 
 
@@ -532,8 +602,6 @@ function sipi_insert_clients_invent_users($fields){
 }
 function sipi_get_api_users($siteName='excelsior', $query=array()){
   $apiRequest=get_api_url_request($siteName, 'users', $query);
-  var_dump($apiRequest);
-  die(__FUNCTION__);
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);

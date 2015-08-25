@@ -11,10 +11,11 @@
  * See COPYRIGHT.txt and LICENSE.txt.
  */
 
-// Same as error_reporting(E_ALL);
-error_reporting(E_ALL);
-ini_set("display_errors", 1);
-
+// Debug
+if(preg_match("/local/i",$_SERVER['HTTP_HOST']) || preg_match("/jediteam/i",$_SERVER['HTTP_HOST'])){
+  error_reporting(E_ALL);
+  ini_set("display_errors", 1);
+}
 
 /**
  * Root directory of Drupal installation.

@@ -26,7 +26,7 @@ function filefield_source_imce_info() {
     'process' => 'filefield_source_imce_process',
     'value' => 'filefield_source_imce_value',
     'weight' => -1,
-    'file' => 'includes/imce.inc',
+    'file' => 'sources/imce.inc',
   );
   return $source;
 }

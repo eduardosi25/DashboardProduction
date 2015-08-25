@@ -26,6 +26,8 @@ function get_cms_admin_paths(){
     'play/feeds/*',
     'jedi',
     'feeds',
+    'bolsa-de-trabajo',
+    'bolsa-de-trabajo/*',
   );
   $paths=implode("\n",$paths);
   return drupal_match_path($_GET["q"],$paths);
