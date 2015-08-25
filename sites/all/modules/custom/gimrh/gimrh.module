@@ -393,7 +393,8 @@ function gimrh_data_interest($interest){
   return implode(',',$items);
 }
 
-function gimrh_getLocation($lid=1){
+function gimrh_getLocation($lid=1,$offset=1){
+  //var_dump($lid);
   $items=array(
     'seleccionar' => '- Seleccionar -',
   );
@@ -403,6 +404,10 @@ function gimrh_getLocation($lid=1){
     foreach($result as $row){
       $items[$row->lid]=$row->name;
     }
+  }
+  if($offset==1){
+    array_shift($items);
+    return $items;
   }
   return $items;
 }

@@ -16,7 +16,7 @@ function gimrh_list_form($form, &$form_state){
   $gimrh_filter=isset($_SESSION['gimrh_filters']) ? $_SESSION['gimrh_filters'] : array();
 
   if(isset($form_state['filters'])){
-    #var_dump($form_state);
+    #var_dump($form_state['filters']);
     #die();
 
     $gimrh_filter=array(
@@ -79,6 +79,16 @@ function gimrh_list_form($form, &$form_state){
       $query->condition('g.degree',$queryFilter,'=');
     }
 
+    if($gimrh_filter['state']!=='select' && $gimrh_filter['state']!=='all' && $gimrh_filter['state']!=='seleccionar'){
+      $queryFilter=$gimrh_filter['state'];
+      $query->condition('g.state',$queryFilter,'=');
+    }
+
+    if($gimrh_filter['city']!=='select' && $gimrh_filter['city']!=='all' && $gimrh_filter['city']!=='seleccionar' && $gimrh_filter['city']!==''){
+      $queryFilter=$gimrh_filter['city'];
+      $query->condition('g.city',$queryFilter,'=');
+    }
+
     if($gimrh_filter['gender']!=='select' && $gimrh_filter['gender']!=='all' && $gimrh_filter['gender']!=='seleccionar'){
       $queryFilter=$gimrh_filter['gender'];
       $query->condition('g.gender',$queryFilter,'=');
@@ -134,7 +144,7 @@ function gimrh_list_form($form, &$form_state){
   $form['gimrh_filter']['state'] = array(
     '#title'         => 'Estado',
     '#type'          => 'select',
-    '#options'       => gimrh_getLocation(1),
+    '#options'       => gimrh_getLocation(1,0),
     '#ajax'          => array(
       'event'    => 'change',
       'callback' => 'gimrh_filter_ajax_locations_city',
@@ -149,8 +159,8 @@ function gimrh_list_form($form, &$form_state){
     '#suffix' => '</div>',
   );
   $options=array();
-  if (isset($form_state['values']['gimrh_filter']['state']) && intval($form_state['values']['gimrh_filter']['state'])>1) {
-    $options = gimrh_getLocation($form_state['values']['state']);
+  if (isset($form_state['values']['state']) && intval($form_state['values']['state'])>1) {
+    $options = gimrh_getLocation($form_state['values']['state'],0);
   }
   $form['gimrh_filter']['city']['cityname'] = array(
     '#title'         => 'Delegación/Municipio',
@@ -193,7 +203,7 @@ function gimrh_list_form_submit($form, &$form_state){
   $interest = isset($values['interest']) ? $values['interest'] : null;
   $degree   = isset($values['degree']) ? $values['degree'] : null;
   $state    = isset($values['state']) ? $values['state'] : null;
-  $city     = isset($values['city']) ? $values['city'] : null;
+  $city     = isset($values['cityname']) ? $values['cityname'] : null;
   $gender   = isset($values['gender']) ? $values['gender'] : null;
   $age      = isset($values['age']) ? $values['age'] : null;
   //Filters a form
