@@ -630,9 +630,9 @@ function sipi_process_users_result($data){
       'access'          => $item->user_access,
       'login'           => $item->user_login,
       'sitename'        => $item->attribution,
-      'pageviews'       => $item->pageviews[0]->total,
-      'nodes_published' => $item->nodes_published[0]->total,
-      'last_published'  => $item->last_published[0]->timestamp,
+      'pageviews'       => isset($item->pageviews[0]->total) && !empty($item->pageviews[0]->total) ? $item->pageviews[0]->total : 0,
+      'nodes_published' => isset($item->nodes_published[0]->total) && !empty($item->nodes_published[0]->total) ? $item->nodes_published[0]->total : 0,
+      'last_published'  => isset($item->last_published[0]->timestamp) && !empty($item->last_published[0]->timestamp) ? $item->last_published[0]->timestamp : 0,
       'publish_date'    => strtotime($item->publish_date),
       'last_update'     => strtotime($item->last_update),
     );
