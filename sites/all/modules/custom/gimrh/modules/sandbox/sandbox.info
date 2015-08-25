@@ -1,0 +1,4 @@
+name = Sandbox Project Collection 
+description = Collection of experimental and example modules
+core = 7.x
+version = 7.x-1.0

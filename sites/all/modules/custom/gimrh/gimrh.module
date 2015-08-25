@@ -1,0 +1,478 @@
+<?php
+define('MAX_FILE_SIZE',2);
+global $gimrh_variables;
+$gimrh_variables=gimrh_get_variables();
+
+/**
+ * Implements hook_permission().
+ */
+function gimrh_permission() {
+  #Permissions for BackOffice GIM RH
+  $permissions['administer gimrh settings'] = array(
+    'title' => t('Administer GIM RH settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_help().
+ */
+function gimrh_help($path, $arg) {
+  if ($path == 'admin/help#sipi') {
+    return t('invent.SIPI - Módulo para configuración, uso y reporteo de candidatos RH - GIM.');
+  }
+}
+/**
+ * Implements hook_menu().
+ */
+function gimrh_menu() {
+  $items=array();
+  #SIPI MAIN MENU
+  $items['bolsa-de-trabajo'] = array(
+    'title'            => 'Trabaja con nosotros',
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('gimrh_work_with_us_form'),
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+  );
+  $items['bolsa-de-trabajo/aviso-de-privacidad'] = array(
+    'title'            => 'Trabaja con nosotros',
+    'page callback'    => 'gimrh_privacy',
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+    'file'             => 'inc/gimrh.inc',
+  );
+  $items['bolsa-de-trabajo/datos-enviados'] = array(
+    'title'            => 'Datos enviados',
+    'page callback'    => 'gimrh_data_send',
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+    'file'             => 'inc/gimrh.inc',
+  );
+  #ADMINISTER SIPI SETTINGS - WEBMASTER ONLY
+  $items['admin/gimrh/registros'] = array(
+    'title'            => t('Registros GIM RH'),
+    'description'      => t('Registro de interesados en Bolsa de Trabajo'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('gimrh_list_form'),
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/gimrh.inc',
+  );
+  $items['admin/config/system/gimrh'] = array(
+    'title'            => t('GIM RH Settings'),
+    'description'      => t('Configure settings for GIM RH'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('gimrh_admin_settings_form'),
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/gimrh.admin.inc',
+  );
+  $items['admin/config/system/gimrh/cronlt'] = array(
+    'title'            => t('GIM RH Cron Lite'),
+    'page callback'    => 'gimrh_cronlt',
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_CALLBACK,
+    'file'             => 'inc/gimrh.cron.inc',
+  );
+  return $items;
+}
+/**
+ * Menu access callback.
+ *
+ * @param $action
+ *   The action to be performed. Possible values are:
+ *   - import
+ *   - clear
+ *   - unlock
+ * @param $param
+ *   Node object or FeedsImporter id.
+ */
+function gimrh_access($permission) {
+  // Check for permissions
+  if ($permission && user_access($permission)) {
+    return TRUE;
+  }
+  return FALSE;
+}
+/**+
+ * Implements hook_init().
+ */
+function gimrh_init(){
+  if(arg(0)=='trabaja-con-nosotros')
+    drupal_add_css(drupal_get_path('module','gimrh').'/gimrh.css');
+}
+
+/**
+ * Implements mennu callback function
+ */
+function gimrh_work_with_us(){
+  return 'Form front';
+}
+
+function gimrh_work_with_us_form($form, &$form_state){
+  drupal_add_css(drupal_get_path('module','gimrh').'/css/gimrh.css');
+  drupal_add_js(drupal_get_path('module','gimrh').'/js/jquery.maskedinput.min.js', 'file');
+  drupal_add_js(drupal_get_path('module','gimrh').'/js/gimrh.js', 'file');
+  $form=array();
+  $form['#tree'] = TRUE;
+  $form['header_information']= array(
+    '#markup' => '<p class="text-center"><img src="'.drupal_get_path('module','gimrh').'/css/top-bolsa-de-trabajo.jpg'.'" alt="" /></p>',
+  );
+  $form['gimrh'] = array(
+    '#title' => 'Antes de iniciar lee las siguientes instrucciones:',
+    '#type'  => 'fieldset',
+  );
+  $form['gimrh']['instructions'] = array(
+    '#markup' => '<ol>
+                  <li>Es necesario llenar todos los campos del registro.</li>
+                  <li>Ten a la mano tu Currículum Vitae en formatos Word (.doc, .docx) o Adobe Acrobat reader(.pdf). Podrás adjuntarlo al final del formulario. El peso máximo de tu archivo debe ser de 1MB</li>
+                  <li>Responde con veracidad ya que toda la información será cotejada si eres seleccionado.</li>
+                  </ol>',
+  );
+  $form['gimrh']['personal'] = array(
+    '#type'  => 'fieldset',
+    '#title' => 'Datos Personales',
+    '#tree'  => TRUE,
+  );
+  $form['gimrh']['personal']['name'] = array(
+    '#title'         => 'Nombre',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['plname'] = array(
+    '#title'         => 'Apellido Paterno',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['mlname'] = array(
+    '#title'         => 'Apellido Materno',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['email'] = array(
+    '#title'         => 'Correo electrónico',
+    '#type'          => 'textfield',
+    '#size'          => 60,
+    '#maxlength'     => 150,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['gender'] = array(
+    '#title' => 'Sexo',
+    '#type' => 'radios',
+    '#options' => array(
+      'masculino' => 'Masculino',
+      'femenino'  => 'Femenino'
+    ),
+    '#required' => TRUE,
+  );
+
+  $date_format = 'd/m/Y';
+  $form['gimrh']['personal']['birthdate'] = array(
+    '#title' => 'Fecha de nacimiento',
+    '#type' => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 12,
+    '#required' => TRUE,
+  );
+  $form['gimrh']['personal']['phone'] = array(
+    '#title'         => 'Teléfono de casa o celular',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 60,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['state'] = array(
+    '#title'         => 'Estado de residencia',
+    '#type'          => 'select',
+    '#options'       => gimrh_getLocation(1),
+    '#ajax'          => array(
+      'event'    => 'change',
+      'callback' => 'gimrh_ajax_locations_city',
+      'wrapper'  => 'location-city',
+    ),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
+  );
+
+  // Wrapper for city dropdown list
+  $form['gimrh']['personal']['city'] = array(
+    '#prefix' => '<div id="location-city">',
+    '#suffix' => '</div>',
+  );
+  $options=array();
+  if (isset($form_state['values']['gimrh']['personal']['state']) && intval($form_state['values']['gimrh']['personal']['state'])>1) {
+    $options = gimrh_getLocation($form_state['values']['gimrh']['personal']['state']);
+  }
+  $form['gimrh']['personal']['city']['cityname'] = array(
+    '#title'         => 'Delegación o Municipio',
+    '#type'          => 'select',
+    '#options'       => $options,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['academics'] = array(
+    '#type'  => 'fieldset',
+    '#title' => 'Datos Académicos',
+    '#tree'  => TRUE,
+  );
+  $form['gimrh']['academics']['degree'] = array(
+    '#title'         => 'Nivel de estudios',
+    '#type'          => 'select',
+    '#options'       => gimrh_getDegree(1),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['academics']['degreename'] = array(
+    '#title'         => 'Menciona la licenciatura o Posgrado',
+    '#type'          => 'textfield',
+    '#size'          => 60,
+    '#maxlength'     => 150,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['interest']=array(
+    '#type'  => 'fieldset',
+    '#title' => 'Áreas de Interés',
+    '#tree'  => TRUE,
+  );
+  $form['gimrh']['interest'][0] = array(
+    '#title'         => 'Área de interés',
+    '#type'          => 'select',
+    '#options'       => gimrh_getInterest(1),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['interest'][1] = array(
+    '#title'         => 'Área de interés',
+    '#type'          => 'select',
+    '#options'       => gimrh_getInterest(),
+    '#default_value' => NULL,
+  );
+  $form['gimrh']['interest'][2] = array(
+    '#title'         => 'Área de interés',
+    '#type'          => 'select',
+    '#options'       => gimrh_getInterest(),
+    '#default_value' => NULL,
+  );
+  $form['gimrh']['cv']=array(
+    '#type'  => 'fieldset',
+    '#title' => 'Agrega tu Currículum Vitae',
+    '#tree'  => TRUE,
+  );
+  $form['gimrh']['cv']['file']= array(
+    '#title'             => 'Archivo',
+    '#type'              => 'managed_file',
+    '#description'       => 'Aceptamos archivos en formato Word (.doc y .docx) y Adobe Acrobat Reader (.pdf).<br>El peso máximo de tu archivo debe ser de 1MB.',
+    '#upload_validators' => array(
+      'file_validate_extensions' => array('doc docx pdf'),
+      'file_validate_size'       => array(MAX_FILE_SIZE*1024*1024),
+    ),
+    '#upload_location'   => 'public://gimrh_uploads/',
+    '#process'           => array('gimrh_file_element_process'),
+    '#required'          => TRUE,
+  );
+  $form['gimrh']['privacy'] = array(
+    '#title' => 'Acepto el <a href="/bolsa-de-trabajo/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>',
+    '#type'  => 'checkbox',
+    '#required' => TRUE,
+  );
+  $form['submit'] = array(
+    '#type'   => 'submit',
+    '#value'  => 'Enviar datos',
+  );
+  return $form;
+}
+function gimrh_ajax_locations_city($form, $form_state) {
+  return $form['gimrh']['personal']['city'];
+}
+
+/**
+ * Implements hook_file_element_process().
+ */
+function gimrh_file_element_process($element, &$form_state, $form) {
+  $element = file_managed_file_process($element, $form_state, $form);
+  if ($element['#file']) {
+    $element['remove_button'] = array(
+      '#name' => 'logo_remove_button',
+      '#type' => 'submit',
+      '#value' => 'Eliminar',
+      '#validate' => array(),
+      '#submit' => array('ajax_file_update_callback'),
+      '#limit_validation_errors' => array($element['#parents']),
+      '#ajax' => array(
+        'callback' => 'ajax_file_update_callback',
+        'wrapper' => $element['upload_button']['#ajax']['wrapper'],
+      ),
+      '#weight' => -5,
+    );
+  }
+  return $element;
+}
+/**
+ * Implements ajax_image_update_callback().
+ */
+function ajax_file_update_callback($form, &$form_state){
+  if (!empty($form['gimrh']['cv']["file"]["#value"])) {
+    $form['gimrh']['cv']["file"]["#value"]=null;
+    $form['gimrh']['cv']["file"]["filename"]=null;
+  }
+  return $form['gimrh']['cv']["file"];
+}
+
+function gimrh_work_with_us_form_validate($form, &$form_state){
+  $personal=$form_state['values']['gimrh']['personal'];
+  $academics=$form_state['values']['gimrh']['academics'];
+  $interest=$form_state['values']['gimrh']['interest'];
+  $cv=$form_state['values']['gimrh']['cv'];
+  $privacy=$form_state['values']['gimrh']['privacy'];
+  if(preg_match('/[0-9]+/',$personal['name'])){
+    form_set_error($form_state['values']['gimrh']['personal']['name'],'Tu nombre no puede contener números.');
+  }
+  if(preg_match('/[0-9]+/',$personal['plname'])){
+    form_set_error($form_state['values']['gimrh']['personal']['plname'],'Tu apellido paterno no puede contener números.');
+  }
+  if(preg_match('/[0-9]+/',$personal['mlname'])){
+    form_set_error($form_state['values']['gimrh']['personal']['mlname'],'Tu apellido materno no puede contener números.');
+  }
+  if(!valid_email_address($personal['email'])){
+    form_set_error($form_state['values']['gimrh']['personal']['email'],'Debes indicar un correo electrónico válido.');
+  }
+}
+
+function gimrh_work_with_us_form_submit($form, &$form_state){
+  $personal=$form_state['values']['gimrh']['personal'];
+  $academics=$form_state['values']['gimrh']['academics'];
+  $interest=$form_state['values']['gimrh']['interest'];
+  $cv=$form_state['values']['gimrh']['cv'];
+  $privacy=$form_state['values']['gimrh']['privacy'];
+
+  //Save data
+  $fields=array(
+    'name'        => check_plain($personal['name']),
+    'plname'      => check_plain($personal['plname']),
+    'mlname'      => check_plain($personal['mlname']),
+    'mail'        => check_plain($personal['email']),
+    'gender'      => check_plain($personal['gender']),
+    'birthdate'   => check_plain($personal['birthdate']),
+    'phone'       => check_plain($personal['phone']),
+    'state'       => check_plain($personal['state']),
+    'city'        => check_plain($personal['city']['cityname']),
+    'degree'      => check_plain($academics['degree']),
+    'name_degree' => check_plain($academics['degreename']),
+    'interest'    => gimrh_data_interest($interest),
+    'attached'    => check_plain($cv['file']),
+    'privacy'     => check_plain($privacy),
+    'created'     => time(),
+    'site'        => $_SERVER['HTTP_HOST'],
+  );
+  $result=drupal_write_record('gimrh',$fields);
+  if(!$result){
+    drupal_set_message('Error al registrar los datos, inténtalo de nuevo por favor.', 'error');
+  }else{
+    drupal_set_message('Tus datos fueron enviados correctamente, gracias por tu interés.', 'status');
+    #$form_state['redirect'] = 'bolsa-de-trabajo/datos-enviados';
+    #$form_state['rebuild'] = TRUE;
+  }
+}
+
+function gimrh_data_interest($interest){
+  $items=array();
+  foreach($interest as $item){
+    if($item!=='seleccionar'){
+      $items[]=$item;
+    }
+  }
+  return implode(',',$items);
+}
+
+function gimrh_getLocation($lid=1,$offset=1){
+  //var_dump($lid);
+  $items=array(
+    'seleccionar' => '- Seleccionar -',
+  );
+  $query="select lid,name from {locations} where parent={$lid} order by name";
+  $result=db_query($query);
+  if($result->rowCount()>0){
+    foreach($result as $row){
+      $items[$row->lid]=$row->name;
+    }
+  }
+  if($offset==1){
+    $items=array_slice($items, $offset, NULL, true);
+    return $items;
+  }
+  return $items;
+}
+
+function gimrh_getDegree($name=null){
+  $items=array(
+    'seleccionar' => '- Seleccionar -',
+    'basica'      => 'Básica',
+    'media'       => 'Media Superior',
+    'superior'    => 'Superior',
+    'posgrado'    => 'Posgrado',
+  );
+  if($name==1){
+    array_shift($items);
+    return $items;
+  }else if(isset($name) && !empty($name)){
+    return $items[$name];
+  }
+  return $items;
+}
+function gimrh_getInterest($name=null){
+  $items=array(
+    'seleccionar'        => '- Seleccionar -',
+    'isa'                => 'Grupo Imagen administrativo',
+    'excelsiortv'        => 'Excelsior - TV',
+    'excelsiorimpreso'   => 'Excelsior- Periódico',
+    'excelsiorinternet'  => 'Excelsior.com.mx - Internet',
+    'imagenradio'        => 'Imagen 98.5 - Radio',
+    'imageninternet'     => 'Imagen 98.5- Internet',
+    'reporteradio'       => 'Reporte 90.5 - Radio',
+    'reporteinternet'    => 'Reporte 98.5 - Internet',
+    'cadenatrestv'       => 'CadenaTres - TV',
+    'cadenatresinternet' => 'CadenaTres.com.mx - Internet',
+    'dineroenimagen'     => 'DineroEnImagen.com - Internet',
+    'actitudfem'         => 'Actitudfem.com - Internet',
+    'salud180'           => 'Salud180.com - Internet',
+    'garuyo'             => 'Garuyo.com - Internet - Internet',
+    'swagger'            => 'Swagger.mx - Internet',
+    'gamedots'           => 'Gamedots.mx - Internet',
+    'atraccion360'       => 'Atraccion360.com - Internet',
+    'rsvponline'         => 'RSVPOnline.mx - Internet',
+  );
+  if($name==1){
+    array_shift($items);
+    return $items;
+  }else if(isset($name) && !empty($name)){
+    return $items[$name];
+  }
+  return $items;
+}
+
+/**
+ * Returns variables for sipi implementation
+ * @return array
+ */
+function gimrh_get_variables() {
+  $variables = &drupal_static(__FUNCTION__);
+  if (!isset($variables)) {
+    $settings=variable_get('gimrh_settings',NULL);
+    $variables=array(
+      'status'  => variable_get('gimrh_status',FALSE),
+      'debug'   => isset($settings['debug']) && !empty($settings['debug']) ? $settings['debug'] : FALSE,
+      'email'   => isset($settings['email']) && !empty($settings['email']) ? $settings['email'] : 'webmaster@invent.mx',
+      'privacy' => isset($settings['privacy']) && !empty($settings['privacy']) ? $settings['privacy'] : 'Página en blanco',
+    );
+  }
+  return $variables;
+}
