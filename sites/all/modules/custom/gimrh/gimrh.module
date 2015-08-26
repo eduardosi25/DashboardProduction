@@ -22,6 +22,16 @@ function gimrh_help($path, $arg) {
     return t('invent.SIPI - Módulo para configuración, uso y reporteo de candidatos RH - GIM.');
   }
 }
+
+/**
+ * Implements hook_init().
+ */
+function gimrh_init(){
+  if(arg(0)=='bolsa-de-trabajo'){
+    module_invoke('admin_menu','suppress');
+  }
+}
+
 /**
  * Implements hook_menu().
  */
@@ -98,13 +108,6 @@ function gimrh_access($permission) {
   }
   return FALSE;
 }
-/**+
- * Implements hook_init().
- */
-function gimrh_init(){
-  if(arg(0)=='trabaja-con-nosotros')
-    drupal_add_css(drupal_get_path('module','gimrh').'/gimrh.css');
-}
 
 /**
  * Implements mennu callback function
@@ -119,9 +122,6 @@ function gimrh_work_with_us_form($form, &$form_state){
   drupal_add_js(drupal_get_path('module','gimrh').'/js/gimrh.js', 'file');
   $form=array();
   $form['#tree'] = TRUE;
-  $form['header_information']= array(
-    '#markup' => '<p class="text-center"><img src="'.drupal_get_path('module','gimrh').'/css/top-bolsa-de-trabajo.jpg'.'" alt="" /></p>',
-  );
   $form['gimrh'] = array(
     '#title' => 'Antes de iniciar lee las siguientes instrucciones:',
     '#type'  => 'fieldset',
@@ -277,7 +277,6 @@ function gimrh_work_with_us_form($form, &$form_state){
     ),
     '#upload_location'   => 'public://gimrh_uploads/',
     '#process'           => array('gimrh_file_element_process'),
-    '#required'          => TRUE,
   );
   $form['gimrh']['privacy'] = array(
     '#title' => 'Acepto el <a href="/bolsa-de-trabajo/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>',

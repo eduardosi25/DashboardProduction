@@ -1,7 +1,18 @@
 jQuery(document).ready(function(){
   jQuery('#edit-gimrh-personal-birthdate').mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
   jQuery('#edit-gimrh-personal-phone').mask("99-99999999",{placeholder:"xx-xxxxxxxx"});
+  if(top!=self){
+    //We are on iframe
+    jQuery('#edit-submit').bind('click',function(){
+      var data = {
+        action : 'submit',
+        height : jQuery(document).height()
+      }
+      parent.postMessage(data,'*');
+    });
+  }
 });
+
 var validate_fields={
   _nKeypress : window.Event ? true : false,
   entero : function(evt){
