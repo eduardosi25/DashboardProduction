@@ -1,0 +1,13 @@
+name = "GIM Recursos Humanos"
+description = "Plugin para Reclutamiento de Recursos HUmanos (GIM)"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = gimrh.module
+files[] = gimrh.install
+files[] = gimrh.admin.inc
+files[] = gimrh.inc
+files[] = gimrh.form.inc
+
+configure = admin/config/system/gimrh

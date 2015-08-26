@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8" ></script>
+  <script src="http://api.excelsior.com.mx/html/copa-america/page/owl.carousel.min.js" type="text/javascript" charset="utf-8"></script>
+  <title>Copa América</title>
+  <link rel="stylesheet" href="http://api.excelsior.com.mx/html/copa-america/page/styles.css">
+  <link rel="stylesheet" href="http://api.excelsior.com.mx/html/copa-america/page/owl.carousel.css">
+</head>
+<body>
+    
+  <nav id="menu-principal">
+    <ul class="menu-principal-list">
+      <li class="menu-principal-list-item"><a href="#home" id="Partidos" class="tab calendario active sprite">Calendario</a></li>
+      <li class="menu-principal-list-item"><a href="#grupos" id="Grupos" class="tab grupos sprite">Grupos</a></li>
+      <li class="menu-principal-list-item"><a href="#goleadores" id="Goleadores" class="tab goleadores sprite">Goleadores</a></li>
+    </ul>
+  </nav>
+    
+  <section id="calendario"  style="display:block">
+    <header class="titulo">Calendario</header>
+    <nav class="menu-dias-container">
+      <div class="titulo-dias-junio">
+        <span class="mes-de-junio">Junio</span>
+        <span class="mes-de-julio">Julio</span>
+      </div>
+      <span class="imx-prev-prev-left" >
+          <a id="imx-plek-prev" style="display:block" ></a>
+      </span>
+      <div class="menu-dias-mes">
+            <a class="menu-dias-link" id="inicia-junio" href="#11">
+               <span class="data-calendario-no">11</span>
+               <span class="data-calendario-text">Jueves</span>
+            </a>
+            <a class="menu-dias-link" href="#12">
+               <span class="data-calendario-no">12</span>
+               <span class="data-calendario-text">Viernes</span>
+            </a>
+            <a class="menu-dias-link" href="#13">
+               <span class="data-calendario-no">13</span>
+               <span class="data-calendario-text">S&aacute;bado</span>
+            </a>
+            <a class="menu-dias-link" href="#14">
+               <span class="data-calendario-no">14</span>
+               <span class="data-calendario-text">Domingo</span>
+            </a>
+            <a class="menu-dias-link" href="#15">
+               <span class="data-calendario-no">15</span>
+               <span class="data-calendario-text">Lunes</span>
+            </a>
+            <a class="menu-dias-link" href="#16">
+               <span class="data-calendario-no">16</span>
+               <span class="data-calendario-text">Martes</span>
+            </a>
+            <a class="menu-dias-link" href="#17">
+               <span class="data-calendario-no">17</span>
+               <span class="data-calendario-text">Mí&eacute;rcoles</span>
+            </a>
+            <a class="menu-dias-link" href="#18">
+               <span class="data-calendario-no">18</span>
+               <span class="data-calendario-text">Jueves</span>
+            </a>
+            <a class="menu-dias-link" href="#19">
+               <span class="data-calendario-no">19</span>
+               <span class="data-calendario-text">Viernes</span>
+            </a>
+            <a class="menu-dias-link" href="#20">
+               <span class="data-calendario-no">20</span>
+               <span class="data-calendario-text">S&aacute;bado</span>
+            </a>
+            <a class="menu-dias-link" href="#21">
+               <span class="data-calendario-no">21</span>
+               <span class="data-calendario-text">Domingo</span>
+            </a>
+            <a class="menu-dias-link" href="#24">
+               <span class="data-calendario-no">24</span>
+               <span class="data-calendario-text">Mí&eacute;rcoles</span>
+            </a>
+            <a class="menu-dias-link" href="#25">
+               <span class="data-calendario-no">25</span>
+               <span class="data-calendario-text">Jueves</span>
+            </a>
+            <a class="menu-dias-link" href="#26">
+               <span class="data-calendario-no">26</span>
+               <span class="data-calendario-text">Viernes</span>
+            </a>
+            <a class="menu-dias-link" href="#27">
+               <span class="data-calendario-no">27</span>
+               <span class="data-calendario-text">S&aacute;bado</span>
+            </a>
+            <a class="menu-dias-link" href="#29">
+               <span class="data-calendario-no">29</span>
+               <span class="data-calendario-text">Lunes</span>
+            </a>
+            <a class="menu-dias-link" href="#30">
+               <span class="data-calendario-no">30</span>
+               <span class="data-calendario-text">Martes</span>
+            </a>
+            <a class="menu-dias-link" href="#3">
+               <span class="data-calendario-no">3</span>
+               <span class="data-calendario-text">Viernes</span>
+            </a>
+            <a class="menu-dias-link" href="#4">
+               <span class="data-calendario-no">4</span>
+               <span class="data-calendario-text">S&aacute;bado</span>
+            </a>
+        </div>
+        <span class="imx-prev-next-right"><a id="imx-plek-next" style="display:block" ></a></span> 
+    </nav>
+  </section>
+    
+  <div class="imx-body-calendario" id = "imx-body-content-page" >
+    <div id="content-loading"></div>
+    <div id="imx-calendario-content" style="display:block"></div>
+    <div id="imx-grupos-content" style="display:none"></div>
+      <div id="imx-goleadores-content" style="display:none">
+        <div class="goleadores" id="partidos-goleadores" >
+        <div class="imagen-goledores-lugares"></div>
+         <div id="table-goleadores">
+           <div class="table-goleadores-contenido">
+
+           </div>
+         </div> 
+        </div>
+      </div>
+  </div>
+
+<script type="text/javascript">
+if(location.hash){
+
+}
+
+jQuery('a.menu-dias-link').each(function(){
+  jQuery(this).bind('click',function(e){
+    e.preventDefault();
+    jQuery('body').prop('scrollTop',jQuery('.partidos '+jQuery(this).attr('href')).offset().top);
+  });
+});
+
+CopaAmerica = {
+  urlFeed:null,
+  NameFunction:null,
+  calendario_suces:null,
+  calendario: null,
+
+  ConsultarFeed: function(urlFeed,NameFunction){
+    var base =  this;
+      $.ajax({
+        url: urlFeed ,
+        dataType: 'jsonp',        
+        jsonpCallback: this.imxCallback,
+        contentType: "application/json; charset=utf-8",
+        async: true,
+        cache: false,
+        
+          beforeSend:function(){
+                 jQuery("#content-loading ").html("<img  src='http://8d5306c18b850ea7e0ac-65b9b7a2fa68b3c92f951010bb26a4de.r54.cf2.rackcdn.com/embed/elecciones-2015/ajax-loader.gif'>");
+                     jQuery("#content-loading ").addClass("loading");
+           switch (NameFunction) {
+                      case 'Partidos' : 
+                        jQuery('#imx-calendario-content').css('display','block');
+                        jQuery('#imx-calendario-content').empty();
+                        jQuery('#imx-grupos-content').css('display','none');
+                        jQuery('#imx-goleadores-content').css('display','none');
+                        jQuery('.menu-dias-container').css('display','block');
+                      break
+                      case 'Grupos' : 
+                        jQuery('#imx-calendario-content').css('display','none');
+                        jQuery('#imx-grupos-content').css('display','block');
+                        jQuery('#imx-grupos-content').empty();
+                        jQuery('#imx-goleadores-content').css('display','none');
+                        jQuery('.menu-dias-container').css('display','none');
+                      break 
+                      case 'Goleadores' : 
+                        jQuery('#imx-calendario-content').css('display','none');
+                        jQuery('#imx-grupos-content').css('display','none');
+                        jQuery('#imx-goleadores-content').css('display','block');
+                        jQuery('.table-goleadores-contenido').empty();
+                        jQuery('.menu-dias-container').css('display','none');
+
+                      break 
+                }
+          },
+          success:function(data){
+
+            if (data.response.status == 200) {
+                switch (NameFunction) {
+                      case 'Partidos' : 
+                        base.Partidos(data);
+                      break
+                      case 'Grupos' : 
+                         base.Grupos(data);
+                      break 
+                      case 'Goleadores' : 
+                           base.Goleadores(data);
+                      break 
+                }
+             }
+            else{
+              jQuery("#imx-wrapper-general-data h1").prepend("Sin Datos");
+            }
+          },
+          error:function(){
+
+
+            return false;
+          },
+          complete: function() {
+            jQuery("#content-loading").empty();
+            jQuery("#content-loading").removeClass("loading");
+            
+            setTimeout( function () { 
+                  UpdateDimensions( true, '' );
+                  console.log ( " 1.5 seg." ); 
+                }, 1500 );              
+          }
+      });
+    },
+
+   imxCallback: function (){
+      var imx = 'imx';
+      return imx;
+    },
+
+    Partidos:function(data){
+      var  ouput = '';
+        if (Object.prototype.toString.call(data.data) === "[object Array]") {
+          
+          var fecha = new Array( '11', '12', '13', '13', '14','14', '15', '15', '16', '16', '17', '18', '19', '19', '20', '20', '21','21', '24', '25', '26', '27', '29', '30', '3', '4'  )    
+            
+          jQuery.each(data.data, function(index , grupo){
+              
+                  ouput +='<ul class="partidos" id="partidos-partidos-'+ index +'" name = "' +fecha[ index ] + '"   style="display:block">' 
+                  ouput +=' <li>';
+                  ouput +='    <div class="partido-rows-contenido" id="'+ timeday(grupo.timestamp )+'">';
+                  ouput +='        <div class="partido-fecha">'+timeConverter( grupo.timestamp ) +'</div>';
+                  ouput +='        <div class="partido-fecha"></div>';
+                  ouput +='        <div class="partido-grupo">'+grupo.phase+'</div>';
+                  ouput +='        <div class="partido-horario">20:30 hrs.</div>';
+                  ouput +='    </div></li>';
+
+             for (var i = 0; i < grupo.match.length; i++) {
+
+                      var goals = grupo.match[0].goals;
+                      var goals1 = grupo.match[1].goals;
+                      var imgPais = grupo.match[0].shield; 
+                      var imgPais1 = grupo.match[1].shield; 
+                      var namePais = grupo.match[0].name; 
+                      var namePais1 = grupo.match[1].name;
+             }
+                  ouput +='   <li><div class="partido-rows-contenido">  ';        
+                  ouput +='      <div class="partido-equipo-casa-nombre"><a href="'+ grupo.url +'" target="_blank">'+ namePais +'</a></div>';
+                  ouput +='      <div class="partido-equipo-casa-bandera">';
+                  ouput +='       <a href="'+ grupo.url +'" target="_blank"> <img width="53" src="'+ imgPais +'"/> </a>';
+                  ouput +='      </div>';
+                  ouput +='      <div class="partido-equipo-casa-marcador">'+ goals+'</div>';
+                  ouput +='      <div class="partido-vs">Vs.</div>';
+                  ouput +='      <div class="partido-equipo-visita-marcador">'+goals1+'</div>';
+                  ouput +='      <div class="partido-equipo-visita-bandera">';
+                  ouput +='       <a href="'+ grupo.url +'" target="_blank">     <img width="53" src="'+ imgPais1 +'"/></a>';
+                  ouput +='     </div>';
+                  ouput +='      <div class="partido-equipo-visita-nombre"><a href="'+ grupo.url +'" target="_blank">'+namePais1+'</a></div>';
+
+
+                  ouput +='      <div class="partido-estadio">'+grupo.stadium+'</div>';
+                  ouput +='    </div>';
+                  ouput +='  </li>';
+                  ouput +='</ul>'
+              jQuery('#imx-calendario-content').html(ouput);
+            });
+        }
+    },
+    Grupos:function(data){
+        var  ouput = '';
+        if (Object.prototype.toString.call(data.data) === "[object Object]") {
+          jQuery.each(data.data, function(index , grupo){
+                    ouput +='  <ul class="grupos"  id="partidos-grupos" style="display:block">';
+                    ouput +='   <li>';
+                    ouput +='     <div class="grupos-tabala">';
+                    ouput +='          <div class="grupos-tabala-caption"> Grupo '+index+'</div>';
+                    ouput +='           <div class="grupo-tabla-rows tabla-header">';
+                    ouput +='           <div class="grupo-equipo">Equipo</div>';
+                    ouput +='           <div class="grupo-equipo"></div>';
+                    ouput +='           <div class="grupo-pj">PJ</div>';
+                    ouput +='            <div class="grupo-pg">PG</div>';
+                    ouput +='            <div class="grupo-pe">PE</div>';
+                    ouput +='            <div class="grupo-pp">PP</div>';
+                    ouput +='            <div class="grupo-gf">GF</div>';
+                    ouput +='            <div class="grupo-gc">GC</div>';
+                    ouput +='            <div class="grupo-dg">DG</div>';
+                    ouput +='            <div class="grupo-pts">PTS.</div>';
+                    ouput +='          </div> ';
+                    
+                    jQuery.each(grupo, function(grupo , value){
+                          ouput +='         <div class="grupo-tabla-rows tabla-rows-text">';
+                          ouput +='            <div class="grupo-equipo">';
+                          ouput +='              <img width="45" src="'+ value.team.image +'">';
+                          ouput +='            </div>';
+                          ouput +='            <div class="grupo-equipo">';
+                          ouput +='              <span class="grupo-nombre-equipo">'+value.team.name +'</span>';
+                          ouput +='            </div>';
+                          ouput +='            <div class="grupo-pj">'+ value.pj+'</div>';
+                          ouput +='            <div class="grupo-pg">'+ value.pg+'</div>';
+                          ouput +='            <div class="grupo-pe">'+ value.pe+'</div>';
+                          ouput +='            <div class="grupo-pp">'+ value.pp+'</div>';
+                          ouput +='            <div class="grupo-gf">'+ value.gf+'</div>';
+                          ouput +='            <div class="grupo-gc">'+ value.gc+'</div>';
+                          ouput +='            <div class="grupo-dg">'+ value.dg+'</div>';
+                          ouput +='            <div class="grupo-pts">'+ value.pts+'</div>';
+                          ouput +='          </div>';
+                      });
+                    ouput +='      </div>';
+                    ouput +='    </li>';
+                    ouput +='  </ul>';
+              jQuery('#imx-grupos-content').html(ouput);
+
+          });
+        }
+    },
+    Goleadores:function(data){
+        var  ouput = '';
+        if (Object.prototype.toString.call(data.data) === "[object Array]") {
+                ouput +='  <div class="goleadores-rows tabla-header">';
+                ouput +='   <div class="goleadore-no"></div>';
+                ouput +='   <div class="">JUGADOR</div>';
+                ouput +='   <div class=""></div>';
+                ouput +='   <div class="">PA&Iacute;S</div>';
+                ouput +='   <div class="goleadore-total">GOLES</div>';
+                ouput +=' </div>';
+          jQuery.each(data.data, function(index , grupo){
+                ouput +='  <div class="goleadores-rows tabla-rows-text">';
+                ouput +='   <div class="goleadore-no">'+ grupo.weight+'</div>';
+                ouput +='   <div class="goleadore-nombre">'+ grupo.name+'</div>';
+                ouput +='   <div class="goleadore-imagen-pais">';
+                ouput +='      <img width="45" src="'+ grupo.team.image+'">';
+                ouput +='   </div>';
+                ouput +='   <div class="goleadore-nombre-pais">'+ grupo.team.name+'</div>';
+                ouput +='   <div class="goleadore-total">'+ grupo.goals+'</div>';
+                ouput +=' </div>';
+                  jQuery('.table-goleadores-contenido').html(ouput);
+          });
+        }
+    }
+  }
+
+  function time(time ){
+    var date = new Date( time *1000);
+    // hours part from the timestamp
+    var hours = date.getHours();
+    // minutes part from the timestamp
+    var minutes = "0" + date.getMinutes();
+    // seconds part from the timestamp
+    var seconds = "0" + date.getSeconds();
+    // will display time in 10:30:23 format
+    var formattedTime = hours + ':' + minutes.substr(minutes.length-2);
+  return formattedTime ;
+}
+
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp*1000);   
+  var months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' de ' + month ;
+   // var time = date + ' de ' + month + ' ' + year ;
+  return time;
+}
+
+function timeday(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp*1000);   
+  var months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date;
+  return time;
+}
+
+jQuery(document).ready(function(){
+
+  var ArrayMenu =['Calendario','Grupos','Goleadores'];
+    var cadena = '' , tagCalendario ='' ;
+      tagCalendario = getUrlVars();
+    
+  if (! tagCalendario == '' && isNaN(tagCalendario)) {
+        cadena = tagCalendario.charAt(0).toUpperCase() + tagCalendario.slice(1);
+    }
+        if(cadena === ''){
+              CopaAmerica.ConsultarFeed('http://lb1.excelsior.com.mx/adrenalina/copamerica/views_calendar','Partidos');
+          }
+          else {
+
+           // if( cadena === 'Calendario' || cadena === 'Grupos' || cadena === 'Goleadores'){
+            if(ArrayMenu.indexOf(cadena) > 0 ){
+                  var id =  (cadena == 'Calendario')?'Partidos' : cadena;
+                  var idCadena =  (cadena == 'Calendario')?'Partidos' : cadena;
+                  var itemActive = jQuery('#'+id).attr('class');
+                    if( itemActive != 'active'){
+                      jQuery('#'+id).addClass('active');
+                        jQuery('ul.menu-principal-list li a.active').each(function(){
+                           var itemAnt = jQuery(this).attr('id');
+                                if( itemAnt != id){
+                                  jQuery(this).removeClass('active');
+                                }
+                         });
+                      }
+              switch (idCadena) {
+                case 'Partidos' : 
+                   urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_calendar';
+                    CopaAmerica.ConsultarFeed(urlFeed,id);
+                    jQuery('.titulo').html('Calendario');
+                break
+                case 'Grupos' : 
+                   urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_groups';
+                    CopaAmerica.ConsultarFeed(urlFeed, id);
+                    jQuery('.titulo').html('Grupos');
+                break 
+                case 'Goleadores' : 
+                    urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_scorers';
+                    CopaAmerica.ConsultarFeed(urlFeed,id);
+                     jQuery('.titulo').html('Goleadores');
+                break 
+              }
+            }else{
+              CopaAmerica.ConsultarFeed('http://lb1.excelsior.com.mx/adrenalina/copamerica/views_calendar','Partidos');
+            }
+              
+          }
+
+        jQuery("ul.menu-principal-list li a ").click(function () {
+          var urlFeed = '';
+          var itemActive = jQuery(this).attr("class");
+          var id = jQuery(this).attr("id");
+              jQuery(this).addClass('active');
+              if( itemActive != 'active'){
+                  jQuery('ul.menu-principal-list li a.active').each(function(){
+                     var itemAnt = jQuery(this).attr('id');
+                          if( itemAnt != id){
+                            jQuery(this).removeClass('active');
+                          }
+                   });
+                }
+              switch (id) {
+                case 'Partidos' : 
+                   urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_calendar';
+                    CopaAmerica.ConsultarFeed(urlFeed,id);
+                    jQuery('.titulo').html('Calendario');
+                break
+                case 'Grupos' : 
+                   urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_groups';
+                    CopaAmerica.ConsultarFeed(urlFeed, id);
+                    jQuery('.titulo').html('Grupos');
+                break 
+                case 'Goleadores' : 
+                    urlFeed = 'http://lb1.excelsior.com.mx/adrenalina/copamerica/views_scorers';
+                    CopaAmerica.ConsultarFeed(urlFeed,id);
+                     jQuery('.titulo').html('Goleadores');
+                break 
+              }
+          });
+
+        
+     /*
+    jQuery(".menu-dias-mes div.owl-item a").click(function () {
+      var idItem = jQuery(this).attr('href');
+       
+       UpdateDimensions( true, idItem );
+        
+       jQuery( 'body,html' ).animate( {
+                               scrollTop: jQuery(idItem).offset().top
+                             }, 250 );
+                             
+             return false;         
+          });//menu
+     */
+    
+     
+    jQuery(".menu-dias-mes div.owl-item a").bind( 'click', function () {        
+        console.log( jQuery(this).attr('href') );                                     
+      });//menu
+     
+    
+    });
+    
+  </script>
+
+  <script type="text/javascript">
+
+    var carouselCalendario = jQuery(".menu-dias-mes");
+
+        carouselCalendario.owlCarousel({
+                    loop:false,
+                    lazyLoad : true,
+                    navigation :false,
+                    pagination:false,
+                    margin:7,
+                    responsiveRefreshRate:500,
+                    responsiveBaseWidth:window,
+                   responsive:{
+                      320:{
+                      items : 4,
+                      responsiveRefreshRate:500,
+                      },
+                      360:{
+                      items : 4,
+                      responsiveRefreshRate:500,
+                      },
+                      480:{
+                      items : 6,
+                      responsiveRefreshRate:500,
+                      },
+                      640:{
+                      items : 7,
+                       responsiveRefreshRate:500,
+                      },
+                      768:{
+                      items : 12,
+                       responsiveRefreshRate:500,
+                      },
+                      1024:{
+                      items : 13,
+                       responsiveRefreshRate:500,
+                      },
+                    }
+                    
+                  }); 
+                $("#imx-plek-next").click(function(){
+                  carouselCalendario.trigger('next.owl.carousel');
+                })
+                $("#imx-plek-prev").click(function(){
+                  carouselCalendario.trigger('prev.owl.carousel');
+                })
+         carouselCalendario.load();                  
+      </script>
+    
+<!-- Redirect -->    
+    
+<script type="text/javascript">
+    
+ function array_key_exists ( key, search ) {
+
+   if( !search || (search.constructor !== Array && search.constructor !== Object) ){
+        return false;
+     }
+     
+   return search[key] !== undefined;
+ }//array_key_exists
+    
+function getUrlVars() {
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('.') + 2).split('#');
+    
+     for(var i = 0; i < hashes.length; i++) {
+          hash = hashes[i].split('#');
+          vars.push(hash[0]);
+          vars[hash[0]] = hash[1];
+      } 
+  return ( ( array_key_exists( 1, vars ) ) ? vars[ 1 ] : '' );
+}    
+    
+function getQueryParams( qs ) {
+
+              qs = qs.split( "+" ).join( " " );
+      var params = {}, tokens,
+              re = /[?&]?([^=]+)=([^&]*)/g;
+
+      while ( tokens = re.exec( qs ) ) {
+              params[ decodeURIComponent( tokens[ 1 ] ) ] = decodeURIComponent( tokens[ 2 ] );
+       }
+     return params;
+   }    
+        
+ function UpdateDimensions( content, iditem ){
+  
+          var _GET = {};
+              _GET = getQueryParams( document.location.search );
+
+          var ReferalUrl = ( jQuery.isPlainObject ( _GET ) ) ? 'http://' + _GET.site : '';
+          var Valrs = getUrlVars();
+          var tagCalendario = iditem;
+     
+              Valrs = ( ( Valrs.length === 0 ) ) ? '' : "#" + getUrlVars();     
+              Valrs = ( tagCalendario.length > 1 ) ? tagCalendario : Valrs;
+        
+           try{
+
+               var height = 0;
+               var   home = "";
+               
+               if ( content === true ){
+                    height  = parseInt( $( '#imx-body-content-page' ).outerHeight() ) + 230;            
+                    home = 'page';
+                }else{             
+                     height = parseInt( $(document).height() );
+                     home = 'home';
+                   }       
+              if ( window.postMessage && ReferalUrl != undefined )
+                   parent.postMessage( height + "|" + home + "|" + Valrs , ReferalUrl );
+                  
+                //console.log ( '------- [ '+ Valrs +' ]----------- ]' );
+                console.log( Valrs ); 
+             }
+           catch (c) {
+             alert(c.message);
+            }
+         }//UpdateDimensions          
+        
+       $(window).load(function (){
+           
+          UpdateDimensions( false, '' );
+          
+           /*
+           var tagCalendario = parseInt( getUrlVars() );               
+           
+            if ( !isNaN( tagCalendario ) ){
+                
+                 jQuery('body,html').animate( {
+                                scrollTop: jQuery( "#" + tagCalendario ).offset().top
+                        }, 250 );                 
+                
+              }//           
+           */
+        });
+    
+    </script>    
+</body>
+</html>
