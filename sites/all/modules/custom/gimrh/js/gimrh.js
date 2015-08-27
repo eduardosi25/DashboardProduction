@@ -1,17 +1,38 @@
 jQuery(document).ready(function(){
   jQuery('#edit-gimrh-personal-birthdate').mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
   jQuery('#edit-gimrh-personal-phone').mask("99-99999999",{placeholder:"xx-xxxxxxxx"});
-  if(top!=self){
+  jQuery('#edit-gimrh-experience-0-format').remove();
+  if(top!=window){
+    var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+    var eventer = window[eventMethod];
+    var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+    // Listen to message from the parent window
+    eventer(messageEvent,function(e) {
+      console.log("children.postMessage.received:", e.data);
+      if(e.origin == "http://local.rsvponline.mx"){
+        if(e.data=="hide_alert"){
+          window.scrollTo(0,0);
+          setTimeout(e.data+"()", 3000);
+          console.log("Children received message: ", e.data);
+        }
+      }
+    },false);
+
     //We are on iframe
     jQuery('#edit-submit').bind('click',function(){
       var data = {
         action : 'submit',
-        height : jQuery(document).height()
-      }
+        height : jQuery('body').outerHeight(),
+      };
       parent.postMessage(data,'*');
+      console.log('parent.postMessage.sent');
     });
   }
 });
+
+function hide_alert(){
+  jQuery('.alert').hide();
+}
 
 var validate_fields={
   _nKeypress : window.Event ? true : false,

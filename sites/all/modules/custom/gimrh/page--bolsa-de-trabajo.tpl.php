@@ -3,9 +3,9 @@ $privacy=arg(1);
 $privacy=isset($privacy) && !empty($privacy) && $privacy=='aviso-de-privacidad' ? TRUE : FALSE;
 ?>
 <?php if($privacy):?>
-<header id="navbar" role="banner" class="<?php print $navbar_classes; ?> text-center">
+<header id="navbar" role="banner" class="<?php print $navbar_classes; ?> text-center" style="padding: 10px 60px;">
   <?php if ($logo): ?>
-  <img src="<?php print url(drupal_get_path('module','gimrh').'/css/top-bolsa-de-trabajo.jpg',array('absolute'=>true)); ?>" alt="Red Invent.mx - Grupo Imagen Multimedia" />
+  <img width="100%" src="<?php print url(drupal_get_path('module','gimrh').'/css/top-bolsa-de-trabajo.jpg',array('absolute'=>true)); ?>" alt="Red Invent.mx - Grupo Imagen Multimedia" />
   <?php endif; ?>
 </header>
 <?php endif;?>

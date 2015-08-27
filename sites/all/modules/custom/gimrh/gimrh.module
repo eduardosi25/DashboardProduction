@@ -238,6 +238,18 @@ function gimrh_work_with_us_form($form, &$form_state){
     '#maxlength'     => 150,
     '#required'      => TRUE,
   );
+  $form['gimrh']['experience']=array(
+    '#type'  => 'fieldset',
+    '#title' => 'Experiencia laboral',
+    '#tree'  => TRUE,
+  );
+  $form['gimrh']['experience'][0] = array(
+    '#title'         => 'Última empresa o experiencia laboral',
+    '#type'          => 'text_format',
+    '#default_value' => NULL,
+    '#format'        => 'lite',
+    '#description'   => 'Tienes un límite de 2000 letras.'
+  );
   $form['gimrh']['interest']=array(
     '#type'  => 'fieldset',
     '#title' => 'Áreas de Interés',
@@ -329,6 +341,7 @@ function ajax_file_update_callback($form, &$form_state){
 function gimrh_work_with_us_form_validate($form, &$form_state){
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
+  $experience=$form_state['values']['gimrh']['experience']['0']['value'];
   $interest=$form_state['values']['gimrh']['interest'];
   $cv=$form_state['values']['gimrh']['cv'];
   $privacy=$form_state['values']['gimrh']['privacy'];
@@ -344,11 +357,17 @@ function gimrh_work_with_us_form_validate($form, &$form_state){
   if(!valid_email_address($personal['email'])){
     form_set_error($form_state['values']['gimrh']['personal']['email'],'Debes indicar un correo electrónico válido.');
   }
+  if(strlen(strip_tags($experience))>2000){
+    form_set_error($experience,'Te pasaste del límite de 2000 letras. Revisa de nuevo por favor.');
+  }
+
 }
 
 function gimrh_work_with_us_form_submit($form, &$form_state){
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
+  $experience=$form_state['values']['gimrh']['experience']['0']['value'];
+  $experience_format=$form_state['values']['gimrh']['experience']['0']['format'];
   $interest=$form_state['values']['gimrh']['interest'];
   $cv=$form_state['values']['gimrh']['cv'];
   $privacy=$form_state['values']['gimrh']['privacy'];
@@ -366,19 +385,22 @@ function gimrh_work_with_us_form_submit($form, &$form_state){
     'city'        => check_plain($personal['city']['cityname']),
     'degree'      => check_plain($academics['degree']),
     'name_degree' => check_plain($academics['degreename']),
+    'experience'  => check_markup($experience),
+    'experience_format'  => check_plain($experience_format),
     'interest'    => gimrh_data_interest($interest),
     'attached'    => check_plain($cv['file']),
     'privacy'     => check_plain($privacy),
     'created'     => time(),
     'site'        => $_SERVER['HTTP_HOST'],
   );
+  #var_dump($form_state['values']['gimrh']['experience']);
+  #die();
   $result=drupal_write_record('gimrh',$fields);
   if(!$result){
     drupal_set_message('Error al registrar los datos, inténtalo de nuevo por favor.', 'error');
   }else{
     drupal_set_message('Tus datos fueron enviados correctamente, gracias por tu interés.', 'status');
     #$form_state['redirect'] = 'bolsa-de-trabajo/datos-enviados';
-    #$form_state['rebuild'] = TRUE;
   }
 }
 
@@ -474,4 +496,24 @@ function gimrh_get_variables() {
     );
   }
   return $variables;
+}
+
+/**
+* Implements hook_theme_registry_alter().
+*/
+function gimrh_theme_registry_alter(&$theme_registry) {
+  // Defined path to the current module.
+  $module_path = drupal_get_path('module', 'my_module');
+  // Find all .tpl.php files in this module's folder recursively.
+  $template_file_objects = drupal_find_theme_templates($theme_registry, '.tpl.php', $module_path);
+  // Iterate through all found template file objects.
+  foreach ($template_file_objects as $key => $template_file_object) {
+    // If the template has not already been overridden by a theme.
+    if (!isset($theme_registry[$key]['theme path']) || !preg_match('#/themes/#', $theme_registry[$key]['theme path'])) {
+      // Alter the theme path and template elements.
+      $theme_registry[$key]['theme path'] = $module_path;
+      $theme_registry[$key] = array_merge($theme_registry[$key], $template_file_object);
+      $theme_registry[$key]['type'] = 'module';
+    }
+  }
 }

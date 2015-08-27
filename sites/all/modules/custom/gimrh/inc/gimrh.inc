@@ -1,5 +1,23 @@
 <?php
 function gimrh_privacy(){
+  $xframe_metas = array(
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'http-equiv' => 'X-Frame-Options',
+      'content'    => '*.excelsior.com.mx *.imagen.com.mx *.reporte.com.mx *.cadenatres.com.mx *.salud180.com *.actitudfem.com *.dineroenimagen.com *.swagger.mx *.atraccion360.com *.gamedots.mx *.garuyo.com *.melodijolola.com',
+    ),
+  );
+  drupal_add_html_head($xframe_metas,'meta-xframe-gimrh');
+
+  $xframe_metas = array(
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'http-equiv' => 'Content-Security-Policy',
+      'content'    => '*.excelsior.com.mx *.imagen.com.mx *.reporte.com.mx *.cadenatres.com.mx *.salud180.com *.actitudfem.com *.dineroenimagen.com *.swagger.mx *.atraccion360.com *.gamedots.mx *.garuyo.com *.melodijolola.com',
+    ),
+  );
+  drupal_add_html_head($xframe_metas,'meta-csp-gimrh');
+
   $settings=gimrh_get_variables();
   return $settings['privacy']['value'];
 }

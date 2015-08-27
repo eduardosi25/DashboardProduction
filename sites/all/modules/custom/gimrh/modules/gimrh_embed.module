@@ -11,34 +11,28 @@ function gimrh_embed_menu() {
 }
 
 function gimrh_embed_html(){
-  //Add X-Frame-Options
-  $xframe_metas[] = array(
-    '#tag' => 'meta',
-    '#attributes' => array(
-      'about' => url('taxonomy/term/' . $term->tid),
-      'typeof' => $term->rdf_mapping['rdftype'],
-      'property' => $term->rdf_mapping['name']['predicates'],
-      'content' => $term->name,
-    ),
-  );
-  drupal_add_html_head($data,'meta-xframe-gimrh');
 return '
+<iframe id="gimrh_work_with_us_iframe" width="100%" height="2480" frameborder="0" src="http://local.invent.mx/bolsa-de-trabajo" scrolling="no" onload="scroll(0,0);"></iframe>
 <script type="text/javascript">
+var childOrigin = "http://local.invent.mx";
+var childWindow = document.getElementById("gimrh_work_with_us_iframe").contentWindow;
 var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
 var eventer = window[eventMethod];
 var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 // Listen to message from child window
 eventer(messageEvent,function(e) {
   if(e.origin == "http://local.invent.mx"){
-    console.log("Parent received message: ", e.data.action);
-    console.log("Origin: ", e.origin);
-    console.log("Source: ", e.source);
     if(e.data.action=="submit"){
       window.scrollTo(0,0);
+      setTimeout(hide_alert,5000);
+      console.log("parent.postMessage.received:", e.data.action);
     }
   }
 },false);
+function hide_alert(){
+  childWindow.postMessage("hide_alert",childOrigin);
+  console.log("children.postMessage.sent");
+}
 </script>
-<iframe id="gimrh-work-with-us" width="100%" height="2280" frameborder="0" src="http://local.invent.mx/bolsa-de-trabajo" scrolling="no" onload="scroll(0,0);"></iframe>
 ';
 }
