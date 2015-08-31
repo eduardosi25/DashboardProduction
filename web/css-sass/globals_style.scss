@@ -510,18 +510,18 @@ article {
                 color: #FFF;
                 //margin-top: 5%;
                 text-align: center;
-                @include measures(500px,auto);
+                @include measures(420px,auto);
                 @extend .Source-Sans-Pro-Black;
                 .paragraph-1 {
-                    font-size: 57px;
+                    font-size: 48px;
                     line-height: 50px;
                 }
                 .paragraph-2 {
-                    font-size: 95px;
-                    line-height: 75px
+                    font-size: 80px;
+                    line-height: 64px
                 }
                 .paragraph-3 {
-                    font-size: 45px;
+                    font-size: 37px;
                     line-height: 34px;
                 }
             }
