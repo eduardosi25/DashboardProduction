@@ -1,10 +1,84 @@
-@media only screen and (max-width: 1200px) {
+//@media only screen and (max-width: 1366px) {
+@media only screen and (max-width: 1380px) {
     #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {
+                .wrapper-description {
+                    .paragraph-3 {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1210px) {
+    #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {                
+                .wrapper-description {
+                    @include measures(360px,auto);
+                    .paragraph-1 {
+                        font-size: 41px;
+                        line-height: 41px;
+                    }
+                    .paragraph-2 {
+                        font-size: 70px;
+                        line-height: 50px;
+                    }
+                    .paragraph-3 {
+                        font-size: 32px;
+                        line-height: 25px;
+                    }
+                }
+            }
+            
+            .wrapper-seccion-btn-publish {
+                margin: 0 auto;
+                @include measures(340px,auto);
+            }
+            
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    /*#section-home-contactos {
         #registro-contacto {
             .wrapper-content-contacto {
                 .wrapper-description {
                     margin-top: 8%;
                 }
+            }
+        }
+    }*/
+}
+
+@media only screen and (max-width: 1040px) {
+    #section-home-contactos {
+        #registro-contacto {
+            .wrapper-content-contacto {
+                .wrapper-description {
+                    @include measures(410px,auto);
+                    .paragraph-1 {
+                        font-size: 48px;
+                        line-height: 48px;
+                    }
+                    .paragraph-2 {
+                        font-size: 81px;
+                        line-height: 71px;
+                    }
+                    .paragraph-3 {
+                        font-size: 37px;
+                        line-height: 30px;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            .wrapper-seccion-btn-publish {
+                margin: 0 auto;
+                @include measures(385px,auto);
             }
         }
     }
@@ -111,7 +185,7 @@
     }
     
     /* contacto  */
-    #section-home-contactos {
+    /*#section-home-contactos {
         #registro-contacto {
             .wrapper-content-contacto {
                 .wrapper-description {
@@ -119,7 +193,7 @@
                 }
             }
         }
-    }
+    }*/
     
     /* formulario */
     #wrapper-page-site {
@@ -352,7 +426,7 @@
 @media only screen and (max-width: 840px) {
     
     /* contacto  */
-    #section-home-contactos {
+    /*#section-home-contactos {
         #registro-contacto {
             .wrapper-content-contacto {
                 .wrapper-description {
@@ -360,7 +434,7 @@
                 }
             }
         }
-    }
+    }*/
     
     #page-marketers {
         .wrapper-table-formats {

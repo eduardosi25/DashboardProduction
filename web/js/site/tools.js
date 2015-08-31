@@ -914,7 +914,7 @@ $(function() {
                     }
                 });
                 
-                $(".wrapper-our-services ul li.services-sites a").on("click",function(e){
+                $(".wrapper-our-services ul li.services-sites a").on("hover",function(e){
                     e.preventDefault();
                     var href = $(this).attr("href");
                     var img = $(this).find("img");
@@ -922,11 +922,11 @@ $(function() {
                     src = src.replace(/jpg/g,"gif");
                     img.attr("src",src);
                     //console.log(src);
-                    function redirec() {
+                    /*function redirec() {
                         window.location = href;
                         //console.log(href);
                     }
-                    setTimeout(redirec, 950);
+                    setTimeout(redirec, 950);*/
                     
                 });
                 

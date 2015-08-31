@@ -425,12 +425,6 @@ header {
     //}
 //}
 
-.wrapper-publish-stage {
-    margin: 0 auto;
-    padding-bottom: 40px;
-    @include measures(300px,auto);    
-}
-
 .btn-publish {
     //color: #FFF;
     border: none;
@@ -496,6 +490,10 @@ article {
 #section-home-contactos {
     #registro-contacto {
         background-color: #FFF;
+        img.not-img {
+            max-width: 100%;
+           @include measures(100%,auto); 
+        }
         .wrapper-content-section1 {
             top: 0px;
             left: 0px;
@@ -503,14 +501,15 @@ article {
         }
         .wrapper-content-contacto {
             margin: 0 auto;
-            max-width: 1900px;
+            //max-width: 1900px;
+            max-width: 1024px;
             text-align: right;
-            @include measures(93.5%,auto);
+            display: table;
+            @include measures(93.5%,100%);
             .wrapper-description {
                 color: #FFF;
-                margin-top: 5%;
+                //margin-top: 5%;
                 text-align: center;
-                @include text-shadow(1px, 1px, 7px, #000);
                 @include measures(500px,auto);
                 @extend .Source-Sans-Pro-Black;
                 .paragraph-1 {
@@ -525,25 +524,6 @@ article {
                     font-size: 45px;
                     line-height: 34px;
                 }
-                
-                .wrapper-button-publish {
-                    margin: 0 auto;
-                    max-width: 300px;
-                    border: 2px solid #FFF;
-                    background-color: #D9B5A4;
-                    @include measures(95%,42px);
-                    a {
-                        color: #FFF;
-                        font-size: 22px;
-                        @extend .Hind-Bold;                        
-                        padding: 10px 0px 15px 0px;
-                        text-shadow: none;
-                        -webkit-text-shadow: none;
-                        -moz-text-shadow: none;
-                        -o-text-shadow: none;
-                        -ms-text-shadow: none;
-                    }
-                }
             }
         }
     }
@@ -551,7 +531,7 @@ article {
 
 .wrapper-image-section3 {
     max-width: 100%;
-    margin-bottom: -5px;
+    //margin-bottom: -5px;
     img.width-all {
         max-width: 100%;
         margin-bottom: -3px;
@@ -594,6 +574,16 @@ article {
 .title-seccion-invent {
     font-size: 45px;
     @extend .Hind-Bold;
+}
+
+.wrapper-seccion-btn-publish {
+    margin: 0 auto;
+    @include measures(400px,auto);
+    img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
 }
 
 @media only screen and (min-width: 700px) {
