@@ -914,20 +914,27 @@ $(function() {
                     }
                 });
                 
-                $(".wrapper-our-services ul li.services-sites a").on("hover",function(e){
-                    e.preventDefault();
-                    var href = $(this).attr("href");
-                    var img = $(this).find("img");
-                    var src = $(this).find("img").attr("src");
-                    src = src.replace(/jpg/g,"gif");
-                    img.attr("src",src);
-                    //console.log(src);
-                    /*function redirec() {
-                        window.location = href;
-                        //console.log(href);
+                $(".wrapper-our-services ul li.services-sites a").on({
+                    mouseenter: function (e) {
+                        //e.preventDefault();
+                        e.stopPropagation();
+                        //var href = $(this).attr("href");
+                        var img = $(this).find("img");
+                        var src = $(this).find("img").attr("src");
+                        src = src.replace(/jpg/g, "gif");
+                        img.attr("src", src);
+                        //console.log("Mouse Over!");
+                    },
+                    mouseleave: function (e) {
+                        //e.preventDefault();
+                        e.stopPropagation();
+                        //var href = $(this).attr("href");
+                        var img = $(this).find("img");
+                        var src = $(this).find("img").attr("src");
+                        src = src.replace(/gif/g, "jpg");
+                        img.attr("src", src);
+                        //console.log("Mouse Out!");
                     }
-                    setTimeout(redirec, 950);*/
-                    
                 });
                 
                 services = ".wrapper-our-services ul li.services-sites";
