@@ -1,0 +1,38 @@
+<?php
+function gimrh_embed_menu() {
+  $items=array();
+  $items['bolsa-de-trabajo'] = array(
+    'title'            => 'Trabaja con nosotros',
+    'page callback'    => 'gimrh_embed_html',
+    'access callback'  => TRUE,
+    'type'             => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function gimrh_embed_html(){
+return '
+<iframe id="gimrh_work_with_us_iframe" width="100%" height="2480" frameborder="0" src="http://local.invent.mx/bolsa-de-trabajo" scrolling="no" onload="scroll(0,0);"></iframe>
+<script type="text/javascript">
+var childOrigin = "http://local.invent.mx";
+var childWindow = document.getElementById("gimrh_work_with_us_iframe").contentWindow;
+var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+var eventer = window[eventMethod];
+var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+// Listen to message from child window
+eventer(messageEvent,function(e) {
+  if(e.origin == "http://local.invent.mx"){
+    if(e.data.action=="submit"){
+      window.scrollTo(0,0);
+      setTimeout(hide_alert,5000);
+      console.log("parent.postMessage.received:", e.data.action);
+    }
+  }
+},false);
+function hide_alert(){
+  childWindow.postMessage("hide_alert",childOrigin);
+  console.log("children.postMessage.sent");
+}
+</script>
+';
+}

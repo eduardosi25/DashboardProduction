@@ -113,6 +113,18 @@ function gimrh_schema(){
         'default' => '',
         'description' => 'Name Degree',
       ),
+      'experience' => array(
+        'type' => 'text',
+        'size' => 'normal',
+        'description' => 'Experience',
+      ),
+      'experience_format' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Experience format',
+      ),
       'interest' => array(
         'type' => 'text',
         'size' => 'normal',
