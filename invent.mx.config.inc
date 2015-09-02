@@ -19,6 +19,8 @@ function get_cms_admin_paths(){
     'user/*',
     'login',
     '*/ajax/*',
+    'system',
+    'system/*',
     '*/ahah/*',
     'batch',
     'batch*',

@@ -1,0 +1,7 @@
+name = "GIM Recursos Humanos - Embed para la Red"
+description = "Page, path url para embed de liga de Reclutamiento de Recursos Humanos (GIM) - Hook menu && Iframe"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = gimrh_embed.module
