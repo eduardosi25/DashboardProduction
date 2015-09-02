@@ -592,7 +592,7 @@ function sipi_insert_clients_invent_users($fields){
     return false;
   $found=sipi_search_clients_invent_users_by_id($fields['cid'],$fields['uid']);
   if($found) {
-    return $found;
+    return false;
   }else{
     $query=db_insert('sipi_clients_invent_users')->fields($fields)->execute();
     drupal_set_message('User from Invent Network Added | Name: '.$fields['name'].' - Site: '.$fields['sitename'].'.','status');
@@ -716,6 +716,9 @@ function sipi_get_api_contents($siteName='excelsior', $query=array()){
 }
 function sipi_process_contents_result($data){
   if(!isset($data) || empty($data)){
+    return null;
+  }
+  if(count($data)<1){
     return null;
   }
   $fields=array();
