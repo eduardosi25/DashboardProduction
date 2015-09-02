@@ -919,6 +919,7 @@ $(function() {
                         //e.preventDefault();
                         e.stopPropagation();
                         //var href = $(this).attr("href");
+                        $(this).addClass("gif-active");
                         var img = $(this).find("img");
                         var src = $(this).find("img").attr("src");
                         src = src.replace(/jpg/g, "gif");
@@ -929,6 +930,7 @@ $(function() {
                         //e.preventDefault();
                         e.stopPropagation();
                         //var href = $(this).attr("href");
+                        $(this).removeClass("gif-active");
                         var img = $(this).find("img");
                         var src = $(this).find("img").attr("src");
                         src = src.replace(/gif/g, "jpg");
