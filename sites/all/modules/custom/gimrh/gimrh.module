@@ -1,5 +1,4 @@
 <?php
-define('MAX_FILE_SIZE',2);
 global $gimrh_variables;
 $gimrh_variables=gimrh_get_variables();
 
@@ -285,7 +284,7 @@ function gimrh_work_with_us_form($form, &$form_state){
     '#description'       => 'Aceptamos archivos en formato Word (.doc y .docx) y Adobe Acrobat Reader (.pdf).<br>El peso máximo de tu archivo debe ser de 1MB.',
     '#upload_validators' => array(
       'file_validate_extensions' => array('doc docx pdf'),
-      'file_validate_size'       => array(MAX_FILE_SIZE*1024*1024),
+      'file_validate_size'       => array(2*1024*1024),
     ),
     '#upload_location'   => 'public://gimrh_uploads/',
     '#process'           => array('gimrh_file_element_process'),
@@ -451,25 +450,12 @@ function gimrh_getDegree($name=null){
 }
 function gimrh_getInterest($name=null){
   $items=array(
-    'seleccionar'        => '- Seleccionar -',
-    'isa'                => 'Grupo Imagen administrativo',
-    'excelsiortv'        => 'Excelsior - TV',
-    'excelsiorimpreso'   => 'Excelsior- Periódico',
-    'excelsiorinternet'  => 'Excelsior.com.mx - Internet',
-    'imagenradio'        => 'Imagen 98.5 - Radio',
-    'imageninternet'     => 'Imagen 98.5- Internet',
-    'reporteradio'       => 'Reporte 90.5 - Radio',
-    'reporteinternet'    => 'Reporte 98.5 - Internet',
-    'cadenatrestv'       => 'CadenaTres - TV',
-    'cadenatresinternet' => 'CadenaTres.com.mx - Internet',
-    'dineroenimagen'     => 'DineroEnImagen.com - Internet',
-    'actitudfem'         => 'Actitudfem.com - Internet',
-    'salud180'           => 'Salud180.com - Internet',
-    'garuyo'             => 'Garuyo.com - Internet - Internet',
-    'swagger'            => 'Swagger.mx - Internet',
-    'gamedots'           => 'Gamedots.mx - Internet',
-    'atraccion360'       => 'Atraccion360.com - Internet',
-    'rsvponline'         => 'RSVPOnline.mx - Internet',
+    'seleccionar'    => '- Seleccionar -',
+    'periodico'      => 'Periódico',
+    'tv'             => 'TV',
+    'web'            => 'Web',
+    'administrativo' => 'Administrativo',
+    'radio'          => 'Radio',
   );
   if($name==1){
     array_shift($items);

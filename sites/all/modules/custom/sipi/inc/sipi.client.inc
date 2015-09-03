@@ -1,5 +1,4 @@
 <?php
-define('MAX_FILE_SIZE',1);
 function sipi_client(){
   return sipi_client_list();
 }
@@ -176,7 +175,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
     '#default_value' => (isset($client->logo) ? $client->logo : ''),
     '#upload_validators' => array(
       'file_validate_extensions' => array('png jpg jpeg'),
-      'file_validate_size' => array(MAX_FILE_SIZE*1024*1024),
+      'file_validate_size' => array(1*1024*1024),
     ),
     '#upload_location' => 'public://sipi_clients/',
     '#process' => array('sipi_client_file_element_process'),
