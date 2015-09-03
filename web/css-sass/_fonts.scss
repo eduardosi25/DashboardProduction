@@ -66,3 +66,13 @@ $urlCdn: "http://b384e0c28d6eb2031bcd-5a7dc0e66d3274435cc3e35ca0fc37f5.r77.cf2.r
       url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.ttf") format("truetype"),
       url("#{$urlCdn}/SourceSansPro-Semibold/SourceSansPro-Semibold.svg#SourceSansPro-Semibold") format("svg");
 }
+
+@font-face {
+  font-family: 'Source-Sans-Pro-Black';
+  src: url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.eot");
+  src: url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.otf?#iefix") format("embedded-opentype"),
+      url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.woff") format("woff"),
+      url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.woff2") format("woff2"),
+      url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.ttf") format("truetype"),
+      url("#{$urlCdn}/Source-Sans-Pro-Black/Source-Sans-Pro-Black.svg#Source-Sans-Pro-Black") format("svg");
+}
