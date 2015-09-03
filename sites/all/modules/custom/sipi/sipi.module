@@ -590,7 +590,7 @@ function sipi_new_api_users(){
 function sipi_insert_clients_invent_users($fields){
   if(!isset($fields) || empty($fields) || count($fields)<=0)
     return false;
-  $found=sipi_search_clients_invent_users_by_id($fields['cid'],$fields['uid']);
+  $found=sipi_search_clients_invent_users_by_id($fields['cid'],$fields['uid'],$fields['sitename']);
   if($found) {
     return false;
   }else{
@@ -650,9 +650,9 @@ function sipi_search_client_by_email($email){
   }
   return $id;
 }
-function sipi_search_clients_invent_users_by_id($cid,$uid){
+function sipi_search_clients_invent_users_by_id($cid,$uid,$sitename){
   $id=false;
-  $query="SELECT cid FROM sipi_clients_invent_users WHERE cid='$cid' AND uid='$uid'";
+  $query="SELECT cid FROM sipi_clients_invent_users WHERE cid='$cid' AND uid='$uid' AND sitename='$sitename'";
   $result=db_query($query);
   if($result){
     foreach($result as $row){
