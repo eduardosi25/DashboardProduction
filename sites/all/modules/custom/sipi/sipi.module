@@ -463,6 +463,7 @@ function sipi_run_cronlt(){
               'name'   => $client['name'],
               'sort'   => 'created:DESC',
             );
+
             $fields=sipi_get_api_users($plan['apirepo'],$query);
             $result=sipi_insert_clients_invent_users($fields);
             if($result){
@@ -486,39 +487,6 @@ function sipi_run_cronlt(){
         }
       }
     }
-
-/**
-    $sites=array('actitudfem','salud180');
-    foreach($sites as $siteName){
-      //Search by name
-      $query=array(
-        'limit'  => 1,
-        'name'   => 'Vime',
-        //'fields' => 'id|name|mail|url|created|changed|user_access|user_login|pageviews|nodes_published|last_published|attribution|publish_date|last_update',
-        'sort'   => 'created:DESC',
-      );
-      $fields=sipi_get_api_users($siteName,$query);
-      $result=sipi_insert_clients_invent_users($fields);
-      if($result){
-        $apiRequest=get_api_url_request($siteName, 'users', $query);
-        echo '<p>Usuarios agregados | Url ['.$apiRequest.']</p>';
-      }
-      //Search contents for every users
-      $query=array(
-        'limit'  => 1,
-        'name'   => 'Vime',
-        'fields' => 'id|name|nodes',
-        'sort'   => 'created:DESC',
-      );
-      $fields=sipi_get_api_contents($siteName,$query);
-      $result=sipi_insert_clients_invent_contents($fields);
-      if($result){
-        $apiRequest=get_api_url_request($siteName, 'contents', $query);
-        echo '<p>Contenidos agregados | Url ['.$apiRequest.']</p>';
-      }
-    }
- */
-
     return 'Done!';
   }else{
     return 'Debug mode not enabled. Nothing to do!';
@@ -601,19 +569,18 @@ function sipi_insert_clients_invent_users($fields){
   }
 }
 function sipi_get_api_users($siteName='excelsior', $query=array()){
+  print_r(__FUNCTION__);
+  print_r($siteName);
   $apiRequest=get_api_url_request($siteName, 'users', $query);
+  print_r($apiRequest);
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
-    if($result->response->status=='200'){
-      $result=sipi_process_users_result($result->data);
-    }else{
-      $result=array();
+    if($result->response->status=='200' && count($result->data)>0){
+      return sipi_process_users_result($result->data);
     }
-  }else{
-    $result=array();
   }
-  return $result;
+  return FALSE;
 }
 function sipi_process_users_result($data){
   if(!isset($data) || empty($data)){
@@ -637,6 +604,11 @@ function sipi_process_users_result($data){
       'last_update'     => strtotime($item->last_update),
     );
   }
+  print_r($client);
+
+  if($client['sitename']=='salud180.com')
+    die();
+
   return $client;
 }
 function sipi_search_client_by_email($email){
