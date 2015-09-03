@@ -417,6 +417,14 @@ function sipi_clients_form_submit($form, &$form_state){
     'login'       => $timestamp,
   );
 
+  //Save log file
+  if(isset($client['logo']) && !empty($client['logo'])){
+    $file = file_load($client['logo']);
+    $file->status = FILE_STATUS_PERMANENT;
+    file_usage_add($file, 'sipi', 'user', '1');
+    file_save($file);
+  }
+
   foreach ($invent as $plan) {
     $fields['invent'][] = array(
       'mid'        => isset($plan['mid']) && !empty($plan['mid']) ? intval($plan['mid']) : 0,
