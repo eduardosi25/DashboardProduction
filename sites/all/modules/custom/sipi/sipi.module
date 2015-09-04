@@ -604,10 +604,6 @@ function sipi_process_users_result($data){
       'last_update'     => strtotime($item->last_update),
     );
   }
-  print_r($client);
-
-  if($client['sitename']=='salud180.com')
-    die();
 
   return $client;
 }
