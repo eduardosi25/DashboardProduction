@@ -569,10 +569,8 @@ function sipi_insert_clients_invent_users($fields){
   }
 }
 function sipi_get_api_users($siteName='excelsior', $query=array()){
-  print_r(__FUNCTION__);
-  print_r($siteName);
   $apiRequest=get_api_url_request($siteName, 'users', $query);
-  print_r($apiRequest);
+  print_r("Usuarios:\n".$apiRequest."\n");
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
@@ -669,6 +667,7 @@ function sipi_insert_clients_invent_contents($fields){
 }
 function sipi_get_api_contents($siteName='excelsior', $query=array()){
   $apiRequest=get_api_url_request($siteName, 'contents', $query);
+  print_r("Notas:\n".$apiRequest."\n");
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
