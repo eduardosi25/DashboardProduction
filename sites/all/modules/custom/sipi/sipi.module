@@ -464,7 +464,7 @@ function sipi_run_cronlt(){
               'sort'   => 'created:DESC',
             );
 
-            $fields=sipi_get_api_users($plan['apirepo'],$query);
+            $fields=sipi_get_api_users($plan,$query);
             $result=sipi_insert_clients_invent_users($fields);
             if($result){
               $apiRequest=get_api_url_request($plan['apirepo'], 'users', $query);
@@ -477,7 +477,7 @@ function sipi_run_cronlt(){
               'fields' => 'id|name|nodes',
               'sort'   => 'created:DESC',
             );
-            $fields=sipi_get_api_contents($plan['apirepo'],$query);
+            $fields=sipi_get_api_contents($plan,$query);
             $result=sipi_insert_clients_invent_contents($fields);
             if($result){
               $apiRequest=get_api_url_request($plan['apirepo'], 'contents', $query);
@@ -568,19 +568,20 @@ function sipi_insert_clients_invent_users($fields){
     return $query;
   }
 }
-function sipi_get_api_users($siteName='excelsior', $query=array()){
+function sipi_get_api_users($plan, $query=array()){
+  $siteName=$plan['apirepo'];
   $apiRequest=get_api_url_request($siteName, 'users', $query);
   print_r("Usuarios:\n".$apiRequest."\n");
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
     if($result->response->status=='200' && count($result->data)>0){
-      return sipi_process_users_result($result->data);
+      return sipi_process_users_result($result->data,$plan);
     }
   }
   return FALSE;
 }
-function sipi_process_users_result($data){
+function sipi_process_users_result($data,$plan){
   if(!isset($data) || empty($data)){
     return null;
   }
@@ -588,6 +589,7 @@ function sipi_process_users_result($data){
     $client=array(
       'cid'             => sipi_search_client_by_email($item->mail),
       'uid'             => $item->id,
+      'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
       'name'            => $item->name,
       'mail'            => $item->mail,
       'created'         => $item->created,
@@ -665,14 +667,15 @@ function sipi_insert_clients_invent_contents($fields){
     }
   }
 }
-function sipi_get_api_contents($siteName='excelsior', $query=array()){
+function sipi_get_api_contents($plan, $query=array()){
+  $siteName=$plan['apirepo'];
   $apiRequest=get_api_url_request($siteName, 'contents', $query);
   print_r("Notas:\n".$apiRequest."\n");
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
     if($result->response->status=='200'){
-      $result=sipi_process_contents_result($result->data);
+      $result=sipi_process_contents_result($result->data,$plan);
     }else{
       $result=array();
     }
@@ -681,7 +684,7 @@ function sipi_get_api_contents($siteName='excelsior', $query=array()){
   }
   return $result;
 }
-function sipi_process_contents_result($data){
+function sipi_process_contents_result($data,$plan){
   if(!isset($data) || empty($data)){
     return null;
   }
@@ -695,6 +698,7 @@ function sipi_process_contents_result($data){
     foreach($item->nodes as $node){
       $fields['nodes'][]=array(
         'nid'             => $node->id,
+        'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
         'title'           => $node->title,
         'type'            => $node->type,
         'path'            => $node->path,

@@ -384,6 +384,14 @@ function sipi_schema(){
         'default' => 0,
         'description' => 'Invent User ID',
       ),
+      'tid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Invent Site ID - Taxonomy ID',
+      ),
       'name' => array(
         'type' => 'varchar',
         'length' => 255,
@@ -517,6 +525,14 @@ function sipi_schema(){
         'not null' => TRUE,
         'default' => 0,
         'description' => 'Invent Node ID',
+      ),
+      'tid' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Invent Site ID - Taxonomy ID',
       ),
       'title' => array(
         'type' => 'varchar',
@@ -683,3 +699,8 @@ function sipi_schema(){
   );
   return $schema;
 }
+
+/**
+ * alter table sipi_clients_invent_users add column tid int(11) unsigned not null default 0 comment 'Invent Site ID - Taxonomy ID';
+ * alter table sipi_clients_invent_contents add column tid int(11) unsigned not null default 0 comment 'Invent Site ID - Taxonomy ID';
+ */
