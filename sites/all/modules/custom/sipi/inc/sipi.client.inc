@@ -770,6 +770,8 @@ function sipi_client_list(){
   $query->addField('td','name','site');
   $query->addField('td','tid','idsite');
 
+  $query->addField('ui','uid','uid_invent');
+
   $query->groupBy('c.cid');
   $query->groupBy('c.name');
   $query->groupBy('td.tid');
@@ -781,10 +783,11 @@ function sipi_client_list(){
   $result=$query->execute();
   $rows=array();
   foreach ($result as $row) {
+
     $contents_published=sipi_client_get_nodes_published($row->cid, $row->idsite);
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "sipi/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'sipi/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -793,7 +796,7 @@ function sipi_client_list(){
       (isset($contents_published) && !empty($contents_published) ? $row->contents_limit-count($contents_published) : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
+      l(t('Details'),"sipi/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
       l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
     );
   }
@@ -842,16 +845,16 @@ function sipi_client_get_nodes_published($cid, $tid){
   $query = db_select('sipi_clients_invent_contents', 'ic');
   $query->join('sipi_clients_invent_users','iu','iu.uid=ic.uid');
   $query->join('sipi_clients','c','c.cid=ic.cid');
-
   $query->fields('c',array('cid','name','mail','company'));
   $query->addField('iu','uid','uid');
   $query->addField('iu','sitename','sitename');
   $query->addField('iu','pageviews','pageviews');
-  $query->addField('iu','uid','uid');
   $query->condition('c.cid',$cid,'=');
+  $query->condition('ic.tid',$tid,'=');
   $result=$query->execute();
 
-  //print $query;
+  #print $query;
+  #die();
 
   //print_r($result->rowCount());
 
@@ -1199,7 +1202,7 @@ function sipi_client_detail($client=null){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
-  $query->limit(10);
+  $query->limit(20);
   $query->fields('c', array('cid','name'));
   $query->addField('pc', 'status','status');
   $query->addField('pc', 'start_date','start_date');
@@ -1207,7 +1210,12 @@ function sipi_client_detail($client=null){
   $query->addField('p', 'name','plan');
   $query->addField('u', 'name','manager');
   $query->addField('td', 'name', 'site');
+  $query->addField('td', 'tid', 'idsite');
   $query->condition('pc.cid',$client,'=');
+
+  if(isset($idsite) && !empty($idsite)){
+    $query->condition('td.tid',$idsite,'=');
+  }
 
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
@@ -1250,6 +1258,9 @@ function sipi_client_contents_list($client=null){
   if(!isset($client) || empty($client))
     return false;
 
+  $args=arg();
+  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
+
   $header = array(
     array(
       'data' => t('Contenidos'),
@@ -1287,10 +1298,14 @@ function sipi_client_contents_list($client=null){
 
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
-  $query->limit(10);
+  $query->limit(20);
   $query->fields('iu', array('title','path','status','created','pageviews','avgSessionDuration','fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
   $query->condition('iu.cid',$client,'=');
+
+  if(isset($idsite) && !empty($idsite)){
+    $query->condition('iu.tid',$idsite,'=');
+  }
 
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
