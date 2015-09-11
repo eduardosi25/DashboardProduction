@@ -98,7 +98,7 @@ function sipi_expire_list($role='sipi') {
   $query->join('sipi_plans', 'p', 'p.pid=pc.pid');
   $query->join('users', 'u', 'u.uid=pc.uid');
   $query->join('taxonomy_term_data', 'td', 'td.tid=pc.site');
-  $query->limit(10);
+  $query->limit(20);
   $query->fields('c', array('cid', 'name'));
   $query->addField('pc', 'status', 'status');
   $query->addField('pc', 'start_date', 'start_date');
@@ -242,13 +242,20 @@ function sipi_clients_list_form($form, &$form_state){
   $query->addField('p','name','plan');
   $query->addField('p','contents','contents_limit');
 
+  #$query->addField('ui','nodes_published','contents_published');
+
   $query->addField('u','name','manager');
   $query->addField('td','name','site');
   $query->addField('td','tid','idsite');
 
+  $query->addField('ui','uid','uid_invent');
+
   $query->groupBy('c.cid');
   $query->groupBy('c.name');
   $query->groupBy('td.tid');
+
+  #print $query;
+  #die();
 
   if(isset($sipi_filter) && !empty($sipi_filter) && count($sipi_filter)>0){
     if($sipi_filter['status']!=='select' && $sipi_filter['status']!=='all'){
@@ -267,7 +274,7 @@ function sipi_clients_list_form($form, &$form_state){
   foreach ($result as $row) {
     $contents_published=sipi_client_get_nodes_published($row->cid, $row->idsite);
     $rows[] = array(
-      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "sipi/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'sipi/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -276,7 +283,7 @@ function sipi_clients_list_form($form, &$form_state){
       (isset($contents_published) && !empty($contents_published) ? $row->contents_limit-count($contents_published) : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"sipi/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'sipi/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -361,6 +368,7 @@ function sipi_client_get_nodes_published($cid, $tid){
   $query->addField('iu','pageviews','pageviews');
   $query->addField('iu','uid','uid');
   $query->condition('c.cid',$cid,'=');
+  $query->condition('iu.tid',$tid,'=');
   $result=$query->execute();
 
   //print $query;
