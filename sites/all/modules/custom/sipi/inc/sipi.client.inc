@@ -1310,7 +1310,21 @@ function sipi_client_contents_list($client=null){
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
   $rows=array();
+  $metrics=array(
+    'visits'     => 0,
+    'avgtime'    => 0,
+    'fbshares'   => 0,
+    'tweets'     => 0,
+    'googleplus' => 0,
+  );
   foreach ($result as $row) {
+    //Recalculate metrics.
+    $metrics['visits']+=$row->pageviews;
+    $metrics['avgtime']+=round(($row->avgSessionDuration/60),2);
+    $metrics['fbshares']+=$row->fbshares;
+    $metrics['tweets']+=$row->tweets;
+    $metrics['googleplus']+=$row->gpshares;
+
     $rows[] = array(
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
@@ -1322,6 +1336,23 @@ function sipi_client_contents_list($client=null){
       ($row->gpshares>0 ? $row->gpshares : 0),
     );
   }
+
+  if (count($rows)>1){
+    #Sumas
+    $rows[] = array(
+      array(
+        'data' => '<strong>Totales</strong>',
+        'colspan' => 3,
+      ),
+      $metrics['visits'],
+      $metrics['avgtime'],
+      $metrics['fbshares'],
+      $metrics['tweets'],
+      $metrics['googleplus']
+    );
+  }
+
+
   if (count($rows) && ($pager = theme('pager'))) {
     $rows[] = array(
       array(
@@ -1334,7 +1365,7 @@ function sipi_client_contents_list($client=null){
     '#theme' => 'table',
     '#header' => $header,
     '#rows' => $rows,
-    '#empty' => t('There are no contents.'),
+    '#empty' => 'No se encontraron contenidos para mostrar',
     '#caption' => 'Contenidos publicados',
   );
   return $build;
