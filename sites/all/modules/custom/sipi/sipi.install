@@ -562,6 +562,14 @@ function sipi_schema(){
         'default' => '',
         'description' => 'Path',
       ),
+      'sessions' => array(
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Sessions',
+      ),
       'pageviews' => array(
         'type' => 'int',
         'length' => 11,
@@ -703,4 +711,5 @@ function sipi_schema(){
 /**
  * alter table sipi_clients_invent_users add column tid int(11) unsigned not null default 0 comment 'Invent Site ID - Taxonomy ID';
  * alter table sipi_clients_invent_contents add column tid int(11) unsigned not null default 0 comment 'Invent Site ID - Taxonomy ID';
+ * alter table sipi_clients_invent_contents add column sessions int(11) unsigned not null default 0 comment 'Sessions';
  */
