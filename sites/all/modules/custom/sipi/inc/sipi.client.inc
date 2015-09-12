@@ -1332,7 +1332,7 @@ function sipi_client_contents_list($client=null){
     $metrics['sessions']+=$row->sessions;
     $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
-    $metrics['avgtime']+=round(($row->avgSessionDuration/60),2);
+    $metrics['avgtime']+=$row->avgSessionDuration;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
     $metrics['googleplus']+=$row->gpshares;
@@ -1344,7 +1344,7 @@ function sipi_client_contents_list($client=null){
       ($row->sessions>0 ? $row->sessions : 0),
       ($row->pageviews>0 ? $row->pageviews : 0),
       ($row->uniquePageviews>0 ? $row->uniquePageviews : 0),
-      ($row->avgSessionDuration>0 ? round(($row->avgSessionDuration/60),2) : 0),
+      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
       ($row->fbshares>0 ? $row->fbshares : 0),
       ($row->tweets>0 ? $row->tweets : 0),
       ($row->gpshares>0 ? $row->gpshares : 0),
@@ -1361,7 +1361,7 @@ function sipi_client_contents_list($client=null){
       $metrics['sessions']+=$row->sessions,
       $metrics['visits']+=$row->pageviews,
       $metrics['uniques']+=$row->uniquePageviews,
-      $metrics['avgtime'],
+      conversorSegundosHoras($metrics['avgtime']),
       $metrics['fbshares'],
       $metrics['tweets'],
       $metrics['googleplus']
@@ -1447,4 +1447,35 @@ function sipi_clients_save_send_email($cid) {
     drupal_set_message('Correo electrónico de registro de cliente enviado a: '.$settings['to'],'status');
   }
   return $result['send'];
+}
+
+
+function conversorSegundosHoras($tiempo_en_segundos) {
+  if ($tiempo_en_segundos == 0)
+    return '0s';
+  $tiempo_en_segundos = intval($tiempo_en_segundos);
+  $horas = floor($tiempo_en_segundos / 3600);
+  $minutos = floor(($tiempo_en_segundos - ($horas * 3600)) / 60);
+  $segundos = $tiempo_en_segundos - ($horas * 3600) - ($minutos * 60);
+
+  $hora_texto = "";
+  if ($horas > 0 ) {
+    $hora_texto .= $horas . "h ";
+    #$hora_texto .= $horas . ":";
+  }
+
+  if ($minutos > 0 ) {
+    $hora_texto .= $minutos . "m ";
+    #$hora_texto .= $minutos . ":";
+  }
+
+  if ($segundos > 0 ) {
+    $hora_texto .= $segundos . "s";
+    #$hora_texto .= $segundos . "";
+  }
+  /*if ($tiempo_en_segundos <= 60) {
+      $hora_texto .= "s";
+  }*/
+
+  return $hora_texto;
 }
