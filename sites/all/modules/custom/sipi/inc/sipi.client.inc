@@ -1327,6 +1327,7 @@ function sipi_client_contents_list($client=null){
     'tweets'     => 0,
     'googleplus' => 0,
   );
+  $numItems=0;
   foreach ($result as $row) {
     //Recalculate metrics.
     $metrics['sessions']+=$row->sessions;
@@ -1349,6 +1350,7 @@ function sipi_client_contents_list($client=null){
       ($row->tweets>0 ? $row->tweets : 0),
       ($row->gpshares>0 ? $row->gpshares : 0),
     );
+    $numItems++;
   }
 
   if (count($rows)>1){
@@ -1361,7 +1363,7 @@ function sipi_client_contents_list($client=null){
       $metrics['sessions']+=$row->sessions,
       $metrics['visits']+=$row->pageviews,
       $metrics['uniques']+=$row->uniquePageviews,
-      conversorSegundosHoras($metrics['avgtime']),
+      conversorSegundosHoras($metrics['avgtime']/$numItems),
       $metrics['fbshares'],
       $metrics['tweets'],
       $metrics['googleplus']
