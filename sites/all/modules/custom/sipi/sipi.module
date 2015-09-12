@@ -702,6 +702,7 @@ function sipi_process_contents_result($data,$plan){
         'title'           => $node->title,
         'type'            => $node->type,
         'path'            => $node->path,
+        'sessions'        => isset($node->analytics->sessions) && !empty($node->analytics->sessions) ? $node->analytics->sessions : 0,
         'pageviews'       => isset($node->analytics->pageviews) && !empty($node->analytics->pageviews) ? $node->analytics->pageviews : 0,
         'uniquePageviews' => isset($node->analytics->uniquePageviews) && !empty($node->analytics->uniquePageviews) ?  $node->analytics->uniquePageviews : 0,
         'sessionDuration' => isset($node->analytics->sessionDuration) && !empty($node->analytics->sessionDuration) ? $node->analytics->sessionDuration : 0,

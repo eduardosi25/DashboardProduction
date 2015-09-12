@@ -1276,7 +1276,15 @@ function sipi_client_contents_list($client=null){
     ),
     array(
       'data' => t('Visitas'),
+      'field' => 'sessions'
+    ),
+    array(
+      'data' => t('Páginas vistas'),
       'field' => 'pageviews'
+    ),
+    array(
+      'data' => t('Páginas únicas'),
+      'field' => 'uniquePageviews'
     ),
     array(
       'data' => t('Tiempo promedio'),
@@ -1299,7 +1307,7 @@ function sipi_client_contents_list($client=null){
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
   $query->limit(20);
-  $query->fields('iu', array('title','path','status','created','pageviews','avgSessionDuration','fbshares','tweets','gpshares'));
+  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration','fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
   $query->condition('iu.cid',$client,'=');
 
@@ -1311,7 +1319,9 @@ function sipi_client_contents_list($client=null){
   $result=$query->execute();
   $rows=array();
   $metrics=array(
+    'sessions'   => 0,
     'visits'     => 0,
+    'uniques'    => 0,
     'avgtime'    => 0,
     'fbshares'   => 0,
     'tweets'     => 0,
@@ -1319,7 +1329,9 @@ function sipi_client_contents_list($client=null){
   );
   foreach ($result as $row) {
     //Recalculate metrics.
+    $metrics['sessions']+=$row->sessions;
     $metrics['visits']+=$row->pageviews;
+    $metrics['uniques']+=$row->uniquePageviews;
     $metrics['avgtime']+=round(($row->avgSessionDuration/60),2);
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
@@ -1329,7 +1341,9 @@ function sipi_client_contents_list($client=null){
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
+      ($row->sessions>0 ? $row->sessions : 0),
       ($row->pageviews>0 ? $row->pageviews : 0),
+      ($row->uniquePageviews>0 ? $row->uniquePageviews : 0),
       ($row->avgSessionDuration>0 ? round(($row->avgSessionDuration/60),2) : 0),
       ($row->fbshares>0 ? $row->fbshares : 0),
       ($row->tweets>0 ? $row->tweets : 0),
@@ -1344,7 +1358,9 @@ function sipi_client_contents_list($client=null){
         'data' => '<strong>Totales</strong>',
         'colspan' => 3,
       ),
-      $metrics['visits'],
+      $metrics['sessions']+=$row->sessions,
+      $metrics['visits']+=$row->pageviews,
+      $metrics['uniques']+=$row->uniquePageviews,
       $metrics['avgtime'],
       $metrics['fbshares'],
       $metrics['tweets'],
