@@ -41,10 +41,16 @@ function gimrh_admin_settings_form($form_state) {
     '#maxlength' => 254,
   );
   $form['gimrh']['gimrh_settings']['privacy'] = array(
-    '#title' => t('Privacy notice'),
+      '#title' => t('Privacy notice'),
+      '#type' => 'text_format',
+      '#default_value' => isset($settings['privacy']['value']) ? $settings['privacy']['value'] : NULL,
+      '#format' => isset($settings['privacy']['format']) ? $settings['privacy']['format'] : 'filtered_html',
+  );
+  $form['gimrh']['gimrh_settings']['confidential'] = array(
+    '#title' => t('Confidentiality notice'),
     '#type' => 'text_format',
-    '#default_value' => isset($settings['privacy']['value']) ? $settings['privacy']['value'] : NULL,
-    '#format' => isset($settings['privacy']['format']) ? $settings['privacy']['format'] : 'filtered_html',
+    '#default_value' => isset($settings['confidential']['value']) ? $settings['confidential']['value'] : NULL,
+    '#format' => isset($settings['confidential']['format']) ? $settings['confidential']['format'] : 'filtered_html',
   );
   return system_settings_form($form);
 }
@@ -70,6 +76,7 @@ function gimrh_admin_settings_form_submit($form, &$form_state){
     'debug'   => $form_state['values']['gimrh_settings']['debug'],
     'email'   => $form_state['values']['gimrh_settings']['email'],
     'privacy' => $form_state['values']['gimrh_settings']['privacy'],
+    'confidential' => $form_state['values']['gimrh_settings']['confidential'],
   );
   variable_set('gimrh_settings',$settings);
 
