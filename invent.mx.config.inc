@@ -28,8 +28,8 @@ function get_cms_admin_paths(){
     'play/feeds/*',
     'jedi',
     'feeds',
-    'bolsa-de-trabajo',
-    'bolsa-de-trabajo/*',
+    'colabora-con-nosotros',
+    'colabora-con-nosotros/*',
   );
   $paths=implode("\n",$paths);
   return drupal_match_path($_GET["q"],$paths);
