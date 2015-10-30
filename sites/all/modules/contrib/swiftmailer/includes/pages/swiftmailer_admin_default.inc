@@ -6,13 +6,6 @@
  */
 
 /**
- * Page builder.
- */
-function swiftmailer_admin_default_page() {
-  return drupal_get_form('swiftmailer_admin_default_form');
-}
-
-/**
  * Form builder; the default form.
  *
  * @see swiftmailer_admin_default_form_validate()
@@ -22,7 +15,7 @@ function swiftmailer_admin_default_form($form, &$form_state) {
 
   // Include helper functions.
   require_once(dirname(dirname(__FILE__)) . '/helpers/utilities.inc');
-  
+
   $form['#tree'] = TRUE;
 
   $form['description'] = array(

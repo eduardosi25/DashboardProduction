@@ -354,29 +354,35 @@ function swiftmailer_remove_header(Swift_Message $message, $key) {
 function swiftmailer_parse_mailboxes($value) {
 
   // Split mailboxes by ',' (comma) and ';' (semicolon).
-  $mailboxes_raw = preg_split('/(,|;)/', $value);
-
+  //$mailboxes_raw = preg_split('/(,|;)/', $value);
+  $mailboxes_raw = array();
+  preg_match_all("/((?:^|\s){0,}(?:(?:\".*?\"){0,1}.*?)(?:$|,|;))/", $value, $mailboxes_raw);
+  
   // Define an array which will keep track of mailboxes.
   $mailboxes = array();
-
+  
   // Iterate through each of the raw mailboxes and process them.
-  foreach ($mailboxes_raw as $mailbox_raw) {
-
+  foreach ($mailboxes_raw[0] as $mailbox_raw) {
+      
+    if (empty($mailbox_raw)) {
+      continue;
+    }
+        
     // Remove leading and trailing whitespace.
     $mailbox_raw = trim($mailbox_raw);
 
-    if (preg_match('/^.*<.*>$/', $mailbox_raw)) {
+    if (preg_match('/^.*<.*>.*$/', $mailbox_raw)) {
       $mailbox_components = explode('<', $mailbox_raw);
-      $mailbox_name = trim($mailbox_components[0]);
+      $mailbox_name = trim(preg_replace("/\"/", "", $mailbox_components[0]));
       $mailbox_address = preg_replace('/>.*/', '', $mailbox_components[1]);
       $mailboxes[$mailbox_address] = $mailbox_name;
     }
     else {
-      $mailboxes[] = $mailbox_raw;
+      $mailboxes[] = preg_replace("/(,|;)/", "", $mailbox_raw);
     }
-
+    
   }
-
+  
   return $mailboxes;
 
 }

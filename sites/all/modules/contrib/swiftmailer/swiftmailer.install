@@ -24,6 +24,10 @@ function swiftmailer_disable() {
 function swiftmailer_uninstall() {
   variable_del('swiftmailer_path');
   variable_del('swiftmailer_format');
+  variable_del('swiftmailer_respect_format');
+  variable_del('swiftmailer_convert_mode');
+  variable_del('swiftmailer_convert_library');
+  variable_del('swiftmailer_character_set');
   variable_del('swiftmailer_transport');
   variable_del('swiftmailer_smtp_host');
   variable_del('swiftmailer_smtp_port');
@@ -32,5 +36,13 @@ function swiftmailer_uninstall() {
   variable_del('swiftmailer_smtp_password');
   variable_del('swiftmailer_sendmail_path');
   variable_del('swiftmailer_sendmail_mode');
-  variable_del('swiftmailer_character_set');
+}
+
+/**
+ * Implements hook_update_N().
+ *
+ * Rebuild the menu to care care of changes.
+ */
+function swiftmailer_update_7000() {
+  menu_rebuild();
 }
