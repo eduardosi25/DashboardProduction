@@ -22,3 +22,17 @@ demos
 demos/*
 *nbproject*
 
+.sass-cache
+.sass-cache/*
+**/.sass-cache
+**/.sass-cache/*
+**.sass-cache**
+*.css.map
+*.scssc
+
+web/css/.sass-cache
+web/css/.sass-cache/
+web/css/.sass-cache/*
+/web/css/.sass-cache/
+/web/css/.sass-cache/*
+

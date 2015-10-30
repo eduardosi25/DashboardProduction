@@ -30,6 +30,14 @@ and open the template in the editor.
     -ms-border-radius: $br;
 }
 
+@mixin text-shadow($x,$y,$s,$c){
+    text-shadow: $x $y $s $c;
+    -webkit-text-shadow: $x $y $s $c;
+    -moz-text-shadow: $x $y $s $c;
+    -o-text-shadow: $x $y $s $c;
+    -ms-text-shadow: $x $y $s $c;
+}
+
 @mixin box-shadow($x,$y,$s,$c){
     box-shadow: $x $y $s $c;
     -webkit-box-shadow: $x $y $s $c;
@@ -56,11 +64,11 @@ and open the template in the editor.
 #global-page {
     margin: 0 auto;
     overflow: hidden;
-    max-width: 1900px;
+    max-width: 1920px;
     min-height: 300px;
 }
 #wrapper-page-site {
-    max-width: 1900px;
+    max-width: 1920px;
     min-height: 300px;
 }
 
@@ -100,6 +108,10 @@ and open the template in the editor.
 }
 .SourceSansPro-Semibold {
     font-family: SourceSansPro-Semibold;
+}
+
+.Source-Sans-Pro-Black {
+    font-family: Source-Sans-Pro-Black;
 }
 
 body {
@@ -413,12 +425,6 @@ header {
     //}
 //}
 
-.wrapper-publish-stage {
-    margin: 0 auto;
-    padding-bottom: 40px;
-    @include measures(300px,auto);    
-}
-
 .btn-publish {
     //color: #FFF;
     border: none;
@@ -483,15 +489,49 @@ article {
 
 #section-home-contactos {
     #registro-contacto {
-        background-color: #DDDFDE;
-        background-repeat: no-repeat;
-        background-image: url("/web/img/home/desktop/registro/1920/1920.jpg");
+        background-color: #FFF;
+        img.not-img {
+            max-width: 100%;
+           @include measures(100%,auto); 
+        }
+        .wrapper-content-section1 {
+            top: 0px;
+            left: 0px;
+            @include measures(100%,100%);
+        }
+        .wrapper-content-contacto {
+            margin: 0 auto;
+            //max-width: 1900px;
+            max-width: 1024px;
+            text-align: right;
+            display: table;
+            @include measures(93.5%,100%);
+            .wrapper-description {
+                color: #FFF;
+                //margin-top: 5%;
+                text-align: center;
+                @include measures(420px,auto);
+                @extend .Source-Sans-Pro-Black;
+                .paragraph-1 {
+                    font-size: 48px;
+                    line-height: 50px;
+                }
+                .paragraph-2 {
+                    font-size: 80px;
+                    line-height: 64px
+                }
+                .paragraph-3 {
+                    font-size: 37px;
+                    line-height: 34px;
+                }
+            }
+        }
     }
 }
 
 .wrapper-image-section3 {
     max-width: 100%;
-    margin-bottom: -5px;
+    //margin-bottom: -5px;
     img.width-all {
         max-width: 100%;
         margin-bottom: -3px;
@@ -534,6 +574,16 @@ article {
 .title-seccion-invent {
     font-size: 45px;
     @extend .Hind-Bold;
+}
+
+.wrapper-seccion-btn-publish {
+    margin: 0 auto;
+    @include measures(400px,auto);
+    img {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 100% !important;
+    }
 }
 
 @media only screen and (min-width: 700px) {
@@ -751,24 +801,36 @@ ul.red-invent-sections-sites {
             padding: 15px 1%;
             min-height: 190px;
             text-align: center;            
-            background-color: #CCCCCC;
+            //background-color: #CCCCCC;
             //background-color: #2C2C2C;
             @include measures(30%,auto);
-            @include border-radius(.8em);
+            //@include border-radius(.8em);
+            span.wrapper-image {
+                margin: 0 auto;
+                max-width: 185px;
+                max-height: 93px;
+                @include measures(100%,auto);
+                img {
+                    max-width: 100%;
+                    @include measures(100%,auto);
+                }
+            }
             span.title {                
-                color: #3C3C3C;
+                color: #3F3F3F;
                 //color: #E58437;
-                font-size: 16px;
+                //font-size: 16px;
+                font-size: 14px;
                 margin: 8px 0;
                 @extend .Hind-Bold;
             }
             span.summary {
                 color: #4C4E4D;
-                font-size: 14px;
-                line-height: 16px;
-                @extend .Hind-Light;
+                font-size: 15px;
+                line-height: 17px;
+                //@extend .Hind-Light;
+                @extend .Hind-Regular;
             }
-            span.img-rich-media {
+            /*span.img-rich-media {
                 margin: 0 auto 20px;
                 @extend .sprite-invent;
                 @include img-position(103px,88px,-50px,-557px);
@@ -797,7 +859,7 @@ ul.red-invent-sections-sites {
                 margin: 0 auto 21px;
                 @extend .sprite-invent;
                 @include img-position(92px,97px,-725px,-556px);
-            }
+            }*/
         }
     }
 }

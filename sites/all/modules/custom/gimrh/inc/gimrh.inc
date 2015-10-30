@@ -1,5 +1,5 @@
 <?php
-function gimrh_privacy(){
+function gimrh_legal($type='privacy'){
   $xframe_metas = array(
     '#tag' => 'meta',
     '#attributes' => array(
@@ -19,8 +19,12 @@ function gimrh_privacy(){
   drupal_add_html_head($xframe_metas,'meta-csp-gimrh');
 
   $settings=gimrh_get_variables();
-  return $settings['privacy']['value'];
+
+  $html=$type=='privacy' ? $settings['privacy']['value'] : ($type=='confidential' ? $settings['confidential']['value'] : '');
+
+  return $html;
 }
+
 function gimrh_data_send(){
   return '<p>Tus datos fueron enviados a nuestro equipo de Reclutamiento y Selección.</p><p>Gracias por tu interés</p>';
 }

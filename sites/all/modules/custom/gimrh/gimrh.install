@@ -23,6 +23,9 @@ function gimrh_uninstall() {
   if (db_table_exists('gimrh')) {
     db_drop_table('gimrh');
   }
+  if (db_table_exists('gimrh_becario')) {
+    db_drop_table('gimrh_becario');
+  }
 }
 
 function gimrh_schema(){
@@ -163,6 +166,145 @@ function gimrh_schema(){
     'indexes' => array(
       'gimrh_name' => array('gid','name'),
     ),
+  );
+  $schema['gimrh_becario'] = array(
+      'fields' => array(
+          'gid' => array(
+              'type' => 'serial',
+              'size' => 'normal',
+              'unsigned' => TRUE,
+              'not null' => TRUE,
+              'description' => 'The primary identifier',
+          ),
+          'name' => array(
+              'type' => 'varchar',
+              'length' => 255,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Name',
+          ),
+          'plname' => array(
+              'type' => 'varchar',
+              'length' => 255,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Parent Last Name',
+          ),
+          'mlname' => array(
+              'type' => 'varchar',
+              'length' => 255,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Mother Last Name',
+          ),
+          'mail' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Email',
+          ),
+          'gender' => array(
+              'type' => 'varchar',
+              'length' => 32,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Gender',
+          ),
+          'birthdate' => array(
+              'type' => 'varchar',
+              'length' => 100,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Birthdate',
+          ),
+          'phone' => array(
+              'type' => 'varchar',
+              'length' => 30,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Phone',
+          ),
+          'state' => array(
+              'type' => 'int',
+              'length' => 11,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Location State ID',
+          ),
+          'city' => array(
+              'type' => 'int',
+              'length' => 11,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Location City ID',
+          ),
+          'degree' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Degree',
+          ),
+          'name_degree' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Name Degree',
+          ),
+          'institution' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Institution',
+          ),
+          'languages' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Languages',
+          ),
+          'software' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Software',
+          ),
+          'interest' => array(
+              'type' => 'text',
+              'size' => 'normal',
+              'description' => 'Description',
+          ),
+          'privacy' => array(
+              'type' => 'int',
+              'length' => 1,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Privacy',
+          ),
+          'created' => array(
+              'type' => 'int',
+              'length' => 11,
+              'not null' => TRUE,
+              'default' => 0,
+              'description' => 'Created record',
+          ),
+          'site' => array(
+              'type' => 'varchar',
+              'length' => 150,
+              'not null' => TRUE,
+              'default' => '',
+              'description' => 'Domain',
+          ),
+      ),
+      'primary key' => array('gid'),
+      'indexes' => array(
+          'gimrh_name' => array('gid','name'),
+      ),
   );
   return $schema;
 }
