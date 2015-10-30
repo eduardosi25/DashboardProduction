@@ -337,3 +337,42 @@ simply provide the HTML version in $message['body'] and the plain text version
 in $message['plain']. Please make sure you set $message['params']['format'] to
 'text/html'. The Swift Mailer module will not attempt to generate a plain text
 version if one is already available.
+
+5.0 Custom settings/behavoir
+
+If you want to add custom settings or behavior to the mailer or the message,
+before the it is sent, you can implement hook_swiftmailer_alter(). The
+below example demonstrates how this can be achieved.
+
+/**
+ * Implements hook_swiftmailer_alter().
+ */
+function modulename_swiftmailer_alter(Swift_Mailer &$mailer, Swift_Message &$message) {
+  // Set read receipt.
+  $message->setReadReceiptTo('your@address.com');
+
+  // Replace tokens.
+  if (module_exists('token')) {
+    $global_tokens = array();
+    $replacements = array();
+    foreach (token_get_global_token_types() as $token_type) {
+      foreach (token_scan(implode(',', array_keys(token_build_tree($token_type, array('flat' => TRUE))))) as $token_type => $tokens) {
+        $global_tokens += token_generate($token_type, $tokens);
+      }
+    }
+    foreach ($message->getTo() as $address) {
+      $replacements[$address] = $global_tokens;
+      if ($account = user_load_by_mail($address)) {
+        foreach (token_scan(implode(',', array_keys(token_build_tree('user', array('flat' => TRUE))))) as $token_type => $tokens) {
+          $replacements[$address] += token_generate($token_type, $tokens, array('user' => $account));
+        }
+      }
+    }
+    $decorator = new Swift_Plugins_DecoratorPlugin($replacements);
+    $mailer->registerPlugin($decorator);
+  }
+}
+
+The above example will send an read receipt to your@address.com and will replace
+all global and user tokens before sending the email, if the token module is
+enabled.

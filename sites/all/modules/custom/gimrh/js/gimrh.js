@@ -30,6 +30,9 @@ jQuery(document).ready(function(){
   }
 });
 
+
+
+
 function hide_alert(){
   jQuery('.alert').hide();
 }
