@@ -6,13 +6,6 @@
  */
 
 /**
- * Page builder.
- */
-function swiftmailer_admin_messages_page() {
-  return drupal_get_form('swiftmailer_admin_messages_form');
-}
-
-/**
  * Form builder; the messages form.
  *
  * @see swiftmailer_admin_messages_form_submit()
@@ -69,7 +62,23 @@ function swiftmailer_admin_messages_form($form, &$form_state) {
       '#type' => 'checkbox',
       '#title' => t('Generate alternative plain text version.'),
       '#default_value' => variable_get('swiftmailer_convert_mode', SWIFTMAILER_VARIABLE_CONVERT_MODE_DEFAULT),
-      '#description' => t('Please refer to !link for more details about how the alternative plain text version will be generated.', array('!link' => l('html2text', 'http://www.chuggnutt.com/html2text'))),
+    );
+
+    $form['convert']['library'] = array(
+      '#type' => 'select',
+      '#title' => t('Specify the library to be used for plain text conversion.'),
+      '#default_value' => variable_get('swiftmailer_convert_library', SWIFTMAILER_VARIABLE_CONVERT_LIBRARY_DEFAULT),
+      '#options' => array(
+        SWIFTMAILER_VARIABLE_CONVERT_LIBRARY_DEFAULT => t('Html2Text'),
+        SWIFTMAILER_VARIABLE_CONVERT_LIBRARY_MAILSYSTEM => t('Mail System'),
+      ),
+      '#description' => theme('item_list', array(
+        'title' => t('Information about plain text converters:'),
+        'items' => array(
+          t('Html2Text: please refer to !link for more details about how the alternative plain text version will be generated.', array('!link' => l('html2text', 'http://www.chuggnutt.com/html2text'))),
+          t('!link: this is an enhancement of the native <em>drupal_html_to_text()</em> Drupal Core function (see this <a href="!href">issue</a> for more information).', array('!link' => l('Mail System', 'http://drupal.org/project/mailsystem'), '!href' => 'https://www.drupal.org/node/299138')),
+        ),
+      )),
     );
 
     $form['character_set'] = array(
@@ -122,8 +131,11 @@ function swiftmailer_admin_messages_form_submit($form, &$form_state) {
     variable_set('swiftmailer_convert_mode', $form_state['values']['convert']['mode']);
   }
 
+  if (isset($form_state['values']['convert']['library'])) {
+    variable_set('swiftmailer_convert_library', $form_state['values']['convert']['library']);
+  }
+
   if (isset($form_state['values']['character_set']['type'])) {
     variable_set('swiftmailer_character_set', $form_state['values']['character_set']['type']);
   }
-
 }

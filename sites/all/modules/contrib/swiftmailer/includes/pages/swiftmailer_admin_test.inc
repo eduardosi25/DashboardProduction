@@ -5,13 +5,6 @@
  */
 
 /**
- * Page builder.
- */
-function swiftmailer_admin_test_page() {
-  return drupal_get_form('swiftmailer_admin_test_form');
-}
-
-/**
  * Form builder; the messages form.
  *
  * @see swiftmailer_admin_test_form_submit()
