@@ -9,6 +9,7 @@
 
         <meta name="charset" content="utf-8" />
         <link rel="canonical" href="http://www.inventmx.com" />
+        <meta name="google-site-verification" content="txno7B10gbvODD8iGlD7ZxpxtNOSiCUCM3cNbHFEjTU" />
         <meta name="description" content="Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet" />
         <meta property="og:site_name" content="InventMX" />
         <meta property="og:title" content="InventMX" />
