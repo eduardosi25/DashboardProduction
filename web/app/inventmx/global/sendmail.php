@@ -15,7 +15,7 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
 if ($type == "afiliate") {
   $type = "Afíliate";  
   //$to = array('pedro@inventmx.com');
-  $to = array('pedro@inventmx.com','erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','heberto@inventmx.com', 'sara@inventmx.com');
+  $to = array('pedro@inventmx.com','erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','heberto@inventmx.com', 'carine@inventmx.com');
 } else {
   $type = "Anúnciate";  
   //$to = array('pedro@inventmx.com');
