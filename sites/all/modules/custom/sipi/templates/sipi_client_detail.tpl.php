@@ -1,6 +1,6 @@
 <?php
 $file=file_load($data->logo);
-$image=isset($file) && !empty($file) ? get_image_style($file->uri,'thumbnail') : 'http://local.invent.mx/sites/all/themes/bootstrap/logo.png';
+$image=isset($file) && !empty($file) ? get_image_style($file->uri,'thumbnail') : url(drupal_get_path('module','sipi').'/img/codiga_white_150px.png',array('absolute'=>true));
 unset($file);
 ?>
 <section class="sipi-client">
@@ -28,8 +28,8 @@ unset($file);
       <a href="http://<?php print(preg_replace('/(http|https)\:\/\//','',$data->web)); ?>" target="_blank">Website</a>
     </li>
     <li class="actions">
-      <a href="<?php print '/sipi/client/'.$data->cid.'/edit?destination=sipi/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Edit</a>
-      <a href="<?php print '/sipi/client/'.$data->cid.'/cancel';?>" style="width:50%;float:left;">Cancel</a>
+      <a href="<?php print '/codiga/client/'.$data->cid.'/edit?destination=codiga/client/'.$data->cid.'/view';?>" style="width:50%;float:left;">Edit</a>
+      <a href="<?php print '/codiga/client/'.$data->cid.'/cancel';?>" style="width:50%;float:left;">Cancel</a>
     </li>
   </ul>
 </div>

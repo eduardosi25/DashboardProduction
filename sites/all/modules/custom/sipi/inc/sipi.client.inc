@@ -363,7 +363,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
   );
 
   $form['cancel'] = array(
-    '#markup' => l(t('Cancel'), 'sipi/user', array('attributes' => array('style'=>'display:inline-block;float:left;padding:8px;'))),
+    '#markup' => l(t('Cancel'), 'codiga/user', array('attributes' => array('style'=>'display:inline-block;float:left;padding:8px;'))),
   );
   $form['submit'] = array(
     '#type'   => 'submit',
@@ -787,7 +787,7 @@ function sipi_client_list(){
     $contents_published=sipi_client_get_nodes_published($row->cid, $row->idsite);
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "codiga/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'codiga/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -796,8 +796,8 @@ function sipi_client_list(){
       (isset($contents_published) && !empty($contents_published) ? $row->contents_limit-count($contents_published) : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
-      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"codiga/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'codiga/client'))) .' <br> '.
+      l(t('Edit')   ,"codiga/client/$row->cid/edit"  ,array('query'=>array('destination'=>'codiga/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -875,7 +875,7 @@ function sipi_client_delete_confirm($form, &$form_state, $plans=NULL) {
   $form['pid'] = array('#type' => 'value', '#value' => $plans['pid']);
   return confirm_form($form,
     t('Are you sure you want to delete %title?', array('%title' => $plans['name'])),
-    'sipi/plans/'.$plans['pid'],
+    'codiga/plans/'.$plans['pid'],
     t('This action cannot be undone.'),
     t('Delete'),
     t('Cancel')
@@ -888,7 +888,7 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
       ->condition('pid', $form_state['values']['pid'])
       ->execute();
   }
-  $form_state['redirect'] = 'sipi/plans';
+  $form_state['redirect'] = 'codiga/plans';
   $form_state['rebuild'] = TRUE;
 }
 
@@ -1223,7 +1223,7 @@ function sipi_client_detail($client=null){
   foreach ($result as $row) {
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "codiga/client/$row->cid/view",array('query'=>array('destination'=>'codiga/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -1232,8 +1232,8 @@ function sipi_client_detail($client=null){
       'remain contents',
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
-      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"codiga/client/$row->cid/view"  ,array('query'=>array('destination'=>'codiga/client'))) .' <br> '.
+      l(t('Edit')   ,"codiga/client/$row->cid/edit"  ,array('query'=>array('destination'=>'codiga/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
