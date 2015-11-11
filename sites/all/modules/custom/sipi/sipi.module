@@ -134,6 +134,15 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
+  $items['codiga/client/%sipi_client/report'] = array(
+    'title'            => 'Reporte del cliente',
+    'page callback'    => 'sipi_client_report',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
   #SIPI PLANS == PACKAGES
   $items['codiga/plans'] = array(
     'title'            => 'Planes',
@@ -709,6 +718,7 @@ function sipi_process_contents_result($data,$plan){
         'avgSessionDuration' => isset($node->analytics->avgSessionDuration) && !empty($node->analytics->avgSessionDuration) ? $node->analytics->avgSessionDuration : 0,
         'pageviewsPerSession' => isset($node->analytics->pageviewsPerSession) && !empty($node->analytics->pageviewsPerSession) ? $node->analytics->pageviewsPerSession : 0,
         'avgTimeOnPage'   => isset($node->analytics->avgTimeOnPage) && !empty($node->analytics->avgTimeOnPage) ? $node->analytics->avgTimeOnPage : 0,
+        'bounceRate'      => isset($node->analytics->bounceRate) && !empty($node->analytics->bounceRate) ? $node->analytics->bounceRate : 0,
         'fbshares'        => isset($node->analytics->fbshares) && !empty($node->analytics->fbshares) ? $node->analytics->fbshares : 0,
         'tweets'          => isset($node->analytics->tweets) && !empty($node->analytics->tweets) ? $node->analytics->tweets : 0,
         'gpshares'        => isset($node->analytics->gpshares) && !empty($node->analytics->gpshares) ? $node->analytics->gpshares : 0,

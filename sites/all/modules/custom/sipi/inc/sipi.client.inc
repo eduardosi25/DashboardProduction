@@ -8,6 +8,14 @@ function sipi_client_add(){
 function sipi_client_view($client){
   return module_invoke('sipi', 'block_view', 'sipi_client_detail');
 }
+function sipi_client_report($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $args=arg();
+  $report=new sipiClientReport();
+  $report->getData($client,$args);
+  $report->renderHTML();
+  die();
+}
 function sipi_client_cancel($client){
   return drupal_get_form('sipi_client_cancel_account_form',$client);
 }
@@ -1254,14 +1262,8 @@ function sipi_client_detail($client=null){
 
 }
 
-function sipi_client_contents_list($client=null){
-  if(!isset($client) || empty($client))
-    return false;
-
-  $args=arg();
-  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
-
-  $header = array(
+function sipi_client_contents_list_header(){
+  return array(
     array(
       'data' => t('Contenidos'),
       'field' => 'title',
@@ -1291,6 +1293,10 @@ function sipi_client_contents_list($client=null){
       'field' => 'avgSessionDuration'
     ),
     array(
+      'data' => t('Rebote'),
+      'field' => 'bounceRate'
+    ),
+    array(
       'data' => t('FB Shares'),
       'field' => 'fbshares'
     ),
@@ -1303,30 +1309,52 @@ function sipi_client_contents_list($client=null){
       'field' => 'gpshares'
     ),
   );
+}
+function sipi_client_contents_list_query($cid,$idsite){
+  if(!isset($cid))
+    return null;
 
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
   $query->limit(20);
-  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration','fbshares','tweets','gpshares'));
+  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration', 'bounceRate', 'fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
-  $query->condition('iu.cid',$client,'=');
+  $query->condition('iu.cid',$cid,'=');
 
   if(isset($idsite) && !empty($idsite)){
     $query->condition('iu.tid',$idsite,'=');
   }
 
-  $query=$query->extend('TableSort')->orderByHeader($header);
-  $result=$query->execute();
-  $rows=array();
-  $metrics=array(
+  return $query;
+}
+
+function sipi_client_contents_list_metrics(){
+  return array(
     'sessions'   => 0,
     'visits'     => 0,
     'uniques'    => 0,
     'avgtime'    => 0,
+    'bouncerate' => 0,
     'fbshares'   => 0,
     'tweets'     => 0,
     'googleplus' => 0,
   );
+}
+
+function sipi_client_contents_list($client=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $args=arg();
+  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
+
+  $header  = sipi_client_contents_list_header();
+  $metrics = sipi_client_contents_list_metrics();
+  $query   = sipi_client_contents_list_query($client,$idsite);
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
   $numItems=0;
   foreach ($result as $row) {
     //Recalculate metrics.
@@ -1334,6 +1362,7 @@ function sipi_client_contents_list($client=null){
     $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
     $metrics['avgtime']+=$row->avgSessionDuration;
+    $metrics['bouncerate']+=$row->bounceRate;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
     $metrics['googleplus']+=$row->gpshares;
@@ -1346,6 +1375,7 @@ function sipi_client_contents_list($client=null){
       ($row->pageviews>0 ? $row->pageviews : 0),
       ($row->uniquePageviews>0 ? $row->uniquePageviews : 0),
       ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
+      ($row->bounceRate>0 ? $row->bounceRate : 0),
       ($row->fbshares>0 ? $row->fbshares : 0),
       ($row->tweets>0 ? $row->tweets : 0),
       ($row->gpshares>0 ? $row->gpshares : 0),
@@ -1364,6 +1394,7 @@ function sipi_client_contents_list($client=null){
       $metrics['visits']+=$row->pageviews,
       $metrics['uniques']+=$row->uniquePageviews,
       conversorSegundosHoras($metrics['avgtime']/$numItems),
+      $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,4),
       $metrics['fbshares'],
       $metrics['tweets'],
       $metrics['googleplus']
@@ -1375,7 +1406,7 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => $pager,
-        'colspan' => 8,
+        'colspan' => 9,
       ),
     );
   }
@@ -1388,6 +1419,92 @@ function sipi_client_contents_list($client=null){
   );
   return $build;
 }
+
+function sipi_client_contents_list_header_report(){
+  return array(
+    array(
+      'data' => t('Título'),
+    ),
+    array(
+      'data' => t('Fecha de publicación'),
+    ),
+    array(
+      'data' => t('Tiempo promedio de estancia'),
+    ),
+    array(
+      'data' => t('Visitas'),
+    ),
+    array(
+      'data' => t('Páginas vistas'),
+    ),
+    array(
+      'data' => t('Rebote'),
+    ),
+    array(
+      'data' => t('Compartido en Twitter'),
+    ),
+    array(
+      'data' => t('Compartido en Facebook'),
+    ),
+  );
+}
+
+function sipi_client_contents_list_report($client=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $args=arg();
+  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
+
+  $header  = sipi_client_contents_list_header_report();
+  $metrics = sipi_client_contents_list_metrics();
+  $query   = sipi_client_contents_list_query($client,$idsite);
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
+  $numItems=0;
+  foreach ($result as $row) {
+    //Recalculate metrics.
+    $metrics['sessions']+=$row->sessions;
+    $metrics['visits']+=$row->pageviews;
+    $metrics['uniques']+=$row->uniquePageviews;
+    $metrics['avgtime']+=$row->avgSessionDuration;
+    $metrics['bouncerate']+=$row->bounceRate;
+    $metrics['fbshares']+=$row->fbshares;
+    $metrics['tweets']+=$row->tweets;
+
+    $rows[] = array(
+      array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
+      ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
+      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
+      ($row->sessions>0 ? $row->sessions : 0),
+      ($row->pageviews>0 ? $row->pageviews : 0),
+      ($row->bounceRate>0 ? $row->bounceRate : 0),
+      ($row->tweets>0 ? $row->tweets : 0),
+      ($row->fbshares>0 ? $row->fbshares : 0),
+    );
+    $numItems++;
+  }
+
+  if (count($rows) && ($pager = theme('pager'))) {
+    $rows[] = array(
+      array(
+        'data' => $pager,
+        'colspan' => 7,
+      ),
+    );
+  }
+  $build['sipi_client_contents_list'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => 'No se encontraron contenidos para mostrar',
+    '#caption' => 'Listado',
+  );
+  return $build;
+}
+
 
 /**
  * Send email
