@@ -10,10 +10,29 @@ function sipi_client_view($client){
 }
 function sipi_client_report($client){
   module_load_include('inc','sipi','inc/sipi.report');
-  $args=arg();
   $report=new sipiClientReport();
-  $report->getData($client,$args);
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
   $report->renderHTML();
+  die();
+}
+function sipi_client_report_pdf($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $report->renderPDF();
+  die();
+}
+function sipi_client_report_xls($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $report->renderXLS();
   die();
 }
 function sipi_client_cancel($client){
@@ -1310,13 +1329,13 @@ function sipi_client_contents_list_header(){
     ),
   );
 }
-function sipi_client_contents_list_query($cid,$idsite){
+function sipi_client_contents_list_query($cid,$idsite,$limit=20){
   if(!isset($cid))
     return null;
 
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
-  $query->limit(20);
+  $query->limit($limit);
   $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration', 'bounceRate', 'fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
   $query->condition('iu.cid',$cid,'=');
@@ -1371,14 +1390,14 @@ function sipi_client_contents_list($client=null){
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-      ($row->sessions>0 ? $row->sessions : 0),
-      ($row->pageviews>0 ? $row->pageviews : 0),
-      ($row->uniquePageviews>0 ? $row->uniquePageviews : 0),
-      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
-      ($row->bounceRate>0 ? $row->bounceRate : 0),
-      ($row->fbshares>0 ? $row->fbshares : 0),
-      ($row->tweets>0 ? $row->tweets : 0),
-      ($row->gpshares>0 ? $row->gpshares : 0),
+      ($row->sessions>0 ? $row->sessions : '-'),
+      ($row->pageviews>0 ? $row->pageviews : '-'),
+      ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
+      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
+      ($row->bounceRate>0 ? round($row->bounceRate,2) : '-'),
+      ($row->fbshares>0 ? $row->fbshares : '-'),
+      ($row->tweets>0 ? $row->tweets : '-'),
+      ($row->gpshares>0 ? $row->gpshares : '-'),
     );
     $numItems++;
   }
@@ -1394,10 +1413,10 @@ function sipi_client_contents_list($client=null){
       $metrics['visits']+=$row->pageviews,
       $metrics['uniques']+=$row->uniquePageviews,
       conversorSegundosHoras($metrics['avgtime']/$numItems),
-      $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,4),
-      $metrics['fbshares'],
-      $metrics['tweets'],
-      $metrics['googleplus']
+      $metrics['bouncerate'] ? $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,2) : '-',
+      $metrics['fbshares'] ? $metrics['fbshares'] : '-',
+      $metrics['tweets'] ? $metrics['tweets'] : '-',
+      ($metrics['googleplus'] ? $metrics['googleplus'] : '-')
     );
   }
 
@@ -1449,16 +1468,15 @@ function sipi_client_contents_list_header_report(){
   );
 }
 
-function sipi_client_contents_list_report($client=null){
+function sipi_client_contents_list_report($client=null,$idsite=null){
   if(!isset($client) || empty($client))
     return false;
 
   $args=arg();
-  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
 
   $header  = sipi_client_contents_list_header_report();
   $metrics = sipi_client_contents_list_metrics();
-  $query   = sipi_client_contents_list_query($client,$idsite);
+  $query   = sipi_client_contents_list_query($client,$idsite,100);
 
   $query=$query->extend('TableSort')->orderByHeader($header);
   $result=$query->execute();
@@ -1477,12 +1495,12 @@ function sipi_client_contents_list_report($client=null){
     $rows[] = array(
       array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
-      ($row->sessions>0 ? $row->sessions : 0),
-      ($row->pageviews>0 ? $row->pageviews : 0),
-      ($row->bounceRate>0 ? $row->bounceRate : 0),
-      ($row->tweets>0 ? $row->tweets : 0),
-      ($row->fbshares>0 ? $row->fbshares : 0),
+      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
+      ($row->sessions>0 ? $row->sessions : '-'),
+      ($row->pageviews>0 ? $row->pageviews : '-'),
+      ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
+      ($row->tweets>0 ? $row->tweets : '-'),
+      ($row->fbshares>0 ? $row->fbshares : '-'),
     );
     $numItems++;
   }
@@ -1500,7 +1518,7 @@ function sipi_client_contents_list_report($client=null){
     '#header' => $header,
     '#rows' => $rows,
     '#empty' => 'No se encontraron contenidos para mostrar',
-    '#caption' => 'Listado',
+    '#caption' => '<h4>REPORTE</h4>',
   );
   return $build;
 }
