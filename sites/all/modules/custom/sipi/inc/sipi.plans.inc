@@ -219,12 +219,12 @@ function sipi_plans_list(){
   foreach ($result as $row) {
     $rows[] = array(
       $row->pid,
-      l($row->name, "sipi/plans/$row->pid/edit"),
+      l($row->name, "codiga/plans/$row->pid/edit"),
       $row->contents,
       $row->posts,
       $row->duration.' '.t('month(s)'),
       '$ '.$row->price.' '.t('MXN'),
-      l(t('Edit'),"sipi/plans/$row->pid/edit",array(),'destination=sipi/plans') .' | '. l(t('Delete'),"sipi/plans/$row->pid/delete",array(),'destination=sipi/plans'),
+      l(t('Edit'),"codiga/plans/$row->pid/edit",array(),'destination=codiga/plans') .' | '. l(t('Delete'),"codiga/plans/$row->pid/delete",array(),'destination=codiga/plans'),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -251,7 +251,7 @@ function sipi_plans_delete_confirm($form, &$form_state, $plans=NULL) {
   $form['pid'] = array('#type' => 'value', '#value' => $plans['pid']);
   return confirm_form($form,
     t('Are you sure you want to delete %title?', array('%title' => $plans['name'])),
-    'sipi/plans/'.$plans['pid'],
+    'codiga/plans/'.$plans['pid'],
     t('This action cannot be undone.'),
     t('Delete'),
     t('Cancel')
@@ -264,7 +264,7 @@ function sipi_plans_delete_confirm_submit($form, &$form_state) {
       ->condition('pid', $form_state['values']['pid'])
       ->execute();
   }
-  $form_state['redirect'] = 'sipi/plans';
+  $form_state['redirect'] = 'codiga/plans';
 }
 
 function sipi_plans_list_items(){

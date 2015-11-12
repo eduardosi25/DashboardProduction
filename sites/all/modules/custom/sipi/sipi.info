@@ -1,5 +1,5 @@
 name = "Invent SIPI"
-description = "Sistema Integral de Publicación en Internet. <strong>Activar sólo en Invent.mx</strong>"
+description = "COntenidos DIgitales GArantizados. <strong>Activar sólo en Invent.mx</strong>"
 package = "InventMX"
 core = "7.x"
 version = "7.x"
@@ -13,4 +13,4 @@ files[] = inc/sipi.client.inc
 files[] = inc/sipi.user.inc
 files[] = inc/sipi.plans.inc
 
-configure = admin/config/system/sipi
+configure = admin/config/system/codiga
