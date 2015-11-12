@@ -117,7 +117,7 @@ function sipi_expire_list($role='sipi') {
   foreach ($result as $row) {
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi'))),
+      l($row->name, "codiga/client/$row->cid/view",array('query'=>array('destination'=>'sipi'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -126,8 +126,8 @@ function sipi_expire_list($role='sipi') {
       'remain contents',
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi'))) .' <br> '.
-      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi'))),
+      l(t('Details'),"codiga/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi'))) .' <br> '.
+      l(t('Edit')   ,"codiga/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -274,7 +274,7 @@ function sipi_clients_list_form($form, &$form_state){
   foreach ($result as $row) {
     $contents_published=sipi_client_get_nodes_published($row->cid, $row->idsite);
     $rows[] = array(
-      l($row->name, "sipi/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "codiga/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'codiga/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -283,7 +283,7 @@ function sipi_clients_list_form($form, &$form_state){
       (isset($contents_published) && !empty($contents_published) ? $row->contents_limit-count($contents_published) : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"codiga/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'codiga/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
