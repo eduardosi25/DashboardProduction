@@ -73,16 +73,16 @@ function sipi_help($path, $arg) {
 function sipi_menu() {
   $items=array();
   #SIPI MAIN MENU
-  $items['sipi'] = array(
-    'title'            => 'SIPI',
-    'description'      => 'Sistema Integral de Publicación en Internet',
+  $items['codiga'] = array(
+    'title'            => 'Códiga',
+    'description'      => 'COntenido DIgital GArantizado',
     'page callback'    => 'sipi_login',
     'access callback'  => TRUE,
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.inc',
   );
   #SIPI DASHBOARD
-  $items['sipi/dashboard'] = array(
+  $items['codiga/dashboard'] = array(
     'title'            => 'Panel de control',
     'page callback'    => 'sipi_dashboard',
     'access_callback'  => 'sipi_access',
@@ -91,7 +91,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.inc',
   );
   #SIPI USER == CLIENT
-  $items['sipi/client'] = array(
+  $items['codiga/client'] = array(
     'title'            => 'Clientes',
     'page callback'    => 'sipi_client',
     'access_callback'  => 'sipi_access',
@@ -99,7 +99,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/client/add'] = array(
+  $items['codiga/client/add'] = array(
     'title'            => 'Agregar cliente',
     'page callback'    => 'sipi_client_add',
     'access_callback'  => 'sipi_access',
@@ -107,7 +107,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/client/%sipi_client/edit'] = array(
+  $items['codiga/client/%sipi_client/edit'] = array(
     'title'            => 'Editar cliente',
     'page callback'    => 'sipi_client_edit',
     'page arguments'   => array(2),
@@ -116,7 +116,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/client/%sipi_client/cancel'] = array(
+  $items['codiga/client/%sipi_client/cancel'] = array(
     'title'            => 'Cancelar cuenta del cliente',
     'page callback'    => 'sipi_client_cancel',
     'page arguments'   => array(2),
@@ -125,7 +125,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
-  $items['sipi/client/%sipi_client/view'] = array(
+  $items['codiga/client/%sipi_client/view'] = array(
     'title'            => 'Detalle del cliente',
     'page callback'    => 'sipi_client_view',
     'page arguments'   => array(2),
@@ -134,8 +134,35 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
+  $items['codiga/client/%sipi_client/report'] = array(
+    'title'            => 'Reporte del cliente',
+    'page callback'    => 'sipi_client_report',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
+  $items['codiga/client/%sipi_client/pdf'] = array(
+    'title'            => 'Descargar Reporte del cliente en pdf',
+    'page callback'    => 'sipi_client_report_pdf',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
+  $items['codiga/client/%sipi_client/xls'] = array(
+    'title'            => 'Descargar Reporte del cliente en Excel',
+    'page callback'    => 'sipi_client_report_xls',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
   #SIPI PLANS == PACKAGES
-  $items['sipi/plans'] = array(
+  $items['codiga/plans'] = array(
     'title'            => 'Planes',
     'page callback'    => 'sipi_plans',
     'access_callback'  => 'sipi_access',
@@ -143,14 +170,14 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
-  $items['sipi/plans/add'] = array(
+  $items['codiga/plans/add'] = array(
     'title'            => 'Agregar un plan',
     'page callback'    => 'sipi_plans_add',
     'access arguments' => array('sipi admin plans'),
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
-  $items['sipi/plans/%sipi_plan/edit'] = array(
+  $items['codiga/plans/%sipi_plan/edit'] = array(
     'title'            => 'Editar plan',
     'page callback'    => 'sipi_plans_edit',
     'page arguments'   => array(2),
@@ -159,7 +186,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
-  $items['sipi/plans/%sipi_plan/delete'] = array(
+  $items['codiga/plans/%sipi_plan/delete'] = array(
     'title'            => 'Eliminar plan',
     'page callback'    => 'sipi_plans_delete',
     'page arguments'   => array(2),
@@ -168,7 +195,7 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.plans.inc',
   );
-  $items['sipi/plans/%sipi_plan/view'] = array(
+  $items['codiga/plans/%sipi_plan/view'] = array(
     'title'            => 'Detalle del plan',
     'page callback'    => 'sipi_plans_view',
     'page arguments'   => array(2),
@@ -178,7 +205,7 @@ function sipi_menu() {
     'file'             => 'inc/sipi.plans.inc',
   );
   #SIPI EXPIRES
-  $items['sipi/expire/%expire'] = array(
+  $items['codiga/expire/%expire'] = array(
     'title'            => 'Pr&oacute;ximas finalizaciones',
     'page callback'    => 'sipi_next_expires',
     'access_callback'  => 'sipi_access',
@@ -187,9 +214,9 @@ function sipi_menu() {
     'file'             => 'inc/sipi.inc',
   );
   #ADMINISTER SIPI SETTINGS - WEBMASTER ONLY
-  $items['admin/config/system/sipi'] = array(
-    'title'            => t('SIPI Settings'),
-    'description'      => t('Configure settings for invent.SIPI'),
+  $items['admin/config/system/codiga'] = array(
+    'title'            => t('CODIGA Settings'),
+    'description'      => t('Configure settings for invent.CODIGA'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('sipi_admin_settings_form'),
     'access_callback'  => 'sipi_access',
@@ -198,9 +225,9 @@ function sipi_menu() {
     'file'             => 'sipi.admin.inc',
   );
   #SIPI ADMIN
-  $items['admin/config/system/sipi/default'] = array(
-    'title'            => t('SIPI Settings'),
-    'description'      => t('Configure settings for invent.SIPI'),
+  $items['admin/config/system/codiga/default'] = array(
+    'title'            => t('CODIGA Settings'),
+    'description'      => t('Configure settings for invent.CODIGA'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('sipi_admin_settings_form'),
     'access_callback'  => 'sipi_access',
@@ -209,9 +236,9 @@ function sipi_menu() {
     'file'             => 'sipi.admin.inc',
     'weight'           => 0,
   );
-  $items['admin/config/system/sipi/menu-sipi'] = array(
-    'title'            => t('Create SIPI menu'),
-    'description'      => t('Create SIPI menu'),
+  $items['admin/config/system/codiga/menu-codiga'] = array(
+    'title'            => t('Create CODIGA menu'),
+    'description'      => t('Create CODIGA menu'),
     'page callback'    => '_create_sipi_menu',
     'access_callback'  => 'sipi_access',
     'access arguments' => array('administer sipi settings'),
@@ -219,15 +246,15 @@ function sipi_menu() {
     'file'             => 'sipi.admin.inc',
     'weight'           => 1,
   );
-  $items['admin/config/system/sipi/cronlt'] = array(
-    'title'            => t('Light weight cron handler SIPI Analytics'),
-    'description'      => t('A light weight cron handler to allow more frequent runs of SIPI cron system'),
+  $items['admin/config/system/codiga/cronlt'] = array(
+    'title'            => t('Light weight cron handler CODIGA Analytics'),
+    'description'      => t('A light weight cron handler to allow more frequent runs of CODIGA cron system'),
     'page callback'    => 'sipi_run_cronlt',
     'access arguments' => array('administer node_analytics settings'),
     'access callback'  => TRUE,
     'type'             => MENU_CALLBACK,
   );
-  $items['admin/config/system/sipi/testmail'] = array(
+  $items['admin/config/system/codiga/testmail'] = array(
     'page callback'    => 'sipi_mail_test',
     'access arguments' => array('administer users'),
     'access callback'  => TRUE,
@@ -258,7 +285,7 @@ function sipi_access($permission) {
  * Implements hook_init().
  */
 function sipi_init(){
-  if(arg(0)=='sipi')
+  if(arg(0)=='sipi' || arg(0)=='codiga')
     drupal_add_css(drupal_get_path('module','sipi').'/sipi.css');
 }
 /**
@@ -267,19 +294,19 @@ function sipi_init(){
 function sipi_block_info() {
   return array(
     'sipi_client_login' => array(
-      'info'       => t('SIPI - Show User Logged'),
+      'info'       => t('CODIGA - Show User Logged'),
       'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages'      => "sipi\nsipi/*",
+      'pages'      => "codiga\ncodiga/*",
     ),
     'sipi_client_detail' => array(
-      'info'       => t('SIPI - Detail for Client'),
+      'info'       => t('CODIGA - Detail for Client'),
       'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages'      => "sipi\nsipi/*",
+      'pages'      => "codiga\ncodiga/*",
     ),
     'sipi_client_contents_list' => array(
-      'info'       => t('SIPI - Contents List'),
+      'info'       => t('CODIGA - Contents List'),
       'visibility' => BLOCK_VISIBILITY_LISTED,
-      'pages'      => "sipi\nsipi/*",
+      'pages'      => "codiga\ncodiga/*",
     )
   );
 }
@@ -709,6 +736,7 @@ function sipi_process_contents_result($data,$plan){
         'avgSessionDuration' => isset($node->analytics->avgSessionDuration) && !empty($node->analytics->avgSessionDuration) ? $node->analytics->avgSessionDuration : 0,
         'pageviewsPerSession' => isset($node->analytics->pageviewsPerSession) && !empty($node->analytics->pageviewsPerSession) ? $node->analytics->pageviewsPerSession : 0,
         'avgTimeOnPage'   => isset($node->analytics->avgTimeOnPage) && !empty($node->analytics->avgTimeOnPage) ? $node->analytics->avgTimeOnPage : 0,
+        'bounceRate'      => isset($node->analytics->bounceRate) && !empty($node->analytics->bounceRate) ? $node->analytics->bounceRate : 0,
         'fbshares'        => isset($node->analytics->fbshares) && !empty($node->analytics->fbshares) ? $node->analytics->fbshares : 0,
         'tweets'          => isset($node->analytics->tweets) && !empty($node->analytics->tweets) ? $node->analytics->tweets : 0,
         'gpshares'        => isset($node->analytics->gpshares) && !empty($node->analytics->gpshares) ? $node->analytics->gpshares : 0,
@@ -745,13 +773,13 @@ function sipi_search_clients_invent_contents_by_iid($nid){
 //########################################################################################################################################
 //########################################################################################################################################
 /**
- * SIPI REQUESTS
+ * CODIGA REQUESTS
  * [API_PROTOCOL]://[API_DOMAIN]/[API_VERSION]/[API_SITENAME]/[API_SIPIUSERS|API_SIPICONTENTS].[API_FORMAT]/[API_TOKEN]
  *
- * SIPI USERS
+ * CODIGA USERS
  * http://api.inventmx.com/v1/gamedots/sipi.json/3a5877fc16b6fcbf8eedbe55d091938a
  *
- * SIPI CONTENTS
+ * CODIGA CONTENTS
  * http://api.inventmx.com/v1/gamedots/sipi-analytics.json/3a5877fc16b6fcbf8eedbe55d091938a
  *
  * Filter by Name:
@@ -813,7 +841,7 @@ function _do_api_request($url=null){
     //Define basic options
     @curl_setopt($cURL, CURLOPT_URL, $url);
     //Custom User-Agent
-    @curl_setopt($cURL, CURLOPT_USERAGENT, "Invent User-Agent/".$_SERVER['SERVER_NAME']."/invent.SIPI/".date('Ymd'));
+    @curl_setopt($cURL, CURLOPT_USERAGENT, "Invent User-Agent/".$_SERVER['SERVER_NAME']."/invent.CODIGA/".date('Ymd'));
     @curl_setopt($cURL, CURLOPT_AUTOREFERER, TRUE);
     //Headers & other options
     //@curl_setopt($cURL, CURLOPT_HTTPHEADER, shadow_headers());
