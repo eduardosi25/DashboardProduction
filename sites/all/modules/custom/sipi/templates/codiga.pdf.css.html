@@ -3,77 +3,33 @@
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>CODIGA -{{clientName}} - {{shortdate}}</title>
+<link rel="stylesheet" href="/sites/all/modules/custom/sipi/libs/css/print-preview.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/sites/all/modules/custom/sipi/libs/css/print.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/sites/all/modules/custom/sipi/libs/css/print.css" type="text/css" media="print" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="/sites/all/modules/custom/sipi/libs/jquery.print-preview.js"></script>
 <style type="text/css">
-  @page {
-    size: auto;
-    margin: 0;
-    padding: 0;
-  }
-  body{font-family: "Arial", "Helvetica", "Sans-Serif";
-    margin: 10px;
-    padding: 20px;
-    font-family: "Arial", "Helvetica", "Sans-Serif";
-    width:880px;
-    font-size:12px;
-  }
-  table{
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-  }
-  table.lines, td.lines{
-    border: 1px solid #666666;
-    border-collapse: inherit;
-  }
-  td.lines{
-    padding: 5px 10px;
-  }
-  td.label{
-    font-size: 12px;
-    width: 10%;
-  }
-  table.aperture{
-    margin:20px 10px;
-  }
-  table.header{
-    margin:40px 10px;
-  }
-  table.legend,table.listitems{
-    margin:10px;
-  }
-  .text-right{
-    text-align: right;
-  }
-  .text-left{
-    text-align: left;
-  }
-  a{
-    color:black;
-  }
-  a:active{
-    color:forestgreen;
-  }
-  a:visited{
-    color:#696969;
-  }
-  a:hover{
-    color:red;
-  }
-  .table td,.table th{
-    padding:10px 5px;
-    border: 1px solid #666666;
-    border-collapse: inherit;
-    text-align: center;
-  }
-  td.link{
-    text-align: left;
-  }
-  .aperture img{
-    width:200px;
-  }
-  .pagebreak {
-    page-break-after: always;
-  }
+.command{
+  display:inline;
+  position: fixed;
+  top: 0;
+  left: 790px;
+  float:right;
+}
+.print-preview{
+  font-size: 20px;
+  background-color: darkgreen;
+  color: #fff;
+  font-weight: 700;
+  padding: 15px;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 10px;
+}
+.print-preview:hover{
+  color:#000;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -104,6 +60,28 @@
       <td class="lines">{{listItems}}</td>
   </table>
 </div>
+
+<div class="command"></div>
+
+<script type="text/javascript">
+  $(function() {
+    /*
+     * Initialise print preview plugin
+     */
+    // Add link for print preview and intialise
+    $('.command').prepend('<a class="print-preview">Imprimir</a>');
+    $('a.print-preview').printPreview();
+
+    // Add keybinding (not recommended for production use)
+    $(document).bind('keydown', function(e) {
+      var code = (e.keyCode ? e.keyCode : e.which);
+      if (code == 80 && !$('#print-modal').length) {
+        $.printPreview.loadPrintPreview();
+        return false;
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
