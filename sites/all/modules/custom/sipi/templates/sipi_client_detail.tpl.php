@@ -4,7 +4,16 @@ $image=isset($file) && !empty($file) ? get_image_style($file->uri,'thumbnail') :
 unset($file);
 $args=arg();
 $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
+$scriptPrint=url(drupal_get_path('module','sipi').'/libs/jquery.printPage.js',array('absolute'=>true));
 ?>
+<script src="<?php print $scriptPrint;?>"></script>
+<script>
+  jQuery(document).ready(function() {
+    jQuery(".btnPrint").printPage({
+      message : "Please wait while we create your document" ,
+    });
+  });
+</script>
 <section class="sipi-client">
 <div class="left">
   <img src="<?php print $image;?>"/>
@@ -39,11 +48,11 @@ $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
   <ul id="client-detail" class="nav">
     <li class="actions" style="text-align: center;background-color:#f5f5f5;padding:5px;border:1px solid #4c4c4c;"><strong>REPORTS</strong></li>
     <li class="actions" style="text-align: center;">
-      <a href="<?php print '/codiga/client/'.$data->cid.'/report/'.$idsite;?>" style="width:20%;float:left;">View</a>
-      <a href="javascript:window.print();" style="width:20%;float:left;">Print</a>
-      <a href="<?php print '/codiga/client/'.$data->cid.'/pdf/'.$idsite;?>" target="_blank" style="width:20%;float:left;">Download as PDF</a>
-      <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;">Download as XLS</a>
-      <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;">Send to client email</a>
+      <a href="<?php print '/codiga/client/'.$data->cid.'/report/'.$idsite;?>" style="width:20%;float:left;" target="_blank">View</a>
+      <a class="btnPrint" href="<?php print '/codiga/client/'.$data->cid.'/report/'.$idsite;?>" style="width:20%;float:left;">Print</a>
+      <a href="<?php print '/codiga/client/'.$data->cid.'/pdf/'.$idsite;?>" target="_blank" style="width:20%;float:left;" target="_blank">Download as PDF</a>
+      <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;" target="_blank">Download as XLS</a>
+      <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;" target="_blank">Send to client email</a>
     </li>
   </ul>
 </div>
