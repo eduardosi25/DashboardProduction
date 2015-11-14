@@ -39,9 +39,9 @@ class sipiClientReport{
       'clientName' => $this->client->name,
       'siteName'   => $this->siteName,
       'startDate'  => format_date($this->client->created,'custom','d/m/Y'),
-      'endDate'    => $this->client->finish,
-      'periodDate' => $this->client->reportDate,
-      'numItems'   => $this->client->numContents,
+      'endDate'    => isset($this->client->finish) ? $this->client->finish : null,
+      'periodDate' => isset($this->client->reportDate) ? $this->client->reportDate : null,
+      'numItems'   => isset($this->client->numContents) ? $this->client->numContents : null,
       'listItems'  => $list,
       'imageLogo'  => $image,
     );

@@ -1482,6 +1482,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
   $result=$query->execute();
   $rows=array();
   $numItems=0;
+  $pageBreak=1;
   foreach ($result as $row) {
     //Recalculate metrics.
     $metrics['sessions']+=$row->sessions;
@@ -1491,16 +1492,25 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
     $metrics['bouncerate']+=$row->bounceRate;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
+    $classPageBreak='';
+    if($pageBreak==11){
+      $pageBreak=1;
+      $classPageBreak='pagebreak';
+    }
+    $pageBreak++;
 
     $rows[] = array(
-      array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
-      ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
-      ($row->sessions>0 ? $row->sessions : '-'),
-      ($row->pageviews>0 ? $row->pageviews : '-'),
-      ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
-      ($row->tweets>0 ? $row->tweets : '-'),
-      ($row->fbshares>0 ? $row->fbshares : '-'),
+      'data' => array(
+        array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
+        ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
+        ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
+        ($row->sessions>0 ? $row->sessions : '-'),
+        ($row->pageviews>0 ? $row->pageviews : '-'),
+        ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
+        ($row->tweets>0 ? $row->tweets : '-'),
+        ($row->fbshares>0 ? $row->fbshares : '-'),
+      ),
+      'class' => array($classPageBreak),
     );
     $numItems++;
   }
