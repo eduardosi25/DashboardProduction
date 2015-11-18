@@ -870,7 +870,7 @@ function sipi_client_get_nodes_published($cid, $tid){
   GROUP BY iu.cid, iu.uid, iu.sitename;
    */
   $query = db_select('sipi_clients_invent_contents', 'ic');
-  $query->join('sipi_clients_invent_users','iu','iu.uid=ic.uid');
+  $query->leftJoin('sipi_clients_invent_users','iu','iu.uid=ic.uid');
   $query->join('sipi_clients','c','c.cid=ic.cid');
   $query->fields('c',array('cid','name','mail','company'));
   $query->addField('iu','uid','uid');
