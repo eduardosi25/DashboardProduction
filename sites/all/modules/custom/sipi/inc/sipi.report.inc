@@ -33,19 +33,20 @@ class sipiClientReport{
       $list=drupal_render($list);
     }
 
-    $this->data=array(
-      'longdate'   => format_date(time(),'custom','d \d\e F \d\e Y'),
-      'shortdate'  => format_date(time(),'custom','d/m/Y'),
-      'clientName' => $this->client->name,
-      'siteName'   => $this->siteName,
-      'startDate'  => format_date($this->client->created,'custom','d/m/Y'),
-      'endDate'    => isset($this->client->finish) ? $this->client->finish : null,
-      'periodDate' => isset($this->client->reportDate) ? $this->client->reportDate : null,
-      'numItems'   => isset($this->client->numContents) ? $this->client->numContents : null,
-      'listItems'  => $list,
-      'imageLogo'  => $image,
-    );
-
+    if(isset($this->client) && !empty($this->client)){
+      $this->data=array(
+        'longdate'   => format_date(time(),'custom','d \d\e F \d\e Y'),
+        'shortdate'  => format_date(time(),'custom','d/m/Y'),
+        'clientName' => $this->client->name,
+        'siteName'   => $this->siteName,
+        'startDate'  => format_date($this->client->created,'custom','d/m/Y'),
+        'endDate'    => isset($this->client->finish) ? $this->client->finish : null,
+        'periodDate' => isset($this->client->reportDate) ? $this->client->reportDate : null,
+        'numItems'   => isset($this->client->numContents) ? $this->client->numContents : null,
+        'listItems'  => $list,
+        'imageLogo'  => $image,
+      );
+    }
   }
 
   function renderHTML(){
