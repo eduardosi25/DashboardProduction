@@ -24,7 +24,7 @@ function get_cms_admin_paths(){
     '*/ahah/*',
     'batch',
     'batch*',
-    'sipi',
+    'codiga',
     'play/feeds/*',
     'jedi',
     'feeds',
