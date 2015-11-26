@@ -70,7 +70,7 @@ function sipi_client_report_email($client){
   if($result){
     drupal_set_message('Correo electrónico de Envío de Reporte enviado a: '.$client->name,'status');
   }
-  return '<a href="javascript:close_window();">close</a>';
+  return '<a href="javascript:window.close();" style="color:darkred">Cerrar ventana</a>';
 }
 function sipi_client_report_xls($client){
   module_load_include('inc','sipi','inc/sipi.report');
