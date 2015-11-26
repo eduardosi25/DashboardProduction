@@ -39,12 +39,12 @@ function sipi_client_report_email($client){
 
   //Create transport
   // Create the Transport
-  //$transport = Swift_SmtpTransport::newInstance('localhost',25);
-
+  $transport = Swift_SmtpTransport::newInstance('localhost',25);
+  /**
   $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
     ->setUsername('webmaster@inventmx.com')
     ->setPassword('$5ap1d3CV$')
-  ;
+  ;*/
   //Create Mailer
   $mailer = Swift_Mailer::newInstance($transport);
   // Create the message
@@ -69,7 +69,7 @@ function sipi_client_report_email($client){
   if($result){
     drupal_set_message('Correo electrónico de Envío de Reporte enviado a: '.$settings['to'],'status');
   }
-  return null;
+  return '<a href="javascript:close_window();">close</a>';
 }
 function sipi_client_report_xls($client){
   module_load_include('inc','sipi','inc/sipi.report');
