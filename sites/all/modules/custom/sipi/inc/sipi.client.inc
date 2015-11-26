@@ -49,6 +49,7 @@ function sipi_client_report_email($client){
   $mailer = Swift_Mailer::newInstance($transport);
   // Create the message
   $message = Swift_Message::newInstance()
+  ->setContentType('text/html')
   // Give the message a subject
   ->setSubject('Reporte de registro cliente SIPI - '.$client->name)
   // Set the From address with an associative array
@@ -67,7 +68,7 @@ function sipi_client_report_email($client){
   $result=$mailer->send($message);
 
   if($result){
-    drupal_set_message('Correo electrónico de Envío de Reporte enviado a: '.$settings['to'],'status');
+    drupal_set_message('Correo electrónico de Envío de Reporte enviado a: '.$client->name,'status');
   }
   return '<a href="javascript:close_window();">close</a>';
 }
