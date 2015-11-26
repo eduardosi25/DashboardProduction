@@ -53,7 +53,8 @@ function sipi_client_report_email($client){
   if($result['send']){
     drupal_set_message('Correo electrónico de envío de Reporte enviado a: '.$settings['to'],'status');
   }
-  return $result['send'];
+  
+  var_dum($result['send']);
 
   die(__FUNCTION__);
 }
