@@ -737,7 +737,7 @@ function sipi_process_contents_result($data,$plan){
         'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
         'title'           => $node->title,
         'type'            => $node->type,
-        'path'            => $node->path,
+        'path'            => isset($node->path) && !empty($node->path) ? $node->path : "N/D",
         'sessions'        => isset($node->analytics->sessions) && !empty($node->analytics->sessions) ? $node->analytics->sessions : 0,
         'pageviews'       => isset($node->analytics->pageviews) && !empty($node->analytics->pageviews) ? $node->analytics->pageviews : 0,
         'uniquePageviews' => isset($node->analytics->uniquePageviews) && !empty($node->analytics->uniquePageviews) ?  $node->analytics->uniquePageviews : 0,
