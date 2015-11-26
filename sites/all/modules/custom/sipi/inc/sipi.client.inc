@@ -1063,7 +1063,10 @@ function sipi_client_generate_name_pass($clientName){
   $clientName=sipi_client_convert_to_lowers($clientName);
   //Convert vocals to numbers
   $clientName=sipi_client_convert_to_numbers($clientName);
-  //Generato random number
+  //Transliterate
+  $clientName=sipi_client_transliteration($clientName);
+
+  //Generate random number
   $randomNumber=rand(0,(intval(date('Y'))*1024));
   return '$'.ucfirst($clientName).'@'.sipi_client_convert_to_letters($randomNumber).'$';
 }
@@ -1092,6 +1095,11 @@ function sipi_client_convert_to_letters($string){
   $search  = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
   $replace = array('o', 'i', 'z', 'e', 'a', 's', 'g', 't', 'h', 'g');
   return str_replace($search, $replace, $string);
+}
+function sipi_client_transliteration($string){
+  $search  = array('.', ',', ' ');
+  $replace = array('-', '-', '-');
+  return $string;
 }
 
 /**
