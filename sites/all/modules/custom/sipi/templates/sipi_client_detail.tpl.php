@@ -52,7 +52,7 @@ $scriptPrint=url(drupal_get_path('module','sipi').'/libs/jquery.printPage.js',ar
       <a class="btnPrint" href="<?php print '/codiga/client/'.$data->cid.'/report/'.$idsite;?>" style="width:20%;float:left;">Print</a>
       <a href="<?php print '/codiga/client/'.$data->cid.'/pdf/'.$idsite;?>" target="_blank" style="width:20%;float:left;" target="_blank">Download as PDF</a>
       <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;" target="_blank">Download as XLS</a>
-      <a href="javascript:alert('Not available... yet! :)')" style="width:20%;float:left;" target="_blank">Send to client email</a>
+      <a href="<?php print '/codiga/client/'.$data->cid.'/email/'.$idsite;?>" style="width:20%;float:left;" target="_blank">Send to client email</a>
     </li>
   </ul>
 </div>
