@@ -152,6 +152,15 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
+  $items['codiga/client/%sipi_client/email'] = array(
+    'title'            => 'Reporte del cliente - Envío por email',
+    'page callback'    => 'sipi_client_report_email',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
   $items['codiga/client/%sipi_client/xls'] = array(
     'title'            => 'Descargar Reporte del cliente en Excel',
     'page callback'    => 'sipi_client_report_xls',
