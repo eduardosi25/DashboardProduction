@@ -54,10 +54,19 @@ class sipiClientReport{
     die();
   }
 
-  function getHTML(){
+  function getHTML($type='pdf'){
     $data=$this->data;
 
-    $content=file_get_contents(drupal_get_path('module','sipi').'/templates/codiga.pdf.html');
+    switch($type){
+      case 'mail':
+        $templateFileHtml=drupal_get_path('module','sipi').'/templates/codiga.'.$type.'.html';
+        break;
+      default:
+        $templateFileHtml=drupal_get_path('module','sipi').'/templates/codiga.pdf.html';
+        break;
+    }
+
+    $content=file_get_contents($templateFileHtml);
     foreach($data as $key => $value){
       $content=str_replace('{{'.$key.'}}',$value,$content);
     }
