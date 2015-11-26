@@ -32,7 +32,7 @@ function sipi_client_report_email($client){
   $args=arg();
   $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
   $report->getData($client,$tid);
-  $HTML=$report->getHTML();
+  $HTML=$report->getHTML('mail');
 
   //Basic settings
   $settings=array(
