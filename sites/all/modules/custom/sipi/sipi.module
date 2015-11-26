@@ -152,6 +152,15 @@ function sipi_menu() {
     'type'             => MENU_NORMAL_ITEM,
     'file'             => 'inc/sipi.client.inc',
   );
+  $items['codiga/client/%sipi_client/email'] = array(
+    'title'            => 'Reporte del cliente - Envío por email',
+    'page callback'    => 'sipi_client_report_email',
+    'page arguments'   => array(2),
+    'access_callback'  => 'sipi_access',
+    'access arguments' => array('sipi admin clients'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/sipi.client.inc',
+  );
   $items['codiga/client/%sipi_client/xls'] = array(
     'title'            => 'Descargar Reporte del cliente en Excel',
     'page callback'    => 'sipi_client_report_xls',
@@ -728,7 +737,7 @@ function sipi_process_contents_result($data,$plan){
         'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
         'title'           => $node->title,
         'type'            => $node->type,
-        'path'            => $node->path,
+        'path'            => isset($node->path) && !empty($node->path) ? $node->path : "N/D",
         'sessions'        => isset($node->analytics->sessions) && !empty($node->analytics->sessions) ? $node->analytics->sessions : 0,
         'pageviews'       => isset($node->analytics->pageviews) && !empty($node->analytics->pageviews) ? $node->analytics->pageviews : 0,
         'uniquePageviews' => isset($node->analytics->uniquePageviews) && !empty($node->analytics->uniquePageviews) ?  $node->analytics->uniquePageviews : 0,
