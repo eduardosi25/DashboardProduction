@@ -26,6 +26,38 @@ function sipi_client_report_pdf($client){
   $report->renderPDF();
   die();
 }
+function sipi_client_report_email($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $HTML=$report->getHTML();
+
+  //Basic settings
+  $settings=array(
+    'module'  => 'sipi',
+    'delta'   => __FUNCTION__,
+    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
+    //'to'      => $client->name.'<'.$client->mail.'>',
+    'to'      => 'AxlMx <axl75mx@gmail.com>',
+    'params'  => array(
+      'text'    => array($HTML),
+      'subject' => 'Reporte de registro cliente SIPI - '.$client->name,
+      'cco'     => 'Luis Contreras <luis@invent.mx>',
+    ),
+  );
+
+  // Send message.
+  $result=drupal_mail($settings['module'], $settings['delta'], $settings['to'], language_default(), $settings['params'], $settings['from']);
+  if($result['send']){
+    drupal_set_message('Correo electrónico de envío de Reporte enviado a: '.$settings['to'],'status');
+  }
+  
+  var_dump($result);
+
+  die(__FUNCTION__);
+}
 function sipi_client_report_xls($client){
   module_load_include('inc','sipi','inc/sipi.report');
   $report=new sipiClientReport();
@@ -1547,7 +1579,7 @@ function sipi_clients_save_send_email($cid) {
     'to'      => 'pablo.escobedo@inventmx.com',
     'params'  => array(
       'text'    => array(),
-      'subject' => 'Registro de cliente SIPI - '.$client->name,
+      'subject' => 'Registro de cliente CODIGA - '.$client->name,
       'cco'     => 'luis@inventmx.com',
     ),
   );

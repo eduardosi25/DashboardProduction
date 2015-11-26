@@ -50,6 +50,11 @@ class sipiClientReport{
   }
 
   function renderHTML(){
+    print $this->getHTML();
+    die();
+  }
+
+  function getHTML(){
     $data=$this->data;
 
     $content=file_get_contents(drupal_get_path('module','sipi').'/templates/codiga.pdf.html');
@@ -57,9 +62,7 @@ class sipiClientReport{
       $content=str_replace('{{'.$key.'}}',$value,$content);
     }
 
-    print $content;
-
-    die();
+    return $content;
   }
 
   function renderPDF(){
