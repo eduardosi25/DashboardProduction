@@ -34,28 +34,41 @@ function sipi_client_report_email($client){
   $report->getData($client,$tid);
   $HTML=$report->getHTML();
 
-  //Basic settings
-  $settings=array(
-    'module'  => 'sipi',
-    'delta'   => __FUNCTION__,
-    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
-    //'to'      => $client->name.'<'.$client->mail.'>',
-    'to'      => 'AxlMx <axl75mx@gmail.com>',
-    'params'  => array(
-      'text'    => array($HTML),
-      'subject' => 'Reporte de registro cliente SIPI - '.$client->name,
-      'cco'     => 'Luis Contreras <luis@invent.mx>',
-    ),
-  );
+  $swiftmailer=DRUPAL_ROOT.'/'.libraries_get_path('swiftmailer').'/lib/swift_required.php';
+  require_once $swiftmailer;
+
+  //Create transport
+  // Create the Transport
+  $transport = Swift_SmtpTransport::newInstance('localhost',25);
+  /**
+  $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
+    ->setUsername('webmaster@inventmx.com')
+    ->setPassword('$5ap1d3CV$')
+  ;*/
+  //Create Mailer
+  $mailer = Swift_Mailer::newInstance($transport);
+  // Create the message
+  $message = Swift_Message::newInstance()
+  // Give the message a subject
+  ->setSubject('Reporte de registro cliente SIPI - '.$client->name)
+  // Set the From address with an associative array
+  ->setFrom(array('webmaster@invent.mx' => 'Webmaster Invent.mx'))
+  // Set the To addresses with an associative array
+  //->setTo(array($client->mail => $client->name))
+  ->setTo(array('axl75mx@gmail.com' => 'AxlMx'))
+  ->setBcc(array('luis@invent.mx'=>'Luis Contreras'))
+  // Give it a body
+  ->setBody($HTML,'text/html')
+  // Optionally add any attachments
+  //->attach(Swift_Attachment::fromPath('my-document.pdf'))
+  ;
 
   // Send message.
-  $result=drupal_mail($settings['module'], $settings['delta'], $settings['to'], language_default(), $settings['params'], $settings['from']);
-  if($result['send']){
-    drupal_set_message('Correo electrónico de envío de Reporte enviado a: '.$settings['to'],'status');
-  }
-  
-  var_dump($result);
+  $result=$mailer->send($message);
 
+  if($result){
+    drupal_set_message('Correo electrónico de Envío de Reporte enviado a: '.$settings['to'],'status');
+  }
   die(__FUNCTION__);
 }
 function sipi_client_report_xls($client){
