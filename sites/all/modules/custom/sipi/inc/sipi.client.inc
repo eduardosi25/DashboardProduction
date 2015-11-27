@@ -39,11 +39,11 @@ function sipi_client_report_email($client){
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
     'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
-    'to'      => 'luis@invent.mx',
+    'to'      => 'luis@inventmx.com, axl75mx@gmail.com',
     'params'  => array(
       'text'    => array($HTML),
       'subject' => 'Reporte de cliente CODIGA - '.$client->name,
-      'bcc'     => 'luis@inventmx.com',
+      'bcc'     => 'axl75mx@gmail.com',
     ),
   );
 
