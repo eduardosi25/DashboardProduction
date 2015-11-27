@@ -52,8 +52,9 @@ function sipi_client_report_email($client){
   if($result['send']){
     drupal_set_message('Reporte de métricas enviado a: '.$settings['to'],'status');
   }
-  return '<a href="javascript:window.close();" style="color:white;background-color:darkred;font-weight: 700;">Cerrar ventana</a>';
+  return '<a href="javascript:window.close();" style="color: white;background-color: darkred;font-weight: 700;padding: 13px;border-radius: 5px;">Cerrar ventana</a>';
 }
+
 function sipi_client_report_xls($client){
   module_load_include('inc','sipi','inc/sipi.report');
   $report=new sipiClientReport();
