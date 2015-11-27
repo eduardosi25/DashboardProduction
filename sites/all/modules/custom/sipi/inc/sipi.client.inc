@@ -42,8 +42,8 @@ function sipi_client_report_email($client){
     'to'      => 'AxlMx <axl75mx@gmail.com>',
     'params'  => array(
       'text'    => array($HTML),
-      'subject' => 'Registro de cliente CODIGA - '.$client->name,
-      'cco'     => 'luis@inventmx.com',
+      'subject' => 'Reporte de cliente CODIGA - '.$client->name,
+      'bcc'     => 'luis@inventmx.com',
     ),
   );
 
@@ -52,7 +52,7 @@ function sipi_client_report_email($client){
   if($result['send']){
     drupal_set_message('Reporte de métricas enviado a: '.$settings['to'],'status');
   }
-  return '<a href="javascript:window.close();" style="color:darkred">Cerrar ventana</a>';
+  return '<a href="javascript:window.close();" style="color:white;background-color:darkred;font-weight: 700;">Cerrar ventana</a>';
 }
 function sipi_client_report_xls($client){
   module_load_include('inc','sipi','inc/sipi.report');
