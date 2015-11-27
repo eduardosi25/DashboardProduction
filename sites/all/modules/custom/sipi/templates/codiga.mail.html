@@ -21,7 +21,8 @@
         </tr>
         <tr>
           <td>
-            <table class="header">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="dateBlock">
+              <tbody class="dateBlockOuter">
               <tr>
                 <td class="lines label">Cliente:</td><td class="lines">{{clientName}}</td>
                 <td class="lines label">Fecha de inicio:</td><td class="lines">{{startDate}}</td>
@@ -30,11 +31,19 @@
                 <td class="lines label">Sitio:</td><td class="lines">{{siteName}}</td>
                 <td class="lines label">Artículos publicados:</td><td class="lines">{{numItems}}</td>
               </tr>
+              </tbody>
             </table>
-
-            <table class="listitems">
+          </td>
+        </tr>
+        <tr><td>&nbsp;</td></tr>
+        <tr>
+          <td valign="top" style="padding:0px 0px 5px" class="mcnImageBlockInner">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" class="dateBlock">
+              <tbody class="dateBlockOuter">
               <tr>
                 <td class="lines">{{listItems}}</td>
+              </tr>
+              </tbody>
             </table>
           </td>
         </tr>
