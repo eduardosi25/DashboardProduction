@@ -26,6 +26,13 @@ function sipi_client_report_pdf($client){
   $report->renderPDF();
   die();
 }
+
+/**
+ * Implements send email
+ * @see mailsystem && swiftmailer - All setup include a tpl un theme switfmailer.tpl.php
+ * @param $client
+ * @return string
+ */
 function sipi_client_report_email($client){
   module_load_include('inc','sipi','inc/sipi.report');
   $report=new sipiClientReport();
@@ -906,6 +913,7 @@ function sipi_client_get_nodes_published($cid, $tid){
   $query->addField('iu','sitename','sitename');
   $query->addField('iu','pageviews','pageviews');
   $query->condition('c.cid',$cid,'=');
+  $query->condition('iu.cid',$cid,'=');
   $query->condition('ic.tid',$tid,'=');
   $result=$query->execute();
 
@@ -913,7 +921,6 @@ function sipi_client_get_nodes_published($cid, $tid){
   #die();
 
   //print_r($result->rowCount());
-
 
   if($result->rowCount()>0){
     $items=array();
