@@ -594,6 +594,7 @@ function sipi_new_api_users(){
 function sipi_insert_clients_invent_users($fields){
   if(!isset($fields) || empty($fields) || count($fields)<=0)
     return false;
+
   $found=sipi_search_clients_invent_users_by_id($fields['cid'],$fields['uid'],$fields['sitename']);
   if($found) {
     return false;
@@ -607,7 +608,7 @@ function sipi_insert_clients_invent_users($fields){
 function sipi_get_api_users($plan, $query=array()){
   $siteName=$plan['apirepo'];
   $apiRequest=get_api_url_request($siteName, 'users', $query);
-  print_r("Usuarios:\n".$apiRequest."\n");
+  //print_r("Usuarios:\n".$apiRequest."\n");
   $result=_do_api_request($apiRequest);
   if($result){
     $result=json_decode($result);
@@ -623,7 +624,7 @@ function sipi_process_users_result($data,$plan){
   }
   foreach($data as $item){
     $client=array(
-      'cid'             => sipi_search_client_by_email($item->mail),
+      'cid'             => sipi_search_client_by_email($item->mail,$item->name,TRUE),
       'uid'             => $item->id,
       'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
       'name'            => $item->name,
@@ -643,9 +644,14 @@ function sipi_process_users_result($data,$plan){
 
   return $client;
 }
-function sipi_search_client_by_email($email){
+function sipi_search_client_by_email($email,$name=null,$strict=FALSE){
   $id=0;
-  $query="select cid from sipi_clients where mail='$email'";
+  $query="SELECT cid FROM {sipi_clients} WHERE mail = '$email'";
+
+  if(isset($name) && !empty($name) && $strict){
+    $query=" AND name='$name'";
+  }
+  
   $result=db_query($query);
   if($result){
     foreach($result as $row){
