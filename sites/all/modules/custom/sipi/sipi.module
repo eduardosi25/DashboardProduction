@@ -624,7 +624,7 @@ function sipi_process_users_result($data,$plan){
   }
   foreach($data as $item){
     $client=array(
-      'cid'             => sipi_search_client_by_email_and_name($item->mail,$item->name),
+      'cid'             => sipi_search_client_by_name($item->name),
       'uid'             => $item->id,
       'tid'             => isset($plan['idsite']) && !empty($plan['idsite']) ? intval($plan['idsite']) : 0,
       'name'            => $item->name,
@@ -647,6 +647,21 @@ function sipi_process_users_result($data,$plan){
 function sipi_search_client_by_email_and_name($email,$name=null){
   $id=0;
   $query="SELECT cid FROM {sipi_clients} WHERE mail = '$email' AND name = '$name'";
+  $result=db_query($query);
+  if($result){
+    foreach($result as $row){
+      $id=$row->cid;
+    }
+  }
+  return $id;
+}
+function sipi_search_client_by_name($name){
+  if(!isset($name) || empty($name)){
+    return fakse;
+  }
+
+  $id=0;
+  $query="SELECT cid FROM {sipi_clients} WHERE name = '$name'";
   $result=db_query($query);
   if($result){
     foreach($result as $row){
