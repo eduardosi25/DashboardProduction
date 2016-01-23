@@ -1353,7 +1353,7 @@ function sipi_client_contents_list_header(){
     ),
     array(
       'data' => t('Tiempo promedio'),
-      'field' => 'avgSessionDuration'
+      'field' => 'avgTimeOnPage'
     ),
     array(
       'data' => t('Rebote'),
@@ -1380,7 +1380,7 @@ function sipi_client_contents_list_query($cid,$idsite,$limit=20){
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
   $query->limit($limit);
-  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration', 'bounceRate', 'fbshares','tweets','gpshares'));
+  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgTimeOnPage', 'bounceRate', 'fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
   $query->condition('iu.cid',$cid,'=');
 
@@ -1424,7 +1424,7 @@ function sipi_client_contents_list($client=null){
     $metrics['sessions']+=$row->sessions;
     $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
-    $metrics['avgtime']+=$row->avgSessionDuration;
+    $metrics['avgtime']+=$row->avgTimeOnPage;
     $metrics['bouncerate']+=$row->bounceRate;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
@@ -1437,7 +1437,7 @@ function sipi_client_contents_list($client=null){
       ($row->sessions>0 ? $row->sessions : '-'),
       ($row->pageviews>0 ? $row->pageviews : '-'),
       ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
-      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
+      ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
       ($row->bounceRate>0 ? round($row->bounceRate,2) : '-'),
       ($row->fbshares>0 ? $row->fbshares : '-'),
       ($row->tweets>0 ? $row->tweets : '-'),
@@ -1532,7 +1532,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
     $metrics['sessions']+=$row->sessions;
     $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
-    $metrics['avgtime']+=$row->avgSessionDuration;
+    $metrics['avgtime']+=$row->avgTimeOnPage;
     $metrics['bouncerate']+=$row->bounceRate;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
@@ -1547,7 +1547,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
       'data' => array(
         array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
         ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-        ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : '-'),
+        ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
         ($row->sessions>0 ? $row->sessions : '-'),
         ($row->pageviews>0 ? $row->pageviews : '-'),
         ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
