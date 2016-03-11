@@ -1588,7 +1588,7 @@ function sipi_clients_save_send_email($cid) {
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
     'from'    => 'Webmaster Codiga <webmaster@inventmx.com>',
-    'to'      => 'pablo.escobedo@inventmx.com',
+    'to'      => 'pablo.escobedo@inventmx.com,belem@inventmx.com',
     'params'  => array(
       'text'    => array(),
       'subject' => 'Registro de cliente CODIGA - '.$client->name,
