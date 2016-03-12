@@ -10,14 +10,14 @@ function sipi_admin_settings_form($form_state) {
   $form['#submit'][]='sipi_admin_settings_form_submit';
   $form['sipi'] = array(
     '#type' => 'fieldset',
-    '#title' => t('SIPI Settings'),
+    '#title' => t('CODIGA Settings'),
   );
   $status=variable_get('sipi_status',FALSE);
   $form['sipi']['sipi_status'] = array(
-    '#title' => t('Enabled SIPI Integration'),
+    '#title' => t('Enabled CODIGA Integration'),
     '#type' => 'checkbox',
     '#default_value' => $status,
-    '#description' => t('Enabled or disabled SIPI Integration'),
+    '#description' => t('Enabled or disabled CODIGA Integration'),
   );
   /**
    * Settings for SIPI
@@ -31,7 +31,7 @@ function sipi_admin_settings_form($form_state) {
   $form['sipi']['sipi_settings'] = array(
     '#type' => 'fieldset',
     '#tree' => TRUE,
-    '#title' => t('SIPI Settings'),
+    '#title' => t('CODIGA Settings'),
     '#collapsible' => TRUE,
     '#collapsed' => variable_get('sipi_status', FALSE),
   );
@@ -66,14 +66,14 @@ function sipi_admin_settings_form($form_state) {
     '#maxlength' => 32,
   );
   $form['sipi']['sipi_settings']['sites'] = array(
-    '#title' => t('Select the sites with SIPI Activated'),
+    '#title' => t('Select the sites with CODIGA Activated'),
     '#type' => 'checkboxes',
     '#options' => get_sites_options(),
     '#default_value' => get_checked_options($settings['sites']),
   );
   $form['sipi']['sipi_settings']['users'] = array(
     '#title' => t('API Repo Users'),
-    '#description' => t('The repo name for query about SIPI Users'),
+    '#description' => t('The repo name for query about CODIGA Users'),
     '#type' => 'textfield',
     '#default_value' => isset($settings['users']) ? $settings['users'] : NULL,
     '#size' => 20,
@@ -81,7 +81,7 @@ function sipi_admin_settings_form($form_state) {
   );
   $form['sipi']['sipi_settings']['contents'] = array(
     '#title' => t('API Repo COntents'),
-    '#description' => t('The repo name for query about SIPI Contents with Analytics'),
+    '#description' => t('The repo name for query about CODIGA Contents with Analytics'),
     '#type' => 'textfield',
     '#default_value' => isset($settings['contents']) ? $settings['contents'] : NULL,
     '#size' => 20,
@@ -170,28 +170,34 @@ function sipi_admin_settings_form_submit($form, &$form_state){
 function _create_sipi_menu(){
   //Create SIPI menu
   $menu = array(
-    'menu_name'   => 'menu-sipi',
-    'title'       => t('Menú SIPI'),
-    'description' => 'Sistema Integral de Publicación en Internet',
+    'menu_name'   => 'menu-codiga',
+    'title'       => t('Menú CODIGA'),
+    'description' => 'COntenidos DIgitales GArantizados',
   );
+
+  //Search previous menu
+  $menuOld=menu_load($menu['menu_name']);
+  if($menuOld){
+    menu_delete($menu);
+  }
 
   if(!menu_tree($menu['menu_name'])){
     menu_save($menu);
     //Create links
     $item = array (
       'link_title' => 'Inicio',
-      'description'=> 'SIPI Home',
-      'link_path'  => 'sipi',
-      'menu_name'  => 'menu-sipi',
+      'description'=> 'CODIGA Home',
+      'link_path'  => 'codiga',
+      'menu_name'  => 'menu-codiga',
       'weight'     => 0,
       'plid'       => 0,
     );
     menu_link_save($item);
     $item = array (
       'link_title' => t('Dashboard'),
-      'description'=> t('SIPI Dashboard'),
-      'link_path'  => 'sipi/dashboard',
-      'menu_name'  => 'menu-sipi',
+      'description'=> t('CODIGA Dashboard'),
+      'link_path'  => 'codiga/dashboard',
+      'menu_name'  => 'menu-codiga',
       'weight'     => 1,
       'plid'       => 0,
     );
@@ -200,8 +206,8 @@ function _create_sipi_menu(){
     $item = array (
       'link_title' => 'Planes',
       'description'=> 'Planes SIPI',
-      'link_path'  => 'sipi/plans',
-      'menu_name'  => 'menu-sipi',
+      'link_path'  => 'codiga/plans',
+      'menu_name'  => 'menu-codiga',
       'weight'     => 2,
       'plid'       => 0,
     );
@@ -209,8 +215,8 @@ function _create_sipi_menu(){
     $item = array (
       'link_title' => 'Planes',
       'description'=> 'Planes SIPI',
-      'link_path'  => 'sipi/plans',
-      'menu_name'  => 'menu-sipi',
+      'link_path'  => 'codiga/plans',
+      'menu_name'  => 'menu-codiga',
       'expanded'   => true,
       'weight'     => 0,
       'plid'       => $plid,
@@ -219,8 +225,8 @@ function _create_sipi_menu(){
     $item = array (
       'link_title' => 'Agregar nuevo plan',
       'description'=> 'Agregar nuevo Plan SIPI',
-      'link_path'  => 'sipi/plans/add',
-      'menu_name'  => 'menu-sipi',
+      'link_path'  => 'codiga/plans/add',
+      'menu_name'  => 'menu-codiga',
       'expanded'   => true,
       'weight'     => 1,
       'plid'       => $plid,
@@ -230,17 +236,17 @@ function _create_sipi_menu(){
     $item = array (
       'link_title' => 'Clientes',
       'description'=> 'Clientes SIPI',
-      'link_path'  => 'sipi/client',
-      'menu_name'  => 'menu-sipi',
+      'link_path'  => 'codiga/client',
+      'menu_name'  => 'menu-codiga',
       'weight'     => 3,
       'plid'       => 0,
     );
     $plid = menu_link_save($item);
     $item = array (
       'link_title' => 'Clientes',
-      'link_path'  => 'sipi/client',
+      'link_path'  => 'codiga/client',
       'description'=> 'Clientes SIPI',
-      'menu_name'  => 'menu-sipi',
+      'menu_name'  => 'menu-codiga',
       'expanded'   => true,
       'weight'     => 0,
       'plid'       => $plid,
@@ -249,22 +255,22 @@ function _create_sipi_menu(){
     $item = array (
       'link_title' => 'Agregar nuevo cliente',
       'description'=> 'Agregar nuevo Cliente SIPI',
-      'link_path'  => 'sipi/client/add',
-      'menu_name'  => 'menu-sipi',
+      'link_path'  => 'codiga/client/add',
+      'menu_name'  => 'menu-codiga',
       'expanded'   => true,
       'weight'     => 1,
       'plid'       => $plid,
     );
     menu_link_save($item);
-    drupal_set_message('SIPI Menu Created.','status');
-    return t('SIPI Menu Created.');
+    drupal_set_message('CODIGA Menu Created.','status');
+    return t('CODIGA Menu Created.');
   }else{
-    drupal_set_message('The SIPI Menu already exists.','error');
+    drupal_set_message('The CODIGA Menu already exists.','error');
     $holders=array(
       '@url1'=>'/admin/config/development/performance',
-      '@url2'=>'/admin/structure/menu/manage/menu-sipi'
+      '@url2'=>'/admin/structure/menu/manage/menu-codiga'
     );
-    return t('The SIPI Menu already exists. If you cant see it, please try to <a href="@url1"">clear cache</a> or visit it in <a href="@url2">Manage Menu Page</a>',$holders);
+    return t('The CODIGA Menu already exists. If you cant see it, please try to <a href="@url1"">clear cache</a> or visit it in <a href="@url2">Manage Menu Page</a>',$holders);
   }
 }
 

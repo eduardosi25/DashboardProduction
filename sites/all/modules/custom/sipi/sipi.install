@@ -713,3 +713,36 @@ function sipi_schema(){
  * alter table sipi_clients_invent_contents add column tid int(11) unsigned not null default 0 comment 'Invent Site ID - Taxonomy ID';
  * alter table sipi_clients_invent_contents add column sessions int(11) unsigned not null default 0 comment 'Sessions';
  */
+
+/**
+   * Add field for ga:bounceRate into table {sipi_clients_invent_contents}
+ */
+function sipi_update_7000() {
+  // Set the target table and field name.
+  $table_name = 'sipi_clients_invent_contents';
+  if(db_table_exists($table_name)){
+    $fields = array(
+      'ga:bounceRate' => 'bounceRate',
+    );
+
+    foreach($fields as $key => $field_name){
+      // Don't add the new field if it already exists.
+      if (!db_field_exists($table_name, $field_name)) {
+        // Describe the new field.
+        $field_spec = array(
+          'type' => 'float',
+          'length' => 8,
+          'not null' => TRUE,
+          'default' => '0',
+          'description' => "The $key field",
+        );
+
+        // Add it and update the primary key.
+        db_add_field($table_name, $field_name, $field_spec);
+        db_add_index($table_name, $table_name.'_'.$field_name, array('nid',$field_name));
+      }
+    }
+    return t('Added fields for user id && ga:bounceRate.');
+  }
+  return t('No field added');
+}

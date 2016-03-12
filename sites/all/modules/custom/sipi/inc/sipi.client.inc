@@ -8,6 +8,69 @@ function sipi_client_add(){
 function sipi_client_view($client){
   return module_invoke('sipi', 'block_view', 'sipi_client_detail');
 }
+function sipi_client_report($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $report->renderHTML();
+  die();
+}
+function sipi_client_report_pdf($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $report->renderPDF();
+  die();
+}
+
+/**
+ * Implements send email
+ * @see mailsystem && swiftmailer - All setup include a tpl un theme switfmailer.tpl.php
+ * @param $client
+ * @return string
+ */
+function sipi_client_report_email($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $HTML=$report->getHTML('mail');
+
+  //Basic settings
+  $settings=array(
+    'module'  => 'sipi',
+    'delta'   => __FUNCTION__,
+    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
+    'to'      => 'luis@inventmx.com, axl75mx@gmail.com',
+    'params'  => array(
+      'text'    => array($HTML),
+      'subject' => 'Reporte de cliente CODIGA - '.$client->name,
+      'bcc'     => 'axl75mx@gmail.com',
+    ),
+  );
+
+  // Send message.
+  $result=drupal_mail($settings['module'], $settings['delta'], $settings['to'], language_default(), $settings['params'], $settings['from']);
+  if($result['send']){
+    drupal_set_message('Reporte de métricas enviado a: '.$settings['to'],'status');
+  }
+  return '<a href="javascript:window.close();" style="color: white;background-color: darkred;font-weight: 700;padding: 13px;border-radius: 5px;">Cerrar ventana</a>';
+}
+
+function sipi_client_report_xls($client){
+  module_load_include('inc','sipi','inc/sipi.report');
+  $report=new sipiClientReport();
+  $args=arg();
+  $tid=isset($args[4]) && !empty($args[4]) ? $args[4] : 0;
+  $report->getData($client,$tid);
+  $report->renderXLS();
+  die();
+}
 function sipi_client_cancel($client){
   return drupal_get_form('sipi_client_cancel_account_form',$client);
 }
@@ -363,7 +426,7 @@ function sipi_clients_form($form, &$form_state, $client=NULL){
   );
 
   $form['cancel'] = array(
-    '#markup' => l(t('Cancel'), 'sipi/user', array('attributes' => array('style'=>'display:inline-block;float:left;padding:8px;'))),
+    '#markup' => l(t('Cancel'), 'codiga/user', array('attributes' => array('style'=>'display:inline-block;float:left;padding:8px;'))),
   );
   $form['submit'] = array(
     '#type'   => 'submit',
@@ -753,7 +816,7 @@ function sipi_client_list(){
   $query->join('sipi_plans','p','p.pid=pc.pid');
   $query->join('users','u','u.uid=pc.uid');
   $query->join('taxonomy_term_data','td','td.tid=pc.site');
-  $query->join('sipi_clients_invent_users','ui','ui.cid=c.cid');
+  $query->leftJoin('sipi_clients_invent_users','ui','ui.cid=c.cid');
   $query->limit(10);
 
   $query->fields('c',array('cid','name'));
@@ -787,7 +850,7 @@ function sipi_client_list(){
     $contents_published=sipi_client_get_nodes_published($row->cid, $row->idsite);
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "codiga/client/$row->cid/view/".$row->idsite,array('query'=>array('destination'=>'codiga/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -796,8 +859,8 @@ function sipi_client_list(){
       (isset($contents_published) && !empty($contents_published) ? $row->contents_limit-count($contents_published) : 0),
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
-      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"codiga/client/$row->cid/view/".$row->idsite  ,array('query'=>array('destination'=>'codiga/client'))) .' <br> '.
+      l(t('Edit')   ,"codiga/client/$row->cid/edit"  ,array('query'=>array('destination'=>'codiga/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -850,6 +913,7 @@ function sipi_client_get_nodes_published($cid, $tid){
   $query->addField('iu','sitename','sitename');
   $query->addField('iu','pageviews','pageviews');
   $query->condition('c.cid',$cid,'=');
+  $query->condition('iu.cid',$cid,'=');
   $query->condition('ic.tid',$tid,'=');
   $result=$query->execute();
 
@@ -857,7 +921,6 @@ function sipi_client_get_nodes_published($cid, $tid){
   #die();
 
   //print_r($result->rowCount());
-
 
   if($result->rowCount()>0){
     $items=array();
@@ -875,7 +938,7 @@ function sipi_client_delete_confirm($form, &$form_state, $plans=NULL) {
   $form['pid'] = array('#type' => 'value', '#value' => $plans['pid']);
   return confirm_form($form,
     t('Are you sure you want to delete %title?', array('%title' => $plans['name'])),
-    'sipi/plans/'.$plans['pid'],
+    'codiga/plans/'.$plans['pid'],
     t('This action cannot be undone.'),
     t('Delete'),
     t('Cancel')
@@ -888,7 +951,7 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
       ->condition('pid', $form_state['values']['pid'])
       ->execute();
   }
-  $form_state['redirect'] = 'sipi/plans';
+  $form_state['redirect'] = 'codiga/plans';
   $form_state['rebuild'] = TRUE;
 }
 
@@ -1008,7 +1071,10 @@ function sipi_client_generate_name_pass($clientName){
   $clientName=sipi_client_convert_to_lowers($clientName);
   //Convert vocals to numbers
   $clientName=sipi_client_convert_to_numbers($clientName);
-  //Generato random number
+  //Transliterate
+  $clientName=sipi_client_transliteration($clientName);
+
+  //Generate random number
   $randomNumber=rand(0,(intval(date('Y'))*1024));
   return '$'.ucfirst($clientName).'@'.sipi_client_convert_to_letters($randomNumber).'$';
 }
@@ -1037,6 +1103,11 @@ function sipi_client_convert_to_letters($string){
   $search  = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
   $replace = array('o', 'i', 'z', 'e', 'a', 's', 'g', 't', 'h', 'g');
   return str_replace($search, $replace, $string);
+}
+function sipi_client_transliteration($string){
+  $search  = array('.', ',', ' ');
+  $replace = array('-', '-', '-');
+  return $string;
 }
 
 /**
@@ -1223,7 +1294,7 @@ function sipi_client_detail($client=null){
   foreach ($result as $row) {
     $rows[] = array(
       $row->cid,
-      l($row->name, "sipi/client/$row->cid/view",array('query'=>array('destination'=>'sipi/client'))),
+      l($row->name, "codiga/client/$row->cid/view",array('query'=>array('destination'=>'codiga/client'))),
       $row->manager,
       $row->site,
       $row->plan,
@@ -1232,8 +1303,8 @@ function sipi_client_detail($client=null){
       'remain contents',
       date('Y-m-d',$row->start_date),
       date('Y-m-d',$row->end_date),
-      l(t('Details'),"sipi/client/$row->cid/view"  ,array('query'=>array('destination'=>'sipi/client'))) .' <br> '.
-      l(t('Edit')   ,"sipi/client/$row->cid/edit"  ,array('query'=>array('destination'=>'sipi/client'))),
+      l(t('Details'),"codiga/client/$row->cid/view"  ,array('query'=>array('destination'=>'codiga/client'))) .' <br> '.
+      l(t('Edit')   ,"codiga/client/$row->cid/edit"  ,array('query'=>array('destination'=>'codiga/client'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {
@@ -1254,14 +1325,8 @@ function sipi_client_detail($client=null){
 
 }
 
-function sipi_client_contents_list($client=null){
-  if(!isset($client) || empty($client))
-    return false;
-
-  $args=arg();
-  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
-
-  $header = array(
+function sipi_client_contents_list_header(){
+  return array(
     array(
       'data' => t('Contenidos'),
       'field' => 'title',
@@ -1288,7 +1353,11 @@ function sipi_client_contents_list($client=null){
     ),
     array(
       'data' => t('Tiempo promedio'),
-      'field' => 'avgSessionDuration'
+      'field' => 'avgTimeOnPage'
+    ),
+    array(
+      'data' => t('Rebote'),
+      'field' => 'bounceRate'
     ),
     array(
       'data' => t('FB Shares'),
@@ -1303,37 +1372,60 @@ function sipi_client_contents_list($client=null){
       'field' => 'gpshares'
     ),
   );
+}
+function sipi_client_contents_list_query($cid,$idsite,$limit=20){
+  if(!isset($cid))
+    return null;
 
   $query = db_select('sipi_clients_invent_contents', 'iu')->extend('PagerDefault');
   $query->join('sipi_clients','c','c.cid=iu.cid');
-  $query->limit(20);
-  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgSessionDuration','fbshares','tweets','gpshares'));
+  $query->limit($limit);
+  $query->fields('iu', array('title','path','status','created','sessions', 'pageviews', 'uniquePageviews', 'avgTimeOnPage', 'bounceRate', 'fbshares','tweets','gpshares'));
   $query->addField('c','name','client');
-  $query->condition('iu.cid',$client,'=');
+  $query->condition('iu.cid',$cid,'=');
 
   if(isset($idsite) && !empty($idsite)){
     $query->condition('iu.tid',$idsite,'=');
   }
 
-  $query=$query->extend('TableSort')->orderByHeader($header);
-  $result=$query->execute();
-  $rows=array();
-  $metrics=array(
+  return $query;
+}
+
+function sipi_client_contents_list_metrics(){
+  return array(
     'sessions'   => 0,
     'visits'     => 0,
     'uniques'    => 0,
     'avgtime'    => 0,
+    'bouncerate' => 0,
     'fbshares'   => 0,
     'tweets'     => 0,
     'googleplus' => 0,
   );
+}
+
+function sipi_client_contents_list($client=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $args=arg();
+  $idsite=isset($args[4]) && !empty($args[4]) ? $args[4] : null;
+
+  $header  = sipi_client_contents_list_header();
+  $metrics = sipi_client_contents_list_metrics();
+  $query   = sipi_client_contents_list_query($client,$idsite);
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
   $numItems=0;
   foreach ($result as $row) {
     //Recalculate metrics.
     $metrics['sessions']+=$row->sessions;
     $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
-    $metrics['avgtime']+=$row->avgSessionDuration;
+    $metrics['avgtime']+=$row->avgTimeOnPage;
+    $metrics['bouncerate']+=$row->bounceRate;
     $metrics['fbshares']+=$row->fbshares;
     $metrics['tweets']+=$row->tweets;
     $metrics['googleplus']+=$row->gpshares;
@@ -1342,13 +1434,14 @@ function sipi_client_contents_list($client=null){
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-      ($row->sessions>0 ? $row->sessions : 0),
-      ($row->pageviews>0 ? $row->pageviews : 0),
-      ($row->uniquePageviews>0 ? $row->uniquePageviews : 0),
-      ($row->avgSessionDuration>0 ? conversorSegundosHoras($row->avgSessionDuration) : 0),
-      ($row->fbshares>0 ? $row->fbshares : 0),
-      ($row->tweets>0 ? $row->tweets : 0),
-      ($row->gpshares>0 ? $row->gpshares : 0),
+      ($row->sessions>0 ? $row->sessions : '-'),
+      ($row->pageviews>0 ? $row->pageviews : '-'),
+      ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
+      ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
+      ($row->bounceRate>0 ? round($row->bounceRate,2) : '-'),
+      ($row->fbshares>0 ? $row->fbshares : '-'),
+      ($row->tweets>0 ? $row->tweets : '-'),
+      ($row->gpshares>0 ? $row->gpshares : '-'),
     );
     $numItems++;
   }
@@ -1360,13 +1453,14 @@ function sipi_client_contents_list($client=null){
         'data' => '<strong>Totales</strong>',
         'colspan' => 3,
       ),
-      $metrics['sessions']+=$row->sessions,
-      $metrics['visits']+=$row->pageviews,
-      $metrics['uniques']+=$row->uniquePageviews,
+      $metrics['sessions'] ? $metrics['sessions'] : '-',
+      $metrics['visits'] ? $metrics['visits'] : '-',
+      $metrics['uniques'] ? $metrics['uniques'] : '-',
       conversorSegundosHoras($metrics['avgtime']/$numItems),
-      $metrics['fbshares'],
-      $metrics['tweets'],
-      $metrics['googleplus']
+      $metrics['bouncerate'] ? $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,2) : '-',
+      $metrics['fbshares'] ? $metrics['fbshares'] : '-',
+      $metrics['tweets'] ? $metrics['tweets'] : '-',
+      ($metrics['googleplus'] ? $metrics['googleplus'] : '-')
     );
   }
 
@@ -1375,7 +1469,7 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => $pager,
-        'colspan' => 8,
+        'colspan' => 9,
       ),
     );
   }
@@ -1389,6 +1483,101 @@ function sipi_client_contents_list($client=null){
   return $build;
 }
 
+function sipi_client_contents_list_header_report(){
+  return array(
+    array(
+      'data' => t('Título'),
+    ),
+    array(
+      'data' => t('Fecha de publicación'),
+    ),
+    array(
+      'data' => t('Tiempo promedio de estancia'),
+    ),
+    array(
+      'data' => t('Visitas'),
+    ),
+    array(
+      'data' => t('Páginas vistas'),
+    ),
+    array(
+      'data' => t('Rebote'),
+    ),
+    array(
+      'data' => t('Compartido en Twitter'),
+    ),
+    array(
+      'data' => t('Compartido en Facebook'),
+    ),
+  );
+}
+
+function sipi_client_contents_list_report($client=null,$idsite=null){
+  if(!isset($client) || empty($client))
+    return false;
+
+  $args=arg();
+
+  $header  = sipi_client_contents_list_header_report();
+  $metrics = sipi_client_contents_list_metrics();
+  $query   = sipi_client_contents_list_query($client,$idsite,100);
+
+  $query=$query->extend('TableSort')->orderByHeader($header);
+  $result=$query->execute();
+  $rows=array();
+  $numItems=0;
+  $pageBreak=1;
+  foreach ($result as $row) {
+    //Recalculate metrics.
+    $metrics['sessions']+=$row->sessions;
+    $metrics['visits']+=$row->pageviews;
+    $metrics['uniques']+=$row->uniquePageviews;
+    $metrics['avgtime']+=$row->avgTimeOnPage;
+    $metrics['bouncerate']+=$row->bounceRate;
+    $metrics['fbshares']+=$row->fbshares;
+    $metrics['tweets']+=$row->tweets;
+    $classPageBreak='';
+    if($pageBreak==11){
+      $pageBreak=1;
+      $classPageBreak='pagebreak';
+    }
+    $pageBreak++;
+
+    $rows[] = array(
+      'data' => array(
+        array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
+        ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
+        ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
+        ($row->sessions>0 ? $row->sessions : '-'),
+        ($row->pageviews>0 ? $row->pageviews : '-'),
+        ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
+        ($row->tweets>0 ? $row->tweets : '-'),
+        ($row->fbshares>0 ? $row->fbshares : '-'),
+      ),
+      'class' => array($classPageBreak),
+    );
+    $numItems++;
+  }
+
+  if (count($rows) && ($pager = theme('pager'))) {
+    $rows[] = array(
+      array(
+        'data' => $pager,
+        'colspan' => 7,
+      ),
+    );
+  }
+  $build['sipi_client_contents_list'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => 'No se encontraron contenidos para mostrar',
+    '#caption' => '<h4>REPORTE</h4>',
+  );
+  return $build;
+}
+
+
 /**
  * Send email
  */
@@ -1398,12 +1587,17 @@ function sipi_clients_save_send_email($cid) {
   $settings=array(
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
-    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
-    'to'      => 'pablo.escobedo@inventmx.com',
+    'from'    => 'Webmaster Codiga <webmaster@inventmx.com>',
+    'to'      => 'pablo.escobedo@inventmx.com,belem@inventmx.com',
     'params'  => array(
       'text'    => array(),
-      'subject' => 'Registro de cliente SIPI - '.$client->name,
-      'cco'     => 'luis@inventmx.com',
+      'subject' => 'Registro de cliente CODIGA - '.$client->name,
+      'headers' => array(
+        'From'    => 'Webmaster Codiga <webmaster@inventmx.com>',
+        'Reply-To'=> 'webmaster@inventmx.com>',
+        'Cc'      => 'belem@inventmx.com',
+        'Bcc'     => 'webmaster@inventmx.com',
+      ),
     ),
   );
 
