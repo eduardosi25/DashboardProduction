@@ -1073,6 +1073,11 @@ function sipi_client_generate_name_pass($clientName){
   $clientName=sipi_client_convert_to_numbers($clientName);
   //Transliterate
   $clientName=sipi_client_transliteration($clientName);
+  //Check lenght pass - DB pass char(32)
+  if(strlen($clientName)>19){
+    //get only 19 chars
+    $clientName=substr($clientName,0,18);
+  }
 
   //Generate random number
   $randomNumber=rand(0,(intval(date('Y'))*1024));
@@ -1106,8 +1111,8 @@ function sipi_client_convert_to_letters($string){
 }
 function sipi_client_transliteration($string){
   $search  = array('.', ',', ' ');
-  $replace = array('-', '-', '-');
-  return $string;
+  $replace = array('-', '-', '');
+  return str_replace($search, $replace, $string);
 }
 
 /**
