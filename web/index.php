@@ -21,75 +21,84 @@
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
         <title>InventMx</title>
-        <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
+        <link rel="stylesheet" type="text/css" href="/web/css/style.css">
 
     </head>
     <body class="relative">
-
+<!--
         <div id="wrapper-loading-layout">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
-
-        <header>
-            <div class="wrapper-header relative">
-                <div class="wrapper-site-logo left">
-                    <a href="/#">
-                        <span class="site-invent block"></span>
-                    </a>                    
-                    <h1 class="none">Inventmx</h1>
-                </div>
-
-                <div class="wrapper-main right none">
-                    <span class="main-center block"></span>
-                </div>
-
-                <ul class="right">
-                    <li class="main-audiencia-contenido  left inline-block">
-                        <a class="audiencias-y-contenidos none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
-                    </li>
-                    <li class="main-maketers left inline-block">
-                        <a class="marketers none-decoration" href="/#marketers">MARKETERS</a>
-                    </li>
-                    <li class="main-red-de-videos left inline-block">
-                        <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
-                    </li>
-                    <li class="main-casos-de-exito left inline-block">
-                        <a class="caso-de-exito none-decoration" href="/#casos-de-exito">CASOS DE ÉXITO</a>
-                    </li>
-                    <li class="main-afiliate left inline-block">
-                        <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
-                    </li>
-                    <li class="main-anunciate left inline-block">
-                        <a class="anunciate none-decoration" href="/#anunciate">ANÚNCIATE</a>
-                    </li>
-                    <span class="clear block"></span>
-                </ul>                
-                <div class="clear"></div>
+-->
+        <header id="header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
             </div>
-        </header>
+            <div class="menu">
+                <ul>
+                    <li class="linea"><a href="/#red-invent">La red invent</a></li>
+                    <li class="linea"><a href="/#content">Content</a></li>
+                    <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
+                    <li class="linea"><a href="/#network-ads">Network Ads</a></li>
+                    <li class="linea"><a href="/#blogs">Blogs</a></li>
+                    <li class="contato"><a href="/#contacto">contato</a></li>
+                    <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
+                </ul>
+            </div>
+        </div>
+        
+        
+    </header>
 
         <div id="global-page">
             <div id="wrapper-page-site" class="relative"></div>
         </div>    
 
-        <footer>
-            <div class="footer-content-site-invent">
-                <div class="center wrapper-ico-site">
-                    <div class="inline-block footer-site-invent"></div>
-                    <div class="inline-block footer-social-responsable"></div>
-                    <div class="inline-block footer-group-imagen"></div>
-                </div>
-                <div class="inline-block aviso-privacidad">
-                    <a href="/#aviso-de-privacidad">Aviso de privacidad</a>
-                </div>
-                <div class="inline-block politica-ambiental">
-                    <a href="/#politica-ambiental">Política ambiental</a>
-                </div>                
-            </div>
-            <p class="center">
-                Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600 Ext. 3331
-            </p>
+        <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
+                    <div class="footer_top">
+                            <div class="wrapper">
+                                <h1 class="title_section">¡Hagamos plan!</h1>
+                                <div class="btn-contacto">
+                                    <div class="anunciate active">Anúnciate</div>
+                                    <div class="afíliate">AFíliate</div>
+                                </div>
+                                <div class='content-contact' >
+                                    <form class="contact_form" action="#" method="post">
+                                        <ul>
 
+                                           <li class='nombres'>
+                                               <input type="text" name="nombre"  placeholder="*NOMBRE" required />
+                                               <input type="text" name="apellido" placeholder="*APELLIDO" required />
+                                           </li>
+                                           <li class='correo'>
+                                               <input type="email" name="correo" placeholder="*CORREO ELECTRONICO" required />
+                                           </li>
+                                           <li class="mensaje">
+                                               <textarea name="Mensaje" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                               <span>*Campos Obligatorios</span> 
+                                           </li>
+                                           <li class="enviar">
+                                              <button class="submit" type="submit">Enviar</button>
+                                           </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>    
+                        <img class="pleca_linea_derecha" src="images/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
+
+                </div>
+        
+        <footer class="footer panel" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
+
+            <div class="footer_bottom">
+                <div class="wrapper">
+
+
+                </div>
+            </div>    
+            
         </footer>    
 
         <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
