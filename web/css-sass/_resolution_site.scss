@@ -1,0 +1,1536 @@
+@media only screen and (max-width: 700px) {
+
+    /*body {
+        background-color: orange;
+    }*/
+    
+    footer {
+        margin-bottom: 41px;
+    }
+    #wrapper-page-site {
+        .main-footer {
+            position: fixed;
+            bottom: 0px;
+            @include measures(100%,auto);
+        }
+    }
+
+    #page-case-exito {
+        #section-case-de-exito {
+            display: none;
+        }
+    }
+
+    .wrapper-table-formats, .wrapper-table-formats-publisher {
+        display: none;
+    }
+
+    .Hind-Bold {
+        font-family: Hind-Bold;
+    }
+
+    .invent-mobile-sprite {
+        background-image: url("../img/sprites/sprite_movil.png");
+        background-repeat: no-repeat;
+    }
+    
+    header {
+        //border-bottom: 2px solid #C3BABA;
+        .wrapper-header {
+            min-height: 50px;
+            max-width: 1024px;
+            margin: 0 auto;
+            //overflow: hidden;
+            @include measures(100%,auto);
+            .wrapper-site-logo {   
+                //padding-top: 4px;
+                @include measures(25%,auto);
+            }
+            .site-invent{
+                margin: 0 auto;
+                @extend .invent-mobile-sprite;
+                @include img-position(121px, 37px,-59px,-27px);
+            }
+            .wrapper-main{
+                display: block;
+                margin: 7px 5% 0 0;
+                .main-center{
+                    margin: 0 auto;
+                    display: block;
+                    @extend .invent-mobile-sprite;
+                    @include img-position(37px, 37px,-59px,-80px);
+                }
+            }            
+            ul {                
+                top: 50px;
+                left: 0px;
+                z-index: 9999;
+                display: none;
+                position: absolute;
+                //background-color: #000;
+                background-image: url("/web/img/bg/bg_menu_movil.png");
+                @include measures(100%,auto);
+                li {
+                    float: none;
+                    display: block;
+                    margin: 0 auto;
+                    padding: 10px 0;
+                    //margin-right: 0px;
+                    overflow: hidden;
+                    border-right: none;
+                    @include measures(94%,auto);
+                    //border-bottom: 2px solid #C3833E;
+                    border-bottom: 2px solid #ccd0d1;
+                    a {                        
+                        display:block;
+                        font-size: 14px;
+                        text-align: left;
+                        margin-left: 10px;
+                        font-family: Hind-Bold;
+                        &:hover {
+                            color: #e61a7b;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+
+    #slide-home, #slide-video-talento {
+        &.wrapper-image-section1 {
+            //background-image: url("/web/img/home/desktop/1024/1024.jpg");
+            background-image: url("/web/img/home/mobile/700/700.jpg");
+                .wrapper-grupo_medios_crecimiento {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+            .wrapper-image {
+                display: none;
+                img {
+
+                }
+            }
+            .section-description {
+                bottom: 100px;
+            }
+            .wrapper-description {
+                .slider-title {
+                    font-size: 50px;
+                    margin-bottom: 20px;
+                }
+                .slider-description {
+                    font-size: 25px;
+                }
+            }
+            
+            .owl-buttons {
+                display: none;
+            }
+            .owl-theme .owl-controls .owl-pagination {
+                display: block;
+            }
+            
+            .owl-theme .owl-controls {
+                padding: 0 0 20px 0;
+            }
+
+            .owl-theme .owl-controls .owl-page span {
+                @extend .invent-mobile-sprite;
+                @include img-position(14px,14px,-92px,-2789px);                
+            }
+            .owl-theme .owl-controls .owl-page.active span,
+            .owl-theme .owl-controls.clickable .owl-page:hover span {
+                @extend .invent-mobile-sprite;
+                @include img-position(14px,14px,-75px,-2789px);
+            }
+        }
+    }
+
+    .logo-invent{
+        @extend .invent-mobile-sprite;
+        @include img-position(89px, 28px,-203px,-35px);
+    }
+    .logo-invent-play {
+        display: inline-block;
+        @extend .invent-mobile-sprite;
+        @include img-position(278px, 50px,-310px,-13px);
+    }
+    
+    .bd-size-mobile.logo-invent-play {
+        display: inline-block;
+        @extend .invent-mobile-sprite;
+        @include measures(140px, 28px);
+        //@include img-position(278px, 50px,-310px,-13px);
+        background-position: -149px -6px;
+        background-size: 428px 1460px;
+        -webkit-background-size: 428px 1460px;
+        -moz-background-size: 428px 1460px;
+        -o-background-size: 428px 1460px;
+        -ms-background-size: 428px 1460px;
+        background-repeat: no-repeat;
+    }
+    
+    .owl-theme .owl-controls {
+        bottom: 17px;
+    }
+    
+    #wrapper-page-site {
+        max-width: 1950px;
+        min-height: 285px;
+    }        
+
+    .wrapper-image-section1 {
+        max-width: 100%;
+        margin-bottom: -3px;        
+        .wrapper-publish-stage {
+            display: none;
+        }
+
+    }
+
+    ul.red-invent-sections {
+        li.sections-img {
+            width: 47.5%;
+            margin: 0 0 15px 5%;
+        }
+        li.sections-img-box-0, li.sections-img-box-2 {
+            margin-left: 0%;
+        }        
+    }
+
+    ul.red-invent-sections-sites {
+        li.sections-sites {
+            width: 48.3% !important;
+        }
+    }
+
+    .wrapper-red-videos {
+        padding: 0px;        
+    }
+
+    ul.red-invent-sections-sites {        
+        .tag-movil {
+            display: block;
+        }
+
+    }
+
+    #home-accordion {
+        .title-seccion-invent {
+            //padding-top: 10px !important;
+            font-size: 20px;
+            line-height: 24px;
+            margin: 0px !important;
+            background-color: #000;            
+            border-top: 1px solid #FFF;
+            padding: 0 3%;
+            min-height: 35px;
+            @include measures(94%,auto);
+            background-image: url("../img/gradients/home-header-accordion.jpg");            
+            span {
+                color: #FFF;                
+            }
+            .logo-invent {
+                margin-top: -4px;
+            }
+            .bd-size-mobile.logo-invent-play{
+                margin-top: -3px;
+            }
+            .cgrey-invent.mt24{
+                margin-top: 4px;
+            }
+        }
+        .title-seccion-invent > span {
+            vertical-align: middle;
+        }        
+    }
+
+    .ui-icon-triangle-1-s {
+        display: inline-block;
+        @extend .invent-mobile-sprite;
+        @include img-position(21px, 21px, -62px, -121px);
+    }
+    .ui-icon-triangle-1-e {
+        display: inline-block;
+        @extend .invent-mobile-sprite;
+        @include img-position(21px, 21px, -83px, -121px);
+    }
+
+    ul.red-invent-sections-sites {
+        li.sections-sites {
+            span.site-excelsior {
+                margin: 0 auto 16px;
+                @extend .invent-mobile-sprite;
+                @include img-position(135px, 31px, -72px, -203px);                
+                //width: 144px;
+                //height: 28px;
+                //background-position: -56px -757px;
+            }
+            span.site-imagen, span.site-imagen-radio, span.site-imagenradio {
+                @extend .invent-mobile-sprite;
+                @include img-position(126px, 57px, -72px, -247px);                
+            }
+            span.site-reporte,span.site-reporte98, span.site-reporte985, span.site-reporte-985  {
+                @extend .invent-mobile-sprite;
+                @include img-position(128px, 24px, -74px, -383px);                
+            }
+            span.site-cadenatres,span.site-cadena-tres {
+                @extend .invent-mobile-sprite;
+                @include img-position(133px, 40px, -72px, -316px);                
+            }
+            span.site-dineroenimagen, span.site-dinero-en-imagen {
+                @extend .invent-mobile-sprite;
+                @include img-position(128px, 44px, -74px, -434px);                
+            }
+            span.site-salud180 {
+                margin: 0 auto 16px;
+                @extend .invent-mobile-sprite;
+                @include img-position(123px, 38px, -70px, -550px);                
+            }
+            span.site-actitudfem {
+                @extend .invent-mobile-sprite;
+                @include img-position(142px, 36px, -73px, -804px);                
+            }
+            span.site-rsvp {
+                @extend .invent-mobile-sprite;
+                @include img-position(104px, 36px, -90px, -860px);
+            }
+            span.site-melodijolola {
+                @extend .invent-mobile-sprite;
+                @include img-position(138px, 51px, -74px, -748px);
+            }
+            span.site-atraccion360 {
+                margin: 0 auto 23px;
+                @extend .invent-mobile-sprite;
+                //@include img-position(116px, 30px, -85px, -926px);
+                @include img-position(161px, 31px, -76px, -925px);
+            }
+            span.site-adrenalina360 {
+                @extend .invent-mobile-sprite;
+                @include img-position(155px, 27px, -62px, -500px);
+            }
+            span.site-garuyo {
+                @extend .invent-mobile-sprite;
+                @include img-position(114px, 41px, -90px, -970px);
+            }
+            span.site-swagger {
+                @extend .invent-mobile-sprite;
+                @include img-position(115px, 38px, -89px, -1027px);
+            }
+            span.site-gamedots {
+                margin: 0 auto 4px;
+                @extend .invent-mobile-sprite;
+                @include img-position(126px, 51px, -79px, -1085px);
+            }
+            span.site-estrategia45 {
+                //margin: 0 auto 4px;
+                @extend .invent-mobile-sprite;
+                @include img-position(136px, 37px, -82px, -1188px);
+            }
+            span.site-fahrenheit {
+                //margin: 0 auto 4px;
+                @extend .invent-mobile-sprite;
+                @include img-position(136px, 24px, -78px, -1153px);
+            }
+        } 
+    }
+    
+    /* form afiliate anunciate */    
+    /* messaje and fondo form afiliate y anunciate*/
+    #wrapper-page-site {
+        .wrapper-image-background {
+            background-color: #DDDFDE;
+            background-image: url("/web/img/afiliate/movil/700/700.jpg");
+        }
+    }
+    
+    .wrapper-image-background {
+        .wrapper-section-background {            
+            .form-afiliate, .form-anunciate {
+                @include measures(100%,auto);
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-name {
+                        margin-bottom: 0%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }                
+            }
+            .form-afiliate {
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(47%,auto);
+                    &.input-name {
+                        margin-bottom: 0%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }
+                .input-mail {
+                    width: 100% !important;
+                    //height: 25px;
+                    input[type="text"] {
+                        //padding: 3.3% 3.3%;                        
+                        @include measures(96%,auto);
+                    }
+                }
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            
+            .wrapper-image-section {
+                text-align: center;
+                margin: 0px !important;
+                @include measures(100%,auto);                
+                img {                    
+                    @include measures(80%,auto);
+                }
+            }
+            
+        }        
+    }
+    
+    
+    
+    .wrapper-messaje-form {
+        .messaje-send {
+            font-size: 25px;
+        }
+        .messaje-interest {
+            font-size: 35px;
+        }
+        .messaje-contact {
+            font-size: 25px;
+        }
+        .btn-publish {
+            font-size: 18px;
+        }
+    }
+
+
+    section.main-footer {
+        display:block;        
+        ul {
+            max-width: 1024px;
+            //background-color: #E58436;
+            background-color: #DDDFDE;
+            @include measures(100%,41px);
+            li.items-main {
+                text-align: center;
+                border-left: 2px solid #FFF;
+                //background-color: #E58436;
+                //@include measures(48%,auto);
+                @include measures(49.7%,auto);
+                a {
+                    //color: #FFF;
+                    color: #898989;
+                    font-size: 16px;
+                    padding: 12px 0;
+                    font-family: Hind-Bold;
+                    //@extend .Hind-Bold;
+                }
+            }
+            li:first-child {
+                //margin-right: 3%;
+                border-left: none;
+            }
+        }
+    }
+
+    .wrapper-image-section1 .wrapper-content-section1 img {
+        @include measures(100%,auto);
+    }
+
+    /* audiencias y contenidos */
+    #page-audiencias-contenidos {
+        .wrapper-description {
+            .audiencia-info {
+                display: none;
+            }
+        }
+        
+        ul#site-noticias-deportes.red-invent-sections-sites {
+            li.sections-sites-3 {
+                border-bottom: 2px solid #FFF;
+            }
+        }
+        ul#site-lifestye.red-invent-sections-sites {
+            li.sections-sites-6, li.sections-sites-7 {
+                border-bottom: 2px solid #FFF;
+            }
+        }
+        
+    }
+
+    /* markerts   */
+    #page-marketers {
+
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
+        }        
+
+        #publicidad-premium .wrapper-description {
+            margin-top: 10%;
+        }
+        #mobile .wrapper-description {
+            margin-top: 8%;
+        }
+        #video-ads .wrapper-description {
+            margin-top: 10%;
+        }
+        #sipi-y-content-marketing .wrapper-description {
+            margin-top: 10%;
+        }
+        #buzz-marketing .wrapper-description {
+            margin-top: 12%;
+        }
+        #programatic .wrapper-description{
+            margin-top: 5%;
+            //@include measures(100%,auto);
+        }
+
+        .wrapper-site-markerts {            
+            display: none;
+        }
+
+        .wrapper-image {
+            @include measures(50%,auto);
+        }
+
+        .wrapper-description {
+            @include measures(50%,auto);
+            .marketers-info {
+                display: none;
+            }
+            .marketers-title {
+                font-size: 30px;
+            }
+        }
+        .background-table {
+            display: none;
+        }
+        section {
+            background-color: #F1F1F1;
+        }
+        .marketers-info.versus-mobile {
+            padding: 40px 0;
+            color: #000;
+            display: block;
+            font-size: 15px;
+            line-height: 18px;
+            font-family: Hind-Regular;
+            background-color: #f1f1f1;
+            ul {
+                margin: 0 auto;
+                max-width: 1024px;
+                @include measures(85%,auto);
+                li {
+                    list-style: inside;
+                    list-style-type: square;                    
+                }
+            }
+        }
+    }
+
+    
+    /* Inicio del listado  de imagenes de los talentos */
+    .home-perfil-colaboradores {
+        ul {
+            li.sections-perfil-talento {
+                position: relative;
+                padding: 10px 0 !important;                
+                @include measures(100%,auto);
+                border-bottom: 2px solid #FFF;
+                .wrapper-image-talento {
+                    float: left;
+                    //max-width: 200px;
+                    text-align: left;
+                    @include measures(145px,auto);
+                    //@include measures(30%,auto);
+                    @include transition(all 1s ease);
+                    img {
+                        //@include measures(145px,auto);
+                        @include measures(100%,auto);
+                        @include transition(all 1s ease);
+                    }
+                }
+                .wrapper-info {
+                    float: left;
+                    margin: 45px 0 0 0;
+                    .name-editor {
+                        height: 40px;
+                        overflow: initial;
+                        display: block;
+                    }
+                    .type-content, .type-content a {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    /* Fin del listado  de imagenes de los talentos */
+    
+
+    .wrapper-our-services {
+        ul {
+            li.services-sites {
+                span.img-rich-media {                    
+                    @extend .invent-mobile-sprite;
+                    @include img-position(97px,82px,-64px,-2686px);
+                }
+                span.img-content-editorials {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(97px,88px,-202px,-2683px);
+                }
+                span.img-mobile {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(53px,95px,-344px,-2675px);
+                }
+                span.img-buzz-marketing {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(107px,101px,-436px,-2668px);
+                }
+                span.img-video {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(89px,82px,-600px,-2685px);
+                }
+                span.img-programatic {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(88px,90px,-739px,-2688px);
+                }
+            }
+        }
+    }
+
+
+    footer {
+        .footer-content-site-invent {            
+        }
+    }
+    
+
+    footer {
+        min-height: 50px;
+        //padding: 10px 0 3px 0;
+        //background-color: #1A1A1A;
+        @include measures(100%,auto);    
+        .footer-content-site-invent {
+            .wrapper-ico-site {
+                margin-bottom: 10px !important;
+                .footer-site-invent {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(106px, 31px,-607px,-95px);
+                }
+                .footer-social-responsable {
+                    
+                }
+                .footer-group-imagen {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(77px, 36px,-721px,-96px);
+                }
+            }
+            //margin: 0 auto;
+            //max-width: 1024px;
+            //@include measures(93.5%,auto);    
+            /*.footer-site-invent {
+                //margin: 0 auto;
+                @extend .invent-mobile-sprite;
+                @include img-position(195px, 40px,-606px,-93px);
+            }            */
+        }        
+    }
+
+    /* home */
+    #slide-home, #slide-video-talento {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/mobile/700/700.jpg");
+        }
+    }
+
+    /* videos talentos */
+    #page-video-talento {
+
+        #slide-video-talento.wrapper-image-section1 {
+            background-image: url("/web/img/perfil-video/mobile/700/700.jpg");
+            .wrapper-image {
+                display: none;
+            }
+            .wrapper-text {
+                @include measures(100%,auto);
+                img {
+                    margin-top: -15px;
+                }
+            }
+        }
+        
+        .home-perfil-colaboradores {
+            ul {
+                li.sections-perfil-talento {
+                    .name-editor {
+                        //height: 27px;
+                        font-size: 14px;
+                        margin-top: 0px;
+                    }
+                }
+            }
+        }
+        
+        .wrapper-red-videos {
+            //background-color: orange;
+            padding: 15px 0 15px 0;
+            .title-seccion-invent{
+                font-size: 26px;
+                span {
+                    display: block;
+                    margin-top: 15px;
+                }
+            }
+            .home-perfil-colaboradores{                
+                ul li.sections-perfil-talento {
+                    &.box-items{
+                        text-align: left;
+                        padding: 2% 0 2% 0;                        
+                        //margin-top: 5px;
+                        margin: 5px 0 0 0;
+                        @include measures(100%,auto);
+                        border-bottom: 2px solid #FFF;
+                    }
+                    &.box-items:first-child {
+                        margin-top: 0px;
+                    }
+                    .wrapper-image {
+                        float: left;
+                        @include measures(30%,auto);
+                    }
+                    .wrapper-info {
+                        margin: 65px 0 0 0;
+                    }
+                    .wrapper-description{
+                        & > span {
+                            vertical-align: middle;
+                        }
+                        float: left;
+                        //margin-left:3%;
+                        padding-top: 10%;
+                        @include measures(65%,auto);
+                        .name-editor {
+                            float: left;                            
+                            @include measures(100%,auto);
+                        }
+                        .type-content {
+                            float: left;                            
+                            @include measures(100%,auto);
+                        }
+                    }                    
+                }
+            }
+        }
+    }
+
+
+    /* afilite */
+    .wrapper-image-background {
+        //min-height: 520px;
+    }
+
+
+    /* caso  de exito */
+
+    /*caso  de exito */
+
+    #page-case-exito {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/mobile/horizontal/700/700.jpg");
+        }
+        .wrapper-case-items {
+            .wrapper-description-case, .wrapper-image-case {
+                @include measures(100%,auto);
+            }
+            .wrapper-image-case {
+                margin: 0 0 0 0;
+                text-align: center;
+                padding-top: 20px;
+                img {
+                    @include measures(85%,auto);
+                }
+            }
+
+            .wrapper-description-case {
+                .head-case {
+                    font-size: 22px;
+                }
+                .logo-case-volskwagen{
+                    @extend .invent-mobile-sprite;
+                    @include img-position(51px,53px,-74px,-2299px);
+                }
+                .logo-case-revlon {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(107px,22px,-142px,-2316px);
+                }
+                .logo-case-bridgestone {
+                    @extend .invent-mobile-sprite;
+                    @include img-position(55px,48px,-260px,-2302px);
+                }
+            }
+        }
+    }
+
+    /* audiencias y contenidos  */
+    #page-audiencias-contenidos {
+        background-color: #F1F1F1;
+        .wrapper-content-section1 {
+            .wrapper-description {
+                margin-top: 15%;
+                text-align: center;
+                .audiencia-title {
+                    font-size: 26px;
+                }
+            }
+        }
+
+        .wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/700.jpg");
+        }
+        /*#noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/700/lifestyle.jpg");
+        }*/
+
+        .wrapper-content-section1 {
+            .wrapper-description{
+                margin-top: 0% !important
+            }
+        }
+
+    }
+
+
+    /*  */
+    .content-section-site {
+        background-color: #F1F1F1;
+    }
+    ul.red-invent-sections-sites {
+        @include transition(all 1s ease);
+        padding: 0px;
+        li.bg-caca {
+            height: 0px;
+            display: none;                
+        }
+        li.sections-sites.active {  
+            @include transition(all 1s ease);
+            span.ico-sumary-active {
+                display: block;
+                top: 15%;
+                @extend .invent-mobile-sprite;
+                @include img-position(19px, 19px, -84px, -122px);
+            }
+            .site-sumary {                    
+                display: block;
+                padding-top: 5px;
+                line-height: 18px;
+                @include transition(left 0.2s ease);
+            }
+        }
+        li.sections-sites {
+            border-right: none;
+            position: relative;
+            width: 100% !important;                
+            height: auto !important;
+            padding: 10px 0 !important;
+            //min-height: 40px !important;
+            border-bottom: 2px solid #FFF;
+            border-top: none;
+            @include transition(all 1s ease);
+            a {
+                //display: inline-block;
+                display: block;
+            }
+            .site-sumary {
+                display: none;
+            }            
+            span {
+                margin-bottom: 0px;
+            }
+            span.ico-sumary-active {
+                display: block;
+                position: absolute;
+                top: 35%;
+                right: 15%;
+                @extend .invent-mobile-sprite;
+                @include img-position(19px, 19px, -63px, -122px);
+            }
+            span.site-bienestar180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(132px, 27px, -63px, -605px);
+            }
+            span.site-sexualidad180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(129px, 24px, -71px, -653px);
+            }
+            span.site-enforma180{
+                margin: 0 auto 15px;
+                @extend .invent-mobile-sprite;
+                @include img-position(125px, 24px, -74px, -705px);
+            }
+        }
+    }
+
+    /*  */
+
+
+    /* site especifico */
+    #page-perfil-sitio {
+        
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/700/700.jpg");
+        }
+        /*.bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/mobile/700/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/mobile/700/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/mobile/700/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/700/lifestyle.jpg");
+        }*/            
+            
+        /* init icono sprite sitio */
+        .site-excelsior {
+            @extend .invent-mobile-sprite;
+            @include img-position(135px, 31px, -72px, -203px);
+            //@include img-position(141px,28px,-88px,-1241px);
+        }
+        .site-imagen, .site-imagen-radio, .site-imagenradio {
+            @extend .invent-mobile-sprite;
+            @include img-position(126px, 57px, -72px, -247px);
+            //@include img-position(130px,54px,-90px,-1287px);
+        }
+        .site-reporte, .site-reporte98, .site-reporte985, .site-reporte-985 {
+            @extend .invent-mobile-sprite;
+            @include img-position(128px, 24px, -74px, -383px);
+            //@include img-position(132px,26px,-92px,-1421px);
+        }
+        .site-cadenatres, .site-cadena-tres {
+            @extend .invent-mobile-sprite;
+            @include img-position(133px, 40px, -72px, -316px);
+            //@include img-position(136px,40px,-90px,-1354px);
+        }
+        .site-dineroenimagen, .site-dinero-en-imagen {
+            @extend .invent-mobile-sprite;
+            @include img-position(128px, 44px, -74px, -434px);
+            //@include img-position(131px,45px,-92px,-1470px);
+        }
+        .site-salud180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(123px, 38px, -70px, -550px);
+            //@include img-position(129px,38px,-85px,-1583px);
+        }
+        .site-bienestar180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(137px,29px,-80px,-1637px);
+        }
+        .site-sexualidad180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(130px,26px,-91px,-1685px);
+        }
+        .site-enforma180 {
+            @extend .invent-mobile-sprite;
+            @include img-position(130px,29px,-91px,-1736px);
+        }
+        .site-actitudfem {
+            @extend .invent-mobile-sprite;
+            @include img-position(142px, 36px, -73px, -804px);
+            //@include img-position(145px,36px,-84px,-1840px);
+        }
+        .site-rsvp {
+            @extend .invent-mobile-sprite;
+            @include img-position(104px, 36px, -90px, -860px);
+            //@include img-position(110px,37px,-100px,-1896px);
+        }
+        .site-melodijolola {
+            @extend .invent-mobile-sprite;
+            @include img-position(138px, 51px, -74px, -748px);
+            //@include img-position(144px,49px,-91px,-1784px);
+        }
+        .site-atraccion360 {
+            @extend .invent-mobile-sprite;
+            @include img-position(161px, 31px, -76px, -925px);
+            //@include img-position(116px, 30px, -85px, -926px);
+            //@include img-position(127px,31px,-89px,-1962px);
+        }
+        .site-adrenalina360 {
+            @extend .invent-mobile-sprite;
+            @include img-position(155px, 27px, -62px, -500px);
+            //@include img-position(159px,25px,-80px,-1538px);
+        }
+        .site-garuyo {
+            @extend .invent-mobile-sprite;
+            @include img-position(114px, 41px, -90px, -970px);
+            //@include img-position(117px,41px,-100px,-2006px);
+        }
+        .site-swagger {
+            @extend .invent-mobile-sprite;
+            @include img-position(115px, 38px, -89px, -1027px);
+            //@include img-position(120px,39px,-99px,-2063px);
+        }
+        .site-gamedots {
+            @extend .invent-mobile-sprite;
+            @include img-position(126px, 51px, -79px, -1085px);
+            //@include img-position(131px,50px,-89px,-2120px);
+        }
+        .site-estrategia45 {
+            @extend .invent-mobile-sprite;
+            @include img-position(136px, 37px, -82px, -1188px);
+            //@include img-position(139px,37px,-91px,-2224px);
+        }
+        .site-fahrenheit {
+            @extend .invent-mobile-sprite;
+            @include img-position(136px, 24px, -78px, -1153px);
+            //@include img-position(138px,24px,-88px,-2190px);
+        }
+        /* end icono sprite sitio */
+                    
+        
+        
+        .main-sections-tools {
+            @include measures(100%,auto);
+            li {
+                a {
+                    height: 18px;
+                } 
+            }
+        }
+        .btn-publish {
+            font-size: 12px;            
+        }
+    }
+
+    /* perfil  talento */    
+    #page-perfil-talento {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/perfil-talento/mobile/700/700.png");
+        }
+        .main-sections-tools {
+            @include measures(100%,auto);
+        }
+        .btn-publish {
+            font-size: 12px;
+            height: 17px;
+        }        
+    }
+
+    /* graficas */
+
+
+
+}
+
+@media only screen and (max-width: 695px) {
+    .wrapper-our-services ul {
+        li.services-sites{
+            min-height: 225px;
+        }
+    }    
+}
+
+@media only screen and (max-width: 625px) {
+    .wrapper-our-services ul {
+        li.services-sites span.title{
+            height: 32px;
+        }
+    }
+    .home-perfil-colaboradores ul {
+        li{            
+            @include measures(29.3%,auto);            
+        }
+        /*li.box-0, li.box-3,li.box-6, li.box-9,li.box-12, li.box-15, 
+        li.box-18, li.box-21,li.box-24, li.box-27 {
+            margin-left: 0%;
+        }*/
+    } 
+}
+
+@media only screen and (max-width: 560px) {
+    .wrapper-our-services ul {
+        li.services-sites{
+            min-height: 240px;
+        }
+    }
+
+    /* caso  de exito */
+    #page-case-exito {
+        .main-sections-tools {
+            @include measures(100%,auto);
+        }
+        .btn-publish {
+            font-size: 16px;
+        }
+    }    
+
+}
+
+@media only screen and (max-width: 520px) {
+    #page-perfil-talento {
+        .wrapper-image-section1 {
+            .wrapper-perfil {
+                .perfil {
+                    .wrapper-img {
+                        float: none;
+                        text-align: center;
+                        @include measures(100%,auto);
+                    }
+                    .description  {
+                        float: none;
+                        margin: 3% 0 3% 0;
+                        text-align: center;
+                        @include measures(100%,auto);
+                        .type-perfil {
+                            margin-top: 2%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 965px) {
+    .main-sections-tools {
+        &.perfil-of-site {
+            li {
+                &.ps-mb20 {
+                    margin: 0 0 20px 0 !important;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    
+    /* form afiliate anuncuate */
+    /*.wrapper-image-background .wrapper-section-background .form-afiliate .label-input {
+        @include measures(47%,auto);
+    }*/
+    
+    .wrapper-image-background {
+        .wrapper-section-background {
+            .form-afiliate {
+                @include measures(100%,auto);
+            }
+            .form-anunciate {
+                @include measures(100%,auto);
+            }
+        }
+    }    
+    
+    
+    footer {
+        .footer-content-site-invent {
+            .footer-site-invent {
+                //display: block !important;
+                //margin: 0 auto;
+            }
+            .aviso-privacidad {
+                margin-right: 4%;
+            }
+            .politica-ambiental {
+                margin-right: 0;
+            }
+            /*.aviso-privacidad, .politica-ambiental {
+                margin-right: 3%;
+            }*/
+            
+        }
+    }
+    
+    /*page marketers*/
+    #page-marketers {
+        .wrapper-image-section1 {
+            padding: 15px 0;
+        }
+    }
+    
+    /* form afiliate anunciate */
+    /*.wrapper-image-background {
+        .wrapper-section-background {
+            .form-afiliate, .form-anunciate {
+                .label-input {
+                    @include measures(100%,auto);
+                }
+                .input-name, .input-mail {
+                    margin-bottom: 3%;
+                }
+            }
+            .form-anunciate {
+                .input-mail {
+                    input[type="text"] {
+                        padding: 3.3% 3.3%;
+                        @include measures(93%,auto);
+                    }
+                }
+            }
+        }
+    }*/
+    
+}
+
+@media only screen and (max-width: 484px) {
+    .wrapper-our-services ul {
+        li.services-sites {
+            min-height: 255px;
+        }
+    }
+        
+    
+}
+
+@media only screen and (max-width: 470px) {
+    #page-marketers {
+        .wrapper-description {
+            .marketers-title {
+                color: #FFF;
+                font-size: 25px;
+            }
+        }
+    }
+    
+    .wrapper-bars {
+        text-align: center;
+        @include measures(180px,auto);
+        div {
+            float: none !important;
+        }
+        .age-users {
+            padding: 15px 0;
+            @include measures(100%,auto);
+        }
+        .content-visit {
+            padding-top: 20px;
+            @include measures(100%,auto);
+            &.itemUnit {
+                @include measures(100%,auto);
+            }
+        }
+    }
+    
+    /* formulario afiliate/anunciate */
+    .wrapper-image-background {
+        .wrapper-section-background {            
+            .form-afiliate, .form-anunciate {
+                @include measures(100%,auto);
+                .label-input {
+                    @include measures(100%,auto);
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 3%;
+                    }
+                }                
+            }
+            .form-afiliate {
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+            .form-anunciate {
+                .label-input {
+                    @include measures(100%,auto);
+                    &.input-name {
+                        margin-bottom: 3%;
+                    }
+                    &.input-mail {
+                        margin-bottom: 0%;
+                    }
+                }
+                .input-mail {
+                    width: 100% !important;
+                    //height: 25px;
+                    input[type="text"] {
+                        //padding: 3.3% 3.3%;                        
+                        @include measures(96%,auto);
+                    }
+                }
+                .input-producto {
+                    @include measures(100%,auto);
+                }
+            }
+        }        
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+
+    .home-perfil-colaboradores ul {
+        li {
+            //margin-left: 4%;
+            @include measures(46%,auto);
+            .name-editor {
+                font-size: 16px;
+            }
+            .type-content {
+                font-size: 14px;
+            }
+        }
+
+    }        
+
+    .wrapper-our-services ul {
+        li.services-sites {
+            padding: 0 2%;            
+            margin-left: 2% !important;
+            @include measures(45%,auto);            
+        }
+        li.services-sites-0, li.services-sites-1,
+        li.services-sites-2, li.services-sites-3{ 
+            min-height: 230px !important;
+        }
+        li.services-sites-4, li.services-sites-5{ 
+            min-height: 260px !important;
+        }
+        li.services-sites-0, li.services-sites-2, li.services-sites-4 {
+            margin-left: 0% !important;
+        }
+    }
+
+    /* messaje and fondo form afiliate y anunciate*/
+    .wrapper-messaje-form {
+        .messaje-send {
+            font-size: 20px;
+        }
+        .messaje-interest {
+            font-size: 30px;
+        }
+        .messaje-contact {
+            font-size: 20px;
+        }
+        .btn-publish {
+            font-size: 16px;
+        }
+    }
+
+    /* caso  de exito */
+    #page-case-exito {
+        .wrapper-case-items {            
+            .wrapper-image-case {                
+                img {
+                    @include measures(95%,auto);
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 405px) {
+    #home-accordion {
+        .title-seccion-invent.our-services {
+            padding-bottom: 3%;
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    #slide-home, #slide-video-talento {
+        &.wrapper-image-section1 {
+            background-image: url("/web/img/home/mobile/400/400.jpg");
+            .wrapper-grupo_medios_crecimiento {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-casos_exito {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-soluciones_innovadoras {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-revolucionamos {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .wrapper-talento_joven {
+                    @include measures(100%,auto);
+                    background-image: none;
+                }
+                .section-description {
+                    bottom: 65px;
+                }
+                .wrapper-description {
+                    .slider-title {
+                        font-size: 30px;
+                        margin-bottom: 20px;
+                    }
+                    .slider-description {
+                        font-size: 18px;
+                    }
+                }
+        }
+    }
+    
+    .owl-theme .owl-controls {
+        bottom: 0px;
+    }
+    
+    #page-audiencias-contenidos {
+        .wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/400.jpg");
+        }
+        /*#noticias-negocios.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/noticias.jpg");
+        }
+        #mundo-saludable.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/saludable.jpg");
+        }
+        #mundo-femenino.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/femenino.jpg");
+        }
+        #lifestye.wrapper-image-section {
+            background-image: url("/web/img/audiencia-y-contenido/mobile/400/lifestyle.jpg");
+        }*/
+    }
+
+    #page-marketers {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/marketers/mobile/horizontal/700/700.jpg");
+        }
+    }
+    #page-case-exito {
+        .wrapper-case-items.even {
+            background-image: url("/web/img/caso-de-exito/mobile/vertical/400/400.jpg");
+        }
+    }
+    
+    #page-perfil-talento {
+        .wrapper-image-section1 {
+            background-image: url("/web/img/perfil-talento/mobile/400/400.png");
+        }        
+    }
+
+    #page-perfil-sitio {
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/400/400.jpg");
+        }
+        /*.bg-site.noticias-y-negocios {
+            background-image: url("/web/img/perfil-sitio/mobile/400/noticias.jpg");
+        }
+        .bg-site.mundo-saludable {
+            background-image: url("/web/img/perfil-sitio/mobile/400/saludable.jpg");
+        }
+        .bg-site.mundo-femenino {
+            background-image: url("/web/img/perfil-sitio/mobile/400/femenino.jpg");
+        }
+        .bg-site.life-style {
+            background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
+        }
+        .bg-site {
+            background-image: url("/web/img/perfil-sitio/mobile/400/lifestyle.jpg");
+        }*/
+    }
+
+    #page-video-talento {
+        #slide-video-talento.wrapper-image-section1 {
+            background-image: url("/web/img/perfil-video/mobile/400/400.jpg");
+        }
+    }
+
+    /* formularios */
+    #wrapper-page-site {
+        .wrapper-image-background {
+            background-color: #DDDFDE;
+            background-image: url("/web/img/afiliate/movil/400/400.jpg");
+        }
+    }
+    
+    .home-perfil-colaboradores {
+        ul {
+            li.sections-perfil-talento {
+                .wrapper-info {
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 360px) {
+    .home-perfil-colaboradores {
+        ul {
+            li.sections-perfil-talento {
+                .wrapper-info {
+                    width: 40%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 345px) { 
+    footer {
+        .footer-content-site-invent {
+            .wrapper-ico-site {
+                .footer-group-imagen {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    section.main-footer {
+        ul {
+            li.items-main {
+                @include measures(49%,auto);
+            }
+        }
+    }
+}

@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>    
-                        <img class="pleca_linea_derecha" src="images/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
+                        <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
 
                 </div>
         
@@ -105,6 +105,14 @@
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>
+        <script type="text/javascript" src="/web/js/libs/js.js"></script>
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
+        <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
+        <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
         
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
