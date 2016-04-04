@@ -21,15 +21,107 @@ $(function() {
         }
     });
     
-    
-    /* modelos */    
-    inventMx.home.Models = Backbone.Model.extend({});
     /* colecciones */
     inventMx.home.Collections = Backbone.Collection.extend({
-        model: inventMx.home.Models,
-        url: "/",
+        //model: inventMx.home.Models,
+        //url: "/",
+        initialize: function() {},
+        configuration: {
+            baseUrl: "http://api.inventmx.com/v1/inventmx",
+            apiKey: "3a5877fc16b6fcbf8eedbe55d091938a"
+        },
+        params: {
+            sort: null,
+            section_page: null,
+            type: null,
+            fields: null,
+            limit: null,
+            offset: null,
+            audio: null,
+            category_ids: null,
+            tag_ids: null,
+            category_url: null,
+            audience_url: null,
+            tag_url: null,
+            created_start: null,
+            created_finish: null,
+            callback: null,
+            not_ids: null,
+            columnista_ids: null,
+            sub_category_url: null
+        },
+        comparator: function(cliente) {
+            // ordenamos por el atributo nombre
+            return cliente.get('nombre');
+        }
     });
-
+    
+    /* modelos */    
+    inventMx.home.Models = Backbone.Model.extend({
+        initialize: function() {},
+        collectorParams: function(){
+            
+        },
+        assembleUrl: function(){
+            
+        },
+        getAjax: function(callback) {
+            Backbone.ajax({
+                dataType: "jsonp",
+                url: "https://api.twitter.com/1/statuses/user_timeline.json",
+                data: "",
+                success: function(val) {
+                    var Model = Backbone.Model.extend({});
+                    var Collection = Backbone.Collection.extend({
+                        model: Model
+                    });
+                    collection = new Collection(val);
+                    callback(collection);
+                }
+            });
+        }
+    });
+    
+    /*Contactos = Backbone.Collection.extend({
+        Model: contacto,
+        url: "contactos"
+    });*/
+    
+    var contacto = new Backbone.Model({
+        nombre: "Anthony Machine",
+        telefono: "+34931234567",
+        initialize: function() {},
+        allowedToEdit: function(account) {
+            return true;
+        }
+        //Defaults {}
+    });
+    //console.log(contacto.get("nombre"));
+    inventMx.home.pHomes = Backbone.View.extend({
+        //el: inventMx.page.wrapper_site,
+        template: "/app/templates/books/list.html",
+        model: contacto,
+        initialize: function() {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.loadPage();
+            this.render();
+        },
+        render: function() {
+            console.log(this.model);
+            $.get('templates/your-template-file.html', function(data) {
+                console.log(data);
+                template = _.template(data, {});
+                this.$el.html(template);
+            }, 'html');
+            return this;
+        },
+        loadPage: function() {
+            
+        },
+        acordeon: function(e) {},
+        events: {},
+    });
 
     /* home */
     inventMx.home.Home = Backbone.View.extend({
