@@ -38,59 +38,20 @@
                     </a>                    
                     <h1 class="none">Inventmx</h1>
                 </div>
-
-                <div class="wrapper-main right none">
-                    <span class="main-center block"></span>
-                </div>
-
-                <ul class="right">
-                    <li class="main-audiencia-contenido  left inline-block">
-                        <a class="audiencias-y-contenidos none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
-                    </li>
-                    <li class="main-maketers left inline-block">
-                        <a class="marketers none-decoration" href="/#marketers">MARKETERS</a>
-                    </li>
-                    <li class="main-red-de-videos left inline-block">
-                        <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
-                    </li>
-                    <li class="main-casos-de-exito left inline-block">
-                        <a class="caso-de-exito none-decoration" href="/#casos-de-exito">CASOS DE ÉXITO</a>
-                    </li>
-                    <li class="main-afiliate left inline-block">
-                        <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
-                    </li>
-                    <li class="main-anunciate left inline-block">
-                        <a class="anunciate none-decoration" href="/#anunciate">ANÚNCIATE</a>
-                    </li>
-                    <span class="clear block"></span>
-                </ul>                
-                <div class="clear"></div>
             </div>
         </header>
-
-        <div id="global-page">
-            <div id="wrapper-page-site" class="relative"></div>
+        
+        <!-- no borrar -->
+        <div id="wrapper-page">
+            <div id="page-main-invent-home"></div>
+            <div id="page-main-invent-redInvent"></div>
+            <div id="page-main-invent-content"></div>
+            <div id="page-main-invent-mediaHappenings"></div>
+            <div id="page-main-invent-networkAds"></div>
+            <div id="page-main-invent-blogs"></div>
+            <div id="page-main-invent-contacto"></div>
         </div>    
-
-        <footer>
-            <div class="footer-content-site-invent">
-                <div class="center wrapper-ico-site">
-                    <div class="inline-block footer-site-invent"></div>
-                    <div class="inline-block footer-social-responsable"></div>
-                    <div class="inline-block footer-group-imagen"></div>
-                </div>
-                <div class="inline-block aviso-privacidad">
-                    <a href="/#aviso-de-privacidad">Aviso de privacidad</a>
-                </div>
-                <div class="inline-block politica-ambiental">
-                    <a href="/#politica-ambiental">Política ambiental</a>
-                </div>                
-            </div>
-            <p class="center">
-                Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600 Ext. 3331
-            </p>
-
-        </footer>    
+   
 
         <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
         <script type="text/javascript" src="/web/js/site/tools.js"></script>

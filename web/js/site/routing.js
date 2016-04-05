@@ -3,7 +3,7 @@ $(function() {
         routes: {
             "": "home",
             "/": "home",
-            "la-red-invent": "laRedInvent",
+            "la-red-invent": "redInvent",
             "content": "content",
             "media-happenings": "mediaHappenings",
             "network-ads": "networkAds",
@@ -16,38 +16,38 @@ $(function() {
             "anunciate": "anunciate",
         },
         home: function() {
-            inventMx.home.vista = new inventMx.home.Home();
+            inventMx.view.pgHome = new inventMx.view.home();
         },
-        laRedInvent: function() {
-            console.log("laRedInvent");
+        redInvent: function() {
+            inventMx.pglaRedInvent = new inventMx.view.redInvent();
         },
         content: function() {
-            console.log("content");
+            inventMx.pgContent = new inventMx.view.content();
         },
         mediaHappenings: function() {
-            console.log("mediaHappenings");
+            inventMx.pgMediaHappenings = new inventMx.view.mediaHappenings();
         },
         networkAds: function() {
-            console.log("networkAds");
+            inventMx.pgNetworkAds = new inventMx.view.networkAds();
         },
         blogs: function() {
-            console.log("blogs");
+            inventMx.pgBlogs = new inventMx.view.blogs();
         },
         contacto: function() {
-            inventMx.home.pHomes = new inventMx.home.pHomes();
+            inventMx.pgContacto = new inventMx.view.contacto();
         },
         
         afiliate: function() {
-            inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
+            inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
         },
         anunciate: function() {
-            inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
+            inventMx.pgHomeAnunciate = new inventMx.thome.homeAnunciate();
         },    
         avisoPrivacidad: function() {
-            inventMx.home.pgAvisoPrivacidad = new inventMx.home.avisoPrivacidad();
+            inventMx.pgAvisoPrivacidad = new inventMx.thome.avisoPrivacidad();
         },        
         politicaAmbiental: function() {
-            inventMx.home.pgPoliticaAmbiental = new inventMx.home.politicAmbiental();
+            inventMx.pgPoliticAmbiental = new inventMx.thome.politicAmbiental();
         }
     });
     

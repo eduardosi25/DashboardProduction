@@ -22,13 +22,15 @@ $(function() {
     });
     
     /* colecciones */
-    inventMx.home.Collections = Backbone.Collection.extend({
-        //model: inventMx.home.Models,
+    var collectionsMain = Backbone.Collection.extend({
+        //model: config,
         //url: "/",
+        defaults: {},
         initialize: function() {},
         configuration: {
             baseUrl: "http://api.inventmx.com/v1/inventmx",
-            apiKey: "3a5877fc16b6fcbf8eedbe55d091938a"
+            apiKey: "3a5877fc16b6fcbf8eedbe55d091938a",
+            repositorio: "sites.json"
         },
         params: {
             sort: null,
@@ -50,35 +52,81 @@ $(function() {
             columnista_ids: null,
             sub_category_url: null
         },
-        comparator: function(cliente) {
-            // ordenamos por el atributo nombre
-            return cliente.get('nombre');
-        }
-    });
-    
-    /* modelos */    
-    inventMx.home.Models = Backbone.Model.extend({
-        initialize: function() {},
-        collectorParams: function(){
+        template: function(id,append,data){
             
         },
-        assembleUrl: function(){
+        assembleUrl: function(callback) {
+            var baseUrl = this.configuration.baseUrl;
+            var apiKey = this.configuration.apiKey;
+            var repositorio = this.configuration.repositorio;
+            var mainParams = this.params;
             
+            var params = {};
+            $.each(mainParams, function(i, j) {
+                if (j) {
+                    params[i] = j;
+                }
+            });
+            var url = baseUrl + "/" + repositorio + "/" + apiKey + "?callback=?";
+            this.getAjax(callback,url,params);
         },
-        getAjax: function(callback) {
+        getAjax: function(callback,url,params) {
             Backbone.ajax({
-                dataType: "jsonp",
-                url: "https://api.twitter.com/1/statuses/user_timeline.json",
-                data: "",
-                success: function(val) {
-                    var Model = Backbone.Model.extend({});
+                //dataType: "jsonp",
+                url: url,
+                data: params,
+                dataType: 'json',
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                async: true,
+                success: function(nodes) {
+                    /*var Model = Backbone.Model.extend({});
                     var Collection = Backbone.Collection.extend({
                         model: Model
                     });
-                    collection = new Collection(val);
-                    callback(collection);
+                    collection = new Collection(val);*/
+                    //callback(collection);
+                    if(nodes.response.status == "200" && nodes.data.length){
+                        return console.log(nodes.data);
+                    }else if(nodes.response.status == "200" && !nodes.data.length){
+                        return console.log("datos vacio");
+                    }else {
+                        return console.log("Status: " +nodes.response.status);
+                    }
+                    //return console.log(nodes);
+                },
+                error: function(request, status, error) {
+                    alert("Hubo un error inesperado, intenta nuevamente por favor");
                 }
             });
+        },
+        hideSections: function(section){
+            $("#wrapper-page div[id^='page-main-invent-']").each(function(){
+                $(this).hide();
+                $("#wrapper-page #page-main-invent-"+section).show();
+            });
+        }
+    });
+    
+    var collectionMain = new collectionsMain();
+    
+    /*mana.add({'nombre': 'Anthony Machine' });
+    mana.get('nombre');
+    console.log( mana.toJSON() );*/
+    //console.log(mana);
+    //console.log(mana.__proto__.configuration);
+    //console.log(mana.__proto__.params);
+    //mana.assembleUrl();
+    //mana.comparator("Angel");
+    //mana.params.get("sort");
+    
+    /* modelos */
+    inventMx.home.Models = Backbone.Model.extend({
+        initialize: function() {
+            this.assembleUrl();
+        },
+        hideSections: function(){
+            
         }
     });
     
@@ -88,8 +136,8 @@ $(function() {
     });*/
     
     var contacto = new Backbone.Model({
-        nombre: "Anthony Machine",
-        telefono: "+34931234567",
+        nombre: "",
+        telefono: "",
         initialize: function() {},
         allowedToEdit: function(account) {
             return true;
@@ -124,8 +172,9 @@ $(function() {
     });
 
     /* home */
-    inventMx.home.Home = Backbone.View.extend({
-        el: inventMx.page.wrapper_site,
+    inventMx.view = {};
+    inventMx.view.home = Backbone.View.extend({
+        //el: inventMx.page.wrapper_site,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
@@ -135,14 +184,22 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {
-            
-            inventMx.page.wrapper_site.load("/web/app/inventmx/home/home.html", function () {
+            $.get('/web/app/inventmx/home/home.html', function(data) {
+                console.log(data);
+                if(!$("#page-main-invent-home").children("div").length){
+                    $("#page-main-invent-home").html(data);
+                }else {
+                    console.log("cache");
+                }
+                collectionMain.hideSections();
                 
-                repo = "sites.json";
+                //template = _.template(data, {});
+                //this.$el.html(template);
+            }, 'html');
+            return this;
+            /*repo = "sites.json";
                 url = null;
-                return this;
-            });
-            
+                return this;*/
         },        
         acordeon: function(e) {
             e.preventDefault();                   
@@ -150,10 +207,105 @@ $(function() {
         events: {
             "click #home-accordion h2": "acordeon",
         },
-        
     }),
-    inventMx.home.homeAfiliate = Backbone.View.extend({
-        el: inventMx.page.wrapper_site,
+    
+    inventMx.view.redInvent = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/redInvent/redInvent.html', function(data) {
+                if(!$("#page-main-invent-redInvent").children("div")){
+                    $("#page-main-invent-redInvent").html(data);
+                }
+                collectionMain.hideSections();
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.content = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/content/content.html', function(data) {
+                if(!$("#page-main-invent-content").children("div")){
+                    $("#page-main-invent-content").html(data);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.mediaHappenings = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/mediaHappenings/mediaHappenings.html', function(data) {
+                 if(!$("#page-main-invent-mediaHappenings").children("div")){
+                    $("#page-main-invent-mediaHappenings").html(data);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.networkAds = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/networkAds/networkAds.html', function(data) {
+                if(!$("#page-main-invent-networkAds").children("div")){
+                    $("#page-main-invent-networkAds").html(data);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.blogs = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/blogs/blogs.html', function(data) {
+                if(!$("#page-main-invent-blogs").children("div")){
+                    $("#page-main-invent-blogs").html(data);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.contacto = Backbone.View.extend({
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get('/web/app/inventmx/contacto/contacto.html', function(data) {
+                 if(!$("#page-main-invent-contacto").children("div")){
+                    $("#page-main-invent-contacto").html(data);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    
+    
+    
+    inventMx.thome = {};
+    inventMx.thome.homeAfiliate = Backbone.View.extend({
+        //el: inventMx.page.wrapper_site,
         initialize: function () {
             
             inventMx.metas.configure = {
@@ -191,8 +343,8 @@ $(function() {
             });
         }
     }),
-    inventMx.home.homeAnunciate = Backbone.View.extend({
-        el: inventMx.page.wrapper_site,
+    inventMx.thome.homeAnunciate = Backbone.View.extend({
+        //el: inventMx.page.wrapper_site,
         initialize: function () {
             
             inventMx.metas.configure = {
@@ -230,7 +382,7 @@ $(function() {
     }),
     
     
-    inventMx.home.avisoPrivacidad = Backbone.View.extend({
+    inventMx.thome.avisoPrivacidad = Backbone.View.extend({
         initialize: function () {
             this.render();
         },
@@ -243,7 +395,7 @@ $(function() {
         },
     });
     
-    inventMx.home.politicAmbiental = Backbone.View.extend({
+    inventMx.thome.politicAmbiental = Backbone.View.extend({
         initialize: function () {
             this.render();
         },
