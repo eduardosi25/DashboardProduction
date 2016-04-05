@@ -9,6 +9,8 @@ $(function() {
             "media-happenings": "mediaHappenings",
             "network-ads": "networkAds",
             "blogs": "blogs",
+            ":site": "perfilSitio",
+            ":perfil": "perfilTalento",
             "contacto": "contacto",
             
             "aviso-de-privacidad": "avisoPrivacidad",
@@ -34,9 +36,16 @@ $(function() {
         blogs: function() {
             inventMx.pgBlogs = new inventMx.view.blogs();
         },
+        perfilSitio: function() {
+            inventMx.pgPerfilSitio = new inventMx.view.perfilSitio();
+        },
+        perfilTalento: function() {
+            inventMx.pgPerfilTalento = new inventMx.view.perfilTalento();
+        },
         contacto: function() {
             inventMx.pgContacto = new inventMx.view.contacto();
         },
+        
         
         afiliate: function() {
             inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
