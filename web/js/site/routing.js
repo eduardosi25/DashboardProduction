@@ -4,10 +4,8 @@ $(function() {
             "": "home",
             "/": "home",
             "la-red-invent": "redInvent",
-            "content": "content",
-            "content/:name_section": "content",
-            "media-happenings": "mediaHappenings",
-            "network-ads": "networkAds",
+            "servicios": "servicios",
+            "servicios/:name_section": "servicios",
             "blogs": "blogs",
             "blogs/:url": "blogsNota",
             ":site": "perfilSitio",
@@ -25,14 +23,8 @@ $(function() {
         redInvent: function() {
             inventMx.pglaRedInvent = new inventMx.view.redInvent();
         },
-        content: function() {
-            inventMx.pgContent = new inventMx.view.content();
-        },
-        mediaHappenings: function() {
-            inventMx.pgMediaHappenings = new inventMx.view.mediaHappenings();
-        },
-        networkAds: function() {
-            inventMx.pgNetworkAds = new inventMx.view.networkAds();
+        servicios: function(name_section) {
+            inventMx.pgServicios = new inventMx.view.servicios(name_section);
         },
         blogs: function() {
             inventMx.pgBlogs = new inventMx.view.blogs();
@@ -40,11 +32,11 @@ $(function() {
         blogsNota: function() {
             inventMx.pgBlogsNota = new inventMx.view.blogsNota();
         },
-        perfilSitio: function() {
-            inventMx.pgPerfilSitio = new inventMx.view.perfilSitio();
+        perfilSitio: function(site) {
+            inventMx.pgPerfilSitio = new inventMx.view.perfilSitio(site);
         },
-        perfilTalento: function() {
-            inventMx.pgPerfilTalento = new inventMx.view.perfilTalento();
+        perfilTalento: function(perfil) {
+            inventMx.pgPerfilTalento = new inventMx.view.perfilTalento(perfil);
         },
         contacto: function() {
             inventMx.pgContacto = new inventMx.view.contacto();
