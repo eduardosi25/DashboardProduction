@@ -57,9 +57,7 @@
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
             <div id="page-main-invent-redInvent"></div>
-            <div id="page-main-invent-content"></div>
-            <div id="page-main-invent-mediaHappenings"></div>
-            <div id="page-main-invent-networkAds"></div>
+            <div id="page-main-invent-servicios"></div>
             <div id="page-main-invent-perfilSitio"></div>
             <div id="page-main-invent-perfilTalento"></div>
             <div id="page-main-invent-blogs"></div>

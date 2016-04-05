@@ -392,7 +392,7 @@ $(function() {
             return this;
         }
     }),
-    inventMx.view.content = Backbone.View.extend({
+    inventMx.view.servicios = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
@@ -402,50 +402,10 @@ $(function() {
         },
         render: function () {
             var idContent = this.idContent;
-            var  section = "content";
-            $.get(this.template+'content/content.html', function(data) {
-                if($(idContent+"content").children("div").length == 0){
-                    $(idContent+"content").html(data);
-                }
-                collectionMain.hideSections(section);
-            }, 'html');
-            return this;
-        }
-    }),
-    inventMx.view.mediaHappenings = Backbone.View.extend({
-        template: collectionMain.get("c3").attributes.pathTemplate,
-        idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        initialize: function () {
-            $(this.el).unbind();
-            _.bindAll(this, 'render');
-            this.render();
-        },
-        render: function () {
-            var idContent = this.idContent;
-            var  section = "mediaHappenings";
-            $.get(this.template+'mediaHappenings/mediaHappenings.html', function(data) {
-                 if($(idContent+"mediaHappenings").children("div").length == 0){
-                    $(idContent+"mediaHappenings").html(data);
-                }
-                collectionMain.hideSections(section);
-            }, 'html');
-            return this;
-        }
-    }),
-    inventMx.view.networkAds = Backbone.View.extend({
-        template: collectionMain.get("c3").attributes.pathTemplate,
-        idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        initialize: function () {
-            $(this.el).unbind();
-            _.bindAll(this, 'render');
-            this.render();
-        },
-        render: function () {
-            var idContent = this.idContent;
-            var  section = "networkAds";
-            $.get(this.template+'networkAds/networkAds.html', function(data) {
-                if($(idContent+"networkAds").children("div").length == 0){
-                    $(idContent+"networkAds").html(data);
+            var  section = "servicios";
+            $.get(this.template+'servicios/servicios.html', function(data) {
+                if($(idContent+"servicios").children("div").length == 0){
+                    $(idContent+"servicios").html(data);
                 }
                 collectionMain.hideSections(section);
             }, 'html');
