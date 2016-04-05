@@ -268,6 +268,51 @@ $(function() {
             return this;
         }
     }),
+    inventMx.view.blogsNota = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get(this.template+'blogs/blogsNota.html', function(data) {
+                $(this.idContent+"blogs-nota").html(data);
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.perfilSitio = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get(this.template+'perfilSitio/perfilSitio.html', function(data) {
+                $(this.idContent+"perfilSitio").html(data);
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.perfilTalento = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {            
+            $.get(this.template+'perfilTalento/perfilTalento.html', function(data) {
+                $(this.idContent+"perfilTalento").html(data);
+            }, 'html');
+            return this;
+        }
+    }),
     inventMx.view.contacto = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,

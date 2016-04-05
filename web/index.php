@@ -59,7 +59,10 @@
             <div id="page-main-invent-content"></div>
             <div id="page-main-invent-mediaHappenings"></div>
             <div id="page-main-invent-networkAds"></div>
+            <div id="page-main-invent-perfilSitio"></div>
+            <div id="page-main-invent-perfilTalento"></div>
             <div id="page-main-invent-blogs"></div>
+            <div id="page-main-invent-blogs-nota"></div>
             <div id="page-main-invent-contacto"></div>
         </div>  
         <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">

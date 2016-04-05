@@ -9,6 +9,7 @@ $(function() {
             "media-happenings": "mediaHappenings",
             "network-ads": "networkAds",
             "blogs": "blogs",
+            "blogs/:url": "blogsNota",
             ":site": "perfilSitio",
             ":perfil": "perfilTalento",
             "contacto": "contacto",
@@ -35,6 +36,9 @@ $(function() {
         },
         blogs: function() {
             inventMx.pgBlogs = new inventMx.view.blogs();
+        },
+        blogsNota: function() {
+            inventMx.pgBlogsNota = new inventMx.view.blogsNota();
         },
         perfilSitio: function() {
             inventMx.pgPerfilSitio = new inventMx.view.perfilSitio();
