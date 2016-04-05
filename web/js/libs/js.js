@@ -32,7 +32,7 @@ $('#intro').parallax({
 
 	*/				
              
-              jQuery(window).stellar();
+           /*++++++++++++++++++++++++++++++++   jQuery(window).stellar();
             slide = $('.slide');
             button = $('.button');
             mywindow = $(window);
@@ -56,7 +56,7 @@ $('#intro').parallax({
                     htmlbody.animate({
                             scrollTop: $('.slide[data-slide="' + dataslide + '"]').offset().top
                     }, 2000, 'easeInOutQuint');
-            }
+            }*/
 
 $('.flexslider').flexslider({
         animation: "slide",

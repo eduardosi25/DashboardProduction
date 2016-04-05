@@ -29,6 +29,7 @@
         <div id="wrapper-loading-layout">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
+
 -->
         <header id="header">
         <div class="wrapper">
@@ -50,11 +51,17 @@
         
         
     </header>
-
-        <div id="global-page">
-            <div id="wrapper-page-site" class="relative"></div>
-        </div>    
-
+  
+        <!-- no borrar -->
+        <div id="wrapper-page">
+            <div id="page-main-invent-home"></div>
+            <div id="page-main-invent-redInvent"></div>
+            <div id="page-main-invent-content"></div>
+            <div id="page-main-invent-mediaHappenings"></div>
+            <div id="page-main-invent-networkAds"></div>
+            <div id="page-main-invent-blogs"></div>
+            <div id="page-main-invent-contacto"></div>
+        </div>  
         <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
                     <div class="footer_top">
                             <div class="wrapper">
@@ -100,20 +107,19 @@
             </div>    
             
         </footer>    
-
         <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>
-        <script type="text/javascript" src="/web/js/libs/js.js"></script>
+        
         <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-        <script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>
+        <!--<script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>-->
         <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
         <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
-        
+        <script type="text/javascript" src="/web/js/libs/js.js"></script>
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
             <link rel="canonical" href="{{ canonical }}" />
