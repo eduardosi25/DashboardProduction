@@ -152,7 +152,8 @@ $(function() {
             _.bindAll(this, 'render');
             this.loadPage();
         },
-        render: function () {            
+        render: function () {      
+            
             //this.loadPage();
         },
         loadPage: function () {
@@ -169,8 +170,194 @@ $(function() {
                 }
                 collectionMain.hideSections(section);
                 
-                //template = _.template(data, {});
-                //this.$el.html(template);
+                
+                $('.flexslider').flexslider({
+                        animation: "slide",
+                        animationLoop: true,
+                        slideshowSpeed: 4000, 
+                        animationSpeed: 2000,
+                        controlNav: true,               
+                        directionNav: false, 
+
+                      });
+                $('.flexslider_marcas').flexslider({
+                        animation: "slide",
+                        animationLoop: true,
+                        slideshowSpeed: 4000, 
+                        animationSpeed: 2000,
+                        controlNav: false,               
+                        directionNav: true, 
+
+                      });
+                $('.flexslider_bloger').flexslider({
+                        animation: "slide",
+                        animationLoop: true,
+                        slideshowSpeed: 4000, 
+                        animationSpeed: 2000,
+                        controlNav: false,               
+                        directionNav: true, 
+
+                      });
+                      
+                      
+                $('#demo-pie-1').pieChart({
+                    barColor: '#17d9b4',
+                    trackColor: '#a03d73',
+                    lineCap: 'square',
+                    lineWidth: 24,
+                    size: 158,
+                    rotate: -110,
+                    animate: {
+                        duration: 3000,
+                        enabled: true
+                      },
+                    onStep: function (from, to, percent) {
+                        $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                    }
+                });
+                $('#demo-pie-2').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 3000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                $('#demo-pie-3').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 2000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                            }
+                        });
+                $('#demo-pie-4').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 2000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                $('#demo-pie-5').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 2000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                $('#demo-pie-6').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                $('#demo-pie-7').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#a03d73',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                         $('#demo-pie-8').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#449cce',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 3000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                $('#demo-pie-9').pieChart({
+                            barColor: '#17d9b4',
+                            trackColor: '#449cce',
+                            lineCap: 'square',
+                            lineWidth: 24,
+                            size: 158,
+                            rotate: -110,
+                            animate: {
+                                duration: 3000,
+                                enabled: true
+                              },
+                            onStep: function (from, to, percent) {
+                                $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                            }
+                        });
+                    $("#audiencias .wrapper .content-audiencias > div").on({
+
+                        mouseenter: function (e) {
+                            //e.preventDefault();
+                            e.stopPropagation();
+                            //var href = $(this).attr("href");
+                            $(this).addClass("gif-active");
+                            var img = $(this).find("img");
+                            var src = $(this).find("img").attr("src");
+                            src = src.replace(/png/g, "gif");
+                            img.attr("src", src);
+                            //console.log("Mouse Over!");
+                        },
+                        mouseleave: function (e) {
+                            //e.preventDefault();
+                            e.stopPropagation();
+                            //var href = $(this).attr("href");
+                            $(this).removeClass("gif-active");
+                            var img = $(this).find("img");
+                            var src = $(this).find("img").attr("src");
+                            src = src.replace(/gif/g, "png");
+                            img.attr("src", src);
+                            //console.log("Mouse Out!");
+                        }
+                    });        
+
+                
+                
+                
             }, 'html');
             return this;
             /*repo = "sites.json";

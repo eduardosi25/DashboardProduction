@@ -23,7 +23,7 @@
  * RESETS
  * ====================================================================================================================*/
 .sprite, .flexslider_marcas .flex-direction-nav a:before, .flexslider_bloger .flex-direction-nav a:before {
-  background: url("/images/sprite_invent.png");
+  background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
 .flex-container a:hover,

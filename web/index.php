@@ -22,6 +22,7 @@
         <meta name="robots" content="index,follow,noarchive" />
         <title>InventMx</title>
         <link rel="stylesheet" type="text/css" href="/web/css/style.css">
+        <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
 
     </head>
     <body class="relative">
