@@ -97,17 +97,22 @@
 
                 </div>
         
-        <footer class="footer panel" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
-
-            <div class="footer_bottom">
-                <div class="wrapper">
-
-
-                </div>
-            </div>    
+        <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
+            <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   
+                 <div>
+               <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
+               <div id="bottom-links" style="display:none;">
+                   <span id="politicasprivacidad">/aviso-de-privacidad</span>
+                   <span id="condiciones-uso">/terminos-y-condiciones-de-uso</span>
+                   <span id="gotop">#page</span>
+                   <span id="politicaambiental">/politica-ambiental</span>
+                   <span id="sitemap">/sitemap.xml</span>
+                   <span id="rss">/rss.xml</span>
+               </div>
+           </div>      
             
         </footer>    
-        <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
+             
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>

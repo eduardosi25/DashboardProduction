@@ -62,7 +62,6 @@
 @import "_cssreset.scss";
 
 
-
 .fugaz_oneregular{
     font-family: 'fugaz_oneregular';
     
@@ -104,7 +103,12 @@ a{
  color: #fec524;   
 }
 
-
+canvas{
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+}
 
 .slide{
 	background-attachment: fixed;
@@ -120,6 +124,7 @@ a{
         height: auto;
 	margin:0 auto;
 	position:relative;
+        z-index:2;
         .title_section{
             @extend .fugaz_oneregular;
             font-size: 60px;
@@ -561,10 +566,7 @@ a{
     background-color:rgb(220,27,72); 
 }
 #footer{
-    
-	width: 100%;
-        position: relative;
-        overflow: hidden;
+    background:#1A1A1A;
         .wrapper{
             max-width: 585px;
             margin: 0 auto;
@@ -579,7 +581,7 @@ a{
         background-position: left top;
     background-attachment: fixed;
 	//background-color:#dc1b48;
-        height: 1077px;
+        max-height: 1077px;
         position:relative;
         overflow:hidden;
         .wrapper{
@@ -1971,16 +1973,18 @@ Codiga
 /******************************
  End Blogs-nota
 *******************************/
+content-facebook{
+    display:none;
+}
 
 
-
-#publico .pleca_cruz_izquierda, .morado .pleca_cruz_izquierda, .azul .pleca_cruz_izquierda,.rosado .pleca_cruz_izquierda{
+#publico .pleca_cruz_izquierda, .morado .pleca_cruz_izquierda, .azul .pleca_cruz_izquierda, .rosado .pleca_cruz_izquierda{
 	position:absolute;
 	top:-30px;
 	left:-30px;
         
 }
-#publico .pleca_cruz_derecha, .morado .pleca_cruz_derecha, .azul .pleca_cruz_izquierda, .rosado .pleca_cruz_izquierda{
+#publico .pleca_cruz_derecha, .morado .pleca_cruz_derecha, .azul .pleca_cruz_derecha, .rosado .pleca_cruz_derecha{
 	position:absolute;
 	right:-80px;
 	bottom:-80px;
@@ -2004,18 +2008,24 @@ Codiga
 	left:-20px;
         
 }
-#audiencias .pleca_linea_derecha{
+#solucion .pleca_linea_izquierda {
+    position: absolute;
+    bottom: 6px;
+    left: -20px;
+    transform: rotate(273deg);
+}
+#audiencias .pleca_linea_derecha, #exito .pleca_linea_derecha{
 	position:absolute;
 	right:-60px;
 	bottom:-100px;
 }
-#resultados .pleca_puntos_izquierda{
+#resultados .pleca_puntos_izquierda, #codiga-descrition .pleca_puntos_izquierda{
 	position:absolute;
 	top:-180px;
 	left:-180px;
        
 }
-#resultados .pleca_puntos_derecha{
+#resultados .pleca_puntos_derecha, #codiga-descrition .pleca_puntos_derecha{
 	position:absolute;
 	right:-200px;
 	bottom:-200px;
@@ -2038,3 +2048,7 @@ Codiga
     position: relative;
     z-index: 2;
 }
+body #bottom-imx-fixed-wrapper.bottom-static{
+    height: auto !important;
+}
+@import "_resolution_site.scss";
