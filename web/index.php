@@ -21,26 +21,37 @@
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
         <title>InventMx</title>
-        <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
+        <link rel="stylesheet" type="text/css" href="/web/css/style.css">
 
     </head>
     <body class="relative">
-
+<!--
         <div id="wrapper-loading-layout">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
 
-        <header>
-            <div class="wrapper-header relative">
-                <div class="wrapper-site-logo left">
-                    <a href="/#">
-                        <span class="site-invent block"></span>
-                    </a>                    
-                    <h1 class="none">Inventmx</h1>
-                </div>
+-->
+        <header id="header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
             </div>
-        </header>
+            <div class="menu">
+                <ul>
+                    <li class="linea"><a href="/#red-invent">La red invent</a></li>
+                    <li class="linea"><a href="/#content">Content</a></li>
+                    <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
+                    <li class="linea"><a href="/#network-ads">Network Ads</a></li>
+                    <li class="linea"><a href="/#blogs">Blogs</a></li>
+                    <li class="contato"><a href="/#contacto">contato</a></li>
+                    <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
+                </ul>
+            </div>
+        </div>
         
+        
+    </header>
+  
         <!-- no borrar -->
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
@@ -50,14 +61,70 @@
             <div id="page-main-invent-networkAds"></div>
             <div id="page-main-invent-blogs"></div>
             <div id="page-main-invent-contacto"></div>
-        </div>    
-   
+        </div>  
+        <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
+                    <div class="footer_top">
+                            <div class="wrapper">
+                                <h1 class="title_section">¡Hagamos plan!</h1>
+                                <div class="btn-contacto">
+                                    <div class="anunciate active">Anúnciate</div>
+                                    <div class="afíliate">AFíliate</div>
+                                </div>
+                                <div class='content-contact' >
+                                    <form class="contact_form" action="#" method="post">
+                                        <ul>
 
-        <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>        
+                                           <li class='nombres'>
+                                               <input type="text" name="nombre"  placeholder="*NOMBRE" required />
+                                               <input type="text" name="apellido" placeholder="*APELLIDO" required />
+                                           </li>
+                                           <li class='correo'>
+                                               <input type="email" name="correo" placeholder="*CORREO ELECTRONICO" required />
+                                           </li>
+                                           <li class="mensaje">
+                                               <textarea name="Mensaje" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                               <span>*Campos Obligatorios</span> 
+                                           </li>
+                                           <li class="enviar">
+                                              <button class="submit" type="submit">Enviar</button>
+                                           </li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>    
+                        <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
+
+                </div>
+        
+        <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
+            <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   
+                 <div>
+               <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
+               <div id="bottom-links" style="display:none;">
+                   <span id="politicasprivacidad">/aviso-de-privacidad</span>
+                   <span id="condiciones-uso">/terminos-y-condiciones-de-uso</span>
+                   <span id="gotop">#page</span>
+                   <span id="politicaambiental">/politica-ambiental</span>
+                   <span id="sitemap">/sitemap.xml</span>
+                   <span id="rss">/rss.xml</span>
+               </div>
+           </div>      
+            
+        </footer>    
+             
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>
         
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <!--<script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>-->
+        <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
+        <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
+        <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/js.js"></script>
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
             <link rel="canonical" href="{{ canonical }}" />
