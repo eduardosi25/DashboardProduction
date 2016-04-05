@@ -156,15 +156,18 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {
-            //console.log(this.model);            
+            //console.log(this.model);
+            var idContent = this.idContent;
+            var section = "home";
             $.get(this.template+'home/home.html', function(data) {
-                console.log(data);
-                if(!$(this.idContent+"home").children("div").length){
-                    $(this.idContent+"home").html(data);
+                //console.log(data);
+                //console.log("home");
+                if($(idContent+"home").children("div").length == 0){
+                    $(idContent+"home").html(data);
                 }else {
                     console.log("cache");
                 }
-                collectionMain.hideSections();
+                collectionMain.hideSections(section);
                 
                 //template = _.template(data, {});
                 //this.$el.html(template);
@@ -190,12 +193,14 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "redInvent";
             $.get(this.template+'redInvent/redInvent.html', function(data) {
-                if(!$(this.idContent+"redInvent").children("div")){
-                    $(this.idContent+"redInvent").html(data);
+                if($(idContent+"redInvent").children("div").length == 0){
+                    $(idContent+"redInvent").html(data);
                 }
-                collectionMain.hideSections();
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -208,11 +213,14 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "content";
             $.get(this.template+'content/content.html', function(data) {
-                if(!$(this.idContent+"content").children("div")){
-                    $(this.idContent+"content").html(data);
+                if($(idContent+"content").children("div").length == 0){
+                    $(idContent+"content").html(data);
                 }
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -226,10 +234,13 @@ $(function() {
             this.render();
         },
         render: function () {
+            var idContent = this.idContent;
+            var  section = "mediaHappenings";
             $.get(this.template+'mediaHappenings/mediaHappenings.html', function(data) {
-                 if(!$(this.idContent+"mediaHappenings").children("div")){
-                    $(this.idContent+"mediaHappenings").html(data);
+                 if($(idContent+"mediaHappenings").children("div").length == 0){
+                    $(idContent+"mediaHappenings").html(data);
                 }
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -242,11 +253,14 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "networkAds";
             $.get(this.template+'networkAds/networkAds.html', function(data) {
-                if(!$(this.idContent+"networkAds").children("div")){
-                    $(this.idContent+"networkAds").html(data);
+                if($(idContent+"networkAds").children("div").length == 0){
+                    $(idContent+"networkAds").html(data);
                 }
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -259,11 +273,14 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "blogs";
             $.get(this.template+'blogs/blogs.html', function(data) {
-                if(!$(this.idContent+"blogs").children("div")){
-                    $(this.idContent+"blogs").html(data);
+                if($(idContent+"blogs").children("div").length == 0){
+                    $(idContent+"blogs").html(data);
                 }
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -276,9 +293,12 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "blogsNota";
             $.get(this.template+'blogs/blogsNota.html', function(data) {
-                $(this.idContent+"blogs-nota").html(data);
+                $(idContent+"blogs-nota").html(data);
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -291,9 +311,12 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "perfilSitio";
             $.get(this.template+'perfilSitio/perfilSitio.html', function(data) {
-                $(this.idContent+"perfilSitio").html(data);
+                $(idContent+"perfilSitio").html(data);
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -306,9 +329,12 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "perfilTalento";
             $.get(this.template+'perfilTalento/perfilTalento.html', function(data) {
-                $(this.idContent+"perfilTalento").html(data);
+                $(idContent+"perfilTalento").html(data);
+                collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
@@ -321,10 +347,13 @@ $(function() {
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "contacto";
             $.get(this.template+'contacto/contacto.html', function(data) {
-                 if(!$(this.idContent+"contacto").children("div")){
-                    $(this.idContent+"contacto").html(data);
+                 if($(idContent+"contacto").children("div").length == 0){
+                    $(idContent+"contacto").html(data);
+                    collectionMain.hideSections(section);
                 }
             }, 'html');
             return this;
