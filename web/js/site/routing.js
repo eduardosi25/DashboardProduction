@@ -5,6 +5,7 @@ $(function() {
             "/": "home",
             "la-red-invent": "redInvent",
             "content": "content",
+            "content/:name_section": "content",
             "media-happenings": "mediaHappenings",
             "network-ads": "networkAds",
             "blogs": "blogs",

@@ -23,43 +23,28 @@ $(function() {
     
     /* colecciones */
     var collectionsMain = Backbone.Collection.extend({
-        //model: config,
+        //model: modelMain,
         //url: "/",
-        defaults: {},
         initialize: function() {},
-        configuration: {
-            baseUrl: "http://api.inventmx.com/v1/inventmx",
-            apiKey: "3a5877fc16b6fcbf8eedbe55d091938a",
-            repositorio: "sites.json"
-        },
-        params: {
-            sort: null,
-            section_page: null,
-            type: null,
-            fields: null,
-            limit: null,
-            offset: null,
-            audio: null,
-            category_ids: null,
-            tag_ids: null,
-            category_url: null,
-            audience_url: null,
-            tag_url: null,
-            created_start: null,
-            created_finish: null,
-            callback: null,
-            not_ids: null,
-            columnista_ids: null,
-            sub_category_url: null
-        },
-        template: function(id,append,data){
-            
+        template: function(idTemplate, appendTo, data) {
+            if ($(idTemplate).length && $(appendTo).length && data.length) {
+                var tpl = $(idTemplate).html();
+                var section = Handlebars.compile(tpl);
+                var items = section(data);
+                $(appendTo).html(items);
+            }else {
+                console.log("Es posible que no exista algún parametro enviado, los datos recibidos para el template son:");
+                console.log("template: "+idTemplate);
+                console.log("append: "+ appendTo);
+                console.log("data:");
+                console.log(data);
+            }
         },
         assembleUrl: function(callback) {
-            var baseUrl = this.configuration.baseUrl;
-            var apiKey = this.configuration.apiKey;
-            var repositorio = this.configuration.repositorio;
-            var mainParams = this.params;
+            var baseUrl = collectionMain.get("c1").attributes.baseUrl;
+            var apiKey = collectionMain.get("c1").attributes.apiKey;
+            var repositorio = collectionMain.get("c1").attributes.repositorio;
+            var mainParams = collectionMain.get("c2").attributes;
             
             var params = {};
             $.each(mainParams, function(i, j) {
@@ -86,8 +71,14 @@ $(function() {
                     });
                     collection = new Collection(val);*/
                     //callback(collection);
+                    
                     if(nodes.response.status == "200" && nodes.data.length){
-                        return console.log(nodes.data);
+                        if(typeof callback == "function"){
+                            var idTemplate = "#d";
+                            var appendTo = "#c";
+                            var data = nodes.data;
+                            callback(idTemplate, appendTo, data)
+                        }
                     }else if(nodes.response.status == "200" && !nodes.data.length){
                         return console.log("datos vacio");
                     }else {
@@ -109,72 +100,53 @@ $(function() {
     });
     
     var collectionMain = new collectionsMain();
+    collectionMain.add({
+        baseUrl: "http://api.inventmx.com/v1/inventmx",
+        apiKey: "3a5877fc16b6fcbf8eedbe55d091938a",
+        repositorio: "sites.json"
+    });
+    collectionMain.add({
+        sort: null,
+        section_page: null,
+        type: null,
+        fields: null,
+        limit: null,
+        offset: null,
+        audio: null,
+        category_ids: null,
+        tag_ids: null,
+        category_url: null,
+        audience_url: null,
+        tag_url: null,
+        created_start: null,
+        created_finish: null,
+        callback: null,
+        not_ids: null,
+        columnista_ids: null,
+        sub_category_url: null
+    });
+    collectionMain.add({
+        pathTemplate: "/web/app/inventmx/",
+        firtsIdContent:"#page-main-invent-",
+    });
     
-    /*mana.add({'nombre': 'Anthony Machine' });
-    mana.get('nombre');
-    console.log( mana.toJSON() );*/
-    //console.log(mana);
-    //console.log(mana.__proto__.configuration);
-    //console.log(mana.__proto__.params);
-    //mana.assembleUrl();
-    //mana.comparator("Angel");
-    //mana.params.get("sort");
+    //collectionMain.assembleUrl(collectionMain.template);
+    
     
     /* modelos */
     inventMx.home.Models = Backbone.Model.extend({
         initialize: function() {
             this.assembleUrl();
-        },
-        hideSections: function(){
-            
         }
     });
     
-    /*Contactos = Backbone.Collection.extend({
-        Model: contacto,
-        url: "contactos"
-    });*/
-    
-    var contacto = new Backbone.Model({
-        nombre: "",
-        telefono: "",
-        initialize: function() {},
-        allowedToEdit: function(account) {
-            return true;
-        }
-        //Defaults {}
-    });
-    //console.log(contacto.get("nombre"));
-    inventMx.home.pHomes = Backbone.View.extend({
-        //el: inventMx.page.wrapper_site,
-        template: "/app/templates/books/list.html",
-        model: contacto,
-        initialize: function() {
-            $(this.el).unbind();
-            _.bindAll(this, 'render');
-            this.loadPage();
-            this.render();
-        },
-        render: function() {
-            console.log(this.model);
-            $.get('templates/your-template-file.html', function(data) {
-                console.log(data);
-                template = _.template(data, {});
-                this.$el.html(template);
-            }, 'html');
-            return this;
-        },
-        loadPage: function() {
-            
-        },
-        acordeon: function(e) {},
-        events: {},
-    });
-
     /* home */
     inventMx.view = {};
     inventMx.view.home = Backbone.View.extend({
         //el: inventMx.page.wrapper_site,
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        //model: contacto,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
@@ -184,10 +156,11 @@ $(function() {
             //this.loadPage();
         },
         loadPage: function () {
-            $.get('/web/app/inventmx/home/home.html', function(data) {
+            //console.log(this.model);            
+            $.get(this.template+'home/home.html', function(data) {
                 console.log(data);
-                if(!$("#page-main-invent-home").children("div").length){
-                    $("#page-main-invent-home").html(data);
+                if(!$(this.idContent+"home").children("div").length){
+                    $(this.idContent+"home").html(data);
                 }else {
                     console.log("cache");
                 }
@@ -210,15 +183,17 @@ $(function() {
     }),
     
     inventMx.view.redInvent = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
         render: function () {            
-            $.get('/web/app/inventmx/redInvent/redInvent.html', function(data) {
-                if(!$("#page-main-invent-redInvent").children("div")){
-                    $("#page-main-invent-redInvent").html(data);
+            $.get(this.template+'redInvent/redInvent.html', function(data) {
+                if(!$(this.idContent+"redInvent").children("div")){
+                    $(this.idContent+"redInvent").html(data);
                 }
                 collectionMain.hideSections();
             }, 'html');
@@ -226,75 +201,85 @@ $(function() {
         }
     }),
     inventMx.view.content = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
         render: function () {            
-            $.get('/web/app/inventmx/content/content.html', function(data) {
-                if(!$("#page-main-invent-content").children("div")){
-                    $("#page-main-invent-content").html(data);
+            $.get(this.template+'content/content.html', function(data) {
+                if(!$(this.idContent+"content").children("div")){
+                    $(this.idContent+"content").html(data);
                 }
             }, 'html');
             return this;
         }
     }),
     inventMx.view.mediaHappenings = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
-        render: function () {            
-            $.get('/web/app/inventmx/mediaHappenings/mediaHappenings.html', function(data) {
-                 if(!$("#page-main-invent-mediaHappenings").children("div")){
-                    $("#page-main-invent-mediaHappenings").html(data);
+        render: function () {
+            $.get(this.template+'mediaHappenings/mediaHappenings.html', function(data) {
+                 if(!$(this.idContent+"mediaHappenings").children("div")){
+                    $(this.idContent+"mediaHappenings").html(data);
                 }
             }, 'html');
             return this;
         }
     }),
     inventMx.view.networkAds = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
         render: function () {            
-            $.get('/web/app/inventmx/networkAds/networkAds.html', function(data) {
-                if(!$("#page-main-invent-networkAds").children("div")){
-                    $("#page-main-invent-networkAds").html(data);
+            $.get(this.template+'networkAds/networkAds.html', function(data) {
+                if(!$(this.idContent+"networkAds").children("div")){
+                    $(this.idContent+"networkAds").html(data);
                 }
             }, 'html');
             return this;
         }
     }),
     inventMx.view.blogs = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
         render: function () {            
-            $.get('/web/app/inventmx/blogs/blogs.html', function(data) {
-                if(!$("#page-main-invent-blogs").children("div")){
-                    $("#page-main-invent-blogs").html(data);
+            $.get(this.template+'blogs/blogs.html', function(data) {
+                if(!$(this.idContent+"blogs").children("div")){
+                    $(this.idContent+"blogs").html(data);
                 }
             }, 'html');
             return this;
         }
     }),
     inventMx.view.contacto = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.render();
         },
         render: function () {            
-            $.get('/web/app/inventmx/contacto/contacto.html', function(data) {
-                 if(!$("#page-main-invent-contacto").children("div")){
-                    $("#page-main-invent-contacto").html(data);
+            $.get(this.template+'contacto/contacto.html', function(data) {
+                 if(!$(this.idContent+"contacto").children("div")){
+                    $(this.idContent+"contacto").html(data);
                 }
             }, 'html');
             return this;
