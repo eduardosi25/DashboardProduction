@@ -407,6 +407,12 @@ $(function() {
                 if($(idContent+"servicios").children("div").length == 0){
                     $(idContent+"servicios").html(data);
                 }
+                     var urlHash = window.location.href.split("#")[1];
+                    if (urlHash &&  $('#' + urlHash).length )
+                          $('html,body').animate({
+                              scrollTop: $('#' + urlHash).offset().top
+                          }, 1500);
+                
                 collectionMain.hideSections(section);
             }, 'html');
             return this;
@@ -498,10 +504,10 @@ $(function() {
             var idContent = this.idContent;
             var  section = "contacto";
             $.get(this.template+'contacto/contacto.html', function(data) {
-                 if($(idContent+"contacto").children("div").length == 0){
+                 /*if($(idContent+"contacto").children("div").length == 0){*/
                     $(idContent+"contacto").html(data);
                     collectionMain.hideSections(section);
-                }
+                /*}*/
             }, 'html');
             return this;
         }

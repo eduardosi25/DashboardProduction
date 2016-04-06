@@ -476,6 +476,7 @@ canvas {
   background-position: left top;
   background-attachment: fixed;
   max-height: 1077px;
+  height: auto;
   position: relative;
   overflow: hidden; }
   #contac .wrapper {
@@ -1120,7 +1121,8 @@ canvas {
 .title-section {
   font-size: 60px;
   color: #fff;
-  text-align: center; }
+  text-align: center;
+  margin: 60px 0; }
   .title-section .uppercase {
     text-transform: uppercase; }
 

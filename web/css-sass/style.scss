@@ -582,6 +582,7 @@ canvas{
     background-attachment: fixed;
 	//background-color:#dc1b48;
         max-height: 1077px;
+        height: auto;
         position:relative;
         overflow:hidden;
         .wrapper{
@@ -1550,6 +1551,7 @@ canvas{
     font-size:60px;
     color:#fff;
     text-align:center;
+    margin: 60px 0;
     .uppercase{
         text-transform: uppercase;    
     }
