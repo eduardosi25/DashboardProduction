@@ -56,9 +56,9 @@ $(function() {
                 }
             });
             var url = baseUrl + "/" + repositorio + "/" + apiKey + "?callback=?";
-            this.getAjax(renderTemplate,url,params,callback);
+            this.getAjax(idTemplate,appendTo,renderTemplate,url,params,callback);
         },
-        getAjax: function(renderTemplate,url,params,callback) {
+        getAjax: function(idTemplate,appendTo,renderTemplate,url,params,callback) {
             Backbone.ajax({
                 //dataType: "jsonp",
                 url: url,
@@ -77,8 +77,6 @@ $(function() {
                     
                     if(nodes.response.status == "200" && nodes.data.length){
                         if(typeof renderTemplate == "function"){
-                            var idTemplate = "#d";
-                            var appendTo = "#c";
                             var data = nodes.data;
                             renderTemplate(idTemplate, appendTo, data,callback)
                         }
