@@ -101,13 +101,32 @@
             //return Object.prototype.toString.call(value) === "[object Object]";
         //}
     },
+    inventMx.render.tplSites = function(resp,options){
+        data = resp.data;
+        
+        if(data){
+            var site = $(options.template).html();
+            var tpl_site = Handlebars.compile(site);
+            var view_site = tpl_site(data);
+            $(options.section).html(view_site);
+                        
+            $(sites).css("height","auto");
+            var sites = options.idSitesUl;
+            finalSites = inventMx.utilities.calculateheightItem(sites);
+            $(sites).height(finalSites);
+            
+        }else {
+            $("#template-sections-sites").append("<p> Ha ocurrido un  error al cargar esta sección</p>")
+        }
+        
+    }
     inventMx.utilities.calculateheightItem = function(items){
         var numbers = [];
         $(items).each(function(i,j){            
             numbers[i] = $(this).height();
         });
         return inventMx.utilities.searchNumbersMayor(numbers);
-    }
+    },
     inventMx.utilities.searchNumbersMayor = function(number){
         //function mayor(m){
         var numbers=[].slice.call(number);

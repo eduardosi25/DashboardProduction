@@ -148,6 +148,20 @@ $(function() {
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
         //model: contacto,
         initialize: function () {
+            inventMx.metas.configure = {
+                title: "Home | InventMx",
+                canonical: "http://www.inventmx.com",
+                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "InventMX",
+                og_title: "InventMX",
+                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.inventmx.com",
+                og_type: "website",
+                og_image: "/web/img/favicons/mstile-150x150.png",
+            };
+            inventMx.metas.compile();
+            
+            
             $(this.el).unbind();
             _.bindAll(this, 'render');
             this.loadPage();
@@ -169,6 +183,8 @@ $(function() {
                     console.log("cache");
                 }
                 collectionMain.hideSections(section);
+                
+                
                 
                 
                 $('.flexslider').flexslider({
@@ -353,16 +369,20 @@ $(function() {
                             img.attr("src", src);
                             //console.log("Mouse Out!");
                         }
-                    });        
-
+                    });  
+                    
+               
                 
                 
                 
             }, 'html');
+            
             return this;
             /*repo = "sites.json";
                 url = null;
                 return this;*/
+            
+            
         },        
         acordeon: function(e) {
             e.preventDefault();                   
@@ -504,10 +524,50 @@ $(function() {
             var idContent = this.idContent;
             var  section = "contacto";
             $.get(this.template+'contacto/contacto.html', function(data) {
-                 /*if($(idContent+"contacto").children("div").length == 0){*/
+                 if($(idContent+"contacto").children("div").length == 0){
                     $(idContent+"contacto").html(data);
                     collectionMain.hideSections(section);
-                /*}*/
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.codiga = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "codiga";
+            $.get(this.template+'codiga/codiga.html', function(data) {
+                 if($(idContent+"codiga").children("div").length == 0){
+                    $(idContent+"codiga").html(data);
+                    collectionMain.hideSections(section);
+                }
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.casoExito = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function () {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render();
+        },
+        render: function () {
+            var idContent = this.idContent;
+            var  section = "casoExito";
+            $.get(this.template+'caso-de-exito/caso-de-exito.html', function(data) {
+                 if($(idContent+"casoExito").children("div").length == 0){
+                    $(idContent+"casoExito").html(data);
+                    collectionMain.hideSections(section);
+                }
             }, 'html');
             return this;
         }

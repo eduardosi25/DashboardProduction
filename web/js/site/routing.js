@@ -11,7 +11,8 @@ $(function() {
             ":site": "perfilSitio",
             ":perfil": "perfilTalento",
             "contacto": "contacto",
-            
+            "condiga": "codiga",
+            "caso-de-exito/:url": "casoExito",
             "aviso-de-privacidad": "avisoPrivacidad",
             "politica-ambiental": "politicaAmbiental",
             "afiliate": "afiliate",
@@ -41,8 +42,12 @@ $(function() {
         contacto: function() {
             inventMx.pgContacto = new inventMx.view.contacto();
         },
-        
-        
+        codiga: function() {
+            inventMx.pgCodiga = new inventMx.view.codiga();
+        },
+        casoExito: function() {
+            inventMx.pgcasoExito = new inventMx.view.casoExito();
+        },
         afiliate: function() {
             inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
         },

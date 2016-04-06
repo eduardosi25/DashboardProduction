@@ -65,7 +65,9 @@
 
     <div class="wrapper">
         <h1 class="title_section">Nuestras marcas están listas.</h1>
-
+    <article>
+        <ul id="sections-sites" class="red-invent-sections-sites"></ul>
+    </article>
         <div class="flexslider_marcas">
             <ul class="slides">
                 <li>
@@ -311,3 +313,22 @@
 </div>
 
 
+<script id="template-sections-sites" type="template/template-sections-sites">
+    {{#each this }}
+        <li class="left center sections-sites sections-sites-{{@index}}">
+            <a class="block center" href="{{ getUrlApp this.url}}">
+                <span class="tc-middle wrapper-logo">
+                    <span class="center">
+                        <span class="site-{{ CleanTaxonomy this.url }} block"></span>
+                    </span>
+                </span>
+
+                <span class="block wrapper-ico-sumary">
+                    <span class="ico-sumary-active"></span>
+                </span>
+            </a>
+            <span class="site-sumary">{{{ this.summary }}}</span>
+        </li>
+    {{/each}}
+    <li class="clear block"></li>
+</script>
