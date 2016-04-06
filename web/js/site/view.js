@@ -26,12 +26,15 @@ $(function() {
         //model: modelMain,
         //url: "/",
         initialize: function() {},
-        template: function(idTemplate, appendTo, data) {
+        template: function(idTemplate, appendTo, data,callback) {
             if ($(idTemplate).length && $(appendTo).length && data.length) {
                 var tpl = $(idTemplate).html();
                 var section = Handlebars.compile(tpl);
                 var items = section(data);
                 $(appendTo).html(items);
+                if(typeof callback == "function"){
+                    callback();
+                }
             }else {
                 console.log("Es posible que no exista algún parametro enviado, los datos recibidos para el template son:");
                 console.log("template: "+idTemplate);
@@ -40,7 +43,7 @@ $(function() {
                 console.log(data);
             }
         },
-        assembleUrl: function(callback) {
+        assembleUrl: function(idTemplate, appendTo,renderTemplate,callback) {
             var baseUrl = collectionMain.get("c1").attributes.baseUrl;
             var apiKey = collectionMain.get("c1").attributes.apiKey;
             var repositorio = collectionMain.get("c1").attributes.repositorio;
@@ -53,9 +56,9 @@ $(function() {
                 }
             });
             var url = baseUrl + "/" + repositorio + "/" + apiKey + "?callback=?";
-            this.getAjax(callback,url,params);
+            this.getAjax(renderTemplate,url,params,callback);
         },
-        getAjax: function(callback,url,params) {
+        getAjax: function(renderTemplate,url,params,callback) {
             Backbone.ajax({
                 //dataType: "jsonp",
                 url: url,
@@ -73,11 +76,11 @@ $(function() {
                     //callback(collection);
                     
                     if(nodes.response.status == "200" && nodes.data.length){
-                        if(typeof callback == "function"){
+                        if(typeof renderTemplate == "function"){
                             var idTemplate = "#d";
                             var appendTo = "#c";
                             var data = nodes.data;
-                            callback(idTemplate, appendTo, data)
+                            renderTemplate(idTemplate, appendTo, data,callback)
                         }
                     }else if(nodes.response.status == "200" && !nodes.data.length){
                         return console.log("datos vacio");
@@ -132,21 +135,25 @@ $(function() {
     
     //collectionMain.assembleUrl(collectionMain.template);
     
-    
+    inventMx.models = {};
+    inventMx.view = {};
     /* modelos */
-    inventMx.home.Models = Backbone.Model.extend({
+    //inventMx.models.home = Backbone.Model.extend({
+    var modelsHome = Backbone.Model.extend({
         initialize: function() {
-            this.assembleUrl();
+            console.log("1");
+        },
+        section:function(){
+            console.log("2");
         }
     });
     
     /* home */
-    inventMx.view = {};
     inventMx.view.home = Backbone.View.extend({
         //el: inventMx.page.wrapper_site,
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        //model: contacto,
+        model: modelsHome,
         initialize: function () {
             inventMx.metas.configure = {
                 title: "Home | InventMx",
@@ -184,8 +191,21 @@ $(function() {
                 }
                 collectionMain.hideSections(section);
                 
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = null; 
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
                 
                 
+                params = collectionMain.get("c2");
+                /* se pasan los campos del API */
+                params.set({fields: "id|title|url"});
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
                 
                 $('.flexslider').flexslider({
                         animation: "slide",
@@ -372,8 +392,6 @@ $(function() {
                     });  
                     
                
-                
-                
                 
             }, 'html');
             
