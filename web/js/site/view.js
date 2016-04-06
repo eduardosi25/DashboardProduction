@@ -27,6 +27,7 @@ $(function() {
         //url: "/",
         initialize: function() {},
         template: function(idTemplate, appendTo, data,callback) {
+            console.log(idTemplate,appendTo);
             if ($(idTemplate).length && $(appendTo).length && data.length) {
                 var tpl = $(idTemplate).html();
                 var section = Handlebars.compile(tpl);
@@ -191,19 +192,27 @@ $(function() {
                 }
                 collectionMain.hideSections(section);
                 
-                /* idTemplate: id del Template de javascript */
-                var idTemplate = "";
-                /* appendTo: lugar donde se pondra el template ya rendereado */
-                var appendTo = "";
-                /* callback: debe ser una función para poder ejecutarse */
-                var callback = null; 
-                /* renderTemplate: render generico, esto se puede copiar modificar nada */
-                var renderTemplate = collectionMain.template;
                 
+                repositorio = collectionMain.get("c1").attributes.repositorio;
+                //repositorio.set({repositorio: "sites.json"});
                 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({fields: "id|title|url"});
+                params.set({fields: "id|title|url|summary"});
+                params.set({limit: "30"});
+                
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
+                
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "template-sections-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "sections-sites";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = function(){
+                    params.set({fields: null});                    
+                }; 
+                
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
                 
@@ -488,7 +497,7 @@ $(function() {
             var idContent = this.idContent;
             var  section = "blogsNota";
             $.get(this.template+'blogs/blogsNota.html', function(data) {
-                $(idContent+"blogs-nota").html(data);
+                $(idContent+"blogsNota").html(data);
                 collectionMain.hideSections(section);
             }, 'html');
             return this;
