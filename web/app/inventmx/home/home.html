@@ -250,9 +250,10 @@
 <!-- home de talentos -->
 <script id="template-sections-vloggers" type="template/template-sections-vloggers">
 <div class="flexslider_bloger">
-            <ul class="slides">
-                {{#each this}}
-                <li>
+    <div class="slides">
+        <div class="slid-vloggers slider center">
+          {{#each this}}
+               <div>
                     <div class="content-blogger">
                         <a class="none-decoration" href="{{ getUrlApp this.url}}">
                             
@@ -278,10 +279,10 @@
                         </a>
 
                     </div>
-                </li>
-                {{/each}}    
-
-            </ul>
-        </div>  
+            </div>
+                {{/each}} 
+        </div>
+    </div>  
+</div>
 </script>
 

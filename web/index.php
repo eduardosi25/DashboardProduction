@@ -23,7 +23,7 @@
         <title>InventMx</title>
         <link rel="stylesheet" type="text/css" href="/web/css/style.css">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
-        <link href="/web/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
 
     </head>
     <body class="relative">
@@ -85,20 +85,18 @@
            </div>      
             
         </footer>    
-         <script src="http://builds.emberjs.com/tags/v1.2.0/ember.min.js"></script>     
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
-        <script type="text/javascript" src="/web/js/site/routing.js"></script>
-        
+        <script type="text/javascript" src="/web/js/site/routing.js"></script>       
         <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
         <!--<script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>-->
+        
         <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
         <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
-        <script src="/web/js/libs/jquery.bxslider.min.js"></script>
-
+        <script type="text/javascript" src="/web/js/libs/slick.js"></script>
         <script type="text/javascript" src="/web/js/libs/js.js"></script>
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />

@@ -72,13 +72,13 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-.fugaz_oneregular, .wrapper .title_section, .flexslider_bloger .slides li > div .seguidores, #vlogger .wrapper .title-influencers, #exito .wrapper .content-exito h1, #exito .wrapper .content-exito .content-reto .reto h3, #solucion .wrapper .resultados h2, #solucion .wrapper .resultados .impacto, #solucion .wrapper .resultados .description, .item .description h1, .item .description.icon.engagement p span, #sponsored .wrapper .content-sponsored h1, .title-section, #codiga-descrition .part2 .wrapper ul li h1 {
+.fugaz_oneregular, .wrapper .title_section, .flexslider_bloger .slides > div > div > div > div > div .seguidores, #vlogger .wrapper .title-influencers, #exito .wrapper .content-exito h1, #exito .wrapper .content-exito .content-reto .reto h3, #solucion .wrapper .resultados h2, #solucion .wrapper .resultados .impacto, #solucion .wrapper .resultados .description, .item .description h1, .item .description.icon.engagement p span, #sponsored .wrapper .content-sponsored h1, .title-section, #codiga-descrition .part2 .wrapper ul li h1 {
   font-family: 'fugaz_oneregular'; }
 
-.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides li > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #sitio .wrapper .description, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
+.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #sitio .wrapper .description, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
   font-family: 'Hind-Semibold'; }
 
-.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, .flexslider_bloger .slides li > div .title h3, .flexslider_bloger .slides li > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
+.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
   font-family: 'Hind-Regular'; }
 
 .hindlight, #header .wrapper .menu ul li a, .btn-contacto div, #blogs .wrapper .item.destacado .content-tet, #nota .wrapper .content-left .content-autor .content-text, #nota .wrapper .content-left .content-nota {
@@ -90,7 +90,7 @@ table {
 .hindmedium, #nota .wrapper .content-left h1, #nota .wrapper .content-left .content-nota .text-autor, #nota .wrapper .content-right .item-related .title-nota {
   font-family: 'Hind-Medium'; }
 
-.sprite, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
+.sprite, .flexslider_bloger .slick-prev:before, .flexslider_bloger .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
@@ -324,46 +324,79 @@ canvas {
       margin: 15px auto 30px; }
     .flexslider_marcas .slides li > div p {
       font-size: 14px;
-      color: #fff; }
+      color: #fff;
+      padding: 0 20px; }
 
 .flexslider_bloger {
   position: relative; }
-  .flexslider_bloger .slides li > div {
+  .flexslider_bloger .slides > div > div > div > div:nth-child(3n) div {
+    border-right: 0px; }
+  .flexslider_bloger .slides > div > div > div > div > div {
     display: block;
-    /*vertical-align: top;
+    vertical-align: top;
     max-width: 305px;
     min-width: 305px;
     min-height: 361px;
-    
-    //border-bottom: 2px solid #fff;
-    margin:0 -4px 0 0;*/
+    border-bottom: 2px solid #fff;
+    margin: 0 -4px 0 0;
     border-right: 2px solid #fff;
     text-align: center;
     padding-top: 19px; }
-    .flexslider_bloger .slides li > div:nth-child(3n) {
-      border-right: 0px; }
-    .flexslider_bloger .slides li > div .title {
+    .flexslider_bloger .slides > div > div > div > div > div .title {
       width: 245px;
       height: 80px;
       margin: -4px auto 0; }
-      .flexslider_bloger .slides li > div .title h1 {
+      .flexslider_bloger .slides > div > div > div > div > div .title h1 {
         font-size: 22px;
         color: #fec524;
         text-transform: uppercase;
         padding: 25px 0 0; }
-      .flexslider_bloger .slides li > div .title h3 {
+      .flexslider_bloger .slides > div > div > div > div > div .title h3 {
         text-transform: uppercase;
         font-size: 15px;
         color: #fff; }
-    .flexslider_bloger .slides li > div .seguidores {
+    .flexslider_bloger .slides > div > div > div > div > div .seguidores {
       display: block;
       font-size: 30px;
       color: #fff;
       line-height: 1.2; }
-    .flexslider_bloger .slides li > div .description {
+    .flexslider_bloger .slides > div > div > div > div > div .description {
       text-transform: uppercase;
       font-size: 12px;
       color: #fec524; }
+  .flexslider_bloger .slick-prev, .flexslider_bloger .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    left: -23px;
+    display: block;
+    width: 25px;
+    height: 54px;
+    margin-top: -10px;
+    padding: 0;
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent; }
+  .flexslider_bloger .slick-next {
+    left: inherit;
+    right: -23px; }
+  .flexslider_bloger .slick-prev:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-position: -24px -18px; }
+  .flexslider_bloger .slick-next:before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-position: -58px -18px; }
+  .flexslider_bloger .slick-dots {
+    display: none !important; }
 
 .verde {
   background-color: #27ae61; }
@@ -1602,8 +1635,8 @@ body #bottom-imx-fixed-wrapper.bottom-static {
     #marcas .wrapper .flexslider_marcas .slides li > div {
       max-width: 33.3%; }
     #marcas .wrapper .flexslider_bloger .slides li > div {
-      max-width: 33.3%;
-      min-width: 33.3%; }
+      max-width: 100%;
+      min-width: 100%; }
 
   #resultados .wrapper {
     width: 95%; }

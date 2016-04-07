@@ -238,13 +238,44 @@ $(function() {
                 /* callback: debe ser una función para poder ejecutarse */
                 var callback = function(){
                     params.set({fields: null});
-                  
-                  $('.flexslider_bloger ul').bxSlider({
-                    minSlides: 2,
-                    maxSlides: 3,
-                    slideWidth: 307,
-                    slideMargin: 0
-                  });
+                    
+                    $('.center').slick({
+                     dots: true,
+                    infinite: true,
+                    speed: 3000,
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    responsive: [
+                      {
+                        breakpoint: 1024,
+                        settings: {
+                          slidesToShow: 3,
+                          slidesToScroll: 3,
+                          infinite: true,
+                          dots: true
+                        }
+                      },
+                      {
+                        breakpoint: 600,
+                        settings: {
+                          slidesToShow: 3,
+                          slidesToScroll: 3
+                        }
+                      },
+                      {
+                        breakpoint: 480,
+                        settings: {
+                          slidesToShow: 2,
+                          slidesToScroll: 2
+                        }
+                      }
+                      // You can unslick at a given breakpoint now by adding:
+                      // settings: "unslick"
+                      // instead of a settings object
+                    ]
+                });
+                    
+              
                      
                        
                 }; 
