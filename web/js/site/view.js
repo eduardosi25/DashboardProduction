@@ -22,13 +22,13 @@ $(function() {
         }
     });
     
+    
     /* colecciones */
     var collectionsMain = Backbone.Collection.extend({
         //model: modelMain,
         //url: "/",
         initialize: function() {},
         template: function(idTemplate, appendTo, data,callback) {
-            console.log(idTemplate,appendTo);
             if ($(idTemplate).length && $(appendTo).length && data.length) {
                 var tpl = $(idTemplate).html();
                 var section = Handlebars.compile(tpl);
@@ -45,7 +45,7 @@ $(function() {
                 console.log(data);
             }
         },
-        assembleUrl: function(idTemplate, appendTo,renderTemplate,callback) {
+        assembleUrl: function(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl) {
             var baseUrl = collectionMain.get("c1").attributes.baseUrl;
             var apiKey = collectionMain.get("c1").attributes.apiKey;
             var repositorio = collectionMain.get("c1").attributes.repositorio;
@@ -58,9 +58,9 @@ $(function() {
                 }
             });
             var url = baseUrl + "/" + repositorio + "/" + apiKey + "?callback=?";
-            this.getAjax(idTemplate,appendTo,renderTemplate,url,params,callback);
+            this.getAjax(idTemplate,appendTo,renderTemplate,url,params,callback,forward,pathUrl);
         },
-        getAjax: function(idTemplate,appendTo,renderTemplate,url,params,callback) {
+        getAjax: function(idTemplate,appendTo,renderTemplate,url,params,callback,forward,pathUrl) {
             Backbone.ajax({
                 //dataType: "jsonp",
                 url: url,
@@ -70,23 +70,18 @@ $(function() {
                 contentType: "application/json; charset=utf-8",
                 async: true,
                 success: function(nodes) {
-                    /*var Model = Backbone.Model.extend({});
-                    var Collection = Backbone.Collection.extend({
-                        model: Model
-                    });
-                    collection = new Collection(val);*/
-                    //callback(collection);
-                    
                     if(nodes.response.status == "200" && nodes.data.length){
                         if(typeof renderTemplate == "function"){
                             var data = nodes.data;
-  
-                            
-                            
                             renderTemplate(idTemplate, appendTo, data,callback)
                         }
                     }else if(nodes.response.status == "200" && !nodes.data.length){
-                        return console.log("datos vacio");
+                        if(typeof forward == "function"){
+                            new forward(pathUrl);
+                        }else {
+                            console.log("No hay datos.");
+                        }
+                        
                     }else {
                         return console.log("Status: " +nodes.response.status);
                     }
@@ -137,26 +132,26 @@ $(function() {
     });
     
     //collectionMain.assembleUrl(collectionMain.template);
-    
-    inventMx.models = {};
-    inventMx.view = {};
     /* modelos */
-    //inventMx.models.home = Backbone.Model.extend({
-    var modelsHome = Backbone.Model.extend({
-        initialize: function() {
+    inventMx.models = {};
+    //inventMx.models.forward = Backbone.Model.extend({
+    modelsHome = Backbone.Model.extend({
+        initialize: function(param) {
+            this.section(param);
             console.log("1");
         },
-        section:function(){
+        section:function(param){
             console.log("2");
         }
     });
     
+    inventMx.view = {};
     /* home */
     inventMx.view.home = Backbone.View.extend({
         //el: inventMx.page.wrapper_site,
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        model: modelsHome,
+        Model: modelsHome,
         initialize: function () {
             inventMx.metas.configure = {
                 title: "Home | InventMx",
@@ -176,8 +171,7 @@ $(function() {
             _.bindAll(this, 'render');
             this.loadPage();
         },
-        render: function () {      
-            
+        render: function () {
             //this.loadPage();
         },
         loadPage: function () {
@@ -224,19 +218,21 @@ $(function() {
 
                       });
                 }; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = null;
                 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
-                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward);
                 
                 repositorio.set({repositorio: "vloger.json"});
                 
                 params.set({fields: "id|title|url|audience|images|followers"});
                 params.set({limit: "90"});
-                 var idTemplate = "#template-sections-vloggers";
+                idTemplate = "#template-sections-vloggers";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                var appendTo = "#sections-vloggers";
+                appendTo = "#sections-vloggers";
                 /* callback: debe ser una función para poder ejecutarse */
-                var callback = function(){
+                callback = function(){
                     params.set({fields: null});
                     
                     $('.center').slick({
@@ -279,8 +275,11 @@ $(function() {
                      
                        
                 }; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = null;
+                
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
-                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward);
                 
                $('.flexslider').flexslider({
                         animation: "slide",
@@ -515,6 +514,142 @@ $(function() {
             return this;
         }
     }),
+    inventMx.view.perfilSitio = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function (site) {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render(site);
+        },
+        render: function (site) {
+            var idContent = this.idContent;
+            var  section = "perfilSitio";
+            $.get(this.template+'perfilSitio/perfilSitio.html', function(data) {
+                $(idContent+"perfilSitio").html(data);
+                collectionMain.hideSections(section);
+                
+                repositorio = collectionMain.get("c1");
+                repositorio.set({repositorio: "sites.json"});
+                
+                params = collectionMain.get("c2");
+                /* se pasan los campos del API */
+                params.set({url: site,limit:1});
+                
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
+                
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "#template-sections-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-sites";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = null; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = inventMx.view.perfilTalento;
+                /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
+                 * en este caso site*/
+                var pathUrl = site;
+                
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.perfilTalento = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function (perfil) {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render(perfil);
+        },
+        render: function (perfil) {
+            var idContent = this.idContent;
+            var  section = "perfilTalento";
+            $.get(this.template+'perfilTalento/perfilTalento.html', function(data) {
+                $(idContent+"perfilTalento").html(data);
+                collectionMain.hideSections(section);
+                
+                repositorio = collectionMain.get("c1");
+                repositorio.set({repositorio: "vloger.json"});
+                
+                params = collectionMain.get("c2");
+                /* se pasan los campos del API */
+                params.set({url: perfil,limit:1});
+                
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
+                
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "#template-sections-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-sites";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = null; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = inventMx.view.casoExito;
+                /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
+                 * en este caso perfil*/
+                var pathUrl = perfil;
+                
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                
+                
+            }, 'html');
+            return this;
+        }
+    }),
+    inventMx.view.casoExito = Backbone.View.extend({
+        template: collectionMain.get("c3").attributes.pathTemplate,
+        idContent: collectionMain.get("c3").attributes.firtsIdContent,
+        initialize: function (casoexito) {
+            $(this.el).unbind();
+            _.bindAll(this, 'render');
+            this.render(casoexito);
+        },
+        render: function (casoexito) {
+            var idContent = this.idContent;
+            var  section = "casoExito";
+            $.get(this.template+'caso-de-exito/caso-de-exito.html', function(data) {
+                 if($(idContent+"casoExito").children("div").length == 0){
+                    $(idContent+"casoExito").html(data);
+                    collectionMain.hideSections(section);
+                    
+                repositorio = collectionMain.get("c1");
+                repositorio.set({repositorio: "case.json"});
+                
+                params = collectionMain.get("c2");
+                /* se pasan los campos del API */
+                params.set({url: casoexito,limit:1});
+                
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
+                
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "#template-sections-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-sites";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = null; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = inventMx.view.blogsNota;
+                /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
+                 * en este caso perfil*/
+                var pathUrl = casoexito;
+                
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                
+                    
+                }
+            }, 'html');
+            return this;
+        }
+    }),
     inventMx.view.blogs = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
@@ -538,53 +673,44 @@ $(function() {
     inventMx.view.blogsNota = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        initialize: function () {
+        initialize: function (blogsUrl) {
             $(this.el).unbind();
             _.bindAll(this, 'render');
-            this.render();
+            this.render(blogsUrl);
         },
-        render: function () {
+        render: function (blogsUrl) {
             var idContent = this.idContent;
             var  section = "blogsNota";
             $.get(this.template+'blogs/blogsNota.html', function(data) {
                 $(idContent+"blogsNota").html(data);
                 collectionMain.hideSections(section);
-            }, 'html');
-            return this;
-        }
-    }),
-    inventMx.view.perfilSitio = Backbone.View.extend({
-        template: collectionMain.get("c3").attributes.pathTemplate,
-        idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        initialize: function () {
-            $(this.el).unbind();
-            _.bindAll(this, 'render');
-            this.render();
-        },
-        render: function () {
-            var idContent = this.idContent;
-            var  section = "perfilSitio";
-            $.get(this.template+'perfilSitio/perfilSitio.html', function(data) {
-                $(idContent+"perfilSitio").html(data);
-                collectionMain.hideSections(section);
-            }, 'html');
-            return this;
-        }
-    }),
-    inventMx.view.perfilTalento = Backbone.View.extend({
-        template: collectionMain.get("c3").attributes.pathTemplate,
-        idContent: collectionMain.get("c3").attributes.firtsIdContent,
-        initialize: function () {
-            $(this.el).unbind();
-            _.bindAll(this, 'render');
-            this.render();
-        },
-        render: function () {
-            var idContent = this.idContent;
-            var  section = "perfilTalento";
-            $.get(this.template+'perfilTalento/perfilTalento.html', function(data) {
-                $(idContent+"perfilTalento").html(data);
-                collectionMain.hideSections(section);
+                
+                repositorio = collectionMain.get("c1");
+                repositorio.set({repositorio: "blogs.json"});
+                
+                params = collectionMain.get("c2");
+                /* se pasan los campos del API */
+                params.set({url: blogsUrl,limit:1});
+                
+                /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                var renderTemplate = collectionMain.template;
+                
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "#template-sections-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-sites";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = null; 
+                /* forward: instancia de la vista a renderear*/
+                var forward = inventMx.view.default404;
+                /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
+                 * en este caso perfil*/
+                var pathUrl = blogsUrl;
+                
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                
+                
             }, 'html');
             return this;
         }
@@ -621,7 +747,7 @@ $(function() {
             var idContent = this.idContent;
             var  section = "codiga";
             $.get(this.template+'codiga/codiga.html', function(data) {
-                 if($(idContent+"codiga").children("div").length == 0){
+                if($(idContent+"codiga").children("div").length == 0){
                     $(idContent+"codiga").html(data);
                     collectionMain.hideSections(section);
                 }
@@ -629,7 +755,7 @@ $(function() {
             return this;
         }
     }),
-    inventMx.view.casoExito = Backbone.View.extend({
+    inventMx.view.default404 = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
         idContent: collectionMain.get("c3").attributes.firtsIdContent,
         initialize: function () {
@@ -639,16 +765,15 @@ $(function() {
         },
         render: function () {
             var idContent = this.idContent;
-            var  section = "casoExito";
-            $.get(this.template+'caso-de-exito/caso-de-exito.html', function(data) {
-                 if($(idContent+"casoExito").children("div").length == 0){
-                    $(idContent+"casoExito").html(data);
+            var  section = "404";
+            $.get(this.template+'PageDefault/404.html', function(data) {
+                if($(idContent+"404").children("div").length == 0){
+                    $(idContent+"404").html(data);
                     collectionMain.hideSections(section);
                 }
-            }, 'html');
-            return this;
+            });
         }
-    }),
+    });
     
     
     
