@@ -6,13 +6,13 @@ $(function() {
             "la-red-invent": "redInvent",
             "servicios": "servicios",
             "servicios/:name_section": "servicios",
-            "blogs": "blogs",
-            "blogs/:url": "blogsNota",
-            "perfil-sitio/:site": "perfilSitio",
-            "perfil-talento/:perfil": "perfilTalento",
+            ":site": "perfilSitio",
+            ":perfil": "perfilTalento",
             "contacto": "contacto",
             "condiga": "codiga",
-            "caso-de-exito/:url": "casoExito",
+            ":casoexito": "casoExito",
+            "blogs": "blogs",
+            ":blogsUrl": "blogsNota",
             "aviso-de-privacidad": "avisoPrivacidad",
             "politica-ambiental": "politicaAmbiental",
             "afiliate": "afiliate",
@@ -30,8 +30,8 @@ $(function() {
         blogs: function() {
             inventMx.pgBlogs = new inventMx.view.blogs();
         },
-        blogsNota: function() {
-            inventMx.pgBlogsNota = new inventMx.view.blogsNota();
+        blogsNota: function(blogsUrl) {
+            inventMx.pgBlogsNota = new inventMx.view.blogsNota(blogsUrl);
         },
         perfilSitio: function(site) {
             inventMx.pgPerfilSitio = new inventMx.view.perfilSitio(site);
@@ -45,8 +45,8 @@ $(function() {
         codiga: function() {
             inventMx.pgCodiga = new inventMx.view.codiga();
         },
-        casoExito: function() {
-            inventMx.pgcasoExito = new inventMx.view.casoExito();
+        casoExito: function(casoexito) {
+            inventMx.pgcasoExito = new inventMx.view.casoExito(casoexito);
         },
         afiliate: function() {
             inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
