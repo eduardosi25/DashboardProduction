@@ -3,6 +3,7 @@ $(function() {
     var inventMx_events = {};
     IMxevents=_.extend(inventMx_events, Backbone.Events);
     
+
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
     inventMx_events.bind("NoData", function (msg) {
@@ -79,6 +80,9 @@ $(function() {
                     if(nodes.response.status == "200" && nodes.data.length){
                         if(typeof renderTemplate == "function"){
                             var data = nodes.data;
+  
+                            
+                            
                             renderTemplate(idTemplate, appendTo, data,callback)
                         }
                     }else if(nodes.response.status == "200" && !nodes.data.length){
@@ -191,30 +195,63 @@ $(function() {
                 collectionMain.hideSections(section);
                 
                 
-                repositorio = collectionMain.get("c1").attributes.repositorio;
-                //repositorio.set({repositorio: "sites.json"});
+                repositorio = collectionMain.get("c1");
+                repositorio.set({repositorio: "sites.json"});
                 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({fields: "id|title|url|summary"});
+                params.set({fields: "id|title|url|summary|images"});
                 params.set({limit: "30"});
                 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
                 var renderTemplate = collectionMain.template;
                 
                 /* idTemplate: id del Template de javascript */
-                var idTemplate = "template-sections-sites";
+                var idTemplate = "#template-sections-sites";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                var appendTo = "sections-sites";
+                var appendTo = "#sections-sites";
                 /* callback: debe ser una función para poder ejecutarse */
                 var callback = function(){
-                    params.set({fields: null});                    
+                    params.set({fields: null});
+                     
+                       $('.flexslider_marcas').flexslider({
+                        animation: "slide",
+                        animationLoop: true,
+                        slideshowSpeed: 4000, 
+                        animationSpeed: 2000,
+                        controlNav: false,               
+                        directionNav: true, 
+
+                      });
                 }; 
                 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
                 
-                $('.flexslider').flexslider({
+                repositorio.set({repositorio: "vloger.json"});
+                
+                params.set({fields: "id|title|url|audience|images|followers"});
+                params.set({limit: "90"});
+                 var idTemplate = "#template-sections-vloggers";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-vloggers";
+                /* callback: debe ser una función para poder ejecutarse */
+                var callback = function(){
+                    params.set({fields: null});
+                  
+                  $('.flexslider_bloger ul').bxSlider({
+                    minSlides: 2,
+                    maxSlides: 3,
+                    slideWidth: 307,
+                    slideMargin: 0
+                  });
+                     
+                       
+                }; 
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback);
+                
+               $('.flexslider').flexslider({
                         animation: "slide",
                         animationLoop: true,
                         slideshowSpeed: 4000, 
@@ -223,25 +260,9 @@ $(function() {
                         directionNav: false, 
 
                       });
-                $('.flexslider_marcas').flexslider({
-                        animation: "slide",
-                        animationLoop: true,
-                        slideshowSpeed: 4000, 
-                        animationSpeed: 2000,
-                        controlNav: false,               
-                        directionNav: true, 
+               
+                 
 
-                      });
-                $('.flexslider_bloger').flexslider({
-                        animation: "slide",
-                        animationLoop: true,
-                        slideshowSpeed: 4000, 
-                        animationSpeed: 2000,
-                        controlNav: false,               
-                        directionNav: true, 
-
-                      });
-                      
                       
                 $('#demo-pie-1').pieChart({
                     barColor: '#17d9b4',

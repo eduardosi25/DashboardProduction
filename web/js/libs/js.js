@@ -57,8 +57,9 @@ $('#intro').parallax({
                             scrollTop: $('.slide[data-slide="' + dataslide + '"]').offset().top
                     }, 2000, 'easeInOutQuint');
             }*/
+   
 
-$('.flexslider').flexslider({
+    $('.flexslider').flexslider({
         animation: "slide",
         animationLoop: true,
         slideshowSpeed: 4000, 
@@ -67,24 +68,27 @@ $('.flexslider').flexslider({
         directionNav: false, 
         
       });
-$('.flexslider_marcas').flexslider({
-        animation: "slide",
-        animationLoop: true,
-        slideshowSpeed: 4000, 
-        animationSpeed: 2000,
-        controlNav: false,               
-        directionNav: true, 
-        
-      });
-$('.flexslider_bloger').flexslider({
-        animation: "slide",
-        animationLoop: true,
-        slideshowSpeed: 4000, 
-        animationSpeed: 2000,
-        controlNav: false,               
-        directionNav: true, 
-        
-      });
+    $('.flexslider_marcas').flexslider({
+            animation: "slide",
+            animationLoop: true,
+            slideshowSpeed: 4000, 
+            animationSpeed: 2000,
+            controlNav: false,               
+            directionNav: true, 
+
+          });
+    $('.flexslider_bloger').flexslider({
+            animation: "slide",
+            animationLoop: true,
+            slideshowSpeed: 4000, 
+            animationSpeed: 2000,
+            controlNav: false,               
+            directionNav: true, 
+            itemWidth: 305,
+            itemMargin: 0,
+            minItems: 2,
+            maxItems: 3
+          });
     //initialise Stellar.js
    
     //Cache some variables

@@ -23,6 +23,7 @@
         <title>InventMx</title>
         <link rel="stylesheet" type="text/css" href="/web/css/style.css">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
+        <link href="/web/css/jquery.bxslider.css" rel="stylesheet" type="text/css" />
 
     </head>
     <body class="relative">
@@ -69,6 +70,7 @@
         
         
         <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
+             
             <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   
                  <div>
                <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
@@ -83,7 +85,7 @@
            </div>      
             
         </footer>    
-             
+         <script src="http://builds.emberjs.com/tags/v1.2.0/ember.min.js"></script>     
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>
@@ -95,6 +97,8 @@
         <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
         <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
+        <script src="/web/js/libs/jquery.bxslider.min.js"></script>
+
         <script type="text/javascript" src="/web/js/libs/js.js"></script>
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />

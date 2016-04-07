@@ -329,13 +329,15 @@ canvas {
 .flexslider_bloger {
   position: relative; }
   .flexslider_bloger .slides li > div {
-    display: inline-block;
-    vertical-align: top;
+    display: block;
+    /*vertical-align: top;
     max-width: 305px;
     min-width: 305px;
     min-height: 361px;
+    
+    //border-bottom: 2px solid #fff;
+    margin:0 -4px 0 0;*/
     border-right: 2px solid #fff;
-    margin: 0 -4px 0 0;
     text-align: center;
     padding-top: 19px; }
     .flexslider_bloger .slides li > div:nth-child(3n) {
