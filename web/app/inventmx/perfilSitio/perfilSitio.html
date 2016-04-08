@@ -2,101 +2,22 @@
             <img class="pleca_cruz_izquierda" src="/web/img/global/textura_cruz_izquierda.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
 
             <div class="wrapper">
-                <div class="logo-sitio"> 
-                    <img src="/web/img/sitios-logos/excelsior.png"/>
-                    <div class="border"></div>
-                </div>
-                <div class="img-sitio">
-                    <img src="/web/img/global/excelsior.png"/>
-                    
-                </div>
-                <div class="description"> 
-                    Excélsior, el Periódico de la vida Nacional te invita a navegar por el portal de noticias líder en México con toda la información nacional y del mundo.
-                </div>
+                <article>
+                    <section id="sections-sites-perfil"></section>
+                </article>
                 
-                <div class="content-audiencias">
-                    <div class="content-circles">
-                        <div class="item-circle margin-right">   
-                            <div id="demo-pie-1" class="pie-title-center" data-percent="34.6"> <span class="pie-value"></span> </div>
-                        <h3>Hombres</h3>
-                        </div>
-                        <div class="item-circle"> 
-                            <div id="demo-pie-2" class="pie-title-center" data-percent="34.6"> <span class="pie-value"></span> </div>
-                        <h3>Mujeres</h3>
-                        </div>
-                    </div>
-                    <div class="numero-audiencias">
-                        <ul>
-                            <li>
-                                <span>247,886</span><br />
-                                visitas mensuales
-                            </li>
-                            <li>
-                                <span>247,973</span><br />
-                                Seguidores de Facebook
-                            </li>
-                            <li>
-                                <span>247,886</span><br />
-                                seguidores de twitter
-                            </li>
-                            <li>
-                                <span>37,973</span><br />
-                                total de seguidores
-                            </li>
-                        </ul>
-                        
-                    </div>
-                </div>
                 <div class="adjuntos">
                     <ul>
                         <li><a href="#">Tarifario</a></li>
                         <li class="pdf"><a href="#">Media kit</a></li>
-                        <li><a href="#">Anunciate</a></li>
+                        <li><a href="#contacto">Anunciate</a></li>
                     </ul>
                 </div>
+                <article>
+                    <section id="sections-carousel-sites"></section>
+                </article>
                 
-                <div class="flexslider_marcas">
-                        <ul class="slides">
-                        <li>
-                              <div>
-                                  <img src="/web/img/logos/excelsior.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              <div>
-                                  <img src="/web/img/logos/imagenradio.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              <div>
-                                  <img src="/web/img/logos/dinero.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              
-                          </li>
-                          <li>
-                              <div>
-                                  <img src="/web/img/logos/atraccion.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              <div>
-                                  <img src="/web/img/logos/gamedots.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              <div>
-                                  <img src="/web/img/global/logos/melodijolola.png" />
-                                  <span class="line"></span>
-                                  <p>Portal de noticias lider en mexico con toda l información nacional y del mundo. enterate en tiempo real de la vida publica, politica, de espectaculo, deportes, videos y mas..</p>
-                              </div>
-                              
-                              
-                          </li>
-                        
-                        </ul>
-                    </div>
+                
                 
                 
 
@@ -139,3 +60,77 @@
                         <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
 
                 </div>
+        
+<!-- sitios -->
+<script id="template-sections-perfil" type="template/template-sections-sites-perfil">
+{{#each this}}
+                <div class="logo-sitio"> 
+                    <img src="{{this.images.logo.0.url}}"/>
+                    <div class="border"></div>
+                </div>
+                <div class="img-sitio">
+                    <img src="/web/img/global/excelsior.png"/>
+                    
+                </div>
+                <div class="description"> 
+                    {{{this.body}}}
+                </div>
+                
+                <div class="content-audiencias">
+                    <div class="content-circles">
+                        <div class="item-circle margin-right">   
+                            <div id="demo-pie-12" class="pie-title-center" data-percent="{{this.mens}}"> <span class="pie-value"></span> </div>
+                        <h3>Hombres</h3>
+                        </div>
+                        <div class="item-circle"> 
+                            <div id="demo-pie-13" class="pie-title-center" data-percent="{{this.womens}}"> <span class="pie-value"></span> </div>
+                        <h3>Mujeres</h3>
+                        </div>
+                    </div>
+                    <div class="numero-audiencias">
+                        <ul>
+                            <li>
+                                <span>{{this.views}}</span><br />
+                                visitas mensuales
+                            </li>
+                            <li>
+                                <span>{{this.followers}}</span><br />
+                                Seguidores de Facebook
+                            </li>
+                            <li>
+                                <span>{{this.tw_followers}}</span><br />
+                                seguidores de twitter
+                            </li>
+                            <li>
+                                <span>37,973</span><br />
+                                total de seguidores
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                {{/each}} 
+</script>   
+
+<!-- home de talentos -->
+<script id="template-sections-carousel-sites" type="template/template-sections-carousel-sites">
+                <div class="flexslider_marcas">
+                    <div class="slides">
+                        <div class="slid-marcas slider center-sites">
+                            {{#each this}}
+                                <div>
+                                <div>
+                                    <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                        <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                        <span class="line"></span>
+                                        <p>{{{ this.summary }}}</p>
+                                    </a>
+                                </div>
+                                </div>
+                            {{/each}} 
+                        </div>
+                    </div>
+                </div>
+</script>
+
+

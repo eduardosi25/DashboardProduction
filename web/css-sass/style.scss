@@ -372,6 +372,50 @@ canvas{
                 }
             }
             
+#sections-carousel-sites .flexslider_marcas{
+                margin-top:59px;
+                position:relative;
+                .slides{
+                    &>div{ &>div{
+                            &>div{
+                            &>div{
+                        &>div{
+                            display: inline-block;
+                            vertical-align: top;
+                            max-width: 305px;
+                            min-height: 246px;
+                            border-right: 2px solid #fff;
+                            border-bottom: 2px solid #fff;
+                            margin:0 -4px 0 0;
+                            text-align:center;
+                            padding-top:19px;
+                            &:nth-child(3n){
+                                border-right: 0px;
+                                
+                            }
+                            .line{
+                                    content: "";
+                                    display: block;
+                                    width: 200px;
+                                    height: 2px;
+                                    background: #17d9b4;
+                                    margin: 15px auto 30px;
+                                    
+                                }
+                            p{
+                               @extend .hind_regularregular;                               
+                                font-size: 14px;
+                                color:#fff;
+                                padding: 0 20px;
+                            }
+                        }
+                    }
+                }
+}
+                    }
+                }
+            }    
+                    
             .flexslider_bloger{
                 position:relative;
                 .slides{
@@ -435,7 +479,9 @@ canvas{
                         }
                     }
                 }
-                .slick-prev, .slick-next {
+                
+            }
+            .slick-prev, .slick-next {
                     font-size: 0;
                     line-height: 0;
                     position: absolute;
@@ -473,13 +519,30 @@ canvas{
                     @extend .sprite;
                   background-position:-58px -18px;
                 }
+                
+#sections-carousel-sites .flexslider_marcas .slides{
+                    &>div{
+                        &>div{
+                            &>div{
+                            &>div{
+                            &:nth-child(3n) div{
+                                border-right: 0px; 
+                            } 
+                            }
+                            }
+                        }
+                    }
+}                
 .slick-dots{
  display:none !important;   
 }
-            }
-            .verde{
-                background-color:#27ae61;
-            }            
+.slick-slide img {
+    display: block;
+    margin: 0 auto;
+}
+.verde{
+    background-color:#27ae61;
+}            
 #audiencias{
     background-image: url('../img/global/background3.jpeg');
         background-repeat: no-repeat;
@@ -618,6 +681,15 @@ canvas{
             display:block;
            
         }
+}
+.contact-form{
+    position: relative;
+ opacity: 0;
+ top:400px;
+ -webkit-transition: all .8s ease;
+ -moz-transition: all .8s ease;
+ -ms-transition: all .8s ease;
+ transition: all .8s ease;
 }
 #contac{
     background-image: url('../img/global/background5.jpeg');
@@ -1211,6 +1283,12 @@ canvas{
     overflow:hidden;
     .wrapper{
         max-width:890px;
+        opacity: 0;
+        top: 200px;
+        -webkit-transition:all .8s ease;
+        -moz-transition:all .8s ease;
+        -ms-transition:all .8s ease;
+        transition:all .8s ease;
         .content-marketing{
             margin:35px 0 0;
             .description{
@@ -1771,7 +1849,7 @@ Codiga
         }
         .content-item{
             .item{
-                width: 32.7%;
+                width: 32.5%;
                 display:inline-block;
                 vertical-align: top;
                 margin: 0 1% 30px -3px;
@@ -2097,5 +2175,9 @@ content-facebook{
 }
 body #bottom-imx-fixed-wrapper.bottom-static{
     height: auto !important;
+}
+#wrapper-page{
+ position: relative;
+ z-index: 1;
 }
 @import "_resolution_site.scss";

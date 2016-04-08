@@ -1,5 +1,10 @@
 
 jQuery(document).ready(function ($) {
+    $(".navicon-button, .menu a").click(function(){
+        $(this).toggleClass("open");
+        $('.menu').slideToggle();
+        $("h1").addClass("fade");
+      });
     /*var controller = new ScrollMagic.Controller({
 			globalSceneOptions: {
 				triggerHook: 'onLeave'
@@ -147,6 +152,7 @@ $('#intro').parallax({
         goToByScroll(dataslide);
 
     });*/
+    
     $('#demo-pie-1').pieChart({
                 barColor: '#17d9b4',
                 trackColor: '#a03d73',

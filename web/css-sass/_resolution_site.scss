@@ -12,6 +12,11 @@ $content-bg : #CB157D;
 .mobile{
     display: none;
 }
+.sprite{
+    background: url('../img/sprites/sprite_invent.png');
+    background-repeat: no-repeat;
+}
+
 @media only screen and (max-width: 1023px) {
        .bottom-links #bottom-imx-fixed .bottom-links-notes {
             margin: 0 auto;
@@ -644,6 +649,34 @@ $content-bg : #CB157D;
 #header .wrapper .menu {
     display:none;
 }
+#header .wrapper .menu {
+    width: 110%;
+    z-index: 9999999;
+    height: auto;
+    top: 92px;
+    left: -5%;
+    right: inherit;
+    margin: 0;
+}
+#header .wrapper .menu ul li {
+    display: block;
+    vertical-align: top;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    border: 0;
+    background: #1a1a1a;
+}
+#header .wrapper .menu ul li a {
+    font-size: 18px;
+    display: block;
+    padding: 8px 0;
+    max-width: 100%;
+}
+#header .wrapper .menu ul li:last-child {
+    width: 100%;
+}
 .btn-menu{
     display: block;
     position:absolute;
@@ -1050,7 +1083,68 @@ display:none;
     display: block;
 }
     
-
+#marcas .wrapper {
+    .flexslider_marcas{
+        .slides{
+            li{
+                display: block;
+                float: inherit;
+                &>div{
+                    display: block;
+                    width: 100%;
+                    max-width: 100%;
+                    min-height:60px;
+                    height:60px;
+                    border-bottom:3px solid #fff;
+                    border-left:0;
+                    border-right:0;
+                    margin:0;
+                    padding:0;
+                    position:relative;
+                    img{
+                        max-width: 100%;
+                        width: auto;
+                        max-height: 60px;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom:0;
+                        margin: auto;
+                    }
+                    .line, p{
+                        display: none;
+                        
+                    }
+                    &:after{
+                            background: url("../img/sprites/sprite_invent.png");
+                            background-repeat: no-repeat;
+                            background-position: -81px -235px;
+                            content: "";
+                            display: block;
+                            width: 22px;
+                            height: 19px;
+                            position: absolute;
+                            top: 0;
+                            bottom: 0;
+                            margin: auto;
+                            right: 10px;
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+}
+#marcas {
+    background: #890e4f;
+    
+}
+#sections-vloggers{
+    display: none;
+}
     
 
 }

@@ -1,7 +1,17 @@
 $(function() {
+    var id_exclude;
+  
     /* eventos */
     var inventMx_events = {};
     IMxevents=_.extend(inventMx_events, Backbone.Events);
+    $( window ).resize(function() {
+        $w=$(window).width();
+        if($w <= 625){
+            sitescripts.modules.flexslider('.flexslider_marcas').destroy();
+          
+            
+        }
+    });
     
 
     // Con la funcion bind podemos enlazar un evento cualquiera con una
@@ -29,6 +39,7 @@ $(function() {
         //url: "/",
         initialize: function() {},
         template: function(idTemplate, appendTo, data,callback) {
+            console.log(idTemplate, appendTo);
             if ($(idTemplate).length && $(appendTo).length && data.length) {
                 var tpl = $(idTemplate).html();
                 var section = Handlebars.compile(tpl);
@@ -195,7 +206,7 @@ $(function() {
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
                 params.set({fields: "id|title|url|summary|images"});
-                params.set({limit: "30"});
+                params.set({limit: "30",not_ids: null});
                 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
                 var renderTemplate = collectionMain.template;
@@ -217,6 +228,10 @@ $(function() {
                         directionNav: true, 
 
                       });
+                      $('.slides li a').click(function(){
+                            id_exclude=$(this).attr('data-id');
+                            console.log('si');
+                        });
                 }; 
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;
@@ -236,41 +251,44 @@ $(function() {
                     params.set({fields: null});
                     
                     $('.center').slick({
-                     dots: true,
-                    infinite: true,
-                    speed: 3000,
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    responsive: [
-                      {
-                        breakpoint: 1024,
-                        settings: {
-                          slidesToShow: 3,
-                          slidesToScroll: 3,
-                          infinite: true,
-                          dots: true
-                        }
-                      },
-                      {
-                        breakpoint: 600,
-                        settings: {
-                          slidesToShow: 3,
-                          slidesToScroll: 3
-                        }
-                      },
-                      {
-                        breakpoint: 480,
-                        settings: {
-                          slidesToShow: 2,
-                          slidesToScroll: 2
-                        }
-                      }
-                      // You can unslick at a given breakpoint now by adding:
-                      // settings: "unslick"
-                      // instead of a settings object
-                    ]
-                });
-                    
+                        dots: true,
+                       infinite: true,
+                       speed: 3000,
+                       slidesToShow: 3,
+                       slidesToScroll: 3,
+                       responsive: [
+                         {
+                           breakpoint: 1024,
+                           settings: {
+                             slidesToShow: 3,
+                             slidesToScroll: 3,
+                             infinite: true,
+                             dots: true
+                           }
+                         },
+                         {
+                           breakpoint: 600,
+                           settings: {
+                             slidesToShow: 3,
+                             slidesToScroll: 3
+                           }
+                         },
+                         {
+                           breakpoint: 480,
+                           settings: {
+                             slidesToShow: 2,
+                             slidesToScroll: 2
+                           }
+                         }
+                         // You can unslick at a given breakpoint now by adding:
+                         // settings: "unslick"
+                         // instead of a settings object
+                       ]
+                   });
+                    $('.slick-slide .content-blogger a').click(function(){
+                            id_exclude=$(this).attr('data-id');
+                            
+                        });
               
                      
                        
@@ -423,6 +441,7 @@ $(function() {
                                 $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
                             }
                         });
+                        
                     $("#audiencias .wrapper .content-audiencias > div").on({
 
                         mouseenter: function (e) {
@@ -448,7 +467,10 @@ $(function() {
                             //console.log("Mouse Out!");
                         }
                     });  
-                    
+                    $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                    $('.contact-form').css({'opacity':"0",'top':'200px'});
                
                 
             }, 'html');
@@ -484,6 +506,8 @@ $(function() {
                     $(idContent+"redInvent").html(data);
                 }
                 collectionMain.hideSections(section);
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
             }, 'html');
             return this;
         }
@@ -510,6 +534,17 @@ $(function() {
                           }, 1500);
                 
                 collectionMain.hideSections(section);
+                
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+               /* $('.content-marketing').swift({'type': 'dom', 'positionStart': 'bottom', 'length': '100'});*/
+                /*$('.content-marketing').swift({'type': 'dom', 'positionStart': 'right', 'length': '100', 'axis': 'right'});*/
+                $('#marketing .wrapper').css({'opacity':"1",'top':'0'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
+                $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                $('.content-codiga .item.right.i3').swift({'type': 'dom', 'positionStart': 'right', 'length': '800', 'axis': 'left','delay': '50'});
+                $('.content-codiga .item.i4').swift({'type': 'dom', 'positionStart': 'left', 'length': '900', 'axis': 'left','delay': '50'});
+                
             }, 'html');
             return this;
         }
@@ -522,7 +557,7 @@ $(function() {
             _.bindAll(this, 'render');
             this.render(site);
         },
-        render: function (site) {
+        render: function (site) { 
             var idContent = this.idContent;
             var  section = "perfilSitio";
             $.get(this.template+'perfilSitio/perfilSitio.html', function(data) {
@@ -534,26 +569,123 @@ $(function() {
                 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({url: site,limit:1});
+                params.set({url: site,limit:1, not_ids: null});
+                
                 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
                 var renderTemplate = collectionMain.template;
                 
                 /* idTemplate: id del Template de javascript */
-                var idTemplate = "#template-sections-sites";
+                var idTemplate = "#template-sections-perfil";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                var appendTo = "#sections-sites";
+                var appendTo = "#sections-sites-perfil";
                 /* callback: debe ser una función para poder ejecutarse */
-                var callback = null; 
+                var callback = function(){
+                    
+                    params.set({fields: null});
+
+                    $('#demo-pie-12').pieChart({
+                        barColor: '#17d9b4',
+                        trackColor: '#a03d73',
+                        lineCap: 'square',
+                        lineWidth: 24,
+                        size: 158,
+                        rotate: -110,
+                        animate: {
+                            duration: 3000,
+                            enabled: true
+                          },
+                        onStep: function (from, to, percent) {
+                            $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                        }
+                    });
+                    $('#demo-pie-13').pieChart({
+                                barColor: '#17d9b4',
+                                trackColor: '#a03d73',
+                                lineCap: 'square',
+                                lineWidth: 24,
+                                size: 158,
+                                rotate: -110,
+                                animate: {
+                                    duration: 3000,
+                                    enabled: true
+                                  },
+                                onStep: function (from, to, percent) {
+                                    $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                                }
+                            });
+
+                            
+                        
+
+                    }; 
+                
                 /* forward: instancia de la vista a renderear*/
                 var forward = inventMx.view.perfilTalento;
                 /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
                  * en este caso site*/
                 var pathUrl = site;
                 
+                    
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
                 
+                
+                 var callback2 = function(){
+                        params.set({fields: null});
+                        $('.center-sites').slick({
+                            dots: true,
+                           infinite: true,
+                           speed: 3000,
+                           slidesToShow: 3,
+                           slidesToScroll: 3,
+                           responsive: [
+                             {
+                               breakpoint: 1024,
+                               settings: {
+                                 slidesToShow: 3,
+                                 slidesToScroll: 3,
+                                 infinite: true,
+                                 dots: true
+                               }
+                             },
+                             {
+                               breakpoint: 600,
+                               settings: {
+                                 slidesToShow: 3,
+                                 slidesToScroll: 3
+                               }
+                             },
+                             {
+                               breakpoint: 480,
+                               settings: {
+                                 slidesToShow: 2,
+                                 slidesToScroll: 2
+                               }
+                             }
+                             // You can unslick at a given breakpoint now by adding:
+                             // settings: "unslick"
+                             // instead of a settings object
+                           ]
+                       });
+                       $('.slick-slide > div a').click(function(){
+                            id_exclude=$(this).attr('data-id');
+                            
+                        });
+
+                    };
+                repositorio = collectionMain.get("c1");    
+                repositorio.set({repositorio: "sites.json"});
+                params = collectionMain.get("c2");
+                params.set({url: null,not_ids:id_exclude,limit:50});
+                /* idTemplate: id del Template de javascript */
+                var idTemplate1 = "#template-sections-carousel-sites";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo1 = "#sections-carousel-sites";
+                collectionMain.assembleUrl(idTemplate1, appendTo1,renderTemplate,callback2,forward,pathUrl);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
             }, 'html');
             return this;
         }
@@ -578,17 +710,58 @@ $(function() {
                 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({url: perfil,limit:1});
+                params.set({url: perfil,limit:1, not_ids: null});
                 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
                 var renderTemplate = collectionMain.template;
                 
                 /* idTemplate: id del Template de javascript */
-                var idTemplate = "#template-sections-sites";
+                var idTemplate = "#template-sections-vlogger";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                var appendTo = "#sections-sites";
+                var appendTo = "#sections-vlogger";
                 /* callback: debe ser una función para poder ejecutarse */
-                var callback = null; 
+                var callback = function(){
+                        params.set({fields: null});
+
+                                 $('#demo-pie-8').pieChart({
+                                    barColor: '#17d9b4',
+                                    trackColor: '#449cce',
+                                    lineCap: 'square',
+                                    lineWidth: 24,
+                                    size: 158,
+                                    rotate: -110,
+                                    animate: {
+                                        duration: 3000,
+                                        enabled: true
+                                      },
+                                    onStep: function (from, to, percent) {
+                                        $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                                    }
+                                });
+                                $('#demo-pie-9').pieChart({
+                                    barColor: '#17d9b4',
+                                    trackColor: '#449cce',
+                                    lineCap: 'square',
+                                    lineWidth: 24,
+                                    size: 158,
+                                    rotate: -110,
+                                    animate: {
+                                        duration: 3000,
+                                        enabled: true
+                                      },
+                                    onStep: function (from, to, percent) {
+                                        $(this.element).find('.pie-value').text(Math.round(percent*10)/10 + '%');
+                                    }
+                                });
+            
+                        $('.slick-slide .content-blogger a').click(function(){
+                            id_exclude=$(this).attr('data-id');
+                            
+                        });
+              
+
+
+                    };  
                 /* forward: instancia de la vista a renderear*/
                 var forward = inventMx.view.casoExito;
                 /* pathUrl: si se hace uso de un forward se debe de mandar la url en question
@@ -597,7 +770,58 @@ $(function() {
                 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                callback = function(){
+                        params.set({fields: null});
+                        $('.vlogger').slick({
+                            dots: true,
+                           infinite: true,
+                           speed: 3000,
+                           slidesToShow: 3,
+                           slidesToScroll: 3,
+                           responsive: [
+                             {
+                               breakpoint: 1024,
+                               settings: {
+                                 slidesToShow: 3,
+                                 slidesToScroll: 3,
+                                 infinite: true,
+                                 dots: true
+                               }
+                             },
+                             {
+                               breakpoint: 600,
+                               settings: {
+                                 slidesToShow: 3,
+                                 slidesToScroll: 3
+                               }
+                             },
+                             {
+                               breakpoint: 480,
+                               settings: {
+                                 slidesToShow: 2,
+                                 slidesToScroll: 2
+                               }
+                             }
+                             // You can unslick at a given breakpoint now by adding:
+                             // settings: "unslick"
+                             // instead of a settings object
+                           ]
+                       });
+
+                    };
+                repositorio = collectionMain.get("c1");    
+                repositorio.set({repositorio: "vloger.json"});
+                params = collectionMain.get("c2");
+                params.set({url: null,not_ids:id_exclude,limit:50});
+                /* idTemplate: id del Template de javascript */
+                var idTemplate = "#template-carousel-sections-vloggers";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                var appendTo = "#sections-carousel-influencers";
+                collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
                 
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
                 
             }, 'html');
             return this;
@@ -646,6 +870,11 @@ $(function() {
                 
                     
                 }
+                
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
+                
             }, 'html');
             return this;
         }
@@ -665,10 +894,15 @@ $(function() {
                 if($(idContent+"blogs").children("div").length == 0){
                     $(idContent+"blogs").html(data);
                 }
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
+                
                 collectionMain.hideSections(section);
             }, 'html');
             return this;
         }
+        
     }),
     inventMx.view.blogsNota = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
@@ -709,6 +943,9 @@ $(function() {
                 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo,renderTemplate,callback,forward,pathUrl);
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                $('.contact-form').css({'opacity':"0",'top':'200px'});
                 
                 
             }, 'html');
@@ -729,11 +966,16 @@ $(function() {
             $.get(this.template+'contacto/contacto.html', function(data) {
                  if($(idContent+"contacto").children("div").length == 0){
                     $(idContent+"contacto").html(data);
-                    collectionMain.hideSections(section);
                 }
+                collectionMain.hideSections(section);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                    $('.contact-form').css({'opacity':"1",'top':'0'});
+                    
             }, 'html');
             return this;
         }
+        
     }),
     inventMx.view.codiga = Backbone.View.extend({
         template: collectionMain.get("c3").attributes.pathTemplate,
@@ -748,9 +990,13 @@ $(function() {
             var  section = "codiga";
             $.get(this.template+'codiga/codiga.html', function(data) {
                 if($(idContent+"codiga").children("div").length == 0){
-                    $(idContent+"codiga").html(data);
-                    collectionMain.hideSections(section);
+                    $(idContent+"codiga").html(data);   
                 }
+                collectionMain.hideSections(section);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");
+                    $('#marketing .wrapper').css({'opacity':"0",'top':'200px'});
+                    $('.contact-form').css({'opacity':"0",'top':'200px'});
+                
             }, 'html');
             return this;
         }

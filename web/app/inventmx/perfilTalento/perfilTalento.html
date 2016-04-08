@@ -1,128 +1,12 @@
 <div class="azul panel" id="vlogger" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
             <div class="wrapper">
-                <div class="content-vlogger">
-                    <div class="img-vlogger">
-                        <img src="/web/img/global/blogger.png" />
-                        <div class="title">
-                            <p>Conductora, actriz, esposa, mamá, amante de los buenoes momentos y los tips. La sonrisa de Annie la delata: se divierte con cada tip.
-                            </p>
-                            <p><strong>Annie Barrios</strong> te enseña tips, DIY, recetas llenas de creatividad y siempre contagiando alegria, y muchas carcajadas, Annie nos guía para sacar la mejor versión de nosotras.</p>
-                        </div>
-                        <a href="#" class="link-youtube">Visita su canal de youtube</a>
-                    </div>
-                    <div class="seguidores-vlogger">
-                        <div class="name-vlogger">
-                            <h1>Lorena Garal</h1>
-                            <h3>Nombre del blog</h3>
-                        </div>
-                        <div>
-                            <div class="content-circles">
-                                <div class="item-circle margin-right">   
-                                    <div id="demo-pie-8" class="pie-title-center" data-percent="34.6"> <span class="pie-value"></span> </div>
-                                    <h3>Hombres</h3>
-                                </div>
-                                <div class="item-circle"> 
-                                    <div id="demo-pie-9" class="pie-title-center" data-percent="34.6"> <span class="pie-value"></span> </div>
-                                    <h3>Mujeres</h3>
-                                </div>
-                            </div>
-                            <div class="numero-audiencias">
-                                <ul>
-                                    <li>
-                                        <span>247,886</span><br />
-                                        visitas mensuales
-                                    </li>
-                                    <li>
-                                        <span>37,973</span><br />
-                                        total de seguidores
-                                    </li>
-                                    
-                                </ul>
-
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    <div class="adjuntos mobile">
-                        <ul>
-                            <li class=""><a href="#">Canal de youtube</a></li>
-                            <li class=""><a href="#">Afíliate</a></li>
-                        </ul>
-                    </div>
-                    
-                    
-                </div>
+                <article>
+                    <section id="sections-vlogger"></section>
+                </article>
                 <h1 class="title-influencers">Nuestros influencers</h1>
-                <div class="flexslider_bloger">
-                        <ul class="slides">
-                          <li>
-                              <div class="content-blogger">
-                                  <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                                  
-                              </div>
-                              <div class="content-blogger">
-                                  <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                              </div>
-                              <div class="content-blogger">
-                                 <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                                  
-                              </div>
-                          </li>
-                          <li>
-                             <div class="content-blogger">
-                                  <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                                  
-                              </div>
-                              <div class="content-blogger">
-                                  <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                                  
-                              </div>
-                              <div class="content-blogger">
-                                  <img src="/web/img/global/blogger.png" />
-                                  <div class="title">
-                                      <h1>Lorena Garal</h1>
-                                      <h3>Life & style</h3>
-                                  </div>
-                                  <span class="seguidores">674</span>
-                                  <span class="description">Seguidores de youtube</span>
-                                  
-                              </div>
-                          </li>
-                          
-
-                        </ul>
-                    </div>
+                <article>
+                    <section id="sections-carousel-influencers"></section>
+                </article>
             
 
             </div>
@@ -164,3 +48,114 @@
                         <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
 
                 </div>
+        
+
+<script id="template-sections-vlogger" type="template/template-sections-vlogger">
+<div class="content-vlogger">
+    {{#each this}}
+                    <div class="img-vlogger">
+                        {{#if this.images.picture }}
+                            {{#if this.images.picture.0.styles }}
+                                {{#if this.images.picture.0.styles.medium }}
+                                    <img class="loader lazy" src="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                {{else}}
+                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                {{/if}}
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                        
+                        <div class="title">
+                            {{{this.body}}}
+                            
+                        </div>
+                        <a href="{{this.yt_channel}}" class="link-youtube">Visita su canal de youtube</a>
+                    </div>
+                    <div class="seguidores-vlogger">
+                        <div class="name-vlogger">
+                            <h1>{{this.title}}</h1>
+                            <h3>Nombre del blog</h3>
+                        </div>
+                        <div>
+                            <div class="content-circles">
+                                <div class="item-circle margin-right">   
+                                    <div id="demo-pie-8" class="pie-title-center" data-percent="{{this.mens}}"> <span class="pie-value"></span> </div>
+                                    <h3>Hombres</h3>
+                                </div>
+                                <div class="item-circle"> 
+                                    <div id="demo-pie-9" class="pie-title-center" data-percent="{{this.womens}}"> <span class="pie-value"></span> </div>
+                                    <h3>Mujeres</h3>
+                                </div>
+                            </div>
+                            <div class="numero-audiencias">
+                                <ul>
+                                    <li>
+                                        <span>{{this.views}}</span><br />
+                                        visitas mensuales
+                                    </li>
+                                    <li>
+                                        <span>{{this.followers}}</span><br />
+                                        total de seguidores
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="adjuntos mobile">
+                        <ul>
+                            <li class=""><a href="{{this.yt_channel}}">Canal de youtube</a></li>
+                            <li class=""><a href="#">Afíliate</a></li>
+                        </ul>
+                    </div>
+                    {{/each}} 
+                    
+                </div>
+</script>        
+        
+  
+        
+        
+<script id="template-carousel-sections-vloggers" type="template/template-carousel-sections-vloggers">
+<div class="flexslider_bloger">
+    <div class="slides">
+        <div class="slid-vloggers slider vlogger">
+          {{#each this}}
+               <div>
+                    <div class="content-blogger">
+                        <a class="none-decoration" href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                            
+                            {{#if this.images.picture }}
+                                {{#if this.images.picture.0.styles }}
+                                    {{#if this.images.picture.0.styles.medium }}
+                                        <img class="loader lazy" src="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                    {{else}}
+                                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                    {{/if}}
+                                {{else}}
+                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                {{/if}}
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                            <div class="title">
+                                <h1>{{ this.title}}</h1>
+                                <h3>{{ this.audience.0.title}}</h3>
+                            </div>
+                            <span class="seguidores">{{this.followers}}</span>
+                            <span class="description">Seguidores de youtube</span>
+                        </a>
+
+                    </div>
+            </div>
+                {{/each}} 
+        </div>
+    </div>  
+</div>
+</script>        

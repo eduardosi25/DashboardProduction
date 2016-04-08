@@ -78,7 +78,7 @@ table {
 .hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #sitio .wrapper .description, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
   font-family: 'Hind-Semibold'; }
 
-.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
+.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
   font-family: 'Hind-Regular'; }
 
 .hindlight, #header .wrapper .menu ul li a, .btn-contacto div, #blogs .wrapper .item.destacado .content-tet, #nota .wrapper .content-left .content-autor .content-text, #nota .wrapper .content-left .content-nota {
@@ -90,7 +90,7 @@ table {
 .hindmedium, #nota .wrapper .content-left h1, #nota .wrapper .content-left .content-nota .text-autor, #nota .wrapper .content-right .item-related .title-nota {
   font-family: 'Hind-Medium'; }
 
-.sprite, .flexslider_bloger .slick-prev:before, .flexslider_bloger .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
+.sprite, .slick-prev:before, .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
@@ -327,6 +327,33 @@ canvas {
       color: #fff;
       padding: 0 20px; }
 
+#sections-carousel-sites .flexslider_marcas {
+  margin-top: 59px;
+  position: relative; }
+  #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 305px;
+    min-height: 246px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    margin: 0 -4px 0 0;
+    text-align: center;
+    padding-top: 19px; }
+    #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div:nth-child(3n) {
+      border-right: 0px; }
+    #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div .line {
+      content: "";
+      display: block;
+      width: 200px;
+      height: 2px;
+      background: #17d9b4;
+      margin: 15px auto 30px; }
+    #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p {
+      font-size: 14px;
+      color: #fff;
+      padding: 0 20px; }
+
 .flexslider_bloger {
   position: relative; }
   .flexslider_bloger .slides > div > div > div > div:nth-child(3n) div {
@@ -364,39 +391,51 @@ canvas {
       text-transform: uppercase;
       font-size: 12px;
       color: #fec524; }
-  .flexslider_bloger .slick-prev, .flexslider_bloger .slick-next {
-    font-size: 0;
-    line-height: 0;
-    position: absolute;
-    top: 50%;
-    left: -23px;
-    display: block;
-    width: 25px;
-    height: 54px;
-    margin-top: -10px;
-    padding: 0;
-    cursor: pointer;
-    color: transparent;
-    border: none;
-    outline: none;
-    background: transparent; }
-  .flexslider_bloger .slick-next {
-    left: inherit;
-    right: -23px; }
-  .flexslider_bloger .slick-prev:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-position: -24px -18px; }
-  .flexslider_bloger .slick-next:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-position: -58px -18px; }
-  .flexslider_bloger .slick-dots {
-    display: none !important; }
+
+.slick-prev, .slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  left: -23px;
+  display: block;
+  width: 25px;
+  height: 54px;
+  margin-top: -10px;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: transparent; }
+
+.slick-next {
+  left: inherit;
+  right: -23px; }
+
+.slick-prev:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-position: -24px -18px; }
+
+.slick-next:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-position: -58px -18px; }
+
+#sections-carousel-sites .flexslider_marcas .slides > div > div > div > div:nth-child(3n) div {
+  border-right: 0px; }
+
+.slick-dots {
+  display: none !important; }
+
+.slick-slide img {
+  display: block;
+  margin: 0 auto; }
 
 .verde {
   background-color: #27ae61; }
@@ -503,6 +542,15 @@ canvas {
     max-width: 585px;
     margin: 0 auto;
     display: block; }
+
+.contact-form {
+  position: relative;
+  opacity: 0;
+  top: 400px;
+  -webkit-transition: all .8s ease;
+  -moz-transition: all .8s ease;
+  -ms-transition: all .8s ease;
+  transition: all .8s ease; }
 
 #contac {
   background-image: url("../img/global/background5.jpeg");
@@ -924,7 +972,13 @@ canvas {
   height: 630px;
   overflow: hidden; }
   #marketing .wrapper {
-    max-width: 890px; }
+    max-width: 890px;
+    opacity: 0;
+    top: 200px;
+    -webkit-transition: all .8s ease;
+    -moz-transition: all .8s ease;
+    -ms-transition: all .8s ease;
+    transition: all .8s ease; }
     #marketing .wrapper .content-marketing {
       margin: 35px 0 0; }
       #marketing .wrapper .content-marketing .description {
@@ -1262,7 +1316,7 @@ Codiga
         font-size: 35px;
         margin-bottom: 30px; }
   #blogs .wrapper .content-item .item {
-    width: 32.7%;
+    width: 32.5%;
     display: inline-block;
     vertical-align: top;
     margin: 0 1% 30px -3px; }
@@ -1515,11 +1569,19 @@ content-facebook {
 body #bottom-imx-fixed-wrapper.bottom-static {
   height: auto !important; }
 
+#wrapper-page {
+  position: relative;
+  z-index: 1; }
+
 .btn-menu {
   display: none; }
 
 .mobile {
   display: none; }
+
+.sprite, .slick-prev:before, .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
+  background: url("../img/sprites/sprite_invent.png");
+  background-repeat: no-repeat; }
 
 @media only screen and (max-width: 1023px) {
   .bottom-links #bottom-imx-fixed .bottom-links-notes {
@@ -2036,6 +2098,34 @@ body #bottom-imx-fixed-wrapper.bottom-static {
   #header .wrapper .menu {
     display: none; }
 
+  #header .wrapper .menu {
+    width: 110%;
+    z-index: 9999999;
+    height: auto;
+    top: 92px;
+    left: -5%;
+    right: inherit;
+    margin: 0; }
+
+  #header .wrapper .menu ul li {
+    display: block;
+    vertical-align: top;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    margin-left: 0;
+    border: 0;
+    background: #1a1a1a; }
+
+  #header .wrapper .menu ul li a {
+    font-size: 18px;
+    display: block;
+    padding: 8px 0;
+    max-width: 100%; }
+
+  #header .wrapper .menu ul li:last-child {
+    width: 100%; }
+
   .btn-menu {
     display: block;
     position: absolute;
@@ -2388,7 +2478,54 @@ body #bottom-imx-fixed-wrapper.bottom-static {
     width: 80%;
     margin: 0 auto 0;
     vertical-align: top;
-    display: block; } }
+    display: block; }
+
+  #marcas .wrapper .flexslider_marcas .slides li {
+    display: block;
+    float: inherit; }
+    #marcas .wrapper .flexslider_marcas .slides li > div {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-height: 60px;
+      height: 60px;
+      border-bottom: 3px solid #fff;
+      border-left: 0;
+      border-right: 0;
+      margin: 0;
+      padding: 0;
+      position: relative; }
+      #marcas .wrapper .flexslider_marcas .slides li > div img {
+        max-width: 100%;
+        width: auto;
+        max-height: 60px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto; }
+      #marcas .wrapper .flexslider_marcas .slides li > div .line, #marcas .wrapper .flexslider_marcas .slides li > div p {
+        display: none; }
+      #marcas .wrapper .flexslider_marcas .slides li > div:after {
+        background: url("../img/sprites/sprite_invent.png");
+        background-repeat: no-repeat;
+        background-position: -81px -235px;
+        content: "";
+        display: block;
+        width: 22px;
+        height: 19px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        right: 10px; }
+
+  #marcas {
+    background: #890e4f; }
+
+  #sections-vloggers {
+    display: none; } }
 @media only screen and (max-width: 574px) {
   .content-contact form {
     width: 95%;

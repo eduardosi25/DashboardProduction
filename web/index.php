@@ -24,6 +24,7 @@
         <link rel="stylesheet" type="text/css" href="/web/css/style.css">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+        <link rel="stylesheet" href="/web/css/swift.css">
 
     </head>
     <body class="relative">
@@ -40,14 +41,19 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li class="linea"><a href="/#red-invent">La red invent</a></li>
-                    <li class="linea"><a href="/#content">Content</a></li>
-                    <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
-                    <li class="linea"><a href="/#network-ads">Network Ads</a></li>
-                    <li class="linea"><a href="/#blogs">Blogs</a></li>
-                    <li class="contato"><a href="/#contacto">contato</a></li>
+                    <li class="linea"><a href="/#/red-invent">La red invent</a></li>
+                    <li class="linea padding-tablet"><a href="/#servicios">Content</a></li>
+                    <li class="linea"><a href="/#servicios">Media Happenings</a></li>
+                    <li class="linea"><a href="/#servicios">Network Ads</a></li>
+                    <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
+                    <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
                     <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
                 </ul>
+            </div>
+            <div class="btn-menu">
+            <a class="navicon-button x">
+                <div class="navicon"></div>
+            </a>
             </div>
         </div>
         
@@ -57,14 +63,14 @@
         <!-- no borrar -->
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
+            <div id="page-main-invent-codiga"></div>
             <div id="page-main-invent-redInvent"></div>
             <div id="page-main-invent-servicios"></div>
             <div id="page-main-invent-perfilSitio"></div>
             <div id="page-main-invent-perfilTalento"></div>
             <div id="page-main-invent-blogs"></div>
             <div id="page-main-invent-blogsNota"></div>
-            <div id="page-main-invent-contacto"></div>
-            <div id="page-main-invent-codiga"></div>
+            <div id="page-main-invent-contacto"></div>      
             <div id="page-main-invent-casoExito"></div>
             <div id="page-main-invent-404"></div>
         </div>  
@@ -98,6 +104,7 @@
         <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="/web/js/libs/slick.js"></script>
+        <script src="/web/js/libs/swift.js"></script>
         <script type="text/javascript" src="/web/js/libs/js.js"></script>
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />

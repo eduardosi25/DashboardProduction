@@ -213,10 +213,10 @@
                     <li>
                     {{#eachSlice this offset="0" limit="6"}}
                         <div>
-                            <a href="{{ getUrlApp this.url}}">
+                            <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
                                 <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
-                                <p>{{this.summary}}</p>
+                                <p>{{{this.summary}}}</p>
                             </a>
                         </div>
                     {{/eachSlice}}
@@ -224,7 +224,7 @@
                     <li>
                     {{#eachSlice this offset="7" limit="6"}}
                         <div>
-                            <a href="{{ getUrlApp this.url}}">
+                            <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
                                 <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
@@ -235,7 +235,7 @@
                     <li>
                     {{#eachSlice this offset="12" limit="6"}}
                         <div>
-                            <a href="{{ getUrlApp this.url}}">
+                            <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
                                 <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
@@ -255,7 +255,7 @@
           {{#each this}}
                <div>
                     <div class="content-blogger">
-                        <a class="none-decoration" href="{{ getUrlApp this.url}}">
+                        <a class="none-decoration" href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
                             
                             {{#if this.images.picture }}
                                 {{#if this.images.picture.0.styles }}
