@@ -4,22 +4,14 @@ $(function() {
     /* eventos */
     var inventMx_events = {};
     IMxevents = _.extend(inventMx_events, Backbone.Events);
-    $(window).resize(function() {
-        $w = $(window).width();
-        if ($w <= 625) {
-            sitescripts.modules.flexslider('.flexslider_marcas').destroy();
-        }
-    });
-
-
+    
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
     inventMx_events.bind("NoData", function(msg) {
         alert('No hay  más dato en ' + msg);
     });
 
-    inventMx_events.bind("Inventform", function(idform, data) {  
-        console.log(idform);
+    inventMx_events.bind("Inventform", function(idform, data) {
         validate = $(idform).validationEngine('validate');
         //options = {idform: idform};
         if (validate) {
@@ -57,7 +49,6 @@ $(function() {
         initialize: function() {
         },
         animations: function(section){
-            console.log("cd");
             $("#wrapper-page div[id^='page-main-invent-']").each(function() {
                 $(this).hide().animate({'margin-left':"100%"});
                 $(this).show().animate({'margin-left':"0"});;
@@ -129,6 +120,23 @@ $(function() {
                 }
             });
         },
+        topOffset: function(position,delay,transition,callback){
+            delay = (delay) ? delay : 0;
+            transition = (transition) ? transition : 500;
+            $('body,html').delay(delay).animate({
+                scrollTop: position
+            }, transition, function() {
+                if (typeof callback == "function") {
+                    callback();
+                }
+            });
+        },
+        loaderShow: function(){
+            $("#wrapper-loading-layout").show();
+        },
+        loaderHide: function(){
+            $("#wrapper-loading-layout").hide();
+        },
         hideSections: function(section) {
             $("#wrapper-page div[id^='page-main-invent-']").each(function() {
                 $(this).hide();
@@ -136,7 +144,7 @@ $(function() {
             });
         }
     });
-
+    
     var collectionMain = new collectionsMain();
     collectionMain.add({
         baseUrl: "http://api.inventmx.com/v1/inventmx",
@@ -229,6 +237,24 @@ $(function() {
                 }
                 collectionMain.hideSections(section);
 
+                /* la red invent */
+                var idAncla = window.location.href.split("#")[1];
+                if (idAncla) {
+                    if ($("[data-section='" + idAncla + "']").length) {
+                        collectionMain.loaderShow();
+                        function top() {
+                            var offset1 = $("[data-section='" + idAncla + "']").offset();
+                            var offset = offset1.top;
+                            var delay = 10;
+                            //position,delay,transition,callback
+                            collectionMain.topOffset(offset, delay, 0, collectionMain.loaderHide);
+                        }
+                        setTimeout(top, 1000);
+                    } else {
+                        console.log("no valido");
+                    }
+                }
+                        
                 
                 repositorio = collectionMain.get("c1");
                 repositorio.set({repositorio: "sites.json",section:"home"});
@@ -250,10 +276,7 @@ $(function() {
                     params.set({fields: null});
 
                     $w=$(window).width();
-                    console.log($w);
                     if($w >= 728){
-                        console.log('si');
-                     
                        $('.flexslider_marcas').flexslider({
                         animation: "slide",
                         animationLoop: true,
@@ -269,7 +292,6 @@ $(function() {
                     }
                       $('.slides li a').click(function(){
                             id_exclude=$(this).attr('data-id');
-                            console.log('si');
                         });
                       
                         
@@ -560,11 +582,6 @@ $(function() {
             }, 'html');
 
             return this;
-            /*repo = "sites.json";
-             url = null;
-             return this;*/
-
-
         },
         acordeon: function(e) {
             e.preventDefault();
@@ -573,7 +590,7 @@ $(function() {
             "click #home-accordion h2": "acordeon",
         },
     }),
-            inventMx.view.redInvent = Backbone.View.extend({
+            /*inventMx.view.redInvent = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,
                 initialize: function() {
@@ -597,7 +614,7 @@ $(function() {
                     }, 'html');
                     return this;
                 }
-            }),
+            }),*/
             inventMx.view.servicios = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,
@@ -616,11 +633,11 @@ $(function() {
                         if ($(idContent + "servicios").children("div").length == 0) {
                             $(idContent + "servicios").html(data);
                         }
-                        var urlHash = window.location.href.split("#")[1];
+                        /*var urlHash = window.location.href.split("#")[1];
                         if (urlHash && $('#' + urlHash).length)
                             $('html,body').animate({
                                 scrollTop: $('#' + urlHash).offset().top
-                            }, 1500);
+                            }, 1500);*/
 
                         collectionMain.hideSections(section);
 
@@ -638,10 +655,26 @@ $(function() {
                         $('.content-ads .item').swift({'type': 'dom', 'positionStart': 'left', 'length': '3200', 'axis': 'left','delay': '50'});
                         $('.content-ads .item.right').swift({'type': 'dom', 'positionStart': 'right', 'length': '3600', 'axis': 'left','delay': '50'});
                         $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left','delay': '50'});
-
-                        jQuery("#contact_form-servicio").validationEngine('attach', {
-                            promptPosition: "bottomLeft"
-                        });
+                        
+                        /* servicios - content - netword-ads - media*/
+                        var idAncla = window.location.href.split("#")[1];
+                        if (idAncla) {
+                            if ($("[data-section='"+idAncla+"']").length) {
+                                collectionMain.loaderShow();
+                                function top() {
+                                    var offset1 = $("[data-section='"+idAncla+"']").offset();
+                                    var offset = offset1.top;
+                                    var delay = 10;
+                                               //position,delay,transition,callback
+                                    collectionMain.topOffset(offset,delay,0,collectionMain.loaderHide);
+                                }
+                                setTimeout(top, 1000);
+                            } else {
+                                console.log("no valido");
+                            }
+                        }
+                        
+                        
                         $(".btn-contacto .anunciate").click(function(){
                             $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
@@ -657,12 +690,16 @@ $(function() {
                             $(".contact_form.contact_form_afilate").fadeIn();
                             
                         });
-
-                        $(document).on("submit", "#contact_form-servicio", function(e) {
+                        
+                        
+                        jQuery(".contact_form").validationEngine('attach', {
+                            promptPosition: "bottomLeft"
+                        });
+                        
+                        $(document).on("submit", ".contact_form", function(e) {
                             e.preventDefault();
-                            console.log("cargando");
                             data = $(this).serializeArray();
-                            inventMx_events.trigger('Inventform', '#contact_form-servicio', data);
+                            inventMx_events.trigger('Inventform', '.contact_form', data);
                             return false;
                         });
                         
@@ -1161,15 +1198,14 @@ $(function() {
                         $('.contact-form').css({'opacity': "1", 'top': '0'});
                         
                         
-                        jQuery("#contact_form").validationEngine('attach', {
+                        jQuery(".contact_form").validationEngine('attach', {
                             promptPosition: "bottomLeft"
                         });
 
-                        $(document).on("submit", "#contact_form", function(e) {
+                        $(document).on("submit", ".contact_form", function(e) {
                             e.preventDefault();
-                            console.log("cargando");
                             data = $(this).serializeArray();
-                            inventMx_events.trigger('Inventform', '#contact_form', data);
+                            inventMx_events.trigger('Inventform', '.contact_form', data);
                             return false;
                         });
                         $(".btn-contacto .anunciate").click(function(){
