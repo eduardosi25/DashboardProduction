@@ -18,8 +18,7 @@ $(function() {
         alert('No hay  más dato en ' + msg);
     });
 
-    inventMx_events.bind("Inventform", function(idform, data) {  
-        console.log(idform);
+    inventMx_events.bind("Inventform", function(idform, data) {
         validate = $(idform).validationEngine('validate');
         //options = {idform: idform};
         if (validate) {
@@ -252,8 +251,6 @@ $(function() {
                     $w=$(window).width();
                     console.log($w);
                     if($w >= 728){
-                        console.log('si');
-                     
                        $('.flexslider_marcas').flexslider({
                         animation: "slide",
                         animationLoop: true,
@@ -269,7 +266,6 @@ $(function() {
                     }
                       $('.slides li a').click(function(){
                             id_exclude=$(this).attr('data-id');
-                            console.log('si');
                         });
                     $(".btn-contacto .anunciate").click(function(){
                     $(this).addClass("active");
@@ -610,10 +606,8 @@ $(function() {
                         $('.content-ads .item').swift({'type': 'dom', 'positionStart': 'left', 'length': '3200', 'axis': 'left','delay': '50'});
                         $('.content-ads .item.right').swift({'type': 'dom', 'positionStart': 'right', 'length': '3600', 'axis': 'left','delay': '50'});
                         $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left','delay': '50'});
-
-                        jQuery("#contact_form-servicio").validationEngine('attach', {
-                            promptPosition: "bottomLeft"
-                        });
+                        
+                        
                         $(".btn-contacto .anunciate").click(function(){
                             $(".btn-contacto contcato").removeClass("active");
                             $(this).addClass("active");
@@ -627,12 +621,17 @@ $(function() {
                             $(".contact_form").fadeOut();
                             $(".contact_form.contact_form_afilate").fadeIn();
                         });
-
-                        $(document).on("submit", "#contact_form-servicio", function(e) {
+                        
+                        
+                        jQuery(".contact_form").validationEngine('attach', {
+                            promptPosition: "bottomLeft"
+                        });
+                        
+                        $(document).on("submit", ".contact_form", function(e) {
                             e.preventDefault();
                             console.log("cargando");
                             data = $(this).serializeArray();
-                            inventMx_events.trigger('Inventform', '#contact_form-servicio', data);
+                            inventMx_events.trigger('Inventform', '.contact_form', data);
                             return false;
                         });
                         
@@ -1120,15 +1119,15 @@ $(function() {
                         $('.contact-form').css({'opacity': "1", 'top': '0'});
                         
                         
-                        jQuery("#contact_form").validationEngine('attach', {
+                        jQuery(".contact_form").validationEngine('attach', {
                             promptPosition: "bottomLeft"
                         });
 
-                        $(document).on("submit", "#contact_form", function(e) {
+                        $(document).on("submit", ".contact_form", function(e) {
                             e.preventDefault();
                             console.log("cargando");
                             data = $(this).serializeArray();
-                            inventMx_events.trigger('Inventform', '#contact_form', data);
+                            inventMx_events.trigger('Inventform', '.contact_form', data);
                             return false;
                         });
                         $(".btn-contacto .anunciate").click(function(){
