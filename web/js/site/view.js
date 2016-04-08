@@ -22,8 +22,25 @@ $(function() {
         validate = $(idform).validationEngine('validate');
         options = {idform: idform};
         if (validate) {
-            url = "/web/app/inventmx/global/sendmail.php";
-            inventMx.dataSource.getAjax(url, data, inventMx.email.data, options);
+            var url = "/web/app/inventmx/global/sendmail.php";
+            Backbone.ajax({
+                url: url,
+                data: options,
+                dataType: 'json',
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function(nodes) {
+                    if(nodes){
+                        $(idform + " :input[type='text'], "+idform + " textarea").val("");
+                    }else {
+                        console.log("Hubo un  error al procesar la petición");
+                    }
+                },
+                error: function(request, status, error) {
+                    alert("Hubo un error inesperado, intenta nuevamente por favor");
+                }
+            });
         } else {
             console.log("No validate");
         }
