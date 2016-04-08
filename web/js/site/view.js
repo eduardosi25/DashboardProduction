@@ -31,11 +31,13 @@ $(function() {
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 success: function(nodes) {
+                    console.log(nodes)
                     if(nodes){
-                        $(idform + " :input[type='text'], "+idform + " textarea").val("");
+                        console.log("Peticion lista");
                     }else {
                         console.log("Hubo un  error al procesar la petición");
                     }
+                    $(idform + " :input[type='text'], "+idform + " textarea").val("");
                 },
                 error: function(request, status, error) {
                     alert("Hubo un error inesperado, intenta nuevamente por favor");
