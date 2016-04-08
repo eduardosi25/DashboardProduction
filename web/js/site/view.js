@@ -18,14 +18,14 @@ $(function() {
         alert('No hay  más dato en ' + msg);
     });
 
-    inventMx_events.bind("Inventform", function(idform, data) {
+    inventMx_events.bind("Inventform", function(idform, data) {        
         validate = $(idform).validationEngine('validate');
-        options = {idform: idform};
+        //options = {idform: idform};
         if (validate) {
             var url = "/web/app/inventmx/global/sendmail.php";
             Backbone.ajax({
                 url: url,
-                data: options,
+                data: data,
                 dataType: 'json',
                 type: 'GET',
                 contentType: "application/json; charset=utf-8",
