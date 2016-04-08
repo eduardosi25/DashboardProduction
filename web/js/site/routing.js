@@ -11,13 +11,14 @@ $(function() {
             "content-marketing": "servicios",
             "media-happenings": "servicios",
             "network-ads": "servicios",
-            ":site": "perfilSitio",
-            ":perfil": "perfilTalento",
-            ":casoexito": "casoExito", 
             "aviso-de-privacidad": "avisoPrivacidad",
             "politica-ambiental": "politicaAmbiental",
-            "afiliate": "afiliate",
-            "anunciate": "anunciate",
+            "terminos-y-condiciones-de-uso": "terminosCondiciones",
+            //"afiliate": "afiliate",
+            //"anunciate": "anunciate",
+            ":site": "perfilSitio",
+            ":perfil": "perfilTalento",
+            ":casoexito": "casoExito"
         },
         initialize: function(){
             
@@ -52,17 +53,20 @@ $(function() {
         casoExito: function(casoexito) {
             inventMx.pgcasoExito = new inventMx.view.casoExito(casoexito);
         },
+        avisoPrivacidad: function() {
+            inventMx.pgAvisoPrivacidad = new inventMx.view.avisoPrivacidad();
+        },        
+        politicaAmbiental: function() {
+            inventMx.pgPoliticAmbiental = new inventMx.view.politicAmbiental();
+        },
+        terminosCondiciones: function() {
+            inventMx.pgTerminosCondiciones = new inventMx.view.terminosCondiciones();
+        },
         afiliate: function() {
             inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
         },
         anunciate: function() {
             inventMx.pgHomeAnunciate = new inventMx.thome.homeAnunciate();
-        },    
-        avisoPrivacidad: function() {
-            inventMx.pgAvisoPrivacidad = new inventMx.thome.avisoPrivacidad();
-        },        
-        politicaAmbiental: function() {
-            inventMx.pgPoliticAmbiental = new inventMx.thome.politicAmbiental();
         }
     });
     

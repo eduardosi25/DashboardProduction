@@ -28,36 +28,36 @@
 
     </head>
     <body class="relative">
-        <div id="wrapper-loading-layout">
+        <div id="wrapper-loading-layout" class="none">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
-        
+
         <header id="header">
-        <div class="wrapper">
-            <div class="logo">
-                <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li class="linea"><a href="/#la-red-invent">La red invent</a></li>
+                        <li class="linea padding-tablet"><a href="/#content-marketing">Content</a></li>
+                        <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
+                        <li class="linea"><a href="/#network-ads">Network Ads</a></li>
+                        <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
+                        <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
+                        <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
+                    </ul>
+                </div>
+                <div class="btn-menu">
+                    <a class="navicon-button x">
+                        <div class="navicon"></div>
+                    </a>
+                </div>
             </div>
-            <div class="menu">
-                <ul>
-                    <li class="linea"><a href="/#la-red-invent">La red invent</a></li>
-                    <li class="linea padding-tablet"><a href="/#content-marketing">Content</a></li>
-                    <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
-                    <li class="linea"><a href="/#network-ads">Network Ads</a></li>
-                    <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
-                    <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
-                    <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
-                </ul>
-            </div>
-            <div class="btn-menu">
-            <a class="navicon-button x">
-                <div class="navicon"></div>
-            </a>
-            </div>
-        </div>
-        
-        
-    </header>
-  
+
+
+        </header>
+
         <!-- no borrar -->
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
@@ -70,9 +70,12 @@
             <div id="page-main-invent-blogsNota"></div>
             <div id="page-main-invent-contacto"></div>      
             <div id="page-main-invent-casoExito"></div>
+            <div id="page-main-invent-avisoPrivacidad" class="aviso-y-politicas"></div>
+            <div id="page-main-invent-politicaAmbiental" class="aviso-y-politicas"></div>
+            <div id="page-main-invent-terminosCondiciones" class="aviso-y-politicas"></div>
             <div id="page-main-invent-404"></div>
         </div>  
-        
+
         <div class="mobile links">
             <ul class="menu-mobile">
                 <li class="link-red-invent"><a href="#">La red invent</a><div class="linea"></div></li>
@@ -82,27 +85,27 @@
             </ul>
         </div>
         <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
-             
+
             <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   
-                 <div>
-               <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
-               <div id="bottom-links" style="display:none;">
-                   <span id="politicasprivacidad">/aviso-de-privacidad</span>
-                   <span id="condiciones-uso">/terminos-y-condiciones-de-uso</span>
-                   <span id="gotop">#page</span>
-                   <span id="politicaambiental">/politica-ambiental</span>
-                   <span id="sitemap">/sitemap.xml</span>
-                   <span id="rss">/rss.xml</span>
-               </div>
-           </div>      
-            
+            <div>
+                <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
+                <div id="bottom-links" style="display:none;">
+                    <span id="politicasprivacidad">#aviso-de-privacidad</span>
+                    <span id="condiciones-uso">#terminos-y-condiciones-de-uso</span>
+                    <!-- <span id="gotop">#page</span> -->
+                    <span id="politicaambiental">#politica-ambiental</span>
+                    <!-- <span id="sitemap">/sitemap.xml</span>
+                    <span id="rss">/rss.xml</span> -->
+                </div>
+            </div>      
+
         </footer>    
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>       
         <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
         <!--<script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>-->
-        
+
         <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
         <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
@@ -111,6 +114,7 @@
         <script type="text/javascript" src="/web/js/libs/slick.js"></script>
         <script src="/web/js/libs/swift.js"></script>
         <script type="text/javascript" src="/web/js/libs/js.js"></script>
+
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
             <link rel="canonical" href="{{ canonical }}" />
@@ -136,7 +140,6 @@
             ga('create', 'UA-15985397-3', 'auto');
             ga('send', 'pageview');
         </script>
-        
-        
+
     </body>
 </html>
