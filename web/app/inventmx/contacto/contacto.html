@@ -15,19 +15,20 @@
                         <div class="afíliate">AFíliate</div>
                     </div>
                     <div class='content-contact' >
-                        <form class="contact_form" action="#" method="post">
+                        <form id="contact_form" class="contact_form" action="#" method="post">
                             <ul>
 
                                <li class='nombres'>
-                                   <input type="text" name="nombre"  placeholder="*NOMBRE" required />
-                                   <input type="text" name="apellido" placeholder="*APELLIDO" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
                                </li>
                                <li class='correo'>
-                                   <input type="email" name="correo" placeholder="*CORREO ELECTRONICO" required />
+                                   <input type="email" class="validate[required,custom[email],maxSize[50]]" name="correo" placeholder="*CORREO ELECTRONICO" required />
                                </li>
                                <li class="mensaje">
-                                   <textarea name="Mensaje" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                   <textarea name="Mensaje" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
                                    <span>*Campos Obligatorios</span> 
+                                   <input type="hidden" name="type" value="afiliate">
                                </li>
                                <li class="enviar">
                                   <button class="submit" type="submit">Enviar</button>

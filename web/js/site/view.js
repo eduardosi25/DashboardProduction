@@ -166,25 +166,6 @@ $(function() {
 
     inventMx.view = {};
     inventMx.render = {};
-    
-    inventMx.view.animate = Backbone.View.extend({
-        el: 'body',
-        goto: function(view) {
-            var previous = this.currentPage || null;
-            var next = view;
-            if (previous) {
-                previous.transitionOut(function() {
-                    previous.remove();
-                });
-            }
-            next.render({page: true});
-            this.$el.append(next.$el);
-            next.transitionIn();
-            this.currentPage = next;
-        }
-    });
-    
-    
     /* home */
     inventMx.view.home = Backbone.View.extend({
         //el: inventMx.page.wrapper_site,
@@ -248,31 +229,17 @@ $(function() {
                 /* callback: debe ser una función para poder ejecutarse */
                 var callback = function() {
                     params.set({fields: null});
-<<<<<<< HEAD
 
-                    $('.flexslider_marcas').flexslider({
-=======
                     $w=$(window).width();
                     console.log($w);
                     if($w >= 728){
                         console.log('si');
                      
                        $('.flexslider_marcas').flexslider({
->>>>>>> c7e2f2f9544982825ff7f83a351d2076cfdd1683
                         animation: "slide",
                         animationLoop: true,
                         slideshowSpeed: 4000,
                         animationSpeed: 2000,
-<<<<<<< HEAD
-                        controlNav: false,
-                        directionNav: true,
-                    });
-                    $('.slides li a').click(function() {
-                        id_exclude = $(this).attr('data-id');
-                        console.log('si');
-                    });
-                };
-=======
                         controlNav: false,               
                         directionNav: true, 
 
@@ -287,7 +254,7 @@ $(function() {
                         });
                         
                 }; 
->>>>>>> c7e2f2f9544982825ff7f83a351d2076cfdd1683
+
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;
 
@@ -595,7 +562,20 @@ $(function() {
                         $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.right.i3').swift({'type': 'dom', 'positionStart': 'right', 'length': '800', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.i4').swift({'type': 'dom', 'positionStart': 'left', 'length': '900', 'axis': 'left', 'delay': '50'});
+                        
+                        jQuery("#contact_form-servicio").validationEngine('attach', {
+                            promptPosition: "bottomLeft"
+                        });
 
+                        $(document).on("submit", "#contact_form-servicio", function(e) {
+                            e.preventDefault();
+                            inventMx.utilities.loaderShow();
+                            console.log("cargando");
+                            data = $(this).serializeArray();
+                            inventMx_events.trigger('Inventform', '#contact_form-servicio', data);
+                            return false;
+                        });
+                        
                     }, 'html');
                     return this;
                 }
@@ -1035,6 +1015,21 @@ $(function() {
                         $("html, body").animate({scrollTop: 0}, "slow");
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                         $('.contact-form').css({'opacity': "1", 'top': '0'});
+                        
+                        
+                        jQuery("#contact_form").validationEngine('attach', {
+                            promptPosition: "bottomLeft"
+                        });
+
+                        $(document).on("submit", "#contact_form", function(e) {
+                            e.preventDefault();
+                            inventMx.utilities.loaderShow();
+                            console.log("cargando");
+                            data = $(this).serializeArray();
+                            inventMx_events.trigger('Inventform', '#contact_form', data);
+                            return false;
+                        });
+                        
 
                     }, 'html');
                     return this;
