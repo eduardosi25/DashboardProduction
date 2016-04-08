@@ -289,7 +289,8 @@ canvas {
 #marcas {
   background-attachment: fixed;
   background: #1682c0;
-  height: 1190px;
+  height: auto;
+  padding: 20px 0 60px;
   width: 100%;
   position: relative;
   overflow: hidden; }
@@ -418,14 +419,14 @@ canvas {
   width: 100%;
   height: 100%;
   display: block;
-  background-position: -24px -18px; }
+  background-position: -24px -18px !important; }
 
 .slick-next:before {
   content: "";
   width: 100%;
   height: 100%;
   display: block;
-  background-position: -58px -18px; }
+  background-position: -58px -18px !important; }
 
 #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div:nth-child(3n) div {
   border-right: 0px; }
@@ -502,7 +503,9 @@ canvas {
   background-position: left top;
   background-attachment: fixed;
   background-color: #e96340;
-  height: 585px;
+  min-height: 585px;
+  height: auto;
+  padding: 20px 0 60px;
   width: 100%;
   position: relative;
   overflow: hidden; }
@@ -519,6 +522,9 @@ canvas {
         vertical-align: top;
         max-width: 330px;
         margin-right: -3px; }
+        #resultados .wrapper .content-resultados > div img {
+          max-width: 100%;
+          width: auto; }
         #resultados .wrapper .content-resultados > div h1 {
           font-size: 30px;
           text-transform: uppercase;
@@ -567,7 +573,8 @@ canvas {
     margin: 0 auto;
     display: block; }
     #contac .wrapper .title_section {
-      padding: 35px 50px 18px; }
+      padding: 35px 50px 18px;
+      line-height: 1.1; }
   #contac .content-images {
     position: relative;
     text-align: center;
@@ -594,10 +601,10 @@ canvas {
     color: #fff;
     text-transform: uppercase;
     padding: 15px 0;
-    border-bottom: 2px solid #fff;
+    border-bottom: 0;
     margin: 15px 0 30px; }
     .btn-contacto div.active {
-      border-bottom: 0; }
+      border-bottom: 2px solid #fff; }
     .btn-contacto div:first-child {
       margin-right: 20%; }
 
@@ -678,7 +685,7 @@ canvas {
         color: #fff;
         text-transform: uppercase; }
 
-form.contact_form_anunciate {
+form.contact_form_afilate {
   display: none; }
 
 .content-contact form.contact_form_afilate ul li.correo input {
@@ -721,7 +728,8 @@ form.contact_form_anunciate {
 *******************************/
 #sitio {
   width: 100%;
-  height: 1400px;
+  height: auto;
+  padding: 20px 0 60px;
   position: relative;
   overflow: hidden; }
   #sitio .wrapper {
@@ -804,7 +812,8 @@ form.contact_form_anunciate {
  Vlogger 
 *******************************/
 #vlogger {
-  height: 1180px;
+  height: auto;
+  padding: 20px 0 60px;
   overflow: hidden; }
   #vlogger .wrapper .content-vlogger {
     width: 715px;
@@ -912,7 +921,7 @@ form.contact_form_anunciate {
     margin: 0 auto; }
   #exito .wrapper .content-exito .arrow {
     background-repeat: no-repeat;
-    background-position: -33px -151px;
+    background-position: -33px -151px !important;
     width: 58px;
     height: 32px;
     display: block;
@@ -937,7 +946,9 @@ form.contact_form_anunciate {
       vertical-align: top; }
 
 #solucion {
-  height: 1340px; }
+  min-height: 1340px;
+  height: auto;
+  padding: 40px 0 60px; }
   #solucion .wrapper {
     width: 870px; }
     #solucion .wrapper .description {
@@ -1071,14 +1082,14 @@ form.contact_form_anunciate {
       display: inline-block;
       position: absolute;
       left: 40px;
-      top: 0px; }
+      top: -5px; }
     .item .description.icon.contenido h1:before {
       background-position: -203px -184px; }
     .item .description.icon.video h1:before {
       background-position: -152px -186px;
       left: 76px;
       width: 35px;
-      top: 5px; }
+      top: -5px; }
     .item .description.icon.extended h1:before {
       background-position: -101px -184px; }
     .item .description.icon.engagement h1:before {
@@ -1248,7 +1259,11 @@ Codiga
       width: 199px;
       height: 64px;
       vertical-align: middle;
-      background: url("../img/global/logo-codiga.png") no-repeat center center; }
+      background: url("../img/global/logo-codiga.png") no-repeat center center;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: -13px;
+      margin-right: 15px; }
   #codiga-descrition .description {
     text-align: center;
     font-size: 20px;
@@ -1547,7 +1562,7 @@ content-facebook {
 
 #solucion .pleca_linea_izquierda {
   position: absolute;
-  bottom: 6px;
+  bottom: -82px;
   left: -20px;
   transform: rotate(273deg); }
 
@@ -1634,6 +1649,31 @@ body #bottom-imx-fixed-wrapper.bottom-static {
     position: relative;
     left: 20px;
     max-width: 58px; }
+
+#showcase {
+  opacity: 0;
+  top: 400px;
+  -webkit-transition: all .8s ease;
+  -moz-transition: all .8s ease;
+  -ms-transition: all .8s ease;
+  transition: all .8s ease; }
+
+.none {
+  display: none; }
+
+#wrapper-loading-layout {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+  background: #fff;
+  border: 8px solid #fff;
+  border-radius: 50px; }
 
 .aviso-y-politicas {
   width: 92.5%;

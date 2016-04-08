@@ -33,12 +33,13 @@ $(function() {
         servicios: function(name_section) {
             inventMx.pgServicios = new inventMx.view.servicios(name_section);
         },
-        blogs: function() {
+        /*blogs: function() {
             inventMx.pgBlogs = new inventMx.view.blogs();
         },
         blogsNota: function(blogsUrl) {
             inventMx.pgBlogsNota = new inventMx.view.blogsNota(blogsUrl);
-        },
+            
+        },*/
         perfilSitio: function(site) {
             inventMx.pgPerfilSitio = new inventMx.view.perfilSitio(site);
         },
@@ -50,6 +51,7 @@ $(function() {
         },
         codiga: function() {
             inventMx.pgCodiga = new inventMx.view.codiga();
+            
         },
         casoExito: function(casoexito) {
             inventMx.pgcasoExito = new inventMx.view.casoExito(casoexito);
