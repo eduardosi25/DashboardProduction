@@ -1675,6 +1675,48 @@ body #bottom-imx-fixed-wrapper.bottom-static {
   border: 8px solid #fff;
   border-radius: 50px; }
 
+.aviso-y-politicas {
+  width: 92.5%;
+  color: #666;
+  font-family: Arial;
+  background-color: #FFF;
+  min-height: 600px;
+  padding: 30px 0;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 auto;
+  max-width: 1500px; }
+  .aviso-y-politicas h1 {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 32px;
+    margin-top: 15px; }
+  .aviso-y-politicas h3 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
+    margin: 25px 0; }
+  .aviso-y-politicas strong {
+    font-weight: bold; }
+  .aviso-y-politicas a {
+    text-decoration: none; }
+  .aviso-y-politicas ol li, .aviso-y-politicas ul li {
+    margin: 10px 0; }
+  .aviso-y-politicas ol {
+    max-width: 100%;
+    width: 100%; }
+    .aviso-y-politicas ol li {
+      list-style-position: inside !important;
+      list-style: decimal;
+      margin-bottom: 8px; }
+  .aviso-y-politicas ul {
+    max-width: 100%;
+    width: 100%; }
+    .aviso-y-politicas ul li {
+      list-style-position: inside !important;
+      list-style: disc;
+      margin-bottom: 8px; }
+
 /* Z-INDEX */
 .formError {
   z-index: 990; }
