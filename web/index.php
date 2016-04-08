@@ -28,12 +28,11 @@
 
     </head>
     <body class="relative">
-<!--
-        <div id="wrapper-loading-layout">
+        
+        <div id="wrapper-loading-layout" class="none">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
 
--->
         <header id="header">
         <div class="wrapper">
             <div class="logo">
@@ -45,7 +44,7 @@
                     <li class="linea padding-tablet"><a href="/#servicios">Content</a></li>
                     <li class="linea"><a href="/#servicios">Media Happenings</a></li>
                     <li class="linea"><a href="/#servicios">Network Ads</a></li>
-                    <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
+                    <!--<li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>-->
                     <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
                     <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
                 </ul>

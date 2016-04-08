@@ -271,17 +271,7 @@ $(function() {
                             id_exclude=$(this).attr('data-id');
                             console.log('si');
                         });
-                    $(".btn-contacto .anunciate").click(function(){
-                    $(this).addClass("active");
-                    $(".contact_form").fadeOut();
-                    $(".contact_form_anunciate").fadein();
-
-                    });
-                    $(".btn-contacto .anunciate").click(function(){
-                        $(this).addClass("active");
-                        $(".contact_form").fadeOut();
-                        $(".contact_form_afilate").fadein();
-                    });    
+                      
                         
                 }; 
 
@@ -349,6 +339,31 @@ $(function() {
 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
+                
+                repositorio.set({repositorio: "case.json"});
+
+                params.set({fields: "id|title|url|summary|images"});
+                params.set({limit: "20"});
+                idTemplate = "#template-sections-case";
+                /* appendTo: lugar donde se pondra el template ya rendereado */
+                appendTo = "#sections-case";
+                /* callback: debe ser una función para poder ejecutarse */
+                callback = function() {
+                    params.set({fields: null});
+                  
+                    $('.slick-slide .content-blogger a').click(function() {
+                        id_exclude = $(this).attr('data-id');
+
+                    });
+                    
+
+                };
+                /* forward: instancia de la vista a renderear*/
+                var forward = null;
+
+                /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
+                
 
                 $('.flexslider').flexslider({
                     animation: "slide",
@@ -359,133 +374,7 @@ $(function() {
                     directionNav: false,
                 });
                 
-                $('#demo-pie-1').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 3000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-2').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 3000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-3').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 2000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent) + '%');
-                    }
-                });
-                $('#demo-pie-4').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 2000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-5').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 2000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-6').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-7').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#a03d73',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-8').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#449cce',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 3000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
-                $('#demo-pie-9').pieChart({
-                    barColor: '#17d9b4',
-                    trackColor: '#449cce',
-                    lineCap: 'square',
-                    lineWidth: 24,
-                    size: 158,
-                    rotate: -110,
-                    animate: {
-                        duration: 3000,
-                        enabled: true
-                    },
-                    onStep: function(from, to, percent) {
-                        $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
-                    }
-                });
+                
 
                 $("#audiencias .wrapper .content-audiencias > div").on({
                     mouseenter: function(e) {
@@ -516,17 +405,156 @@ $(function() {
                 $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                 $('.contact-form').css({'opacity': "0", 'top': '200px'});
                 $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                        $( window ).scroll(function() {
+                            window_y = $(window).scrollTop();
+                            scroll_critical = parseInt($(".flexslider").height());
+                            if (window_y > scroll_critical) {
+                                $('#showcase').css({'opacity':'1','top':'0'});
+                                $('#demo-pie-1').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 3000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-2').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 3000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-3').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 2000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent) + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-4').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 2000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-5').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 2000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-6').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-7').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#a03d73',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-8').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#449cce',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 3000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                                    $('#demo-pie-9').pieChart({
+                                        barColor: '#17d9b4',
+                                        trackColor: '#449cce',
+                                        lineCap: 'square',
+                                        lineWidth: 24,
+                                        size: 158,
+                                        rotate: -110,
+                                        animate: {
+                                            duration: 3000,
+                                            enabled: true
+                                        },
+                                        onStep: function(from, to, percent) {
+                                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                                        }
+                                    });
+                               
+                            } else {
+                               // ACA HACES TODO LO CONTRARIO
+                            }
                         });
 
             }, 'html');
@@ -615,17 +643,19 @@ $(function() {
                             promptPosition: "bottomLeft"
                         });
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
 
                         $(document).on("submit", "#contact_form-servicio", function(e) {
@@ -780,17 +810,19 @@ $(function() {
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
                         
                     }, 'html');
@@ -909,10 +941,15 @@ $(function() {
                                             slidesToScroll: 2
                                         }
                                     }
+                                    
                                     // You can unslick at a given breakpoint now by adding:
                                     // settings: "unslick"
                                     // instead of a settings object
                                 ]
+                            });
+                            $('.slick-slide .content-blogger a').click(function() {
+                                id_exclude = $(this).attr('data-id');
+
                             });
 
                         };
@@ -931,17 +968,19 @@ $(function() {
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
                         
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
 
                     }, 'html');
@@ -978,9 +1017,9 @@ $(function() {
                             var renderTemplate = collectionMain.template;
 
                             /* idTemplate: id del Template de javascript */
-                            var idTemplate = "#template-sections-sites";
+                            var idTemplate = "#template-sections-exito";
                             /* appendTo: lugar donde se pondra el template ya rendereado */
-                            var appendTo = "#sections-sites";
+                            var appendTo = "#sections-exito";
                             /* callback: debe ser una función para poder ejecutarse */
                             var callback = null;
                             /* forward: instancia de la vista a renderear*/
@@ -999,17 +1038,19 @@ $(function() {
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
                         
 
@@ -1132,17 +1173,19 @@ $(function() {
                             return false;
                         });
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
 
 
@@ -1176,18 +1219,25 @@ $(function() {
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
                         $(".btn-contacto .anunciate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_anunciate").fadeIn();
+                            
 
                         });
                         $(".btn-contacto .afíliate").click(function(){
-                            $(".btn-contacto contcato").removeClass("active");
+                            $(".btn-contacto div").removeClass("active");
                             $(this).addClass("active");
-                            $(".contact_form").fadeOut();
+                            $(".contact_form").fadeOut('fast').delay(500);
                             $(".contact_form.contact_form_afilate").fadeIn();
+                            
                         });
+                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+
 
                     }, 'html');
                     return this;

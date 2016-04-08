@@ -320,7 +320,8 @@ canvas{
 #marcas{
         background-attachment: fixed;
 	background:#1682c0;
-        height: 1190px;
+        height: auto;
+        padding: 20px 0 60px;
 	width: 100%;
         position:relative;
         overflow: hidden;
@@ -509,7 +510,7 @@ canvas{
                     height: 100%;
                     display: block;
                     @extend .sprite;
-                    background-position:-24px -18px;
+                    background-position:-24px -18px !important;
                 }
                 .slick-next:before {
                      content:"";
@@ -518,7 +519,7 @@ canvas{
                     height: 100%;
                     display: block;
                     @extend .sprite;
-                  background-position:-58px -18px;
+                  background-position:-58px -18px !important;
                 }
                 
 #sections-carousel-sites .flexslider_marcas .slides{
@@ -618,6 +619,7 @@ canvas{
             }
         }
 }
+
 #resultados{
     background-image: url('../img/global/background4.jpeg');
     background:rgb(220,27,72); 
@@ -625,7 +627,9 @@ canvas{
         background-position: left top;
     background-attachment: fixed;
 	background-color:#e96340;
-        height: 585px;
+        min-height: 585px;
+        height: auto;
+        padding: 20px 0 60px;
 	width: 100%;
         position: relative;
         overflow: hidden;
@@ -643,6 +647,10 @@ canvas{
                     vertical-align: top;
                     max-width: 330px;
                     margin-right: -3px;
+                    img{
+                        max-width: 100%;
+                        width: auto;
+                    }
                     
                     h1{
                         @extend .yellow;
@@ -710,7 +718,7 @@ canvas{
              .title_section {
 
                 padding: 35px 50px 18px;
-
+                line-height: 1.1;;
             }
            
         }
@@ -748,10 +756,10 @@ canvas{
                     color:#fff;
                     text-transform: uppercase;
                     padding: 15px 0;
-                    border-bottom: 2px solid #fff;
+                    border-bottom: 0;
                     margin: 15px 0 30px;
                     &.active{
-                        border-bottom: 0;
+                        border-bottom: 2px solid #fff;
                     }
                     &:first-child{
                         margin-right: 20%;
@@ -869,7 +877,7 @@ canvas{
              }
              
             }
-            form.contact_form_anunciate{
+            form.contact_form_afilate{
                 display: none;
             }
             .content-contact  form.contact_form_afilate ul li.correo input {
@@ -924,7 +932,8 @@ canvas{
 *******************************/
 #sitio{
     width: 100%;
-    height: 1400px;
+    height: auto;
+    padding: 20px 0 60px;
     position:relative;
     overflow: hidden;
     .wrapper{
@@ -1037,7 +1046,8 @@ canvas{
  Vlogger 
 *******************************/
 #vlogger{
-    height: 1180px;
+    height: auto;
+    padding: 20px 0 60px;
     overflow: hidden;
     .wrapper{
         .content-vlogger{
@@ -1193,7 +1203,7 @@ canvas{
             .arrow{
                 @extend .sprite;
                 background-repeat: no-repeat;
-                background-position: -33px -151px;
+                background-position: -33px -151px !important;
                 width: 58px;
                 height: 32px;
                 display: block;
@@ -1232,7 +1242,9 @@ canvas{
     }
 }
 #solucion{
-    height:1340px;
+    min-height:1340px;
+    height:auto;
+    padding:40px 0 60px ;
     .wrapper{
         width:870px;
         .description{
@@ -1428,7 +1440,7 @@ canvas{
                             display: inline-block;
                             position: absolute;
                             left: 40px;
-                            top:0px;
+                            top:-5px;
                             
                             }
                         }
@@ -1446,7 +1458,7 @@ canvas{
                                         background-position: -152px -186px;
                                         left: 76px;
                                         width: 35px;
-                                        top: 5px;
+                                        top: -5px;
                                 }
                                 
                             }
@@ -1723,10 +1735,14 @@ Codiga
             width:916px;
             .title-section{
                 .logo-codiga{
-                    width: 199px;
-                    height: 64px;
-                    vertical-align: middle;
-                    background: url("../img/global/logo-codiga.png")no-repeat center center;
+                        width: 199px;
+                        height: 64px;
+                        vertical-align: middle;
+                        background: url("../img/global/logo-codiga.png") no-repeat center center;
+                        display: inline-block;
+                        vertical-align: top;
+                        margin-top: -13px;
+                        margin-right: 15px;
                 }
             }
         }
@@ -2158,7 +2174,7 @@ content-facebook{
 }
 #solucion .pleca_linea_izquierda {
     position: absolute;
-    bottom: 6px;
+    bottom: -82px;
     left: -20px;
     transform: rotate(273deg);
 }
@@ -2260,6 +2276,33 @@ body #bottom-imx-fixed-wrapper.bottom-static{
             }
         }
     }
+}
+#showcase{
+    opacity: 0;
+    top:400px;
+    -webkit-transition: all .8s ease;
+    -moz-transition: all .8s ease;
+    -ms-transition: all .8s ease;
+    transition: all .8s ease;
+    
+}
+.none{
+    display:none;
+}
+#wrapper-loading-layout{
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 5;
+    background: #fff;
+    border: 8px solid #fff;
+    border-radius: 50px;
+    
 }
 @import "validation_engine";
 @import "_resolution_site.scss";
