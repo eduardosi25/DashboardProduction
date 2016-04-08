@@ -22,7 +22,6 @@ $(function() {
         validate = $(idform).validationEngine('validate');
         options = {idform: idform};
         if (validate) {
-            inventMx.utilities.loaderShow();
             url = "/web/app/inventmx/global/sendmail.php";
             inventMx.dataSource.getAjax(url, data, inventMx.email.data, options);
         } else {
@@ -569,7 +568,6 @@ $(function() {
 
                         $(document).on("submit", "#contact_form-servicio", function(e) {
                             e.preventDefault();
-                            inventMx.utilities.loaderShow();
                             console.log("cargando");
                             data = $(this).serializeArray();
                             inventMx_events.trigger('Inventform', '#contact_form-servicio', data);
@@ -1023,7 +1021,6 @@ $(function() {
 
                         $(document).on("submit", "#contact_form", function(e) {
                             e.preventDefault();
-                            inventMx.utilities.loaderShow();
                             console.log("cargando");
                             data = $(this).serializeArray();
                             inventMx_events.trigger('Inventform', '#contact_form', data);
