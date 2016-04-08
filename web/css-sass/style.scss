@@ -135,6 +135,7 @@ canvas{
             line-height: 1;
         }
 }
+
 .slideno{
 	position:absolute;
 	bottom:0px;
@@ -240,7 +241,7 @@ canvas{
           background-repeat: no-repeat;
           background-position: left top;
 	background-color:#890e4f;
-        height: 760px;
+        height: 803px;
 	width: 100%;
         position: relative;
         overflow: hidden;
@@ -2179,5 +2180,63 @@ body #bottom-imx-fixed-wrapper.bottom-static{
 #wrapper-page{
  position: relative;
  z-index: 1;
+}
+.showcase{
+ position:relative;
+ opacity: 0;
+ top:200px;
+ transition: all .8s ease;
+}
+.mobile.links{
+    .menu-mobile{
+        li{
+            display: block;
+            a{
+                color:#fff;
+                @extend .fugaz_oneregular;
+                text-transform: uppercase;
+                font-size: 20px;
+                display: block;
+                text-align: left;
+                padding: 30px 20px;
+                position:relative;
+                &:after {
+                    content: ">";
+                    width: 20px;
+                    height: 20px;
+                    border: 2px solid #fff;
+                    display: block;
+                    text-align: center;
+                    border-radius: 50%;
+                    line-height: 1;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    right: 20px;
+                }
+            }
+            &.link-red-invent{
+                background: #1482C1;
+            }
+            &.link-servicios{
+                background: #27AE61;
+            }
+            &.link-exito{
+                background: #E9603E;
+            }
+            &.link-contacto{
+                background: #DC1B48;
+            }
+            .linea{
+                    height: 2px;
+                    background: #fdc625;
+                    top: -27px;
+                    position: relative;
+                    left: 20px;
+                    max-width: 58px;
+            }
+        }
+    }
 }
 @import "_resolution_site.scss";

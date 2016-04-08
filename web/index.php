@@ -75,7 +75,14 @@
             <div id="page-main-invent-404"></div>
         </div>  
         
-        
+        <div class="mobile links">
+            <ul class="menu-mobile">
+                <li class="link-red-invent"><a href="#">La red invent</a><div class="linea"></div></li>
+                <li class="link-servicios"><a href="/#servicios">Servicios</a><div class="linea"></div></li>
+                <li class="link-exito"><a href="#">Casos de éxito</a><div class="linea"></div></li>
+                <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
+            </ul>
+        </div>
         <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
              
             <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   

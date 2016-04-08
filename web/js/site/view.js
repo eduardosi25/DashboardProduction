@@ -248,12 +248,22 @@ $(function() {
                 /* callback: debe ser una función para poder ejecutarse */
                 var callback = function() {
                     params.set({fields: null});
+<<<<<<< HEAD
 
                     $('.flexslider_marcas').flexslider({
+=======
+                    $w=$(window).width();
+                    console.log($w);
+                    if($w >= 728){
+                        console.log('si');
+                     
+                       $('.flexslider_marcas').flexslider({
+>>>>>>> c7e2f2f9544982825ff7f83a351d2076cfdd1683
                         animation: "slide",
                         animationLoop: true,
                         slideshowSpeed: 4000,
                         animationSpeed: 2000,
+<<<<<<< HEAD
                         controlNav: false,
                         directionNav: true,
                     });
@@ -262,6 +272,22 @@ $(function() {
                         console.log('si');
                     });
                 };
+=======
+                        controlNav: false,               
+                        directionNav: true, 
+
+                      });
+                    }
+                    else{
+                        
+                    }
+                      $('.slides li a').click(function(){
+                            id_exclude=$(this).attr('data-id');
+                            console.log('si');
+                        });
+                        
+                }; 
+>>>>>>> c7e2f2f9544982825ff7f83a351d2076cfdd1683
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;
 
