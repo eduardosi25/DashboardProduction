@@ -7,7 +7,9 @@ $(function() {
     $(window).resize(function() {
         $w = $(window).width();
         if ($w <= 625) {
-            sitescripts.modules.flexslider('.flexslider_marcas').destroy();
+            if(sitescripts){
+                sitescripts.modules.flexslider('.flexslider_marcas').destroy();
+            }
         }
     });
 

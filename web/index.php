@@ -42,9 +42,9 @@
             <div class="menu">
                 <ul>
                     <li class="linea"><a href="/#/red-invent">La red invent</a></li>
-                    <li class="linea padding-tablet"><a href="/#servicios">Content</a></li>
-                    <li class="linea"><a href="/#servicios">Media Happenings</a></li>
-                    <li class="linea"><a href="/#servicios">Network Ads</a></li>
+                    <li class="linea padding-tablet"><a href="/#content">Content</a></li>
+                    <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
+                    <li class="linea"><a href="/#network-ads">Network Ads</a></li>
                     <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
                     <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
                     <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
