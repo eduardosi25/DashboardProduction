@@ -1501,13 +1501,13 @@ margin-top: 4px;
 .formError .formErrorArrow {
   z-index: 996; }
 
-.ui-dialog .formError {
+.formErrorInsideDialog.formError {
   z-index: 5000; }
 
-.ui-dialog .formError .formErrorContent {
+.formErrorInsideDialog.formError .formErrorContent {
   z-index: 5001; }
 
-.ui-dialog .formError .formErrorArrow {
+.formErrorInsideDialog.formError .formErrorArrow {
   z-index: 5006; }
 
 .inputContainer {
@@ -1519,14 +1519,7 @@ margin-top: 4px;
   top: 300px;
   left: 300px;
   display: block;
-  cursor: pointer;
-  text-align: left; }
-
-.formError.inline {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: inline-block; }
+  cursor: pointer; }
 
 .ajaxSubmit {
   padding: 20px;
@@ -1536,28 +1529,20 @@ margin-top: 4px;
 
 .formError .formErrorContent {
   width: 100%;
-  background: #636363;
+  background: #ee0101;
   position: relative;
   color: #fff;
-  min-width: 120px;
+  width: 200px;
+  font-family: Arial;
   font-size: 16px;
-  font-family: Hind-Semibold;
-  padding: 7px 10px 4px 10px;
+  border: 2px solid #ddd;
+  box-shadow: 0 0 6px #000;
+  -moz-box-shadow: 0 0 6px #000;
+  -webkit-box-shadow: 0 0 6px #000;
+  padding: 4px 10px 4px 10px;
   border-radius: 6px;
   -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  -o-border-radius: 6px; }
-
-.formError.inline .formErrorContent {
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  border: none;
-  border-radius: 0;
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  -o-border-radius: 0; }
+  -webkit-border-radius: 6px; }
 
 .greenPopup .formErrorContent {
   background: #33be40; }
@@ -1579,16 +1564,18 @@ body.rtl .formError .formErrorArrow {
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-  -o-box-shadow: none;
   margin: 0px 0 0 12px;
   top: 2px; }
 
 .formError .formErrorArrow div {
-  border-left: 2px solid #636363;
-  border-right: 2px solid #636363;
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  box-shadow: 0 2px 3px #444;
+  -moz-box-shadow: 0 2px 3px #444;
+  -webkit-box-shadow: 0 2px 3px #444;
   font-size: 0px;
   height: 1px;
-  background: #636363;
+  background: #ee0101;
   margin: 0 auto;
   line-height: 0;
   font-size: 0;
@@ -1597,8 +1584,7 @@ body.rtl .formError .formErrorArrow {
 .formError .formErrorArrowBottom div {
   box-shadow: none;
   -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none; }
+  -webkit-box-shadow: none; }
 
 .greenPopup .formErrorArrow div {
   background: #33be40; }
@@ -1632,19 +1618,19 @@ body.rtl .formError .formErrorArrow {
 
 .formError .formErrorArrow .line3 {
   width: 1px;
-  border-left: 2px solid #636363;
-  border-right: 2px solid #636363;
-  border-bottom: 0 solid #636363; }
+  border-left: 2px solid #ddd;
+  border-right: 2px solid #ddd;
+  border-bottom: 0 solid #ddd; }
 
 .formError .formErrorArrow .line2 {
   width: 3px;
   border: none;
-  background: #636363; }
+  background: #ddd; }
 
 .formError .formErrorArrow .line1 {
   width: 1px;
   border: none;
-  background: #636363; }
+  background: #ddd; }
 
 .wrapper-bars {
   margin: 0 auto;

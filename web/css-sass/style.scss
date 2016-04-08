@@ -867,6 +867,28 @@ canvas{
                      }
                  }
              }
+             
+            }
+            form.contact_form_anunciate{
+                display: none;
+            }
+            .content-contact  form.contact_form_afilate ul li.correo input {
+                width: 43.5%;
+                height: 50px;
+                background: #fff;
+                &:first-child{
+                    margin-right: 10px;
+                }
+            }
+            .content-contact  form.contact_form_afilate ul li.correo{
+                .label-input{
+                    width: 43.5%;
+                    display: inline-block;
+                        input{
+                            width: 100%;
+                        }
+                    
+                }
             }
 /******************************
  End Home 
@@ -2239,4 +2261,5 @@ body #bottom-imx-fixed-wrapper.bottom-static{
         }
     }
 }
+@import "validation_engine";
 @import "_resolution_site.scss";
