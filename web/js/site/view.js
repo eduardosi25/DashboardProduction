@@ -551,9 +551,12 @@ $(function() {
                 $('.contact-form').css({'opacity':"0",'top':'200px'});
                 $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
                 $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
-                $('.content-codiga .item.right.i3').swift({'type': 'dom', 'positionStart': 'right', 'length': '800', 'axis': 'left','delay': '50'});
-                $('.content-codiga .item.i4').swift({'type': 'dom', 'positionStart': 'left', 'length': '900', 'axis': 'left','delay': '50'});
+                $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
                 
+                $('.content-ads .item').swift({'type': 'dom', 'positionStart': 'left', 'length': '3200', 'axis': 'left','delay': '50'});
+                $('.content-ads .item.right').swift({'type': 'dom', 'positionStart': 'right', 'length': '3600', 'axis': 'left','delay': '50'});
+                $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left','delay': '50'});
             }, 'html');
             return this;
         }
