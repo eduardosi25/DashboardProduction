@@ -84,9 +84,8 @@
                 <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
             </ul>
         </div>
+        <script type="text/javascript" src="/web/js/libs/inventmx_libs.js"></script>   
         <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
-
-            <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>   
             <div>
                 <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
                 <div id="bottom-links" style="display:none;">
@@ -100,6 +99,7 @@
             </div>      
 
         </footer>    
+        
         <script type="text/javascript" src="/web/js/site/tools.js"></script>
         <script type="text/javascript" src="/web/js/site/view.js"></script>
         <script type="text/javascript" src="/web/js/site/routing.js"></script>       

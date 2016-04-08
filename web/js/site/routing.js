@@ -5,6 +5,7 @@ $(function() {
             "/": "home",
             "la-red-invent": "home",
             "contacto": "contacto",
+            "casos-de-exito": "home",
             "codiga": "codiga",
             //"blogs": "blogs",
             //"blogs/:blogsUrl": "blogsNota",
@@ -21,7 +22,7 @@ $(function() {
             ":casoexito": "casoExito"
         },
         initialize: function(){
-            
+            $('header').scrollToFixed();
         },
         home: function() {
             inventMx.view.pgHome = new inventMx.view.home();

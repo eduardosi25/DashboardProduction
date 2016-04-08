@@ -123,7 +123,10 @@ $(function() {
         },
         topOffset: function(position, delay, transition, callback) {
             delay = (delay) ? delay : 0;
+            console.log(position);
             transition = (transition) ? transition : 500;
+            position = position - 92;
+            console.log(position);
             $('body,html').delay(delay).animate({
                 scrollTop: position
             }, transition, function() {
