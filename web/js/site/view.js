@@ -18,13 +18,32 @@ $(function() {
         alert('No hay  más dato en ' + msg);
     });
 
-    inventMx_events.bind("Inventform", function(idform, data) {
+    inventMx_events.bind("Inventform", function(idform, data) {  
+        console.log(idform);
         validate = $(idform).validationEngine('validate');
-        options = {idform: idform};
+        //options = {idform: idform};
         if (validate) {
-            inventMx.utilities.loaderShow();
-            url = "/web/app/inventmx/global/sendmail.php";
-            inventMx.dataSource.getAjax(url, data, inventMx.email.data, options);
+            var url = "/web/app/inventmx/global/sendmail.php";
+            Backbone.ajax({
+                url: url,
+                data: data,
+                dataType: 'json',
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                async: false,
+                success: function(nodes) {
+                    /*respond: true, text: "El correo se ha enviado satisfactoriamente."*/
+                    if(nodes){
+                        alert(nodes.text);
+                        $(idform + " :input[type='text'], "+idform+" :input[type='email'], "+idform +" textarea").val("");
+                    }else {
+                        console.log("Hubo un  error al procesar la petición");
+                    }
+                },
+                error: function(request, status, error) {
+                    alert("Hubo un error inesperado, intenta nuevamente por favor");
+                }
+            });
         } else {
             console.log("No validate");
         }
@@ -611,7 +630,6 @@ $(function() {
 
                         $(document).on("submit", "#contact_form-servicio", function(e) {
                             e.preventDefault();
-                            inventMx.utilities.loaderShow();
                             console.log("cargando");
                             data = $(this).serializeArray();
                             inventMx_events.trigger('Inventform', '#contact_form-servicio', data);
@@ -1108,7 +1126,6 @@ $(function() {
 
                         $(document).on("submit", "#contact_form", function(e) {
                             e.preventDefault();
-                            inventMx.utilities.loaderShow();
                             console.log("cargando");
                             data = $(this).serializeArray();
                             inventMx_events.trigger('Inventform', '#contact_form', data);
