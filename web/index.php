@@ -28,12 +28,10 @@
 
     </head>
     <body class="relative">
-<!--
         <div id="wrapper-loading-layout">
             <img class="gif" src="/web/img/global/ajax-loader.gif">
         </div>
-
--->
+        
         <header id="header">
         <div class="wrapper">
             <div class="logo">
@@ -41,8 +39,8 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li class="linea"><a href="/#/red-invent">La red invent</a></li>
-                    <li class="linea padding-tablet"><a href="/#content">Content</a></li>
+                    <li class="linea"><a href="/#la-red-invent">La red invent</a></li>
+                    <li class="linea padding-tablet"><a href="/#content-marketing">Content</a></li>
                     <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
                     <li class="linea"><a href="/#network-ads">Network Ads</a></li>
                     <li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>
