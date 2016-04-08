@@ -18,7 +18,8 @@ $(function() {
         alert('No hay  más dato en ' + msg);
     });
 
-    inventMx_events.bind("Inventform", function(idform, data) {        
+    inventMx_events.bind("Inventform", function(idform, data) {  
+        console.log(idform);
         validate = $(idform).validationEngine('validate');
         //options = {idform: idform};
         if (validate) {
@@ -31,13 +32,13 @@ $(function() {
                 contentType: "application/json; charset=utf-8",
                 async: false,
                 success: function(nodes) {
-                    console.log(nodes)
+                    /*respond: true, text: "El correo se ha enviado satisfactoriamente."*/
                     if(nodes){
-                        console.log("Peticion lista");
+                        alert(nodes.text);
+                        $(idform + " :input[type='text'], "+idform+" :input[type='email'], "+idform +" textarea").val("");
                     }else {
                         console.log("Hubo un  error al procesar la petición");
                     }
-                    $(idform + " :input[type='text'], "+idform + " textarea").val("");
                 },
                 error: function(request, status, error) {
                     alert("Hubo un error inesperado, intenta nuevamente por favor");
