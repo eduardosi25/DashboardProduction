@@ -218,6 +218,10 @@ $(function() {
                 /* callback: debe ser una función para poder ejecutarse */
                 var callback = function(){
                     params.set({fields: null});
+                    $w=$(window).width();
+                    console.log($w);
+                    if($w >= 728){
+                        console.log('si');
                      
                        $('.flexslider_marcas').flexslider({
                         animation: "slide",
@@ -228,10 +232,15 @@ $(function() {
                         directionNav: true, 
 
                       });
+                    }
+                    else{
+                        
+                    }
                       $('.slides li a').click(function(){
                             id_exclude=$(this).attr('data-id');
                             console.log('si');
                         });
+                        
                 }; 
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;

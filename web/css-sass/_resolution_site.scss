@@ -865,6 +865,51 @@ display:none;
     padding: 9px 0 2px 0 !important;
     vertical-align: top;
 }
+#happenings .wrapper .content-happenings .title-section {
+    text-align: center;
+    margin: 29px 0 48px;
+}
+
+.flexslider_bloger .slides > div > div > div > div > div {
+    max-width: 99%;
+    min-width: 99%;
+}
+#marcas .wrapper .flexslider_marcas .slides li > div{
+    max-width: 33%;
+}
+.flexslider_marcas .slides li > div .img-logo {
+    img{
+        max-width: 100%;
+        width: auto;
+    }
+}
+
+.flexslider_bloger .slides > div > div > div > div > div .title {
+    width: 95%;
+    height: 80px;
+    margin: -4px auto 0;
+}
+
+#publico .pleca_cruz_izquierda, .morado .pleca_cruz_izquierda, .azul .pleca_cruz_izquierda, .rosado .pleca_cruz_izquierda,
+#publico .pleca_cruz_derecha, .morado .pleca_cruz_derecha, .azul .pleca_cruz_derecha, .rosado .pleca_cruz_derecha,
+#audiencias .pleca_linea_izquierda,
+#audiencias .pleca_linea_derecha, #exito .pleca_linea_derecha ,
+#resultados .pleca_puntos_izquierda, #codiga-descrition .pleca_puntos_izquierda,
+#resultados .pleca_puntos_derecha, #codiga-descrition .pleca_puntos_derecha,
+#contac .pleca_linea_derecha{
+    max-width: 50%;
+}
+
+#audiencias .wrapper .content-audiencias > div h1 {
+    font-size: 23px;
+    
+}
+
+#resultados .wrapper .content-resultados > div h1 {
+    font-size: 25px;
+}
+
+
 }
 
 @media only screen and (max-width: 695px) {
@@ -1225,6 +1270,13 @@ display:none;
 .mobile{
     display: block;
 }
+#contac{
+    display: none;
+}
+#page-main-invent-contacto #contac{
+    display: block;
+    
+}
 #vlogger .mobile.adjuntos ul li {
     display: inline-block;
     width: 40%;
@@ -1431,6 +1483,16 @@ display:none;
     vertical-align: top;
     max-width: 100%;
     margin-right: -3px;
+    margin-bottom: 20px;
+}
+#resultados .wrapper .content-resultados > div a {
+    font-size: 14px;
+    padding: 3px 56px 0 13px;
+    display: inline-block;
+}
+#audiencias .wrapper .content-audiencias > div {
+    min-height: 460px;
+
 }
 .title_section {
     padding: 35px 65px 18px;
