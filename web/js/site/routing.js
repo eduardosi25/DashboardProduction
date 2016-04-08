@@ -19,6 +19,9 @@ $(function() {
             "afiliate": "afiliate",
             "anunciate": "anunciate",
         },
+        initialize: function(){
+            
+        },
         home: function() {
             inventMx.view.pgHome = new inventMx.view.home();
         },
