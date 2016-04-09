@@ -79,7 +79,7 @@
         <div class="mobile links">
             <ul class="menu-mobile">
                 <li class="link-red-invent"><a href="/#la-red-invent">La red invent</a><div class="linea"></div></li>
-                <li class="link-servicios"><a href="/#servicios">Servicios</a><div class="linea"></div></li>
+                <li class="link-servicios"><a href="/#content-marketing">Servicios</a><div class="linea"></div></li>
                 <li class="link-exito"><a href="/#casos-de-exito">Casos de éxito</a><div class="linea"></div></li>
                 <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
             </ul>
