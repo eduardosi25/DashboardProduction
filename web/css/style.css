@@ -190,6 +190,8 @@ canvas {
           transition: all .8s ease; }
           #header .wrapper .menu ul li a:hover {
             color: #fec524; }
+          #header .wrapper .menu ul li a.active {
+            color: #fec524; }
         #header .wrapper .menu ul li.contato a {
           color: #ec0788; }
         #header .wrapper .menu ul li.linkedin a {

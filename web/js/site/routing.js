@@ -4,6 +4,7 @@ $(function() {
             "": "home",
             "/": "home",
             "la-red-invent": "home",
+            "caso-de-exito": "home",
             "contacto": "contacto",
             "codiga": "codiga",
             //"blogs": "blogs",

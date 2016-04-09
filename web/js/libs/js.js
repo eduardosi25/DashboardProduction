@@ -4,6 +4,10 @@ jQuery(document).ready(function ($) {
         $(this).toggleClass("open");
         $('.menu').slideToggle();
       });
+      $(".menu a").click(function(){
+          $('.menu a').removeClass('active');
+          $(this).addClass('active');
+      }); 
       
       $w=$(window).width();
         if($w <= 727){

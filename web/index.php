@@ -44,7 +44,7 @@
                         <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
                         <li class="linea"><a href="/#network-ads">Network Ads</a></li>
                         <!--<li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>-->
-                        <li class="contato padding-tablet"><a href="/#contacto">contato</a></li>
+                        <li class="contato padding-tablet"><a href="/#contacto">contacto</a></li>
                         <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
                     </ul>
                 </div>
@@ -80,7 +80,7 @@
             <ul class="menu-mobile">
                 <li class="link-red-invent"><a href="/#la-red-invent">La red invent</a><div class="linea"></div></li>
                 <li class="link-servicios"><a href="/#servicios">Servicios</a><div class="linea"></div></li>
-                <li class="link-exito"><a href="#">Casos de éxito</a><div class="linea"></div></li>
+                <li class="link-exito"><a href="/#casos-de-exito">Casos de éxito</a><div class="linea"></div></li>
                 <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
             </ul>
         </div>

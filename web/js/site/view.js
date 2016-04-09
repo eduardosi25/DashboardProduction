@@ -4,7 +4,10 @@ $(function() {
     /* eventos */
     var inventMx_events = {};
     IMxevents = _.extend(inventMx_events, Backbone.Events);
-
+    $(".menu a").click(function(){
+          $('.menu a').removeClass('active');
+          $(this).addClass('active');
+      }); 
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
     inventMx_events.bind("NoData", function(msg) {
@@ -366,7 +369,7 @@ $(function() {
                 repositorio.set({repositorio: "case.json"});
 
                 params.set({fields: "id|title|url|summary|images"});
-                params.set({limit: "20"});
+                params.set({limit: "20",url:null});
                 idTemplate = "#template-sections-case";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
                 appendTo = "#sections-case";
