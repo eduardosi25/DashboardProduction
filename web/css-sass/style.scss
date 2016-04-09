@@ -1729,8 +1729,15 @@ Codiga
 *******************************/
 
 #video-codiga{
-    height: 695px;
-    
+    height: auto;
+    padding:0 !important;
+    .content-exito{
+        video{
+            width: 100%;
+            height: auto;
+            display:block;
+        }
+    }
 }
 #codiga-descrition{
     height: 495px;
@@ -2366,5 +2373,6 @@ body #bottom-imx-fixed-wrapper.bottom-static{
 
     
 }
+
 @import "validation_engine";
 @import "_resolution_site.scss";

@@ -1251,7 +1251,12 @@ form.contact_form_afilate {
 Codiga
 *******************************/
 #video-codiga {
-  height: 695px; }
+  height: auto;
+  padding: 0 !important; }
+  #video-codiga .content-exito video {
+    width: 100%;
+    height: auto;
+    display: block; }
 
 #codiga-descrition {
   height: 495px; }
