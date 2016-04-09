@@ -45,7 +45,7 @@
                         <li class="linea"><a href="/#network-ads">Network Ads</a></li>
                         <!--<li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>-->
                         <li class="contato padding-tablet"><a href="/#contacto">contacto</a></li>
-                        <li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>
+                       <!--<li class="linkedin"><a href="#"><img src="/web/img/global/linkedin.png"/></a></li>-->
                     </ul>
                 </div>
                 <div class="btn-menu">
