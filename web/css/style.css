@@ -1253,6 +1253,7 @@ Codiga
 *******************************/
 #video-codiga {
   height: auto;
+  min-height: 400px;
   padding: 0 !important; }
   #video-codiga .content-exito video {
     width: 100%;
@@ -1733,6 +1734,10 @@ body #bottom-imx-fixed-wrapper.bottom-static {
 .content-video video {
   width: 100%;
   height: 100%; }
+
+iframe, object, video {
+  height: 100% !important;
+  width: 100% !important; }
 
 /* Z-INDEX */
 .formError {
