@@ -1073,6 +1073,10 @@ function sipi_client_generate_name_pass($clientName){
   $clientName=sipi_client_convert_to_numbers($clientName);
   //Transliterate
   $clientName=sipi_client_transliteration($clientName);
+  //Check pass length no longer that 20 chars
+  if(strlen($clientName)>20){
+    $clientName=substr($clientName,0,19);
+  }
 
   //Generate random number
   $randomNumber=rand(0,(intval(date('Y'))*1024));
