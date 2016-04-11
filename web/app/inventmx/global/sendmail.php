@@ -19,7 +19,7 @@ if ($type == "afiliate") {
 } else {
   $type = "Anúnciate";  
   //$to = array('pedro@inventmx.com');
-  $to = array('pedro@inventmx.com','webmaster@inventmx.com','heberto@inventmx.com','kenneth@inventmx.com');
+  $to = array('pedro@inventmx.com','webmaster@inventmx.com','heberto@inventmx.com','eduardo@inventmx.com','carlos.jimenez@inventmx.com');
 }
 
 $subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;

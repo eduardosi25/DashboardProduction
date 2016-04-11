@@ -1073,9 +1073,10 @@ function sipi_client_generate_name_pass($clientName){
   $clientName=sipi_client_convert_to_numbers($clientName);
   //Transliterate
   $clientName=sipi_client_transliteration($clientName);
-  //Check pass length no longer that 20 chars
-  if(strlen($clientName)>20){
-    $clientName=substr($clientName,0,19);
+  //Check lenght pass - DB pass char(32)
+  if(strlen($clientName)>19){
+    //get only 19 chars
+    $clientName=substr($clientName,0,18);
   }
 
   //Generate random number
@@ -1110,8 +1111,8 @@ function sipi_client_convert_to_letters($string){
 }
 function sipi_client_transliteration($string){
   $search  = array('.', ',', ' ');
-  $replace = array('-', '-', '-');
-  return $string;
+  $replace = array('-', '-', '');
+  return str_replace($search, $replace, $string);
 }
 
 /**
@@ -1591,12 +1592,17 @@ function sipi_clients_save_send_email($cid) {
   $settings=array(
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
-    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
-    'to'      => 'pablo.escobedo@inventmx.com',
+    'from'    => 'Webmaster Codiga <webmaster@inventmx.com>',
+    'to'      => 'pablo.escobedo@inventmx.com,belem@inventmx.com',
     'params'  => array(
       'text'    => array(),
       'subject' => 'Registro de cliente CODIGA - '.$client->name,
-      'cco'     => 'luis@inventmx.com',
+      'headers' => array(
+        'From'    => 'Webmaster Codiga <webmaster@inventmx.com>',
+        'Reply-To'=> 'webmaster@inventmx.com>',
+        'Cc'      => 'belem@inventmx.com',
+        'Bcc'     => 'webmaster@inventmx.com',
+      ),
     ),
   );
 
