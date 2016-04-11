@@ -1730,9 +1730,10 @@ Codiga
 *******************************/
 
 #video-codiga{
-    height: auto;
-    min-height: 400px;
+    height: 90%;
+    min-height: 1px;
     padding:0 !important;
+    max-height:90%;
     .content-exito{
         video{
             width: 100%;
@@ -2387,8 +2388,21 @@ body #bottom-imx-fixed-wrapper.bottom-static{
     }   
 }
 iframe, object, video{
-    height: 100% !important;
-    width: 100% !important;
+    height: 100% ;
+    width: 100% ;
+}
+.myWrapper {
+  position: relative;
+  padding-bottom: 56%;
+  padding-top: 3px;
+  height: 0;
+}
+.myWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 @import "validation_engine";
 @import "_resolution_site.scss";
