@@ -8,6 +8,9 @@ $(function() {
             "contacto": "contacto",
             "casos-de-exito": "home",
             "codiga": "codiga",
+            "bridgestone": "bridgestone",
+            "oikos": "oikos",
+            "oppo": "oppo",
             //"blogs": "blogs",
             //"blogs/:blogsUrl": "blogsNota",
             "content-marketing": "servicios",
@@ -20,7 +23,7 @@ $(function() {
             //"anunciate": "anunciate",
             ":site": "perfilSitio",
             ":perfil": "perfilTalento",
-            ":casoexito": "casoExito"
+            /*":casoexito": "casoExito"*/
         },
         initialize: function(){
             $('header').scrollToFixed();
@@ -52,7 +55,15 @@ $(function() {
         },
         codiga: function() {
             inventMx.pgCodiga = new inventMx.view.codiga();
-            
+        },
+        bridgestone: function() {
+            inventMx.pgBridgestone = new inventMx.view.bridgestone();
+        },
+        oppo: function() {
+            inventMx.pgOppo = new inventMx.view.oppo();
+        },
+        oikos: function() {
+            inventMx.pgOikos = new inventMx.view.oikos();
         },
         casoExito: function(casoexito) {
             inventMx.pgcasoExito = new inventMx.view.casoExito(casoexito);

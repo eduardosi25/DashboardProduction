@@ -1,31 +1,62 @@
-<div class="morado panel slide" id="sitio" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
-            <img class="pleca_cruz_izquierda" src="/web/img/global/textura_cruz_izquierda.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
+<article>
+    <section>
+       <div class="verde panel" id="exito" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
 
             <div class="wrapper">
-                <article>
-                    <section id="sections-sites-perfil"></section>
-                </article>
-                
-                <div class="adjuntos">
-                    <ul>
-                        <li><a href="#">Tarifario</a></li>
-                        <li class="pdf"><a href="http://b97306a43daad53c2cb3-3e0cb10d9dcf2af4d660ffc097d48677.r87.cf2.rackcdn.com/invent-mediakit.pdf" target="_blank">Media kit</a></li>
-                        <li><a href="#contacto">Anunciate</a></li>
-                    </ul>
+                <div class="content-exito">
+                    <div class="img-logo">
+                        <img src="/web/img/global/oikos_LOGO.png" />
+                    </div>
+                    <h1>Posicionar el producto de forma crativa.</h1>
+                    <div class="arrow"></div>
+                    <div class="content-reto">
+                        <div class="reto">
+                            <h3>El reto</h3>
+                        </div>
+                        <div class="description"> Generas un contenido en el que Oikos diera a conocer su producto de forma sutil e interesante a su audiencias. </div>
+                    </div>
+                    
                 </div>
-                <article>
-                    <section id="sections-carousel-sites"></section>
-                </article>
-                
-                
-                
-                
 
             </div>
-            <img class="pleca_cruz_derecha" src="/web/img/global/textura_cruz.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
+            <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
 
 
 	</div><!--End Slide 2-->
+        <div class="azul panel" id="solucion" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
+            
+            <div class="wrapper">
+                <div class="content-solucion">
+                <h1 class="title_section">Nuestra Solución</h1>
+                <div class="description">
+                    invent mostró de forma creativa y útil la creación de alimentos utilizando a Oikos como base de los mismos.
+                    <div class="separador">Así lo hicimos:</div>
+                    <ul>
+                        <li><span>a).</span> nos enfocamos en generar un dialogo creativo, práctio y sencillo en recetas generadas para foodies casuales</li>
+                        <li><span>b).</span> Llevamos el dialogo a videos para dar mayor exposición al producto</li>
+                        <li><span>c).</span> Impulsamos nuestros videos desde nuestras plataformas</li>
+                    
+                    </ul>
+                </div>
+                <div class="content-img">
+                <img src="/web/img/global/oikos_IMG.png">
+                </div>
+                <div class="resultados">
+                    <h2>Los resultados</h2>
+                    <div class="impacto">340,176 impactos</div>
+                    <div class="description">Con tres videos en el facebook de actitudfem</div>
+                </div>
+                </div>
+
+            </div>
+            <img class="pleca_linea_izquierda" src="/web/img/global/textura_lineas_izquierda.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
+
+
+	</div>
+        
+</section>        
+</article>  
+
         <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
                     <div class="footer_top">
                             <div class="wrapper">
@@ -86,77 +117,58 @@
                         <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
 
                 </div>
+
         
-<!-- sitios -->
-<script id="template-sections-perfil" type="template/template-sections-sites-perfil">
+<script id="template-sections-exito" type="template/template-sections-exito">
 {{#each this}}
-                <div class="logo-sitio"> 
-                    <img src="{{this.images.logo.0.url}}"/>
-                    <div class="border"></div>
-                </div>
-                <div class="img-sitio">
-                    <img src="/web/img/global/excelsior.png"/>
+<div class="verde panel" id="exito" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
+
+            <div class="wrapper">
+                <div class="content-exito">
+                    <div class="img-logo">
+                        <img src="{{this.images.client_logo.0.url}}" />
+                    </div>
+                    <h1>Posicionar el producto de forma crativa.</h1>
+                    <div class="arrow"></div>
+                    <div class="content-reto">
+                        <div class="reto">
+                            <h3>El reto</h3>
+                        </div>
+                        <div class="description"> </div>
+                    </div>
                     
                 </div>
-                <div class="description"> 
-                    {{{this.body}}}
-                </div>
-                
-                <div class="content-audiencias">
-                    <div class="content-circles">
-                        <div class="item-circle margin-right">   
-                            <div id="demo-pie-12" class="pie-title-center" data-percent="{{this.mens}}"> <span class="pie-value"></span> </div>
-                        <h3>Hombres</h3>
-                        </div>
-                        <div class="item-circle"> 
-                            <div id="demo-pie-13" class="pie-title-center" data-percent="{{this.womens}}"> <span class="pie-value"></span> </div>
-                        <h3>Mujeres</h3>
-                        </div>
-                    </div>
-                    <div class="numero-audiencias">
-                        <ul>
-                            <li>
-                                <span>{{this.views}}</span><br />
-                                visitas mensuales
-                            </li>
-                            <li>
-                                <span>{{this.followers}}</span><br />
-                                Seguidores de Facebook
-                            </li>
-                            <li>
-                                <span>{{this.tw_followers}}</span><br />
-                                seguidores de twitter
-                            </li>
-                            <li>
-                                <span>37,973</span><br />
-                                total de seguidores
-                            </li>
-                        </ul>
-                        
-                    </div>
-                </div>
-                {{/each}} 
-</script>   
 
-<!-- home de talentos -->
-<script id="template-sections-carousel-sites" type="template/template-sections-carousel-sites">
-                <div class="flexslider_marcas">
-                    <div class="slides">
-                        <div class="slid-marcas slider center-sites">
-                            {{#each this}}
-                                <div>
-                                <div>
-                                    <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                        <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                        <span class="line"></span>
-                                        <p>{{{ this.summary }}}</p>
-                                    </a>
-                                </div>
-                                </div>
-                            {{/each}} 
-                        </div>
-                    </div>
-                </div>
-</script>
+            </div>
+            <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
 
 
+	</div><!--End Slide 2-->
+        <div class="azul panel" id="solucion" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
+            
+            <div class="wrapper">
+                <div class="content-solucion">
+                <h1 class="title_section">Nuestra Solución</h1>
+                <div class="description">
+                    {{{this.summary}}}
+                </div>
+                <div class="content-img">
+                <img src="{{ this.images.cover.0.url}}">
+                </div>
+                <div class="resultados">
+                    <h2>Los resultados</h2>
+                    <div class="impacto">340,176 impactos</div>
+                    <div class="description">Con tres videos en el facebook de actitudfem</div>
+                    
+                </div>
+                </div>
+
+            </div>
+            <img class="pleca_linea_izquierda" src="/web/img/global/textura_lineas_izquierda.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
+
+
+	</div>
+
+{{/each}} 
+</script>        
+        

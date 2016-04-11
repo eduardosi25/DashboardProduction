@@ -352,6 +352,21 @@ $content-bg : #CB157D;
 
 
 }
+@media only screen and (max-width: 950px) {
+        .btn-contacto {
+        text-align: center;
+        margin-top: 125px;
+    }
+
+    .huella {
+        position: absolute;
+        top: 181px;
+        right: 0;
+        width: 130px;
+        left: 0;
+        margin: auto;
+    }
+}
 @media only screen and (max-width: 869px) {
     .panel{
         height: auto !important;
@@ -908,7 +923,18 @@ display:none;
 #resultados .wrapper .content-resultados > div h1 {
     font-size: 25px;
 }
+.btn-contacto {
+    text-align: center;
+    margin-top: 125px;
+}
 
+.huella {
+    top: 145px;
+    right: 0;
+    width: 130px;
+    left: 0;
+    margin: auto;
+}
 
 }
 

@@ -235,6 +235,7 @@ canvas{
         height: auto;
 	width: 100%;
         overflow: hidden;
+        padding: 0;
 }
 
 .morado{
@@ -2373,6 +2374,16 @@ body #bottom-imx-fixed-wrapper.bottom-static{
 
     
 }
-
+.huella{
+    position: absolute;
+    top: 74px;
+    right: -166px;
+}
+.content-video{
+    video{
+        width: 100%;
+        height: 100%;
+    }   
+}
 @import "validation_engine";
 @import "_resolution_site.scss";

@@ -129,7 +129,7 @@
                 <div class="content-img"><img src="/web/img/global/po2.png" /></div>
                 <div class="description">
                     <h1><span>Formatos</span> Premium</h1>
-                    <p> Lleva tu mensaje a las plataformas de consumo preferidas por audiencia.</p>
+                    <p>Nuestro formato PO2 cuenta con 90% más de efectividad que las versiones tradicionales.</p>
                 </div>
 
             </div>
@@ -137,7 +137,7 @@
             <div class="item video">
                 <div class="description">
                     <h1><span>Formatos</span> en video</h1>
-                    <p>con alta efectividad en nuestras plataformas.</p>
+                    <p>Con alta efectividad en nuestras plataformas.</p>
                 </div>
                 <div class="content-img"><img src="/web/img/global/formatos_video.png" /></div>
                 <div class="content-type">
@@ -210,13 +210,16 @@
             <h1 class="title-section">Media Happenings</h1>
             <div class="item">
                 <div class="description">
-                    <div class="title_happenings"><h1>Title Media</h1></div>
+                    <div class="title_happenings"><h1></h1></div>
                     <div class="content-text">La combinación ideal para dar un gran mensaje: contenido editorial y un gran evento para consentir a tu audiencia.
                         <div class="separador">Acciones multimedia capitalizadas con un evento</div>
                     </div>
                 </div>
                 <div class="content-video">
-
+                      <video width="320" height="240" controls="">
+                        <source src="http://b3e1431dd529795d9e6b-96bb2d37297d0d99527fcc003c30887a.r38.cf2.rackcdn.com/videos/CODIGA08ABRIL.mp4" type="video/mp4">
+                      Your browser does not support the video tag.
+                      </video>
                 </div>
 
             </div>
@@ -230,61 +233,62 @@
 
 </div><!--End happenings-->
 <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
-    <div class="footer_top">
-        <div class="wrapper">
-            <h1 class="title_section">¡Hagamos historia juntos!</h1>
-            <div class="btn-contacto">
-                <div class="anunciate active">Anúnciate</div>
-                <div class="afíliate">AFíliate</div>
-            </div>
-            <div class='content-contact' >
+                    <div class="footer_top">
+                            <div class="wrapper">
+                                <h1 class="title_section">¡Hagamos historia juntos!</h1>
+                                <div class="btn-contacto">
+                                    <div class="anunciate active">Anúnciate</div>
+                                    <div class="afíliate">AFíliate</div>
+                                </div>
+                                <div class='content-contact' >
+                                    <form id="contact_form" class="contact_form contact_form_anunciate" action="#" method="post">
+                            <ul>
 
-                <form id="contact_form_anunciate" class="contact_form contact_form_anunciate" action="#" method="post">
-                    <ul>
+                               <li class='nombres'>
+                                   <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
+                               </li>
+                               <li class='correo'>
+                                   <input type="email" class="validate[required,custom[email],maxSize[50]]" name="email" placeholder="*CORREO ELECTRÓNICO" required />
+                               </li>
+                               <li class="mensaje">
+                                   <textarea name="description" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATÍCANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                   <span>*Campos Obligatorios</span> 
+                                   <input type="hidden" name="type" value="anunciate">
+                               </li>
+                               <li class="enviar">
+                                  <button class="submit" type="submit">Enviar</button>
+                               </li>
+                            </ul>
+                        </form>
+                        <form id="contact_form" class="contact_form contact_form_afilate" action="#" method="post">
+                            <ul>
 
-                        <li class='nombres'>
-                            <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
-                            <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
-                        </li>
-                        <li class='correo'>
-                            <input type="email" class="validate[required,custom[email],maxSize[50]]" name="email" placeholder="*CORREO ELECTRONICO" required />
-                        </li>
-                        <li class="mensaje">
-                            <textarea name="description" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
-                            <span>*Campos Obligatorios</span> 
-                            <input type="hidden" name="type" value="anunciate">
-                        </li>
-                        <li class="enviar">
-                            <button class="submit" type="submit">Enviar</button>
-                        </li>
-                    </ul>
-                </form>
-                <form id="contact_form" class="contact_form contact_form_afilate" action="#" method="post">
-                    <ul>
+                               <li class='nombres'>
+                                   <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
+                               </li>
+                               <li class='correo'>
+                                   <input type="email" class="validate[required,custom[email],maxSize[50]]" name="correo" placeholder="*CORREO ELECTRÓNICO" required />
+                                   <label class="label-input">
+                                        <input class="validate[required,maxSize[50]]" type="text" name="chanel" value="" placeholder="* CANAL DE YOUTUBE">
+                                    </label>
+                               </li>
+                               <li class="mensaje">
+                                   <textarea name="Mensaje" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATÍCANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                   <span>*Campos Obligatorios</span> 
+                                   <input type="hidden" name="type" value="afiliate">
+                               </li>
+                               <li class="enviar">
+                                  <button class="submit" type="submit">Enviar</button>
+                               </li>
+                            </ul>
+                        </form>
+                                </div>
+                                <img class="huella" src="/web/img/global/huella.png" />
+                            </div>
+                        
+                        </div>    
+                        <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
 
-                        <li class='nombres'>
-                            <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
-                            <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
-                        </li>
-                        <li class='correo'>
-                            <input type="email" class="validate[required,custom[email],maxSize[50]]" name="email" placeholder="*CORREO ELECTRONICO" required />
-                            <label class="label-input">
-                                <input class="validate[required,maxSize[50]]" type="text" name="chanel" value="" placeholder="* CANAL DE YOUTUBE">
-                            </label>
-                        </li>
-                        <li class="mensaje">
-                            <textarea name="description" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATICANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
-                            <span>*Campos Obligatorios</span> 
-                            <input type="hidden" name="type" value="afiliate">
-                        </li>
-                        <li class="enviar">
-                            <button class="submit" type="submit">Enviar</button>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-        </div>
-    </div>    
-    <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
-
-</div>
+                </div>

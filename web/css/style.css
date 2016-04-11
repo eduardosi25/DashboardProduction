@@ -211,7 +211,8 @@ canvas {
   background-color: #5c9900;
   height: auto;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 0; }
 
 .morado {
   background-color: #890e4f; }
@@ -1724,6 +1725,15 @@ body #bottom-imx-fixed-wrapper.bottom-static {
       list-style: disc;
       margin-bottom: 8px; }
 
+.huella {
+  position: absolute;
+  top: 74px;
+  right: -166px; }
+
+.content-video video {
+  width: 100%;
+  height: 100%; }
+
 /* Z-INDEX */
 .formError {
   z-index: 990; }
@@ -2138,6 +2148,18 @@ body.rtl .formError .formErrorArrow {
   #bottom-imx-fixed .bottom-trigger {
     width: 151px !important;
     right: -15px !important; } }
+@media only screen and (max-width: 950px) {
+  .btn-contacto {
+    text-align: center;
+    margin-top: 125px; }
+
+  .huella {
+    position: absolute;
+    top: 181px;
+    right: 0;
+    width: 130px;
+    left: 0;
+    margin: auto; } }
 @media only screen and (max-width: 869px) {
   .panel {
     height: auto !important;
@@ -2617,7 +2639,18 @@ body.rtl .formError .formErrorArrow {
     font-size: 23px; }
 
   #resultados .wrapper .content-resultados > div h1 {
-    font-size: 25px; } }
+    font-size: 25px; }
+
+  .btn-contacto {
+    text-align: center;
+    margin-top: 125px; }
+
+  .huella {
+    top: 145px;
+    right: 0;
+    width: 130px;
+    left: 0;
+    margin: auto; } }
 @media only screen and (max-width: 695px) {
   .item .img-codiga {
     display: none; }

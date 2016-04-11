@@ -1289,6 +1289,153 @@ $(function() {
                     return this;
                 }
             }),
+            inventMx.view.bridgestone = Backbone.View.extend({
+                template: collectionMain.get("c3").attributes.pathTemplate,
+                idContent: collectionMain.get("c3").attributes.firtsIdContent,
+                initialize: function() {
+                    $(this.el).unbind();
+                    _.bindAll(this, 'render');
+                    this.render();
+                },
+                render: function() {
+                    var idContent = this.idContent;
+                    var section = "bridgestone";
+                    $.get(this.template + 'bridgestone/bridgestone.html', function(data) {
+                        var animateSection = collectionMain.get("c1");
+                        animateSection.set({section: section});
+
+                        if ($(idContent + "bridgestone").children("div").length == 0) {
+                            $(idContent + "bridgestone").html(data);
+                        }
+
+                        collectionMain.hideSections(section);
+
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                        $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                        $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                        $(".btn-contacto .anunciate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_anunciate").fadeIn();
+                            
+
+                        });
+                        $(".btn-contacto .afíliate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+
+
+                    }, 'html');
+                    return this;
+                }
+            }),
+            inventMx.view.oppo = Backbone.View.extend({
+                template: collectionMain.get("c3").attributes.pathTemplate,
+                idContent: collectionMain.get("c3").attributes.firtsIdContent,
+                initialize: function() {
+                    $(this.el).unbind();
+                    _.bindAll(this, 'render');
+                    this.render();
+                },
+                render: function() {
+                    var idContent = this.idContent;
+                    var section = "oppo";
+                    $.get(this.template + 'oppo/oppo.html', function(data) {
+                        var animateSection = collectionMain.get("c1");
+                        animateSection.set({section: section});
+
+                        if ($(idContent + "oppo").children("div").length == 0) {
+                            $(idContent + "oppo").html(data);
+                        }
+
+                        collectionMain.hideSections(section);
+
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                        $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                        $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                        $(".btn-contacto .anunciate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_anunciate").fadeIn();
+                            
+
+                        });
+                        $(".btn-contacto .afíliate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+
+
+                    }, 'html');
+                    return this;
+                }
+            }),
+            inventMx.view.oikos = Backbone.View.extend({
+                template: collectionMain.get("c3").attributes.pathTemplate,
+                idContent: collectionMain.get("c3").attributes.firtsIdContent,
+                initialize: function() {
+                    $(this.el).unbind();
+                    _.bindAll(this, 'render');
+                    this.render();
+                },
+                render: function() {
+                    var idContent = this.idContent;
+                    var section = "oikos";
+                    $.get(this.template + 'oikos/oikos.html', function(data) {
+                        var animateSection = collectionMain.get("c1");
+                        animateSection.set({section: section});
+
+                        if ($(idContent + "oikos").children("div").length == 0) {
+                            $(idContent + "oikos").html(data);
+                        }
+
+                        collectionMain.hideSections(section);
+
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                        $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                        $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                        $(".btn-contacto .anunciate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_anunciate").fadeIn();
+                            
+
+                        });
+                        $(".btn-contacto .afíliate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+
+
+                    }, 'html');
+                    return this;
+                }
+            }),
             inventMx.view.avisoPrivacidad = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,

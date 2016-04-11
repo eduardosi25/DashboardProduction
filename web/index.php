@@ -62,6 +62,9 @@
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
             <div id="page-main-invent-codiga"></div>
+            <div id="page-main-invent-bridgestone"></div>
+            <div id="page-main-invent-oppo"></div>
+            <div id="page-main-invent-oikos"></div>
             <div id="page-main-invent-redInvent"></div>
             <div id="page-main-invent-servicios"></div>
             <div id="page-main-invent-perfilSitio"></div>
