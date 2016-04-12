@@ -1697,7 +1697,7 @@ canvas{
                 display: inline-block;
                 vertical-align: top;
                 width: 385px;
-                height: 250px;
+                height: auto;
                 background:#6F0B41; 
             }
                 
@@ -2387,22 +2387,61 @@ body #bottom-imx-fixed-wrapper.bottom-static{
         height: 100%;
     }   
 }
+.video-container{
+ max-width: 1141px;
+ margin:0 auto;
+ display:block;
+}
+.bg-black{
+ background: #000;   
+}
 iframe, object, video{
-    height: 100% ;
+    height: 80% ;
     width: 100% ;
 }
+#video-codiga .myWrapper {
+   position: relative;
+   padding-bottom: 56.2%;
+   height: 0;
+   overflow: hidden;
+}
+
+#video-codiga .myWrapper iframe {
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+}
+.content-video{
+    iframe, object, video{
+    height: 100% ;
+    width: 100% ;
+
+}
+.video-container{
+ max-width: 1141px;
+ width: 100%;
+ margin:0 auto;
+ display:block;
+}
 .myWrapper {
-  position: relative;
-  padding-bottom: 56%;
-  padding-top: 3px;
-  height: 0;
+   position: relative;
+   padding-bottom: 56.2%;
+   height: 0;
+   overflow: hidden;
 }
 .myWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+   width: 100%;
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
 }
+
+}
+
+
+
 @import "validation_engine";
 @import "_resolution_site.scss";

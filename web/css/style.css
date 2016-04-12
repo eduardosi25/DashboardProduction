@@ -1234,7 +1234,7 @@ form.contact_form_afilate {
       display: inline-block;
       vertical-align: top;
       width: 385px;
-      height: 250px;
+      height: auto;
       background: #6F0B41; }
 
 .title-section {
@@ -1736,21 +1736,49 @@ body #bottom-imx-fixed-wrapper.bottom-static {
   width: 100%;
   height: 100%; }
 
+.video-container {
+  max-width: 1141px;
+  margin: 0 auto;
+  display: block; }
+
+.bg-black {
+  background: #000; }
+
 iframe, object, video {
-  height: 100%;
+  height: 80%;
   width: 100%; }
 
-.myWrapper {
+#video-codiga .myWrapper {
   position: relative;
-  padding-bottom: 56%;
-  padding-top: 3px;
-  height: 0; }
+  padding-bottom: 56.2%;
+  height: 0;
+  overflow: hidden; }
 
-.myWrapper iframe {
+#video-codiga .myWrapper iframe {
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%; }
+
+.content-video iframe, .content-video object, .content-video video {
+  height: 100%;
+  width: 100%; }
+.content-video .video-container {
+  max-width: 1141px;
   width: 100%;
+  margin: 0 auto;
+  display: block; }
+.content-video .myWrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+  height: 0;
+  overflow: hidden; }
+.content-video .myWrapper iframe {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%; }
 
 /* Z-INDEX */
@@ -1904,6 +1932,11 @@ body.rtl .formError .formErrorArrow {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
+@media only screen and (min-width: 1144px) {
+  .video-container {
+    width: 95.5%;
+    margin: 0 auto;
+    display: block; } }
 @media only screen and (max-width: 1023px) {
   .bottom-links #bottom-imx-fixed .bottom-links-notes {
     margin: 0 auto;

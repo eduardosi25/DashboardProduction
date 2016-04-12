@@ -16,7 +16,13 @@ $content-bg : #CB157D;
     background: url('../img/sprites/sprite_invent.png');
     background-repeat: no-repeat;
 }
-
+@media only screen and (min-width: 1144px) {
+    .video-container{
+        width: 95.5%;
+        margin:0 auto;
+        display:block;
+    }
+}
 @media only screen and (max-width: 1023px) {
        .bottom-links #bottom-imx-fixed .bottom-links-notes {
             margin: 0 auto;
