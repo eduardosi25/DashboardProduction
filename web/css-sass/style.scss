@@ -358,6 +358,10 @@ canvas{
                                 border-right: 0px;
                                 
                             }
+                            &:nth-child(4n), &:nth-child(5n), &:nth-child(6n){
+                                border-bottom: 0px;
+                                
+                            }
                             .line{
                                     content: "";
                                     display: block;

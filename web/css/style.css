@@ -319,6 +319,8 @@ canvas {
     padding-top: 19px; }
     .flexslider_marcas .slides li > div:nth-child(3n) {
       border-right: 0px; }
+    .flexslider_marcas .slides li > div:nth-child(4n), .flexslider_marcas .slides li > div:nth-child(5n), .flexslider_marcas .slides li > div:nth-child(6n) {
+      border-bottom: 0px; }
     .flexslider_marcas .slides li > div .line {
       content: "";
       display: block;

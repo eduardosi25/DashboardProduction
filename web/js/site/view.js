@@ -334,15 +334,15 @@ $(function() {
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
 
-                repositorio.set({repositorio: "vloger.json"});
+                //repositorio.set({repositorio: "vloger.json"});
 
-                params.set({fields: "id|title|url|audience|images|followers"});
-                params.set({limit: "90"});
-                idTemplate = "#template-sections-vloggers";
+               // params.set({fields: "id|title|url|audience|images|followers"});
+                //params.set({limit: "90"});
+                //idTemplate = "#template-sections-vloggers";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                appendTo = "#sections-vloggers";
+                //appendTo = "#sections-vloggers";
                 /* callback: debe ser una función para poder ejecutarse */
-                callback = function() {
+                /*callback = function() {
                     params.set({fields: null});
 
                     $('.center').slick({
@@ -386,12 +386,12 @@ $(function() {
                     });
 
 
-                };
+                };*/
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;
 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
-                collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
+                //collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
                 
                 repositorio.set({repositorio: "case.json"});
 
