@@ -91,11 +91,11 @@
 <script id="template-sections-perfil" type="template/template-sections-sites-perfil">
 {{#each this}}
                 <div class="logo-sitio"> 
-                    <img src="{{this.images.logo.0.url}}"/>
+                    <img src="{{ getUrlLogo this.images.logo.0.url}}"/>
                     <div class="border"></div>
                 </div>
                 <div class="img-sitio">
-                    <img src="/web/img/global/excelsior.png"/>
+                    <img src="{{ getUrlImg this.images.logo.0.url }}"/>
                     
                 </div>
                 <div class="description"> 
@@ -147,7 +147,7 @@
                                 <div>
                                 <div>
                                     <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                        <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                        <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                         <span class="line"></span>
                                         <p>{{{ this.summary }}}</p>
                                     </a>

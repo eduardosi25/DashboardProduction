@@ -75,10 +75,10 @@ table {
 .fugaz_oneregular, .wrapper .title_section, .flexslider_bloger .slides > div > div > div > div > div .seguidores, #vlogger .wrapper .title-influencers, #exito .wrapper .content-exito h1, #exito .wrapper .content-exito .content-reto .reto h3, #solucion .wrapper .resultados h2, #solucion .wrapper .resultados .impacto, #solucion .wrapper .resultados .description, .item .description h1, .item .description.icon.engagement p span, #sponsored .wrapper .content-sponsored h1, .title-section, #codiga-descrition .part2 .wrapper ul li h1, .mobile.links .menu-mobile li a {
   font-family: 'fugaz_oneregular'; }
 
-.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #sitio .wrapper .description, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
+.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
   font-family: 'Hind-Semibold'; }
 
-.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
+.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], #sitio .wrapper .description, .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
   font-family: 'Hind-Regular'; }
 
 .hindlight, #header .wrapper .menu ul li a, .btn-contacto div, #blogs .wrapper .item.destacado .content-tet, #nota .wrapper .content-left .content-autor .content-text, #nota .wrapper .content-left .content-nota {
@@ -609,7 +609,7 @@ canvas {
     .btn-contacto div.active {
       border-bottom: 2px solid #fff; }
     .btn-contacto div:first-child {
-      margin-right: 20%; }
+      margin-right: 0%; }
 
 .content-contact {
   width: 100%; }
@@ -776,6 +776,8 @@ form.contact_form_afilate {
         padding: 0 30px; }
       #sitio .wrapper .flexslider_marcas .slides li > div {
         border-bottom: 0; }
+  #sitio .slick-slide > div {
+    border-bottom: 0 !important; }
 
 /******************************
  End Sitio 
@@ -1235,6 +1237,7 @@ form.contact_form_afilate {
       vertical-align: top;
       width: 385px;
       height: auto;
+      min-height: 216px;
       background: #6F0B41; }
 
 .title-section {
@@ -1673,17 +1676,17 @@ body #bottom-imx-fixed-wrapper.bottom-static {
 
 #wrapper-loading-layout {
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 180px;
+  height: 180px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 5;
-  background: #fff;
-  border: 8px solid #fff;
-  border-radius: 50px; }
+  background: transparent;
+  border: 0 solid #fff;
+  border-radius: 0px; }
 
 .aviso-y-politicas {
   width: 92.5%;
@@ -2207,11 +2210,15 @@ body.rtl .formError .formErrorArrow {
 
   .huella {
     position: absolute;
-    top: 181px;
+    top: 188px;
     right: 0;
     width: 130px;
     left: 0;
-    margin: auto; } }
+    margin: auto; }
+
+  .footer_top {
+    position: relative;
+    height: 761px; } }
 @media only screen and (max-width: 869px) {
   .panel {
     height: auto !important;
@@ -2464,6 +2471,9 @@ body.rtl .formError .formErrorArrow {
   #header .wrapper .menu {
     display: none; }
 
+  .mobile.links {
+    display: block; }
+
   #header .wrapper .menu {
     width: 110%;
     z-index: 9999999;
@@ -2702,7 +2712,10 @@ body.rtl .formError .formErrorArrow {
     right: 0;
     width: 130px;
     left: 0;
-    margin: auto; } }
+    margin: auto; }
+
+  #marcas, #audiencias, #resultados, #contac {
+    display: none; } }
 @media only screen and (max-width: 695px) {
   .item .img-codiga {
     display: none; }

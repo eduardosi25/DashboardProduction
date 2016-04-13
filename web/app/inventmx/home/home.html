@@ -141,9 +141,9 @@
                     <div class="content-resultados">
                         <div>
                             <img src="/web/img/global/oppo.jpg" />
-                            <h1>OPPo</h1>
-                            <p>Hicimos de OPPO el experto en aplicaciones dentro de nuestros medios apartir de tutoriales en formato de notas y videos</p>
-                            <a href="/#oppo">Ver más</a>
+                            <h1>Raid Max</h1>
+                            <p>Invent generó una estrategia multiformato en la cual se impactó a audiencia específica de la forma más útil y empática.</p>
+                            <a href="/#raidmax">Ver más</a>
                         </div>
                         <div>
                             <img src="/web/img/global/oikos.jpg" />
@@ -153,7 +153,7 @@
                         </div>
                         <div>
                             <img src="/web/img/global/bridgestone.jpg" />
-                            <h1>Brigestone</h1>
+                            <h1>Bridgestone</h1>
                             <p>Invent propuso a Bridgestone ser el vocero de la información de servicio para el usuario através del sponsored content "El buen conductor".</p>
                             <a href="/#bridgestone">Ver más</a>
                         </div>
@@ -236,10 +236,10 @@
                 
       
                     <li>
-                    {{#eachSlice this offset="1" limit="6"}}
+                    {{#eachSlice this offset="0" limit="6"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{{this.summary}}}</p>
                             </a>
@@ -247,10 +247,10 @@
                     {{/eachSlice}}
                     </li>
                     <li>
-                    {{#eachSlice this offset="7" limit="6"}}
+                    {{#eachSlice this offset="6" limit="6"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
                             </a>
@@ -258,10 +258,10 @@
                     {{/eachSlice}}
                     </li>
                     <li>
-                    {{#eachSlice this offset="13" limit="6"}}
+                    {{#eachSlice this offset="12" limit="6"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
                             </a>

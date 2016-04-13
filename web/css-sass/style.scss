@@ -766,7 +766,7 @@ canvas{
                         border-bottom: 2px solid #fff;
                     }
                     &:first-child{
-                        margin-right: 20%;
+                        margin-right: 0%;
                     }
                 }
             }
@@ -958,7 +958,7 @@ canvas{
             text-align: center;
         }
         .description{
-            @extend .hindsemibold;
+            @extend .hind_regularregular;
             font-size: 14px;
             color:#fff;
             max-width: 406px;
@@ -999,6 +999,11 @@ canvas{
                    border-bottom: 0;
                }
             }
+    }
+    .slick-slide{
+        &>div{
+            border-bottom: 0 !important;
+        }
     }
 }
 /******************************
@@ -1698,6 +1703,7 @@ canvas{
                 vertical-align: top;
                 width: 385px;
                 height: auto;
+                min-height: 216px;
                 background:#6F0B41; 
             }
                 
@@ -2305,17 +2311,17 @@ body #bottom-imx-fixed-wrapper.bottom-static{
 }
 #wrapper-loading-layout{
     position: fixed;
-    width: 30px;
-    height: 30px;
+    width: 180px;
+    height: 180px;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
     z-index: 5;
-    background: #fff;
-    border: 8px solid #fff;
-    border-radius: 50px;
+    background: transparent;
+    border: 0 solid #fff;
+    border-radius: 0px;
 }
 
 .aviso-y-politicas{

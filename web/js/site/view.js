@@ -243,10 +243,34 @@ $(function() {
                     console.log("cache");
                 }
                 collectionMain.hideSections(section);
+                    $w=$(window).width();
+                    if($w <= 727){
+                        $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                        $('div[data-section="la-red-invent"]').css({'display':'none'});
 
+                    }else{
+                        $('div[data-section="casos-de-exito"]').css({'display':'block'});
+                        $('div[data-section="la-red-invent"]').css({'display':'block'});
+                    }
+                
+                $( window ).resize(function() {
+                    $w=$(window).width();
+                    if($w <= 727){
+                        $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                        $('div[data-section="la-red-invent"]').css({'display':'none'});
+
+                    }else{
+                        $('div[data-section="casos-de-exito"]').css({'display':'block'});
+                        $('div[data-section="la-red-invent"]').css({'display':'block'});
+                    }
+                });
+                
                 /* la red invent */
                 var idAncla = window.location.href.split("#")[1];
                 if (idAncla) {
+                    $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                    $('div[data-section="la-red-invent"]').css({'display':'none'});
+                    $('div[data-section="'+ idAncla +'"]').css({'display':'block'});
                     if ($("[data-section='" + idAncla + "']").length) {
                         collectionMain.loaderShow();
                         function top() {
@@ -428,6 +452,7 @@ $(function() {
                         //console.log("Mouse Out!");
                     }
                 });
+                
                 $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                 $("html, body").animate({scrollTop: 0}, "slow");
                 $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
@@ -656,14 +681,14 @@ $(function() {
                         $('#marketing .wrapper').css({'opacity': "1", 'top': '0'});
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
 
-                        $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left', 'delay': '50'});
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left', 'delay': '50'});
 
                         $('.content-ads .item').swift({'type': 'dom', 'positionStart': 'left', 'length': '3200', 'axis': 'left', 'delay': '50'});
                         $('.content-ads .item.right').swift({'type': 'dom', 'positionStart': 'right', 'length': '3600', 'axis': 'left', 'delay': '50'});
-                        $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left', 'delay': '50'});
+                        $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left', 'delay': '50'});*/
 
                         /* servicios - content - netword-ads - media*/
                         var idAncla = window.location.href.split("#")[1];
@@ -999,15 +1024,15 @@ $(function() {
                             });
 
                         };
-                        repositorio = collectionMain.get("c1");
-                        repositorio.set({repositorio: "vloger.json"});
-                        params = collectionMain.get("c2");
-                        params.set({url: null, not_ids: id_exclude, limit: 50});
+                        //repositorio = collectionMain.get("c1");
+                        //repositorio.set({repositorio: "vloger.json"});
+                        //params = collectionMain.get("c2");
+                        //params.set({url: null, not_ids: id_exclude, limit: 50});
                         /* idTemplate: id del Template de javascript */
-                        var idTemplate = "#template-carousel-sections-vloggers";
+                        //var idTemplate = "#template-carousel-sections-vloggers";
                         /* appendTo: lugar donde se pondra el template ya rendereado */
-                        var appendTo = "#sections-carousel-influencers";
-                        collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl);
+                        //var appendTo = "#sections-carousel-influencers";
+                        //collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl);
 
                         $("html, body").animate({scrollTop: 0}, "slow");
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
@@ -1279,10 +1304,10 @@ $(function() {
                             $(".contact_form.contact_form_afilate").fadeIn();
                             
                         });
-                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
                         $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
                         $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
-                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});*/
                         
 
 
@@ -1339,7 +1364,7 @@ $(function() {
                     return this;
                 }
             }),
-            inventMx.view.oppo = Backbone.View.extend({
+            inventMx.view.raidmax = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,
                 initialize: function() {

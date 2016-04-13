@@ -29,7 +29,7 @@
     </head>
     <body class="relative">
         <div id="wrapper-loading-layout" class="none">
-            <img class="gif" src="/web/img/global/ajax-loader.gif">
+            <img class="gif" src="/web/img/global/balls.svg">
         </div>
 
         <header id="header">

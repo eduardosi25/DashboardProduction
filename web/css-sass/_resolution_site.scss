@@ -366,12 +366,17 @@ $content-bg : #CB157D;
 
     .huella {
         position: absolute;
-        top: 181px;
+        top: 188px;
         right: 0;
         width: 130px;
         left: 0;
         margin: auto;
     }
+    .footer_top {
+        position: relative;
+        height: 761px;
+    }
+
 }
 @media only screen and (max-width: 869px) {
     .panel{
@@ -670,6 +675,9 @@ $content-bg : #CB157D;
 #header .wrapper .menu {
     display:none;
 }
+.mobile.links{
+    display: block;
+}
 #header .wrapper .menu {
     width: 110%;
     z-index: 9999999;
@@ -940,6 +948,10 @@ display:none;
     width: 130px;
     left: 0;
     margin: auto;
+}
+
+#marcas, #audiencias, #resultados, #contac{
+   display:none; 
 }
 
 }

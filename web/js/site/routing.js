@@ -10,7 +10,7 @@ $(function() {
             "codiga": "codiga",
             "bridgestone": "bridgestone",
             "oikos": "oikos",
-            "oppo": "oppo",
+            "raidmax": "raidmax",
             //"blogs": "blogs",
             //"blogs/:blogsUrl": "blogsNota",
             "content-marketing": "servicios",
@@ -59,8 +59,8 @@ $(function() {
         bridgestone: function() {
             inventMx.pgBridgestone = new inventMx.view.bridgestone();
         },
-        oppo: function() {
-            inventMx.pgOppo = new inventMx.view.oppo();
+        raidmax: function() {
+            inventMx.pgRaidmax = new inventMx.view.raidmax();
         },
         oikos: function() {
             inventMx.pgOikos = new inventMx.view.oikos();
