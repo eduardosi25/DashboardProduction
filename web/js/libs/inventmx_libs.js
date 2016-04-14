@@ -15179,6 +15179,22 @@ Handlebars.registerHelper('getUrlApp', function(url, options) {
     url = np_url.replace('#/','#');
     return url;
 });
+Handlebars.registerHelper('getUrlImg', function(url, options) {
+    temp_url = $.url(url);
+    hots = temp_url.attr('host');
+    np_url = 'http://' + window.location.host + "/web/img/global/" + temp_url.attr('relative');
+    url = np_url.replace('#/','#');
+    url = np_url.replace('/files/','');
+    return url;
+});
+Handlebars.registerHelper('getUrlLogo', function(url, options) {
+    temp_url = $.url(url);
+    hots = temp_url.attr('host');
+    np_url = 'http://' + window.location.host + "/web/img/logos/" + temp_url.attr('relative');
+    url = np_url.replace('#/','#');
+    url = np_url.replace('/files/','');
+    return url;
+});
 
 /* remplazar host */
 Handlebars.registerHelper('CleanTaxonomy', function(url, options) {

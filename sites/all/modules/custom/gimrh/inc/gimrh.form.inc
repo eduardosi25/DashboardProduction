@@ -3,31 +3,43 @@ function gimrh_colabora_form($form, &$form_state){
   drupal_add_css(drupal_get_path('module','gimrh').'/css/gimrh.css');
   drupal_add_js(drupal_get_path('module','gimrh').'/js/jquery.maskedinput.min.js', 'file');
   drupal_add_js(drupal_get_path('module','gimrh').'/js/gimrh.js', 'file');
+
   if(!isset($form_state['stage'])){
     $form_state['stage']='splash';
     drupal_set_title('Colabora con nosotros');
   }
+
   $form=array();
   switch($form_state['stage']){
     case 'splash':
       return gimrh_splash_form($form, $form_state);
-      break;
+    break;
     case 'trabajo':
       drupal_set_title('Bolsa de trabajo');
       return gimrh_trabajo_form($form, $form_state);
-      break;
+    break;
     case 'becario':
       drupal_set_title('Prácticas profesionales');
       return gimrh_becario_form($form, $form_state);
-      break;
+    break;
     default:
       return gimrh_splash_form($form, $form_state);
-      break;
+    break;
   }
+
   return $form;
 }
+
 function gimrh_splash_form($form, &$form_state){
+  $values = isset($form_state['multistep_values']['splash']) ? $form_state['multistep_values']['splash'] : array();
+
   $form['splash'] = array(
+    '#type'  => 'fieldset',
+    '#tree'  => TRUE,
+  );
+
+  //Bolsa de trabajo - Form
+  $form['splash']['trabajo'] = array(
       '#type'  => 'fieldset',
       '#tree'  => TRUE,
   );
@@ -35,8 +47,7 @@ function gimrh_splash_form($form, &$form_state){
       '#markup' => '<div id="bolsa-de-trabajo">
                     <div clas="center"><div class="candidato-image"></div></div>
                     <div class="candidato-text">
-                      <p>En Grupo Imagen Multimedia queremos contar con gente como tú, con talento, sana ambición y afán de superación. Gente que se esfuerza y cumple, siempre de formaresponsable.</p>
-                    </div>
+                      <p>En Grupo Imagen Multimedia queremos contar con gente como tú, con talento, sana ambición y afán de superación. Gente que se esfuerza y cumple, siempre de forma responsable.<br><br></p>                    </div>
                   </div>',
   );
   $form['splash']['trabajo']['submit'] = array(
@@ -47,9 +58,12 @@ function gimrh_splash_form($form, &$form_state){
       '#suffix' => '</div>',
   );
   $form['splash']['trabajo']['legal'] = array(
-      '#title' => 'Acepto el <a href="/colabora-con-nosotros/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>',
-      '#type'  => 'checkbox',
+    '#title' => 'Acepto <a href="/colabora-con-nosotros/aviso-de-privacidad" target="_blank">Aviso de privacidad</a>',
+    '#type'  => 'checkbox',
+    '#default_value' => isset($values['trabajo']['legal']) && !empty($values['trabajo']['legal']) ? $values['trabajo']['legal'] : 0,
   );
+
+  //Becarios - Form
   $form['splash']['becario'] = array(
       '#type'  => 'fieldset',
       '#tree'  => TRUE,
@@ -70,96 +84,99 @@ function gimrh_splash_form($form, &$form_state){
       '#suffix' => '</div>',
   );
   $form['splash']['becario']['legal'] = array(
-      '#title' => 'Acepto la <a href="/colabora-con-nosotros/carta-de-confidencialidad" target="_blank">Carta de confidencialidad</a>',
-      '#type'  => 'checkbox',
+    '#title' => 'Acepto <a href="/colabora-con-nosotros/carta-de-confidencialidad" target="_blank">Carta de confidencialidad</a>',
+    '#type'  => 'checkbox',
+    '#default_value' => isset($values['becario']['legal']) && !empty($values['becario']['legal']) ? $values['becario']['legal'] : 0,
   );
+
   return $form;
 }
+
 function gimrh_trabajo_form($form, &$form_state){
+  $values = isset($form_state['multistep_values']['trabajo']) ? $form_state['multistep_values']['trabajo'] : array();
   $privacy=isset($form_state['privacy']) && !empty($form_state['privacy']) ? $form_state['privacy'] : 1;
 
   $form=array();
   $form['#tree'] = TRUE;
   $form['gimrh'] = array(
-      '#title' => 'Antes de iniciar lee las siguientes instrucciones:',
-      '#type'  => 'fieldset',
+    '#title' => 'Antes de iniciar lee las siguientes instrucciones:',
+    '#type'  => 'fieldset',
   );
   $form['gimrh']['instructions'] = array(
-      '#markup' => '<ol>
-                  <li>Es necesario llenar todos los campos del registro.</li>
-                  <li>Ten a la mano tu Currículum Vitae en formatos Word (.doc, .docx) o Adobe Acrobat reader(.pdf). Podrás adjuntarlo al final del formulario. El peso máximo de tu archivo debe ser de 1MB</li>
-                  <li>Responde con veracidad ya que toda la información será cotejada si eres seleccionado.</li>
-                  </ol>',
+    '#markup' => '<ol>
+                <li>Es necesario llenar todos los campos del registro.</li>
+                </ol>',
   );
   $form['gimrh']['personal'] = array(
-      '#type'  => 'fieldset',
-      '#title' => 'Datos Personales',
-      '#tree'  => TRUE,
+    '#type'  => 'fieldset',
+    '#title' => 'Datos Personales',
+    '#tree'  => TRUE,
   );
   $form['gimrh']['personal']['name'] = array(
-      '#title'         => 'Nombre',
-      '#type'          => 'textfield',
-      '#size'          => 30,
-      '#maxlength'     => 100,
-      '#required'      => TRUE,
+    '#title'         => 'Nombre',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
+    '#default_name'  => isset($values['gimrh']['personal']['name']) && !empty($values['gimrh']['personal']['name']) ? $values['gimrh']['personal']['name'] : '',
   );
   $form['gimrh']['personal']['plname'] = array(
-      '#title'         => 'Apellido Paterno',
-      '#type'          => 'textfield',
-      '#size'          => 30,
-      '#maxlength'     => 100,
-      '#required'      => TRUE,
+    '#title'         => 'Apellido Paterno',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
   );
   $form['gimrh']['personal']['mlname'] = array(
-      '#title'         => 'Apellido Materno',
-      '#type'          => 'textfield',
-      '#size'          => 30,
-      '#maxlength'     => 100,
-      '#required'      => TRUE,
+    '#title'         => 'Apellido Materno',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 100,
+    '#required'      => TRUE,
   );
   $form['gimrh']['personal']['email'] = array(
-      '#title'         => 'Correo electrónico',
-      '#type'          => 'textfield',
-      '#size'          => 60,
-      '#maxlength'     => 150,
-      '#required'      => TRUE,
+    '#title'         => 'Correo electrónico',
+    '#type'          => 'textfield',
+    '#size'          => 60,
+    '#maxlength'     => 150,
+    '#required'      => TRUE,
   );
   $form['gimrh']['personal']['gender'] = array(
-      '#title' => 'Sexo',
-      '#type' => 'radios',
-      '#options' => array(
-          'masculino' => 'Masculino',
-          'femenino'  => 'Femenino'
-      ),
-      '#required' => TRUE,
+    '#title' => 'Sexo',
+    '#type' => 'radios',
+    '#options' => array(
+        'masculino' => 'Masculino',
+        'femenino'  => 'Femenino'
+    ),
+    '#required' => TRUE,
   );
 
   $date_format = 'd/m/Y';
   $form['gimrh']['personal']['birthdate'] = array(
-      '#title' => 'Fecha de nacimiento',
-      '#type' => 'textfield',
-      '#size'          => 30,
-      '#maxlength'     => 12,
-      '#required' => TRUE,
+    '#title' => 'Fecha de nacimiento',
+    '#type' => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 12,
+    '#required' => TRUE,
   );
   $form['gimrh']['personal']['phone'] = array(
-      '#title'         => 'Teléfono de casa o celular',
-      '#type'          => 'textfield',
-      '#size'          => 30,
-      '#maxlength'     => 60,
-      '#required'      => TRUE,
+    '#title'         => 'Teléfono de casa o celular',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 60,
+    '#required'      => TRUE,
   );
   $form['gimrh']['personal']['state'] = array(
-      '#title'         => 'Estado de residencia',
-      '#type'          => 'select',
-      '#options'       => gimrh_getLocation(1),
-      '#ajax'          => array(
-          'event'    => 'change',
-          'callback' => 'gimrh_ajax_locations_city',
-          'wrapper'  => 'location-city',
-      ),
-      '#default_value' => NULL,
-      '#required'      => TRUE,
+    '#title'         => 'Estado de residencia',
+    '#type'          => 'select',
+    '#options'       => gimrh_getLocation(1),
+    '#ajax'          => array(
+        'event'    => 'change',
+        'callback' => 'gimrh_ajax_locations_city',
+        'wrapper'  => 'location-city',
+    ),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
   );
 
   // Wrapper for city dropdown list
@@ -210,7 +227,7 @@ function gimrh_trabajo_form($form, &$form_state){
   );
   $form['gimrh']['interest']=array(
       '#type'  => 'fieldset',
-      '#title' => 'Áreas de Interés',
+      '#title' => 'Sector',
       '#tree'  => TRUE,
   );
   $form['gimrh']['interest'][0] = array(
@@ -232,6 +249,7 @@ function gimrh_trabajo_form($form, &$form_state){
       '#options'       => gimrh_getInterest(),
       '#default_value' => NULL,
   );
+  /**
   $form['gimrh']['cv']=array(
       '#type'  => 'fieldset',
       '#title' => 'Agrega tu Currículum Vitae',
@@ -248,6 +266,7 @@ function gimrh_trabajo_form($form, &$form_state){
       '#upload_location'   => 'public://gimrh_uploads/',
       '#process'           => array('gimrh_file_element_process'),
   );
+   */
   $form['submit'] = array(
       '#type'   => 'submit',
       '#value'  => 'Enviar datos',
@@ -293,6 +312,7 @@ function ajax_file_update_callback($form, &$form_state){
 
 
 function gimrh_becario_form($form, &$form_state){
+  $values = isset($form_state['multistep_values']['becario']) ? $form_state['multistep_values']['becario'] : array();
   $confidential=isset($form_state['privacy']) && !empty($form_state['privacy']) ? $form_state['privacy'] : 1;
   $form=array();
   $form['#tree'] = TRUE;
@@ -303,7 +323,6 @@ function gimrh_becario_form($form, &$form_state){
   $form['gimrh']['instructions'] = array(
       '#markup' => '<ol>
                   <li>Los campos marcados con un asterisco (*) son obligatorios.</li>
-                  <li>Responde con veracidad ya que toda la información será cotejada si eres seleccionado.</li>
                   </ol>',
   );
   $form['gimrh']['personal'] = array(
@@ -394,11 +413,11 @@ function gimrh_becario_form($form, &$form_state){
   );
   $form['gimrh']['academics'] = array(
       '#type'  => 'fieldset',
-      '#title' => 'Datos Académicos',
+      '#title' => 'Institución educativa',
       '#tree'  => TRUE,
   );
   $form['gimrh']['academics']['degree'] = array(
-      '#title'         => 'Nivel de estudios',
+      '#title'         => 'Carrera',
       '#type'          => 'select',
       '#options'       => gimrh_getDegree(1),
       '#default_value' => NULL,
@@ -418,21 +437,41 @@ function gimrh_becario_form($form, &$form_state){
       '#maxlength'     => 150,
       '#required'      => TRUE,
   );
+  $form['gimrh']['academics']['credits'] = array(
+    '#title'         => 'Créditos',
+    '#type'          => 'textfield',
+    '#size'          => 60,
+    '#maxlength'     => 150,
+    '#required'      => TRUE,
+  );
+
   $form['gimrh']['academics']['languages'] = array(
-      '#title'         => 'Idiomas',
-      '#type'          => 'textfield',
-      '#size'          => 60,
-      '#maxlength'     => 150,
+    '#title'         => 'Idiomas',
+    '#type'          => 'textfield',
+    '#size'          => 20,
+    '#maxlength'     => 150,
+  );
+  $form['gimrh']['academics']['languages_domain'] = array(
+    '#title'         => 'Porcentaje',
+    '#type'          => 'textfield',
+    '#size'          => 10,
+    '#maxlength'     => 5,
   );
   $form['gimrh']['academics']['software'] = array(
-      '#title'         => 'Programas de computadora',
+    '#title'         => 'Software de computadora',
+    '#type'          => 'textfield',
+    '#size'          => 60,
+    '#maxlength'     => 150,
+  );
+  $form['gimrh']['academics']['software_domain'] = array(
+      '#title'         => 'Porcentaje',
       '#type'          => 'textfield',
-      '#size'          => 60,
-      '#maxlength'     => 150,
+      '#size'          => 10,
+      '#maxlength'     => 5,
   );
   $form['gimrh']['interest']=array(
       '#type'  => 'fieldset',
-      '#title' => 'Áreas de Interés',
+      '#title' => 'Sector',
       '#tree'  => TRUE,
   );
   $form['gimrh']['interest'][0] = array(

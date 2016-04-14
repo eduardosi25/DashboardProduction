@@ -75,10 +75,10 @@ table {
 .fugaz_oneregular, .wrapper .title_section, .flexslider_bloger .slides > div > div > div > div > div .seguidores, #vlogger .wrapper .title-influencers, #exito .wrapper .content-exito h1, #exito .wrapper .content-exito .content-reto .reto h3, #solucion .wrapper .resultados h2, #solucion .wrapper .resultados .impacto, #solucion .wrapper .resultados .description, .item .description h1, .item .description.icon.engagement p span, #sponsored .wrapper .content-sponsored h1, .title-section, #codiga-descrition .part2 .wrapper ul li h1, .mobile.links .menu-mobile li a {
   font-family: 'fugaz_oneregular'; }
 
-.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #sitio .wrapper .description, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
+.hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
   font-family: 'Hind-Semibold'; }
 
-.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
+.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], #sitio .wrapper .description, .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
   font-family: 'Hind-Regular'; }
 
 .hindlight, #header .wrapper .menu ul li a, .btn-contacto div, #blogs .wrapper .item.destacado .content-tet, #nota .wrapper .content-left .content-autor .content-text, #nota .wrapper .content-left .content-nota {
@@ -211,7 +211,8 @@ canvas {
   background-color: #5c9900;
   height: auto;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 0; }
 
 .morado {
   background-color: #890e4f; }
@@ -318,6 +319,8 @@ canvas {
     padding-top: 19px; }
     .flexslider_marcas .slides li > div:nth-child(3n) {
       border-right: 0px; }
+    .flexslider_marcas .slides li > div:nth-child(4n), .flexslider_marcas .slides li > div:nth-child(5n), .flexslider_marcas .slides li > div:nth-child(6n) {
+      border-bottom: 0px; }
     .flexslider_marcas .slides li > div .line {
       content: "";
       display: block;
@@ -608,7 +611,7 @@ canvas {
     .btn-contacto div.active {
       border-bottom: 2px solid #fff; }
     .btn-contacto div:first-child {
-      margin-right: 20%; }
+      margin-right: 0%; }
 
 .content-contact {
   width: 100%; }
@@ -775,6 +778,8 @@ form.contact_form_afilate {
         padding: 0 30px; }
       #sitio .wrapper .flexslider_marcas .slides li > div {
         border-bottom: 0; }
+  #sitio .slick-slide > div {
+    border-bottom: 0 !important; }
 
 /******************************
  End Sitio 
@@ -1233,7 +1238,8 @@ form.contact_form_afilate {
       display: inline-block;
       vertical-align: top;
       width: 385px;
-      height: 250px;
+      height: auto;
+      min-height: 216px;
       background: #6F0B41; }
 
 .title-section {
@@ -1251,8 +1257,10 @@ form.contact_form_afilate {
 Codiga
 *******************************/
 #video-codiga {
-  height: auto;
-  padding: 0 !important; }
+  height: 90%;
+  min-height: 1px;
+  padding: 0 !important;
+  max-height: 90%; }
   #video-codiga .content-exito video {
     width: 100%;
     height: auto;
@@ -1670,17 +1678,17 @@ body #bottom-imx-fixed-wrapper.bottom-static {
 
 #wrapper-loading-layout {
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 180px;
+  height: 180px;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
   z-index: 5;
-  background: #fff;
-  border: 8px solid #fff;
-  border-radius: 50px; }
+  background: transparent;
+  border: 0 solid #fff;
+  border-radius: 0px; }
 
 .aviso-y-politicas {
   width: 92.5%;
@@ -1723,6 +1731,60 @@ body #bottom-imx-fixed-wrapper.bottom-static {
       list-style-position: inside !important;
       list-style: disc;
       margin-bottom: 8px; }
+
+.huella {
+  position: absolute;
+  top: 74px;
+  right: -166px; }
+
+.content-video video {
+  width: 100%;
+  height: 100%; }
+
+.video-container {
+  max-width: 1141px;
+  margin: 0 auto;
+  display: block; }
+
+.bg-black {
+  background: #000; }
+
+iframe, object, video {
+  height: 80%;
+  width: 100%; }
+
+#video-codiga .myWrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+  height: 0;
+  overflow: hidden; }
+
+#video-codiga .myWrapper iframe {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%; }
+
+.content-video iframe, .content-video object, .content-video video {
+  height: 100%;
+  width: 100%; }
+.content-video .video-container {
+  max-width: 1141px;
+  width: 100%;
+  margin: 0 auto;
+  display: block; }
+.content-video .myWrapper {
+  position: relative;
+  padding-bottom: 56.2%;
+  height: 0;
+  overflow: hidden; }
+.content-video .myWrapper iframe {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%; }
 
 /* Z-INDEX */
 .formError {
@@ -1875,6 +1937,11 @@ body.rtl .formError .formErrorArrow {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
+@media only screen and (min-width: 1144px) {
+  .video-container {
+    width: 95.5%;
+    margin: 0 auto;
+    display: block; } }
 @media only screen and (max-width: 1023px) {
   .bottom-links #bottom-imx-fixed .bottom-links-notes {
     margin: 0 auto;
@@ -2138,6 +2205,22 @@ body.rtl .formError .formErrorArrow {
   #bottom-imx-fixed .bottom-trigger {
     width: 151px !important;
     right: -15px !important; } }
+@media only screen and (max-width: 950px) {
+  .btn-contacto {
+    text-align: center;
+    margin-top: 125px; }
+
+  .huella {
+    position: absolute;
+    top: 188px;
+    right: 0;
+    width: 130px;
+    left: 0;
+    margin: auto; }
+
+  .footer_top {
+    position: relative;
+    height: 761px; } }
 @media only screen and (max-width: 869px) {
   .panel {
     height: auto !important;
@@ -2390,6 +2473,9 @@ body.rtl .formError .formErrorArrow {
   #header .wrapper .menu {
     display: none; }
 
+  .mobile.links {
+    display: block; }
+
   #header .wrapper .menu {
     width: 110%;
     z-index: 9999999;
@@ -2617,7 +2703,21 @@ body.rtl .formError .formErrorArrow {
     font-size: 23px; }
 
   #resultados .wrapper .content-resultados > div h1 {
-    font-size: 25px; } }
+    font-size: 25px; }
+
+  .btn-contacto {
+    text-align: center;
+    margin-top: 125px; }
+
+  .huella {
+    top: 145px;
+    right: 0;
+    width: 130px;
+    left: 0;
+    margin: auto; }
+
+  #marcas, #audiencias, #resultados, #contac {
+    display: none; } }
 @media only screen and (max-width: 695px) {
   .item .img-codiga {
     display: none; }
