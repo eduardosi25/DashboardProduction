@@ -15,7 +15,7 @@ $(function() {
             //"blogs/:blogsUrl": "blogsNota",
             "content-marketing": "servicios",
             "media-happenings": "servicios",
-            "network-ads": "servicios",
+            "network-ads": "networkAds",
             "aviso-de-privacidad": "avisoPrivacidad",
             "politica-ambiental": "politicaAmbiental",
             "terminos-y-condiciones-de-uso": "terminosCondiciones",
@@ -30,6 +30,9 @@ $(function() {
         },
         home: function() {
             inventMx.view.pgHome = new inventMx.view.home();
+        },
+        networkAds: function() {
+            inventMx.view.pgNetworkAds = new inventMx.view.networkAds();
         },
         redInvent: function() {
             inventMx.pglaRedInvent = new inventMx.view.redInvent();

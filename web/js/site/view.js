@@ -476,7 +476,7 @@ $(function() {
                         $( window ).scroll(function() {
                             window_y = $(window).scrollTop();
                             scroll_critical = parseInt($(".flexslider").height());
-                            if (window_y > scroll_critical) {
+                            if (window_y > (scroll_critical-200)) {
                                 $('#showcase').css({'opacity':'1','top':'0'});
                                 $('#demo-pie-1').pieChart({
                                         barColor: '#17d9b4',
@@ -1282,6 +1282,56 @@ $(function() {
 
                         if ($(idContent + "codiga").children("div").length == 0) {
                             $(idContent + "codiga").html(data);
+                        }
+
+                        collectionMain.hideSections(section);
+
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                        $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                        $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                        $(".btn-contacto .anunciate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_anunciate").fadeIn();
+                            
+
+                        });
+                        $(".btn-contacto .afíliate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});*/
+                        
+
+
+                    }, 'html');
+                    return this;
+                }
+            }),
+            inventMx.view.networkAds = Backbone.View.extend({
+                template: collectionMain.get("c3").attributes.pathTemplate,
+                idContent: collectionMain.get("c3").attributes.firtsIdContent,
+                initialize: function() {
+                    $(this.el).unbind();
+                    _.bindAll(this, 'render');
+                    this.render();
+                },
+                render: function() {
+                    var idContent = this.idContent;
+                    var section = "networkAds";
+                    $.get(this.template + 'network-ads/network-ads.html', function(data) {
+                        var animateSection = collectionMain.get("c1");
+                        animateSection.set({section: section});
+
+                        if ($(idContent + "networkAds").children("div").length == 0) {
+                            $(idContent + "networkAds").html(data);
                         }
 
                         collectionMain.hideSections(section);

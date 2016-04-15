@@ -1678,8 +1678,8 @@ body #bottom-imx-fixed-wrapper.bottom-static {
 
 #wrapper-loading-layout {
   position: fixed;
-  width: 180px;
-  height: 180px;
+  width: 49px;
+  height: 49px;
   top: 0;
   bottom: 0;
   left: 0;
@@ -1687,8 +1687,11 @@ body #bottom-imx-fixed-wrapper.bottom-static {
   margin: auto;
   z-index: 5;
   background: transparent;
-  border: 0 solid #fff;
-  border-radius: 0px; }
+  border: 2px solid #fff;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%; }
 
 .aviso-y-politicas {
   width: 92.5%;

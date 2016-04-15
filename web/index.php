@@ -29,24 +29,7 @@
     </head>
     <body class="relative">
         <div id="wrapper-loading-layout" class="none">
-            <svg width='180px' height='180px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-balls"><rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect><g transform="rotate(0 50 50)">
-                <circle r="5" cx="31" cy="50">
-                  <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite" dur="1s" values="0 0;28.499999999999996 -16.454482671904337" keyTimes="0;1"/>
-                  <animate attributeName="fill" dur="1s" begin="0s" repeatCount="indefinite"  keyTimes="0;1" values="#f29c98;#f5b697"/>
-                </circle>
-              </g><g transform="rotate(120 50 50)">
-                <circle r="5" cx="31" cy="50">
-                  <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite" dur="1s" values="0 0;28.499999999999996 -16.454482671904337" keyTimes="0;1"/>
-                  <animate attributeName="fill" dur="1s" begin="0s" repeatCount="indefinite"  keyTimes="0;1" values="#f5b697;#f5e797"/>
-                </circle>
-              </g><g transform="rotate(240 50 50)">
-                <circle r="5" cx="31" cy="50">
-                  <animateTransform attributeName="transform" type="translate" begin="0s" repeatCount="indefinite" dur="1s" values="0 0;28.499999999999996 -16.454482671904337" keyTimes="0;1"/>
-                  <animate attributeName="fill" dur="1s" begin="0s" repeatCount="indefinite"  keyTimes="0;1" values="#f5e797;#f29c98"/>
-                </circle>
-              </g>
-            </svg>
-            <!--<img class="gif" src="/web/img/global/balls.svg">-->
+            <img class="gif" src="/web/img/global/invent_loader.gif">
         </div>
 
         <header id="header">
@@ -79,6 +62,7 @@
         <div id="wrapper-page">
             <div id="page-main-invent-home"></div>
             <div id="page-main-invent-codiga"></div>
+            <div id="page-main-invent-networkAds"></div>
             <div id="page-main-invent-bridgestone"></div>
             <div id="page-main-invent-oppo"></div>
             <div id="page-main-invent-oikos"></div>
