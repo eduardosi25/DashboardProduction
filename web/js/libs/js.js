@@ -4,17 +4,32 @@ jQuery(document).ready(function ($) {
         $(this).toggleClass("open");
         $('.menu').slideToggle();
       });
-      $(".menu a").click(function(){
+      /*$(".menu a").click(function(){
           $('.menu a').removeClass('active');
           $(this).addClass('active');
-      }); 
+      }); */
       
       $w=$(window).width();
-        if($w <= 727){
-           $(".mobilemenu a").click(function(){
-                $('.navicon-button').toggleClass("open");
-                $('.menu').slideUp();
-            }); 
+      if($w <= 600){
+            console.log('hola');
+            /*$('#intro img').each(function(){
+                url_img=$(this).attr('src');
+                     src = url_img.replace("leon","leon2");
+                     $(this).attr('src',src);
+                console.log($(this).attr('src'));
+            });*/
+                    
+            
+            //$url_leon.replace("leon","leon2");
+            
+        }
+        else if($w <= 727){
+           $(document).on("click",".mobilemenu li a",function (e) {
+            //e.preventDefault();
+            $('.navicon-button').toggleClass("open");
+            $('.menu').slideUp();
+        });
+            
           $('#header .wrapper .menu').addClass('mobilemenu');  
         
         $('#header .wrapper .menu').css({'display':'none'});
@@ -50,18 +65,27 @@ jQuery(document).ready(function ($) {
 
 
         }
+        
         else{
              $('#header .wrapper .menu').removeClass('mobilemenu');  
             $('#header .wrapper .menu').css({'display':'inline-block'});
         }
 
     $( window ).resize(function() {
+        
         $w=$(window).width();
         if($w <= 727){
+            console.log('si');
+            
             
           $('#header .wrapper .menu').addClass('mobile_menu');  
         
         $('#header .wrapper .menu').css({'display':'none'});
+        $(document).on("click",".mobile_menu li a",function (e) {
+                //e.preventDefault();
+                $('.navicon-button').toggleClass("open");
+                $('.menu').slideUp();
+            });
             
         function flexdestroy(selector) {
 

@@ -601,6 +601,23 @@ $content-bg : #CB157D;
         right: 11px !important;
     }
     
+    #page-main-invent-contacto #contac {
+    display: block;
+    }
+    #ads .wrapper .item.right.programmatic .description p {
+        padding: 0 0 2px 118px;
+    }
+    #ads .wrapper .item.right.programmatic .description h1 {
+        padding: 0 0 2px 123px;
+    }
+    #ads .wrapper .item.right.programmatic .description {
+        width: 61%;
+        margin: 53px 0 0 -18.7%;
+        padding-left: 0;
+        max-width: 800px;
+    }
+    
+    
     
 }
 @media only screen and (max-width: 767px) {
@@ -668,6 +685,9 @@ $content-bg : #CB157D;
     color: #fff;
     margin: 20px auto;
     padding: 0 0 0px 0;
+}
+#page-main-invent-contacto #contac {
+    display: block;
 }
 
 }
@@ -954,6 +974,24 @@ display:none;
    display:none; 
 }
 
+#ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 0;
+    padding-left: 0;
+    max-width: 800px;
+}
+#ads .wrapper .item.right.programmatic .description h1 {
+    padding: 0 36px 2px 29px;
+}
+.item .description p {
+    padding: 0 0 0px 35px;
+    margin: 0 auto;
+}
+#ads .wrapper .item.right.programmatic .description p {
+    padding: 0 0 2px 0;
+}
+
+
 }
 
 @media only screen and (max-width: 695px) {
@@ -1098,6 +1136,7 @@ display:none;
     #marketing .wrapper .content-marketing .description {
         max-width: 100%;
         margin: 15px 0 0 0;
+        text-align: center;
     }
     #marketing .wrapper .content-marketing .description ul li {
         margin-bottom: 8px;
@@ -1147,15 +1186,33 @@ display:none;
         top: -6px;
     } 
     
-    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child  {
+   /* #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child  {
         width: 65%;
         display: block;
         margin-bottom: 20px;
         margin: 20px auto 20px;
-    }
+    }*/
+    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
+    width: 65%;
+    display: block;
+    margin-bottom: 20px;
+    margin: 20px 0 20px;
+}
     .item .description p {
         padding: 0 0 0px 0px;
+        text-align: center;
     }
+    .item.right .description p {
+        padding: 0 0 2px 0;
+        text-align: center;
+    }
+    #sponsored .wrapper .content-sponsored .item .description .content-text {
+        text-align: center;
+    }
+    #happenings .wrapper .content-happenings .item .description .content-text {
+        text-align: center;
+    }
+    
     #sponsored .wrapper .content-sponsored h1 {
         font-size: 49px;
         color: #fff;
@@ -1234,7 +1291,31 @@ display:none;
 #sections-vloggers{
     display: none;
 }
-    
+.btn-contacto {
+    text-align: center;
+    margin-top: 41px;
+} 
+
+.flexslider_marcas{
+    .slides{
+        li{
+            &:last-child{
+                div{
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(6){
+                        display: none !important;
+                    }
+                }
+                
+                
+            }
+            
+        }
+    }   
+}
+
 
 }
 
@@ -1398,9 +1479,12 @@ display:none;
         text-align: left;
     }
     #ads .wrapper .content-type ul li {
-        width: 100%;
-        margin-bottom: 20px;
-        margin-top: 20px;
+        width: 75%;
+        margin:20px auto;
+    }
+    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
+        width: 75%;
+        margin: 20px auto 20px;
     }
     .content-type{
      max-width: 80%;
@@ -1490,7 +1574,9 @@ display:none;
 
 
     
-
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 
@@ -1675,7 +1761,9 @@ display:none;
         margin-right: 2px;
     }
 
-    
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -1739,7 +1827,12 @@ display:none;
     padding: 0 0 0px 1px;
 }
 
-
+#ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 30px;
+    padding-left: 0;
+    max-width: 800px;
+}
 
 
 }
@@ -1781,7 +1874,9 @@ display:none;
 .item.right .description h1 {
     padding: 0 0 22px 62px;
 }
-
+#ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 
     
     
@@ -1792,6 +1887,9 @@ display:none;
      background: #1a1a1a !important;
      height: 177px !important;
     } 
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 @media only screen and (max-width: 330px) {
@@ -1800,5 +1898,8 @@ display:none;
     }
     .numero-audiencias ul li span {
         font-size: 23px;
+    }
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
     }
 }

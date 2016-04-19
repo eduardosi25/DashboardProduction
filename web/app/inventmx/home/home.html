@@ -140,25 +140,23 @@
                     <h1 class="title_section">Resultados efectivos</h1>
                     <div class="content-resultados">
                         <div>
-                            <img src="/web/img/global/raid.jpg" />
-                            <h1>Raid Max</h1>
-                            <p>Invent generó una estrategia multiformato a través de la cual se impactó a la audiencia específica, de la forma más sutil y empática...</p>
-                            <a href="/#raidmax">Ver más</a>
+                            <a href="/#raidmax"><img src="/web/img/global/raid.jpg" /></a>
+                            <a href="/#raidmax"><h1>Raid Max</h1></a>
+                            <a href="/#raidmax"><p>Invent generó una estrategia multiformato a través de la cual se impactó a la audiencia específica, de la forma más sutil y empática...</p></a>
+                            <a  class="see-more"  href="/#raidmax">Ver más</a>
                         </div>
                         <div>
-                            <img src="/web/img/global/oikos.jpg" />
-                            <h1>Oikos</h1>
-                            <p>Invent mostró de forma creativa y útil la preparación de alimentos utilizando a Oikos como base de los mismos.</p>
-                            <a href="/#oikos">Ver más</a>
+                            <a href="/#oikos"><img src="/web/img/global/oikos.jpg" /></a>
+                            <a href="/#oikos"><h1>Oikos</h1></a>
+                            <a href="/#oikos"><p>Invent mostró de forma creativa y útil la preparación de alimentos utilizando a Oikos como base de los mismos.</p></a>
+                            <a class="see-more"  href="/#oikos">Ver más</a>
                         </div>
                         <div>
-                            <img src="/web/img/global/bridgestone.jpg" />
-                            <h1>Bridgestone</h1>
-                            <p>Invent propuso a Bridgestone ser el vocero de la información de servicio para el usuario, a través del sponsored content "El buen conductor"...</p>
-                            <a href="/#bridgestone">Ver más</a>
+                            <a href="/#bridgestone"><img src="/web/img/global/bridgestone.jpg" /></a>
+                            <a href="/#bridgestone"><h1>Bridgestone</h1></a>
+                            <a href="/#bridgestone"><p>Invent propuso a Bridgestone ser el vocero de la información de servicio para el usuario, a través del sponsored content "El buen conductor"...</p></a>
+                            <a class="see-more" href="/#bridgestone">Ver más</a>
                         </div>
-                        
-                        
                     </div>
 		
 		
@@ -239,7 +237,7 @@
                     {{#eachSlice this offset="0" limit="6"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{{this.summary}}}</p>
                             </a>
@@ -250,7 +248,7 @@
                     {{#eachSlice this offset="6" limit="6"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
                             </a>
@@ -258,10 +256,19 @@
                     {{/eachSlice}}
                     </li>
                     <li>
-                    {{#eachSlice this offset="12" limit="6"}}
+                    {{#eachSlice this offset="12" limit="2"}}
                         <div>
                             <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{ getUrlLogo this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                <span class="line"></span>
+                                <p>{{this.summary}}</p>
+                            </a>
+                        </div>
+                    {{/eachSlice}}
+                    {{#eachSlice this offset="6" limit="4"}}
+                        <div>
+                            <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
+                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                 <span class="line"></span>
                                 <p>{{this.summary}}</p>
                             </a>

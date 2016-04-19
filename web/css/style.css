@@ -78,7 +78,7 @@ table {
 .hindsemibold, .content-circles .item-circle, .flexslider_bloger .slides > div > div > div > div > div .title h1, #audiencias .wrapper .content-audiencias > div h1, #resultados .wrapper .content-resultados > div h1, .content-contact form ul li.mensaje span, .numero-audiencias ul li, #vlogger .wrapper .content-vlogger .img-vlogger .title strong, #vlogger .wrapper .content-vlogger .seguidores-vlogger .content-circles .item-circle h3, .item .views li, #ads .wrapper .content-type ul li h1, #blogs .wrapper .item h1, #nota .wrapper .content-left .content-autor .content-text h2 {
   font-family: 'Hind-Semibold'; }
 
-.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], #sitio .wrapper .description, .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
+.hind_regularregular, #publico .wrapper .audiencias, .flexslider_marcas .slides li > div p, #sections-carousel-sites .flexslider_marcas .slides > div > div > div > div > div p, .flexslider_bloger .slides > div > div > div > div > div .title h3, .flexslider_bloger .slides > div > div > div > div > div .description, #audiencias .wrapper .content-audiencias > div .descrition, #audiencias .wrapper .content-audiencias > div .sub, #resultados .wrapper .content-resultados > div p, #resultados .wrapper .content-resultados > div a.see-more, .content-contact form ul li input, .content-contact form ul li textarea, .content-contact form ul li.enviar button[type="submit"], #sitio .wrapper .description, .adjuntos ul li a, #vlogger .wrapper .content-vlogger .img-vlogger .title, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube, #vlogger .wrapper .content-vlogger .seguidores-vlogger h1, #vlogger .wrapper .content-vlogger .seguidores-vlogger h3, #exito .wrapper .content-exito .content-reto .description, #solucion .wrapper .description, #solucion .wrapper ul li, #marketing .wrapper .content-marketing .description, .item .description p, #ads .wrapper .content-type ul li .description, #ads .wrapper .content-type ul li .separador, #sponsored .wrapper .content-sponsored .item .description .content-text, #happenings .wrapper .content-happenings .item .description .content-text, #codiga-descrition .description, #codiga-descrition .part2 .wrapper ul li .content-text, #blogs .wrapper .content-item .item .taxonomias, #nota .wrapper .content-left .content-imagen .img-descrition, #nota .wrapper .content-left .autor, #nota .wrapper .content-right .show-more {
   font-family: 'Hind-Regular'; }
 
 .hindlight, #header .wrapper .menu ul li a, .btn-contacto div, #blogs .wrapper .item.destacado .content-tet, #nota .wrapper .content-left .content-autor .content-text, #nota .wrapper .content-left .content-nota {
@@ -101,7 +101,7 @@ html, body {
 a {
   text-decoration: none; }
 
-.yellow, #resultados .wrapper .content-resultados > div h1, #resultados .wrapper .content-resultados > div a {
+.yellow, #resultados .wrapper .content-resultados > div h1, #resultados .wrapper .content-resultados > div a.see-more {
   color: #fec524; }
 
 canvas {
@@ -494,7 +494,7 @@ canvas {
         #audiencias .wrapper .content-audiencias > div .sub {
           font-size: 20px;
           color: #fff; }
-          #audiencias .wrapper .content-audiencias > div .sub .yellow, #audiencias #resultados .wrapper .content-audiencias > div .sub .content-resultados > div h1, #resultados #audiencias .wrapper .content-audiencias > div .sub .content-resultados > div h1, #audiencias #resultados .wrapper .content-resultados > div .content-audiencias > div .sub h1, #resultados #audiencias .wrapper .content-resultados > div .content-audiencias > div .sub h1, #audiencias #resultados .wrapper .content-audiencias > div .sub .content-resultados > div a, #resultados #audiencias .wrapper .content-audiencias > div .sub .content-resultados > div a, #audiencias #resultados .wrapper .content-resultados > div .content-audiencias > div .sub a, #resultados #audiencias .wrapper .content-resultados > div .content-audiencias > div .sub a {
+          #audiencias .wrapper .content-audiencias > div .sub .yellow, #audiencias #resultados .wrapper .content-audiencias > div .sub .content-resultados > div h1, #resultados #audiencias .wrapper .content-audiencias > div .sub .content-resultados > div h1, #audiencias #resultados .wrapper .content-resultados > div .content-audiencias > div .sub h1, #resultados #audiencias .wrapper .content-resultados > div .content-audiencias > div .sub h1, #audiencias #resultados .wrapper .content-audiencias > div .sub .content-resultados > div a.see-more, #resultados #audiencias .wrapper .content-audiencias > div .sub .content-resultados > div a.see-more, #audiencias #resultados .wrapper .content-resultados > div .content-audiencias > div .sub a.see-more, #resultados #audiencias .wrapper .content-resultados > div .content-audiencias > div .sub a.see-more {
             width: 8px;
             height: 3px;
             background: #efc524;
@@ -539,7 +539,7 @@ canvas {
           color: #fff;
           padding: 0 56px 0 13px;
           min-height: 44px; }
-        #resultados .wrapper .content-resultados > div a {
+        #resultados .wrapper .content-resultados > div a.see-more {
           font-size: 14px;
           padding: 30px 56px 0 13px;
           display: inline-block; }
@@ -1136,7 +1136,8 @@ form.contact_form_afilate {
       margin: 64px 0 0 0; }
 
 #ads {
-  height: 1958px; }
+  height: auto;
+  padding: 20px 0 40px; }
   #ads .wrapper {
     width: 955px; }
     #ads .wrapper .item.right .description {
@@ -1151,6 +1152,17 @@ form.contact_form_afilate {
         #ads .wrapper .item.right .description .content-img img {
           width: 100%;
           height: auto; }
+    #ads .wrapper .item.right.programmatic {
+      margin-top: 95px; }
+      #ads .wrapper .item.right.programmatic .description {
+        width: 607px;
+        margin: 53px 0 0 -170px;
+        padding-left: 0;
+        max-width: 800px; }
+        #ads .wrapper .item.right.programmatic .description h1 {
+          padding: 0 0 2px 123px; }
+        #ads .wrapper .item.right.programmatic .description p {
+          padding: 0 0 2px 182px; }
     #ads .wrapper .item .description {
       width: 527px;
       max-width: 527px;
@@ -2413,7 +2425,22 @@ body.rtl .formError .formErrorArrow {
 
   #bottom-imx-fixed .bottom-trigger {
     width: 141px !important;
-    right: 11px !important; } }
+    right: 11px !important; }
+
+  #page-main-invent-contacto #contac {
+    display: block; }
+
+  #ads .wrapper .item.right.programmatic .description p {
+    padding: 0 0 2px 118px; }
+
+  #ads .wrapper .item.right.programmatic .description h1 {
+    padding: 0 0 2px 123px; }
+
+  #ads .wrapper .item.right.programmatic .description {
+    width: 61%;
+    margin: 53px 0 0 -18.7%;
+    padding-left: 0;
+    max-width: 800px; } }
 @media only screen and (max-width: 767px) {
   #bottom-imx-fixed .bottom-trigger {
     display: none !important; }
@@ -2471,7 +2498,10 @@ body.rtl .formError .formErrorArrow {
     font-size: 20px;
     color: #fff;
     margin: 20px auto;
-    padding: 0 0 0px 0; } }
+    padding: 0 0 0px 0; }
+
+  #page-main-invent-contacto #contac {
+    display: block; } }
 @media only screen and (max-width: 727px) {
   #header .wrapper .menu {
     display: none; }
@@ -2720,7 +2750,23 @@ body.rtl .formError .formErrorArrow {
     margin: auto; }
 
   #marcas, #audiencias, #resultados, #contac {
-    display: none; } }
+    display: none; }
+
+  #ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 0;
+    padding-left: 0;
+    max-width: 800px; }
+
+  #ads .wrapper .item.right.programmatic .description h1 {
+    padding: 0 36px 2px 29px; }
+
+  .item .description p {
+    padding: 0 0 0px 35px;
+    margin: 0 auto; }
+
+  #ads .wrapper .item.right.programmatic .description p {
+    padding: 0 0 2px 0; } }
 @media only screen and (max-width: 695px) {
   .item .img-codiga {
     display: none; }
@@ -2838,7 +2884,8 @@ body.rtl .formError .formErrorArrow {
 
   #marketing .wrapper .content-marketing .description {
     max-width: 100%;
-    margin: 15px 0 0 0; }
+    margin: 15px 0 0 0;
+    text-align: center; }
 
   #marketing .wrapper .content-marketing .description ul li {
     margin-bottom: 8px;
@@ -2886,14 +2933,31 @@ body.rtl .formError .formErrorArrow {
   .item .description.icon.video h1:before {
     top: -6px; }
 
+  /* #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child  {
+       width: 65%;
+       display: block;
+       margin-bottom: 20px;
+       margin: 20px auto 20px;
+   }*/
   #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
     width: 65%;
     display: block;
     margin-bottom: 20px;
-    margin: 20px auto 20px; }
+    margin: 20px 0 20px; }
 
   .item .description p {
-    padding: 0 0 0px 0px; }
+    padding: 0 0 0px 0px;
+    text-align: center; }
+
+  .item.right .description p {
+    padding: 0 0 2px 0;
+    text-align: center; }
+
+  #sponsored .wrapper .content-sponsored .item .description .content-text {
+    text-align: center; }
+
+  #happenings .wrapper .content-happenings .item .description .content-text {
+    text-align: center; }
 
   #sponsored .wrapper .content-sponsored h1 {
     font-size: 49px;
@@ -2955,7 +3019,14 @@ body.rtl .formError .formErrorArrow {
     background: #890e4f; }
 
   #sections-vloggers {
-    display: none; } }
+    display: none; }
+
+  .btn-contacto {
+    text-align: center;
+    margin-top: 41px; }
+
+  .flexslider_marcas .slides li:last-child div:nth-child(3), .flexslider_marcas .slides li:last-child div:nth-child(4), .flexslider_marcas .slides li:last-child div:nth-child(5), .flexslider_marcas .slides li:last-child div:nth-child(6) {
+    display: none !important; } }
 @media only screen and (max-width: 574px) {
   .content-contact form {
     width: 95%;
@@ -3102,9 +3173,12 @@ body.rtl .formError .formErrorArrow {
     text-align: left; }
 
   #ads .wrapper .content-type ul li {
-    width: 100%;
-    margin-bottom: 20px;
-    margin-top: 20px; }
+    width: 75%;
+    margin: 20px auto; }
+
+  #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
+    width: 75%;
+    margin: 20px auto 20px; }
 
   .content-type {
     max-width: 80%;
@@ -3177,7 +3251,10 @@ body.rtl .formError .formErrorArrow {
 
   #nota .wrapper .content-left h1 {
     font-size: 24px;
-    color: #1a1a1a; } }
+    color: #1a1a1a; }
+
+  #ads .item .description h1 {
+    padding: 0 0 13px 5px; } }
 @media only screen and (max-width: 450px) {
   .wrapper .title_section {
     font-size: 22px;
@@ -3337,7 +3414,10 @@ body.rtl .formError .formErrorArrow {
     height: 55px !important; }
 
   #bottom-imx-fixed .logo-esr {
-    margin-right: 2px; } }
+    margin-right: 2px; }
+
+  #ads .item .description h1 {
+    padding: 0 0 13px 5px; } }
 @media only screen and (max-width: 400px) {
   .btn-contacto div {
     font-size: 21px; }
@@ -3392,7 +3472,13 @@ body.rtl .formError .formErrorArrow {
   .item .description .separador {
     width: 100%;
     font-size: 16px;
-    padding: 0 0 0px 1px; } }
+    padding: 0 0 0px 1px; }
+
+  #ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 30px;
+    padding-left: 0;
+    max-width: 800px; } }
 @media only screen and (max-width: 360px) {
   #sitio .adjuntos ul li {
     width: 100%;
@@ -3425,16 +3511,25 @@ body.rtl .formError .formErrorArrow {
     padding: 0 0 13px 63px; }
 
   .item.right .description h1 {
-    padding: 0 0 22px 62px; } }
+    padding: 0 0 22px 62px; }
+
+  #ads .item .description h1 {
+    padding: 0 0 13px 5px; } }
 @media only screen and (max-width: 343px) {
   #bottom-imx-fixed .bottom-top {
     background: #1a1a1a !important;
-    height: 177px !important; } }
+    height: 177px !important; }
+
+  #ads .item .description h1 {
+    padding: 0 0 13px 5px; } }
 @media only screen and (max-width: 330px) {
   #sitio .wrapper .content-audiencias .content-circles .pie-value {
     font-size: 15px; }
 
   .numero-audiencias ul li span {
-    font-size: 23px; } }
+    font-size: 23px; }
+
+  #ads .item .description h1 {
+    padding: 0 0 13px 5px; } }
 
 /*# sourceMappingURL=style.css.map */

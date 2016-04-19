@@ -7,7 +7,12 @@ $(function() {
     $(".menu a").click(function(){
           $('.menu a').removeClass('active');
           $(this).addClass('active');
-      }); 
+      });
+      $(".menu.mobilemenu a").click(function(){
+                $('.navicon-button').toggleClass("open");
+                $('.menu').slideUp();
+                console.log('hola mundo');
+            }); 
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
     inventMx_events.bind("NoData", function(msg) {
@@ -247,8 +252,9 @@ $(function() {
                     if($w <= 727){
                         $('div[data-section="casos-de-exito"]').css({'display':'none'});
                         $('div[data-section="la-red-invent"]').css({'display':'none'});
-
+                        console.log('hola mundo 1');
                     }else{
+                        console.log('hola mundo 2');
                         $('div[data-section="casos-de-exito"]').css({'display':'block'});
                         $('div[data-section="la-red-invent"]').css({'display':'block'});
                     }
@@ -258,10 +264,12 @@ $(function() {
                     if($w <= 727){
                         $('div[data-section="casos-de-exito"]').css({'display':'none'});
                         $('div[data-section="la-red-invent"]').css({'display':'none'});
+                        console.log('hola mundo 3');
 
                     }else{
                         $('div[data-section="casos-de-exito"]').css({'display':'block'});
                         $('div[data-section="la-red-invent"]').css({'display':'block'});
+                        console.log('hola mundo 4');
                     }
                 });
                 
@@ -271,6 +279,8 @@ $(function() {
                     $('div[data-section="casos-de-exito"]').css({'display':'none'});
                     $('div[data-section="la-red-invent"]').css({'display':'none'});
                     $('div[data-section="'+ idAncla +'"]').css({'display':'block'});
+                    console.log('hola mundo 5');
+                    console.log(idAncla);
                     if ($("[data-section='" + idAncla + "']").length) {
                         collectionMain.loaderShow();
                         function top() {
@@ -292,7 +302,7 @@ $(function() {
 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({fields: "id|title|url|summary|images"});
+                params.set({fields: "id|title|url|summary|images|logo_blanco"});
                 params.set({limit: "30", not_ids: null});
 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
@@ -427,7 +437,12 @@ $(function() {
                     directionNav: false,
                 });
 
-
+                /*$('.mobilemenu li a').on("click",function(){
+                console.log('hoal mundo');
+               $('.navicon-button').toggleClass("open");
+                $('.menu').slideUp();
+                //post code
+              });*/
                 $("#audiencias .wrapper .content-audiencias > div").on({
                     mouseenter: function(e) {
                         //e.preventDefault();
