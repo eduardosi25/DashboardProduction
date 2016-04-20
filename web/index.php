@@ -117,7 +117,7 @@
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="/web/js/libs/slick.js"></script>
         <script src="/web/js/libs/swift.js"></script>
-        <!--<script type="text/javascript" src="/web/js/libs/js.js"></script>-->
+        <script type="text/javascript" src="/web/js/libs/js.js"></script>
 
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />

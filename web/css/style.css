@@ -2873,7 +2873,18 @@ body.rtl .formError .formErrorArrow {
   #marketing .wrapper .content-marketing .img-marketing {
     max-width: 63%;
     display: block;
-    margin: 0 auto; } }
+    margin: 0 auto; }
+
+  #codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 217px;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 0px;
+    background-size: 80%; } }
 @media only screen and (max-width: 625px) {
   .wrapper .title_section {
     font-size: 35px; }
@@ -3373,7 +3384,18 @@ body.rtl .formError .formErrorArrow {
 
   #sponsored .wrapper .content-sponsored h1 {
     font-size: 35px;
-    margin: 40px 0 0; } }
+    margin: 40px 0 0; }
+
+  #codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 172px;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 0px;
+    background-size: 80%; } }
 @media only screen and (max-width: 405px) {
   .wrapper .title_section {
     font-size: 31px;
@@ -3478,7 +3500,18 @@ body.rtl .formError .formErrorArrow {
     width: 80%;
     margin: 53px auto 30px;
     padding-left: 0;
-    max-width: 800px; } }
+    max-width: 800px; }
+
+  #codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 26%;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 15px;
+    background-size: 85%; } }
 @media only screen and (max-width: 360px) {
   #sitio .adjuntos ul li {
     width: 100%;

@@ -134,3 +134,11 @@ jQuery(document).ready(function ($) {
     });
              
 });
+jQuery(document).load(function ($) {
+     $('#intro ul li').each(function(){
+                url_img=$(this).find('img').attr('src');
+                     src = url_img.replace("leon","leon2");
+                     $(this).find('img').attr('src',src);
+                console.log($(this).find('img').attr('src'));
+            });
+});
