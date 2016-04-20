@@ -1757,7 +1757,7 @@ body #bottom-imx-fixed-wrapper.bottom-static {
   height: 100%; }
 
 .video-container {
-  max-width: 1141px;
+  max-width: 100%;
   margin: 0 auto;
   display: block; }
 
@@ -1954,7 +1954,7 @@ body.rtl .formError .formErrorArrow {
 
 @media only screen and (min-width: 1144px) {
   .video-container {
-    width: 95.5%;
+    width: 100%;
     margin: 0 auto;
     display: block; } }
 @media only screen and (max-width: 1023px) {
