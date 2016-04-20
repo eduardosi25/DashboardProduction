@@ -262,13 +262,24 @@ $(function() {
                 $( window ).resize(function() {
                     $w=$(window).width();
                     if($w <= 727){
-                        $('div[data-section="casos-de-exito"]').css({'display':'none'});
-                        $('div[data-section="la-red-invent"]').css({'display':'none'});
+                        if($('div[data-section="casos-de-exito"]').hasClass('activo')== true){
+                            $('div[data-section="la-red-invent"]').css({'display':'none'}); 
+                        }
+                        else if($('div[data-section="la-red-invent"]').hasClass('activo')== true){
+                            $('div[data-section="casos-de-exito"]').css({'display':'none'}); 
+                        }
+                        else{
+                            $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                            $('div[data-section="la-red-invent"]').css({'display':'none'}); 
+                        }
+                        
                         console.log('hola mundo 3');
 
                     }else{
                         $('div[data-section="casos-de-exito"]').css({'display':'block'});
                         $('div[data-section="la-red-invent"]').css({'display':'block'});
+                        $('div[data-section="casos-de-exito"]').removeClass('activo');
+                        $('div[data-section="la-red-invent"]').removeClass('activo');
                         console.log('hola mundo 4');
                     }
                 });
@@ -277,8 +288,11 @@ $(function() {
                 var idAncla = window.location.href.split("#")[1];
                 if (idAncla) {
                     $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                    $('div[data-section="casos-de-exito"]').removeClass('activo');
                     $('div[data-section="la-red-invent"]').css({'display':'none'});
+                    $('div[data-section="la-red-invent"]').removeClass('activo');
                     $('div[data-section="'+ idAncla +'"]').css({'display':'block'});
+                    $('div[data-section="'+ idAncla +'"]').addClass('activo');
                     console.log('hola mundo 5');
                     console.log(idAncla);
                     if ($("[data-section='" + idAncla + "']").length) {
