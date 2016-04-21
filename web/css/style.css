@@ -953,7 +953,7 @@ form.contact_form_afilate {
       vertical-align: top; }
 
 #solucion {
-  min-height: 1340px;
+  min-height: auto;
   height: auto;
   padding: 40px 0 60px; }
   #solucion .wrapper {
@@ -2729,7 +2729,8 @@ body.rtl .formError .formErrorArrow {
   #audiencias .pleca_linea_derecha, #exito .pleca_linea_derecha,
   #resultados .pleca_puntos_izquierda, #codiga-descrition .pleca_puntos_izquierda,
   #resultados .pleca_puntos_derecha, #codiga-descrition .pleca_puntos_derecha,
-  #contac .pleca_linea_derecha {
+  #contac .pleca_linea_derecha,
+  #solucion .pleca_linea_izquierda {
     max-width: 50%; }
 
   #audiencias .wrapper .content-audiencias > div h1 {
