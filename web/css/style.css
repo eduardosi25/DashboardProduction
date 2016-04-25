@@ -1262,6 +1262,9 @@ form.contact_form_afilate {
   .title-section .uppercase {
     text-transform: uppercase; }
 
+.icon.extended h1 {
+  max-width: 368px; }
+
 /******************************
  End Servicios
 *******************************/
