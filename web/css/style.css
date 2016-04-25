@@ -805,7 +805,8 @@ form.contact_form_afilate {
         font-size: 16px;
         color: #fff;
         text-transform: uppercase;
-        text-align: center; }
+        text-align: center;
+        display: block; }
       .adjuntos ul li.pdf a:after {
         content: "";
         width: 29px;
