@@ -16,7 +16,13 @@ $content-bg : #CB157D;
     background: url('../img/sprites/sprite_invent.png');
     background-repeat: no-repeat;
 }
-
+@media only screen and (min-width: 1144px) {
+    .video-container{
+        width: 95.5%;
+        margin:0 auto;
+        display:block;
+    }
+}
 @media only screen and (max-width: 1023px) {
        .bottom-links #bottom-imx-fixed .bottom-links-notes {
             margin: 0 auto;
@@ -360,12 +366,17 @@ $content-bg : #CB157D;
 
     .huella {
         position: absolute;
-        top: 181px;
+        top: 188px;
         right: 0;
         width: 130px;
         left: 0;
         margin: auto;
     }
+    .footer_top {
+        position: relative;
+        height: 761px;
+    }
+
 }
 @media only screen and (max-width: 869px) {
     .panel{
@@ -590,6 +601,23 @@ $content-bg : #CB157D;
         right: 11px !important;
     }
     
+    #page-main-invent-contacto #contac {
+    display: block;
+    }
+    #ads .wrapper .item.right.programmatic .description p {
+        padding: 0 0 2px 118px;
+    }
+    #ads .wrapper .item.right.programmatic .description h1 {
+        padding: 0 0 2px 123px;
+    }
+    #ads .wrapper .item.right.programmatic .description {
+        width: 61%;
+        margin: 53px 0 0 -18.7%;
+        padding-left: 0;
+        max-width: 800px;
+    }
+    
+    
     
 }
 @media only screen and (max-width: 767px) {
@@ -658,11 +686,17 @@ $content-bg : #CB157D;
     margin: 20px auto;
     padding: 0 0 0px 0;
 }
+#page-main-invent-contacto #contac {
+    display: block;
+}
 
 }
 @media only screen and (max-width: 727px) {
 #header .wrapper .menu {
     display:none;
+}
+.mobile.links{
+    display: block;
 }
 #header .wrapper .menu {
     width: 110%;
@@ -911,10 +945,10 @@ display:none;
 #audiencias .pleca_linea_derecha, #exito .pleca_linea_derecha ,
 #resultados .pleca_puntos_izquierda, #codiga-descrition .pleca_puntos_izquierda,
 #resultados .pleca_puntos_derecha, #codiga-descrition .pleca_puntos_derecha,
-#contac .pleca_linea_derecha{
+#contac .pleca_linea_derecha,
+#solucion .pleca_linea_izquierda {
     max-width: 50%;
 }
-
 #audiencias .wrapper .content-audiencias > div h1 {
     font-size: 23px;
     
@@ -935,6 +969,28 @@ display:none;
     left: 0;
     margin: auto;
 }
+
+#marcas, #audiencias, #resultados, #contac{
+   display:none; 
+}
+
+#ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 0;
+    padding-left: 0;
+    max-width: 800px;
+}
+#ads .wrapper .item.right.programmatic .description h1 {
+    padding: 0 36px 2px 29px;
+}
+.item .description p {
+    padding: 0 0 0px 35px;
+    margin: 0 auto;
+}
+#ads .wrapper .item.right.programmatic .description p {
+    padding: 0 0 2px 0;
+}
+
 
 }
 
@@ -1061,7 +1117,17 @@ display:none;
         margin: 0 auto;
     }
     
-    
+    #codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 217px;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 0px;
+    background-size: 80%;
+    }
     
   
 }
@@ -1080,6 +1146,7 @@ display:none;
     #marketing .wrapper .content-marketing .description {
         max-width: 100%;
         margin: 15px 0 0 0;
+        text-align: center;
     }
     #marketing .wrapper .content-marketing .description ul li {
         margin-bottom: 8px;
@@ -1129,15 +1196,33 @@ display:none;
         top: -6px;
     } 
     
-    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child  {
+   /* #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child  {
         width: 65%;
         display: block;
         margin-bottom: 20px;
         margin: 20px auto 20px;
-    }
+    }*/
+    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
+    width: 65%;
+    display: block;
+    margin-bottom: 20px;
+    margin: 20px 0 20px;
+}
     .item .description p {
         padding: 0 0 0px 0px;
+        text-align: center;
     }
+    .item.right .description p {
+        padding: 0 0 2px 0;
+        text-align: center;
+    }
+    #sponsored .wrapper .content-sponsored .item .description .content-text {
+        text-align: center;
+    }
+    #happenings .wrapper .content-happenings .item .description .content-text {
+        text-align: center;
+    }
+    
     #sponsored .wrapper .content-sponsored h1 {
         font-size: 49px;
         color: #fff;
@@ -1216,7 +1301,31 @@ display:none;
 #sections-vloggers{
     display: none;
 }
-    
+.btn-contacto {
+    text-align: center;
+    margin-top: 41px;
+} 
+
+.flexslider_marcas{
+    .slides{
+        li{
+            &:last-child{
+                div{
+                    &:nth-child(3),
+                    &:nth-child(4),
+                    &:nth-child(5),
+                    &:nth-child(6){
+                        display: none !important;
+                    }
+                }
+                
+                
+            }
+            
+        }
+    }   
+}
+
 
 }
 
@@ -1380,9 +1489,12 @@ display:none;
         text-align: left;
     }
     #ads .wrapper .content-type ul li {
-        width: 100%;
-        margin-bottom: 20px;
-        margin-top: 20px;
+        width: 75%;
+        margin:20px auto;
+    }
+    #ads .wrapper .content-type ul li, #ads .wrapper .content-type ul li:last-child {
+        width: 75%;
+        margin: 20px auto 20px;
     }
     .content-type{
      max-width: 80%;
@@ -1472,7 +1584,9 @@ display:none;
 
 
     
-
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 
@@ -1607,7 +1721,17 @@ display:none;
         margin: 40px 0 0;
     }
     
-
+#codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 172px;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 0px;
+    background-size: 80%;
+}
     
 }
 
@@ -1657,7 +1781,9 @@ display:none;
         margin-right: 2px;
     }
 
-    
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 @media only screen and (max-width: 400px) {
@@ -1721,8 +1847,24 @@ display:none;
     padding: 0 0 0px 1px;
 }
 
+#ads .wrapper .item.right.programmatic .description {
+    width: 80%;
+    margin: 53px auto 30px;
+    padding-left: 0;
+    max-width: 800px;
+}
 
-
+#codiga-descrition .wrapper .title-section .logo-codiga {
+    width: 26%;
+    height: 64px;
+    vertical-align: middle;
+    background: url("../img/global/logo-codiga.png") no-repeat center center;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -13px;
+    margin-right: 15px;
+    background-size: 85%;
+}
 
 }
 
@@ -1763,7 +1905,9 @@ display:none;
 .item.right .description h1 {
     padding: 0 0 22px 62px;
 }
-
+#ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 
     
     
@@ -1774,6 +1918,9 @@ display:none;
      background: #1a1a1a !important;
      height: 177px !important;
     } 
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
+    }
 }
 
 @media only screen and (max-width: 330px) {
@@ -1782,5 +1929,8 @@ display:none;
     }
     .numero-audiencias ul li span {
         font-size: 23px;
+    }
+    #ads .item .description h1 {
+        padding: 0 0 13px 5px;
     }
 }

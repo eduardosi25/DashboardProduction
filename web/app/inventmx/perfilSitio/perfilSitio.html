@@ -8,7 +8,7 @@
                 
                 <div class="adjuntos">
                     <ul>
-                        <li><a href="#">Tarifario</a></li>
+                        <!--<li><a href="#">Tarifario</a></li>-->
                         <li class="pdf"><a href="http://b97306a43daad53c2cb3-3e0cb10d9dcf2af4d660ffc097d48677.r87.cf2.rackcdn.com/invent-mediakit.pdf" target="_blank">Media kit</a></li>
                         <li><a href="#contacto">Anunciate</a></li>
                     </ul>
@@ -32,7 +32,7 @@
                                 <h1 class="title_section">¡Hagamos historia juntos!</h1>
                                 <div class="btn-contacto">
                                     <div class="anunciate active">Anúnciate</div>
-                                    <div class="afíliate">AFíliate</div>
+                                    <!--<div class="afíliate">AFíliate</div>-->
                                 </div>
                                 <div class='content-contact' >
                                     <form id="contact_form" class="contact_form contact_form_anunciate" action="#" method="post">
@@ -91,11 +91,11 @@
 <script id="template-sections-perfil" type="template/template-sections-sites-perfil">
 {{#each this}}
                 <div class="logo-sitio"> 
-                    <img src="{{this.images.logo.0.url}}"/>
+                    <img src="{{ this.logo_blanco.logo.0.url }}"/>
                     <div class="border"></div>
                 </div>
                 <div class="img-sitio">
-                    <img src="/web/img/global/excelsior.png"/>
+                    <img src="{{ getUrlImg this.images.logo.0.url }}"/>
                     
                 </div>
                 <div class="description"> 
@@ -147,7 +147,7 @@
                                 <div>
                                 <div>
                                     <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                        <div class="img-logo"><img class="loader" src="{{ this.images.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                        <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
                                         <span class="line"></span>
                                         <p>{{{ this.summary }}}</p>
                                     </a>

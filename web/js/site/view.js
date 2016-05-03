@@ -7,7 +7,12 @@ $(function() {
     $(".menu a").click(function(){
           $('.menu a').removeClass('active');
           $(this).addClass('active');
-      }); 
+      });
+      $(".menu.mobilemenu a").click(function(){
+                $('.navicon-button').toggleClass("open");
+                $('.menu').slideUp();
+                //console.log('hola mundo');
+            }); 
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
     inventMx_events.bind("NoData", function(msg) {
@@ -126,10 +131,10 @@ $(function() {
         },
         topOffset: function(position, delay, transition, callback) {
             delay = (delay) ? delay : 0;
-            console.log(position);
+            //console.log(position);
             transition = (transition) ? transition : 500;
             position = position - 92;
-            console.log(position);
+            //console.log(position);
             $('body,html').delay(delay).animate({
                 scrollTop: position
             }, transition, function() {
@@ -243,10 +248,48 @@ $(function() {
                     console.log("cache");
                 }
                 collectionMain.hideSections(section);
+                    $w=$(window).width();
+                    if($w <= 727){
+                        $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                        $('div[data-section="la-red-invent"]').css({'display':'none'});
+                    }else{
+                        $('div[data-section="casos-de-exito"]').css({'display':'block'});
+                        $('div[data-section="la-red-invent"]').css({'display':'block'});
+                    }
+                
+                $( window ).resize(function() {
+                    $w=$(window).width();
+                    if($w <= 727){
+                        if($('div[data-section="casos-de-exito"]').hasClass('activo')== true){
+                            $('div[data-section="la-red-invent"]').css({'display':'none'}); 
+                        }
+                        else if($('div[data-section="la-red-invent"]').hasClass('activo')== true){
+                            $('div[data-section="casos-de-exito"]').css({'display':'none'}); 
+                        }
+                        else{
+                            $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                            $('div[data-section="la-red-invent"]').css({'display':'none'}); 
+                        }
+                        
 
+                    }else{
+                        $('div[data-section="casos-de-exito"]').css({'display':'block'});
+                        $('div[data-section="la-red-invent"]').css({'display':'block'});
+                        $('div[data-section="casos-de-exito"]').removeClass('activo');
+                        $('div[data-section="la-red-invent"]').removeClass('activo');
+                    }
+                });
+                
                 /* la red invent */
                 var idAncla = window.location.href.split("#")[1];
                 if (idAncla) {
+                    $('div[data-section="casos-de-exito"]').css({'display':'none'});
+                    $('div[data-section="casos-de-exito"]').removeClass('activo');
+                    $('div[data-section="la-red-invent"]').css({'display':'none'});
+                    $('div[data-section="la-red-invent"]').removeClass('activo');
+                    $('div[data-section="'+ idAncla +'"]').css({'display':'block'});
+                    $('div[data-section="'+ idAncla +'"]').addClass('activo');
+                    //console.log(idAncla);
                     if ($("[data-section='" + idAncla + "']").length) {
                         collectionMain.loaderShow();
                         function top() {
@@ -268,7 +311,7 @@ $(function() {
 
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
-                params.set({fields: "id|title|url|summary|images"});
+                params.set({fields: "id|title|url|summary|images|logo_blanco"});
                 params.set({limit: "30", not_ids: null});
 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
@@ -310,15 +353,15 @@ $(function() {
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
                 collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
 
-                repositorio.set({repositorio: "vloger.json"});
+                //repositorio.set({repositorio: "vloger.json"});
 
-                params.set({fields: "id|title|url|audience|images|followers"});
-                params.set({limit: "90"});
-                idTemplate = "#template-sections-vloggers";
+               // params.set({fields: "id|title|url|audience|images|followers"});
+                //params.set({limit: "90"});
+                //idTemplate = "#template-sections-vloggers";
                 /* appendTo: lugar donde se pondra el template ya rendereado */
-                appendTo = "#sections-vloggers";
+                //appendTo = "#sections-vloggers";
                 /* callback: debe ser una función para poder ejecutarse */
-                callback = function() {
+                /*callback = function() {
                     params.set({fields: null});
 
                     $('.center').slick({
@@ -362,12 +405,12 @@ $(function() {
                     });
 
 
-                };
+                };*/
                 /* forward: instancia de la vista a renderear*/
                 var forward = null;
 
                 /* Se hace la petición y  se pasan lo parámetros antes nombrados */
-                collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
+                //collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward);
                 
                 repositorio.set({repositorio: "case.json"});
 
@@ -403,7 +446,12 @@ $(function() {
                     directionNav: false,
                 });
 
-
+                /*$('.mobilemenu li a').on("click",function(){
+                console.log('hoal mundo');
+               $('.navicon-button').toggleClass("open");
+                $('.menu').slideUp();
+                //post code
+              });*/
                 $("#audiencias .wrapper .content-audiencias > div").on({
                     mouseenter: function(e) {
                         //e.preventDefault();
@@ -428,6 +476,7 @@ $(function() {
                         //console.log("Mouse Out!");
                     }
                 });
+                
                 $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
                 $("html, body").animate({scrollTop: 0}, "slow");
                 $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
@@ -451,7 +500,7 @@ $(function() {
                         $( window ).scroll(function() {
                             window_y = $(window).scrollTop();
                             scroll_critical = parseInt($(".flexslider").height());
-                            if (window_y > scroll_critical) {
+                            if (window_y > (scroll_critical-200)) {
                                 $('#showcase').css({'opacity':'1','top':'0'});
                                 $('#demo-pie-1').pieChart({
                                         barColor: '#17d9b4',
@@ -656,14 +705,14 @@ $(function() {
                         $('#marketing .wrapper').css({'opacity': "1", 'top': '0'});
                         $('.contact-form').css({'opacity': "0", 'top': '200px'});
 
-                        $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left', 'delay': '50'});
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left', 'delay': '50'});
                         $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left', 'delay': '50'});
 
                         $('.content-ads .item').swift({'type': 'dom', 'positionStart': 'left', 'length': '3200', 'axis': 'left', 'delay': '50'});
                         $('.content-ads .item.right').swift({'type': 'dom', 'positionStart': 'right', 'length': '3600', 'axis': 'left', 'delay': '50'});
-                        $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left', 'delay': '50'});
+                        $('.content-ads .item.video').swift({'type': 'dom', 'positionStart': 'left', 'length': '3800', 'axis': 'left', 'delay': '50'});*/
 
                         /* servicios - content - netword-ads - media*/
                         var idAncla = window.location.href.split("#")[1];
@@ -999,15 +1048,15 @@ $(function() {
                             });
 
                         };
-                        repositorio = collectionMain.get("c1");
-                        repositorio.set({repositorio: "vloger.json"});
-                        params = collectionMain.get("c2");
-                        params.set({url: null, not_ids: id_exclude, limit: 50});
+                        //repositorio = collectionMain.get("c1");
+                        //repositorio.set({repositorio: "vloger.json"});
+                        //params = collectionMain.get("c2");
+                        //params.set({url: null, not_ids: id_exclude, limit: 50});
                         /* idTemplate: id del Template de javascript */
-                        var idTemplate = "#template-carousel-sections-vloggers";
+                        //var idTemplate = "#template-carousel-sections-vloggers";
                         /* appendTo: lugar donde se pondra el template ya rendereado */
-                        var appendTo = "#sections-carousel-influencers";
-                        collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl);
+                        //var appendTo = "#sections-carousel-influencers";
+                        //collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl);
 
                         $("html, body").animate({scrollTop: 0}, "slow");
                         $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
@@ -1279,10 +1328,61 @@ $(function() {
                             $(".contact_form.contact_form_afilate").fadeIn();
                             
                         });
-                         $('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
                         $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
                         $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
-                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});*/
+                        
+
+
+                    }, 'html');
+                    return this;
+                }
+            }),
+            inventMx.view.networkAds = Backbone.View.extend({
+                template: collectionMain.get("c3").attributes.pathTemplate,
+                idContent: collectionMain.get("c3").attributes.firtsIdContent,
+                initialize: function() {
+                    $(this.el).unbind();
+                    _.bindAll(this, 'render');
+                    this.render();
+                },
+                render: function() {
+                    var idContent = this.idContent;
+                    var section = "networkAds";
+                    $.get(this.template + 'network-ads/network-ads.html', function(data) {
+                        var animateSection = collectionMain.get("c1");
+                        animateSection.set({section: section});
+
+                        if ($(idContent + "networkAds").children("div").length == 0) {
+                            $(idContent + "networkAds").html(data);
+                        }
+
+                        collectionMain.hideSections(section);
+
+                        $("html, body").animate({scrollTop: 0}, "slow");
+                        $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                        $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                        $(".btn-contacto .anunciate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_anunciate").fadeIn();
+                            
+
+                        });
+                        $(".btn-contacto .afíliate").click(function(){
+                            $(".btn-contacto div").removeClass("active");
+                            $(this).addClass("active");
+                            $(".contact_form").fadeOut('fast').delay(500);
+                            $(".contact_form.contact_form_afilate").fadeIn();
+                            
+                        });
+                        /*$('.content-codiga .item.right.i2').swift({'type': 'dom', 'positionStart': 'right', 'length': '700', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.i1').swift({'type': 'dom', 'positionStart': 'left', 'length': '700', 'axis': 'left','delay': '50'});        
+                        $('.content-codiga .item.i3').swift({'type': 'dom', 'positionStart': 'left', 'length': '1500', 'axis': 'left','delay': '50'});
+                        $('.content-codiga .item.right.i4').swift({'type': 'dom', 'positionStart': 'right', 'length': '2000', 'axis': 'left','delay': '50'});*/
+                        
 
 
                     }, 'html');
@@ -1338,7 +1438,7 @@ $(function() {
                     return this;
                 }
             }),
-            inventMx.view.oppo = Backbone.View.extend({
+            inventMx.view.raidmax = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,
                 initialize: function() {
