@@ -16,9 +16,11 @@ if ($type == "afiliate") {
   $type = "Afíliate";  
   //$to = array('pedro@inventmx.com');
   $to = array('pedro@inventmx.com','erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','heberto@inventmx.com', 'carine@inventmx.com');
+  //$to = array('jose.cruz@invent.mx','jorge@invent.mx','luis@invent.mx');
 } else {
   $type = "Anúnciate";  
   //$to = array('pedro@inventmx.com');
+  //$to = array('jose.cruz@invent.mx','jorge@invent.mx','luis@invent.mx');
   $to = array('pedro@inventmx.com','webmaster@inventmx.com','heberto@inventmx.com','eduardo@inventmx.com','carlos.jimenez@inventmx.com');
 }
 

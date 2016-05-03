@@ -161,6 +161,7 @@ function gimrh_getDegree($name=null){
     'basica'      => 'Básica',
     'media'       => 'Media Superior',
     'superior'    => 'Superior',
+    'maestria'    => 'Maestría',
     'posgrado'    => 'Posgrado',
   );
   if($name==1){
@@ -176,7 +177,7 @@ function gimrh_getInterest($name=null){
     'seleccionar'    => '- Seleccionar -',
     'periodico'      => 'Periódico',
     'tv'             => 'TV',
-    'web'            => 'Web',
+    'web'            => 'Internet',
     'administrativo' => 'Administrativo',
     'radio'          => 'Radio',
   );
