@@ -1,178 +1,90 @@
 $(function() {
-
     var AppRoutes = Backbone.Router.extend({
         routes: {
             "": "home",
             "/": "home",
+            "la-red-invent": "home",
+            "caso-de-exito": "home",
+            "contacto": "contacto",
+            "casos-de-exito": "home",
+            "codiga": "codiga",
+            "bridgestone": "bridgestone",
+            "oikos": "oikos",
+            "raidmax": "raidmax",
+            //"blogs": "blogs",
+            //"blogs/:blogsUrl": "blogsNota",
+            "content-marketing": "servicios",
+            "media-happenings": "servicios",
+            "network-ads": "networkAds",
             "aviso-de-privacidad": "avisoPrivacidad",
             "politica-ambiental": "politicaAmbiental",
-            "audiencias-y-contenidos": "audienciasContenidos",
-            "audiencias-y-contenidos/:idSection": "audienciasContenidos",
-            "marketers": "marketers",
-            "marketers/:idSection": "marketers",
-            "red-de-video": "redeVideo",
-            "casos-de-exito": "casoExito",
-            "afiliate": "afiliate",
-            "anunciate": "anunciate",
-            ":nameTalento": "perfilTalento",
-            ":nameSite": "perfilSitio",
-            "*default": "default",
-            "*notFound": "notFound"
+            "terminos-y-condiciones-de-uso": "terminosCondiciones",
+            //"afiliate": "afiliate",
+            //"anunciate": "anunciate",
+            ":site": "perfilSitio",
+            ":perfil": "perfilTalento",
+            /*":casoexito": "casoExito"*/
         },
-        initialize: function() {
-             
-            /*var that = this;
-            $(function () {
-                //var baseFolder = window.location.pathname.replace('/', '').split('/')[0];
-                Backbone.history.start({
-                    root: '/',
-                    //root: '/'+baseFolder+"/",                    
-                    pushState: true,
-                    hashChange: false
-                });
-
-                // Trap links
-                $('body').delegate('a[href]:not([href^=#])', 'click', function (e) {
-                    e.preventDefault();
-                    that.navigate($(this).attr('href'), {trigger: true});
-                });
-
-                // Block anchors for hash-based history
-                if (!Backbone.history._hasPushState) {
-                    $('body').delegate('a[href^=#]', 'click', function (e) {
-                        e.preventDefault();
-                    });
-                }
-             });*/
-            
-            //Backbone.history.start({pushState: true});
-            //Backbone.history.start();
-            
-            //inventMx.metas.compile();
+        initialize: function(){
+            $('header').scrollToFixed();
         },
-        home: function() {            
-            inventMx.utilities.loaderShow();
-            inventMx.utilities.section = "home";
-            inventMx.utilities.topOffset(0);
-            inventMx.home.vista = new inventMx.home.Home();
-            
-            $("footer").css("margin-bottom","41px");
-            $("header ul li a").removeClass("active");
+        home: function() {
+            inventMx.view.pgHome = new inventMx.view.home();
         },
-        audienciasContenidos: function(idSection) {            
-            
-            valueSection = inventMx.utilities.isObject(idSection);
-            inventMx.utilities.section = "audiencias-y-contenidos";            
-            inventMx.utilities.loaderShow();            
-            inventMx.main.activeHover();
-            
-            idSection = (valueSection === true)? valueSection : idSection;
-            (valueSection === false) ? inventMx.utilities.topOffset(0) : "";
-            $("footer").css("margin-bottom","41px");
-            inventMx.home.pgAudienciasContenidos = new inventMx.home.HomeAudienciasContenidos(idSection);
+        networkAds: function() {
+            inventMx.view.pgNetworkAds = new inventMx.view.networkAds();
         },
-        marketers: function(idSection) {
-            
-            valueSection = inventMx.utilities.isObject(idSection);                       
-            inventMx.utilities.section = "marketers";            
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
-            
-            idSection = (valueSection == true)? valueSection : idSection;
-            (valueSection == true) ? inventMx.utilities.topOffset(0) : "";            
-            
-            $("footer").css("margin-bottom","41px");
-            inventMx.home.pgMarketers = new inventMx.home.homeMarketers(idSection);
+        redInvent: function() {
+            inventMx.pglaRedInvent = new inventMx.view.redInvent();
         },
-        redeVideo: function() {            
-            inventMx.utilities.section = "red-de-video";
-            inventMx.utilities.loaderShow();            
-            inventMx.main.activeHover();
-            
-            inventMx.utilities.topOffset(0);
-            $("footer").css("margin-bottom","41px");
-            inventMx.home.pgRedeVideo = new inventMx.home.homeRedeVideo();
+        servicios: function(name_section) {
+            inventMx.pgServicios = new inventMx.view.servicios(name_section);
         },
-        casoExito: function() {                        
-            inventMx.utilities.section = "caso-de-exito";
-            inventMx.main.activeHover();
-            inventMx.utilities.loaderShow();            
-            
-            inventMx.utilities.topOffset(0);
-            $("footer").css("margin-bottom","41px");
-            inventMx.home.pgCasoExito = new inventMx.home.homeCasoExito();
+        /*blogs: function() {
+            inventMx.pgBlogs = new inventMx.view.blogs();
         },
-        afiliate: function() {                        
-            inventMx.utilities.section = "afiliate";
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
+        blogsNota: function(blogsUrl) {
+            inventMx.pgBlogsNota = new inventMx.view.blogsNota(blogsUrl);
             
-            $("footer").css("margin-bottom","0px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgAfiliate = new inventMx.home.homeAfiliate();
+        },*/
+        perfilSitio: function(site) {
+            inventMx.pgPerfilSitio = new inventMx.view.perfilSitio(site);
         },
-        anunciate: function() {            
-            inventMx.utilities.section = "anunciate";
-            inventMx.utilities.loaderShow();            
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","0px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgAnunciate = new inventMx.home.homeAnunciate();
+        perfilTalento: function(perfil) {
+            inventMx.pgPerfilTalento = new inventMx.view.perfilTalento(perfil);
         },
-        perfilTalento: function(nameTalento) {            
-            inventMx.utilities.section = "perfil-talento";
-            inventMx.utilities.nametalento = nameTalento;
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","41px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgPerfilTalento = new inventMx.home.homePerfilTalento(nameTalento);
+        contacto: function() {
+            inventMx.pgContacto = new inventMx.view.contacto();
         },
-        perfilSitio: function(nameSite) {
-            inventMx.utilities.section = "perfil-sitio";
-            inventMx.utilities.loaderShow();            
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","41px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgPerfilSitio = new inventMx.home.homePerfilSitio(nameSite);
-        },        
+        codiga: function() {
+            inventMx.pgCodiga = new inventMx.view.codiga();
+        },
+        bridgestone: function() {
+            inventMx.pgBridgestone = new inventMx.view.bridgestone();
+        },
+        raidmax: function() {
+            inventMx.pgRaidmax = new inventMx.view.raidmax();
+        },
+        oikos: function() {
+            inventMx.pgOikos = new inventMx.view.oikos();
+        },
+        casoExito: function(casoexito) {
+            inventMx.pgcasoExito = new inventMx.view.casoExito(casoexito);
+        },
         avisoPrivacidad: function() {
-            inventMx.utilities.section = "aviso-de-privacidad";
-            inventMx.utilities.loaderShow();            
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","41px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgAvisoPrivacidad = new inventMx.home.avisoPrivacidad();
+            inventMx.pgAvisoPrivacidad = new inventMx.view.avisoPrivacidad();
         },        
         politicaAmbiental: function() {
-            inventMx.utilities.section = "politica-ambiental";
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","41px");
-            inventMx.utilities.topOffset(0);
-            inventMx.home.pgPoliticaAmbiental = new inventMx.home.politicAmbiental();
+            inventMx.pgPoliticAmbiental = new inventMx.view.politicAmbiental();
         },
-        
-        default: function() {            
-            inventMx.utilities.section = "404";
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","0px");
-            inventMx.home.vista404 = new inventMx.home.default404();
+        terminosCondiciones: function() {
+            inventMx.pgTerminosCondiciones = new inventMx.view.terminosCondiciones();
         },
-        notFound: function() {
-            inventMx.utilities.section = "404";
-            inventMx.utilities.loaderShow();
-            inventMx.main.activeHover();
-            
-            $("footer").css("margin-bottom","0px");
-            inventMx.home.vista404 = new inventMx.home.default404();
+        afiliate: function() {
+            inventMx.pgHomeAfiliate = new inventMx.thome.homeAfiliate();
+        },
+        anunciate: function() {
+            inventMx.pgHomeAnunciate = new inventMx.thome.homeAnunciate();
         }
     });
     

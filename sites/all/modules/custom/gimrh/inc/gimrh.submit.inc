@@ -1,28 +1,65 @@
 <?php
 function gimrh_colabora_form_submit($form, &$form_state){
+  switch ($form_state['stage']) {
+    case 'splash':
+      if($form_state['values']['splash']['trabajo']['legal']==1){
+        $form_state['new_stage']='trabajo';
+        $form_state['privacy']=$form_state['values']['splash']['trabajo']['legal'];
+        $form_state['condifential']=0;
+      }
+      if($form_state['values']['splash']['becario']['legal']==1){
+        $form_state['new_stage']='becario';
+        $form_state['privacy']=0;
+        $form_state['condifential']=$form_state['values']['splash']['trabajo']['legal'];
+      }
+    break;
+    case 'trabajo':
+      $form_state['multistep_values'][$form_state['stage']] = $form_state['values'];
+      if ($form_state['triggering_element']['#value'] != 'Back') {
+        gimrh_trabajo_form_submit($form, $form_state);
+        $form_state['complete'] = TRUE;
+      }
+      break;
+    case 'becario':
+      $form_state['multistep_values'][$form_state['stage']] = $form_state['values'];
+      if ($form_state['triggering_element']['#value'] != 'Back') {
+        gimrh_becario_form_submit($form, $form_state);
+        $form_state['complete'] = TRUE;
+      }
+      break;
+    default:
+      $form_state['multistep_values'][$form_state['stage']] = $form_state['values'];
+      $form_state['new_stage'] = 'splash';
+      break;
+  }
 
-  if($form_state['values']['splash']['trabajo']['legal']==1){
-    $form_state['new_stage']='trabajo';
-    $form_state['privacy']=$form_state['values']['splash']['trabajo']['legal'];
-    $form_state['condifential']=0;
+  if (isset($form_state['complete'])) drupal_goto('colabora-con-nosotros/complete');
+
+  if ($form_state['triggering_element']['#value'] == 'Back') {
+    $form_state['new_stage'] = 'splash';
   }
-  if($form_state['values']['splash']['becario']['legal']==1){
-    $form_state['new_stage']='becario';
-    $form_state['privacy']=0;
-    $form_state['condifential']=$form_state['values']['splash']['trabajo']['legal'];
+
+  if (isset($form_state['multistep_values']['form_build_id'])) {
+    $form_state['values']['form_build_id'] = $form_state['multistep_values']['form_build_id'];
   }
+  $form_state['multistep_values']['form_build_id'] = $form_state['values']['form_build_id'];
+  $form_state['stage'] = $form_state['new_stage'];
+  $form_state['rebuild'] = TRUE;
 
   $form_state['stage'] = $form_state['new_stage'];
   $form_state['rebuild'] = TRUE;
 }
 
 function gimrh_trabajo_form_submit($form, &$form_state){
+
+  var_dump($form_state);
+
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
   $experience=$form_state['values']['gimrh']['experience']['0']['value'];
   $experience_format=$form_state['values']['gimrh']['experience']['0']['format'];
   $interest=$form_state['values']['gimrh']['interest'];
-  $cv=$form_state['values']['gimrh']['cv'];
+  //$cv=$form_state['values']['gimrh']['cv'];
   $privacy=1;
 
   //Save data
@@ -41,7 +78,7 @@ function gimrh_trabajo_form_submit($form, &$form_state){
       'experience'  => check_markup($experience),
       'experience_format'  => check_plain($experience_format),
       'interest'    => gimrh_data_interest($interest),
-      'attached'    => check_plain($cv['file']),
+      //'attached'    => check_plain($cv['file']),
       'privacy'     => check_plain($privacy),
       'created'     => time(),
       'site'        => $_SERVER['HTTP_HOST'],

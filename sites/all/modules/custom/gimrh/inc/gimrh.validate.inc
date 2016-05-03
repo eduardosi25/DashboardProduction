@@ -1,15 +1,19 @@
 <?php
 function gimrh_colabora_form_validate($form, &$form_state){
+  if ($form_state['triggering_element']['#value'] == 'Back') {
+    return;
+  }
+
   switch ($form_state['stage']) {
     case 'splash':
       return gimrh_splash_form_validate($form, $form_state);
-      break;
+    break;
     case 'trabajo':
       return gimrh_trabajo_form_validate($form, $form_state);
-      break;
+    break;
     case 'becario':
       return gimrh_becario_form_validate($form, $form_state);
-      break;
+    break;
   }
 }
 function gimrh_splash_form_validate($form, &$form_state){
@@ -24,7 +28,7 @@ function gimrh_trabajo_form_validate($form, &$form_state){
   $academics=$form_state['values']['gimrh']['academics'];
   $experience=$form_state['values']['gimrh']['experience']['0']['value'];
   $interest=$form_state['values']['gimrh']['interest'];
-  $cv=$form_state['values']['gimrh']['cv'];
+  //$cv=$form_state['values']['gimrh']['cv'];
   if(preg_match('/[0-9]+/',$personal['name'])){
     form_set_error($form_state['values']['gimrh']['personal']['name'],'Tu nombre no puede contener números.');
   }
