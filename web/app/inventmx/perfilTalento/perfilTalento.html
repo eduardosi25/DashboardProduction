@@ -1,0 +1,187 @@
+<div class="azul panel" id="vlogger" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
+            <div class="wrapper">
+                <article>
+                    <section id="sections-vlogger"></section>
+                </article>
+                <!--<h1 class="title-influencers">Nuestros influencers</h1>-->
+                <article>
+                    <section id="sections-carousel-influencers"></section>
+                </article>
+            
+
+            </div>
+            <img class="pleca_cruz_derecha" src="/web/img/global/textura_cruz.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
+
+
+	</div><!--End Slide 2-->
+        <div id="contac" class="panel slide"  data-slide="6" data-stellar-background-ratio="0">
+                    <div class="footer_top">
+                            <div class="wrapper">
+                                <h1 class="title_section">¡Hagamos historia juntos!</h1>
+                                <div class="btn-contacto">
+                                    <div class="anunciate active">Anúnciate</div>
+                                    <!--<div class="afíliate">AFíliate</div>-->
+                                </div>
+                                <div class='content-contact' >
+                                    <form id="contact_form" class="contact_form contact_form_anunciate" action="#" method="post">
+                            <ul>
+
+                               <li class='nombres'>
+                                   <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
+                               </li>
+                               <li class='correo'>
+                                   <input type="email" class="validate[required,custom[email],maxSize[50]]" name="email" placeholder="*CORREO ELECTRÓNICO" required />
+                               </li>
+                               <li class="mensaje">
+                                   <textarea name="description" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATÍCANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                   <span>*Campos Obligatorios</span> 
+                                   <input type="hidden" name="type" value="anunciate">
+                               </li>
+                               <li class="enviar">
+                                  <button class="submit" type="submit">Enviar</button>
+                               </li>
+                            </ul>
+                        </form>
+                        <form id="contact_form" class="contact_form contact_form_afilate" action="#" method="post">
+                            <ul>
+
+                               <li class='nombres'>
+                                   <input type="text" class="validate[required,maxSize[30]]" name="nombre"  placeholder="*NOMBRE" required />
+                                   <input type="text" class="validate[required,maxSize[30]]" name="apellido" placeholder="*APELLIDO" required />
+                               </li>
+                               <li class='correo'>
+                                   <input type="email" class="validate[required,custom[email],maxSize[50]]" name="correo" placeholder="*CORREO ELECTRÓNICO" required />
+                                   <label class="label-input">
+                                        <input class="validate[required,maxSize[50]]" type="text" name="chanel" value="" placeholder="* CANAL DE YOUTUBE">
+                                    </label>
+                               </li>
+                               <li class="mensaje">
+                                   <textarea name="Mensaje" class="validate[required]" cols="40" rows="6" placeholder="*PARA BRINDARTE UN MEJOR SERVICIO PLATÍCANOS                                                ¿QUÉ PRODUCTO DESEAS ANUNCIAR?" required ></textarea>
+                                   <span>*Campos Obligatorios</span> 
+                                   <input type="hidden" name="type" value="afiliate">
+                               </li>
+                               <li class="enviar">
+                                  <button class="submit" type="submit">Enviar</button>
+                               </li>
+                            </ul>
+                        </form>
+                                </div>
+                                <img class="huella" src="/web/img/global/huella.png" />
+                            </div>
+                        
+                        </div>    
+                        <img class="pleca_linea_derecha" src="/web/img/global/textura_lineas.png"   data-parallax='{"y":-80,"smoothness":10}' alt="">
+
+                </div>
+        
+
+<script id="template-sections-vlogger" type="template/template-sections-vlogger">
+<div class="content-vlogger">
+    {{#each this}}
+                    <div class="img-vlogger">
+                        {{#if this.images.picture }}
+                            {{#if this.images.picture.0.styles }}
+                                {{#if this.images.picture.0.styles.medium }}
+                                    <img class="loader lazy" src="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                {{else}}
+                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                {{/if}}
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                        {{else}}
+                            <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                        {{/if}}
+                        
+                        <div class="title">
+                            {{{this.body}}}
+                            
+                        </div>
+                        <a href="{{this.yt_channel}}" class="link-youtube">Visita su canal de youtube</a>
+                    </div>
+                    <div class="seguidores-vlogger">
+                        <div class="name-vlogger">
+                            <h1>{{this.title}}</h1>
+                            <h3>Nombre del blog</h3>
+                        </div>
+                        <div>
+                            <div class="content-circles">
+                                <div class="item-circle margin-right">   
+                                    <div id="demo-pie-8" class="pie-title-center" data-percent="{{this.mens}}"> <span class="pie-value"></span> </div>
+                                    <h3>Hombres</h3>
+                                </div>
+                                <div class="item-circle"> 
+                                    <div id="demo-pie-9" class="pie-title-center" data-percent="{{this.womens}}"> <span class="pie-value"></span> </div>
+                                    <h3>Mujeres</h3>
+                                </div>
+                            </div>
+                            <div class="numero-audiencias">
+                                <ul>
+                                    <li>
+                                        <span>{{this.views}}</span><br />
+                                        visitas mensuales
+                                    </li>
+                                    <li>
+                                        <span>{{this.followers}}</span><br />
+                                        total de seguidores
+                                    </li>
+                                    
+                                </ul>
+
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="adjuntos mobile">
+                        <ul>
+                            <li class=""><a href="{{this.yt_channel}}">Canal de youtube</a></li>
+                            <li class=""><a href="#contacto">Afíliate</a></li>
+                        </ul>
+                    </div>
+                    {{/each}} 
+                    
+                </div>
+</script>        
+        
+  
+        
+        
+<script id="template-carousel-sections-vloggers" type="template/template-carousel-sections-vloggers">
+<div class="flexslider_bloger">
+    <div class="slides">
+        <div class="slid-vloggers slider vlogger">
+          {{#each this}}
+               <div>
+                    <div class="content-blogger">
+                        <a class="none-decoration" href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                            
+                            {{#if this.images.picture }}
+                                {{#if this.images.picture.0.styles }}
+                                    {{#if this.images.picture.0.styles.medium }}
+                                        <img class="loader lazy" src="{{this.images.picture.0.styles.medium.url }}" alt="" title="{{this.title}}">
+                                    {{else}}
+                                        <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                    {{/if}}
+                                {{else}}
+                                    <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                                {{/if}}
+                            {{else}}
+                                <img class="loader lazy" data-original="/web/img/global/default.png" alt="" title="{{this.title}}">
+                            {{/if}}
+                            <div class="title">
+                                <h1>{{ this.title}}</h1>
+                                <h3>{{ this.audience.0.title}}</h3>
+                            </div>
+                            <span class="seguidores">{{this.followers}}</span>
+                            <span class="description">Seguidores de youtube</span>
+                        </a>
+
+                    </div>
+            </div>
+                {{/each}} 
+        </div>
+    </div>  
+</div>
+</script>        

@@ -21,80 +21,104 @@
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
         <title>InventMx</title>
-        <link rel="stylesheet" type="text/css" href="/web/css/globals_style.css">
+        <link rel="stylesheet" type="text/css" href="/web/css/style.css">
+        <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+        <link rel="stylesheet" href="/web/css/swift.css">
 
     </head>
     <body class="relative">
-
-        <div id="wrapper-loading-layout">
-            <img class="gif" src="/web/img/global/ajax-loader.gif">
+        <div id="wrapper-loading-layout" class="none">
+            <img class="gif" src="/web/img/global/invent_loader.gif">
         </div>
 
-        <header>
-            <div class="wrapper-header relative">
-                <div class="wrapper-site-logo left">
-                    <a href="/#">
-                        <span class="site-invent block"></span>
-                    </a>                    
-                    <h1 class="none">Inventmx</h1>
+        <header id="header">
+            <div class="wrapper">
+                <div class="logo">
+                    <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
                 </div>
-
-                <div class="wrapper-main right none">
-                    <span class="main-center block"></span>
+                <div class="menu">
+                    <ul>
+                        <li class="linea"><a href="/#la-red-invent">La red invent</a></li>
+                        <li class="linea padding-tablet"><a href="/#content-marketing">Content</a></li>
+                        <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
+                        <li class="linea"><a href="/#network-ads">Network Ads</a></li>
+                        <!--<li class="linea padding-tablet"><a href="/#blogs">Blogs</a></li>-->
+                        <li class="contato padding-tablet"><a href="/#contacto">contacto</a></li>
+                        <li class="linkedin"><a href="https://www.linkedin.com/company/inventmx" target="_blank"><img src="/web/img/global/linkedin.png"/></a></li>
+                    </ul>
                 </div>
-
-                <ul class="right">
-                    <li class="main-audiencia-contenido  left inline-block">
-                        <a class="audiencias-y-contenidos none-decoration" href="/#audiencias-y-contenidos">AUDIENCIAS Y CONTENIDOS</a>
-                    </li>
-                    <li class="main-maketers left inline-block">
-                        <a class="marketers none-decoration" href="/#marketers">MARKETERS</a>
-                    </li>
-                    <li class="main-red-de-videos left inline-block">
-                        <a class="red-de-video none-decoration" href="/#red-de-video">RED DE VIDEO</a>
-                    </li>
-                    <li class="main-casos-de-exito left inline-block">
-                        <a class="caso-de-exito none-decoration" href="/#casos-de-exito">CASOS DE ÉXITO</a>
-                    </li>
-                    <li class="main-afiliate left inline-block">
-                        <a class="afiliate none-decoration" href="/#afiliate">AFÍLIATE</a>
-                    </li>
-                    <li class="main-anunciate left inline-block">
-                        <a class="anunciate none-decoration" href="/#anunciate">ANÚNCIATE</a>
-                    </li>
-                    <span class="clear block"></span>
-                </ul>                
-                <div class="clear"></div>
+                <div class="btn-menu">
+                    <a class="navicon-button x">
+                        <div class="navicon"></div>
+                    </a>
+                </div>
             </div>
+
+
         </header>
 
-        <div id="global-page">
-            <div id="wrapper-page-site" class="relative"></div>
-        </div>    
+        <!-- no borrar -->
+        <div id="wrapper-page">
+            <div id="page-main-invent-home"></div>
+            <div id="page-main-invent-codiga"></div>
+            <div id="page-main-invent-networkAds"></div>
+            <div id="page-main-invent-bridgestone"></div>
+            <div id="page-main-invent-oppo"></div>
+            <div id="page-main-invent-oikos"></div>
+            <div id="page-main-invent-redInvent"></div>
+            <div id="page-main-invent-servicios"></div>
+            <div id="page-main-invent-perfilSitio"></div>
+            <div id="page-main-invent-perfilTalento"></div>
+            <div id="page-main-invent-blogs"></div>
+            <div id="page-main-invent-blogsNota"></div>
+            <div id="page-main-invent-contacto"></div>      
+            <div id="page-main-invent-casoExito"></div>
+            <div id="page-main-invent-avisoPrivacidad" class="aviso-y-politicas"></div>
+            <div id="page-main-invent-politicaAmbiental" class="aviso-y-politicas"></div>
+            <div id="page-main-invent-terminosCondiciones" class="aviso-y-politicas"></div>
+            <div id="page-main-invent-404"></div>
+        </div>  
 
-        <footer>
-            <div class="footer-content-site-invent">
-                <div class="center wrapper-ico-site">
-                    <div class="inline-block footer-site-invent"></div>
-                    <div class="inline-block footer-social-responsable"></div>
-                    <div class="inline-block footer-group-imagen"></div>
+        <div class="mobile links">
+            <ul class="menu-mobile">
+                <li class="link-red-invent"><a href="/#la-red-invent">La red invent</a><div class="linea"></div></li>
+                <li class="link-servicios"><a href="/#content-marketing">Servicios</a><div class="linea"></div></li>
+                <li class="link-exito"><a href="/#casos-de-exito">Casos de éxito</a><div class="linea"></div></li>
+                <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
+            </ul>
+        </div>
+        <script type="text/javascript" src="/web/js/libs/inventmx_libs.js"></script>   
+        <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
+            <div>
+                <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
+                <div id="bottom-links" style="display:none;">
+                    <span id="politicasprivacidad">#aviso-de-privacidad</span>
+                    <span id="condiciones-uso">#terminos-y-condiciones-de-uso</span>
+                    <!-- <span id="gotop">#page</span> -->
+                    <span id="politicaambiental">#politica-ambiental</span>
+                    <!-- <span id="sitemap">/sitemap.xml</span>
+                    <span id="rss">/rss.xml</span> -->
                 </div>
-                <div class="inline-block aviso-privacidad">
-                    <a href="/#aviso-de-privacidad">Aviso de privacidad</a>
-                </div>
-                <div class="inline-block politica-ambiental">
-                    <a href="/#politica-ambiental">Política ambiental</a>
-                </div>                
-            </div>
-            <p class="center">
-                Invent. Bucareli No. 1 Col Centro, Piso 5, Delegación Cuauhtémoc. CP 06600. México D.F. Tel. 5128 3600 Ext. 3331
-            </p>
+            </div>      
 
         </footer>    
-
-        <script type="text/javascript" src="/web/js/libs/inventmx_libs.min.js"></script>
-        <script type="text/javascript" src="/web/js/site/tools.min.js"></script>
         
+        <script type="text/javascript" src="/web/js/site/tools.js"></script>
+        <script type="text/javascript" src="/web/js/site/view.js"></script>
+        <script type="text/javascript" src="/web/js/site/routing.js"></script>       
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <!--<script type="text/javascript" src="/web/js/libs/jquery.stellar.min.js"></script>-->
+
+        <script type="text/javascript" src="/web/js/libs/waypoints.min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="/web/js/libs/jquery.parallax-scroll.js"></script>
+        <script src="/web/js/libs/pie-chart.js" type="text/javascript"></script>
+        <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
+        <script type="text/javascript" src="/web/js/libs/slick.js"></script>
+        <script src="/web/js/libs/swift.js"></script>
+        <script type="text/javascript" src="/web/js/libs/js.js"></script>
+
         <script id="metas" type="template/metas">
             <meta name="charset" content="utf-8" />
             <link rel="canonical" href="{{ canonical }}" />
@@ -120,7 +144,6 @@
             ga('create', 'UA-15985397-3', 'auto');
             ga('send', 'pageview');
         </script>
-        
-        
+
     </body>
 </html>

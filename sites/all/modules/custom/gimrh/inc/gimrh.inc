@@ -42,12 +42,12 @@ function gimrh_list_form($form, &$form_state){
     #die();
 
     $gimrh_filter=array(
+      'type'     => $form_state['filters']['type'],
       'interest' => $form_state['filters']['interest'],
       'degree'   => $form_state['filters']['degree'],
       'state'    => $form_state['filters']['state'],
       'city'     => $form_state['filters']['city'],
       'gender'   => $form_state['filters']['gender'],
-      'age'      => $form_state['filters']['age'],
     );
   }
 
@@ -65,11 +65,12 @@ function gimrh_list_form($form, &$form_state){
       'field' => 'g.phone',
     ),
     array(
-      'data' => 'Licenciatura',
-      'field' => 'g.name_degree',
+      'data' => 'Tipo de registro',
+      'field' => 'g.type',
     ),
     array(
-      'data' => t('Descargar CV'),
+      'data' => 'Licenciatura',
+      'field' => 'g.name_degree',
     ),
   );
 
@@ -143,7 +144,7 @@ function gimrh_list_form($form, &$form_state){
   }
 
   $form['gimrh_filter']['interest'] = array(
-    '#title'         => 'Áreas de interés',
+    '#title'         => 'Sector',
     '#type'          => 'select',
     '#options'       => gimrh_getInterest(),
     '#default_value' => isset($gimrh_filter['interest']) && !empty($gimrh_filter['interest']) ? $gimrh_filter['interest'] : 'seleccionar',
@@ -158,6 +159,7 @@ function gimrh_list_form($form, &$form_state){
       'basica'      => 'Básica',
       'media'       => 'Media Superior',
       'superior'    => 'Superior',
+      'maestria'    => 'Maestría',
       'posgrado'    => 'Posgrado',
     ),
     '#default_value' => isset($gimrh_filter['degree']) && !empty($gimrh_filter['degree']) ? $gimrh_filter['degree'] : 'seleccionar',
@@ -251,4 +253,15 @@ function gimrh_get_interest($interest){
 
 function gimrh_get_degree($degree){
   return $degree;
+}
+
+function gimrh_send_email($data){
+  $texto[]='Sr(a). '.$data['name'].' '.$data['apellidop'].' '.$data['apellidom'];
+  $texto[]='P r e s e n t e .';
+  $texto[]='Estimado Sr(a). '.$data['apellidop'].':';
+  $texto[]='Hemos recibido su Curriculum Vitae donde nos muestra su interés por integrarse a nuestra Compañía, tenga la seguridad que consideraremos su preparación y experiencia en nuestras futuras vacantes.';
+  $texto[]='Como usted sabe, este ramo de la industria es muy dinámico y se enfrenta a constantes cambios, por lo que incluiremos su información en nuestra base de datos y en caso de surgir alguna oportunidad nos pondremos en contacto con usted.';
+  $texto[]='Sin mas de momento, agradecemos su interés en nuestra Compañía y aprovechamos la ocasión para desearle éxito en la búsqueda de nuevas experiencias profesionales.';
+  $texto[]='Atentamente';
+  $texto[]='Reclutamiento y Selección';
 }
