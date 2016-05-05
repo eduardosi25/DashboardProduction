@@ -1037,6 +1037,7 @@ canvas{
                             color:#fff;
                             text-transform:uppercase;
                             text-align:center;
+                            display: block;
                         }
                         &.pdf{
                             a{
@@ -1255,7 +1256,7 @@ canvas{
     }
 }
 #solucion{
-    min-height:1340px;
+    min-height:auto;
     height:auto;
     padding:40px 0 60px ;
     .wrapper{
@@ -1749,6 +1750,11 @@ canvas{
     }
     
     
+}
+.icon.extended{
+    h1{
+       max-width: 368px;
+    }
 }
 
 /******************************

@@ -11,7 +11,7 @@ $(function() {
       $(".menu.mobilemenu a").click(function(){
                 $('.navicon-button').toggleClass("open");
                 $('.menu').slideUp();
-                console.log('hola mundo');
+                //console.log('hola mundo');
             }); 
     // Con la funcion bind podemos enlazar un evento cualquiera con una
     // función callback que se ejecutará cuando este evento ocurra en este objeto
@@ -131,10 +131,10 @@ $(function() {
         },
         topOffset: function(position, delay, transition, callback) {
             delay = (delay) ? delay : 0;
-            console.log(position);
+            //console.log(position);
             transition = (transition) ? transition : 500;
             position = position - 92;
-            console.log(position);
+            //console.log(position);
             $('body,html').delay(delay).animate({
                 scrollTop: position
             }, transition, function() {
@@ -252,9 +252,7 @@ $(function() {
                     if($w <= 727){
                         $('div[data-section="casos-de-exito"]').css({'display':'none'});
                         $('div[data-section="la-red-invent"]').css({'display':'none'});
-                        console.log('hola mundo 1');
                     }else{
-                        console.log('hola mundo 2');
                         $('div[data-section="casos-de-exito"]').css({'display':'block'});
                         $('div[data-section="la-red-invent"]').css({'display':'block'});
                     }
@@ -273,14 +271,12 @@ $(function() {
                             $('div[data-section="la-red-invent"]').css({'display':'none'}); 
                         }
                         
-                        console.log('hola mundo 3');
 
                     }else{
                         $('div[data-section="casos-de-exito"]').css({'display':'block'});
                         $('div[data-section="la-red-invent"]').css({'display':'block'});
                         $('div[data-section="casos-de-exito"]').removeClass('activo');
                         $('div[data-section="la-red-invent"]').removeClass('activo');
-                        console.log('hola mundo 4');
                     }
                 });
                 
@@ -293,8 +289,7 @@ $(function() {
                     $('div[data-section="la-red-invent"]').removeClass('activo');
                     $('div[data-section="'+ idAncla +'"]').css({'display':'block'});
                     $('div[data-section="'+ idAncla +'"]').addClass('activo');
-                    console.log('hola mundo 5');
-                    console.log(idAncla);
+                    //console.log(idAncla);
                     if ($("[data-section='" + idAncla + "']").length) {
                         collectionMain.loaderShow();
                         function top() {

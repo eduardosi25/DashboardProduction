@@ -805,7 +805,8 @@ form.contact_form_afilate {
         font-size: 16px;
         color: #fff;
         text-transform: uppercase;
-        text-align: center; }
+        text-align: center;
+        display: block; }
       .adjuntos ul li.pdf a:after {
         content: "";
         width: 29px;
@@ -953,7 +954,7 @@ form.contact_form_afilate {
       vertical-align: top; }
 
 #solucion {
-  min-height: 1340px;
+  min-height: auto;
   height: auto;
   padding: 40px 0 60px; }
   #solucion .wrapper {
@@ -1261,6 +1262,9 @@ form.contact_form_afilate {
   margin: 60px 0; }
   .title-section .uppercase {
     text-transform: uppercase; }
+
+.icon.extended h1 {
+  max-width: 368px; }
 
 /******************************
  End Servicios
@@ -2729,7 +2733,8 @@ body.rtl .formError .formErrorArrow {
   #audiencias .pleca_linea_derecha, #exito .pleca_linea_derecha,
   #resultados .pleca_puntos_izquierda, #codiga-descrition .pleca_puntos_izquierda,
   #resultados .pleca_puntos_derecha, #codiga-descrition .pleca_puntos_derecha,
-  #contac .pleca_linea_derecha {
+  #contac .pleca_linea_derecha,
+  #solucion .pleca_linea_izquierda {
     max-width: 50%; }
 
   #audiencias .wrapper .content-audiencias > div h1 {
