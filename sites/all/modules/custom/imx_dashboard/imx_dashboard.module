@@ -1,0 +1,148 @@
+<?php
+global $dashboard;
+define('imx_dashboard_MASTER_TOKEN','d4f92272128daf9203008fddce48d0e344de278cbe25509eb83c5e3484432dc4');
+$dashboard=imx_dashboard_get_variables();
+
+/**
+ * Implements hook_permisson().
+ */
+function imx_dashboard_permission() {
+  $permissions['administer dashboard settings'] = array(
+    'title' => t('Administer Dashboard Settings.'),
+    'restrict access' => TRUE,
+  );
+  return $permissions;
+}
+/**
+ * Implements hook_menu().
+ */
+function imx_dashboard_menu() {
+  $items=array();
+
+  $items['admin/config/system/imxdashboard'] = array(
+    'title'            => t('Dashboard Settings'),
+    'description'      => t('Configure settings for Dashboard Integration'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('imx_dashboard_admin_settings_form'),
+    'access arguments' => array('administer dashboard settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'imx_dashboard.admin.inc',
+  );
+  $items['dashboard'] = array(
+    'title'            => t('Dashboard Global'),
+    'page callback'    => 'imx_dashboard_global',
+    'access callback'  => TRUE,
+    'page arguments'   => array(arg(1)),
+    'access arguments' => array('administer dashboard settings'),
+    'type' => MENU_CALLBACK,
+  );
+  $items['dashboard/%'] = array(
+    'title'            => t('Dashboard Individual'),
+    'page callback'    => 'imx_dashboard_action',
+    'access callback'  => TRUE,
+    'page arguments'   => array(arg(1)),
+    'access arguments' => array('administer dashboard settings'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+/**
+ * Implements hook_theme().
+ */
+function imx_dashboard_theme() {
+  return array(
+    'dashboard' => array(
+      'variables' => array(
+        'data' => NULL
+      ),
+      'template' => 'themes/imx_dashboard',
+    ),
+    'imx_dashboard_global' => array(
+      'variables' => array(
+        'data' => NULL
+      ),
+      'template' => 'themes/imx_dashboard.global',
+    ),
+  );
+}
+function imx_dashboard_global(){
+  /////////////////////////
+  // Set data ------------>
+  /////////////////////////
+  $data=array(
+    'client_id'       => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl.apps.googleusercontent.com',
+    'service_account' => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl@developer.gserviceaccount.com',
+    'created'         => '20 oct. 2014 18:28:13',
+    'views'           => array(
+      'excelsior'       => 'ga:6643838',
+      'adrenalina360'   => 'ga:112555539',
+      'dineroenimagen'  => 'ga:62706709',
+      'imagen'          => 'ga:10076419',
+      'reporte'         => 'ga:55949261',
+      'actitudfem'      => 'ga:46928050',
+      'salud180'        => 'ga:36901730',
+      'melodijolola'    => 'ga:62818963',
+      'rsvponline'      => 'ga:54331725',
+      'swagger'         => 'ga:78887468',
+      'gamedots'        => 'ga:59347434',
+      'atraccion360'    => 'ga:59849096',
+      'estrategia45'    => 'ga:59856389',
+      'cocinadelirante' => 'ga:117144775',
+    ),
+  );
+  //Render
+  $result=theme('imx_dashboard_global', array('data' => $data));
+  echo $result;
+  exit();
+}
+
+function imx_dashboard_action() {
+  global $dashboard;
+  if($dashboard['settings']['status']){
+    $object=arg(1);
+    switch($object){
+      case 'exc':
+        imx_dashboard_user_actions();
+        break;
+      case 'bookmark':
+        imx_dashboard_bookmark_actions();
+        break;
+      case 'vote':
+        imx_dashboard_voting_actions();
+        break;
+    }
+  }else{
+    echo 'Module not enabled';
+  }
+  echo __render_dashboard($data);
+  exit();
+}
+
+function __render_dashboard($data){
+  /////////////////////////
+  // Set data ------------>
+  /////////////////////////
+  $data=array(
+    'client_id'       => '393479470712-nhtkfs438r5u6tcprkd9bmlppr75b5a4.apps.googleusercontent.com',
+    'service_account' => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl@developer.gserviceaccount.com',
+    'created'         => '20 oct. 2014 18:28:13',
+    'secret_key_id'   => 'dCPkWPoVhcfrOkqCqlb0_E3v',
+  );
+  //Render
+  $result=theme('dashboard', array('data' => $data));
+  return $result;
+}
+
+/**
+ * Implements get variables globally
+ * @return array
+ */
+function imx_dashboard_get_variables() {
+  $variables = &drupal_static(__FUNCTION__);
+  if (!isset($variables)) {
+    $variables=array(
+      'settings'  => variable_get('imx_dashboard_settings'),
+    );
+  }
+  return $variables;
+}
