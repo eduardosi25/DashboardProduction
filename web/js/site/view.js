@@ -312,7 +312,7 @@ $(function() {
                 params = collectionMain.get("c2");
                 /* se pasan los campos del API */
                 params.set({fields: "id|title|url|summary|images|logo_blanco"});
-                params.set({limit: "30", not_ids: null});
+                params.set({limit: "30", not_ids: 178});
 
                 /* renderTemplate: render generico, esto se puede copiar modificar nada */
                 var renderTemplate = collectionMain.template;
@@ -895,7 +895,7 @@ $(function() {
                         repositorio = collectionMain.get("c1");
                         repositorio.set({repositorio: "sites.json"});
                         params = collectionMain.get("c2");
-                        params.set({url: null, not_ids: id_exclude, limit: 50});
+                        params.set({url: null, not_ids: id_exclude +"|178", limit: 50});
                         /* idTemplate: id del Template de javascript */
                         var idTemplate1 = "#template-sections-carousel-sites";
                         /* appendTo: lugar donde se pondra el template ya rendereado */
