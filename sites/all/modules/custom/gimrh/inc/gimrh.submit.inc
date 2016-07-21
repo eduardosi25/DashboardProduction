@@ -52,8 +52,6 @@ function gimrh_colabora_form_submit($form, &$form_state){
 
 function gimrh_trabajo_form_submit($form, &$form_state){
 
-  var_dump($form_state);
-
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
   $experience=$form_state['values']['gimrh']['experience']['0']['value'];
