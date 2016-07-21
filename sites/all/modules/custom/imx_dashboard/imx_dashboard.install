@@ -1,0 +1,24 @@
+<?php
+/**
+ * @file
+ * Installation file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function imx_dashboard_install() {
+  $settings=array(
+    'status' => TRUE,
+    'debug'  => FALSE,
+  );
+  variable_set('imx_dashboard_settings',$settings);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function imx_dashboard_uninstall() {
+  #Delete all variables
+  variable_del('imx_dashboard_settings');
+}
