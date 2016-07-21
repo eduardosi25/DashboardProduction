@@ -175,11 +175,36 @@ function gimrh_getDegree($name=null){
 function gimrh_getInterest($name=null){
   $items=array(
     'seleccionar'    => '- Seleccionar -',
-    'periodico'      => 'Periódico',
-    'tv'             => 'TV',
-    'web'            => 'Internet',
-    'administrativo' => 'Administrativo',
-    'radio'          => 'Radio',
+    'Periódico'      => array(
+      'imp_produccion' => 'Producción',
+      'imp_editorial'  => 'Editorial',
+      'imp_callcenter' => 'Call Center',
+      'imp_ciculacion' => 'Circulación',
+    ),
+    'Excélsior TV'   => array(
+      'etv_produccion' => 'Producción',
+      'etv_tecnologia' => 'Tecnología',
+      'etv_contenidos' => 'Contenidos',
+      'etv_servicios'  => 'Servicios a la Producción',
+    ),
+    'Corporativo'    => array(
+      'corp_comercial'  => 'Comercial',
+      'corp_desarrollo' => 'Desarrollo Organizacional',
+      'corp_finanzas'   => 'Finanzas',
+      'corp_tecnologia' => 'Tecnología',
+      'corp_publicidad' => 'Publicidad',
+    ),
+    'Web'            => array(
+      'web_multimedia'   => 'Multimedia',
+      'web_editorial'    => 'Editorial',
+      'web_social'       => 'Redes Sociales',
+      'web_video'        => 'Red de Video',
+      'web_programacion' => 'Programación',
+    ),
+    'Radio'          => array(
+      'radio_produccion' => 'Producción',
+      'radio_contenidos' => 'Contenidos',
+    ),
   );
   if($name==1){
     array_shift($items);

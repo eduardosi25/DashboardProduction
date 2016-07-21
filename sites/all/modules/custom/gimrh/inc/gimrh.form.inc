@@ -230,24 +230,15 @@ function gimrh_trabajo_form($form, &$form_state){
       '#title' => 'Sector',
       '#tree'  => TRUE,
   );
-  $form['gimrh']['interest'][0] = array(
+  $form['gimrh']['interest'] = array(
       '#title'         => 'Área de interés',
+      '#description'   => 'Puedes seleccionar más de una opción <b>presionando la tecla Control y haciendo Clic</b> en las opciones de tu preferencia.',
       '#type'          => 'select',
       '#options'       => gimrh_getInterest(1),
+      '#multiple'      => TRUE,
+      '#size'          => 25,
       '#default_value' => NULL,
       '#required'      => TRUE,
-  );
-  $form['gimrh']['interest'][1] = array(
-      '#title'         => 'Área de interés',
-      '#type'          => 'select',
-      '#options'       => gimrh_getInterest(),
-      '#default_value' => NULL,
-  );
-  $form['gimrh']['interest'][2] = array(
-      '#title'         => 'Área de interés',
-      '#type'          => 'select',
-      '#options'       => gimrh_getInterest(),
-      '#default_value' => NULL,
   );
   /**
   $form['gimrh']['cv']=array(
@@ -474,24 +465,15 @@ function gimrh_becario_form($form, &$form_state){
       '#title' => 'Sector',
       '#tree'  => TRUE,
   );
-  $form['gimrh']['interest'][0] = array(
-      '#title'         => 'Área de interés',
-      '#type'          => 'select',
-      '#options'       => gimrh_getInterest(1),
-      '#default_value' => NULL,
-      '#required'      => TRUE,
-  );
-  $form['gimrh']['interest'][1] = array(
-      '#title'         => 'Área de interés',
-      '#type'          => 'select',
-      '#options'       => gimrh_getInterest(),
-      '#default_value' => NULL,
-  );
-  $form['gimrh']['interest'][2] = array(
-      '#title'         => 'Área de interés',
-      '#type'          => 'select',
-      '#options'       => gimrh_getInterest(),
-      '#default_value' => NULL,
+  $form['gimrh']['interest'] = array(
+    '#title'         => 'Área de interés',
+    '#description'   => 'Puedes seleccionar más de una opción <b>presionando la tecla Control y haciendo Clic</b> en las opciones de tu preferencia.',
+    '#type'          => 'select',
+    '#options'       => gimrh_getInterest(1),
+    '#multiple'      => TRUE,
+    '#size'          => 25,
+    '#default_value' => NULL,
+    '#required'      => TRUE,
   );
   $form['submit'] = array(
       '#type'   => 'submit',

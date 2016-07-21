@@ -24,7 +24,28 @@
         <link rel="stylesheet" type="text/css" href="/web/css/style.css">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+        <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
         <link rel="stylesheet" href="/web/css/swift.css">
+        <style class="vjs-styles-defaults">
+      .video-js {
+        width: 300px;
+        height: 150px;
+      }
+
+      .vjs-fluid {
+        padding-top: 56.25%
+      }
+    </style>
+    <style class="vjs-styles-dimensions">
+      .preview-player-dimensions {
+        width: 960px;
+        height: 400px;
+      }
+
+      .preview-player-dimensions.vjs-fluid {
+        padding-top: 41.66666666666667%;
+      }
+    </style>
 
     </head>
     <body class="relative">
@@ -117,6 +138,8 @@
         <script defer src="/web/js/libs/jquery.flexslider-min.js"></script>
         <script type="text/javascript" src="/web/js/libs/slick.js"></script>
         <script src="/web/js/libs/swift.js"></script>
+        <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+        <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
         <script type="text/javascript" src="/web/js/libs/js.js"></script>
 
         <script id="metas" type="template/metas">

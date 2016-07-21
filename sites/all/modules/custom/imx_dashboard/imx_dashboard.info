@@ -1,0 +1,10 @@
+name = "Dashboard Google Analytics"
+description = "Dashboard de Google Analytics para Red Invent"
+package = "InventMX"
+core = "7.x"
+version = "7.x"
+php="5.x"
+files[] = imx_dashboard.admin.inc
+files[] = imx_dashboard.module
+files[] = imx_dashboard.install
+configure = admin/config/system/imxdashboard
