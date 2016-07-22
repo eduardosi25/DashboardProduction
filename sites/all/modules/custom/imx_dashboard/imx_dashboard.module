@@ -119,7 +119,6 @@ function imx_dashboard_activeusers(){
       'excelsior'       => 'ga:6643838',
       'salud180'        => 'ga:36901730',
       'actitudfem'      => 'ga:46928050',
-      'adrenalina360'   => 'ga:112555539',
       'dineroenimagen'  => 'ga:62706709',
       'gamedots'        => 'ga:59347434',
       'atraccion360'    => 'ga:59849096',
@@ -129,7 +128,6 @@ function imx_dashboard_activeusers(){
       'cocinadelirante' => 'ga:117144775',
       'imagen'          => 'ga:10076419',
       'reporte'         => 'ga:55949261',
-      'estrategia45'    => 'ga:59856389',
     ),
   );
   //Render
