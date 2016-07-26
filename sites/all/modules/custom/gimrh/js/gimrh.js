@@ -1,4 +1,31 @@
 jQuery(document).ready(function(){
+
+  jQuery('#edit-splash-trabajo-legal').bind('click',function() {
+    jQuery(this).prop('checked', function () {
+      if (jQuery(this).attr('checked') == 'checked') {
+        jQuery('#edit-splash-becario-legal').attr('disabled', 'disabled');
+        jQuery('#edit-splash-becario-submit').attr('disabled', 'disabled');
+      } else {
+        jQuery('#edit-splash-becario-legal').removeAttr('disabled');
+        jQuery('#edit-splash-becario-submit').removeAttr('disabled');
+      }
+    });
+  });
+
+
+  jQuery('#edit-splash-becario-legal').bind('click',function() {
+    jQuery(this).prop('checked', function () {
+      if (jQuery(this).attr('checked') == 'checked') {
+        jQuery('#edit-splash-trabajo-legal').attr('disabled', 'disabled');
+        jQuery('#edit-splash-trabajo-submit').attr('disabled', 'disabled');
+      } else {
+        jQuery('#edit-splash-trabajo-legal').removeAttr('disabled');
+        jQuery('#edit-splash-trabajo-submit').removeAttr('disabled');
+      }
+    });
+  });
+
+
   jQuery('#edit-gimrh-personal-birthdate').mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
   jQuery('#edit-gimrh-personal-phone').mask("99-99999999",{placeholder:"xx-xxxxxxxx"});
   jQuery('#edit-gimrh-experience-0-format').remove();
@@ -83,4 +110,4 @@ var validate_fields={
       return false;
     }
   }
-};
+}

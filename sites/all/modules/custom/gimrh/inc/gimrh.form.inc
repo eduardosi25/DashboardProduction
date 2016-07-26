@@ -47,7 +47,7 @@ function gimrh_splash_form($form, &$form_state){
       '#markup' => '<div id="bolsa-de-trabajo">
                     <div clas="center"><div class="candidato-image"></div></div>
                     <div class="candidato-text">
-                      <p>En Grupo Imagen Multimedia queremos contar con gente como tú, con talento, sana ambición y afán de superación. Gente que se esfuerza y cumple, siempre de forma responsable.<br><br></p>                    </div>
+                      <p>En Grupo Imagen Multimedia queremos contar con gente con talento, deseos de crecimiento, enfoque a resultados y amplio sentido de responsabilidad que desee formar parte de la Multimedia más grande de México.<br><br></p>                    </div>
                   </div>',
   );
   $form['splash']['trabajo']['submit'] = array(
@@ -72,13 +72,13 @@ function gimrh_splash_form($form, &$form_state){
       '#markup' => '<div id="becarios">
                     <div class="center"><div class="becarios-image"></div></div>
                     <div class="becarios-text">
-                      <p>Gracias al vínculo que se ha establecido con las mejores Instituciones Educativas podemos ofrecerte la oportunidad de colaborar con nosotros permitiéndonos descubrir y desarrollar el talento de las nuevas generaciones.</p>
+                      <p>Gracias al vínculo que se ha establecido con Instituciones Educativas podemos ofrecerte la oportunidad de formar parte del Programa de Prácticas Profesionales y Servicio Social permitiéndonos descubrir y desarrollar el talento de las nuevas generaciones.</p>
                     </div>
                   </div>',
   );
   $form['splash']['becario']['submit'] = array(
       '#type'   => 'submit',
-      '#value'  => 'Becarios',
+      '#value'  => 'Prácticas Profesionales y Servicio Social',
       '#name'   => 'becario',
       '#prefix' => '<div id="intern-submit-preffix">',
       '#suffix' => '</div>',
@@ -219,7 +219,7 @@ function gimrh_trabajo_form($form, &$form_state){
       '#tree'  => TRUE,
   );
   $form['gimrh']['experience'][0] = array(
-      '#title'         => 'Última empresa o experiencia laboral',
+      '#title'         => 'Última experiencia laboral',
       '#type'          => 'text_format',
       '#default_value' => NULL,
       '#format'        => 'lite',
