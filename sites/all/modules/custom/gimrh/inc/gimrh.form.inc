@@ -236,7 +236,7 @@ function gimrh_trabajo_form($form, &$form_state){
       '#type'          => 'select',
       '#options'       => gimrh_getInterest(1),
       '#multiple'      => TRUE,
-      '#size'          => 25,
+      '#size'          => 15,
       '#default_value' => NULL,
       '#required'      => TRUE,
   );
@@ -471,7 +471,7 @@ function gimrh_becario_form($form, &$form_state){
     '#type'          => 'select',
     '#options'       => gimrh_getInterest(1),
     '#multiple'      => TRUE,
-    '#size'          => 25,
+    '#size'          => 15,
     '#default_value' => NULL,
     '#required'      => TRUE,
   );
