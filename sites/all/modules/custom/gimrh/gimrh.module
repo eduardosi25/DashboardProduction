@@ -175,35 +175,23 @@ function gimrh_getDegree($name=null){
 function gimrh_getInterest($name=null){
   $items=array(
     'seleccionar'    => '- Seleccionar -',
-    'Periódico'      => array(
-      'imp_produccion' => 'Producción',
-      'imp_editorial'  => 'Editorial',
-      'imp_callcenter' => 'Call Center',
-      'imp_ciculacion' => 'Circulación',
-    ),
-    'Excélsior TV'   => array(
-      'etv_produccion' => 'Producción',
-      'etv_tecnologia' => 'Tecnología',
-      'etv_contenidos' => 'Contenidos',
-      'etv_servicios'  => 'Servicios a la Producción',
-    ),
-    'Corporativo'    => array(
-      'corp_comercial'  => 'Comercial',
+    'Administración'    => array(
+      'corp_callcenter' => 'Call Center',
       'corp_desarrollo' => 'Desarrollo Organizacional',
       'corp_finanzas'   => 'Finanzas',
-      'corp_tecnologia' => 'Tecnología',
       'corp_publicidad' => 'Publicidad',
+      'corp_servicios'  => 'Servicios Generales',
+      'corp_tecnologia' => 'Tecnología',
     ),
-    'Web'            => array(
-      'web_multimedia'   => 'Multimedia',
-      'web_editorial'    => 'Editorial',
-      'web_social'       => 'Redes Sociales',
+    'Internet'           => array(
+      'web_informacion'  => 'Información y Contenidos',
+      'web_produccion'   => 'Producción',
       'web_video'        => 'Red de Video',
-      'web_programacion' => 'Programación',
+      'web_programacion' => 'Programación Web',
     ),
-    'Radio'          => array(
-      'radio_produccion' => 'Producción',
-      'radio_contenidos' => 'Contenidos',
+    'Periódico, Radio y TV'      => array(
+      'imp_informacion' => 'Información y Contenidos',
+      'imp_produccion'  => 'Producción',
     ),
   );
   if($name==1){
