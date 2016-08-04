@@ -90,6 +90,10 @@ gapi.analytics.ready(function() {
   endforeach;
   ?>
 });
+//Reload page every 12 hours (60*60*24)
+setTimeout(function(){
+  window.location.reload(1);
+}, (60*60*12));
 </script>
 </body>
 </html>
