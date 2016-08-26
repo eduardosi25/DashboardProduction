@@ -133,8 +133,10 @@ class sipiClientReport{
 
     //Create PDF
     $filename='/tmp/'.$nameFile.'.pdf';
-
-    $cmd="/usr/local/bin/wkhtmltopdf {$tmpfile} {$filename}";
+    /**
+    $cmd="/usr/local/bin/wkhtmltopdf --grayscale --orientation Landscape --page-size Letter --margin-left 15mm --margin-right 15mm --margin-top 10mm --margin-bottom 40mm {$tmpfile} {$filename}";
+    */
+    $cmd="/usr/local/bin/wkhtmltopdf --grayscale {$tmpfile} {$filename}";
 
     if(!file_exists($filename))
       $handler=exec($cmd);
