@@ -1345,16 +1345,12 @@ function sipi_client_contents_list_header(){
       'field' => 'created',
     ),
     array(
-      'data' => t('Visitas'),
+      'data' => t('REU\'s'),
       'field' => 'sessions'
     ),
     array(
       'data' => t('Páginas vistas'),
       'field' => 'pageviews'
-    ),
-    array(
-      'data' => t('Páginas únicas'),
-      'field' => 'uniquePageviews'
     ),
     array(
       'data' => t('Tiempo promedio'),
@@ -1363,18 +1359,6 @@ function sipi_client_contents_list_header(){
     array(
       'data' => t('Rebote'),
       'field' => 'bounceRate'
-    ),
-    array(
-      'data' => t('FB Shares'),
-      'field' => 'fbshares'
-    ),
-    array(
-      'data' => t('Tweets'),
-      'field' => 'tweets'
-    ),
-    array(
-      'data' => t('Google+'),
-      'field' => 'gpshares'
     ),
   );
 }
@@ -1399,13 +1383,10 @@ function sipi_client_contents_list_query($cid,$idsite,$limit=20){
 function sipi_client_contents_list_metrics(){
   return array(
     'sessions'   => 0,
-    'visits'     => 0,
     'uniques'    => 0,
+    'visits'     => 0,
     'avgtime'    => 0,
     'bouncerate' => 0,
-    'fbshares'   => 0,
-    'tweets'     => 0,
-    'googleplus' => 0,
   );
 }
 
@@ -1427,13 +1408,10 @@ function sipi_client_contents_list($client=null){
   foreach ($result as $row) {
     //Recalculate metrics.
     $metrics['sessions']+=$row->sessions;
-    $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
+    $metrics['visits']+=$row->pageviews;
     $metrics['avgtime']+=$row->avgTimeOnPage;
     $metrics['bouncerate']+=$row->bounceRate;
-    $metrics['fbshares']+=$row->fbshares;
-    $metrics['tweets']+=$row->tweets;
-    $metrics['googleplus']+=$row->gpshares;
 
     $rows[] = array(
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
@@ -1441,12 +1419,8 @@ function sipi_client_contents_list($client=null){
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
       ($row->sessions>0 ? $row->sessions : '-'),
       ($row->pageviews>0 ? $row->pageviews : '-'),
-      ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
       ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
       ($row->bounceRate>0 ? round($row->bounceRate,2) : '-'),
-      ($row->fbshares>0 ? $row->fbshares : '-'),
-      ($row->tweets>0 ? $row->tweets : '-'),
-      ($row->gpshares>0 ? $row->gpshares : '-'),
     );
     $numItems++;
   }
@@ -1456,16 +1430,13 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => '<strong>Totales</strong>',
-        'colspan' => 3,
+        'colspan' => 2,
       ),
       $metrics['sessions'] ? $metrics['sessions'] : '-',
-      $metrics['visits'] ? $metrics['visits'] : '-',
       $metrics['uniques'] ? $metrics['uniques'] : '-',
+      $metrics['visits'] ? $metrics['visits'] : '-',
       conversorSegundosHoras($metrics['avgtime']/$numItems),
       $metrics['bouncerate'] ? $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,2) : '-',
-      $metrics['fbshares'] ? $metrics['fbshares'] : '-',
-      $metrics['tweets'] ? $metrics['tweets'] : '-',
-      ($metrics['googleplus'] ? $metrics['googleplus'] : '-')
     );
   }
 
@@ -1474,7 +1445,7 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => $pager,
-        'colspan' => 9,
+        'colspan' => 5,
       ),
     );
   }
@@ -1491,28 +1462,22 @@ function sipi_client_contents_list($client=null){
 function sipi_client_contents_list_header_report(){
   return array(
     array(
-      'data' => t('Título'),
+      'data' => t('Contenidos'),
     ),
     array(
       'data' => t('Fecha de publicación'),
     ),
     array(
-      'data' => t('Tiempo promedio de estancia'),
-    ),
-    array(
-      'data' => t('Visitas'),
+      'data' => t('REU\'s'),
     ),
     array(
       'data' => t('Páginas vistas'),
     ),
     array(
+      'data' => t('Tiempo promedio'),
+    ),
+    array(
       'data' => t('Rebote'),
-    ),
-    array(
-      'data' => t('Compartido en Twitter'),
-    ),
-    array(
-      'data' => t('Compartido en Facebook'),
     ),
   );
 }
@@ -1527,7 +1492,9 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
   $metrics = sipi_client_contents_list_metrics();
   $query   = sipi_client_contents_list_query($client,$idsite,100);
 
-  $query=$query->extend('TableSort')->orderByHeader($header);
+  $query->orderBy('title');
+
+  $query=$query->extend('TableSort');
   $result=$query->execute();
   $rows=array();
   $numItems=0;
@@ -1535,12 +1502,10 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
   foreach ($result as $row) {
     //Recalculate metrics.
     $metrics['sessions']+=$row->sessions;
-    $metrics['visits']+=$row->pageviews;
     $metrics['uniques']+=$row->uniquePageviews;
+    $metrics['visits']+=$row->pageviews;
     $metrics['avgtime']+=$row->avgTimeOnPage;
     $metrics['bouncerate']+=$row->bounceRate;
-    $metrics['fbshares']+=$row->fbshares;
-    $metrics['tweets']+=$row->tweets;
     $classPageBreak='';
     if($pageBreak==11){
       $pageBreak=1;
@@ -1552,12 +1517,10 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
       'data' => array(
         array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
         ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-        ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
         ($row->sessions>0 ? $row->sessions : '-'),
         ($row->pageviews>0 ? $row->pageviews : '-'),
+        ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
         ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
-        ($row->tweets>0 ? $row->tweets : '-'),
-        ($row->fbshares>0 ? $row->fbshares : '-'),
       ),
       'class' => array($classPageBreak),
     );
@@ -1568,7 +1531,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
     $rows[] = array(
       array(
         'data' => $pager,
-        'colspan' => 7,
+        'colspan' => 5,
       ),
     );
   }
