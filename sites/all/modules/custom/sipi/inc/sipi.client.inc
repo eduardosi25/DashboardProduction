@@ -1346,7 +1346,7 @@ function sipi_client_contents_list_header(){
     ),
     array(
       'data' => t('REU\'s'),
-      'field' => 'sessions'
+      'field' => 'uniquePageviews'
     ),
     array(
       'data' => t('Páginas vistas'),
@@ -1417,7 +1417,7 @@ function sipi_client_contents_list($client=null){
       l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))),
       ($row->status==0 ? t('Unpublished') : ($row->status==1 ? t('Published') : 'N/D')),
       ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-      ($row->sessions>0 ? $row->sessions : '-'),
+      ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
       ($row->pageviews>0 ? $row->pageviews : '-'),
       ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
       ($row->bounceRate>0 ? round($row->bounceRate,2) : '-'),
@@ -1430,9 +1430,8 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => '<strong>Totales</strong>',
-        'colspan' => 2,
+        'colspan' => 3,
       ),
-      $metrics['sessions'] ? $metrics['sessions'] : '-',
       $metrics['uniques'] ? $metrics['uniques'] : '-',
       $metrics['visits'] ? $metrics['visits'] : '-',
       conversorSegundosHoras($metrics['avgtime']/$numItems),
@@ -1445,7 +1444,7 @@ function sipi_client_contents_list($client=null){
     $rows[] = array(
       array(
         'data' => $pager,
-        'colspan' => 5,
+        'colspan' => 7,
       ),
     );
   }
@@ -1517,7 +1516,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
       'data' => array(
         array('data' => l($row->title, $row->path, array('attributes'=>array('target'=>'_blank'))), 'class' => 'link'),
         ($row->created ? date('Y-m-d',$row->created) : 'N/D'),
-        ($row->sessions>0 ? $row->sessions : '-'),
+        ($row->uniquePageviews>0 ? $row->uniquePageviews : '-'),
         ($row->pageviews>0 ? $row->pageviews : '-'),
         ($row->avgTimeOnPage>0 ? conversorSegundosHoras($row->avgTimeOnPage) : '-'),
         ($row->bounceRate>0 ? round($row->bounceRate,2)  : '-'),
@@ -1525,6 +1524,20 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
       'class' => array($classPageBreak),
     );
     $numItems++;
+  }
+
+  if (count($rows)>1){
+    #Sumas
+    $rows[] = array(
+      array(
+        'data' => '<strong>Totales</strong>',
+        'colspan' => 2,
+      ),
+      $metrics['uniques'] ? $metrics['uniques'] : '-',
+      $metrics['visits'] ? $metrics['visits'] : '-',
+      conversorSegundosHoras($metrics['avgtime']/$numItems),
+      $metrics['bouncerate'] ? $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,2) : '-',
+    );
   }
 
   if (count($rows) && ($pager = theme('pager'))) {
