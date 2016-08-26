@@ -1526,6 +1526,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
     $numItems++;
   }
 
+  /**
   if (count($rows)>1){
     #Sumas
     $rows[] = array(
@@ -1539,6 +1540,7 @@ function sipi_client_contents_list_report($client=null,$idsite=null){
       $metrics['bouncerate'] ? $metrics['bouncerate']=round($metrics['bouncerate']/$numItems,2) : '-',
     );
   }
+   */
 
   if (count($rows) && ($pager = theme('pager'))) {
     $rows[] = array(
