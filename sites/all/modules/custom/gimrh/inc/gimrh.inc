@@ -65,6 +65,10 @@ function gimrh_list_form($form, &$form_state){
       'field' => 'g.phone',
     ),
     array(
+      'data' => 'Celular',
+      'field' => 'g.cellphone',
+    ),
+    array(
       'data' => 'Tipo de registro',
       'field' => 'g.type',
     ),
@@ -84,7 +88,7 @@ function gimrh_list_form($form, &$form_state){
   $query->join('locations','l','l.lid=g.city');
   $query->join('locations','l2','l2.lid=g.state');
   $query->limit(20);
-  $query->fields('g',array('name','plname','mlname','mail','gender','birthdate','phone','state','city','degree','name_degree','interest','attached','created','site'));
+  $query->fields('g',array('name','plname','mlname','mail','gender','birthdate','phone','cellphone','state','city','degree','name_degree','interest','attached','created','site'));
   $query->addField('l','name','city');
   $query->addField('l2','name','state');
 
@@ -130,6 +134,7 @@ function gimrh_list_form($form, &$form_state){
       $row->name,
       $row->mail,
       $row->phone,
+      $row->cellphone,
       $row->name_degree,
       l('CV',$fileUrl,array('absolute'=>true,'attributes'=> array('target'=>'_blank'))),
     );
