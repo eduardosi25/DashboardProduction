@@ -126,17 +126,19 @@ function gimrh_list_form($form, &$form_state){
   $result=$query->execute();
   $rows=array();
   foreach ($result as $row) {
+    /**
     $file=file_load($row->attached);
     if($file){
       $fileUrl=file_create_url($file->uri);
     }
+    */
     $rows[] = array(
       $row->name,
       $row->mail,
       $row->phone,
       $row->cellphone,
       $row->name_degree,
-      l('CV',$fileUrl,array('absolute'=>true,'attributes'=> array('target'=>'_blank'))),
+      //l('CV',$fileUrl,array('absolute'=>true,'attributes'=> array('target'=>'_blank'))),
     );
   }
   if (count($rows) && ($pager = theme('pager'))) {

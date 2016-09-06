@@ -121,9 +121,7 @@ function gimrh_becario_form_submit($form, &$form_state){
       'created'     => time(),
       'site'        => $_SERVER['HTTP_HOST'],
   );
-  #var_dump($form_state['values']['gimrh']['experience']);
-  #die();
-  $result=drupal_write_record('gimrh',$fields);
+  $result=drupal_write_record('gimrh_becario',$fields);
   if(!$result){
     drupal_set_message('Error al registrar los datos, inténtalo de nuevo por favor.', 'error');
   }else{
