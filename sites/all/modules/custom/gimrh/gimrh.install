@@ -88,6 +88,13 @@ function gimrh_schema(){
         'default' => '',
         'description' => 'Phone',
       ),
+      'cellphone' => array(
+        'type' => 'varchar',
+        'length' => 30,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'CellPhone',
+      ),
       'state' => array(
         'type' => 'int',
         'length' => 11,
@@ -219,11 +226,18 @@ function gimrh_schema(){
               'description' => 'Birthdate',
           ),
           'phone' => array(
+            'type' => 'varchar',
+            'length' => 30,
+            'not null' => TRUE,
+            'default' => '',
+            'description' => 'Phone',
+          ),
+          'cellphone' => array(
               'type' => 'varchar',
               'length' => 30,
               'not null' => TRUE,
               'default' => '',
-              'description' => 'Phone',
+              'description' => 'CellPhone',
           ),
           'state' => array(
               'type' => 'int',

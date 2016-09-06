@@ -160,7 +160,14 @@ function gimrh_trabajo_form($form, &$form_state){
     '#required' => TRUE,
   );
   $form['gimrh']['personal']['phone'] = array(
-    '#title'         => 'Teléfono de casa o celular',
+    '#title'         => 'Teléfono de casa',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 60,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['cellphone'] = array(
+    '#title'         => 'Teléfono celular',
     '#type'          => 'textfield',
     '#size'          => 30,
     '#maxlength'     => 60,
@@ -366,7 +373,14 @@ function gimrh_becario_form($form, &$form_state){
       '#required' => TRUE,
   );
   $form['gimrh']['personal']['phone'] = array(
-      '#title'         => 'Teléfono de casa o celular',
+    '#title'         => 'Teléfono de casa',
+    '#type'          => 'textfield',
+    '#size'          => 30,
+    '#maxlength'     => 60,
+    '#required'      => TRUE,
+  );
+  $form['gimrh']['personal']['cellphone'] = array(
+      '#title'         => 'Teléfono celular',
       '#type'          => 'textfield',
       '#size'          => 30,
       '#maxlength'     => 60,

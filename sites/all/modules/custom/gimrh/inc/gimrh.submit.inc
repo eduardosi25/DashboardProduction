@@ -69,6 +69,7 @@ function gimrh_trabajo_form_submit($form, &$form_state){
       'gender'      => check_plain($personal['gender']),
       'birthdate'   => check_plain($personal['birthdate']),
       'phone'       => check_plain($personal['phone']),
+      'cellphone'   => check_plain($personal['cellphone']),
       'state'       => check_plain($personal['state']),
       'city'        => check_plain($personal['city']['cityname']),
       'degree'      => check_plain($academics['degree']),
@@ -107,6 +108,7 @@ function gimrh_becario_form_submit($form, &$form_state){
       'gender'      => check_plain($personal['gender']),
       'birthdate'   => check_plain($personal['birthdate']),
       'phone'       => check_plain($personal['phone']),
+      'cellphone'   => check_plain($personal['cellphone']),
       'state'       => check_plain($personal['state']),
       'city'        => check_plain($personal['city']['cityname']),
       'degree'      => check_plain($academics['degree']),
@@ -119,9 +121,7 @@ function gimrh_becario_form_submit($form, &$form_state){
       'created'     => time(),
       'site'        => $_SERVER['HTTP_HOST'],
   );
-  #var_dump($form_state['values']['gimrh']['experience']);
-  #die();
-  $result=drupal_write_record('gimrh',$fields);
+  $result=drupal_write_record('gimrh_becario',$fields);
   if(!$result){
     drupal_set_message('Error al registrar los datos, inténtalo de nuevo por favor.', 'error');
   }else{
