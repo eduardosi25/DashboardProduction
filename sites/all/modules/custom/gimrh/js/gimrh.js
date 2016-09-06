@@ -28,6 +28,7 @@ jQuery(document).ready(function(){
 
   jQuery('#edit-gimrh-personal-birthdate').mask("99/99/9999",{placeholder:"dd/mm/aaaa"});
   jQuery('#edit-gimrh-personal-phone').mask("99-99999999",{placeholder:"xx-xxxxxxxx"});
+  jQuery('#edit-gimrh-personal-cellphone').mask("999-99-99999999",{placeholder:"xxx-xx-xxxxxxxx"});
   jQuery('#edit-gimrh-experience-0-format').remove();
   if(top!=window){
     var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";

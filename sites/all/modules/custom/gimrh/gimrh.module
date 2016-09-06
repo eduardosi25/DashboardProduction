@@ -127,6 +127,9 @@ function gimrh_work_with_us(){
 }
 
 function gimrh_data_interest($interest){
+  if(!isset($interest) || empty($interest))
+    return null;
+
   $items=array();
   foreach($interest as $item){
     if($item!=='seleccionar'){
