@@ -232,10 +232,12 @@ function gimrh_trabajo_form($form, &$form_state){
       '#format'        => 'lite',
       '#description'   => 'Tienes un límite de 2000 letras.'
   );
-  $form['gimrh']['interest']=array(
-      '#type'  => 'fieldset',
-      '#title' => 'Sector',
-      '#tree'  => TRUE,
+  $form['gimrh']['sector'] = array(
+    '#title'         => 'Sector',
+    '#type'          => 'select',
+    '#options'       => gimrh_getSector(1),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
   );
   $form['gimrh']['interest'] = array(
       '#title'         => 'Área de interés',
@@ -271,6 +273,9 @@ function gimrh_trabajo_form($form, &$form_state){
 }
 function gimrh_ajax_locations_city($form, $form_state) {
   return $form['gimrh']['personal']['city'];
+}
+function gimrh_ajax_sector_area($form, $form_state){
+  return $form['gimrh']['area'];
 }
 
 /**
@@ -472,16 +477,32 @@ function gimrh_becario_form($form, &$form_state){
       '#size'          => 10,
       '#maxlength'     => 5,
   );
-  $form['gimrh']['interest']=array(
-      '#type'  => 'fieldset',
-      '#title' => 'Sector',
-      '#tree'  => TRUE,
+  $form['gimrh']['sector'] = array(
+    '#title'         => 'Sector',
+    '#type'          => 'select',
+    '#options'       => gimrh_getSector(1),
+    '#ajax'          => array(
+      'event'    => 'change',
+      'callback' => 'gimrh_ajax_sector_area',
+      'wrapper'  => 'sector-area',
+    ),
+    '#default_value' => NULL,
+    '#required'      => TRUE,
   );
-  $form['gimrh']['interest'] = array(
+  // Wrapper for area dropdown list
+  $form['gimrh']['area'] = array(
+    '#prefix' => '<div id="sector-area">',
+    '#suffix' => '</div>',
+  );
+  $options=array();
+  if (isset($form_state['values']['gimrh']['sector']) && intval($form_state['values']['gimrh']['sector'])>1) {
+    $options = gimrh_getInterest($form_state['values']['gimrh']['sector']);
+  }
+  $form['gimrh']['area']['interest'] = array(
     '#title'         => 'Área de interés',
     '#description'   => 'Sólo puedes elegir una opción.',
     '#type'          => 'select',
-    '#options'       => gimrh_getInterest(1),
+    '#options'       => $options,
     '#default_value' => NULL,
     '#required'      => TRUE,
   );

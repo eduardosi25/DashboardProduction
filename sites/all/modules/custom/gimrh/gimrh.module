@@ -126,6 +126,19 @@ function gimrh_work_with_us(){
   return 'Form front';
 }
 
+function gimrh_data_sector($sector){
+  if(!isset($sector) || empty($sector))
+    return null;
+
+  $items=array();
+  foreach($sector as $item){
+    if($item!=='seleccionar'){
+      $items[]=$item;
+    }
+  }
+  return implode(',',$items);
+}
+
 function gimrh_data_interest($interest){
   if(!isset($interest) || empty($interest))
     return null;
@@ -175,10 +188,26 @@ function gimrh_getDegree($name=null){
   }
   return $items;
 }
+function gimrh_getSector($name=null){
+  $items=array(
+    'seleccionar' => '- Seleccionar -',
+    'admin'       => 'Administración',
+    'internet'    => 'Internet',
+    'prtv'        => 'Periódico, Radio y TV',
+  );
+  if($name==1){
+    array_shift($items);
+    return $items;
+  }else if(isset($name) && !empty($name)){
+    return $items[$name];
+  }
+  return $items;
+}
+
 function gimrh_getInterest($name=null){
   $items=array(
-    'seleccionar'    => '- Seleccionar -',
-    'Administración'    => array(
+    'seleccionar'    => '- Seleccionar Algo -',
+    'admin'    => array(
       'corp_callcenter' => 'Call Center',
       'corp_desarrollo' => 'Desarrollo Organizacional',
       'corp_finanzas'   => 'Finanzas',
@@ -186,13 +215,13 @@ function gimrh_getInterest($name=null){
       'corp_servicios'  => 'Servicios Generales',
       'corp_tecnologia' => 'Tecnología',
     ),
-    'Internet'           => array(
+    'internet'           => array(
       'web_informacion'  => 'Información y Contenidos',
       'web_produccion'   => 'Producción',
       'web_video'        => 'Red de Video',
       'web_programacion' => 'Programación Web',
     ),
-    'Periódico, Radio y TV'      => array(
+    'prtv'      => array(
       'imp_informacion' => 'Información y Contenidos',
       'imp_produccion'  => 'Producción',
     ),
