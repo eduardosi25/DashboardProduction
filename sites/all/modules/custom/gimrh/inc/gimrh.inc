@@ -38,9 +38,6 @@ function gimrh_list_form($form, &$form_state){
   $gimrh_filter=isset($_SESSION['gimrh_filters']) ? $_SESSION['gimrh_filters'] : array();
 
   if(isset($form_state['filters'])){
-    #var_dump($form_state['filters']);
-    #die();
-
     $gimrh_filter=array(
       'type'     => $form_state['filters']['type'],
       'sector'   => $form_state['filters']['sector'],
