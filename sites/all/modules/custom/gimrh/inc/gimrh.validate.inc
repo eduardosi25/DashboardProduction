@@ -27,6 +27,7 @@ function gimrh_trabajo_form_validate($form, &$form_state){
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
   $experience=$form_state['values']['gimrh']['experience']['0']['value'];
+  $sector=$form_state['values']['gimrh']['sector'];
   $interest=$form_state['values']['gimrh']['interest'];
   //$cv=$form_state['values']['gimrh']['cv'];
   if(preg_match('/[0-9]+/',$personal['name'])){
@@ -48,6 +49,7 @@ function gimrh_trabajo_form_validate($form, &$form_state){
 function gimrh_becario_form_validate($form, &$form_state){
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
+  $sector=$form_state['values']['gimrh']['sector'];
   $interest=$form_state['values']['gimrh']['interest'];
   if(preg_match('/[0-9]+/',$personal['name'])){
     form_set_error($form_state['values']['gimrh']['personal']['name'],'Tu nombre no puede contener números.');
