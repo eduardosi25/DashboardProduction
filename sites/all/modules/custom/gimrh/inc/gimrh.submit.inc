@@ -56,6 +56,7 @@ function gimrh_trabajo_form_submit($form, &$form_state){
   $academics=$form_state['values']['gimrh']['academics'];
   $experience=$form_state['values']['gimrh']['experience']['0']['value'];
   $experience_format=$form_state['values']['gimrh']['experience']['0']['format'];
+  $sector=$form_state['values']['gimrh']['sector'];
   $interest=$form_state['values']['gimrh']['interest'];
   //$cv=$form_state['values']['gimrh']['cv'];
   $privacy=1;
@@ -76,6 +77,7 @@ function gimrh_trabajo_form_submit($form, &$form_state){
       'name_degree' => check_plain($academics['degreename']),
       'experience'  => check_markup($experience),
       'experience_format'  => check_plain($experience_format),
+      'sector'      => gimrh_data_sector($sector),
       'interest'    => gimrh_data_interest($interest),
       //'attached'    => check_plain($cv['file']),
       'privacy'     => check_plain($privacy),
@@ -96,6 +98,7 @@ function gimrh_trabajo_form_submit($form, &$form_state){
 function gimrh_becario_form_submit($form, &$form_state){
   $personal=$form_state['values']['gimrh']['personal'];
   $academics=$form_state['values']['gimrh']['academics'];
+  $sector=$form_state['values']['gimrh']['sector'];
   $interest=$form_state['values']['gimrh']['interest'];
   $privacy=1;
 
@@ -116,6 +119,7 @@ function gimrh_becario_form_submit($form, &$form_state){
       'institution' => check_plain($academics['institution']),
       'languages'   => check_plain($academics['languages']),
       'software'    => check_plain($academics['software']),
+      'sector'      => gimrh_data_sector($sector),
       'interest'    => gimrh_data_interest($interest),
       'privacy'     => check_plain($privacy),
       'created'     => time(),

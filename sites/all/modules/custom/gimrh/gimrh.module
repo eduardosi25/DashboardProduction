@@ -71,8 +71,18 @@ function gimrh_menu() {
 
   #ADMINISTER SIPI SETTINGS - WEBMASTER ONLY
   $items['admin/gimrh/registros'] = array(
-    'title'            => t('Registros GIM RH'),
+    'title'            => t('Bolsa de Trabajo - GIM RH'),
     'description'      => t('Registro de interesados en Bolsa de Trabajo'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('gimrh_list_form'),
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/gimrh.inc',
+  );
+  $items['admin/gimrh/registros/internship'] = array(
+    'title'            => t('Becarios GIM RH'),
+    'description'      => t('Registro de interesados en Programa de Becarios'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('gimrh_list_form'),
     'access_callback'  => 'gimrh_access',
@@ -126,17 +136,40 @@ function gimrh_work_with_us(){
   return 'Form front';
 }
 
+function gimrh_data_sector($sector){
+  if(!isset($sector) || empty($sector))
+    return null;
+
+  $items=array();
+  if(is_array($sector)){
+    foreach($sector as $item){
+      if($item!=='seleccionar'){
+        $items[]=$item;
+      }
+    }
+    return implode(',',$items);
+  }else if(is_string($sector)){
+    return check_plain($sector);
+  }
+  return null;
+}
+
 function gimrh_data_interest($interest){
   if(!isset($interest) || empty($interest))
     return null;
 
   $items=array();
-  foreach($interest as $item){
-    if($item!=='seleccionar'){
-      $items[]=$item;
+  if(is_array($interest)){
+    foreach($interest as $item){
+      if($item!=='seleccionar'){
+        $items[]=$item;
+      }
     }
+    return implode(',',$items);
+  }else if(is_string($interest)){
+    return check_plain($interest);
   }
-  return implode(',',$items);
+  return null;
 }
 
 function gimrh_getLocation($lid=1,$offset=1){
@@ -175,10 +208,26 @@ function gimrh_getDegree($name=null){
   }
   return $items;
 }
+function gimrh_getSector($name=null){
+  $items=array(
+    'seleccionar' => '- Seleccionar -',
+    'admin'       => 'Administración',
+    'internet'    => 'Internet',
+    'prtv'        => 'Periódico, Radio y TV',
+  );
+  if($name==1){
+    //array_shift($items);
+    return $items;
+  }else if(isset($name) && !empty($name)){
+    return $items[$name];
+  }
+  return $items;
+}
+
 function gimrh_getInterest($name=null){
   $items=array(
-    'seleccionar'    => '- Seleccionar -',
-    'Administración'    => array(
+    'seleccionar'    => '- Seleccionar Algo -',
+    'admin'    => array(
       'corp_callcenter' => 'Call Center',
       'corp_desarrollo' => 'Desarrollo Organizacional',
       'corp_finanzas'   => 'Finanzas',
@@ -186,20 +235,24 @@ function gimrh_getInterest($name=null){
       'corp_servicios'  => 'Servicios Generales',
       'corp_tecnologia' => 'Tecnología',
     ),
-    'Internet'           => array(
+    'internet'           => array(
       'web_informacion'  => 'Información y Contenidos',
       'web_produccion'   => 'Producción',
       'web_video'        => 'Red de Video',
       'web_programacion' => 'Programación Web',
     ),
-    'Periódico, Radio y TV'      => array(
+    'prtv'      => array(
       'imp_informacion' => 'Información y Contenidos',
       'imp_produccion'  => 'Producción',
     ),
   );
   if($name==1){
-    array_shift($items);
+    //array_shift($items);
     return $items;
+  }else if($name==2){
+    return array(
+      'seleccionar'    => $items['seleccionar'],
+    );
   }else if(isset($name) && !empty($name)){
     return $items[$name];
   }
