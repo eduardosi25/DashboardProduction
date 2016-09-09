@@ -71,8 +71,18 @@ function gimrh_menu() {
 
   #ADMINISTER SIPI SETTINGS - WEBMASTER ONLY
   $items['admin/gimrh/registros'] = array(
-    'title'            => t('Registros GIM RH'),
+    'title'            => t('Bolsa de Trabajo - GIM RH'),
     'description'      => t('Registro de interesados en Bolsa de Trabajo'),
+    'page callback'    => 'drupal_get_form',
+    'page arguments'   => array('gimrh_list_form'),
+    'access_callback'  => 'gimrh_access',
+    'access arguments' => array('administer gimrh settings'),
+    'type'             => MENU_NORMAL_ITEM,
+    'file'             => 'inc/gimrh.inc',
+  );
+  $items['admin/gimrh/registros/internship'] = array(
+    'title'            => t('Becarios GIM RH'),
+    'description'      => t('Registro de interesados en Programa de Becarios'),
     'page callback'    => 'drupal_get_form',
     'page arguments'   => array('gimrh_list_form'),
     'access_callback'  => 'gimrh_access',
@@ -131,12 +141,17 @@ function gimrh_data_sector($sector){
     return null;
 
   $items=array();
-  foreach($sector as $item){
-    if($item!=='seleccionar'){
-      $items[]=$item;
+  if(is_array($sector)){
+    foreach($sector as $item){
+      if($item!=='seleccionar'){
+        $items[]=$item;
+      }
     }
+    return implode(',',$items);
+  }else if(is_string($sector)){
+    return check_plain($sector);
   }
-  return implode(',',$items);
+  return null;
 }
 
 function gimrh_data_interest($interest){
@@ -144,12 +159,17 @@ function gimrh_data_interest($interest){
     return null;
 
   $items=array();
-  foreach($interest as $item){
-    if($item!=='seleccionar'){
-      $items[]=$item;
+  if(is_array($interest)){
+    foreach($interest as $item){
+      if($item!=='seleccionar'){
+        $items[]=$item;
+      }
     }
+    return implode(',',$items);
+  }else if(is_string($interest)){
+    return check_plain($interest);
   }
-  return implode(',',$items);
+  return null;
 }
 
 function gimrh_getLocation($lid=1,$offset=1){
@@ -196,7 +216,7 @@ function gimrh_getSector($name=null){
     'prtv'        => 'Periódico, Radio y TV',
   );
   if($name==1){
-    array_shift($items);
+    //array_shift($items);
     return $items;
   }else if(isset($name) && !empty($name)){
     return $items[$name];
@@ -227,8 +247,12 @@ function gimrh_getInterest($name=null){
     ),
   );
   if($name==1){
-    array_shift($items);
+    //array_shift($items);
     return $items;
+  }else if($name==2){
+    return array(
+      'seleccionar'    => $items['seleccionar'],
+    );
   }else if(isset($name) && !empty($name)){
     return $items[$name];
   }

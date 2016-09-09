@@ -287,6 +287,8 @@ function gimrh_ajax_locations_city($form, $form_state) {
   return $form['gimrh']['personal']['city'];
 }
 function gimrh_ajax_sector_area($form, $form_state){
+  var_dump($form_state);
+  die(__FUNCTION__);
   return $form['gimrh']['interest'];
 }
 
