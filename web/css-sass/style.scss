@@ -100,7 +100,7 @@ a{
 }
 
 .yellow{
- color: #fec524;   
+ color: #f89a4a;   
 }
 
 canvas{
@@ -126,13 +126,17 @@ canvas{
 	position:relative;
         z-index:2;
         .title_section{
-            @extend .fugaz_oneregular;
-            font-size: 60px;
+            @extend .hindsemibold;
+            font-size: 45px;
             color: #fff;
-            padding: 35px 74px 18px;
-            border-bottom: 1px solid #fdc625;
+            padding: 35px 58px 18px;
             text-align: center;
-            line-height: 1;
+            line-height: 1.3;
+            text-transform:uppercase;
+            span{
+                background: #e0213f;
+                padding: 3px 10px;
+            }
         }
 }
 
@@ -186,7 +190,7 @@ canvas{
                  display:inline-block;
                  vertical-align:top;
                  &.linea{
-                  border-right:2px solid #999999;   
+                  border-right:2px solid #1d8bcb;   
                  }
                  a{
                      @extend .hindlight;
@@ -207,7 +211,7 @@ canvas{
                  }
                  &.contato{
                     a{
-                        color:#ec0788;
+                        color:#e60028;
                     }   
                  }
                  &.linkedin{
@@ -244,7 +248,7 @@ canvas{
 #publico{ background-attachment: fixed;
           background-repeat: no-repeat;
           background-position: left top;
-	background-color:#890e4f;
+	background-color:#063a56;
         height: 803px;
 	width: 100%;
         position: relative;
@@ -323,7 +327,7 @@ canvas{
         }
 #marcas{
         background-attachment: fixed;
-	background:#1682c0;
+	background:#e0213f;
         height: auto;
         padding: 20px 0 60px;
 	width: 100%;
@@ -335,6 +339,9 @@ canvas{
             display:block;
             .title_section{
                     padding: 35px 114px 18px;
+                    span{
+                        background: #063a56;
+                    }
             }
             
         }
@@ -367,7 +374,7 @@ canvas{
                                     display: block;
                                     width: 200px;
                                     height: 2px;
-                                    background: #17d9b4;
+                                    background: #f89a4a;
                                     margin: 15px auto 30px;
                                     
                                 }
@@ -408,7 +415,7 @@ canvas{
                                     display: block;
                                     width: 200px;
                                     height: 2px;
-                                    background: #17d9b4;
+                                    background: #f89a4a;
                                     margin: 15px auto 30px;
                                     
                                 }
@@ -558,7 +565,7 @@ canvas{
         background-repeat: no-repeat;
         background-position: left top;
     background-attachment: fixed;
-	background-color:#27ae61;
+	background-color:#063a56;
         height: 830px;
 	width: 100%;
         position: relative;
@@ -616,11 +623,15 @@ canvas{
                         font-size: 20px;
                         color:#fff;
                         .yellow{
-                            width: 8px;
-                            height: 3px;
-                            background: #efc524;
+                            width: 5px;
+                            height: 5px;
+                            background: #f89a4a;
                             display: inline-block;
                             vertical-align: middle;
+                            -webkit-border-radius: 50%;
+                            -moz-border-radius: 50%;
+                            -ms-border-radius: 50%;
+                            border-radius: 50%;
                         }
                     }
                 }   
@@ -634,7 +645,7 @@ canvas{
         background-repeat: no-repeat;
         background-position: left top;
     background-attachment: fixed;
-	background-color:#e96340;
+	background-color:#1d5b6f;
         min-height: 585px;
         height: auto;
         padding: 20px 0 60px;
@@ -714,19 +725,22 @@ canvas{
         background-repeat: no-repeat;
         background-position: left top;
     background-attachment: fixed;
-	//background-color:#dc1b48;
+	background-color:#e0213f;
         max-height: 1077px;
         height: auto;
         position:relative;
         overflow:hidden;
         .wrapper{
-            max-width: 585px;
+            max-width: 640px;
             margin: 0 auto;
             display:block;
              .title_section {
 
-                padding: 35px 50px 18px;
-                line-height: 1.1;;
+                padding: 35px 0px 18px;
+                line-height: 1.1;
+                span{
+                    background: #063a56;
+                }
             }
            
         }
@@ -756,21 +770,34 @@ canvas{
             .btn-contacto{
                 text-align:center;
                 div{
-                    @extend .hindlight;
+                    @extend .hindbold;
                     width: 212px;
                     display: inline-block;
                     vertical-align: top;
                     font-size: 30px;
-                    color:#fff;
+                    color:#063a56;
                     text-transform: uppercase;
                     padding: 15px 0;
                     border-bottom: 0;
                     margin: 15px 0 30px;
+                    vertical-align:middle;
                     &.active{
-                        border-bottom: 2px solid #fff;
+                        
                     }
                     &:first-child{
                         margin-right: 0%;
+                    }
+                    .circle{
+                        width: 8px;
+                        height:8px;
+                        background: #063a56;
+                        vertical-align: middle;
+                        margin-right: 5px;
+                        display:inline-block;
+                        -webkit-border-radius: 50%;
+                        -moz-border-radius: 50%;
+                        -ms-border-radius: 50%;
+                        border-radius: 50%;
                     }
                 }
             }
@@ -785,10 +812,7 @@ canvas{
                      li{
                          margin:0 0 20px;
                          input,textarea{
-                             -webkit-border-radius: 5px 5px;
-                             -moz-border-radius: 5px 5px;
-                             -ms-border-radius: 5px 5px;
-                             border-radius: 5px 5px;
+                             
                              border:0;
                              -webkit-box-shadow: 0px 0px 5px #000 inset;
                              -moz-box-shadow: 0px 0px 5px #000 inset;
@@ -864,10 +888,6 @@ canvas{
                              
                              button[type="submit"]{
                                  @extend .hind_regularregular;
-                                 -webkit-border-radius: 5px 5px;
-                                 -moz-border-radius: 5px 5px;
-                                 -ms-border-radius: 5px 5px;
-                                 border-radius: 5px 5px;
                                  width: 400px;
                                  display: block;
                                  margin:30px auto 0 ;
@@ -944,6 +964,7 @@ canvas{
     padding: 20px 0 60px;
     position:relative;
     overflow: hidden;
+    background:#063a56;
     .wrapper{
         max-width: 1000px;
         min-height: 200px;
@@ -952,7 +973,7 @@ canvas{
             text-align: center;
             margin:60px 0 0;
             .border{
-                background: #17d9b4;
+                background: #f89a4a;
                 max-width: 290px;
                 height: 2px;
                 margin: 18px auto;
@@ -1023,10 +1044,6 @@ canvas{
                         border:2px solid #fff;
                         padding:7px 0;
                         text-align:center;
-                        -webkit-border-radius:5px 5px;
-                        -moz-border-radius:5px 5px;
-                        -ms-border-radius:5px 5px;
-                        border-radius:5px 5px;
                         margin:0 24px 0 0;
                         &:last-child{
                             margin: 0;
@@ -1194,13 +1211,14 @@ canvas{
 *******************************/
 #exito{
     height: 615px;
+    background:#073856;
     .wrapper{
         .content-exito{
             .img-logo{
                 display: block;
                 width:880px;
                 padding: 53px 0 25px;
-                border-bottom:2px solid #fec524;
+                /*border-bottom:2px solid #fec524;*/
                 text-align: center;
                 margin:  0 auto 30px;
             }
@@ -1259,6 +1277,7 @@ canvas{
     min-height:auto;
     height:auto;
     padding:40px 0 60px ;
+    background:#1A5B6D;
     .wrapper{
         width:870px;
         .description{
@@ -1330,6 +1349,7 @@ canvas{
 #marketing{
     height: 630px;
     overflow:hidden;
+    background:#063a53;
     .wrapper{
         max-width:890px;
         opacity: 0;
@@ -1356,11 +1376,15 @@ canvas{
                         &:before{
                             display: inline-block;
                             content:"";
-                            width: 8px;
-                            height: 4px;
-                            background: #fec524;
+                            width: 5px;
+                            height: 5px;
+                            background: #f89a4a;
                             vertical-align: middle;
-                            margin: 0 2px 0 0;
+                            margin: 0 5px 0 0;
+                            -webkit-border-radius: 50%;
+                            -moz-border-radius: 50%;
+                            -ms-border-radius: 50%;
+                            border-radius: 50%;
                         }
                     }
                     
@@ -1416,7 +1440,6 @@ canvas{
                         text-transform: uppercase;
                         padding: 0 0 2px 90px;
                         color:#fff;
-                        border-bottom:2px solid #fec524;
                         margin-bottom: 16px;
                         
                         span{
@@ -1536,15 +1559,21 @@ canvas{
 #codiga{
     /*height: 2026px;*/
     height: 2290px;
+    background:#e0213f;
     .wrapper{
         max-width: 911px;
         .title-section{
-         margin: 64px 0 0 0;   
+            margin: 64px 0 0 0;
+            span {
+                background: #063a56;
+                padding: 3px 10px;
+                display:inline-block;
+            }
         }
         .content-codiga{
-            
+
         }
-        
+
     }
 }
 #ads{
@@ -1655,15 +1684,18 @@ canvas{
 }
 #sponsored{
     height: 799px;
+    background:#e0213f;
     .wrapper{
         max-width:950px;
         .content-sponsored{
             h1{
-                @extend .fugaz_oneregular;
-                font-size: 60px;
                 color:#fff;
                 text-align: center;
                 margin: 83px 0 0;
+                span {
+                    background: #063a56;
+                    padding: 3px 10px;
+                }
             }
             .item{
                 margin:60px 0 0;
@@ -1674,7 +1706,6 @@ canvas{
                     
                     .logo-sponsored{
                         text-align:center;
-                        border-bottom:2px solid #fce524;
                         padding:52px 0 20px;
                         img{
                             max-width: 260px;
@@ -1699,12 +1730,17 @@ canvas{
 }
 #happenings{
     height: 745px;
+    background: #063a56;
     .wrapper{
         width:916px;
         .content-happenings{
             .title-section{
                 text-align: center;
                 margin: 80px 0 118px;
+                span{
+                    background: #e0213f;
+                    padding: 3px 10px;
+                }
             }
             .item{
                 .description{
@@ -1740,8 +1776,8 @@ canvas{
 
 
 .title-section{
-    @extend .fugaz_oneregular;
-    font-size:60px;
+    @extend .hindsemibold;
+    font-size:40px;
     color:#fff;
     text-align:center;
     margin: 60px 0;
@@ -2304,16 +2340,16 @@ body #bottom-imx-fixed-wrapper.bottom-static{
                 }
             }
             &.link-red-invent{
-                background: #1482C1;
+                background: #e0213f;
             }
             &.link-servicios{
-                background: #27AE61;
+                background: #1d5b6f;
             }
             &.link-exito{
-                background: #E9603E;
+                background: #ec474d;
             }
             &.link-contacto{
-                background: #DC1B48;
+                background: #063a56;
             }
             .linea{
                     height: 2px;
@@ -2478,6 +2514,9 @@ iframe, object, video{
    height: 100%;
 }
 
+}
+#bottom-imx-fixed .bottom-links{
+    display:none;
 }
 
 

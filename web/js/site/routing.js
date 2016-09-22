@@ -3,7 +3,7 @@ $(function() {
         routes: {
             "": "home",
             "/": "home",
-            "la-red-invent": "home",
+            "la-red-imagen": "home",
             "caso-de-exito": "home",
             "contacto": "contacto",
             "casos-de-exito": "home",

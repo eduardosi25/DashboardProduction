@@ -213,13 +213,13 @@ $(function() {
         Model: modelsHome,
         initialize: function() {
             inventMx.metas.configure = {
-                title: "Home | InventMx",
-                canonical: "http://www.inventmx.com",
-                description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
-                og_site_name: "InventMX",
-                og_title: "InventMX",
-                og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
-                og_url: "http://www.inventmx.com",
+                title: "Home | ImagenDigital",
+                canonical: "http://www.imagendigital.com",
+                description: "Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_site_name: "Imagen Digital",
+                og_title: "Imagen Digital",
+                og_description: "Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+                og_url: "http://www.imagendigital.com",
                 og_type: "website",
                 og_image: "/web/img/favicons/mstile-150x150.png",
             };
@@ -504,7 +504,7 @@ $(function() {
                                 $('#showcase').css({'opacity':'1','top':'0'});
                                 $('#demo-pie-1').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -519,7 +519,7 @@ $(function() {
                                     });
                                     $('#demo-pie-2').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -534,7 +534,7 @@ $(function() {
                                     });
                                     $('#demo-pie-3').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -549,7 +549,7 @@ $(function() {
                                     });
                                     $('#demo-pie-4').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -564,7 +564,7 @@ $(function() {
                                     });
                                     $('#demo-pie-5').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -579,7 +579,7 @@ $(function() {
                                     });
                                     $('#demo-pie-6').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -590,7 +590,7 @@ $(function() {
                                     });
                                     $('#demo-pie-7').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#a03d73',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -601,7 +601,7 @@ $(function() {
                                     });
                                     $('#demo-pie-8').pieChart({
                                         barColor: '#17d9b4',
-                                        trackColor: '#449cce',
+                                        trackColor: '#386177',
                                         lineCap: 'square',
                                         lineWidth: 24,
                                         size: 158,
@@ -804,7 +804,7 @@ $(function() {
 
                             $('#demo-pie-12').pieChart({
                                 barColor: '#17d9b4',
-                                trackColor: '#a03d73',
+                                trackColor: '#386177',
                                 lineCap: 'square',
                                 lineWidth: 24,
                                 size: 158,
@@ -819,7 +819,7 @@ $(function() {
                             });
                             $('#demo-pie-13').pieChart({
                                 barColor: '#17d9b4',
-                                trackColor: '#a03d73',
+                                trackColor: '#386177',
                                 lineCap: 'square',
                                 lineWidth: 24,
                                 size: 158,

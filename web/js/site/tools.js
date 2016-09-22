@@ -13,8 +13,8 @@
     inventMx.render = {},    
     inventMx.metas = {},
     inventMx.config = {
-        website: 'http://www.inventmx.com/',
-        websiteUrl: 'http://www.inventmx.com/',
+        website: 'http://www.imagendigital.com/',
+        websiteUrl: 'http://www.imagendigital.com/',
         webAppBaseUrl: 'http://invent.jediteam.mx/',
         data_source: {
             baseUrl: "http://api.inventmx.com/v1/inventmx",
@@ -45,13 +45,13 @@
     },
     inventMx.metas = {},
     inventMx.metas.configure = {
-        title: "Home | InventMx",
-        canonical: "http://www.inventmx.com",
-        description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
-        og_site_name: "InventMX",
-        og_title: "InventMX",
-        og_description: "Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
-        og_url: "http://www.inventmx.com",
+        title: "Home | Imagen Digital",
+        canonical: "http://www.imagendigital.com",
+        description: "Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+        og_site_name: "Imagen Digital",
+        og_title: "Imagen Digital",
+        og_description: "Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet",
+        og_url: "http://www.imagendigital.com",
         og_type: "website",
         og_image: "/web/img/favicons/mstile-150x150.png",
     };
@@ -73,11 +73,11 @@
             dataSite = resp.data[0];
             if(dataSite){
                 inventMx.metas.configure = {
-                    title: dataSite.title +" | InventMx",
+                    title: dataSite.title +" | ImagenDigital",
                     canonical: url,
                     description: dataSite.summary,
-                    og_site_name: "InventMX",
-                    og_title: "InventMX",
+                    og_site_name: "ImagenDigital",
+                    og_title: "ImagenDigital",
                     og_description: dataSite.summary,
                     og_url: url,
                     og_type: "website",

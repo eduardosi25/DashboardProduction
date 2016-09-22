@@ -8,13 +8,13 @@
         <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/favicon.ico" />
 
         <meta name="charset" content="utf-8" />
-        <link rel="canonical" href="http://www.inventmx.com" />
+        <link rel="canonical" href="http://www.imagendigital.com" />
         <meta name="google-site-verification" content="txno7B10gbvODD8iGlD7ZxpxtNOSiCUCM3cNbHFEjTU" />
-        <meta name="description" content="Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet" />
-        <meta property="og:site_name" content="InventMX" />
-        <meta property="og:title" content="InventMX" />
-        <meta property="og:description" content="Inventmx es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet"/>
-        <meta property="og:url" content="http://www.inventmx.com" />
+        <meta name="description" content="Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet" />
+        <meta property="og:site_name" content="ImagenDigital" />
+        <meta property="og:title" content="ImagenDigital" />
+        <meta property="og:description" content="Imagen Digital es la comunidad de sitios mas grande de mexico, acercamos personas con perfiles similares mediante el uso natural del Internet"/>
+        <meta property="og:url" content="http://www.imagendigital.com" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/web/img/favicons/mstile-150x150.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
@@ -56,11 +56,11 @@
         <header id="header">
             <div class="wrapper">
                 <div class="logo">
-                    <a href="#"><img src="/web/img/global/invent.png" title="Invent" alt="invent" /></a>
+                    <a href="#"><img src="/web/img/global/imagen_digital_logo.png" title="Invent" alt="invent" /></a>
                 </div>
                 <div class="menu">
                     <ul>
-                        <li class="linea"><a href="/#la-red-invent">La red invent</a></li>
+                        <li class="linea"><a href="/#la-red-imagen">La red imagen</a></li>
                         <li class="linea padding-tablet"><a href="/#content-marketing">Content</a></li>
                         <li class="linea"><a href="/#media-happenings">Media Happenings</a></li>
                         <li class="linea"><a href="/#network-ads">Network Ads</a></li>
@@ -87,7 +87,7 @@
             <div id="page-main-invent-bridgestone"></div>
             <div id="page-main-invent-oppo"></div>
             <div id="page-main-invent-oikos"></div>
-            <div id="page-main-invent-redInvent"></div>
+            <div id="page-main-invent-redImagen"></div>
             <div id="page-main-invent-servicios"></div>
             <div id="page-main-invent-perfilSitio"></div>
             <div id="page-main-invent-perfilTalento"></div>
@@ -103,7 +103,7 @@
 
         <div class="mobile links">
             <ul class="menu-mobile">
-                <li class="link-red-invent"><a href="/#la-red-invent">La red invent</a><div class="linea"></div></li>
+                <li class="link-red-invent"><a href="/#la-red-imagen">La red Imagen</a><div class="linea"></div></li>
                 <li class="link-servicios"><a href="/#content-marketing">Servicios</a><div class="linea"></div></li>
                 <li class="link-exito"><a href="/#casos-de-exito">Casos de éxito</a><div class="linea"></div></li>
                 <li class="link-contacto"><a href="/#contacto">contacto</a><div class="linea"></div></li>
@@ -112,7 +112,7 @@
         <script type="text/javascript" src="/web/js/libs/inventmx_libs.js"></script>   
         <footer class="footer" id="footer" data-slide="7" data-stellar-background-ratio="0.5">
             <div>
-                <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/imx_bottom_v5.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
+                <script src="http://776561ea720ed80d100a-d15d7e8f8f7f4ad15567639aa98ea820.r76.cf2.rackcdn.com/bottom_imagen_digital/imx_bottom_imagendigital_responsive.js" type="text/javascript" id="imx_bottom_js" class="imx_bottom_random_contents"></script>
                 <div id="bottom-links" style="display:none;">
                     <span id="politicasprivacidad">#aviso-de-privacidad</span>
                     <span id="condiciones-uso">#terminos-y-condiciones-de-uso</span>
