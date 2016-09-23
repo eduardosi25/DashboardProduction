@@ -50,7 +50,7 @@
     </head>
     <body class="relative">
         <div id="wrapper-loading-layout" class="none">
-            <img class="gif" src="/web/img/global/invent_loader.gif">
+            <img class="gif" src="/web/img/global/ring-alt60.gif">
         </div>
 
         <header id="header">
