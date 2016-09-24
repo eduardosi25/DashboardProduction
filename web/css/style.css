@@ -169,10 +169,11 @@ canvas {
       vertical-align: middle;
       width: 205px;
       height: auto;
-      margin: 15px 10% 0 0; }
+      margin: 21px 10% 0 0; }
       #header .wrapper .logo img {
-        width: 100%;
-        height: auto; }
+        /*width: 100%;*/
+        height: auto;
+        max-width: 100%; }
     #header .wrapper .menu {
       display: inline-block;
       vertical-align: top;
@@ -1159,10 +1160,16 @@ form.contact_form_afilate {
         display: inline-block; }
 
 #ads {
+  background: #063a56;
   height: auto;
   padding: 20px 0 40px; }
   #ads .wrapper {
     width: 955px; }
+    #ads .wrapper .content-ads .title-section {
+      text-transform: uppercase; }
+      #ads .wrapper .content-ads .title-section span {
+        background: #e0213f;
+        padding: 3px 10px; }
     #ads .wrapper .item.right .description {
       margin: 53px 0px 0 -15px;
       width: 445px; }
@@ -1183,13 +1190,15 @@ form.contact_form_afilate {
         padding-left: 0;
         max-width: 800px; }
         #ads .wrapper .item.right.programmatic .description h1 {
-          padding: 0 0 2px 123px; }
+          padding: 0 0 2px 182px; }
         #ads .wrapper .item.right.programmatic .description p {
           padding: 0 0 2px 182px; }
     #ads .wrapper .item .description {
       width: 527px;
       max-width: 527px;
       margin: 53px -291px 0 0; }
+      #ads .wrapper .item .description h1 {
+        padding: 0 0 2px 0; }
     #ads .wrapper .item .content-img {
       max-width: 542px;
       display: inline-block;

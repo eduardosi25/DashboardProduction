@@ -174,11 +174,11 @@ canvas{
          vertical-align: middle;
          width: 205px;
          height: auto;
-         margin: 15px 10% 0 0;
+         margin: 21px 10% 0 0;
          img{
-             width: 100%;
+             /*width: 100%;*/
              height: auto;
-             
+             max-width: 100%;
          }
      }
      .menu{
@@ -1577,10 +1577,22 @@ canvas{
     }
 }
 #ads{
+    background: #063a56;
     height: auto;
     padding: 20px 0 40px;
+    
     .wrapper{
         width:955px;
+        .content-ads{
+            .title-section{
+                text-transform:uppercase;
+                span{
+                    background: #e0213f;
+                    padding: 3px 10px;
+                }
+            }
+            
+        }
         .item{
             &.right .description {
                 margin: 53px 0px 0 -15px;
@@ -1610,7 +1622,7 @@ canvas{
                         padding-left: 0;
                         max-width: 800px;
                         h1 {
-                        padding: 0 0 2px 123px;
+                        padding: 0 0 2px 182px;
                         }
                         p {
                             padding: 0 0 2px 182px;
@@ -1622,6 +1634,9 @@ canvas{
                 width: 527px;
                 max-width: 527px;
                 margin: 53px -291px 0 0;
+                h1{
+                   padding: 0 0 2px 0;
+                }
             }
             .content-img{
                     max-width: 542px;
