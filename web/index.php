@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
-        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/web/img/favicons/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/favicon.ico" />
+        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico?v=1.1" />
+        <link rel="shortcut icon" href="/web/img/favicons/favicon.ico?v=1.1" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/web/img/favicons/favicon.ico?v=1.1" />
+        <link rel="apple-touch-icon" sizes="72x72" href="/web/img/favicons/favicon.ico?v=1.1" />
+        <link rel="apple-touch-icon" sizes="114x114" href="/web/img/favicons/favicon.ico?v=1.1" />
 
         <meta name="charset" content="utf-8" />
         <link rel="canonical" href="http://www.imagendigital.com" />
@@ -21,7 +21,7 @@
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
         <title>InventMx</title>
-        <link rel="stylesheet" type="text/css" href="/web/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/web/css/style.css?v=1.1">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
         <link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
