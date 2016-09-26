@@ -20,7 +20,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <meta name="language" content="es" />
         <meta name="robots" content="index,follow,noarchive" />
-        <title>InventMx</title>
+        <title>Imagen Digital</title>
         <link rel="stylesheet" type="text/css" href="/web/css/style.css?v=1.1">
         <link rel="stylesheet" href="/web/css/flexslider.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
