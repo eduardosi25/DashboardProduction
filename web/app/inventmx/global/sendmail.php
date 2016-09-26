@@ -15,17 +15,17 @@ $referer=isset($_REQUEST['text-referrer']) ? " Vía ".$_REQUEST['text-referrer']
 if ($type == "afiliate") {
   $type = "Afíliate";  
   //$to = array('pedro@inventmx.com');
-  $to = array('pedro@inventmx.com','erika.aupart@inventmx.com','red@invent.mx','webmaster@inventmx.com','heberto@inventmx.com', 'carine@inventmx.com');
+  $to = array('pedro@imagendigital.com','erika.aupart@imagendigital.com','red@imagendigital.com','webmaster@imagendigital.com','heberto@imagendigital.com', 'carine@imagendigital.com');
   //$to = array('jose.cruz@invent.mx','jorge@invent.mx','luis@invent.mx');
 } else {
   $type = "Anúnciate";  
   //$to = array('pedro@inventmx.com');
   //$to = array('jose.cruz@invent.mx','jorge@invent.mx','luis@invent.mx');
-  $to = array('pedro@inventmx.com','webmaster@inventmx.com','heberto@inventmx.com','eduardo@inventmx.com','carlos.jimenez@inventmx.com');
+  $to = array('pedro@imagendigital.com','webmaster@imagendigital.com','heberto@imagendigital.com','eduardo@imagendigital.com','carlos.jimenez@imagendigital.com');
 }
 
-$subject = 'Nos han contactado en Invent.mx - ' . $type." ".$referer;
-$body = 'Han usuado el formulario de contacto de Invent, estos son los datos: <br /><br />';
+$subject = 'Nos han contactado en ImagenDigital.com - ' . $type." ".$referer;
+$body = 'Han usuado el formulario de contacto de Imagen Digital, estos son los datos: <br /><br />';
 $body .= 'Nombre: '. $nombre .' '.$apellido.'<br /><br />';
 $body .= 'Correo: '. $correo . '<br /><br />';
 $body .= 'Producto: '. $description . '<br /><br />';
@@ -39,7 +39,7 @@ $transport = Swift_SmtpTransport::newInstance('localhost', 25);
 // Create the Mailer using your created Transport
 $mailer = Swift_Mailer::newInstance($transport);
 $message = Swift_Message::newInstance($subject)
-  ->setFrom(array('webmaster@inventmx.com' => 'Invent.mx'))
+  ->setFrom(array('webmaster@imagendigital.com' => 'ImagenDigital.com'))
   ->setTo($to)
   ->setContentType('text/html')
   ->setBody($body)
