@@ -169,6 +169,7 @@ canvas{
  .wrapper{
      max-width: 1025px;
      height: 100%;
+     min-height:60px;
      .logo{
          display: inline-block;
          vertical-align: middle;
@@ -383,6 +384,10 @@ canvas{
                                 font-size: 14px;
                                 color:#fff;
                                 padding: 0 20px;
+                            }
+                            img{
+                                max-width: 100%;
+                                
                             }
                         }
                     }

@@ -163,7 +163,8 @@ canvas {
   background: #1a1a1a; }
   #header .wrapper {
     max-width: 1025px;
-    height: 100%; }
+    height: 100%;
+    min-height: 60px; }
     #header .wrapper .logo {
       display: inline-block;
       vertical-align: middle;
@@ -338,6 +339,8 @@ canvas {
       font-size: 14px;
       color: #fff;
       padding: 0 20px; }
+    .flexslider_marcas .slides li > div img {
+      max-width: 100%; }
 
 #sections-carousel-sites .flexslider_marcas {
   margin-top: 59px;
