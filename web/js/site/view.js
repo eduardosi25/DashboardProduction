@@ -6,7 +6,29 @@ $(function() {
     IMxevents = _.extend(inventMx_events, Backbone.Events);
     $(".menu a").click(function(){
           $('.menu a').removeClass('active');
+          $('.menu-mobile li').removeClass('active');
           $(this).addClass('active');
+          
+          $link_site=$(this).attr('href');
+          if($link_site == '/#la-red-imagen'){
+              $('.menu-mobile li').removeClass('active');
+              $('.menu-mobile .link-red-invent').addClass('active');
+          }
+          else if($link_site == '/#contacto'){
+              $('.menu-mobile li').removeClass('active');
+              $('.menu-mobile .link-contacto').addClass('active');
+          }
+          else if($link_site == '/#content-marketing'|| $link_site== '/#media-happenings'){
+              $('.menu-mobile li').removeClass('active');
+              $('.menu-mobile .link-servicios').addClass('active');
+          }
+          
+          
+      });
+    $(".menu-mobile li").click(function(){
+          $('.menu-mobile li').removeClass('active');
+          $(this).addClass('active');
+          
       });
       $(".menu.mobilemenu a").click(function(){
                 $('.navicon-button').toggleClass("open");

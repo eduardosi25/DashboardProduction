@@ -90,7 +90,7 @@ table {
 .hindmedium, #nota .wrapper .content-left h1, #nota .wrapper .content-left .content-nota .text-autor, #nota .wrapper .content-right .item-related .title-nota {
   font-family: 'Hind-Medium'; }
 
-.sprite, .slick-prev:before, .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
+.sprite, .slick-prev:before, .slick-next:before, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
@@ -813,7 +813,8 @@ form.contact_form_afilate {
       border: 2px solid #fff;
       padding: 7px 0;
       text-align: center;
-      margin: 0 24px 0 0; }
+      margin: 0 24px 0 0;
+      vertical-align: top; }
       .adjuntos ul li:last-child {
         margin: 0; }
       .adjuntos ul li a {
@@ -821,8 +822,11 @@ form.contact_form_afilate {
         color: #fff;
         text-transform: uppercase;
         text-align: center;
-        display: block; }
+        display: block;
+        height: 18px; }
       .adjuntos ul li.pdf a:after {
+        background: url("../img/sprites/sprite_invent.png");
+        background-repeat: no-repeat;
         content: "";
         width: 29px;
         height: 14px;
@@ -1713,6 +1717,8 @@ body #bottom-imx-fixed-wrapper.bottom-static {
     background: #ec474d; }
   .mobile.links .menu-mobile li.link-contacto {
     background: #063a56; }
+  .mobile.links .menu-mobile li.active {
+    background: #ccc; }
   .mobile.links .menu-mobile li .linea {
     height: 2px;
     background: #fdc625;
@@ -1995,7 +2001,7 @@ body.rtl .formError .formErrorArrow {
 .mobile {
   display: none; }
 
-.sprite, .slick-prev:before, .slick-next:before, .adjuntos ul li.pdf a:after, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
+.sprite, .slick-prev:before, .slick-next:before, #vlogger .wrapper .content-vlogger .img-vlogger a.link-youtube:after, #exito .wrapper .content-exito .arrow, .item .description.icon h1:before, #codiga-descrition .part2 .wrapper ul li h1:before {
   background: url("../img/sprites/sprite_invent.png");
   background-repeat: no-repeat; }
 
@@ -2508,7 +2514,7 @@ body.rtl .formError .formErrorArrow {
     position: relative;
     width: 2.5em;
     height: .3125rem;
-    background: #CB157D;
+    background: #e60028;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
@@ -2522,7 +2528,7 @@ body.rtl .formError .formErrorArrow {
       content: "";
       height: .3125rem;
       width: 2.5rem;
-      background: #CB157D;
+      background: #e60028;
       position: absolute;
       z-index: -1;
       -webkit-transition: 0.5s 0.25s;
@@ -2705,7 +2711,7 @@ body.rtl .formError .formErrorArrow {
     margin: 53px 0px 0 0; }
 
   .item.right .description h1 {
-    padding: 0 0 2px 62px; }
+    padding: 0 0 10px 62px; }
 
   .item .description.icon.video h1:before {
     left: 18px; }
@@ -2714,7 +2720,7 @@ body.rtl .formError .formErrorArrow {
     left: 18px; }
 
   .item .description h1 {
-    padding: 0 0 2px 62px; }
+    padding: 0 0 10px 62px; }
 
   .item .description p {
     font-size: 20px;
@@ -2965,7 +2971,7 @@ body.rtl .formError .formErrorArrow {
         right: 10px; }
 
   #marcas {
-    background: #890e4f; }
+    /* background: #890e4f;*/ }
 
   #sections-vloggers {
     display: none; }
@@ -2989,6 +2995,9 @@ body.rtl .formError .formErrorArrow {
     .content-contact form ul li.nombres input:first-child {
       margin-bottom: 20px; }
 
+  .item.right .description.engagement h1 {
+    padding: 0 0 10px 75px; }
+
   .content-contact form ul li.correo input {
     width: 92%; }
 
@@ -2999,7 +3008,7 @@ body.rtl .formError .formErrorArrow {
     width: 92%; }
 
   .btn-contacto div {
-    width: 37%; }
+    width: 60%; }
 
   .flex-direction-nav .flex-next {
     right: -6px !important;
@@ -3235,6 +3244,9 @@ body.rtl .formError .formErrorArrow {
     line-height: 32px;
     padding: 35px 0 18px; }
 
+  #resultados .wrapper .title_section {
+    padding: 35px 49px 18px; }
+
   .content-circles .item-circle h3 {
     font-size: 16px;
     text-transform: uppercase;
@@ -3277,7 +3289,7 @@ body.rtl .formError .formErrorArrow {
     padding: 35px 73px 18px; }
 
   #marcas .wrapper .title_section {
-    padding: 35px 68px 18px; }
+    padding: 35px 43px 18px; }
 
   .flexslider_marcas .slides li > div .img-logo img {
     max-width: 95%;

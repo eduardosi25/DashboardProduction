@@ -1050,6 +1050,7 @@ canvas{
                         padding:7px 0;
                         text-align:center;
                         margin:0 24px 0 0;
+                        vertical-align:top;
                         &:last-child{
                             margin: 0;
                         }
@@ -1060,11 +1061,13 @@ canvas{
                             text-transform:uppercase;
                             text-align:center;
                             display: block;
+                            height: 18px;
                         }
                         &.pdf{
                             a{
                                 &:after{
-                                    @extend .sprite;
+                                    background: url("../img/sprites/sprite_invent.png");
+                                    background-repeat: no-repeat;
                                     content: "";
                                     width: 29px;
                                     height: 14px;
@@ -2358,7 +2361,9 @@ body #bottom-imx-fixed-wrapper.bottom-static{
                     margin: auto;
                     right: 20px;
                 }
+                
             }
+            
             &.link-red-invent{
                 background: #e0213f;
             }
@@ -2371,6 +2376,9 @@ body #bottom-imx-fixed-wrapper.bottom-static{
             &.link-contacto{
                 background: #063a56;
             }
+            &.active{
+                    background: #ccc;
+                }
             .linea{
                     height: 2px;
                     background: #fdc625;
