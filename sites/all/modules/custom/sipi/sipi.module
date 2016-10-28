@@ -488,7 +488,11 @@ function sipi_get_variables() {
 function sipi_run_cronlt(){
   global $sipi_variables;
   if($sipi_variables['debug']){
-    $dataApi=sipi_get_api_data_for_query();
+    //Check if I have client name
+    if(isset($_GET['cid']) && !empty('cid') && ($_GET['cid']*1)>0){
+      $cid=$_GET['cid']*1;
+    }
+    $dataApi=sipi_get_api_data_for_query($cid);
     if(count($dataApi)>0){
       foreach($dataApi as $client){
         if(count($client['plans'])>0){
@@ -529,11 +533,11 @@ function sipi_run_cronlt(){
   }
 }
 
-function sipi_get_api_data_for_query(){
+function sipi_get_api_data_for_query($cid){
   //Search clients
   module_load_include('inc','sipi','inc/sipi.client');
   $items=array();
-  $clients=sipi_client_list_items();
+  $clients=sipi_client_list_items($cid);
   if(count($clients)>0){
     $items=array();
     $index=0;

@@ -955,9 +955,12 @@ function sipi_client_delete_confirm_submit($form, &$form_state) {
   $form_state['rebuild'] = TRUE;
 }
 
-function sipi_client_list_items(){
+function sipi_client_list_items($cid){
   $query=db_select('sipi_clients', 'c');
   $query->fields('c', array('cid','name','mail','pass','cellphone','phone','web','logo','description','created','changed','access','login'));
+  if(isset($cid) && !empty($cid) && ($cid*1)>0){
+    $query->condition('c.cid',$cid,'=');
+  }
   $result=$query->execute();
   if($result){
     $items=array();
