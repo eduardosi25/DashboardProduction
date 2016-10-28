@@ -637,7 +637,7 @@ function sipi_process_users_result($data,$plan){
       'changed'         => $item->changed,
       'access'          => $item->user_access,
       'login'           => $item->user_login,
-      'sitename'        => $item->attribution,
+      'sitename'        => isset($item->attribution) && !empty($item->attribution) ? $item->attribution : 'imagendigital.com',
       'pageviews'       => isset($item->pageviews[0]->total) && !empty($item->pageviews[0]->total) ? $item->pageviews[0]->total : 0,
       'nodes_published' => isset($item->nodes_published[0]->total) && !empty($item->nodes_published[0]->total) ? $item->nodes_published[0]->total : 0,
       'last_published'  => isset($item->last_published[0]->timestamp) && !empty($item->last_published[0]->timestamp) ? $item->last_published[0]->timestamp : 0,
