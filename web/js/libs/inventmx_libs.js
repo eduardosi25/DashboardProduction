@@ -15401,6 +15401,58 @@ Handlebars.registerHelper("debug", function(optionalValue,options) {
     }
 });
 
+
+Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+    lvalue = parseFloat(lvalue);
+    rvalue = parseFloat(rvalue);
+   if(operator == "+"){
+       $result=lvalue + rvalue;  
+   }
+   else if(operator == "-"){
+       $result=lvalue - rvalue;  
+   }
+   else if(operator == "*"){
+       $result=lvalue * rvalue;  
+   }
+   else if(operator == "/"){
+       $result=lvalue / rvalue;  
+   }
+   else if(operator == "%"){
+       $result=lvalue % rvalue;  
+   }
+   
+   if($result){
+        //$result.replace(",", "");
+        //$result.replace(".", "");
+        $result =  parseInt($result);
+        
+        Number.prototype.format = function(n, x) {
+            var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+            return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+        };
+        //return tnumbers..format();
+        return $result.format();
+        //1234..format();           // "1,234"
+        //12345..format(2);         // "12,345.00"
+        //123456.7.format(3, 2);    // "12,34,56.700"
+        //123456.789.format(2, 4);  // "12,3456.79"
+    }else {
+        request = "Not value";
+        return request;
+    }
+   
+   
+     //return   result;
+    /*return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[operator];*/
+    //console.log(operator);
+});
+
 /* End Handlebars Helpers */
 
 
