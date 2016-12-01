@@ -116,19 +116,19 @@
                     <div class="numero-audiencias">
                         <ul>
                             <li>
-                                <span>{{this.views}}</span><br />
+                                <span>{{ NumberSeparate this.views}}</span><br />
                                 visitas mensuales
                             </li>
                             <li>
-                                <span>{{this.followers}}</span><br />
+                                <span>{{NumberSeparate this.followers}}</span><br />
                                 Seguidores de Facebook
                             </li>
                             <li>
-                                <span>{{this.tw_followers}}</span><br />
+                                <span>{{NumberSeparate this.tw_followers}}</span><br />
                                 seguidores de twitter
                             </li>
                             <li>
-                                <span>37,973</span><br />
+                                <span>{{math this.followers "+" this.tw_followers}}</span><br />
                                 total de seguidores
                             </li>
                         </ul>
