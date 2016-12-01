@@ -917,8 +917,8 @@ function shadow_headers(){
 
 function sipi_admin_prepare_email(){
   return array(
-    'from' => 'webmaster@inventmx.com',
-    'to'   => 'pablo.escobedo@inventmx.com',
+    'from' => 'webmaster@imagendigital.com',
+    'to'   => 'pablo.escobedo@imagendigital.com',
     'cc'   => '',
     'bcc'  => '',
   );

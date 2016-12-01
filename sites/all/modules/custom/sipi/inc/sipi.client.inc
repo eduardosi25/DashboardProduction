@@ -45,8 +45,8 @@ function sipi_client_report_email($client){
   $settings=array(
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
-    'from'    => 'Webmaster Invent.mx <webmaster@invent.mx>',
-    'to'      => 'luis@inventmx.com, axl75mx@gmail.com',
+    'from'    => 'Webmaster Invent.mx <webmaster@imagendigital.com>',
+    'to'      => 'luis@imagendigital.com, axl75mx@gmail.com',
     'params'  => array(
       'text'    => array($HTML),
       'subject' => 'Reporte de cliente CODIGA - '.$client->name,
@@ -1145,7 +1145,7 @@ array(19) {
 ["name"]=>
 string(4) "Luis Contreras"
 ["mail"]=>
-string(17) "luis@inventmx.com"
+string(17) "luis@imagendigital.com"
 ["pass"]=>
 string(8) "sapidecv"
 ["company"]=>
@@ -1575,16 +1575,16 @@ function sipi_clients_save_send_email($cid) {
   $settings=array(
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
-    'from'    => 'Webmaster Codiga <webmaster@inventmx.com>',
-    'to'      => 'pablo.escobedo@inventmx.com,belem@inventmx.com',
+    'from'    => 'Webmaster Codiga <webmaster@imagendigital.com>',
+    'to'      => 'pablo.escobedo@imagendigital.com,belem@imagendigital.com',
     'params'  => array(
       'text'    => array(),
       'subject' => 'Registro de cliente CODIGA - '.$client->name,
       'headers' => array(
-        'From'    => 'Webmaster Codiga <webmaster@inventmx.com>',
-        'Reply-To'=> 'webmaster@inventmx.com>',
-        'Cc'      => 'belem@inventmx.com',
-        'Bcc'     => 'webmaster@inventmx.com',
+        'From'    => 'Webmaster Codiga <webmaster@imagendigital.com>',
+        'Reply-To'=> 'webmaster@imagendigital.com>',
+        'Cc'      => 'belem@imagendigital.com',
+        'Bcc'     => 'webmaster@imagendigital.com',
       ),
     ),
   );
