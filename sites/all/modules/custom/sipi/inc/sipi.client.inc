@@ -1576,7 +1576,7 @@ function sipi_clients_save_send_email($cid) {
     'module'  => 'sipi',
     'delta'   => __FUNCTION__,
     'from'    => 'Webmaster Codiga <webmaster@imagendigital.com>',
-    'to'      => 'pablo.escobedo@imagendigital.com,belem@imagendigital.com',
+    'to'      => 'pablo.escobedo@imagendigital.com,belem@imagendigital.com,luis@imagendigital.com',
     'params'  => array(
       'text'    => array(),
       'subject' => 'Registro de cliente CODIGA - '.$client->name,
