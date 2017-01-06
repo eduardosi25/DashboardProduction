@@ -231,49 +231,91 @@
 <script id="template-sections-sites" type="template/template-sections-sites">
         <div class="flexslider_marcas">
             <ul class="slides">
-                
-      
                     <li>
-                    {{#eachSlice this offset="0" limit="6"}}
-                        <div>
-                            <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                <span class="line"></span>
-                                <p>{{{this.summary}}}</p>
-                            </a>
-                        </div>
-                    {{/eachSlice}}
+                        {{#eachSlice this offset="0" limit="6"}}
+                            {{#ifCond this.title "==" "Reporte 98.5"}}
+                            <div>
+                                <a href="#rmx" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
+                                    <span class="line"></span>
+                                    <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.title "!=" "Reporte 98.5"}}
+                                <div>
+                                    <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                        <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                        <span class="line"></span>
+                                        <p>{{{this.summary}}}</p>
+                                    </a>
+                                </div>
+                            {{/ifCond}}
+                        {{/eachSlice}}
                     </li>
                     <li>
-                    {{#eachSlice this offset="6" limit="6"}}
-                        <div>
-                            <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                <span class="line"></span>
-                                <p>{{this.summary}}</p>
-                            </a>
-                        </div>
-                    {{/eachSlice}}
+                        {{#eachSlice this offset="6" limit="6"}}
+                            {{#ifCond this.title "==" "Reporte 98.5"}}
+                            <div>
+                                <a href="#rmx" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
+                                    <span class="line"></span>
+                                    <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.title "!=" "Reporte 98.5"}}
+                            <div>
+                                <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                    <span class="line"></span>
+                                    <p>{{{this.summary}}}</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                        {{/eachSlice}}
                     </li>
                     <li>
-                    {{#eachSlice this offset="12" limit="4"}}
-                        <div>
-                            <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                <span class="line"></span>
-                                <p>{{this.summary}}</p>
-                            </a>
-                        </div>
-                    {{/eachSlice}}
-                    {{#eachSlice this offset="6" limit="2"}}
-                        <div>
-                            <a href="{{ getUrlApp this.url}}"data-id="{{this.id}}">
-                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                <span class="line"></span>
-                                <p>{{this.summary}}</p>
-                            </a>
-                        </div>
-                    {{/eachSlice}}
+                        {{#eachSlice this offset="12" limit="4"}}
+                            {{#ifCond this.title "==" "Reporte 98.5"}}
+                            <div>
+                                <a href="#rmx" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
+                                    <span class="line"></span>
+                                    <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.title "!=" "Reporte 98.5"}}
+                            <div>
+                                <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                    <span class="line"></span>
+                                    <p>{{{this.summary}}}</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                        {{/eachSlice}}
+                        {{#eachSlice this offset="6" limit="2"}}
+                            {{#ifCond this.title "==" "Reporte 98.5"}}
+                            <div>
+                                <a href="#rmx" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
+                                    <span class="line"></span>
+                                    <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                            {{#ifCond this.title "!=" "Reporte 98.5"}}
+                            <div>
+                                <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                    <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                    <span class="line"></span>
+                                    <p>{{{this.summary}}}</p>
+                                </a>
+                            </div>
+                            {{/ifCond}}
+                        {{/eachSlice}}
                     </li>
             </ul>
         </div>

@@ -11,6 +11,7 @@ $(function() {
             "bridgestone": "bridgestone",
             "oikos": "oikos",
             "raidmax": "raidmax",
+            "rmx": "perfilSitioRmx", //comentar despues que sea agregado rmx al API
             //"blogs": "blogs",
             //"blogs/:blogsUrl": "blogsNota",
             "content-marketing": "servicios",
@@ -47,6 +48,9 @@ $(function() {
             inventMx.pgBlogsNota = new inventMx.view.blogsNota(blogsUrl);
             
         },*/
+        perfilSitioRmx: function(site) {
+            inventMx.pgPerfilSitio = new inventMx.view.perfilSitioRmx(site);
+        },
         perfilSitio: function(site) {
             inventMx.pgPerfilSitio = new inventMx.view.perfilSitio(site);
         },

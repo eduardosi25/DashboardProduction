@@ -1,9 +1,53 @@
 <div class="morado panel slide" id="sitio" data-stellar-offset-parent="true" data-slide="2" data-stellar-background-ratio="0.5">
             <img class="pleca_cruz_izquierda" src="/web/img/global/textura_cruz_izquierda.png" data-stellar-ratio="0.8" data-stellar-vertical-offset="-5" alt="">
-
             <div class="wrapper">
                 <article>
-                    <section id="sections-sites-perfil"></section>
+                    <section id="sections-sites-perfil">
+                        <div class="logo-sitio">
+                            <img src="http://www.imagendigital.com/files/logo_white/rmx.png"/>
+                            <div class="border"></div>
+                        </div>
+                        <div class="img-sitio">
+                            <img src="http://local.imagendigital.com/web/img/global/rmx.png"/>
+                        </div>
+                        <div class="description">
+                            <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                        </div>
+
+                        <div class="content-audiencias">
+                            <div class="content-circles">
+                                <div class="item-circle margin-right">
+                                    <div id="demo-pie-12" class="pie-title-center" data-percent="57"> <span class="pie-value"></span> </div>
+                                    <h3>Hombres</h3>
+                                </div>
+                                <div class="item-circle">
+                                    <div id="demo-pie-13" class="pie-title-center" data-percent="43"> <span class="pie-value"></span> </div>
+                                    <h3>Mujeres</h3>
+                                </div>
+                            </div>
+                            <div class="numero-audiencias">
+                                <ul>
+                                    <li>
+                                        <span>175,463</span><br />
+                                        visitas mensuales
+                                    </li>
+                                    <li>
+                                        <span>111,461</span><br />
+                                        Seguidores de Facebook
+                                    </li>
+                                    <li>
+                                        <span>79,300</span><br />
+                                        seguidores de twitter
+                                    </li>
+                                    <li>
+                                        <span>190,761</span><br />
+                                        total de seguidores
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </section>
                 </article>
                 
                 <div class="adjuntos">
@@ -89,52 +133,7 @@
         
 <!-- sitios -->
 <script id="template-sections-perfil" type="template/template-sections-sites-perfil">
-{{#each this}}
-                <div class="logo-sitio"> 
-                    <img src="{{ this.logo_blanco.logo.0.url }}"/>
-                    <div class="border"></div>
-                </div>
-                <div class="img-sitio">
-                    <img src="{{ getUrlImg this.images.logo.0.url }}"/>
-                </div>
-                <div class="description"> 
-                    {{{this.body}}}
-                </div>
-                
-                <div class="content-audiencias">
-                    <div class="content-circles">
-                        <div class="item-circle margin-right">   
-                            <div id="demo-pie-12" class="pie-title-center" data-percent="{{this.mens}}"> <span class="pie-value"></span> </div>
-                        <h3>Hombres</h3>
-                        </div>
-                        <div class="item-circle"> 
-                            <div id="demo-pie-13" class="pie-title-center" data-percent="{{this.womens}}"> <span class="pie-value"></span> </div>
-                        <h3>Mujeres</h3>
-                        </div>
-                    </div>
-                    <div class="numero-audiencias">
-                        <ul>
-                            <li>
-                                <span>{{ NumberSeparate this.views}}</span><br />
-                                visitas mensuales
-                            </li>
-                            <li>
-                                <span>{{NumberSeparate this.followers}}</span><br />
-                                Seguidores de Facebook
-                            </li>
-                            <li>
-                                <span>{{NumberSeparate this.tw_followers}}</span><br />
-                                seguidores de twitter
-                            </li>
-                            <li>
-                                <span>{{math this.followers "+" this.tw_followers}}</span><br />
-                                total de seguidores
-                            </li>
-                        </ul>
-                        
-                    </div>
-                </div>
-                {{/each}} 
+
 </script>   
 
 <!-- home de talentos -->
@@ -143,29 +142,29 @@
                     <div class="slides">
                         <div class="slid-marcas slider center-sites">
                             {{#each this}}
-                            {{#ifCond this.title "==" "Reporte 98.5"}}
-                            <div>
-                                <div>
-                                    <a href="#rmx" data-id="{{this.id}}">
-                                        <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
-                                        <span class="line"></span>
-                                        <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
-                                    </a>
-                                </div>
-                            </div>
-                            {{/ifCond}}
-                            {{#ifCond this.title "!=" "Reporte 98.5"}}
-                            <div>
-                                <div>
-                                    <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
-                                        <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
-                                        <span class="line"></span>
-                                        <p>{{{ this.summary }}}</p>
-                                    </a>
-                                </div>
-                            </div>
-                            {{/ifCond}}
-                            {{/each}}
+                                {{#ifCond this.title "==" "Reporte 98.5"}}
+                                    <div>
+                                        <div>
+                                            <a href="#rmx" data-id="{{this.id}}">
+                                                <div class="img-logo"><img class="loader" src="http://www.imagendigital.com/files/logo_white/rmx.png" alt="" title="Rmx"></div>
+                                                <span class="line"></span>
+                                                <p>Milenials 20-35 años, motivados por el sentido social, consumen digital, se acercan a los medios tradicionales para conocer, gastan en aquello que cuide a su cuerpo y/o al medioambiente</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                                {{#ifCond this.title "!=" "Reporte 98.5"}}
+                                    <div>
+                                        <div>
+                                            <a href="{{ getUrlApp this.url}}" data-id="{{this.id}}">
+                                                <div class="img-logo"><img class="loader" src="{{  this.logo_blanco.logo.0.url }}" alt="" title="{{ this.title }}"></div>
+                                                <span class="line"></span>
+                                                <p>{{{ this.summary }}}</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                            {{/each}} 
                         </div>
                     </div>
                 </div>

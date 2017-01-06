@@ -90,6 +90,7 @@
             <div id="page-main-invent-redImagen"></div>
             <div id="page-main-invent-servicios"></div>
             <div id="page-main-invent-perfilSitio"></div>
+            <div id="page-main-invent-rmx"></div>
             <div id="page-main-invent-perfilTalento"></div>
             <div id="page-main-invent-blogs"></div>
             <div id="page-main-invent-blogsNota"></div>

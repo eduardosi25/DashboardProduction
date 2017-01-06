@@ -97,11 +97,11 @@ $(function() {
                     callback();
                 }
             } else {
-                console.log("Es posible que no exista algún parametro enviado, los datos recibidos para el template son:");
-                console.log("template: " + idTemplate);
-                console.log("append: " + appendTo);
-                console.log("data:");
-                console.log(data);
+                //console.log("Es posible que no exista algún parametro enviado, los datos recibidos para el template son:");
+                //console.log("template: " + idTemplate);
+                //console.log("append: " + appendTo);
+                //console.log("data:");
+                //console.log(data);
             }
         },
         assembleUrl: function(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl) {
@@ -788,6 +788,161 @@ $(function() {
                 }
 
             }),
+        inventMx.view.perfilSitioRmx = Backbone.View.extend({
+            template: collectionMain.get("c3").attributes.pathTemplate,
+            idContent: collectionMain.get("c3").attributes.firtsIdContent,
+            initialize: function(site) {
+                $(this.el).unbind();
+                _.bindAll(this, 'render');
+                this.render(site);
+            },
+            render: function(site) {
+                var idContent = this.idContent;
+                var section = "rmx";
+                $.get(this.template + 'perfilSitio/perfilSitioRmx.html', function(data) {
+
+                    $(idContent + "rmx").html(data);
+                    collectionMain.hideSections(section);
+
+                    /*repositorio = collectionMain.get("c1");
+                    repositorio.set({repositorio: "sites.json", section: section});
+
+                    params = collectionMain.get("c2");*/
+                    /* se pasan los campos del API */
+                    //params.set({url: site, limit: 1, not_ids: null});
+
+
+                    /* renderTemplate: render generico, esto se puede copiar modificar nada */
+                    var renderTemplate = collectionMain.template;
+
+                    /* idTemplate: id del Template de javascript */
+                    var idTemplate = "#template-sections-perfil";
+                    /* appendTo: lugar donde se pondra el template ya rendereado */
+                    var appendTo = "#sections-sites-perfil";
+                    /* callback: debe ser una función para poder ejecutarse */
+                    /*var callback = function() {
+
+                        params.set({fields: null});
+
+                        demos pi3 12 y 13
+                    };*/
+                    $('#demo-pie-12').pieChart({
+                        barColor: '#17d9b4',
+                        trackColor: '#386177',
+                        lineCap: 'square',
+                        lineWidth: 24,
+                        size: 158,
+                        rotate: -110,
+                        animate: {
+                            duration: 3000,
+                            enabled: true
+                        },
+                        onStep: function(from, to, percent) {
+                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                        }
+                    });
+                    $('#demo-pie-13').pieChart({
+                        barColor: '#17d9b4',
+                        trackColor: '#386177',
+                        lineCap: 'square',
+                        lineWidth: 24,
+                        size: 158,
+                        rotate: -110,
+                        animate: {
+                            duration: 3000,
+                            enabled: true
+                        },
+                        onStep: function(from, to, percent) {
+                            $(this.element).find('.pie-value').text(Math.round(percent * 10) / 10 + '%');
+                        }
+                    });
+
+                    /* forward: instancia de la vista a renderear*/
+                    var forward = inventMx.view.perfilTalento;
+                    //pathUrl: si se hace uso de un forward se debe de mandar la url en question
+                    /* en este caso site*/
+                    var pathUrl = site;
+
+
+                    /* Se hace la petición y  se pasan lo parámetros antes nombrados */
+                    //collectionMain.assembleUrl(idTemplate, appendTo, renderTemplate, callback, forward, pathUrl);
+
+
+                    var callback2 = function() {
+                        params.set({fields: null});
+                        $('.center-sites').slick({
+                            dots: true,
+                            infinite: true,
+                            speed: 3000,
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            responsive: [
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 3,
+                                        infinite: true,
+                                        dots: true
+                                    }
+                                },
+                                {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 3,
+                                        slidesToScroll: 3
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 2,
+                                        slidesToScroll: 2
+                                    }
+                                }
+                                // You can unslick at a given breakpoint now by adding:
+                                // settings: "unslick"
+                                // instead of a settings object
+                            ]
+                        });
+                        $('.slick-slide > div a').click(function() {
+                            id_exclude = $(this).attr('data-id');
+
+                        });
+
+                    };
+                    repositorio = collectionMain.get("c1");
+                    repositorio.set({repositorio: "sites.json"});
+                    params = collectionMain.get("c2");
+                    params.set({url: null, not_ids: id_exclude +"|178", limit: 50});
+                    /* idTemplate: id del Template de javascript */
+                    var idTemplate1 = "#template-sections-carousel-sites";
+                    /* appendTo: lugar donde se pondra el template ya rendereado */
+                    var appendTo1 = "#sections-carousel-sites";
+                    collectionMain.assembleUrl(idTemplate1, appendTo1, renderTemplate, callback2, forward, pathUrl);
+                    $("html, body").animate({scrollTop: 0}, "slow");
+                    $('#marketing .wrapper').css({'opacity': "0", 'top': '200px'});
+                    $('.contact-form').css({'opacity': "0", 'top': '200px'});
+                    $(".btn-contacto .anunciate").click(function(){
+                        $(".btn-contacto div").removeClass("active");
+                        $(this).addClass("active");
+                        $(".contact_form").fadeOut('fast').delay(500);
+                        $(".contact_form.contact_form_anunciate").fadeIn();
+
+
+                    });
+                    $(".btn-contacto .afíliate").click(function(){
+                        $(".btn-contacto div").removeClass("active");
+                        $(this).addClass("active");
+                        $(".contact_form").fadeOut('fast').delay(500);
+                        $(".contact_form.contact_form_afilate").fadeIn();
+
+                    });
+
+                }, 'html');
+                return this;
+            }
+        }),
             inventMx.view.perfilSitio = Backbone.View.extend({
                 template: collectionMain.get("c3").attributes.pathTemplate,
                 idContent: collectionMain.get("c3").attributes.firtsIdContent,
