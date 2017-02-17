@@ -13,7 +13,7 @@
 $channel=taxonomy_term_load(arg(2));
 ?>
 <?php print "<?xml"; ?> version="1.0" encoding="utf-8" <?php print "?>\n"; ?>
-<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title><?php print $channel->name; ?></title>
     <link><?php print isset($channel->field_link['und'][0]['value']) && !empty($channel->field_link['und'][0]['value']) ? $channel->field_link['und'][0]['value'] : ''; ?></link>
