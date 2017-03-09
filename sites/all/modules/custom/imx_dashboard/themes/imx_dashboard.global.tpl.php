@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/sites/all/modules/custom/imx_dashboard/css/imx_dashboard.css">
 <meta http-equiv="refresh" content="300">
 </head>
-<body>  
+<body>
   <!-- Step 3: Add HTML containers to host the dashboard components.. -->
   <div id="embed-api-auth-container" class="invent"></div>
   <?php
