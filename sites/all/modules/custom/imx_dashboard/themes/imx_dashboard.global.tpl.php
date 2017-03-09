@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Usuarios Activos - Red Inventxm</title>
+<title>Usuarios Activos - Red Imagen Digital</title>
 <!-- Step 1: Load the Embed API library. -->
 <script>
   (function(w,d,s,g,js,fjs){
@@ -16,8 +16,9 @@
 <script src="/sites/all/modules/custom/imx_dashboard/js/active-users.min.js"></script>
 <!-- Include the CSS that styles the charts. -->
 <link rel="stylesheet" href="/sites/all/modules/custom/imx_dashboard/css/imx_dashboard.css">
+<meta http-equiv="refresh" content="300">
 </head>
-<body>
+<body>  
   <!-- Step 3: Add HTML containers to host the dashboard components.. -->
   <div id="embed-api-auth-container" class="invent"></div>
   <?php
