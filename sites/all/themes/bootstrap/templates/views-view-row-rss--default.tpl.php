@@ -25,6 +25,8 @@ foreach($row->elements as $element){
 }
 $item_elements=empty($item_elements) ? '' : format_xml_elements($item_elements);
 $thumbnail=isset($node->field_cover['und'][0]['uri']) && !empty($node->field_cover['und'][0]['uri']) ? image_style_url('large',$node->field_cover['und'][0]['uri']) : 'empty';
+$link=preg_replace('/https/','http',$link);
+$link_video=preg_replace('/https/','http',$node->field_content['und'][0]['value']);
 ?>
   <item>
     <title><?php print $title; ?></title>
@@ -33,7 +35,7 @@ $thumbnail=isset($node->field_cover['und'][0]['uri']) && !empty($node->field_cov
     <?php print $item_elements; ?>
     <media:title><?php print($node->title);?></media:title>
     <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
-    <media:content url="<?php print($node->field_content['und'][0]['value']);?>" medium="video" expression="full" lang="es">
+    <media:content url="<?php print($link_video);?>" medium="video" expression="full" lang="es">
       <media:thumbnail url="<?php print $thumbnail;?>"/>
     </media:content>
   </item>
