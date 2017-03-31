@@ -49,7 +49,7 @@ gapi.analytics.ready(function() {
   ?>
   var activeUsers_<?php print($sitename);?> = new gapi.analytics.ext.ActiveUsers({
     container: 'active-users-<?php print($sitename);?>',
-    pollingInterval: <?php print(rand(60,120));?>
+    pollingInterval: <?php print(rand(30,60));?>
   });
   activeUsers_<?php print($sitename);?>.set({ids:'<?php print($view);?>'});
   activeUsers_<?php print($sitename);?>.once('success', function() {
@@ -71,13 +71,13 @@ gapi.analytics.ready(function() {
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'10000');
+  },'5000');
   <?php
   }else if($index>10){
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'20000');
+  },'10000');
   <?php
   }else{
   ?>
