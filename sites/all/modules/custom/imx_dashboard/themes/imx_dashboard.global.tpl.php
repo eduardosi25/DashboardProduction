@@ -34,14 +34,13 @@
   endforeach;
   ?>
 
-
 <!-- Step 4: Write the dashboard code. -->
 <script>
 gapi.analytics.ready(function() {
   gapi.analytics.auth.authorize({
     userInfoLabel : 'Google Analytics con la cuenta de: ',
     container: 'embed-api-auth-container',
-    clientid: '393479470712-nhtkfs438r5u6tcprkd9bmlppr75b5a4.apps.googleusercontent.com'
+    clientid: '<?php print($data['client_id']);?>'
   });
 
   <?php
@@ -50,7 +49,7 @@ gapi.analytics.ready(function() {
   ?>
   var activeUsers_<?php print($sitename);?> = new gapi.analytics.ext.ActiveUsers({
     container: 'active-users-<?php print($sitename);?>',
-    pollingInterval: <?php print(rand(15,30));?>
+    pollingInterval: <?php print(rand(60,120));?>
   });
   activeUsers_<?php print($sitename);?>.set({ids:'<?php print($view);?>'});
   activeUsers_<?php print($sitename);?>.once('success', function() {
@@ -64,7 +63,7 @@ gapi.analytics.ready(function() {
       timeout = setTimeout(function() {
         element.className =
           element.className.replace(/ is-(increasing|decreasing)/g, '');
-      }, 3000);
+      }, 5000);
     });
   });
   <?php
@@ -72,13 +71,13 @@ gapi.analytics.ready(function() {
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'1000');
+  },'10000');
   <?php
   }else if($index>10){
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'2000');
+  },'20000');
   <?php
   }else{
   ?>

@@ -81,27 +81,8 @@ function imx_dashboard_global(){
   /////////////////////////
   // Set data ------------>
   /////////////////////////
-  $data=array(
-    'client_id'       => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl.apps.googleusercontent.com',
-    'service_account' => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl@developer.gserviceaccount.com',
-    'created'         => '20 oct. 2014 18:28:13',
-    'views'           => array(
-      'excelsior'       => 'ga:6643838',
-      'salud180'        => 'ga:36901730',
-      'actitudfem'      => 'ga:46928050',
-      'adrenalina360'   => 'ga:112555539',
-      'dineroenimagen'  => 'ga:62706709',
-      'huffingtonpost'  => 'ga:129681372',
-      'gamedots'        => 'ga:59347434',
-      'atraccion360'    => 'ga:59849096',
-      'swagger'         => 'ga:78887468',
-      'melodijolola'    => 'ga:62818963',
-      'rsvponline'      => 'ga:54331725',
-      'cocinadelirante' => 'ga:117144775',
-      'imagen'          => 'ga:10076419',
-      'estrategia45'    => 'ga:59856389',
-    ),
-  );
+  $data=imx_dashboard_get_data_settings();
+
   //Render
   $result=theme('imx_dashboard_global', array('data' => $data));
   echo $result;
@@ -111,25 +92,8 @@ function imx_dashboard_activeusers(){
   /////////////////////////
   // Set data ------------>
   /////////////////////////
-  $data=array(
-    'client_id'       => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl.apps.googleusercontent.com',
-    'service_account' => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl@developer.gserviceaccount.com',
-    'created'         => '20 oct. 2014 18:28:13',
-    'views'           => array(
-      'excelsior'       => 'ga:6643838',
-      'salud180'        => 'ga:36901730',
-      'actitudfem'      => 'ga:46928050',
-      'huffingtonpost'  => 'ga:129681372',
-      'dineroenimagen'  => 'ga:62706709',
-      'gamedots'        => 'ga:59347434',
-      'atraccion360'    => 'ga:59849096',
-      'swagger'         => 'ga:78887468',
-      'melodijolola'    => 'ga:62818963',
-      'rsvponline'      => 'ga:54331725',
-      'cocinadelirante' => 'ga:117144775',
-      'imagen'          => 'ga:10076419',
-    ),
-  );
+  $data=imx_dashboard_get_data_settings();
+
   //Render
   $result=theme('imx_dashboard_activeusers', array('data' => $data));
   echo $result;
@@ -162,12 +126,8 @@ function __render_dashboard($data){
   /////////////////////////
   // Set data ------------>
   /////////////////////////
-  $data=array(
-    'client_id'       => '393479470712-nhtkfs438r5u6tcprkd9bmlppr75b5a4.apps.googleusercontent.com',
-    'service_account' => '393479470712-m5kp41doh74oqoi28hmml6qfimt706rl@developer.gserviceaccount.com',
-    'created'         => '20 oct. 2014 18:28:13',
-    'secret_key_id'   => 'dCPkWPoVhcfrOkqCqlb0_E3v',
-  );
+  $data=imx_dashboard_get_data_settings();
+
   //Render
   $result=theme('dashboard', array('data' => $data));
   return $result;
@@ -186,3 +146,91 @@ function imx_dashboard_get_variables() {
   }
   return $variables;
 }
+
+/**
+ * Implements GET Data Information to Queries GA
+ */
+function imx_dashboard_get_data_settings(){
+  $account=imx_dashboard_get_account();
+
+  return array(
+    'client_id'       => $account['idclient'],
+    'secret_key_id'   => $account['secret'],
+    'views'           => array(
+      'excelsior'       => 'ga:6643838',
+      'salud180'        => 'ga:36901730',
+      'actitudfem'      => 'ga:46928050',
+      'adrenalina360'   => 'ga:112555539',
+      'dineroenimagen'  => 'ga:62706709',
+      'huffingtonpost'  => 'ga:129681372',
+      'gamedots'        => 'ga:59347434',
+      'atraccion360'    => 'ga:59849096',
+      'swagger'         => 'ga:78887468',
+      'cocinadelirante' => 'ga:117144775',
+      'melodijolola'    => 'ga:62818963',
+      'rsvponline'      => 'ga:54331725',
+      'imagen'          => 'ga:10076419',
+      'bienysaludable'  => 'ga:140322049',
+      'estrategia45'    => 'ga:59856389',
+    ),
+  );
+}
+
+/**
+ * Implements GET random API account
+ * All API accounts are in luis@inventmx.com
+ * @see https://console.developers.google.com/apis/dashboard
+ */
+function imx_dashboard_get_account() {
+  $args=arg();
+  if(isset($args['1']) && !empty($args['1'])){
+    if(isset($args['2']) && !empty($args['2'])){
+      $index=(int)$args['2'];
+    }else{
+      $index=0;
+    }
+  }else{
+    $index=rand(0,4);
+  }
+
+  $account=array(
+    0 => array(
+      'name'     => 'GoogleAnalyticsMonitorInventmx',
+      'id'       => 'fresh-deck-740',
+      'client'   => 'Dashboard Analytics',
+      'idclient' => '393479470712-nhtkfs438r5u6tcprkd9bmlppr75b5a4.apps.googleusercontent.com',
+      'secret'   => 'dCPkWPoVhcfrOkqCqlb0_E3v',
+    ),
+    1 => array(
+      'name'     => 'OVNI',
+      'id'       => 'sixth-grammar-663',
+      'client'   => 'Dashboard Analytics',
+      'idclient' => '858880506246-c888qqnrmqr57k2qls6db8nrtq4nrfa9.apps.googleusercontent.com',
+      'secret'   => 'YaENWTQYcWlZvs0kPOJ0pzdf',
+    ),
+    2 => array(
+      'name'     => 'ProxyGA-Invent',
+      'id'       => 'proxyga-invent',
+      'client'   => 'Dashboard Analytics',
+      'idclient' => '964080409845-1jqbte6fttcllode5fhm4hhq0r3r3au1.apps.googleusercontent.com',
+      'secret'   => 'YLm_S7eVX0hHgiOAZI0Q7QWH',
+    ),
+    3 => array(
+      'name'     => 'InventMX Google APIs',
+      'id'       => 'inventmx.com:api-project-939754219168',
+      'client'   => 'Dashboard Analytics',
+      'idclient' => '939754219168-8gbrk4172o5n5lgjbet16eoen3m1rmps.apps.googleusercontent.com',
+      'secret'   => 'JN_3ZyzL6Baq_EgC3Jx-f3_z',
+    ),
+    3 => array(
+      'name'     => 'Inventmx VideoNetwork',
+      'id'       => 'driven-density-525',
+      'client'   => 'Dashboard Analytics',
+      'idclient' => '493531137878-n5b5jg9cs71pqpsjs14jsnb6ecafbva9.apps.googleusercontent.com',
+      'secret'   => 'GRSVkOEi85dfD3Ue0DitokT3',
+    ),
+  );
+
+  return $account[$index];
+}
+

@@ -33,7 +33,6 @@
   endforeach;
   ?>
 
-
 <!-- Step 4: Write the dashboard code. -->
 <script>
 gapi.analytics.ready(function() {
