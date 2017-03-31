@@ -49,7 +49,7 @@ gapi.analytics.ready(function() {
   ?>
   var activeUsers_<?php print($sitename);?> = new gapi.analytics.ext.ActiveUsers({
     container: 'active-users-<?php print($sitename);?>',
-    pollingInterval: <?php print(rand(15,30));?>
+    pollingInterval: <?php print(rand(1500,3000));?>
   });
   activeUsers_<?php print($sitename);?>.set({ids:'<?php print($view);?>'});
   activeUsers_<?php print($sitename);?>.once('success', function() {
@@ -63,7 +63,7 @@ gapi.analytics.ready(function() {
       timeout = setTimeout(function() {
         element.className =
           element.className.replace(/ is-(increasing|decreasing)/g, '');
-      }, 3000);
+      }, 30000);
     });
   });
   <?php
@@ -71,13 +71,13 @@ gapi.analytics.ready(function() {
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'1000');
+  },'10000');
   <?php
   }else if($index>10){
   ?>
   window.setTimeout(function(){
     activeUsers_<?php print($sitename);?>.execute();
-  },'2000');
+  },'20000');
   <?php
   }else{
   ?>
@@ -90,10 +90,10 @@ gapi.analytics.ready(function() {
   endforeach;
   ?>
 });
-//Reload page every 12 hours (60*60*12)*1000 //Miliseconds
+//Reload page every 6 hours (60*60*12)*1000 //Miliseconds
 setTimeout(function(){
   window.location.reload(1);
-}, ((60*60*12)*1000));
+}, ((60*60*6)*1000));
 </script>
 </body>
 </html>
