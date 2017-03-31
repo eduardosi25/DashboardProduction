@@ -222,7 +222,7 @@ function imx_dashboard_get_account() {
       'idclient' => '939754219168-8gbrk4172o5n5lgjbet16eoen3m1rmps.apps.googleusercontent.com',
       'secret'   => 'JN_3ZyzL6Baq_EgC3Jx-f3_z',
     ),
-    3 => array(
+    4 => array(
       'name'     => 'Inventmx VideoNetwork',
       'id'       => 'driven-density-525',
       'client'   => 'Dashboard Analytics',
