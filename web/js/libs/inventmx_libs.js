@@ -15452,6 +15452,36 @@ Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
     }[operator];*/
     //console.log(operator);
 });
+Handlebars.registerHelper('sum', function() {
+      var sum = 0, v;
+      for (var i=0; i<arguments.length; i++) {
+        v = parseFloat(arguments[i]);
+        if (!isNaN(v)) sum += v;
+      }
+		 $result = sum;
+
+        if($result){
+        //$result.replace(",", "");
+        //$result.replace(".", "");
+        $result =  parseInt($result);
+        
+        Number.prototype.format = function(n, x) {
+            var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\.' : '$') + ')';
+            return this.toFixed(Math.max(0, ~~n)).replace(new RegExp(re, 'g'), '$&,');
+        };
+        //return tnumbers..format();
+        return $result.format();
+        //1234..format();           // "1,234"
+        //12345..format(2);         // "12,345.00"
+        //123456.7.format(3, 2);    // "12,34,56.700"
+        //123456.789.format(2, 4);  // "12,3456.79"
+    }else {
+        request = "Not value";
+        return request;
+    }
+
+    });
+
 
 /* End Handlebars Helpers */
 
