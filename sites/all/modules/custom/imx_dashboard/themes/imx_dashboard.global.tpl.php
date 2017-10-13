@@ -27,7 +27,7 @@
   ?>
   <div class="column">
     <div id="view-<?php print($sitename);?>" class="<?php print($sitename);?> logo"></div>
-    <div id="active-users-<?php print($sitename);?>"></div>
+    <div id="active-users-<?php print($sitename);?>"><div class="ActiveUsers">Active Users: <b class="ActiveUsers-value">-/-</b></div></div>
   </div>
   <?php
   $index++;

@@ -867,7 +867,7 @@ function _do_api_request($url=null){
     //Start cURL resource
     $cURL = @curl_init();
     @curl_setopt($cURL,CURLOPT_HTTPGET,1);
-    //Define basic options
+    //Define basic options  
     @curl_setopt($cURL, CURLOPT_URL, $url);
     //Custom User-Agent
     @curl_setopt($cURL, CURLOPT_USERAGENT, "Invent User-Agent/".$_SERVER['SERVER_NAME']."/invent.CODIGA/".date('Ymd'));
