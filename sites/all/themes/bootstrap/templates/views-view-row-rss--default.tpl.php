@@ -19,23 +19,33 @@ foreach($row->elements as $element){
   if($element['key']=='dc:creator'){
     $element['value']=$siteName;
   }elseif($element['key']=='guid'){
-    $element['value']=md5($siteName.'|'.$element['value']);
+    $element['value']=$node->nid;
+  }elseif($element['key']=='pubDate'){
+    $element['value']=date('c',$node->created);
   }
   $item_elements[]=$element;
 }
-$item_elements=empty($item_elements) ? '' : format_xml_elements($item_elements);
 $thumbnail=isset($node->field_cover['und'][0]['uri']) && !empty($node->field_cover['und'][0]['uri']) ? image_style_url('large',$node->field_cover['und'][0]['uri']) : 'empty';
 $link=preg_replace('/https/','http',$link);
 $link_video=preg_replace('/https/','http',$node->field_content['und'][0]['value']);
+$video_duration=isset($node->field_video_duration['und'][0]['value']) && !empty($node->field_video_duration['und'][0]['value']) ? $node->field_video_duration['und'][0]['value'] : 300;
+//Add other elements
+$item_elements[]=array('key'=>'title'         , 'value'=>$title);
+$item_elements[]=array('key'=>'description'   , 'value' => $description);
+$item_elements[]=array('key'=>'author'        , 'value' => $siteName);
+$item_elements[]=array('key'=>'lastBuildDate' , 'value' => date('c',time()));
+$item_elements[]=array('key'=>'expirationDate', 'value' => date('c',time()+(3*60*60)));
+$item_elements[]=array('key'=>'dcterms:valid' , 'value' => date('c',time()+(3*60*60)));
+$item_elements[]=array('key'=>'media:keywords', 'value' => $channel_name);
+$item_elements[]=array('key'=>'link', 'value' => $link);
+$item_elements=empty($item_elements) ? '' : format_xml_elements($item_elements);
 ?>
   <item>
-    <title><?php print $title; ?></title>
-    <link><?php print $link; ?></link>
-    <description><![CDATA[<?php print $description; ?>]]></description>
     <?php print $item_elements; ?>
-    <media:title><?php print($node->title);?></media:title>
-    <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
-    <media:content url="<?php print($link_video);?>" medium="video" expression="full" lang="es">
+    <media:content url="<?php print($link_video);?>" duration="<?php print($video_duration);?>" type="video/mp4" lang="es">
+      <media:title><?php print($title);?></media:title>
+      <media:category scheme="<?php print $channel_url;?>"><?php print $channel_name; ?></media:category>
+      <media:text><![CDATA[<?php print $description; ?>]]></media:text>
       <media:thumbnail url="<?php print $thumbnail;?>"/>
     </media:content>
   </item>
