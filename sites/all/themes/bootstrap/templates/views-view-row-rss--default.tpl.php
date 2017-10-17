@@ -33,8 +33,8 @@ $video_duration=isset($node->field_video_duration['und'][0]['value']) && !empty(
 $item_elements[]=array('key'=>'title'         , 'value'=>$title);
 $item_elements[]=array('key'=>'description'   , 'value' => $description);
 $item_elements[]=array('key'=>'author'        , 'value' => $siteName);
-$item_elements[]=array('key'=>'lastBuildDate' , 'value' => date('c',time()));
-$item_elements[]=array('key'=>'expirationDate', 'value' => date('c',time()+(3*60*60)));
+$item_elements[]=array('key'=>'lastBuildDate' , 'value' => date('c',$node->changed));
+$item_elements[]=array('key'=>'expirationDate', 'value' => "");
 $item_elements[]=array('key'=>'dcterms:valid' , 'value' => date('c',time()+(3*60*60)));
 $item_elements[]=array('key'=>'media:keywords', 'value' => $channel_name);
 $item_elements[]=array('key'=>'link', 'value' => $link);
