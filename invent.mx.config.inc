@@ -32,6 +32,8 @@ function get_cms_admin_paths(){
     'colabora-con-nosotros/*',
     'dashboard',
     'dashboard/*',
+    'lab',
+    'lab/*',
   );
   $paths=implode("\n",$paths);
   return drupal_match_path($_GET["q"],$paths);
