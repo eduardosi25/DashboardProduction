@@ -126,7 +126,7 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-         //console.log(key, item);
+         console.log(key, item);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
           cookieactual = parseInt($.cookie(key));
           document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
@@ -261,7 +261,7 @@
           //console.log(response.result);
 
           $.each(response.result, function(key, item) {
-             //console.log(key, item);
+             console.log(key, item);
             //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
             $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
             cookieactual = parseInt($.cookie(key));
@@ -382,7 +382,7 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-          //console.log(key, item);
+          console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
           cookieactual = parseInt($.cookie(key));
@@ -515,7 +515,7 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-        //console.log(key, item);
+        console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
           cookieactual = parseInt($.cookie(key));
@@ -622,7 +622,7 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-      //console.log(key, item);
+      console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
           cookieactual = parseInt($.cookie(key));
@@ -727,7 +727,6 @@
       setTimeout(makeApiCall3, 4000);
       setTimeout(makeApiCall4, 6000);
       setTimeout(makeApiCall5, 8000);
-
       setInterval(function(hours){ if (hours > 8 && hours < 22){ //console.log("lo hizo");
       callVisitsSet();
         }
