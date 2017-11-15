@@ -23,7 +23,21 @@
     function handleClientLoad() {
       // Load the API's client and auth2 modules.
       // Call the initClient function after the modules load.
-      gapi.load('client:auth2', initClient);
+      gapi.load('client:auth2', {
+  callback: function() {
+    // Handle gapi.client initialization.
+    initClient();
+  },
+  onerror: function() {
+    // Handle loading error.
+    alert('gapi.client failed to load!');
+  },
+  timeout: 5000, // 5 seconds.
+  ontimeout: function() {
+    // Handle timeout.
+    alert('gapi.client could not load in a timely manner!');
+  }
+});
     }
 
     var GoogleAuth;
@@ -89,7 +103,7 @@
         });
 
       };
-      var batch = gapi.client.newBatch();
+
       // Adding just the request
       var Excelsior = searchRequest('ga:6643838');
       var ExcelsiorAmp = searchRequest('ga:116432353');
@@ -99,6 +113,7 @@
       var ActitudInst = searchRequest('ga:117360079');
       var ActitudAmp = searchRequest('ga:116429352');
       var Imagen = searchRequest('ga:130323869');
+      var batch = gapi.client.newBatch();
       batch.add(Excelsior,{"id":"Excelsior"});
       batch.add(ExcelsiorAmp,{"id":"ExcelsiorAmp"});
       batch.add(Adrenalina,{"id":"Adrenalina"});
@@ -108,25 +123,24 @@
       batch.add(ActitudAmp,{"id":"ActitudAmp"});
       batch.add(Imagen,{"id":"Imagen"});
 
-
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
          //console.log(key, item);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
-          if (parseInt($.cookie(key))){
           cookieactual = parseInt($.cookie(key));
-          }
           document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
           cookienueva= parseInt($.cookie(key));
           if (cookieactual > cookienueva){
           //  alert("la cookie nueva es menor");
             $(".cont"+ key ).animate({backgroundColor: "red"}, 100)
-                            .animate({backgroundColor:'#2d2d2d'}, 8000);
+                            .animate({backgroundColor:'#2d2d2d'}, 10000);
+          }else if (cookieactual < cookienueva){
+            $(".cont"+ key).animate({backgroundColor: "green"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-          // alert("la cookie nueva es mayor");
-          $(".cont"+ key ).animate({backgroundColor: "green"}, 100)
-                          .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".cont"+ key).animate({backgroundColor: "#3177bc"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }
         });
         //pinta total
@@ -139,13 +153,13 @@
         ExcelsiorTotalNew = parseInt($.cookie("ExcelsiorTotal"));
         if (ExcelsiorTotalAnt > ExcelsiorTotalNew){
           $(".contExcelsiorTotal").animate({backgroundColor: "red"}, 100)
-                                  .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                  .animate({backgroundColor:'#2d2d2d'}, 10000);
         }else if (ExcelsiorTotalAnt < ExcelsiorTotalNew){
           $(".contExcelsiorTotal").animate({backgroundColor: "green"}, 100)
-                                  .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                  .animate({backgroundColor:'#2d2d2d'}, 10000);
         }else{
           $(".contExcelsiorTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                  .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                  .animate({backgroundColor:'#2d2d2d'}, 10000);
         }
         //pinta total
         AdrenalinaTotal = parseInt($.cookie("Adrenalina")) + parseInt($.cookie("AdrenalinaAmp"));
@@ -157,13 +171,13 @@
         AdrenalinaTotalNew = parseInt($.cookie("AdrenalinaTotal"));
         if (AdrenalinaTotalAnt > AdrenalinaTotalNew){
           $(".contAdrenalinaTotal").animate({backgroundColor: "red"}, 100)
-                                   .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                   .animate({backgroundColor:'#2d2d2d'}, 10000);
         }else if (AdrenalinaTotalAnt < AdrenalinaTotalNew){
           $(".contAdrenalinaTotal").animate({backgroundColor: "green"}, 100)
-                                   .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                   .animate({backgroundColor:'#2d2d2d'}, 10000);
         }else{
           $(".contAdrenalinaTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                   .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                   .animate({backgroundColor:'#2d2d2d'}, 10000);
         }
 
 
@@ -177,13 +191,13 @@
             ActitudTotalNew = parseInt($.cookie("ActitudTotal"));
             if (ActitudTotalAnt > ActitudTotalNew){
               $(".contActitudTotal").animate({backgroundColor: "red"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else if (ActitudTotalAnt < ActitudTotalNew){
               $(".contActitudTotal").animate({backgroundColor: "green"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else{
               $(".contActitudTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
             }
 
             ImagenTotal = parseInt($.cookie("Imagen"));
@@ -195,13 +209,13 @@
             ImagenTotalNew = parseInt($.cookie("ImagenTotal"));
             if (ImagenTotalAnt > ImagenTotalNew){
               $(".contImagenTotal").animate({backgroundColor: "red"}, 100)
-                                   .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                   .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else if (ImagenTotalAnt < ImagenTotalNew){
               $(".contImagenTotal").animate({backgroundColor: "green"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else{
               $(".contImagenTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
             }
       });
 
@@ -222,7 +236,7 @@
         });
 
       };
-      var batch = gapi.client.newBatch();
+
       var Dinero = searchRequest('ga:62706709');
       var DineroInst = searchRequest('ga:153500502');
       var DineroAmp = searchRequest('ga:116486819');
@@ -232,6 +246,7 @@
       var Gamedots = searchRequest('ga:59347434');
       var GamedotsInst = searchRequest('ga:155429790');
       var GamedotsAmp = searchRequest('ga:141746476');
+      var batch = gapi.client.newBatch();
       batch.add(Dinero,{"id":"Dinero"});
       batch.add(DineroInst,{"id":"DineroInst"});
       batch.add(DineroAmp,{"id":"DineroAmp"});
@@ -246,22 +261,22 @@
           //console.log(response.result);
 
           $.each(response.result, function(key, item) {
-          // console.log(key, item);
+             //console.log(key, item);
             //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
             $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
-            if (parseInt($.cookie(key))){
             cookieactual = parseInt($.cookie(key));
-            }
             document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
             cookienueva= parseInt($.cookie(key));
             if (cookieactual > cookienueva){
-              //alert("la cookie nueva es menor");
+            //  alert("la cookie nueva es menor");
               $(".cont"+ key ).animate({backgroundColor: "red"}, 100)
-                              .animate({backgroundColor:'#2d2d2d'}, 8000);
+                              .animate({backgroundColor:'#2d2d2d'}, 10000);
+            }else if (cookieactual < cookienueva){
+              $(".cont"+ key).animate({backgroundColor: "green"}, 100)
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else{
-            //  alert("la cookie nueva es mayor");
-            $(".cont"+ key ).animate({backgroundColor: "green"}, 100)
-                            .animate({backgroundColor:'#2d2d2d'}, 8000);
+              $(".cont"+ key).animate({backgroundColor: "#3177bc"}, 100)
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
             }
           });
 
@@ -275,13 +290,13 @@
            DineroTotalNew = parseInt($.cookie("DineroTotal"));
            if (DineroTotalAnt > DineroTotalNew){
              $(".contDineroTotal").animate({backgroundColor: "red"}, 100)
-                                  .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                  .animate({backgroundColor:'#2d2d2d'}, 10000);
            }else if (DineroTotalAnt < DineroTotalNew){
              $(".contDineroTotal").animate({backgroundColor: "green"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
            }else{
              $(".contDineroTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
            }
 
           AtraccionTotal = parseInt($.cookie("Atraccion")) + parseInt($.cookie("AtraccionInst")) + parseInt($.cookie("AtraccionAmp"));
@@ -294,18 +309,16 @@
            AtraccionTotalNew = parseInt($.cookie("AtraccionTotal"));
            if (AtraccionTotalAnt > AtraccionTotalNew){
              $(".contAtraccionTotal").animate({backgroundColor: "red"}, 100)
-                                     .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                     .animate({backgroundColor:'#2d2d2d'}, 10000);
            }else if (AtraccionTotalAnt < AtraccionTotalNew){
              $(".contAtraccionTotal").animate({backgroundColor: "green"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
            }else{
              $(".contAtraccionTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                      .animate({backgroundColor:'#2d2d2d'}, 10000);
            }
 
           GamedotsTotal = parseInt($.cookie("Gamedots")) + parseInt($.cookie("GamedotsInst")) + parseInt($.cookie("GamedotsAmp"));
-          //pinta total
-           GamedotsTotal = parseInt($.cookie("Gamedots")) + parseInt($.cookie("GamedotsAmp"));
            $('#GamedotsTotal').hide().html(GamedotsTotal).fadeIn(1000).addClass('animated bounceIn');
            GamedotsTotalAnt = parseInt($.cookie("GamedotsTotal"));
            //alert(GamedotsTotalAnt);
@@ -313,14 +326,14 @@
            //alert(GamedotsTotalNew);
            GamedotsTotalNew = parseInt($.cookie("GamedotsTotal"));
            if (GamedotsTotalAnt > GamedotsTotalNew){
-             $(".contGamedotsTotal").animate({backgroundColor: "red"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contGamedotsTotal").animate({backgroundColor: "red"}, 100);
+             $(".contGamedotsTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else if (GamedotsTotalAnt < GamedotsTotalNew){
-             $(".contGamedotsTotal").animate({backgroundColor: "green"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contGamedotsTotal").animate({backgroundColor: "green"}, 100);
+             $(".contGamedotsTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else{
-             $(".contGamedotsTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contGamedotsTotal").animate({backgroundColor: "#3177bc"}, 100);
+             $(".contGamedotsTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }
 
       });
@@ -341,7 +354,7 @@
         });
 
       };
-      var batch = gapi.client.newBatch();
+
       // Adding just the request
       var Dailytrend = searchRequest('ga:78887468');
       var DailytrendInst = searchRequest('ga:155439411');
@@ -353,6 +366,7 @@
       var ImagenradioAmp = searchRequest('ga:141848103');
       var Rmx = searchRequest('ga:136699842');
       var RmxAmp = searchRequest('ga:141818215');
+      var batch = gapi.client.newBatch();
       batch.add(Dailytrend,{"id":"Dailytrend"});
       batch.add(DailytrendInst,{"id":"DailytrendInst"});
       batch.add(DailytrendAmp,{"id":"DailytrendAmp"});
@@ -364,25 +378,24 @@
       batch.add(Rmx,{"id":"Rmx"});
       batch.add(RmxAmp,{"id":"RmxAmp"});
 
+
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
           //console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
-          if (parseInt($.cookie(key))){
           cookieactual = parseInt($.cookie(key));
-          }
           document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
           cookienueva= parseInt($.cookie(key));
           if (cookieactual > cookienueva){
             //alert("la cookie nueva es menor");
             $(".cont"+ key ).animate({backgroundColor: "red"}, 100)
-                            .animate({backgroundColor:'#2d2d2d'}, 8000);
+                            .animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
           //  alert("la cookie nueva es mayor");
           $(".cont"+ key ).animate({backgroundColor: "green"}, 100)
-                          .animate({backgroundColor:'#2d2d2d'}, 8000);
+                          .animate({backgroundColor:'#2d2d2d'}, 10000);
           }
         });
         DailytrendTotal = parseInt($.cookie("Dailytrend")) + parseInt($.cookie("DailytrendInst")) + parseInt($.cookie("DailytrendAmp"));
@@ -394,14 +407,14 @@
          //alert(DailytrendTotalNew);
          DailytrendTotalNew = parseInt($.cookie("DailytrendTotal"));
          if (DailytrendTotalAnt > DailytrendTotalNew){
-           $(".contDailytrendTotal").animate({backgroundColor: "red"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contDailytrendTotal").animate({backgroundColor: "red"}, 100);
+           $(".contDailytrendTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else if (DailytrendTotalAnt < DailytrendTotalNew){
-           $(".contDailytrendTotal").animate({backgroundColor: "green"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contDailytrendTotal").animate({backgroundColor: "green"}, 100);
+           $(".contDailytrendTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else{
-           $(".contDailytrendTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contDailytrendTotal").animate({backgroundColor: "#3177bc"}, 100);
+           $(".contDailytrendTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }
 
          RsvpTotal = parseInt($.cookie("Rsvp")) + parseInt($.cookie("RsvpInst")) + parseInt($.cookie("RsvpAmp"));
@@ -413,14 +426,14 @@
           //alert(RsvpTotalNew);
           RsvpTotalNew = parseInt($.cookie("RsvpTotal"));
           if (RsvpTotalAnt > RsvpTotalNew){
-            $(".contRsvpTotal").animate({backgroundColor: "red"}, 100)
-                               .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contRsvpTotal").animate({backgroundColor: "red"}, 100);
+            $(".contRsvpTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else if (RsvpTotalAnt < RsvpTotalNew){
-            $(".contRsvpTotal").animate({backgroundColor: "green"}, 100)
-                                     .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contRsvpTotal").animate({backgroundColor: "green"}, 100);
+            $(".contRsvpTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-            $(".contRsvpTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                     .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contRsvpTotal").animate({backgroundColor: "#3177bc"}, 100);
+            $(".contRsvpTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }
 
           ImagenradioTotal = parseInt($.cookie("Imagenradio")) + parseInt($.cookie("ImagenradioAmp"));
@@ -432,14 +445,14 @@
            //alert(ImagenradioTotalNew);
            ImagenradioTotalNew = parseInt($.cookie("ImagenradioTotal"));
            if (ImagenradioTotalAnt > ImagenradioTotalNew){
-             $(".contImagenradioTotal").animate({backgroundColor: "red"}, 100)
-                                       .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contImagenradioTotal").animate({backgroundColor: "red"}, 100);
+             $(".contImagenradioTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else if (ImagenTotalAnt < ImagenTotalNew){
-             $(".contImagenradioTotal").animate({backgroundColor: "green"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contImagenradioTotal").animate({backgroundColor: "green"}, 100);
+             $(".contImagenradioTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else{
-             $(".contImagenradioTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contImagenradioTotal").animate({backgroundColor: "#3177bc"}, 100);
+             $(".contImagenradioTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }
 
            RmxTotal = parseInt($.cookie("Rmx")) + parseInt($.cookie("RmxAmp"));
@@ -452,13 +465,13 @@
             RmxTotalNew = parseInt($.cookie("RmxTotal"));
             if (RmxTotalAnt > RmxTotalNew){
               $(".contRmxTotal").animate({backgroundColor: "red"}, 100)
-                              .animate({backgroundColor:'#2d2d2d'}, 8000);
+                              .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else if (RmxTotalAnt < RmxTotalNew){
               $(".contRmxTotal").animate({backgroundColor: "green"}, 100)
-                                       .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                       .animate({backgroundColor:'#2d2d2d'}, 10000);
             }else{
               $(".contRmxTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                       .animate({backgroundColor:'#2d2d2d'}, 8000);
+                                       .animate({backgroundColor:'#2d2d2d'}, 10000);
             }
       });
     }
@@ -477,7 +490,7 @@
         });
 
       };
-      var batch = gapi.client.newBatch();
+
       // Adding just the request
       var Bienysaludable = searchRequest('ga:140322049');
       var BienysaludableInst = searchRequest('ga:155447690');
@@ -488,6 +501,7 @@
       var Melodijolola = searchRequest('ga:62818963');
       var MelodijololaInst = searchRequest('ga:155432772');
       var MelodijololaAmp = searchRequest('ga:141805523');
+      var batch = gapi.client.newBatch();
       batch.add(Bienysaludable,{"id":"Bienysaludable"});
       batch.add(BienysaludableInst,{"id":"BienysaludableInst"});
       batch.add(BienysaludableAmp,{"id":"BienysaludableAmp"});
@@ -501,24 +515,23 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-        //  console.log(key, item);
+        //console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
-          if (parseInt($.cookie(key))){
           cookieactual = parseInt($.cookie(key));
-          }
           document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
           cookienueva= parseInt($.cookie(key));
           if (cookieactual > cookienueva){
-            //alert("la cookie nueva es menor");
+          //  alert("la cookie nueva es menor");
             $(".cont"+ key ).animate({backgroundColor: "red"}, 100)
-                            .animate({backgroundColor:'#2d2d2d'}, 8000);
+                            .animate({backgroundColor:'#2d2d2d'}, 10000);
+          }else if (cookieactual < cookienueva){
+            $(".cont"+ key).animate({backgroundColor: "green"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-          //  alert("la cookie nueva es mayor");
-          $(".cont"+ key ).animate({backgroundColor: "green"}, 100)
-                          .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".cont"+ key).animate({backgroundColor: "#3177bc"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }
-
         });
 
         BienysaludableTotal = parseInt($.cookie("Bienysaludable")) + parseInt($.cookie("BienysaludableInst")) + parseInt($.cookie("BienysaludableAmp"));
@@ -530,14 +543,14 @@
          //alert(BienysaludableTotalNew);
          BienysaludableTotalNew = parseInt($.cookie("BienysaludableTotal"));
          if (BienysaludableTotalAnt > BienysaludableTotalNew){
-           $(".contBienysaludableTotal").animate({backgroundColor: "red"}, 100)
-                                        .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contBienysaludableTotal").animate({backgroundColor: "red"}, 100);
+           $(".contBienysaludableTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else if (BienysaludableTotalAnt < BienysaludableTotalNew){
-           $(".contBienysaludableTotal").animate({backgroundColor: "green"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contBienysaludableTotal").animate({backgroundColor: "green"}, 100);
+           $(".contBienysaludableTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else{
-           $(".contBienysaludableTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contBienysaludableTotal").animate({backgroundColor: "#3177bc"}, 100);
+           $(".contBienysaludableTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }
 
          CocinaTotal = parseInt($.cookie("Cocina")) + parseInt($.cookie("CocinaInst")) + parseInt($.cookie("CocinaAmp"));
@@ -549,14 +562,14 @@
           //alert(CocinaTotalNew);
           CocinaTotalNew = parseInt($.cookie("CocinaTotal"));
           if (CocinaTotalAnt > CocinaTotalNew){
-            $(".contCocinaTotal").animate({backgroundColor: "red"}, 100)
-                                 .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contCocinaTotal").animate({backgroundColor: "red"}, 100);
+            $(".contCocinaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else if (CocinaTotalAnt < CocinaTotalNew){
-            $(".contCocinaTotal").animate({backgroundColor: "green"}, 100)
-                                     .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contCocinaTotal").animate({backgroundColor: "green"}, 100);
+            $(".contCocinaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-            $(".contCocinaTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                     .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contCocinaTotal").animate({backgroundColor: "#3177bc"}, 100);
+            $(".contCocinaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }
 
           MelodijololaTotal = parseInt($.cookie("Melodijolola")) + parseInt($.cookie("MelodijololaInst")) + parseInt($.cookie("MelodijololaAmp"));
@@ -568,14 +581,14 @@
            //alert(MelodijololaTotalNew);
            MelodijololaTotalNew = parseInt($.cookie("MelodijololaTotal"));
            if (MelodijololaTotalAnt > MelodijololaTotalNew){
-             $(".contMelodijololaTotal").animate({backgroundColor: "red"}, 100)
-                                        .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contMelodijololaTotal").animate({backgroundColor: "red"}, 100);
+            $(".contMelodijololaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else if (MelodijololaTotalAnt < MelodijololaTotalNew){
-             $(".contMelodijololaTotal").animate({backgroundColor: "green"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contMelodijololaTotal").animate({backgroundColor: "green"}, 100);
+             $(".contMelodijololaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }else{
-             $(".contMelodijololaTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                      .animate({backgroundColor:'#2d2d2d'}, 8000);
+             $(".contMelodijololaTotal").animate({backgroundColor: "#3177bc"}, 100);
+            $(".contMelodijololaTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
            }
       });
     }
@@ -594,12 +607,13 @@
         });
 
       };
-      var batch = gapi.client.newBatch();
+
       // Adding just the request
       var Salud = searchRequest('ga:36901730');
       var SaludInst = searchRequest('ga:153449755');
       var SaludAmp = searchRequest('ga:116446177');
       var Huffpost = searchRequest('ga:129681372');
+      var batch = gapi.client.newBatch();
       batch.add(Salud,{"id":"Salud"});
       batch.add(SaludInst,{"id":"SaludInst"});
       batch.add(SaludAmp,{"id":"SaludAmp"});
@@ -608,22 +622,22 @@
       batch.then(function(response) {
 
         $.each(response.result, function(key, item) {
-      //  console.log(key, item);
+      //console.log(key, item);
           //$('#'+key).htmlTo(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000);
           $('#'+key).hide().html(item.result.totalsForAllResults["rt:activeUsers"]).fadeIn(1000).addClass('animated bounceIn');
-          if (parseInt($.cookie(key))){
           cookieactual = parseInt($.cookie(key));
-          }
           document.cookie = key+"="+item.result.totalsForAllResults["rt:activeUsers"];
           cookienueva= parseInt($.cookie(key));
           if (cookieactual > cookienueva){
-            //alert("la cookie nueva es menor");
+          //  alert("la cookie nueva es menor");
             $(".cont"+ key ).animate({backgroundColor: "red"}, 100)
-                            .animate({backgroundColor:'#2d2d2d'}, 8000);
+                            .animate({backgroundColor:'#2d2d2d'}, 10000);
+          }else if (cookieactual < cookienueva){
+            $(".cont"+ key).animate({backgroundColor: "green"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-          //  alert("la cookie nueva es mayor");
-          $(".cont"+ key ).animate({backgroundColor: "green"}, 100)
-                          .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".cont"+ key).animate({backgroundColor: "#3177bc"}, 100)
+                                    .animate({backgroundColor:'#2d2d2d'}, 10000);
           }
         });
 
@@ -636,14 +650,14 @@
          //alert(SaludTotalNew);
          SaludTotalNew = parseInt($.cookie("SaludTotal"));
          if (SaludTotalAnt > SaludTotalNew){
-           $(".contSaludTotal").animate({backgroundColor: "red"}, 100)
-                               .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contSaludTotal").animate({backgroundColor: "red"}, 100);
+           $(".contSaludTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else if (SaludTotalAnt < SaludTotalNew){
-           $(".contSaludTotal").animate({backgroundColor: "green"}, 100)
-                               .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contSaludTotal").animate({backgroundColor: "green"}, 100);
+           $(".contSaludTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }else{
-           $(".contSaludTotal").animate({backgroundColor: "#3177bc"}, 100)
-                              .animate({backgroundColor:'#2d2d2d'}, 8000);
+           $(".contSaludTotal").animate({backgroundColor: "#3177bc"}, 100);
+           $(".contSaludTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
          }
 
          HuffpostTotal = parseInt($.cookie("Huffpost"));
@@ -654,14 +668,14 @@
           //alert(HuffpostTotalNew);
           HuffpostTotalNew = parseInt($.cookie("HuffpostTotal"));
           if (HuffpostTotalAnt > HuffpostTotalNew){
-            $(".contHuffpostTotal").animate({backgroundColor: "red"}, 100)
-                                .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contHuffpostTotal").animate({backgroundColor: "red"}, 100);
+            $(".contHuffpostTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else if (HuffpostTotalAnt < HuffpostTotalNew){
-            $(".contHuffpostTotal").animate({backgroundColor: "green"}, 100)
-                                   .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contHuffpostTotal").animate({backgroundColor: "green"}, 100);
+            $(".contHuffpostTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }else{
-            $(".contHuffpostTotal").animate({backgroundColor: "#3177bc"}, 100)
-                                    .animate({backgroundColor:'#2d2d2d'}, 8000);
+            $(".contHuffpostTotal").animate({backgroundColor: "#3177bc"}, 100);
+            $(".contHuffpostTotal").animate({backgroundColor:'#2d2d2d'}, 10000);
           }
       });
     }
@@ -703,22 +717,33 @@
 
         }
       }
+      var Digital=new Date();
+      var hours=Digital.getHours();
+      //console.log("la hora es:"+hours);
     function callVisits(){
       makeApiCall();
+
       setTimeout(makeApiCall2, 2000);
       setTimeout(makeApiCall3, 4000);
       setTimeout(makeApiCall4, 6000);
       setTimeout(makeApiCall5, 8000);
-      setInterval(callVisitsSet,180000);
-    }
-    function callVisitsSet(){
-      makeApiCall();
-      setTimeout(makeApiCall2, 180000);
-      setTimeout(makeApiCall3, 360000);
-      setTimeout(makeApiCall4, 540000);
-      setTimeout(makeApiCall5, 720000);
+
+      setInterval(function(hours){ if (hours > 8 && hours < 22){ //console.log("lo hizo");
+      callVisitsSet();
+        }
+      }, 60000, hours);
+
     }
 
+
+
+  function callVisitsSet(){
+    makeApiCall();
+    setTimeout(makeApiCall2, 15000);
+    setTimeout(makeApiCall3, 25000);
+    setTimeout(makeApiCall4, 35000);
+    setTimeout(makeApiCall5, 45000);
+  }
 
     function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
